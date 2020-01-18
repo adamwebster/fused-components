@@ -50,6 +50,7 @@ const Button = styled.button`
     background-color: #ccc;
     color: #a0a0a0;
     border:none;
+    cursor:default;
   }
 
   &.transforming{
@@ -57,10 +58,16 @@ const Button = styled.button`
     margin: 0 auto;
     border-radius: 50%;
   }
-  &.loading{
+  ${props => props.loading && css`
+  text-indent: -9999px;                 /* sends the text off-screen */
+  white-space: nowrap;            /* because only the first line is indented */
+
+  width:34px;
+    margin: 0 auto;
+    border-radius: 50%;
     content: "";
     background: conic-gradient(${props => props.theme.accentColor}, #fff);
-    //border:solid 5px ${props => props.theme.accentColor}
+    //border:solid 5px ${props => props.theme.accentColor};
     animation:spin 1s linear infinite;
     &:after{
       content:"";
@@ -71,18 +78,17 @@ const Button = styled.button`
       display:block;
       position: relative;
       left:-7px;
-      top: -2px;
-      
+      top: -15px;    
     }
   }
-  &.completed{
+`}
+  ${props => props.completed && css`
     width: 100%;
     background-color: ${props => props.theme.green};
     color:#fff;
-  }
-  &[disabled]{
-    cursor:default;
-  }
+  `
+}
+ 
   @keyframes spin { 
     100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } 
   }
@@ -100,10 +106,10 @@ const Button = styled.button`
 }
 `
 
-const AnimatedButton = ({primary, ...rest }) => {
+const AnimatedButton = ({disabled, primary, loading, completed, ...rest }) => {
   return (
     <>
-      <Button primary={primary} {...rest} />
+      <Button disabled={disabled || loading} loading={loading} completed={completed} primary={primary} {...rest} />
     </>
   );
 }
