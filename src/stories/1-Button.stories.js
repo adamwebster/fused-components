@@ -7,12 +7,5 @@ export default {
   component: Button,
 };
 
-export const Text = () => <AnimatedButton>Hello Button</AnimatedButton>;
+export const ButtonThatIsAnimated = () => <AnimatedButton completed>Hello Button</AnimatedButton>;
 
-export const Emoji = () => (
-  <Button onClick={action('clicked')}>
-    <span role="img" aria-label="so cool">
-      😀 😎 👍 💯
-    </span>
-  </Button>
-);
