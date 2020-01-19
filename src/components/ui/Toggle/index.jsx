@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Toggle = ({ active, onClick, ...rest }) => {
     return (
-        <ToggleWrapper active={active} onClick={() => { onClick() }} {...rest}>
+        <ToggleWrapper active={active} onClick={(e) => { onClick(e) }} {...rest}>
             <Slider active={active} />
         </ToggleWrapper>
     )
