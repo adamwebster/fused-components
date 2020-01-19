@@ -1,7 +1,6 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, color } from '@storybook/addon-knobs';
 import { action } from "@storybook/addon-actions";
-
 import AnimatedButton from '../components/ui/AnimatedButton/';
 
 <Meta title="FusedComponents|Animated Button" component={AnimatedButton} />
@@ -20,6 +19,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
         primary={boolean("Primary", false)}
         loading={boolean("Loading", false)}
         completed={boolean("Completed", false)}
+        buttonColor={color("Button Color", "#29a19c")}
     >Button</AnimatedButton>
     </Story>
 </Preview>
@@ -35,6 +35,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
     primary={boolean("Primary", true, "Primary")}
     loading={boolean("Loading", false, "Primary")}
     completed={boolean("Completed", false, "Primary")}
+    buttonColor={color("Button Color", "#29a19c", "Primary")}
 >Button</AnimatedButton>
 </Story>
 </Preview>
