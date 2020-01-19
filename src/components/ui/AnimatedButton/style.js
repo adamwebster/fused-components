@@ -36,13 +36,18 @@ export const Button = styled.button`
       background-color: ${props => props.theme.accentColor};
       color: ${props => props.theme.buttonTextColor};
       border: none;
-      &:hover:not([disabled]) {
-        background-color: ${props => darken(0.1, props.theme.accentColor)};
-        transform: scale(1.02);
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        color: #fff;
-      }
+      ${props =>
+        !props.completed &&
+        css`
+          &:hover:not([disabled]) {
+            background-color: ${props => darken(0.1, props.theme.accentColor)};
+            transform: scale(1.02);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            color: #fff;
+          }
+        `}
     `}
+
   &[disabled] {
     background-color: #ccc;
     color: #a0a0a0;
@@ -55,6 +60,7 @@ export const Button = styled.button`
     margin: 0 auto;
     border-radius: 50%;
   }
+
   ${props =>
     props.loading &&
     !props.completed &&
@@ -91,7 +97,13 @@ export const Button = styled.button`
       width: 100%;
       background-color: ${props => props.theme.green};
       color: #fff;
-      border:none;
+      border: none;
+
+      &:disabled {
+        background-color: ${props => props.theme.green};
+        color: #fff;
+        border: none;
+      }
     `}
  
   @keyframes spin {
@@ -101,6 +113,7 @@ export const Button = styled.button`
       transform: rotate(360deg);
     }
   }
+
   .button-icon {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 5px;

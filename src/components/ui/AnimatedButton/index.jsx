@@ -5,7 +5,7 @@ const AnimatedButton = ({ disabled, primary, loading, completed, ...rest }) => {
   return (
     <>
       <Button
-        disabled={disabled || (loading && !completed)}
+        disabled={disabled || (loading || completed)}
         loading={loading}
         completed={completed}
         primary={primary}
