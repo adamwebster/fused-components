@@ -16,7 +16,10 @@ export const Button = styled.button`
   transition: all 0.2s ease;
   outline: 0;
   position: relative;
-
+  ${props => props.buttonColor && css`
+    border-color: ${props.buttonColor};
+    color: ${props.buttonColor};
+  `}
   &:hover:not([disabled]) {
     border-color: ${props => darken(0.2, props.theme.accentColor)};
     color: ${props => darken(0.2, props.theme.accentColor)};
@@ -46,6 +49,10 @@ export const Button = styled.button`
             color: #fff;
           }
         `}
+
+        ${props => props.buttonColor && css`
+    background-color: ${props.buttonColor};
+  `}
     `}
 
   &[disabled] {
