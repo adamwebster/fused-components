@@ -4,9 +4,9 @@ import { action } from "@storybook/addon-actions";
 
 import AnimatedButton from '../components/ui/AnimatedButton/';
 
-<Meta title="Design System|Animated Button" component={AnimatedButton} />
+<Meta title="FusedComponents|Animated Button" component={AnimatedButton} />
 
-# Avatar
+# Animated Button
 
 ## Displays an image that represents a user or organization
 
@@ -23,5 +23,66 @@ Use an avatar for attributing actions or content to specific users. The user's n
     >Button</AnimatedButton>
     </Story>
 </Preview>
+
+## Primary
+
+
+<Preview>
+<Story name="Primary" parameters={{ decorators: [withKnobs] }}>
+<AnimatedButton
+    onClick={action("button action click", "Primary")}
+    disabled={boolean("Disabled", false, "Primary")}
+    primary={boolean("Primary", true, "Primary")}
+    loading={boolean("Loading", false, "Primary")}
+    completed={boolean("Completed", false, "Primary")}
+>Button</AnimatedButton>
+</Story>
+</Preview>
+
+## Loading 
+
+<Preview>
+<Story name="Loading" parameters={{ decorators: [withKnobs] }}>
+<AnimatedButton
+    onClick={action("button action click", "Loading")}
+    disabled={boolean("Disabled", false, "Loading")}
+    primary={boolean("Primary", false, "Loading")}
+    loading={boolean("Loading", true, "Loading")}
+    completed={boolean("Completed", false, "Loading")}
+>Button</AnimatedButton>
+</Story>
+</Preview>
+
+## Completed
+
+<Preview>
+<Story name="Completed" parameters={{ decorators: [withKnobs] }}>
+<AnimatedButton
+    onClick={action("button action click", "Completed")}
+    disabled={boolean("Disabled", false, "Completed")}
+    primary={boolean("Primary", false, "Completed")}
+    loading={boolean("Loading", false, "Completed")}
+    completed={boolean("Completed", true, "Completed")}
+>Loaded</AnimatedButton>
+</Story>
+</Preview>
+
+
+## Disabled
+
+<Preview>
+<Story name="Disabled" parameters={{ decorators: [withKnobs] }}>
+<AnimatedButton
+    onClick={action("button action click", "Disabled")}
+    disabled={boolean("Disabled", true, "Disabled")}
+    primary={boolean("Primary", false, "Disabled")}
+    loading={boolean("Loading", false, "Disabled")}
+    completed={boolean("Completed", false, "Disabled")}
+>Button</AnimatedButton>
+</Story>
+</Preview>
+
+
+## Properties
 
 <Props of={AnimatedButton} />
