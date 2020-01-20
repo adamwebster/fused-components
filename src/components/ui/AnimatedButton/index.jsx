@@ -8,12 +8,11 @@ import PropTypes from 'prop-types';
 **/
 
 const AnimatedButton = ({ disabled, icon, buttonColor, primary, loading, completed,children, ...rest }) => {
-  console.log(typeof icon)
   return (
     <>
       <Button
         disabled={disabled || (loading || completed)}
-        loading={loading}
+        loading={loading ? 1: 0}
         completed={completed}
         primary={primary}
         buttonColor={buttonColor}

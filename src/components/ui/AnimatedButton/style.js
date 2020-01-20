@@ -114,12 +114,13 @@ export const Button = styled.button`
  
   @keyframes spin {
     0% {
-      background: conic-gradient(${props => props.theme.accentColor}, #fff);
+      background: conic-gradient(${props => props.buttonColor ? props.buttonColor : props.theme.accentColor}, #fff);
+
     }
     100% {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
-      background: conic-gradient(${props => props.theme.accentColor}, #fff);
+      background: conic-gradient(${props => props.buttonColor ? props.buttonColor : props.theme.accentColor}, #fff);
 
     }
   }
