@@ -17,7 +17,7 @@ let test = "test";
 <Preview>
     <Story name="Default" parameters={{ decorators: [withKnobs] }}>
     <Input
-      {...actions({onChange:"toggle action chnage"})}
+      {...actions({onChange:"toggle action change"})}
     />
     </Story>
 </Preview>
@@ -26,7 +26,7 @@ let test = "test";
 <Preview>
     <Story name="Disabled" parameters={{ decorators: [withKnobs] }}>
     <Input
-      disabled
+        disabled={boolean("Disabled", true, 'disabled')}
     />
     </Story>
 </Preview>
