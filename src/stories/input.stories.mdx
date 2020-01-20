@@ -1,0 +1,36 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+
+import Input from '../components/ui/Input/';
+let test = "test";
+
+<Meta title="FusedComponents|Input" component={Input} />
+
+# Input
+
+## An input component
+ 
+
+## Not Active
+<Preview>
+    <Story name="Default" parameters={{ decorators: [withKnobs] }}>
+    <Input
+      {...actions({onChange:"toggle action chnage"})}
+    />
+    </Story>
+</Preview>
+
+## Disabled 
+<Preview>
+    <Story name="Disabled" parameters={{ decorators: [withKnobs] }}>
+    <Input
+      disabled
+    />
+    </Story>
+</Preview>
+
+## Properties
+
+<Props of={Input} />
