@@ -12,10 +12,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 Use an avatar for attributing actions or content to specific users. The user's name should _always_ be present when using Avatar – either printed beside the avatar or in a tooltip.
 
+## Default
+
 <Preview>
     <Story name="Default" parameters={{ decorators: [withKnobs] }}>
     <AnimatedButton
-        icon={<FontAwesomeIcon icon={text("Icon", "key")} />}
         onClick={action("button action click")}
         disabled={boolean("Disabled", false)}
         primary={boolean("Primary", false)}
@@ -26,8 +27,24 @@ Use an avatar for attributing actions or content to specific users. The user's n
     </Story>
 </Preview>
 
-## Primary
+## Default with Icon
 
+
+<Preview>
+    <Story name="Default Icon" parameters={{ decorators: [withKnobs] }}>
+    <AnimatedButton
+        icon={<FontAwesomeIcon icon={text("Icon", "key", "DI")} />}
+        onClick={action("button action click", "DI")}
+        disabled={boolean("Disabled", false, "DI")}
+        primary={boolean("Primary", false, "DI")}
+        loading={boolean("Loading", false, "DI")}
+        completed={boolean("Completed", false, "DI")}
+        buttonColor={color("Button Color", "#29a19c", "DI")}
+    >Button</AnimatedButton>
+    </Story>
+</Preview>
+
+## Primary
 
 <Preview>
 <Story name="Primary" parameters={{ decorators: [withKnobs] }}>
@@ -40,6 +57,23 @@ Use an avatar for attributing actions or content to specific users. The user's n
     buttonColor={color("Button Color", "#29a19c", "Primary")}
 >Button</AnimatedButton>
 </Story>
+</Preview>
+
+## Primary with Icon
+
+
+<Preview>
+    <Story name="Primary Icon" parameters={{ decorators: [withKnobs] }}>
+    <AnimatedButton
+        icon={<FontAwesomeIcon icon={text("Icon", "key", "PI")} />}
+        onClick={action("button action click", "PI")}
+        disabled={boolean("Disabled", false, "PI")}
+        primary={boolean("Primary", true, "PI")}
+        loading={boolean("Loading", false, "PI")}
+        completed={boolean("Completed", false, "PI")}
+        buttonColor={color("Button Color", "#29a19c", "PI")}
+    >Button</AnimatedButton>
+    </Story>
 </Preview>
 
 ## Loading 
