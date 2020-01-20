@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 **/
 
 const AnimatedButton = ({ disabled, icon, buttonColor, primary, loading, completed,children, ...rest }) => {
+  console.log(typeof icon)
   return (
     <>
       <Button
@@ -17,7 +18,8 @@ const AnimatedButton = ({ disabled, icon, buttonColor, primary, loading, complet
         primary={primary}
         buttonColor={buttonColor}
         {...rest}
-      >
+      >      {(!loading && icon) && <span className="button-icon" >{icon}</span>}
+
       {!loading && children}
       </Button>
     </>
@@ -39,6 +41,8 @@ AnimatedButton.propTypes = {
   primary: PropTypes.bool,
   /** Sets the color for the button */
   buttonColor: PropTypes.string,
+  /** Sets the icon currently tested with only fontawesome icons */
+  icon: PropTypes.object,
 }
 
 export default AnimatedButton;
