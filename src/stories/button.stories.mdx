@@ -1,0 +1,23 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+
+import Button from '../components/ui/Button/';
+
+<Meta title="FusedComponents|Button" component={Button} />
+
+# Button
+
+## An Button component 
+
+## Default
+<Preview>
+    <Story name="Default" parameters={{ decorators: [withKnobs] }}>
+    <Button>Button</Button>
+    </Story>
+</Preview>
+
+## Properties
+
+<Props of={Button} />
