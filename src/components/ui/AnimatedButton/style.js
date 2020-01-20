@@ -72,8 +72,7 @@ export const Button = styled.button`
     props.loading &&
     !props.completed &&
     css`
-    text-indent: -9999px;                 /* sends the text off-screen */
-    white-space: nowrap;            /* because only the first line is indented */
+
     width:34px;
     margin: 0 auto;
     border-radius: 50%;
@@ -94,7 +93,7 @@ export const Button = styled.button`
       display:block;
       position: relative;
       left:-7px;
-      top: -15px;    
+      top: -2px;  
     }
   }
 `}
@@ -114,10 +113,14 @@ export const Button = styled.button`
     `}
  
   @keyframes spin {
-    100% {
+    0% {
       background: conic-gradient(${props => props.theme.accentColor}, #fff);
+    }
+    100% {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
+      background: conic-gradient(${props => props.theme.accentColor}, #fff);
+
     }
   }
 
