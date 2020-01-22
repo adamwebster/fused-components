@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import variables from '../../../styles/variables';
 
 export const StyledAlert = styled.div`
   background-color: ${
@@ -50,4 +51,5 @@ export const StyledAlert = styled.div`
   }
   };
   padding: 10px;
+  border-radius: ${variables.borderRadius}
 `
