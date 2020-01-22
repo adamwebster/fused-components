@@ -1,0 +1,23 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+
+import Alert from '../components/ui/Alert/';
+
+<Meta title="FusedComponents|Alert" component={Alert} />
+
+# Alert
+
+## An Alert component 
+
+## Default
+<Preview>
+    <Story name="Default" parameters={{ decorators: [withKnobs] }}>
+    <Alert fcStyle={select('fcStyle', {danger: 'danger', warning: 'warning', info: 'info', success: 'success'})}>Alert</Alert>
+    </Story>
+</Preview>
+
+## Properties
+
+<Props of={Alert} />
