@@ -7,29 +7,30 @@ import PropTypes from 'prop-types';
 - The user's name should always be present when using Avatar – either printed beside the avatar or in a tooltip.
 **/
 
-const AnimatedButton = ({ disabled, icon, buttonColor, primary, loading, completed,children, ...rest }) => {
+const AnimatedButton = ({ disabled, icon, loadingIcon, buttonColor, primary, loading, completed, children, ...rest }) => {
   return (
     <>
       <Button
-        disabled={disabled || (loading || completed)}
-        loading={loading ? 1: 0}
+        disabled={disabled || completed}
+        loading={loading ? 1 : 0}
         completed={completed}
         primary={primary}
         buttonColor={buttonColor}
         {...rest}
-      >      {(!loading && icon) && <span className="button-icon" >{icon}</span>}
-
-      {!loading && children}
+      >
+        {(!loading && icon) && <span className="button-icon" >{icon}</span>}
+        {!loading && children}
+        {(loading && loadingIcon) && loadingIcon}
       </Button>
     </>
   );
 };
 
-AnimatedButton.defaultProps ={
+AnimatedButton.defaultProps = {
   disabled: false,
   completed: false,
   loading: false,
-  primary:false,
+  primary: false,
 }
 
 AnimatedButton.propTypes = {

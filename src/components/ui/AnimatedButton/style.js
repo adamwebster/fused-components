@@ -69,35 +69,6 @@ export const Button = styled.button`
   }
 
   ${props =>
-    props.loading &&
-    !props.completed &&
-    css`
-
-    width:34px;
-    margin: 0 auto;
-    border-radius: 50%;
-    content: "";
-    //border:solid 5px ${props => props.theme.accentColor};
-    background: transparent;
-    animation:spin 1s linear infinite;
-    animation-delay: .2s;
-    &[disabled]{
-        background-color: transparent;
-    }
-    &:after{
-      content:"";
-      width: 28px;
-      height: 28px;
-      background-color: ${props => props.theme.cardColor};
-      border-radius:50%;
-      display:block;
-      position: relative;
-      left:-7px;
-      top: -2px;  
-    }
-  }
-`}
-  ${props =>
     props.completed &&
     css`
       width: 100%;
@@ -111,19 +82,6 @@ export const Button = styled.button`
         border: none;
       }
     `}
- 
-  @keyframes spin {
-    0% {
-      background: conic-gradient(${props => props.buttonColor ? props.buttonColor : props.theme.accentColor}, #fff);
-
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-      background: conic-gradient(${props => props.buttonColor ? props.buttonColor : props.theme.accentColor}, #fff);
-
-    }
-  }
 
   .button-icon {
     background-color: rgba(0, 0, 0, 0.2);
@@ -137,9 +95,9 @@ export const Button = styled.button`
     height: 24px;
     color: #fff;
     ${props =>
-      !props.primary &&
+      (!props.primary && !props.completed) &&
       css`
-        background-color: ${props => props.theme.accentColor};
+        background-color: ${props => props.buttonColor};
       `}
   }
 `;
