@@ -21,6 +21,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
         disabled={boolean("Disabled", false)}
         primary={boolean("Primary", false)}
         loading={boolean("Loading", false)}
+        loadingIcon={<FontAwesomeIcon spin icon="circle-notch" />}
         completed={boolean("Completed", false)}
         buttonColor={color("Button Color", "#29a19c")}
     >Button</AnimatedButton>
@@ -38,6 +39,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
         disabled={boolean("Disabled", false, "DI")}
         primary={boolean("Primary", false, "DI")}
         loading={boolean("Loading", false, "DI")}
+        loadingIcon={<FontAwesomeIcon spin icon="circle-notch" />}
         completed={boolean("Completed", false, "DI")}
         buttonColor={color("Button Color", "#29a19c", "DI")}
     >Button</AnimatedButton>
@@ -53,6 +55,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
     disabled={boolean("Disabled", false, "Primary")}
     primary={boolean("Primary", true, "Primary")}
     loading={boolean("Loading", false, "Primary")}
+    loadingIcon={<FontAwesomeIcon spin icon="circle-notch" />}
     completed={boolean("Completed", false, "Primary")}
     buttonColor={color("Button Color", "#29a19c", "Primary")}
 >Button</AnimatedButton>
@@ -70,6 +73,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
         disabled={boolean("Disabled", false, "PI")}
         primary={boolean("Primary", true, "PI")}
         loading={boolean("Loading", false, "PI")}
+        loadingIcon={<FontAwesomeIcon spin icon="circle-notch" />}
         completed={boolean("Completed", false, "PI")}
         buttonColor={color("Button Color", "#29a19c", "PI")}
     >Button</AnimatedButton>
@@ -85,6 +89,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
     disabled={boolean("Disabled", false, "Loading")}
     primary={boolean("Primary", false, "Loading")}
     loading={boolean("Loading", true, "Loading")}
+    loadingIcon={<FontAwesomeIcon spin icon="circle-notch" />}
     completed={boolean("Completed", false, "Loading")}
 >Button</AnimatedButton>
 </Story>
@@ -99,6 +104,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
     disabled={boolean("Disabled", false, "Completed")}
     primary={boolean("Primary", false, "Completed")}
     loading={boolean("Loading", false, "Completed")}
+    loadingIcon={<FontAwesomeIcon spin icon="circle-notch" />}
     completed={boolean("Completed", true, "Completed")}
 >Loaded</AnimatedButton>
 </Story>
@@ -113,6 +119,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
     disabled={boolean("Disabled", true, "Disabled")}
     primary={boolean("Primary", false, "Disabled")}
     loading={boolean("Loading", false, "Disabled")}
+    loadingIcon={<FontAwesomeIcon spin icon="circle-notch" />}
     completed={boolean("Completed", false, "Disabled")}
 >Button</AnimatedButton>
 </Story>

@@ -51,5 +51,5 @@ export const StyledAlert = styled.div`
   }
   };
   padding: 10px;
-  border-radius: ${variables.borderRadius}
+  border-radius: ${props => props.borderRadius ? props.borderRadius : variables.borderRadius}
 `
