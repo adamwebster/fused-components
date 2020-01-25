@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 
 import Card from '../components/ui/Card/';
@@ -14,7 +14,7 @@ import Card from '../components/ui/Card/';
 ## Default
 <Preview>
     <Story name="Default" parameters={{ decorators: [withKnobs] }}>
-    <Card>Card</Card>
+    <Card boxShadow={boolean('Box Shadow', true)} borderRadius={text('Border Radius', '5px')}>Card</Card>
     </Story>
 </Preview>
 
