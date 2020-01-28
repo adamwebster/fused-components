@@ -16,6 +16,7 @@ border-radius: ${props => variables.borderRadius};
 
 &[disabled]{
   cursor: not-allowed;
+  background-color: #e9e9e9;
 }
 ${props => props.inError && css`
   border:solid 1px #c34242;

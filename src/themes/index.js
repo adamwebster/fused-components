@@ -5,7 +5,7 @@ const themes = {
     foregroundColor: "#6d6d6d",
     cardColor: "#fff",
     borderColor: "#ccc",
-    accentColor: "#29a19c",
+    accentColor: "#218280",
     buttonTextColor: "#fff",
     green: "#7dcc4b",
     dangerBG: "#ffbebe",

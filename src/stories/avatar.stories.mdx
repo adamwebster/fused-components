@@ -1,0 +1,23 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+
+import Avatar from '../components/ui/Avatar/';
+
+<Meta title="FusedComponents|Avatar" component={Avatar} />
+
+# Avatar
+
+## An Avatar component 
+
+## Default
+<Preview>
+    <Story name="Default" parameters={{ decorators: [withKnobs] }}>
+    <Avatar boxShadow={boolean('Box Shadow', false)} size={select('size', {'48px': '48px', '24px': '24px', '32px': '32px', '96px': '96px'})} image={text('Image', 'https://adamwebster.me/static/avatar.jpg')} borderRadius={text('Border Radius', '5px')} />
+    </Story>
+</Preview>
+
+## Properties
+
+<Props of={Avatar} />
