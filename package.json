@@ -3,25 +3,20 @@
   "version": "0.1.0",
   "author": "Adam Webster",
   "repository": "https://github.com/adamwebster/fused-components",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.26",
-    "@fortawesome/free-brands-svg-icons": "^5.12.0",
-    "@fortawesome/free-regular-svg-icons": "^5.12.0",
-    "@fortawesome/free-solid-svg-icons": "^5.12.0",
-    "@fortawesome/react-fontawesome": "^0.1.8",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
-    "polished": "^3.4.2",
-    "prop-types": "^15.7.2",
+    "styled-components": "^5.0.0"
+  },
+  "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
-    "styled-components": "^5.0.0"
+    "react-scripts": "3.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build-scripts": "react-scripts build",
+    "build": "rollup -c ./rollup.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
@@ -43,6 +38,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.8.3",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
     "@storybook/addon-a11y": "^5.3.6",
     "@storybook/addon-actions": "^5.3.6",
     "@storybook/addon-docs": "^5.3.6",
@@ -53,6 +51,37 @@
     "@storybook/addons": "^5.3.6",
     "@storybook/preset-create-react-app": "^1.5.2",
     "@storybook/react": "^5.3.6",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "rollup": "^1.29.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "@babel/preset-react": "^7.8.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-brands-svg-icons": "^5.12.0",
+    "@fortawesome/free-regular-svg-icons": "^5.12.0",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "polished": "^3.4.2",
+    "prop-types": "^15.7.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/react",
+        {
+          "useBuiltIns": true
+        }
+      ],
+      [
+        "@babel/env",
+        {
+          "modules": false,
+          "useBuiltIns": "usage",
+          "corejs": 3
+        }
+      ]
+    ]
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {ToggleWrapper, Slider } from './style';
 import PropTypes from 'prop-types';
 
-const Toggle = ({ active, onClick, ...rest }) => {
+export const Toggle = ({ active, onClick, ...rest }) => {
     return (
         <ToggleWrapper active={active} onClick={(e) => { onClick(e) }} {...rest}>
             <Slider active={active} />
@@ -20,5 +20,3 @@ Toggle.defaultProps ={
     active: PropTypes.bool,
     onClick: PropTypes.func,
   }
-
-export default Toggle;
