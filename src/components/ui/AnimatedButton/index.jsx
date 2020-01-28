@@ -7,8 +7,7 @@ import PropTypes from 'prop-types';
 - The user's name should always be present when using Avatar – either printed beside the avatar or in a tooltip.
 **/
 
-
-const AnimatedButton = ({ disabled, icon, loadingIcon, buttonColor, primary, loading, completed, children, ...rest }) => {
+export const AnimatedButton = ({ disabled, icon, loadingIcon, buttonColor, primary, loading, completed, children, ...rest }) => {
   const additionalProps = {
   };
 
@@ -52,5 +51,3 @@ AnimatedButton.propTypes = {
   /** Sets the icon currently tested with only fontawesome icons */
   icon: PropTypes.object,
 }
-
-export default AnimatedButton;

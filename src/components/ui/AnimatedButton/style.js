@@ -4,8 +4,8 @@ import variables from "../../../styles/variables";
 
 export const Button = styled.button`
   background-color: transparent;
-  color: ${props => props.theme.accentColor};
-  border: solid 1px ${props => props.theme.accentColor};
+  color: ${variables.accentColor};
+  border: solid 1px ${variables.accentColor};
   border-radius: ${variables.borderRadius};
   padding: 5px 10px;
   box-sizing: border-box;
@@ -21,14 +21,14 @@ export const Button = styled.button`
     color: ${props.buttonColor};
   `}
   &:hover:not([disabled]) {
-    border-color: ${props => darken(0.2, props.theme.accentColor)};
-    color: ${props => darken(0.2, props.theme.accentColor)};
+    border-color: ${darken(0.2, variables.accentColor)};
+    color: ${darken(0.2, variables.accentColor)};
     transform: scale(1.02);
     ${props =>
       !props.primary &&
       css`
         .button-icon {
-          background-color: ${props => darken(0.2, props.theme.accentColor)};
+          background-color: ${darken(0.2, variables.accentColor)};
         }
       `}
   }
@@ -36,14 +36,14 @@ export const Button = styled.button`
   ${props =>
     props.primary &&
     css`
-      background-color: ${props => props.theme.accentColor};
-      color: ${props => props.theme.buttonTextColor};
+      background-color: ${variables.accentColor};
+      color: ${variables.buttonTextColor};
       border: none;
       ${props =>
         !props.completed &&
         css`
           &:hover:not([disabled]) {
-            background-color: ${props => darken(0.1, props.theme.accentColor)};
+            background-color: ${darken(0.1, variables.accentColor)};
             transform: scale(1.02);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             color: #fff;
@@ -72,12 +72,12 @@ export const Button = styled.button`
     props.completed &&
     css`
       width: 100%;
-      background-color: ${props => props.theme.green};
+      background-color: ${variables.green};
       color: #fff;
       border: none;
 
       &:disabled {
-        background-color: ${props => props.theme.green};
+        background-color: ${variables.green};
         color: #fff;
         border: none;
       }
