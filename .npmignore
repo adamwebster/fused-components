@@ -1,7 +1,6 @@
 .storybook
 public
-src
 build
-
+src
 
 rollup.config.js

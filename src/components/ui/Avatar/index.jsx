@@ -3,7 +3,7 @@ import { StyledAvatar } from './style';
 import PropTypes from 'prop-types';
 import variables from '../../../styles/variables';
 
-const Avatar = ({ ...avatarProps }) => {
+export const Avatar = ({ ...avatarProps }) => {
     return (
         <StyledAvatar {...avatarProps} />
     )
@@ -21,5 +21,3 @@ Avatar.propTypes = {
     image: PropTypes.string,
     boxShadow: PropTypes.string,
 }
-
-export default Avatar;
