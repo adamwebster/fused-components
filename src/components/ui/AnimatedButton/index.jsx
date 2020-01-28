@@ -11,7 +11,7 @@ const AnimatedButton = ({ disabled, icon, loadingIcon, buttonColor, primary, loa
   return (
     <>
       <Button
-        disabled={disabled || completed}
+        disabled={disabled || loading || completed}
         loading={loading ? 1 : 0}
         completed={completed}
         primary={primary}
