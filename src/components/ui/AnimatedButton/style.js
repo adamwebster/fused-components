@@ -21,14 +21,14 @@ export const Button = styled.button`
     color: ${props.buttonColor};
   `}
   &:hover:not([disabled]) {
-    border-color: ${darken(0.2, variables.accentColor)};
-    color: ${darken(0.2, variables.accentColor)};
+    border-color: ${props => darken(0.2, props.buttonColor)};
+    color: ${props => darken(0.2, props.buttonColor)};
     transform: scale(1.02);
     ${props =>
       !props.primary &&
       css`
         .button-icon {
-          background-color: ${darken(0.2, variables.accentColor)};
+          background-color: ${darken(0.2, props.buttonColor)};
         }
       `}
   }
@@ -43,7 +43,7 @@ export const Button = styled.button`
         !props.completed &&
         css`
           &:hover:not([disabled]) {
-            background-color: ${darken(0.1, variables.accentColor)};
+            background-color: ${darken(0.1, props.buttonColor)};
             transform: scale(1.02);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             color: #fff;

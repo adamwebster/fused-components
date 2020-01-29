@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from './style';
 import PropTypes from 'prop-types';
+import variables from '../../../styles/variables';
 
 /**
 - Use an avatar for attributing actions or content to specific users.
@@ -38,6 +39,7 @@ AnimatedButton.defaultProps = {
   completed: false,
   isLoading: false,
   primary: false,
+  buttonColor: variables.accentColor,
 }
 
 AnimatedButton.propTypes = {
