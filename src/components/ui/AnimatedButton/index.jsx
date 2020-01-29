@@ -17,7 +17,7 @@ export const AnimatedButton = ({ disabled, icon, loadingIcon, buttonColor, prima
   return (
     <>
       <Button
-        disabled={disabled || completed}
+        disabled={disabled || isLoading || completed}
         isLoading={isLoading}
         completed={completed}
         primary={primary}
