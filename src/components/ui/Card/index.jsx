@@ -16,4 +16,5 @@ Card.defaultProps = {
 Card.propTypes = {
   borderRadius: PropTypes.string,
   boxShadow: PropTypes.bool,
+  padding: PropTypes.string,
 }
