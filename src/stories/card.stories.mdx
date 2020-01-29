@@ -3,7 +3,7 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 
-import Card from '../components/ui/Card/';
+import { Card } from '../components/ui/Card/';
 
 <Meta title="FusedComponents|Card" component={Card} />
 
@@ -14,7 +14,7 @@ import Card from '../components/ui/Card/';
 ## Default
 <Preview>
     <Story name="Default" parameters={{ decorators: [withKnobs] }}>
-    <Card boxShadow={boolean('Box Shadow', true)} borderRadius={text('Border Radius', '5px')}>Card</Card>
+    <Card padding={text('Padding', '10px')} boxShadow={boolean('Box Shadow', true)} borderRadius={text('Border Radius', '5px')}>Card</Card>
     </Story>
 </Preview>
 
