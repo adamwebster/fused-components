@@ -5,7 +5,7 @@ import { action, actions } from "@storybook/addon-actions";
 import variables from '../styles/variables';
 import { Alert } from '../components/ui/Alert/';
 
-<Meta title="FusedComponents|Alert" component={Alert} />
+<Meta title="FusedComponents / Alert" component={Alert} />
 
 # Alert
 
@@ -13,7 +13,7 @@ import { Alert } from '../components/ui/Alert/';
 
 ## Default
 <Preview>
-    <Story name="Default" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Default Alert" parameters={{ decorators: [withKnobs] }}>
     <Alert borderRadius={text('Border Radius', variables.borderRadius )} fcStyle={select('fcStyle', {danger: 'danger', warning: 'warning', info: 'info', success: 'success'})}>Alert</Alert>
     </Story>
 </Preview>

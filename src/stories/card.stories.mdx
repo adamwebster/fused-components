@@ -5,7 +5,7 @@ import { action, actions } from "@storybook/addon-actions";
 
 import { Card } from '../components/ui/Card/';
 
-<Meta title="FusedComponents|Card" component={Card} />
+<Meta title="FusedComponents / Card" component={Card} />
 
 # Card
 
@@ -13,7 +13,7 @@ import { Card } from '../components/ui/Card/';
 
 ## Default
 <Preview>
-    <Story name="Default" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Default Card" parameters={{ decorators: [withKnobs] }}>
     <Card padding={text('Padding', '10px')} boxShadow={boolean('Box Shadow', true)} borderRadius={text('Border Radius', '5px')}>Card</Card>
     </Story>
 </Preview>
