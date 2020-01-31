@@ -5,7 +5,7 @@ import { action, actions } from "@storybook/addon-actions";
 
 import { Avatar } from '../components/ui/Avatar/';
 
-<Meta title="FusedComponents|Avatar" component={Avatar} />
+<Meta title="FusedComponents / Avatar" component={Avatar} />
 
 # Avatar
 
@@ -13,7 +13,7 @@ import { Avatar } from '../components/ui/Avatar/';
 
 ## Default
 <Preview>
-    <Story name="Default" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Default Avatar" parameters={{ decorators: [withKnobs] }}>
     <Avatar boxShadow={boolean('Box Shadow', false)} size={select('size', {'48px': '48px', '24px': '24px', '32px': '32px', '96px': '96px'})} image={text('Image', 'https://adamwebster.me/static/avatar.jpg')} borderRadius={text('Border Radius', '5px')} />
     </Story>
 </Preview>

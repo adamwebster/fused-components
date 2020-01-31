@@ -1,0 +1,6 @@
+{
+  "headers": [{ "label": "First Name"} , {"label": "Last Name"}],
+  "rows": [
+    {"row": ["Adam", "Webster"]}
+  ]
+}

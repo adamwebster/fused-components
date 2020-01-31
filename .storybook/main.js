@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../src/**/*.stories.js'],
+  // stories: ['../src/**/*.stories.js'],
   addons: [
     '@storybook/preset-create-react-app',
     '@storybook/addon-actions',
@@ -7,6 +7,6 @@ module.exports = {
     '@storybook/addon-knobs/register',
     '@storybook/addon-docs/preset',
     '@storybook/addon-viewport/register',
-    '@storybook/addon-a11y/register'
+    // '@storybook/addon-a11y/register'
   ],
 };

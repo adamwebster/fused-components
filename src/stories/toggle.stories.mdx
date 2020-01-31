@@ -6,7 +6,7 @@ import { action, actions } from "@storybook/addon-actions";
 import { Toggle } from '../components/ui/Toggle/';
 let test = "test";
 
-<Meta title="FusedComponents|Toggle" component={Toggle} />
+<Meta title="FusedComponents / Toggle" component={Toggle} />
 
 # Toggle
 
@@ -15,7 +15,7 @@ let test = "test";
 To change the state of the toggle update the active property to set to true or false.
 ## Not Active
 <Preview>
-    <Story name="Default" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Default Toggle" parameters={{ decorators: [withKnobs] }}>
     <Toggle
       {...actions({onClick:"toggle action click", onMouseOver: "toogle action mouseover"})}
         active={boolean("Active", false)}
@@ -25,7 +25,7 @@ To change the state of the toggle update the active property to set to true or f
 
 ## Active
 <Preview>
-    <Story name="Active" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Active Toggle" parameters={{ decorators: [withKnobs] }}>
     <Toggle 
     active={boolean("Active", true, "Active")}
     />
