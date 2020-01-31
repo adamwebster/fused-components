@@ -19,5 +19,5 @@ Avatar.propTypes = {
     size: PropTypes.string,
     borderRadius: PropTypes.string,
     image: PropTypes.string,
-    boxShadow: PropTypes.string,
+    boxShadow: PropTypes.bool,
 }
