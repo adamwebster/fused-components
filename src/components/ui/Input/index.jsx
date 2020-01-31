@@ -11,5 +11,5 @@ export const Input = ({ariaLabel, ...rest }) => {
 Input.defaultProps = {
 }
 Input.propTypes = {
-  ariaLabel: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string,
 }
