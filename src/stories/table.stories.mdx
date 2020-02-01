@@ -10,6 +10,7 @@ import {
 import { action, actions } from "@storybook/addon-actions";
 import variables from "../styles/variables";
 import { Table } from "../components/ui/Table/";
+import data from '../data/SampleTableData'
 
 <Meta title="FusedComponents / Table" component={Table} />
 
@@ -22,6 +23,7 @@ import { Table } from "../components/ui/Table/";
 <Preview>
   <Story name="Default Table" decorators={[withKnobs]}>
     <Table
+    data={data}
       tableBodyBGColor={color("Table Body Background Color", "inherit")}
       tableHeaderBGColor={color("Header Background Color", "inherit")}
       tableHeaderTextColor={color("Header Text Color", "inherit")}
@@ -30,6 +32,7 @@ import { Table } from "../components/ui/Table/";
       tableBodyTextColor={color("Table Body Text Color", "inherit")}
       tableBGColor={color("Table Background Color", "inherit")}
       tableTextColor={color("Table Text Color", "inherit")}
+      headerBorder={boolean('Header Border', true)}
     />
   </Story>
 </Preview>
@@ -37,3 +40,16 @@ import { Table } from "../components/ui/Table/";
 ## Properties
 
 <Props of={Table} />
+
+
+## Sample Data 
+
+    const data = 
+        {
+        "headers": [{ "label": "First Name", "width": "130px"} , {"label": "Last Name"}, {"label" : "Job"}],
+        "rows": [
+            {"row": ["Adam", "Webster", "UI Developer"]},
+            {"row": ["Bruce", "Wayne", "Batman"]},
+            {"row": ["Clark", "Kent", "Superman"]}
+        ]
+        }

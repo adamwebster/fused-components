@@ -1,8 +1,8 @@
 {
-  "headers": [{ "label": "First Name", "width": "130px"} , {"label": "Last Name"}],
+  "headers": [{ "label": "First Name", "width": "130px"} , {"label": "Last Name"}, {"label" : "Job"}],
   "rows": [
-    {"row": ["Adam", "Webster"]},
-    {"row": ["Bruce", "Wayne"]},
-    {"row": ["Clark", "Kent"]}
+    {"row": ["Adam", "Webster", "UI Developer"]},
+    {"row": ["Bruce", "Wayne", "Batman"]},
+    {"row": ["Clark", "Kent", "Superman"]}
   ]
 }

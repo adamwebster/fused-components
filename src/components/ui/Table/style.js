@@ -17,7 +17,8 @@ export const StyledTable = styled.div`
 export const TableHeader = styled.div`
   display: flex;
   flex: 1 1;
-  border-bottom: solid 1px ${variables.borderColor};
+  font-weight: bold;
+  ${props => props.headerBorder && css`border-bottom: solid 1px ${variables.borderColor};`}
   ${props => props.tableHeaderBGColor && css`
     background-color: ${props.tableHeaderBGColor};
   `}
