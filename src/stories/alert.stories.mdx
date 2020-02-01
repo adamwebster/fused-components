@@ -13,7 +13,7 @@ import { Alert } from '../components/ui/Alert/';
 
 ## Default
 <Preview>
-    <Story name="Default Alert" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Default Alert" decorators={[withKnobs]}>
     <Alert borderRadius={text('Border Radius', variables.borderRadius )} fcStyle={select('fcStyle', {danger: 'danger', warning: 'warning', info: 'info', success: 'success'})}>Alert</Alert>
     </Story>
 </Preview>

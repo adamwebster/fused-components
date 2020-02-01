@@ -15,7 +15,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
 ## Default
 
 <Preview>
-    <Story name="Default Animated Button" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Default Animated Button" decorators={[withKnobs]}>
     <AnimatedButton
         onClick={action("button action click")}
         disabled={boolean("Disabled", false)}
@@ -32,7 +32,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
 
 
 <Preview>
-    <Story name="Default Animated Button Icon" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Default Animated Button Icon" decorators={[withKnobs]}>
     <AnimatedButton
         icon={<FontAwesomeIcon icon={text("Icon", "key", "DI")} />}
         onClick={action("button action click", "DI")}
@@ -49,7 +49,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
 ## Primary
 
 <Preview>
-<Story name="Primary Animated Button" parameters={{ decorators: [withKnobs] }}>
+<Story name="Primary Animated Button" decorators={[withKnobs]}>
 <AnimatedButton
     onClick={action("button action click", "Primary")}
     disabled={boolean("Disabled", false, "Primary")}
@@ -66,7 +66,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
 
 
 <Preview>
-    <Story name="Primary Animated Button Icon" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Primary Animated Button Icon" decorators={[withKnobs]}>
     <AnimatedButton
         icon={<FontAwesomeIcon icon={text("Icon", "key", "PI")} />}
         onClick={action("button action click", "PI")}
@@ -83,7 +83,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
 ## Loading 
 
 <Preview>
-<Story name="Loading Animated Button" parameters={{ decorators: [withKnobs] }}>
+<Story name="Loading Animated Button" decorators={[withKnobs]}>
 <AnimatedButton
     onClick={action("button action click", "Loading")}
     disabled={boolean("Disabled", false, "Loading")}
@@ -98,7 +98,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
 ## Completed
 
 <Preview>
-<Story name="Completed Animated Button" parameters={{ decorators: [withKnobs] }}>
+<Story name="Completed Animated Button" decorators={[withKnobs]}>
 <AnimatedButton
     onClick={action("button action click", "Completed")}
     disabled={boolean("Disabled", false, "Completed")}
@@ -113,7 +113,7 @@ Use an avatar for attributing actions or content to specific users. The user's n
 ## Disabled
 
 <Preview>
-<Story name="Disabled Animated Button" parameters={{ decorators: [withKnobs] }}>
+<Story name="Disabled Animated Button" decorators={[withKnobs]}>
 <AnimatedButton
     onClick={action("button action click", "Disabled")}
     disabled={boolean("Disabled", true, "Disabled")}
