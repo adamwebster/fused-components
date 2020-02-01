@@ -15,7 +15,7 @@ let test = "test";
 
 ## Not Active
 <Preview>
-    <Story name="Default Input" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Default Input" decorators={[withKnobs]}>
     <Input
      ariaLabel="Text Input" 
       {...actions({onChange:"toggle action change"})}
@@ -25,7 +25,7 @@ let test = "test";
 
 ## Disabled 
 <Preview>
-    <Story name="Disabled Input" parameters={{ decorators: [withKnobs] }}>
+    <Story name="Disabled Input" decorators={[withKnobs]}>
     <Input
     ariaLabel="Disabled Input" 
         disabled={boolean("Disabled", true, 'disabled')}
