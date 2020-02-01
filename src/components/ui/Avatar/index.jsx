@@ -11,7 +11,7 @@ export const Avatar = ({ ...avatarProps }) => {
 
 Avatar.defaultProps = {
     size: '48px',
-    borderRadius: variables.borderRadius,
+    borderRadius: '5px',
     boxShadow: false,
 }
 
