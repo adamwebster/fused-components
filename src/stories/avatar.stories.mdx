@@ -11,11 +11,21 @@ import { Avatar } from '../components/ui/Avatar/';
 
 ## An Avatar component 
 
-## Default
+## Sizes 
 <Preview>
-    <Story name="Default Avatar" decorators={[withKnobs]}>
-    <Avatar boxShadow={boolean('Box Shadow', false)} size={select('size', {'48px': '48px', '24px': '24px', '32px': '32px', '96px': '96px'})} image={text('Image', 'https://adamwebster.me/static/avatar.jpg')} borderRadius={text('Border Radius', '5px')} />
-    </Story>
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="24px" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="32px" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="48px" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="96px" />
+</Preview>
+
+## Border Radius Examples
+You can set the border radius of the component to have different appearances.
+<Preview>
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} borderRadius="0px" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} borderRadius="5px" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} borderRadius="15px" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} borderRadius="25px" />
 </Preview>
 
 ## Properties

@@ -8,7 +8,6 @@ import {
   color
 } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
-import variables from "../styles/variables";
 import { Table } from "../components/ui/Table/";
 import data from '../data/SampleTableData'
 
@@ -21,20 +20,9 @@ import data from '../data/SampleTableData'
 ## Default
 
 <Preview>
-  <Story name="Default Table" decorators={[withKnobs]}>
     <Table
     data={data}
-      tableBodyBGColor={color("Table Body Background Color", "inherit")}
-      tableHeaderBGColor={color("Header Background Color", "inherit")}
-      tableHeaderTextColor={color("Header Text Color", "inherit")}
-      zebraStripping={boolean("Zebra Stripping", false)}
-      zebraStripeColor={color("Zebra Stripe Color", "#ebebeb")}
-      tableBodyTextColor={color("Table Body Text Color", "inherit")}
-      tableBGColor={color("Table Background Color", "inherit")}
-      tableTextColor={color("Table Text Color", "inherit")}
-      headerBorder={boolean('Header Border', true)}
     />
-  </Story>
 </Preview>
 
 ## Properties
