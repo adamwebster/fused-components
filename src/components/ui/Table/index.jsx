@@ -8,13 +8,22 @@ import {
 } from "./style";
 import PropTypes from "prop-types";
 import SampleTableData from "../../../data/SampleTableData";
-export const Table = () => {
+export const Table = ({ cellPadding }) => {
   console.log(SampleTableData);
   return (
     <StyledTable>
       <TableHeader>
         {SampleTableData.headers.map((header, index) => {
-          return <TableCell key={index}>{header.label}</TableCell>;
+          console.log(header.width);
+          return (
+            <TableCell
+              cellWidth={header.width && header.width}
+              cellPadding={cellPadding}
+              key={index}
+            >
+              {header.label}
+            </TableCell>
+          );
         })}
       </TableHeader>
       <TableBody>
@@ -22,7 +31,18 @@ export const Table = () => {
           return (
             <TableRow key={index}>
               {row.row.map((column, index) => {
-                return <TableCell key={index}>{column}</TableCell>;
+                return (
+                  <TableCell
+                    cellWidth={
+                      SampleTableData.headers[index].width &&
+                      SampleTableData.headers[index].width
+                    }
+                    cellPadding={cellPadding}
+                    key={index}
+                  >
+                    {column}
+                  </TableCell>
+                );
               })}
             </TableRow>
           );
@@ -33,5 +53,10 @@ export const Table = () => {
 };
 
 Table.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  cellPadding: PropTypes.string
+};
+
+Table.defaultProps = {
+  cellPadding: "5px"
 };

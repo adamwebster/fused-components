@@ -1,5 +1,5 @@
 {
-  "headers": [{ "label": "First Name"} , {"label": "Last Name"}],
+  "headers": [{ "label": "First Name", "width": "130px"} , {"label": "Last Name"}],
   "rows": [
     {"row": ["Adam", "Webster"]},
     {"row": ["Bruce", "Wayne"]},
