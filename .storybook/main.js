@@ -9,4 +9,5 @@ module.exports = {
     '@storybook/addon-viewport/register',
     '@storybook/addon-a11y/register'
   ],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.js'],
 };
