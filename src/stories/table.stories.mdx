@@ -1,21 +1,37 @@
-import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
+import { useState } from "react";
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs/blocks";
+import {
+  withKnobs,
+  select,
+  text,
+  boolean,
+  color
+} from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
-import variables from '../styles/variables';
-import { Table } from '../components/ui/Table/';
+import variables from "../styles/variables";
+import { Table } from "../components/ui/Table/";
 
 <Meta title="FusedComponents / Table" component={Table} />
 
 # Table
 
-## An Table component 
+## An Table component
 
 ## Default
+
 <Preview>
-    <Story name="Default Table" decorators={[withKnobs]}>
-    <Table />
-    </Story>
+  <Story name="Default Table" decorators={[withKnobs]}>
+    <Table
+      tableBodyBGColor={color("Table Body Background Color", "inherit")}
+      tableHeaderBGColor={color("Header Background Color", "inherit")}
+      tableHeaderTextColor={color("Header Text Color", "inherit")}
+      zebraStripping={boolean("Zebra Stripping", false)}
+      zebraStripeColor={color("Zebra Stripe Color", "#ebebeb")}
+      tableBodyTextColor={color("Table Body Text Color", "inherit")}
+      tableBGColor={color("Table Background Color", "inherit")}
+      tableTextColor={color("Table Text Color", "inherit")}
+    />
+  </Story>
 </Preview>
 
 ## Properties
