@@ -7,8 +7,9 @@ import {
   TableRow
 } from "./style";
 import PropTypes from "prop-types";
-import SampleTableData from "../../../data/SampleTableData";
+
 export const Table = ({
+  data,
   cellPadding,
   tableHeaderBGColor,
   tableHeaderTextColor,
@@ -18,8 +19,8 @@ export const Table = ({
   tableBodyTextColor,
   tableBGColor,
   tableTextColor,
+  headerBorder,
 }) => {
-  console.log(SampleTableData);
   return (
     <StyledTable
       tableTextColor={tableTextColor && tableTextColor}
@@ -28,8 +29,9 @@ export const Table = ({
       <TableHeader
         textColor={tableHeaderTextColor && tableHeaderTextColor}
         tableHeaderBGColor={tableHeaderBGColor && tableHeaderBGColor}
+        headerBorder={headerBorder}
       >
-        {SampleTableData.headers.map((header, index) => {
+        {data.headers.map((header, index) => {
           console.log(header.width);
           return (
             <TableCell
@@ -46,7 +48,7 @@ export const Table = ({
         tableBodyTextColor={tableBodyTextColor && tableBodyTextColor}
         tableBodyBGColor={tableBodyBGColor && tableBodyBGColor}
       >
-        {SampleTableData.rows.map((row, index) => {
+        {data.rows.map((row, index) => {
           return (
             <TableRow
               zebraStripeColor={zebraStripeColor}
@@ -57,8 +59,8 @@ export const Table = ({
                 return (
                   <TableCell
                     cellWidth={
-                      SampleTableData.headers[index].width &&
-                      SampleTableData.headers[index].width
+                      data.headers[index].width &&
+                      data.headers[index].width
                     }
                     cellPadding={cellPadding}
                     key={index}
@@ -76,20 +78,34 @@ export const Table = ({
 };
 
 Table.propTypes = {
+  /** Send data to the table */
   data: PropTypes.object,
+  /** Sets the padding for the cells */
   cellPadding: PropTypes.string,
+  /** Sets the table header background color */
   tableHeaderBGColor: PropTypes.string,
+  /** Sets the table header text color */
   tableHeaderTextColor: PropTypes.string,
+  /** Set to display zebra stripping of the table */
   zebraStripping: PropTypes.bool,
+  /** Sets the zebra stripe color */
   zebraStripeColor: PropTypes.string,
+  /** Sets the table body background color */
   tableBodyBGColor: PropTypes.string,
+  /** Sets the table body text color */
   tableBodyTextColor: PropTypes.string,
+  /** Sets the table background color */
   tableBGColor: PropTypes.string,
+  /** Sets the table text color */
   tableTextColor: PropTypes.string,
+  /** Displays the header rows bottom border */
+  headerBorder: PropTypes.bool,
 };
 
 Table.defaultProps = {
   cellPadding: "5px",
   zebraStripping: false,
-  zebraStripeColor: "#ebebeb"
+  zebraStripeColor: "#ebebeb",
+  headerBorder: true,
+  data: {headers: [], rows: []}
 };
