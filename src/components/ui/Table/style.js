@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import variables from "../../../styles/variables";
 
 export const StyledTable = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ export const StyledTable = styled.div`
 export const TableHeader = styled.div`
   display: flex;
   flex: 1 1;
+  border-bottom: solid 1px ${variables.borderColor};
 `;
 
 export const TableRow = styled.div`
@@ -19,6 +21,11 @@ export const TableRow = styled.div`
 export const TableCell = styled.div`
   display: flex;
   flex: 1 1;
+${props => props.cellWidth && css`
+flex: unset;
+width: ${props.cellWidth};
+`};
+  padding: ${props => props.cellPadding};
 `;
 
 export const TableBody = styled.div`
