@@ -4,7 +4,8 @@ import {
   TableHeader,
   TableCell,
   TableBody,
-  TableRow
+  TableRow,
+  TableScroll
 } from "./style";
 import PropTypes from "prop-types";
 
@@ -20,12 +21,14 @@ export const Table = ({
   tableBGColor,
   tableTextColor,
   headerBorder,
+  freezeFirstColumn,
 }) => {
   return (
     <StyledTable
       tableTextColor={tableTextColor && tableTextColor}
       tableBGColor={tableBGColor && tableBGColor}
     >
+      <TableScroll freezeFirstColumn={freezeFirstColumn} freezeFirstColumnWidth={data.headers[0].width} >
       <TableHeader
         textColor={tableHeaderTextColor && tableHeaderTextColor}
         tableHeaderBGColor={tableHeaderBGColor && tableHeaderBGColor}
@@ -35,6 +38,7 @@ export const Table = ({
           console.log(header.width);
           return (
             <TableCell
+            freezeFirstColumn={freezeFirstColumn}
               cellWidth={header.width && header.width}
               cellPadding={cellPadding}
               key={index}
@@ -58,6 +62,8 @@ export const Table = ({
               {row.row.map((column, index) => {
                 return (
                   <TableCell
+                  freezeFirstColumn={freezeFirstColumn}
+
                     cellWidth={
                       data.headers[index].width &&
                       data.headers[index].width
@@ -73,6 +79,7 @@ export const Table = ({
           );
         })}
       </TableBody>
+    </TableScroll>
     </StyledTable>
   );
 };
@@ -100,6 +107,7 @@ Table.propTypes = {
   tableTextColor: PropTypes.string,
   /** Displays the header rows bottom border */
   headerBorder: PropTypes.bool,
+  freezeFirstColumn: PropTypes.bool,
 };
 
 Table.defaultProps = {
@@ -107,5 +115,6 @@ Table.defaultProps = {
   zebraStripping: false,
   zebraStripeColor: "#ebebeb",
   headerBorder: true,
+  freezeFirstColumn: false,
   data: {headers: [], rows: []}
 };
