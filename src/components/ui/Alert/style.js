@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import variables from '../../../styles/variables';
 
 export const StyledAlert = styled.div`
@@ -14,11 +14,13 @@ export const StyledAlert = styled.div`
       case 'success':
         return variables.successBG
       default:
-        return variables.dangerBG
+        return '#efefef'
     }
   }
   };
-  border: solid 1px ${
+  border-style: solid;
+  border-width: 1px 1px 1px 5px;
+  border-color: ${
   props => {
     switch (props.fcStyle) {
       case 'danger':
@@ -30,7 +32,7 @@ export const StyledAlert = styled.div`
       case 'success':
         return variables.successBorder
       default:
-        return variables.dangerBorder
+        return '#333'
     }
   }
   };
@@ -46,10 +48,10 @@ export const StyledAlert = styled.div`
       case 'success':
         return variables.successText
       default:
-        return variables.dangerText
+        return '#333'
     }
   }
   };
   padding: 10px;
-  border-radius: ${props => props.borderRadius ? props.borderRadius : variables.borderRadius}
+  ${props => props.borderRadius && css`border-radius: 5px`}
 `
