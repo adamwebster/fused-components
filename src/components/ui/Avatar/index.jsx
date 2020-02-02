@@ -10,13 +10,15 @@ export const Avatar = ({ ...avatarProps }) => {
 }
 
 Avatar.defaultProps = {
-    size: '48px',
-    borderRadius: '5px',
+    size: 'small',
+    borderRadius: 'rounded',
     boxShadow: false,
 }
 
 Avatar.propTypes = {
+    /** tiny | small | medium | large */
     size: PropTypes.string,
+    /** rounded | round | square */
     borderRadius: PropTypes.string,
     image: PropTypes.string,
     boxShadow: PropTypes.bool,
