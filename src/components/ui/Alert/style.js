@@ -1,18 +1,18 @@
 import styled, {css} from "styled-components";
-import variables from '../../../styles/variables';
+import {color} from '../../../styles/styles';
 
 export const StyledAlert = styled.div`
   background-color: ${
   props => {
     switch (props.fcStyle) {
       case 'danger':
-        return variables.dangerBG
+        return color.danger
       case 'warning':
-        return variables.warningBG
+        return color.warning
       case 'info':
-        return variables.infoBG
+        return color.info
       case 'success':
-        return variables.successBG
+        return color.success
       default:
         return '#efefef'
     }
@@ -24,34 +24,19 @@ export const StyledAlert = styled.div`
   props => {
     switch (props.fcStyle) {
       case 'danger':
-        return variables.dangerBorder
+        return color.red
       case 'warning':
-        return variables.warningBorder
+        return color.yellow
       case 'info':
-        return variables.infoBorder
+        return color.blue
       case 'success':
-        return variables.successBorder
+        return color.green
       default:
         return '#333'
     }
   }
   };
-  color: ${
-  props => {
-    switch (props.fcStyle) {
-      case 'danger':
-        return variables.dangerText
-      case 'warning':
-        return variables.warningText
-      case 'info':
-        return variables.infoText
-      case 'success':
-        return variables.successText
-      default:
-        return '#333'
-    }
-  }
-  };
+  color: #333;
   padding: 10px;
   ${props => props.borderRadius && css`border-radius: 5px`}
 `
