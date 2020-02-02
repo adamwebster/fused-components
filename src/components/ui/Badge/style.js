@@ -1,53 +1,41 @@
 import styled from "styled-components";
-import variables from "../../../styles/variables";
+import {color} from '../../../styles/styles';
 
 export const StyledBadge = styled.div`
   padding: 5px 10px;
   border-radius: 5px;
-  border: solid 1px ${variables.borderColor};
   width: fit-content;
-  background-color: ${props => {
+  background-color: ${
+  props => {
     switch (props.fcStyle) {
-      case "danger":
-        return variables.dangerBG;
-      case "warning":
-        return variables.warningBG;
-      case "info":
-        return variables.infoBG;
-      case "success":
-        return variables.successBG;
+      case 'danger':
+        return color.danger
+      case 'warning':
+        return color.warning
+      case 'info':
+        return color.info
+      case 'success':
+        return color.success
       default:
-        return "#ccc";
+        return '#efefef'
     }
-  }};
+  }
+  };
 
   border: solid 1px
-    ${props => {
-      switch (props.fcStyle) {
-        case "danger":
-          return variables.dangerBorder;
-        case "warning":
-          return variables.warningBorder;
-        case "info":
-          return variables.infoBorder;
-        case "success":
-          return variables.successBorder;
-        default:
-          return '#666';
-      }
-    }};
-  color: ${props => {
+    ${  props => {
     switch (props.fcStyle) {
-      case "danger":
-        return variables.dangerText;
-      case "warning":
-        return variables.warningText;
-      case "info":
-        return variables.infoText;
-      case "success":
-        return variables.successText;
+      case 'danger':
+        return color.red
+      case 'warning':
+        return color.yellow
+      case 'info':
+        return color.blue
+      case 'success':
+        return color.green
       default:
-        return '#666';
+        return '#333'
     }
   }};
+  color:#333;
 `;

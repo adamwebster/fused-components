@@ -9,7 +9,7 @@ import {
 } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
 import { Table } from "../components/ui/Table/";
-import data from '../data/SampleTableData'
+import { SampleData, SampleDataFixed } from '../data/SampleTableData'
 
 <Meta title="FusedComponents / Table" component={Table} />
 
@@ -22,14 +22,14 @@ import data from '../data/SampleTableData'
 <Preview>
   <Story name="table">
     <Table
-    data={data}
+    data={SampleData}
     />
     </Story>
 </Preview>
 
 <Preview>
  <Table
-    data={data}
+    data={SampleDataFixed}
     freezeFirstColumn
     />
   </Preview>
