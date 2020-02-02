@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "storybook-docs": "start-storybook -p 9009 -s public -docs",
+    "storybook-docs": "start-storybook -p 9009 -s public --docs",
     "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
