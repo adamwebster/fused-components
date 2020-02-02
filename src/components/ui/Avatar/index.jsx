@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyledAvatar } from './style';
 import PropTypes from 'prop-types';
-import variables from '../../../styles/variables';
 
 export const Avatar = ({ ...avatarProps }) => {
     return (

@@ -9,10 +9,12 @@ export const Alert = ({ fcStyle, borderRadius, ...rest }) => {
 }
 
 Alert.defaultProps = { 
-  borderRadius: '5px',
+  borderRadius: false,
 }
 
 Alert.propTypes = {
+  /** danger | warning | info | success */
   fcStyle: PropTypes.string,
-  borderRadius: PropTypes.string,
+  /** if set to true will add a border radius of 5px to the alert */
+  borderRadius: PropTypes.bool,
 }
