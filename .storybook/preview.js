@@ -1,6 +1,12 @@
 import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { DocsPage } from 'storybook-addon-deps/blocks';
+
+addParameters({
+  docs: { page: DocsPage },
+  dependencies: { withStoriesOnly: true, hideEmpty: true }
+});
 
 const GlobalStyle = createGlobalStyle`
   body {
