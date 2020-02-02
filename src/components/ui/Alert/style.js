@@ -6,15 +6,15 @@ export const StyledAlert = styled.div`
   props => {
     switch (props.fcStyle) {
       case 'danger':
-        return props.theme.dangerBG
+        return variables.dangerBG
       case 'warning':
-        return props.theme.warningBG
+        return variables.warningBG
       case 'info':
-        return props.theme.infoBG
+        return variables.infoBG
       case 'success':
-        return props.theme.successBG
+        return variables.successBG
       default:
-        return props.theme.dangerBG
+        return variables.dangerBG
     }
   }
   };
@@ -22,15 +22,15 @@ export const StyledAlert = styled.div`
   props => {
     switch (props.fcStyle) {
       case 'danger':
-        return props.theme.dangerBorder
+        return variables.dangerBorder
       case 'warning':
-        return props.theme.warningBorder
+        return variables.warningBorder
       case 'info':
-        return props.theme.infoBorder
+        return variables.infoBorder
       case 'success':
-        return props.theme.successBorder
+        return variables.successBorder
       default:
-        return props.theme.dangerBorder
+        return variables.dangerBorder
     }
   }
   };
@@ -38,15 +38,15 @@ export const StyledAlert = styled.div`
   props => {
     switch (props.fcStyle) {
       case 'danger':
-        return props.theme.dangerText
+        return variables.dangerText
       case 'warning':
-        return props.theme.warningText
+        return variables.warningText
       case 'info':
-        return props.theme.infoText
+        return variables.infoText
       case 'success':
-        return props.theme.successText
+        return variables.successText
       default:
-        return props.theme.dangerText
+        return variables.dangerText
     }
   }
   };
