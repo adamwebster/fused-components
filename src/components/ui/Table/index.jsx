@@ -35,7 +35,6 @@ export const Table = ({
         headerBorder={headerBorder}
       >
         {data.headers.map((header, index) => {
-          console.log(header.width);
           return (
             <TableCell
             freezeFirstColumn={freezeFirstColumn}
