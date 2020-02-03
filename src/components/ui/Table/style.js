@@ -40,7 +40,7 @@ export const TableHeader = styled.thead`
       color: ${props.textColor};
     `}
 
-div:first-of-type{
+td:first-of-type{
 ${props =>
     props.freezeFirstColumn &&
     css`
@@ -88,7 +88,7 @@ export const TableCell = styled.td`
     props.freezeFirstColumn &&
     css`
       &:first-child {
-        background-color: #f1f1f1;
+        background-color: ${color.medium};
         position: absolute;
         left: 0;
         border-right: solid 3px ${color.border};
@@ -121,15 +121,5 @@ export const TableBody = styled.tbody`
         width: fit-content;
         min-width: 100%;
         margin-left: ${`calc(${props.freezeFirstColumnWidth} + 13px);`};
-    `}
-`;
-
-export const TableScroll = styled.div`
-  width: fit-content;
-  min-width: 100%;
-  ${props =>
-    props.freezeFirstColumn &&
-    css`
-      margin-left: ${`calc(${props.freezeFirstColumnWidth} + 13px);`};
     `}
 `;
