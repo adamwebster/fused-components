@@ -1,3 +1,5 @@
+import { lighten } from 'polished';
+
 export const color = {
   primary: "#4799ff",
   secondary: "#ff6347",
@@ -10,7 +12,7 @@ export const color = {
   yellow: "#eba300",
   blue: "#1c91dc",
   green: "#79ca4c",
-
+  highlight: lighten(0.3, '#4799ff'),
   // Monochrome
   lightest: "#FFFFFF",
   lighter: "#F8F8F8",
