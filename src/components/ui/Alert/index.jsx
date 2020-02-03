@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledAlert } from './style';
+import { StyledAlert, Title } from './style';
 
 export const Alert = ({ fcStyle, title, icon, borderRadius,children, ...rest }) => {
   return (
     <StyledAlert borderRadius={borderRadius} fcStyle={fcStyle} {...rest}>
-     {title && <h4>{icon} {title}</h4>}
+     {title && <h4>{icon} <Title>{title}</Title></h4>}
       {children}
     </StyledAlert>
   );

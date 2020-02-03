@@ -4,7 +4,7 @@ import {color} from '../../../styles/styles';
 export const StyledAlert = styled.div`
   background-color: #fff;
   border-style: solid;
-  border-width: 1px 1px 1px 5px;
+  border-width: 5px 1px 1px 1px;
   border-color: ${
   props => {
     switch (props.fcStyle) {
@@ -46,5 +46,10 @@ export const StyledAlert = styled.div`
   }
   color: ${color.darker};
   padding: 10px;
-  ${props => props.borderRadius && css`border-radius: 5px`}
+  ${props => props.borderRadius && css`border-radius: 5px;`}
+`
+
+export const Title = styled.span`
+top: -3px;
+position: relative;
 `
