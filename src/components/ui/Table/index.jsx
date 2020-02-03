@@ -28,27 +28,31 @@ export const Table = ({
       tableTextColor={tableTextColor && tableTextColor}
       tableBGColor={tableBGColor && tableBGColor}
     >
-      <TableScroll freezeFirstColumn={freezeFirstColumn} freezeFirstColumnWidth={data.headers[0].width} >
       <TableHeader
         textColor={tableHeaderTextColor && tableHeaderTextColor}
         tableHeaderBGColor={tableHeaderBGColor && tableHeaderBGColor}
         freezeFirstColumn={freezeFirstColumn}
+        freezeFirstColumnWidth={data.headers[0].width}
         headerBorder={headerBorder}
       >
-        {data.headers.map((header, index) => {
-          return (
-            <TableCell
-            freezeFirstColumn={freezeFirstColumn}
-              cellWidth={header.width && header.width}
-              cellPadding={cellPadding}
-              key={index}
-            >
-              {header.label}
-            </TableCell>
-          );
-        })}
+        <TableRow>
+          {data.headers.map((header, index) => {
+            return (
+              <TableCell
+                freezeFirstColumn={freezeFirstColumn}
+                cellWidth={header.width && header.width}
+                cellPadding={cellPadding}
+                key={index}
+              >
+                {header.label}
+              </TableCell>
+            );
+          })}
+        </TableRow>
       </TableHeader>
       <TableBody
+        freezeFirstColumn={freezeFirstColumn}
+        freezeFirstColumnWidth={data.headers[0].width}
         tableBodyTextColor={tableBodyTextColor && tableBodyTextColor}
         tableBodyBGColor={tableBodyBGColor && tableBodyBGColor}
       >
@@ -62,7 +66,7 @@ export const Table = ({
               {row.row.map((column, index) => {
                 return (
                   <TableCell
-                  freezeFirstColumn={freezeFirstColumn}
+                    freezeFirstColumn={freezeFirstColumn}
 
                     cellWidth={
                       data.headers[index].width &&
@@ -79,7 +83,6 @@ export const Table = ({
           );
         })}
       </TableBody>
-    </TableScroll>
     </StyledTable>
   );
 };
@@ -116,5 +119,5 @@ Table.defaultProps = {
   zebraStripeColor: "#ebebeb",
   headerBorder: true,
   freezeFirstColumn: false,
-  data: {headers: [], rows: []}
+  data: { headers: [], rows: [] }
 };
