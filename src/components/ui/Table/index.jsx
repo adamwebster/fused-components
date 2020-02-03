@@ -32,6 +32,7 @@ export const Table = ({
       <TableHeader
         textColor={tableHeaderTextColor && tableHeaderTextColor}
         tableHeaderBGColor={tableHeaderBGColor && tableHeaderBGColor}
+        freezeFirstColumn={freezeFirstColumn}
         headerBorder={headerBorder}
       >
         {data.headers.map((header, index) => {
