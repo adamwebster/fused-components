@@ -2,6 +2,7 @@ import { lighten } from 'polished';
 
 export const color = {
   primary: "#4799ff",
+  focus: "#4799ff",
   secondary: "#ff6347",
   tertiary: "#DDDDDD",
   danger: "#ffbebe",
