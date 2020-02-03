@@ -1,11 +1,11 @@
-import variables from "../../../styles/variables";
+import {color} from "../../../styles/styles";
 import styled, { css } from "styled-components";
 
 export const StyledCard = styled.div`
   border-radius: ${props =>
-    props.borderRadius ? props.borderRadius : variables.borderRadius};
-  background-color: ${props => props.theme.cardColor};
-  border: solid 1px ${props => props.theme.borderColor};
+    props.borderRadius ? props.borderRadius : '5px'};
+  background-color: ${color.lightest};
+  border: solid 1px ${color.border};
    ${props => props.padding && css`
    padding: ${props.padding};
    `};
