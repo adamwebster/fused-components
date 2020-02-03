@@ -65,6 +65,9 @@ export const TableRow = styled.div`
         background-color: ${props.zebraStripeColor};
       }
     `}
+    &:hover{
+      background-color: ${color.highlight}
+    }
 `;
 
 export const TableCell = styled.div`

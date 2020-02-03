@@ -40,5 +40,4 @@ export const ToggleLabel = styled.span`
         padding-left: 5px;
         padding-right: 4px;
     }
-
 `
