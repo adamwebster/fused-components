@@ -1,5 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Label, Icon, CheckInput } from "./style";
 import PropTypes from "prop-types";
 

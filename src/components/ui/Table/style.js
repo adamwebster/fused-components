@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import variables from "../../../styles/variables";
 import { color } from "../../../styles/styles";
 
 export const StyledTable = styled.div`
