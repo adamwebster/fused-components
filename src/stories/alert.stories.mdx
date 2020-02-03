@@ -4,6 +4,7 @@ import { withKnobs, select, text, boolean } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
 import variables from "../styles/variables";
 import { Alert } from "../components/ui/Alert/";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 <Meta title="FusedComponents / Alert" component={Alert} />
 
@@ -15,32 +16,32 @@ import { Alert } from "../components/ui/Alert/";
 
 <Preview>
   <Story name="Default Alert">
-    <Alert>
+    <Alert title='Default'>
       Alert
     </Alert>
   </Story>
 </Preview>
 
 <Preview>
-    <Alert borderRadius fcStyle="danger">
+    <Alert title="Danger" icon={<FontAwesomeIcon icon="ban" />} borderRadius fcStyle="danger">
       Alert
     </Alert>
 </Preview>
 
 <Preview>
-        <Alert borderRadius fcStyle="success">
+        <Alert borderRadius fcStyle="success" title="Success" icon={<FontAwesomeIcon icon="check-circle" />} >
       Alert
     </Alert>
 </Preview>
 
 <Preview>
-        <Alert borderRadius fcStyle="warning">
+        <Alert borderRadius fcStyle="warning" title="Warning" icon={<FontAwesomeIcon icon="exclamation-circle" />} >
       Alert
     </Alert>
 </Preview>
 
 <Preview>
-        <Alert borderRadius fcStyle="info">
+        <Alert borderRadius fcStyle="info" title="Info" icon={<FontAwesomeIcon icon="question-circle" />}>
       Alert
     </Alert>
 </Preview>

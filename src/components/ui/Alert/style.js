@@ -2,22 +2,7 @@ import styled, {css} from "styled-components";
 import {color} from '../../../styles/styles';
 
 export const StyledAlert = styled.div`
-  background-color: ${
-  props => {
-    switch (props.fcStyle) {
-      case 'danger':
-        return color.danger
-      case 'warning':
-        return color.warning
-      case 'info':
-        return color.info
-      case 'success':
-        return color.success
-      default:
-        return '#efefef'
-    }
-  }
-  };
+  background-color: #fff;
   border-style: solid;
   border-width: 1px 1px 1px 5px;
   border-color: ${
@@ -32,11 +17,34 @@ export const StyledAlert = styled.div`
       case 'success':
         return color.green
       default:
-        return '#333'
+        return color.dark
     }
   }
   };
-  color: #333;
+  h4{
+    margin-top:0;
+    color: ${
+  props => {
+    switch (props.fcStyle) {
+      case 'danger':
+        return color.red
+      case 'warning':
+        return color.yellow
+      case 'info':
+        return color.blue
+      case 'success':
+        return color.green
+      default:
+        return color.dark
+    }
+  }
+  };
+  svg{
+    border-radius:50%;
+    font-size:20px;
+  }
+  }
+  color: ${color.darker};
   padding: 10px;
   ${props => props.borderRadius && css`border-radius: 5px`}
 `

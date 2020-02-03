@@ -5,11 +5,11 @@ import {
   select,
   text,
   boolean,
-  color
 } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
 import { Table } from "../components/ui/Table/";
 import { SampleData, SampleDataFixed } from '../data/SampleTableData'
+import { color } from '../styles/styles';
 
 <Meta title="FusedComponents / Table" component={Table} />
 
@@ -31,6 +31,7 @@ import { SampleData, SampleDataFixed } from '../data/SampleTableData'
  <Table
     data={SampleDataFixed}
     freezeFirstColumn
+    tableHeaderBGColor={color.medium}
     />
   </Preview>
 

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import variables from "../../../styles/variables";
+import { color } from "../../../styles/styles";
 
 export const StyledTable = styled.div`
   display: flex;
@@ -26,7 +27,8 @@ export const TableHeader = styled.div`
   ${props =>
     props.headerBorder &&
     css`
-      border-bottom: solid 1px ${variables.borderColor};
+      border-bottom: solid 1px ${color.border};
+      border-collapse: collapse;
     `}
   ${props =>
     props.tableHeaderBGColor &&
@@ -38,6 +40,20 @@ export const TableHeader = styled.div`
     css`
       color: ${props.textColor};
     `}
+
+div:first-of-type{
+${props =>
+  props.freezeFirstColumn &&
+  css`
+    border-bottom: solid 1px ${color.border};
+  `}
+
+  ${props =>
+    props.tableHeaderBGColor &&
+    css`
+      background-color: ${props.tableHeaderBGColor};
+    `}
+}
 `;
 
 export const TableRow = styled.div`
@@ -69,6 +85,7 @@ export const TableCell = styled.div`
         background-color: #f1f1f1;
         position: absolute;
         left: 0;
+        border-right: solid 3px ${color.border};
       }
     `}
 `;
@@ -95,6 +112,6 @@ export const TableScroll = styled.div`
   ${props =>
     props.freezeFirstColumn &&
     css`
-      margin-left: ${`calc(${props.freezeFirstColumnWidth} + 10px);`};
+      margin-left: ${`calc(${props.freezeFirstColumnWidth} + 13px);`};
     `}
 `;
