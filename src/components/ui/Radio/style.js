@@ -12,7 +12,7 @@ export const Icon = styled(FontAwesomeIcon)`
     font-size: 15px;
 `
 
-export const CheckInput = styled.input`
+export const RadioInput = styled.input`
 position: absolute;
 opacity: 0;
 cursor: pointer;

@@ -3,26 +3,27 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import variables from '../styles/variables';
-import { Checkbox } from '../components/ui/Checkbox/';
-import { CheckboxDemo } from '../demos/CheckboxDemo';
+import { Radio } from '../components/ui/Radio/';
+import { RadioDemo } from '../demos/RadioDemo';
 
-<Meta title="FusedComponents / Checkbox" component={Checkbox} />
+<Meta title="FusedComponents / Radio" component={Radio} />
 
-# Checkbox
+# Radio
 
 ## An Checkbox component 
 
 <Preview>
-      <Checkbox>Checkbox</Checkbox>
-       <Checkbox checked>Checkbox</Checkbox>
+      <Radio>Radio</Radio>
+       <Radio checked>Radio</Radio>
 </Preview>
+
 
 ## Demo 
 
 <Preview>
-<CheckboxDemo />
+      <RadioDemo/>
 </Preview>
 
 ## Properties
 
-<Props of={Checkbox} />
+<Props of={Radio} />
