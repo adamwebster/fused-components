@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 
-export const StyledTable = styled.div`
+export const StyledTable = styled.table`
   display: flex;
   flex: 1 1;
   flex-flow: column;
@@ -19,7 +19,7 @@ export const StyledTable = styled.div`
     `}
 `;
 
-export const TableHeader = styled.div`
+export const TableHeader = styled.thead`
   display: flex;
   flex: 1 1;
   font-weight: bold;
@@ -42,8 +42,8 @@ export const TableHeader = styled.div`
 
 div:first-of-type{
 ${props =>
-  props.freezeFirstColumn &&
-  css`
+    props.freezeFirstColumn &&
+    css`
     border-bottom: solid 1px ${color.border};
   `}
 
@@ -53,9 +53,16 @@ ${props =>
       background-color: ${props.tableHeaderBGColor};
     `}
 }
+${props =>
+    props.freezeFirstColumn &&
+    css`
+        width: fit-content;
+        min-width: 100%;
+        margin-left: ${`calc(${props.freezeFirstColumnWidth} + 13px);`};
+    `}
 `;
 
-export const TableRow = styled.div`
+export const TableRow = styled.tr`
   display: flex;
   flex: 1 1;
   ${props =>
@@ -65,12 +72,9 @@ export const TableRow = styled.div`
         background-color: ${props.zebraStripeColor};
       }
     `}
-    &:hover{
-      background-color: ${color.highlight}
-    }
 `;
 
-export const TableCell = styled.div`
+export const TableCell = styled.td`
   display: flex;
   flex: 1 1;
   ${props =>
@@ -92,7 +96,7 @@ export const TableCell = styled.div`
     `}
 `;
 
-export const TableBody = styled.div`
+export const TableBody = styled.tbody`
   display: flex;
   flex: 1 1;
   flex-flow: column;
@@ -105,6 +109,18 @@ export const TableBody = styled.div`
     props.tableBodyTextColor &&
     css`
       color: ${props.tableBodyTextColor};
+    `}
+    
+    & tr:hover{
+      background-color: ${color.highlight};
+    }
+
+  ${props =>
+    props.freezeFirstColumn &&
+    css`
+        width: fit-content;
+        min-width: 100%;
+        margin-left: ${`calc(${props.freezeFirstColumnWidth} + 13px);`};
     `}
 `;
 
