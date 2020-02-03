@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components';
-import variables from '../../../styles/variables';
+import { color } from "../../../styles/styles";
 
 export const ToggleWrapper = styled.div`
-width: 36px;
+width: 40px;
 height: 20px;
 border-radius: 15px;
-background-color: #c34242;
+background-color: ${color.red};
 position:relative;
 cursor: pointer;
 
 ${props => props.active && css`
-    background-color:${variables.green};
+    background-color:${color.green};
 `}
 `
 
@@ -21,13 +21,24 @@ background-color: #fff;
 position:absolute;
 box-sizing:border-box;
 box-shadow: 0 0 5px rgba(0,0,0,.25);
-border: solid 1px ${variables.borderColor};
+border: solid 1px ${color.border};
 border-radius: 15px;
 transition: all 0.1s ease;  
 left: 0;
     &.active{ 
     }
 ${props => props.active && css`
-    left: 18px;
+    left: 20px;
 `}
+`
+
+export const ToggleLabel = styled.span`
+    color:#fff;
+    font-size: 10px;
+    box-sizing: border-box;
+    &:first-of-type{
+        padding-left: 5px;
+        padding-right: 4px;
+    }
+
 `

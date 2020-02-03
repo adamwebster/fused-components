@@ -4,7 +4,9 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 
 import { Toggle } from '../components/ui/Toggle/';
+import { ToggleDemo } from '../demos/ToggleDemo';
 let test = "test";
+
 
 <Meta title="FusedComponents / Toggle" component={Toggle} />
 
@@ -13,18 +15,28 @@ let test = "test";
 ## An toggle that has an active and not active state
  
 To change the state of the toggle update the active property to set to true or false.
-## Not Active
-<Preview>
-    <Story name="Toggle">
-        <Toggle />
-    </Story>
-</Preview>
 
+## Default
 <Preview>
     <Toggle/>
     <Toggle active />
 </Preview>
 
+
+## With Labels
+<Preview>
+    <Toggle showLabels/>
+    <Toggle showLabels active />
+</Preview>
+
+
+
+## Demo
+
+Click the toggle below to show the interaction
+<Preview withSource={'none'}>
+<ToggleDemo  />
+    </Preview>
 
 ## Properties
 
