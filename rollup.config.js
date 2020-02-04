@@ -10,7 +10,8 @@ const globals = {
   'core-js': 'core-js',
   'prop-types': 'PropTypes',
   'styled-components': 'styled',
-  '@fortawesome/react-fontawesome': 'FontAwesomeIcon'
+  '@fortawesome/react-fontawesome': 'FontAwesomeIcon',
+  'polished': ['darken', 'lighten']
 }
 
 const globalModules = Object.keys(globals);

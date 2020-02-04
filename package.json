@@ -1,10 +1,10 @@
 {
   "name": "@adamwebster/fused-components",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Adam Webster",
   "repository": "https://github.com/adamwebster/fused-components",
-  "module": "dist/src/index.js",
-  "main": "dist/src/index.js",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
   "dependencies": {
     "styled-components": "^5.0.0"
   },
