@@ -23,9 +23,45 @@ border-radius: ${props => '5px'};
   background-color: #e9e9e9;
 }
 ${props => props.inError && css`
-  border:solid 1px #c34242;
-`}
-&::before{
-  content:'test'
+  border:solid 1px ${color.red};
+  &:focus{
+  border-color: ${color.red};
+  box-shadow: 0 0 6px ${color.red};
 }
+`}
+
+${props => props.inWarning && css`
+  border:solid 1px ${color.yellow};
+  &:focus{
+  border-color: ${color.yellow};
+  box-shadow: 0 0 6px ${color.yellow};
+}
+`}
+
+${props => props.icon && css`
+  padding-left: 35px;
+`}
+`
+
+export const InputWrapper = styled.div`
+  position:relative;
+
+`
+
+export const Icon = styled.span`
+position: absolute;
+left: 10px;
+top: 7px;
+color: ${color.mediumdark};
+border-right: solid 1px ${color.border};
+padding-right: 5px;
+
+${props => props.inError && css`
+  color: ${color.red};
+  border-color: ${color.red};
+`}
+${props => props.inWarning && css`
+  color: ${color.yellow};
+  border-color: ${color.yellow};
+`}
 `
