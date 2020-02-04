@@ -2,6 +2,7 @@ import {useState} from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Input } from '../components/ui/Input/';
 let test = "test";
@@ -30,6 +31,45 @@ let test = "test";
     disabled
     />
     </Story>
+</Preview>
+
+## Error
+
+<Preview>
+    <Input
+    inError
+    ariaLabel="Error Input"
+    />
+</Preview>
+
+## Warning
+
+<Preview>
+    <Input
+    inWarning
+    ariaLabel="Warning Input"
+    />
+</Preview>
+
+## Icon
+
+<Preview>
+    <Input
+    icon={<FontAwesomeIcon icon="search" />}
+    ariaLabel="Icon Input"
+    />
+    <br/>
+     <Input
+     inError
+    icon={<FontAwesomeIcon icon="times-circle" />}
+    ariaLabel="Icon Input"
+    />
+        <br/>
+     <Input
+     inWarning
+    icon={<FontAwesomeIcon icon="exclamation-circle" />}
+    ariaLabel="Icon Input"
+    />
 </Preview>
 
 ## Properties
