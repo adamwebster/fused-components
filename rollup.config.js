@@ -9,7 +9,8 @@ const globals = {
   'react-dom': 'ReactDOM',
   'core-js': 'core-js',
   'prop-types': 'PropTypes',
-  'styled-components': 'styled'
+  'styled-components': 'styled',
+  '@fortawesome/react-fontawesome': 'FontAwesomeIcon'
 }
 
 const globalModules = Object.keys(globals);
