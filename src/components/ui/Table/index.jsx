@@ -5,7 +5,6 @@ import {
   TableCell,
   TableBody,
   TableRow,
-  TableScroll
 } from "./style";
 import PropTypes from "prop-types";
 
