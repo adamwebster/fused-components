@@ -5,12 +5,11 @@ export const ToggleWrapper = styled.div`
 width: 40px;
 height: 20px;
 border-radius: 15px;
-background-color: ${color.red};
 position:relative;
 cursor: pointer;
-
+border: solid 1px ${color.border};
 ${props => props.active && css`
-    background-color:${color.green};
+    background-color:${color.primary};
 `}
 `
 
@@ -33,10 +32,11 @@ ${props => props.active && css`
 `
 
 export const ToggleLabel = styled.span`
-    color:#fff;
+        color: ${color.mediumdark};
     font-size: 10px;
     box-sizing: border-box;
     &:first-of-type{
+        color: #fff;
         padding-left: 5px;
         padding-right: 4px;
     }
