@@ -17,29 +17,22 @@ export const StyledButton = styled.button`
     !props.primary &&
     css`
       background-color: transparent;
-      color: ${color.primary};
-      border: solid 1px ${color.primary};
+      color: ${props.buttonColor || color.primary};
+      border: solid 1px ${props.buttonColor || color.primary};
       &:hover {
         color: ${color.light};
-        background-color: ${color.primary};
-        border-color: ${darken(0.1, color.primary)};
+        background-color: ${props.buttonColor || color.primary};
+        border-color: ${darken(0.1, props.buttonColor || color.primary)};
       }
-    `}
-
-  ${props =>
-    props.buttonColor &&
-    css`
-      border-color: ${props.buttonColor};
-      color: ${props.buttonColor};
     `}
   ${props =>
     props.primary &&
     css`
-      background-color: ${color.primary};
+      background-color: ${props.buttonColor || color.primary};
       color: ${color.light};
       border: none;
       &:hover {
-        background-color: ${darken(0.1, color.primary)};
+        background-color: ${darken(0.1, props.buttonColor || color.primary)};
       }
     `}
 `;
