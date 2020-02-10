@@ -31,7 +31,7 @@ export const Table = ({
         textColor={tableHeaderTextColor && tableHeaderTextColor}
         tableHeaderBGColor={tableHeaderBGColor && tableHeaderBGColor}
         freezeFirstColumn={freezeFirstColumn}
-        freezeFirstColumnWidth={data.headers[0].width}
+        freezeFirstColumnWidth={data.headers[0] && data.headers[0].width}
         headerBorder={headerBorder}
       >
         <TableRow>
@@ -39,7 +39,7 @@ export const Table = ({
             return (
               <TableCell
                 freezeFirstColumn={freezeFirstColumn}
-                cellWidth={header.width && header.width}
+                cellWidth={header && header.width}
                 cellPadding={cellPadding}
                 key={index}
               >
@@ -51,7 +51,7 @@ export const Table = ({
       </TableHeader>
       <TableBody
         freezeFirstColumn={freezeFirstColumn}
-        freezeFirstColumnWidth={data.headers[0].width}
+        freezeFirstColumnWidth={data.headers[0] && data.headers[0].width}
         tableBodyTextColor={tableBodyTextColor && tableBodyTextColor}
         tableBodyBGColor={tableBodyBGColor && tableBodyBGColor}
       >
