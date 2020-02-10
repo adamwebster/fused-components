@@ -10,4 +10,4 @@ export { Label } from './components/ui/Label/';
 export { Radio } from './components/ui/Radio';
 export { Table } from './components/ui/Table';
 export { Toggle } from './components/ui/Toggle/';
-export { Colors } from './styles/styles';
+export { color as Colors } from './styles/styles';

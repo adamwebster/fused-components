@@ -7,7 +7,6 @@ export const SampleData = {
   ]
 }
 
-
 export const SampleDataFixed = {
   "headers": [{ "label": "First Name", "width": "130px"} , {"label": "Last Name", "width": "500px"}, {"label" : "Job"}],
   "rows": [
