@@ -7,11 +7,12 @@ import {
   boolean,
 } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
-import { Table } from "../components/ui/Table/";
+import { Table, TableHeader } from "../components/ui/Table/";
+import { Button } from "../components/ui/Button/"
 import { SampleData, SampleDataFixed } from '../data/SampleTableData'
 import { color } from '../styles/styles';
 
-<Meta title="FusedComponents / Table" component={Table} />
+<Meta title="FusedComponents / Table" component={Table} subcomponents={Button} />
 
 # Table
 
@@ -21,36 +22,182 @@ import { color } from '../styles/styles';
 
 <Preview>
   <Story name="table">
-    <Table
-    />
-    </Story>
+    <Table>
+      <Table.Header>
+        <Table.Row>
+          <Table.Cell >
+          First Name
+          </Table.Cell>
+          <Table.Cell >
+          Last Name
+          </Table.Cell>
+           <Table.Cell >
+          Job
+          </Table.Cell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>
+            Adam
+          </Table.Cell>
+             <Table.Cell>
+            Webster
+          </Table.Cell>
+             <Table.Cell>
+            UI Developer
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>
+            Bruce
+          </Table.Cell>
+             <Table.Cell>
+            Wayne
+          </Table.Cell>
+             <Table.Cell>
+           Batman
+          </Table.Cell>
+        </Table.Row>
+          <Table.Row>
+          <Table.Cell>
+            Clark
+          </Table.Cell>
+             <Table.Cell>
+            Kent
+          </Table.Cell>
+             <Table.Cell>
+           Superman
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  </Story>
 </Preview>
 
 ## Zebra Stripping
 
 <Preview>
     <Table
-      tableHeaderBGColor={color.dark}
-      tableHeaderTextColor={color.light}
-      data={SampleData}
-      headerBorder={false}
       zebraStripping
-    />
+    >
+    <Table.Header
+      bgColor={color.dark}
+      fgColor={color.light}
+    >
+        <Table.Row>
+          <Table.Cell  width={'100px'} >
+          First Name
+          </Table.Cell>
+          <Table.Cell >
+          Last Name
+          </Table.Cell>
+           <Table.Cell >
+          Job
+          </Table.Cell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell width={'100px'} >
+            Adam
+          </Table.Cell>
+             <Table.Cell>
+            Webster
+          </Table.Cell>
+             <Table.Cell>
+            UI Developer
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell width={'100px'} >
+            Bruce
+          </Table.Cell>
+             <Table.Cell>
+            Wayne
+          </Table.Cell>
+             <Table.Cell>
+           Batman
+          </Table.Cell>
+        </Table.Row>
+          <Table.Row>
+          <Table.Cell width={'100px'} >
+            Clark
+          </Table.Cell>
+             <Table.Cell>
+            Kent
+          </Table.Cell>
+             <Table.Cell>
+           Superman
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
 </Preview>
 
 ## Fixed
 
 <Preview>
- <Table
-    data={SampleDataFixed}
-    freezeFirstColumn
-    tableHeaderBGColor={color.medium}
-    />
+   <Table
+   freezeFirstColumn
+   frozenColumnWidth={'130px'}
+   >
+      <Table.Header>
+        <Table.Row>
+          <Table.Cell width={'130px'} >
+          First Name
+          </Table.Cell>
+          <Table.Cell >
+          Last Name
+          </Table.Cell>
+           <Table.Cell >
+          Job
+          </Table.Cell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell width={'130px'}>
+            Adam
+          </Table.Cell>
+             <Table.Cell>
+            Webster
+          </Table.Cell>
+             <Table.Cell>
+            UI Developer
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell width={'130px'}>
+            Bruce
+          </Table.Cell>
+             <Table.Cell>
+            Wayne
+          </Table.Cell>
+             <Table.Cell >
+           Batman
+          </Table.Cell>
+        </Table.Row>
+          <Table.Row>
+          <Table.Cell width={'130px'}>
+            Clark
+          </Table.Cell>
+             <Table.Cell>
+            Kent
+          </Table.Cell>
+             <Table.Cell>
+           Superman
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
   </Preview>
 
 ## Properties
 
 <Props of={Table} />
+<Props of={TableHeader} />
+<Props of={Table.Cell} />
 
 ## Sample Data 
 
