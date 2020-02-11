@@ -19,25 +19,25 @@ export const StyledTable = styled.table`
     `}
 `;
 
-export const TableHeader = styled.thead`
+export const TableHeaderStyled = styled.thead`
   display: flex;
   flex: 1 1;
   font-weight: bold;
   ${props =>
-    props.headerBorder &&
+    props.showBottomBorder &&
     css`
       border-bottom: solid 1px ${color.border};
       border-collapse: collapse;
     `}
   ${props =>
-    props.tableHeaderBGColor &&
+    props.bgColor &&
     css`
-      background-color: ${props.tableHeaderBGColor};
+      background-color: ${props.bgColor};
     `}
   ${props =>
-    props.textColor &&
+    props.fgColor &&
     css`
-      color: ${props.textColor};
+      color: ${props.fgColor};
     `}
 
 td:first-of-type{
@@ -48,9 +48,9 @@ ${props =>
   `}
 
   ${props =>
-    props.tableHeaderBGColor &&
+    props.bgColor &&
     css`
-      background-color: ${props.tableHeaderBGColor};
+      background-color: ${props.bgColor};
     `}
 }
 ${props =>
@@ -58,11 +58,11 @@ ${props =>
     css`
         width: fit-content;
         min-width: 100%;
-        margin-left: ${`calc(${props.freezeFirstColumnWidth} + 13px);`};
+        margin-left: ${`calc(${props.frozenColumnWidth} + 13px);`};
     `}
 `;
 
-export const TableRow = styled.tr`
+export const TableRowStyled = styled.tr`
   display: flex;
   flex: 1 1;
   ${props =>
@@ -74,14 +74,14 @@ export const TableRow = styled.tr`
     `}
 `;
 
-export const TableCell = styled.td`
+export const TableCellStyled = styled.td`
   display: flex;
   flex: 1 1;
   ${props =>
-    props.cellWidth &&
+    props.width &&
     css`
       flex: unset;
-      width: ${props.cellWidth};
+      width: ${props.width};
     `};
   padding: ${props => props.cellPadding};
   ${props =>
@@ -96,7 +96,7 @@ export const TableCell = styled.td`
     `}
 `;
 
-export const TableBody = styled.tbody`
+export const TableBodyStyled = styled.tbody`
   display: flex;
   flex: 1 1;
   flex-flow: column;
@@ -120,6 +120,6 @@ export const TableBody = styled.tbody`
     css`
         width: fit-content;
         min-width: 100%;
-        margin-left: ${`calc(${props.freezeFirstColumnWidth} + 13px);`};
+        margin-left: ${`calc(${props.frozenColumnWidth} + 13px);`};
     `}
 `;

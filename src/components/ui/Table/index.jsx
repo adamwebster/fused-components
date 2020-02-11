@@ -1,10 +1,10 @@
 import React from "react";
 import {
   StyledTable,
-  TableHeader,
-  TableCell,
-  TableBody,
-  TableRow,
+  TableHeaderStyled,
+  TableCellStyled,
+  TableBodyStyled,
+  TableRowStyled,
 } from "./style";
 import PropTypes from "prop-types";
 
@@ -21,70 +21,76 @@ export const Table = ({
   tableTextColor,
   headerBorder,
   freezeFirstColumn,
+  children,
+  frozenColumnWidth,
+  ...rest
 }) => {
   return (
-    <StyledTable
-      tableTextColor={tableTextColor && tableTextColor}
-      tableBGColor={tableBGColor && tableBGColor}
-    >
-      <TableHeader
-        textColor={tableHeaderTextColor && tableHeaderTextColor}
-        tableHeaderBGColor={tableHeaderBGColor && tableHeaderBGColor}
-        freezeFirstColumn={freezeFirstColumn}
-        freezeFirstColumnWidth={data.headers[0] && data.headers[0].width}
-        headerBorder={headerBorder}
+    <>
+      <StyledTable
+        tableTextColor={tableTextColor && tableTextColor}
+        tableBGColor={tableBGColor && tableBGColor}
       >
-        <TableRow>
-          {data.headers.map((header, index) => {
-            return (
-              <TableCell
-                freezeFirstColumn={freezeFirstColumn}
-                cellWidth={header && header.width}
-                cellPadding={cellPadding}
-                key={index}
-              >
-                {header.label}
-              </TableCell>
-            );
-          })}
-        </TableRow>
-      </TableHeader>
-      <TableBody
-        freezeFirstColumn={freezeFirstColumn}
-        freezeFirstColumnWidth={data.headers[0] && data.headers[0].width}
-        tableBodyTextColor={tableBodyTextColor && tableBodyTextColor}
-        tableBodyBGColor={tableBodyBGColor && tableBodyBGColor}
-      >
-        {data.rows.map((row, index) => {
-          return (
-            <TableRow
-              zebraStripeColor={zebraStripeColor}
-              zebraStripping={zebraStripping}
-              key={index}
-            >
-              {row.row.map((column, index) => {
-                return (
-                  <TableCell
-                    freezeFirstColumn={freezeFirstColumn}
-
-                    cellWidth={
-                      data.headers[index].width &&
-                      data.headers[index].width
-                    }
-                    cellPadding={cellPadding}
-                    key={index}
-                  >
-                    {column}
-                  </TableCell>
-                );
-              })}
-            </TableRow>
-          );
+        {React.Children.map(children, child => {
+          return React.cloneElement(child, { freezeFirstColumn, zebraStripping, zebraStripeColor, frozenColumnWidth })
         })}
-      </TableBody>
-    </StyledTable>
+      </StyledTable>
+    </>
   );
 };
+
+export const TableHeader = ({ fgColor, freezeFirstColumn, frozenColumnWidth, showBottomBorder, bgColor, children, ...rest }) => {
+  return (
+    <TableHeaderStyled
+      showBottomBorder={showBottomBorder}
+      bgColor={bgColor}
+      fgColor={fgColor}
+      freezeFirstColumn={freezeFirstColumn}
+      frozenColumnWidth={frozenColumnWidth}
+      {...rest}>
+      {React.Children.map(children, child => {
+        return React.cloneElement(child, { freezeFirstColumn })
+      })}
+    </TableHeaderStyled>
+  )
+}
+
+export const TableRow = ({ children, zebraStripeColor, zebraStripping, freezeFirstColumn, ...rest }) => {
+  return (
+    <TableRowStyled
+    freezeFirstColumn={freezeFirstColumn}
+    zebraStripping={zebraStripping}
+    zebraStripeColor={zebraStripeColor}
+    >
+      {console.log(freezeFirstColumn)}
+      {React.Children.map(children, child => {
+        return React.cloneElement(child, { freezeFirstColumn })
+      })}
+    </TableRowStyled>
+  )
+}
+
+const TableCell = ({ children, cellPadding, width, freezeFirstColumn, ...rest }) => {
+  return (
+    <>
+      <TableCellStyled width={width} freezeFirstColumn={freezeFirstColumn} cellPadding={cellPadding}>{children}</TableCellStyled>
+    </>
+  )
+}
+
+const TableBody = ({ children, freezeFirstColumn, frozenColumnWidth,  zebraStripping, zebraStripeColor, ...rest }) => {
+  return (
+    <TableBodyStyled freezeFirstColumn={freezeFirstColumn} frozenColumnWidth={frozenColumnWidth}>
+      {React.Children.map(children, child => {
+        return React.cloneElement(child, { freezeFirstColumn, zebraStripping, zebraStripeColor })
+      })}
+    </TableBodyStyled>
+  )
+}
+Table.Header = TableHeader;
+Table.Row = TableRow;
+Table.Cell = TableCell;
+Table.Body = TableBody;
 
 Table.propTypes = {
   /** Send data to the table */
@@ -120,3 +126,19 @@ Table.defaultProps = {
   freezeFirstColumn: false,
   data: { headers: [], rows: [] }
 };
+
+TableHeader.defaultProps= {
+  showBottomBorder: true,
+}
+
+TableHeader.propTypes = {
+  showBottomBorder: PropTypes.bool,
+}
+
+Table.Cell.propTypes = {
+  cellPadding: PropTypes.bool,
+}
+
+Table.Cell.defaultProps = {
+  cellPadding: '5px',
+}
