@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
+import { lighten, darken } from 'polished';
 
 export const StyledTable = styled.table`
   display: flex;
@@ -7,15 +8,15 @@ export const StyledTable = styled.table`
   flex-flow: column;
   overflow: auto;
   ${props =>
-    props.tableBGColor &&
+    props.bgColor &&
     css`
-      background-color: ${props.tableBGColor};
+      background-color: ${props.bgColor};
     `}
 
   ${props =>
-    props.tableTextColor &&
+    props.fgColor &&
     css`
-      color: ${props.tableTextColor};
+      color: ${props.fgColor};
     `}
 `;
 
@@ -46,19 +47,13 @@ ${props =>
     css`
     border-bottom: solid 1px ${color.border};
   `}
-
-  ${props =>
-    props.bgColor &&
-    css`
-      background-color: ${props.bgColor};
-    `}
 }
 ${props =>
     props.freezeFirstColumn &&
     css`
         width: fit-content;
         min-width: 100%;
-        margin-left: ${`calc(${props.frozenColumnWidth} + 13px);`};
+        margin-left: ${`calc(${props.frozenColumnWidth} + (${props.padding} + 13px));`};
     `}
 `;
 
@@ -83,16 +78,23 @@ export const TableCellStyled = styled.td`
       flex: unset;
       width: ${props.width};
     `};
-  padding: ${props => props.cellPadding};
+  padding: ${props => props.padding};
   ${props =>
     props.freezeFirstColumn &&
     css`
       &:first-child {
-        background-color: ${color.medium};
+        background-color: ${props.frozenColumnBGColor ? props.frozenColumnBGColor : color.medium};
+        color: ${props.frozenColumnFGColor ? props.frozenColumnFGColor : "inherit"};
         position: absolute;
         left: 0;
         border-right: solid 3px ${color.border};
       }
+    `}
+    ${props => props.bgColor && css`
+      background-color: ${props.bgColor};
+    `}
+    ${props => props.fgColor && css`
+      color: ${props.fgColor};
     `}
 `;
 
@@ -112,7 +114,7 @@ export const TableBodyStyled = styled.tbody`
     `}
     
     & tr:hover{
-      background-color: ${color.highlight};
+      background-color: ${props => props.bgColor ? darken(0.1, props.bgColor) : color.highlight};
     }
 
   ${props =>
@@ -120,6 +122,6 @@ export const TableBodyStyled = styled.tbody`
     css`
         width: fit-content;
         min-width: 100%;
-        margin-left: ${`calc(${props.frozenColumnWidth} + 13px);`};
+        margin-left: ${`calc(${props.frozenColumnWidth} + (${props.padding} + 13px));`};
     `}
 `;
