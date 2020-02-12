@@ -59,7 +59,6 @@ export const TableRow = ({ children, padding, frozenColumnBGColor, frozenColumnF
     zebraStripping={zebraStripping}
     zebraStripeColor={zebraStripeColor}
     >
-      {console.log(freezeFirstColumn)}
       {React.Children.map(children, child => {
         return React.cloneElement(child, {padding, frozenColumnFGColor, frozenColumnBGColor, freezeFirstColumn })
       })}
@@ -78,7 +77,6 @@ export const TableCell = ({ children, padding, frozenColumnBGColor, frozenColumn
 export const TableBody = ({ children, tableBgColor, freezeFirstColumn, frozenColumnFGColor, frozenColumnBGColor, padding, frozenColumnWidth,  zebraStripping, zebraStripeColor, ...rest }) => {
   return (
     <TableBodyStyled bgColor={tableBgColor} padding={padding} freezeFirstColumn={freezeFirstColumn} frozenColumnWidth={frozenColumnWidth}>
-      {console.log(tableBgColor)}
       {React.Children.map(children, child => {
         return React.cloneElement(child, {padding, frozenColumnFGColor, frozenColumnBGColor, freezeFirstColumn, zebraStripping, zebraStripeColor })
       })}
