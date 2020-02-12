@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
-import { lighten, darken } from 'polished';
+import { darken } from 'polished';
 
 export const StyledTable = styled.table`
   display: flex;
