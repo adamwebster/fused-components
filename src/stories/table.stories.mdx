@@ -7,12 +7,12 @@ import {
   boolean,
 } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
-import { Table, TableHeader } from "../components/ui/Table/";
+import { Table, TableHeader, TableCell } from "../components/ui/Table/";
 import { Button } from "../components/ui/Button/"
 import { SampleData, SampleDataFixed } from '../data/SampleTableData'
 import { color } from '../styles/styles';
 
-<Meta title="FusedComponents / Table" component={Table} subcomponents={Button} />
+<Meta title="FusedComponents / Table" component={Table} />
 
 # Table
 
@@ -141,8 +141,16 @@ import { color } from '../styles/styles';
    <Table
    freezeFirstColumn
    frozenColumnWidth={'130px'}
+   padding={'15px'}
+   fgColor="gray"
+   bgColor="white"
+   frozenColumnBGColor="tomato"
+    frozenColumnFGColor="white"
    >
-      <Table.Header>
+      <Table.Header
+        bgColor="tomato"
+        fgColor="white"
+      >
         <Table.Row>
           <Table.Cell width={'130px'} >
           First Name
@@ -196,8 +204,12 @@ import { color } from '../styles/styles';
 ## Properties
 
 <Props of={Table} />
+
+## Properties of `<Table.Header/>`
 <Props of={TableHeader} />
-<Props of={Table.Cell} />
+
+## Properties of `<Table.Cell/>`
+<Props of={TableCell} />
 
 ## Sample Data 
 

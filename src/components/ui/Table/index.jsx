@@ -9,47 +9,50 @@ import {
 import PropTypes from "prop-types";
 
 export const Table = ({
-  cellPadding,
+  padding,
   zebraStripping,
   zebraStripeColor,
-  tableBGColor,
-  tableTextColor,
+  bgColor,
+  fgColor,
   freezeFirstColumn,
   children,
   frozenColumnWidth,
+  frozenColumnBGColor,
+  frozenColumnFGColor,
   ...rest
 }) => {
   return (
     <>
       <StyledTable
-        tableTextColor={tableTextColor && tableTextColor}
-        tableBGColor={tableBGColor && tableBGColor}
+        fgColor={fgColor && fgColor}
+        bgColor={bgColor && bgColor}
       >
         {React.Children.map(children, child => {
-          return React.cloneElement(child, {cellPadding, freezeFirstColumn, zebraStripping, zebraStripeColor, frozenColumnWidth })
+          return React.cloneElement(child, {padding, frozenColumnBGColor, frozenColumnFGColor, freezeFirstColumn, zebraStripping, zebraStripeColor, frozenColumnWidth, tableBgColor: bgColor })
         })}
       </StyledTable>
     </>
   );
 };
 
-export const TableHeader = ({ fgColor, cellPadding, freezeFirstColumn, frozenColumnWidth, showBottomBorder, bgColor, children, ...rest }) => {
+export const TableHeader = ({ fgColor, padding, freezeFirstColumn, frozenColumnWidth, frozenColumnFGColor, frozenColumnBGColor, showBottomBorder, bgColor, children, ...rest }) => {
   return (
     <TableHeaderStyled
       showBottomBorder={showBottomBorder}
       bgColor={bgColor}
       fgColor={fgColor}
+      padding={padding}
       freezeFirstColumn={freezeFirstColumn}
       frozenColumnWidth={frozenColumnWidth}
       {...rest}>
       {React.Children.map(children, child => {
-        return React.cloneElement(child, {cellPadding,  freezeFirstColumn })
+        return React.cloneElement(child, {padding, frozenColumnBGColor, frozenColumnFGColor, freezeFirstColumn })
       })}
     </TableHeaderStyled>
   )
 }
 
-export const TableRow = ({ children, cellPadding, zebraStripeColor, zebraStripping, freezeFirstColumn, ...rest }) => {
+export const TableRow = ({ children, padding, frozenColumnBGColor, frozenColumnFGColor, zebraStripeColor, zebraStripping, freezeFirstColumn, ...rest }) => {
   return (
     <TableRowStyled
     freezeFirstColumn={freezeFirstColumn}
@@ -58,25 +61,26 @@ export const TableRow = ({ children, cellPadding, zebraStripeColor, zebraStrippi
     >
       {console.log(freezeFirstColumn)}
       {React.Children.map(children, child => {
-        return React.cloneElement(child, {cellPadding, freezeFirstColumn })
+        return React.cloneElement(child, {padding, frozenColumnFGColor, frozenColumnBGColor, freezeFirstColumn })
       })}
     </TableRowStyled>
   )
 }
 
-const TableCell = ({ children, cellPadding, width, freezeFirstColumn, ...rest }) => {
+export const TableCell = ({ children, padding, frozenColumnBGColor, frozenColumnFGColor, bgColor, fgColor, width, freezeFirstColumn, ...rest }) => {
   return (
     <>
-      <TableCellStyled width={width} freezeFirstColumn={freezeFirstColumn} cellPadding={cellPadding}>{children}</TableCellStyled>
+      <TableCellStyled fgColor={fgColor} bgColor={bgColor} width={width} freezeFirstColumn={freezeFirstColumn} frozenColumnBGColor={frozenColumnBGColor} frozenColumnFGColor={frozenColumnFGColor} padding={padding}>{children}</TableCellStyled>
     </>
   )
 }
 
-const TableBody = ({ children, freezeFirstColumn, cellPadding, frozenColumnWidth,  zebraStripping, zebraStripeColor, ...rest }) => {
+export const TableBody = ({ children, tableBgColor, freezeFirstColumn, frozenColumnFGColor, frozenColumnBGColor, padding, frozenColumnWidth,  zebraStripping, zebraStripeColor, ...rest }) => {
   return (
-    <TableBodyStyled freezeFirstColumn={freezeFirstColumn} frozenColumnWidth={frozenColumnWidth}>
+    <TableBodyStyled bgColor={tableBgColor} padding={padding} freezeFirstColumn={freezeFirstColumn} frozenColumnWidth={frozenColumnWidth}>
+      {console.log(tableBgColor)}
       {React.Children.map(children, child => {
-        return React.cloneElement(child, {cellPadding, freezeFirstColumn, zebraStripping, zebraStripeColor })
+        return React.cloneElement(child, {padding, frozenColumnFGColor, frozenColumnBGColor, freezeFirstColumn, zebraStripping, zebraStripeColor })
       })}
     </TableBodyStyled>
   )
@@ -88,20 +92,25 @@ Table.Body = TableBody;
 
 Table.propTypes = {
   /** Sets the padding for the cells */
-  cellPadding: PropTypes.string,
+  padding: PropTypes.string,
   /** Sets the table header background color */
   zebraStripping: PropTypes.bool,
   /** Sets the zebra stripe color */
   zebraStripeColor: PropTypes.string,
   /** Sets the table background color */
-  tableBGColor: PropTypes.string,
+  bgColor: PropTypes.string,
   /** Sets the table text color */
-  tableTextColor: PropTypes.string,
+  fgColor: PropTypes.string,
+  /** If set to true will freeze the first column */
   freezeFirstColumn: PropTypes.bool,
+  /** Sets the width of the frozen column used to set the margin left of the following columns */
+  frozenColumnWidth: PropTypes.string,
+  frozenColumnBGColor: PropTypes.string,
+  frozenColumnFGColor: PropTypes.string,
 };
 
 Table.defaultProps = {
-  cellPadding: "5px",
+  padding: "5px",
   zebraStripping: false,
   zebraStripeColor: "#ebebeb",
   freezeFirstColumn: false,
@@ -112,5 +121,15 @@ TableHeader.defaultProps= {
 }
 
 TableHeader.propTypes = {
+  /** If set to true it will sown the bottom border */
   showBottomBorder: PropTypes.bool,
+  /** Sets the background color of the header */
+  bgColor: PropTypes.string,
+  /** Sets the text color for the header */
+  fgColor: PropTypes.string,
+}
+
+TableCell.propTypes = {
+  bgColor: PropTypes.string,
+  fgColor: PropTypes.string,
 }
