@@ -63,7 +63,7 @@ export const TableRowStyled = styled.tr`
   ${props =>
     props.zebraStripping &&
     css`
-      &:nth-child(odd) {
+      &:nth-child(even) {
         background-color: ${props.zebraStripeColor};
       }
     `}
