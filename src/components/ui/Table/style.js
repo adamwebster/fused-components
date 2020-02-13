@@ -67,6 +67,9 @@ export const TableRowStyled = styled.tr`
         background-color: ${props.zebraStripeColor};
       }
     `}
+    ${props => props.bgColor && css`
+      background-color: purple;
+    `}
 `;
 
 export const TableCellStyled = styled.td`
