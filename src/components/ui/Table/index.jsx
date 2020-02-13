@@ -65,13 +65,15 @@ export const TableHeader = ({ fgColor, padding, showBottomBorder, bgColor, child
   )
 }
 
-export const TableRow = ({ children, padding, frozenColumnBGColor, frozenColumnFGColor, ...rest }) => {
+export const TableRow = ({ children, padding, bgColor, fgColor, frozenColumnBGColor, frozenColumnFGColor, ...rest }) => {
   return (
     <TableContext.Consumer>
       {({ zebraStripping, zebraStripeColor, freezeFirstColumn }) => (
         <TableRowStyled
           freezeFirstColumn={freezeFirstColumn}
           zebraStripping={zebraStripping}
+          bgColor={bgColor}
+          fgColor={fgColor}
           zebraStripeColor={zebraStripeColor}
         >
           {children}
