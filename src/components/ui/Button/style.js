@@ -18,10 +18,10 @@ export const StyledButton = styled.button`
     !props.primary &&
     css`
       background-color: transparent;
-      color: ${props.buttonColor || color.primary};
+      color: ${'inherit' || color.primary};
       border: solid 1px ${props.buttonColor || color.primary};
       &:hover:not(:disabled) {
-        color: ${darken(0.1, props.buttonColor || color.primary)};
+        color: 'inherit' || ${darken(0.1, color.primary)};
         border-color: ${darken(0.1, props.buttonColor || color.primary)};
         transform: scale(1.05);
       }
