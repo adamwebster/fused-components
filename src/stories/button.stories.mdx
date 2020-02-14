@@ -3,6 +3,7 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Button } from '../components/ui/Button/';
 
@@ -14,15 +15,17 @@ import { Button } from '../components/ui/Button/';
 
 ## Default
 <Preview>
-    <Story name="button">
-    <Button primary={boolean('Primary', false)}>Button</Button>
-    </Story>
+    <Button>Button</Button>
+    <Button disabled>Disabled</Button>
+        <Button isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Is Loading</Button>
 </Preview>
 
 ## Primary
 
 <Preview>
     <Button primary>Primary Button</Button>
+    <Button disabled primary>Primary Button</Button>
+        <Button primary isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Primary Button</Button>
     </Preview>
 
 ## Properties

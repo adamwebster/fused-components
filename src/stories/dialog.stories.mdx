@@ -1,0 +1,20 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Dialog } from '../components/ui/Dialog/';
+
+<Meta title="FusedComponents / Dialog" component={Dialog}/>
+
+# Dialog
+
+## Sizes 
+<Preview>
+    <Dialog title="Dialog">
+        Dialog content
+    </Dialog>
+</Preview>
+
+<Props of={Dialog} />
