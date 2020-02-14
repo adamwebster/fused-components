@@ -18,7 +18,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   ariaLabel: PropTypes.string,
-  icon: PropTypes.bool,
+  icon: PropTypes.object,
   inError: PropTypes.bool,
   inWarning: PropTypes.bool,
 };
