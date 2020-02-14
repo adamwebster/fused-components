@@ -1,7 +1,7 @@
 import React from 'react';
 import { icons } from './icons';
 
-const Icon = ({icon}) => {
+const Icon = ({icon, color}) => {
   return (
     <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@ const Icon = ({icon}) => {
     viewBox="0 0 48 48"
   >
     <path
-      fill="currentColor"
+      fill={color || "currentColor"}
       d={icons[icon]}
     ></path>
   </svg>
