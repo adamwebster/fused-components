@@ -5,6 +5,7 @@ export const ToggleWrapper = styled.div`
 width: 40px;
 height: 20px;
 border-radius: 15px;
+background-color: ${color.light};
 position:relative;
 cursor: pointer;
 border: solid 1px ${color.border};
@@ -40,4 +41,7 @@ export const ToggleLabel = styled.span`
         padding-left: 5px;
         padding-right: 4px;
     }
+    ${props => props.children === 'Off' && css`
+        color: ${color.mediumdark};
+    `}
 `

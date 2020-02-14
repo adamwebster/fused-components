@@ -1,5 +1,4 @@
 export { Alert } from './components/ui/Alert/';
-export { AnimatedButton } from './components/ui/AnimatedButton';
 export { Avatar } from './components/ui/Avatar/';
 export { Badge } from './components/ui/Badge/';
 export { Button } from './components/ui/Button/';
@@ -10,3 +9,4 @@ export { Label } from './components/ui/Label/';
 export { Radio } from './components/ui/Radio';
 export { Table } from './components/ui/Table';
 export { Toggle } from './components/ui/Toggle/';
+export { color as Colors } from './styles/styles';

@@ -1,122 +1,78 @@
 import React from "react";
 import {
   StyledTable,
-  TableHeader,
-  TableCell,
-  TableBody,
-  TableRow,
 } from "./style";
+
 import PropTypes from "prop-types";
+import TableContext from './TableContext';
+import TableHeader from './TableHeader';
+import TableRow from './TableRow';
+import TableBody from './TableBody';
+import TableCell from './TableCell';
 
 export const Table = ({
-  data,
-  cellPadding,
-  tableHeaderBGColor,
-  tableHeaderTextColor,
+  padding,
   zebraStripping,
   zebraStripeColor,
-  tableBodyBGColor,
-  tableBodyTextColor,
-  tableBGColor,
-  tableTextColor,
-  headerBorder,
+  bgColor,
+  fgColor,
   freezeFirstColumn,
+  children,
+  frozenColumnWidth,
+  frozenColumnBGColor,
+  frozenColumnFGColor,
 }) => {
+  const state = {
+    padding,
+    frozenColumnBGColor,
+    frozenColumnFGColor,
+    freezeFirstColumn,
+    zebraStripping,
+    zebraStripeColor,
+    frozenColumnWidth,
+    tableBgColor: bgColor
+  }
   return (
-    <StyledTable
-      tableTextColor={tableTextColor && tableTextColor}
-      tableBGColor={tableBGColor && tableBGColor}
-    >
-      <TableHeader
-        textColor={tableHeaderTextColor && tableHeaderTextColor}
-        tableHeaderBGColor={tableHeaderBGColor && tableHeaderBGColor}
-        freezeFirstColumn={freezeFirstColumn}
-        freezeFirstColumnWidth={data.headers[0].width}
-        headerBorder={headerBorder}
+    <>
+      <StyledTable
+        fgColor={fgColor && fgColor}
+        bgColor={bgColor && bgColor}
       >
-        <TableRow>
-          {data.headers.map((header, index) => {
-            return (
-              <TableCell
-                freezeFirstColumn={freezeFirstColumn}
-                cellWidth={header.width && header.width}
-                cellPadding={cellPadding}
-                key={index}
-              >
-                {header.label}
-              </TableCell>
-            );
-          })}
-        </TableRow>
-      </TableHeader>
-      <TableBody
-        freezeFirstColumn={freezeFirstColumn}
-        freezeFirstColumnWidth={data.headers[0].width}
-        tableBodyTextColor={tableBodyTextColor && tableBodyTextColor}
-        tableBodyBGColor={tableBodyBGColor && tableBodyBGColor}
-      >
-        {data.rows.map((row, index) => {
-          return (
-            <TableRow
-              zebraStripeColor={zebraStripeColor}
-              zebraStripping={zebraStripping}
-              key={index}
-            >
-              {row.row.map((column, index) => {
-                return (
-                  <TableCell
-                    freezeFirstColumn={freezeFirstColumn}
-
-                    cellWidth={
-                      data.headers[index].width &&
-                      data.headers[index].width
-                    }
-                    cellPadding={cellPadding}
-                    key={index}
-                  >
-                    {column}
-                  </TableCell>
-                );
-              })}
-            </TableRow>
-          );
-        })}
-      </TableBody>
-    </StyledTable>
+        <TableContext.Provider value={state}>
+          {children}
+        </TableContext.Provider>
+      </StyledTable>
+    </>
   );
 };
 
+Table.Header = TableHeader;
+Table.Row = TableRow;
+Table.Cell = TableCell;
+Table.Body = TableBody;
+
 Table.propTypes = {
-  /** Send data to the table */
-  data: PropTypes.object,
   /** Sets the padding for the cells */
-  cellPadding: PropTypes.string,
+  padding: PropTypes.string,
   /** Sets the table header background color */
-  tableHeaderBGColor: PropTypes.string,
-  /** Sets the table header text color */
-  tableHeaderTextColor: PropTypes.string,
-  /** Set to display zebra stripping of the table */
   zebraStripping: PropTypes.bool,
   /** Sets the zebra stripe color */
   zebraStripeColor: PropTypes.string,
-  /** Sets the table body background color */
-  tableBodyBGColor: PropTypes.string,
-  /** Sets the table body text color */
-  tableBodyTextColor: PropTypes.string,
   /** Sets the table background color */
-  tableBGColor: PropTypes.string,
+  bgColor: PropTypes.string,
   /** Sets the table text color */
-  tableTextColor: PropTypes.string,
-  /** Displays the header rows bottom border */
-  headerBorder: PropTypes.bool,
+  fgColor: PropTypes.string,
+  /** If set to true will freeze the first column */
   freezeFirstColumn: PropTypes.bool,
+  /** Sets the width of the frozen column used to set the margin left of the following columns */
+  frozenColumnWidth: PropTypes.string,
+  frozenColumnBGColor: PropTypes.string,
+  frozenColumnFGColor: PropTypes.string,
 };
 
 Table.defaultProps = {
-  cellPadding: "5px",
+  padding: "5px",
   zebraStripping: false,
   zebraStripeColor: "#ebebeb",
-  headerBorder: true,
   freezeFirstColumn: false,
-  data: { headers: [], rows: [] }
 };

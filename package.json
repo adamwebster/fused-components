@@ -1,12 +1,12 @@
 {
   "name": "@adamwebster/fused-components",
-  "version": "0.2.1",
+  "version": "0.2.5",
   "author": "Adam Webster",
   "repository": "https://github.com/adamwebster/fused-components",
   "module": "dist/index.js",
   "main": "dist/index.js",
   "dependencies": {
-    "styled-components": "^5.0.0"
+    "styled-components": "^5.0.1"
   },
   "peerDependencies": {
     "react": "^16.12.0",
@@ -41,23 +41,23 @@
   "devDependencies": {
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
-    "@fortawesome/fontawesome-svg-core": "^1.2.26",
-    "@fortawesome/free-brands-svg-icons": "^5.12.0",
-    "@fortawesome/free-regular-svg-icons": "^5.12.0",
-    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/free-regular-svg-icons": "^5.12.1",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@rollup/plugin-commonjs": "^11.0.2",
-    "@rollup/plugin-node-resolve": "^7.1.0",
-    "@storybook/addon-a11y": "^5.3.10",
-    "@storybook/addon-actions": "^5.3.10",
-    "@storybook/addon-docs": "^5.3.10",
-    "@storybook/addon-knobs": "^5.3.10",
-    "@storybook/addon-links": "^5.3.10",
-    "@storybook/addon-storysource": "^5.3.10",
-    "@storybook/addon-viewport": "^5.3.10",
-    "@storybook/addons": "^5.3.10",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@storybook/addon-a11y": "^5.3.13",
+    "@storybook/addon-actions": "^5.3.13",
+    "@storybook/addon-docs": "^5.3.13",
+    "@storybook/addon-knobs": "^5.3.13",
+    "@storybook/addon-links": "^5.3.13",
+    "@storybook/addon-storysource": "^5.3.13",
+    "@storybook/addon-viewport": "^5.3.13",
+    "@storybook/addons": "^5.3.13",
     "@storybook/preset-create-react-app": "^1.5.2",
-    "@storybook/react": "^5.3.10",
+    "@storybook/react": "^5.3.13",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -68,7 +68,7 @@
     "react-scripts": "3.3.0",
     "rollup": "^1.31.0",
     "rollup-plugin-babel": "^4.3.3",
-    "storybook-addon-deps": "^1.0.9"
+    "storybook-addon-deps": "^1.0.11"
   },
   "babel": {
     "presets": [
