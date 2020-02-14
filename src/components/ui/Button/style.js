@@ -9,6 +9,7 @@ export const StyledButton = styled.button`
   height: 34px;
   cursor: pointer;
   display: block;
+  position:relative;
   outline: 0;
   border-radius: ${props => (props.borderRadius ? props.borderRadius : "5px")};
   transition: all 0.2s ease;
@@ -54,4 +55,25 @@ export const StyledButton = styled.button`
         cursor: not-allowed;
       }
     `}
+
+    ${props => props.icon && css`
+      padding-left: 34px;
+    `}
+    .button-icon {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 5px 7px;
+    border-radius: 50%;
+    position: absolute;
+    left: 5px;
+    box-sizing: border-box;
+    top: 5px;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    ${props =>
+    (!props.primary && !props.completed) &&
+    css`
+        background-color: ${props => props.buttonColor || color.primary};
+      `}
+  }
 `;
