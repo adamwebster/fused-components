@@ -1,5 +1,4 @@
 export { Alert } from './components/ui/Alert/';
-export { AnimatedButton } from './components/ui/AnimatedButton';
 export { Avatar } from './components/ui/Avatar/';
 export { Badge } from './components/ui/Badge/';
 export { Button } from './components/ui/Button/';
