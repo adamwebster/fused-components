@@ -1,14 +1,14 @@
 import React from "react";
 import {
   StyledTable,
-  TableHeaderStyled,
-  TableCellStyled,
-  TableBodyStyled,
-  TableRowStyled,
 } from "./style";
-import PropTypes from "prop-types";
 
-const TableContext = React.createContext({})
+import PropTypes from "prop-types";
+import TableContext from './TableContext';
+import TableHeader from './TableHeader';
+import TableRow from './TableRow';
+import TableBody from './TableBody';
+import TableCell from './TableCell';
 
 export const Table = ({
   padding,
@@ -46,66 +46,6 @@ export const Table = ({
   );
 };
 
-export const TableHeader = ({ fgColor, padding, showBottomBorder, bgColor, children, ...rest }) => {
-  return (
-    <TableContext.Consumer>
-      {({ freezeFirstColumn, frozenColumnWidth, padding}) => (
-          <TableHeaderStyled
-            showBottomBorder={showBottomBorder}
-            bgColor={bgColor}
-            fgColor={fgColor}
-            padding={padding}
-            freezeFirstColumn={freezeFirstColumn}
-            frozenColumnWidth={frozenColumnWidth}
-            {...rest}>
-            {children}
-          </TableHeaderStyled>
-      )}
-    </TableContext.Consumer>
-  )
-}
-
-export const TableRow = ({ children, padding, bgColor, fgColor, frozenColumnBGColor, frozenColumnFGColor, ...rest }) => {
-  return (
-    <TableContext.Consumer>
-      {({ zebraStripping, zebraStripeColor, freezeFirstColumn }) => (
-        <TableRowStyled
-          freezeFirstColumn={freezeFirstColumn}
-          zebraStripping={zebraStripping}
-          bgColor={bgColor}
-          fgColor={fgColor}
-          zebraStripeColor={zebraStripeColor}
-        >
-          {children}
-        </TableRowStyled>
-      )}
-    </TableContext.Consumer>
-  )
-}
-
-export const TableCell = ({ children, bgColor, fgColor, width, ...rest }) => {
-  return (
-    <TableContext.Consumer>
-      {({ frozenColumnBGColor, frozenColumnFGColor, freezeFirstColumn, padding }) => (
-        <>
-          <TableCellStyled fgColor={fgColor} bgColor={bgColor} width={width} freezeFirstColumn={freezeFirstColumn} frozenColumnBGColor={frozenColumnBGColor} frozenColumnFGColor={frozenColumnFGColor} padding={padding}>{children}</TableCellStyled>
-        </>
-      )}
-    </TableContext.Consumer>
-  )
-}
-
-export const TableBody = ({ children, frozenColumnFGColor, zebraStripping, zebraStripeColor, ...rest }) => {
-  return (
-    <TableContext.Consumer>
-      {({ frozenColumnWidth, freezeFirstColumn, tableBgColor, padding }) => (
-        <TableBodyStyled bgColor={tableBgColor}  padding={padding} freezeFirstColumn={freezeFirstColumn} frozenColumnWidth={frozenColumnWidth}>
-          {children}
-        </TableBodyStyled>
-      )}
-    </TableContext.Consumer>
-  )
-}
 Table.Header = TableHeader;
 Table.Row = TableRow;
 Table.Cell = TableCell;
@@ -136,21 +76,3 @@ Table.defaultProps = {
   zebraStripeColor: "#ebebeb",
   freezeFirstColumn: false,
 };
-
-TableHeader.defaultProps = {
-  showBottomBorder: true,
-}
-
-TableHeader.propTypes = {
-  /** If set to true it will sown the bottom border */
-  showBottomBorder: PropTypes.bool,
-  /** Sets the background color of the header */
-  bgColor: PropTypes.string,
-  /** Sets the text color for the header */
-  fgColor: PropTypes.string,
-}
-
-TableCell.propTypes = {
-  bgColor: PropTypes.string,
-  fgColor: PropTypes.string,
-}
