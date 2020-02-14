@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { color } from '../../../styles/styles';
 
 export const Label = styled.span`
@@ -13,7 +12,7 @@ export const Label = styled.span`
     `}
 `
 
-export const Icon = styled(FontAwesomeIcon)`
+export const Icon = styled.span`
     color: ${color.primary};
     font-size: 15px;
     ${props => props.inError && css`
