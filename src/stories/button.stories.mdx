@@ -16,17 +16,19 @@ import { Button } from '../components/ui/Button/';
 ## Default
 <Preview>
     <Button>Button</Button>
+    <Button icon={<FontAwesomeIcon icon="user" />}>Button with icon</Button>
     <Button disabled>Disabled</Button>
-        <Button isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Is Loading</Button>
+    <Button isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Is Loading</Button>
 </Preview>
 
 ## Primary
 
 <Preview>
     <Button primary>Primary Button</Button>
+    <Button primary icon={<FontAwesomeIcon icon="user" />}>Button with icon</Button>
     <Button disabled primary>Primary Button</Button>
-        <Button primary isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Primary Button</Button>
-    </Preview>
+    <Button primary isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Primary Button</Button>
+</Preview>
 
 ## Properties
 
