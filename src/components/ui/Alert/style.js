@@ -40,8 +40,7 @@ export const StyledAlert = styled.div`
   }
   };
   svg{
-    border-radius:50%;
-    font-size:20px;
+    width:20px;
   }
   }
   color: ${color.darker};
