@@ -2,7 +2,8 @@ import {useState} from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
-import { CornerDialog } from '../components/ui/CornerDialog/';
+import {CornerDialog} from '../components/ui/CornerDialog';
+import { CornerDialogDemo } from '../demos/CornerDialogDemo';
 import Icon from '../components/icon/';
 
 <Meta title="FusedComponents / Corner Dialog" component={CornerDialog} />
@@ -34,10 +35,7 @@ import Icon from '../components/icon/';
     </CornerDialog>
 </Preview>
 
-
-<CornerDialog title="Corner Dialog" >
-    See I am in the bottom of your screen now.
-</CornerDialog>
+<CornerDialogDemo />
 
 ## Properties
 
