@@ -54,8 +54,15 @@ left: 10px;
 top: 7px;
 color: ${color.mediumdark};
 border-right: solid 1px ${color.border};
-padding-right: 5px;
+box-sizing:border-box;
 
+svg{
+  top: 2px;
+  position:relative;
+  margin-right: 5px;
+  width:12px;
+
+}
 ${props => props.inError && css`
   color: ${color.red};
   border-color: ${color.red};
