@@ -1,13 +1,13 @@
 import React from "react";
-import { Label, Icon, CheckInput } from "./style";
+import { Label, IconStyled, CheckInput } from "./style";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../../icon/';
 
 export const Checkbox = ({ children, checked, inError, inWarning, ...checkboxProps }) => {
   return (
     <label>
       <CheckInput checked={checked} type="checkbox" {...checkboxProps} />
-      {checked ? <Icon inError={inError} inWarning={inWarning}><FontAwesomeIcon transform="shrink-6" icon="check" mask={['fas', 'square']}/></Icon> : <Icon inError={inError} inWarning={inWarning}><FontAwesomeIcon icon={["far", "square"]} /></Icon>}
+      {checked ? <IconStyled inError={inError} inWarning={inWarning}> <Icon icon="checkbox-checked"/></IconStyled> : <IconStyled inError={inError} inWarning={inWarning}> <Icon icon="checkbox"/></IconStyled> }
       <Label inError={inError} inWarning={inWarning}>{children}</Label>
     </label>
   );

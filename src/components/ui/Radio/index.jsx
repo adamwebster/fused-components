@@ -1,13 +1,13 @@
 import React from "react";
-import { Label, Icon, RadioInput } from "./style";
+import { Label, IconStyled, RadioInput } from "./style";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../../icon/';
 
 export const Radio = ({ children, checked, inWarning, inError, ...radioProps }) => {
   return (
     <label>
       <RadioInput inError={inError} inWarning={inWarning} type="radio" {...radioProps} />
-      {checked ? <Icon inError={inError} inWarning={inWarning}><FontAwesomeIcon transform="shrink-9" icon={["fas", "circle"]} mask={['fas', 'circle']}/></Icon> : <Icon inError={inError} inWarning={inWarning}><FontAwesomeIcon icon={["far", "circle"]} /></Icon>}
+      {checked ? <IconStyled inError={inError} inWarning={inWarning}> <Icon icon="radio-checked"/></IconStyled> : <IconStyled inError={inError} inWarning={inWarning}> <Icon icon="radio"/></IconStyled> }
       <Label inError={inError} inWarning={inWarning}>{children}</Label>
     </label>
   );

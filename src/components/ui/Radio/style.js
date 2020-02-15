@@ -12,9 +12,14 @@ export const Label = styled.span`
     `}
 `
 
-export const Icon = styled.span`
+export const IconStyled = styled.span`
     color: ${color.primary};
     font-size: 15px;
+    svg{
+       width: 15px;
+       top:2px;
+       position:relative;
+   }
     ${props => props.inError && css`
         color: ${color.red};
     `}
