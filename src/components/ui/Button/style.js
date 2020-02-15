@@ -50,10 +50,10 @@ export const StyledButton = styled.button`
     css`
       background-color: transparent;
       color: ${'inherit' || color.primary};
-      border: solid 1px ${props.buttonColor || color.primary};
+      border: solid 1px ${colorValue};
       &:hover:not(:disabled) {
         color: 'inherit' || ${darken(0.1, color.primary)};
-        border-color: ${darken(0.1, props.buttonColor || color.primary)};
+        border-color: ${colorValueDarken};
         transform: scale(1.05);
       }
       &:active:not(:disabled){
@@ -92,19 +92,19 @@ export const StyledButton = styled.button`
     `}
     .button-icon {
     background-color: rgba(0, 0, 0, 0.2);
-    padding: 5px 7px;
+    padding: 5px;
     border-radius: 50%;
     position: absolute;
     left: 5px;
     box-sizing: border-box;
-    top: 5px;
+    top: ${props => props.primary ? '5px' : '4px'};
     width: 24px;
     height: 24px;
     color: #fff;
     ${props =>
     (!props.primary && !props.completed) &&
     css`
-        background-color: ${props => props.buttonColor || color.primary};
+        background-color: ${colorValue};
       `}
   }
 `;

@@ -31,8 +31,23 @@ import { Button } from '../components/ui/Button/';
     <Button primary isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Primary Button</Button>
 </Preview>
 
-## Properties
 
+## Styles
+
+<Preview>
+    <Button fcStyle="danger" icon={<Icon icon="no-entry-circle" />} primary>Primary Danger Button</Button>
+        <Button fcStyle="warning" icon={<Icon icon="exclamation-circle" />} primary>Primary Warning Button</Button>
+    <Button fcStyle="info" icon={<Icon icon="info-circle" />} primary>Primary Info Button</Button>
+    <Button fcStyle="success" icon={<Icon icon="check-circle" />} primary>Primary Success Button</Button>
+</Preview>
+
+
+<Preview>
+    <Button fcStyle="danger" icon={<Icon icon="no-entry-circle" />} >Danger Button</Button>
+        <Button fcStyle="warning" icon={<Icon icon="exclamation-circle" />}>Warning Button</Button>
+    <Button fcStyle="info" icon={<Icon icon="info-circle" />}>Info Button</Button>
+    <Button fcStyle="success" icon={<Icon icon="check-circle" />}>Success Button</Button>
+</Preview>
 
 ## buttonColor
 
@@ -40,6 +55,8 @@ import { Button } from '../components/ui/Button/';
     <Button buttonColor="tomato" primary>Primary Button</Button>
         <Button buttonColor="tomato">Primary Button</Button>
     </Preview>
+
+## Properties
 
 <Props of={Button} />
 

@@ -38,7 +38,8 @@ export const CornerDialogStyled = styled.div`
           position: fixed;
           bottom: 25px;
           right: 25px;
-          animation: bounceup 0.5s ease-in-out;
+          animation: ${!props.visible ? 'hide 0.2s ease-in-out' : 'bounceup 0.5s ease-in-out'};
+
         `
       : css`
           position: relative;
@@ -64,6 +65,16 @@ export const CornerDialogStyled = styled.div`
       bottom: 25px;
     }
   }
+ 
+  @keyframes hide {
+    0% {
+      opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+  }
+
 `;
 
 export const DialogTitle = styled.h3`
