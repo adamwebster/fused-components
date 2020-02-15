@@ -1,0 +1,44 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { CornerDialog } from '../components/ui/CornerDialog/';
+import Icon from '../components/icon/';
+
+<Meta title="FusedComponents / Corner Dialog" component={CornerDialog} />
+
+# Corner Dialog
+
+## An Corner Dialog component 
+
+## Default
+<Preview>
+    <CornerDialog title="Corner Dialog" fixed={false}>
+        This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
+    </CornerDialog>
+</Preview>
+
+## Styles
+<Preview>
+    <CornerDialog fcStyle="danger" icon={<Icon icon="no-entry-circle" />} title="Corner Dialog" fixed={false}>
+        This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
+    </CornerDialog>
+        <CornerDialog fcStyle="warning" icon={<Icon icon="exclamation-circle" />} title="Corner Dialog" fixed={false}>
+        This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
+    </CornerDialog>
+         <CornerDialog fcStyle="info" icon={<Icon icon="question-circle" />} title="Corner Dialog" fixed={false}>
+        This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
+    </CornerDialog>
+        <CornerDialog fcStyle="success" icon={<Icon icon="check-circle" />} title="Corner Dialog" fixed={false}>
+        This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
+    </CornerDialog>
+</Preview>
+
+
+<CornerDialog title="Corner Dialog" >
+    See I am in the bottom of your screen now.
+</CornerDialog>
+
+## Properties
+
+<Props of={CornerDialog} />

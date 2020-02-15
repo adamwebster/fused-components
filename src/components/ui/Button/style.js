@@ -2,6 +2,37 @@ import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { darken } from "polished";
 
+  
+const colorValue = props => {
+  switch (props.fcStyle) {
+    case 'danger':
+        return color.red
+      case 'warning':
+        return color.yellow
+      case 'info':
+        return color.blue
+      case 'success':
+        return color.green
+      default:
+        return props.buttonColor || color.primary
+  }
+};
+
+const colorValueDarken = props => {
+  switch (props.fcStyle) {
+    case 'danger':
+        return darken(0.1, color.red)
+      case 'warning':
+        return darken(0.1, color.yellow)
+      case 'info':
+        return darken(0.1, color.blue)
+      case 'success':
+        return darken(0.1, color.green)
+      default:
+        return darken(0.1, props.buttonColor || color.primary)
+  }
+};
+
 export const StyledButton = styled.button`
    
   padding: 5px 10px;
@@ -38,11 +69,11 @@ export const StyledButton = styled.button`
   ${props =>
     props.primary &&
     css`
-      background-color: ${props.buttonColor || color.primary};
+      background-color: ${colorValue};
       color: ${color.light};
       border: none;
       &:hover:not(:disabled) {
-        background-color: ${darken(0.1, props.buttonColor || color.primary)};
+        background-color: ${colorValueDarken};
         transform: scale(1.05);
       }
       &:active:not(:disabled){
