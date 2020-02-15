@@ -4,6 +4,7 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from '../components/icon/';
 
 import { Button } from '../components/ui/Button/';
 
@@ -16,7 +17,7 @@ import { Button } from '../components/ui/Button/';
 ## Default
 <Preview>
     <Button>Button</Button>
-    <Button icon={<FontAwesomeIcon icon="user" />}>Button with icon</Button>
+    <Button icon={<Icon icon="user" />}>Button with icon</Button>
     <Button disabled>Disabled</Button>
     <Button isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Is Loading</Button>
 </Preview>
@@ -25,7 +26,7 @@ import { Button } from '../components/ui/Button/';
 
 <Preview>
     <Button primary>Primary Button</Button>
-    <Button primary icon={<FontAwesomeIcon icon="user" />}>Button with icon</Button>
+    <Button primary icon={<Icon icon="user" />}>Button with icon</Button>
     <Button disabled primary>Primary Button</Button>
     <Button primary isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Primary Button</Button>
 </Preview>
