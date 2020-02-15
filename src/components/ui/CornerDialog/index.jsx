@@ -5,11 +5,13 @@ import {Button} from '../Button';
 import { color } from '../../../styles/styles';
 import Icon from '../../icon';
 
-export const CornerDialog = ({fixed, title, children, fcStyle, icon, ...rest}) => {
+export const CornerDialog = ({fixed, onCloseClick, visible, title, children, fcStyle, icon, ...rest}) => {
     return(
+        visible &&
+            <>
         <CornerDialogStyled fcStyle={fcStyle} fixed={fixed} {...rest}>
         <DialogTitle fcStyle={fcStyle}>{title && title}
-        <CloseButton aria-label="Close"><Icon icon="times" /></CloseButton>
+        <CloseButton onClick={(e) => onCloseClick(e)} aria-label="Close"><Icon icon="times" /></CloseButton>
         </DialogTitle>
         <DialogContent>
         {icon && <IconStyled fcStyle={fcStyle}>{icon}</IconStyled>}
@@ -18,10 +20,12 @@ export const CornerDialog = ({fixed, title, children, fcStyle, icon, ...rest}) =
         </DialogText>
         </DialogContent>
         <DialogFooter>
-        <Button buttonColor={color.border} >Close</Button>
+        <Button buttonColor={color.border} onClick={(e) => onCloseClick(e)} >Close</Button>
         <Button fcStyle={fcStyle} primary>Learn More</Button>
         </DialogFooter>
         </CornerDialogStyled>
+    </>    
+    
     )
 }
 
@@ -31,8 +35,11 @@ CornerDialog.propTypes = {
     icon: PropTypes.object,
     /** Sets the style of the dialog danger | warning | info | success */
     fcStyle: PropTypes.string,
+    visible: PropTypes.bool,
+
 }
 
 CornerDialog.defaultProps = {
     fixed: true,
+    visible: true,
 }
