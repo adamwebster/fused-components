@@ -35,7 +35,10 @@ CornerDialog.propTypes = {
     icon: PropTypes.object,
     /** Sets the style of the dialog danger | warning | info | success */
     fcStyle: PropTypes.string,
+    /** Sets whether the dialog should be shown or not */
     visible: PropTypes.bool,
+    /** Sets what should happen when the close button is clicked. At minimum should set the visible property to false. */
+    onCloseClick: PropTypes.func.isRequired,
 
 }
 
