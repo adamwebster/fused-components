@@ -44,16 +44,17 @@ export const StyledButton = styled.button`
   outline: 0;
   border-radius: ${props => (props.borderRadius ? props.borderRadius : "5px")};
   transition: all 0.2s ease;
-
+  width: fit-content;
   ${props =>
     !props.primary &&
     css`
       background-color: transparent;
-      color: ${'inherit' || color.primary};
+      color: ${colorValue || color.primary};
       border: solid 1px ${colorValue};
       &:hover:not(:disabled) {
-        color: 'inherit' || ${darken(0.1, color.primary)};
+        color: #fff;
         border-color: ${colorValueDarken};
+        background-color: ${colorValue};
         transform: scale(1.05);
       }
       &:active:not(:disabled){
@@ -106,5 +107,24 @@ export const StyledButton = styled.button`
     css`
         background-color: ${colorValue};
       `}
-  }
+    }
+   ${props => props.as === 'a' && css`
+    border:none;
+    text-decoration:underline;
+    height: fit-content;
+    background-color: transparent;
+    color: ${colorValueDarken};
+    display:inline-block;
+    ${props => !props.icon && css`
+      height:fit-content;
+      padding: 0;
+    `}
+    .button-icon {
+      background-color: ${colorValue};
+    }
+    &:hover{
+      background-color:transparent!important;
+      color: ${colorValueDarken}!important;
+    }
+   `}
 `;
