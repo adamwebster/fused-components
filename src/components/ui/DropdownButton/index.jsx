@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Button } from "../Button";
-
+import PropTypes from "prop-types";
 import { DropdownButtonWrapper, IconStyled, MenuDivider } from "./style";
 import { DropdownMenu } from "./DropdownMenu";
 import { MenuItem } from "./MenuItem";
@@ -9,7 +9,6 @@ import Icon from "../../icon";
 
 export const DropdownButton = ({
   primary,
-  hasIcons,
   label,
   fcStyle,
   children
@@ -28,7 +27,6 @@ export const DropdownButton = ({
   };
   const state = {
     menuOpen,
-    hasIcons,
     hideMenu: () => hideMenuFunc(),
     buttonEl,
   };
@@ -74,3 +72,10 @@ export const DropdownButton = ({
 DropdownButton.Menu = DropdownMenu;
 DropdownButton.MenuItem = MenuItem;
 DropdownButton.Divider = MenuDivider;
+
+DropdownButton.propTypes = {
+  primary: PropTypes.bool,
+  label: PropTypes.string,
+  /** Danger | Warning | Info | Success */
+  fcStyle: PropTypes.string
+}

@@ -140,3 +140,22 @@ export const CloseButton = styled.button`
     }
   }
 `;
+
+export const Overlay = styled.div`
+  background-color: ${color.overlay};
+  position:fixed;
+  width: 100vw;
+  height: 100vh;
+  left:0;
+  top: 0;
+  z-index: 99;
+  animation: fadeIn 0.1s;  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+`

@@ -18,6 +18,7 @@ export const PanelDemo = () => {
         visible={panelVisible}
         title="Corner Dialog"
         position="right"
+        showOverlay
       >
         <Label htmlFor="user">Username</Label>
         <Input id="user" icon={<Icon icon="user" />} />
