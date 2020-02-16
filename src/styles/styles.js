@@ -5,7 +5,7 @@ export const color = {
   focus: "#4799ff",
   secondary: "#ff6347",
   tertiary: "#DDDDDD",
-  danger: "#ffbebe",
+  danger: "#dd2c2e",
   warning: "#ffe3c7",
   info: "#bcd7ff",
   success: "#c0dcb1",

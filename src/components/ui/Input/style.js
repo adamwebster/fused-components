@@ -4,7 +4,6 @@ import { color } from '../../../styles/styles';
 export const StyledInput = styled.input`
 width: 100%;
 height:34px;
-margin-bottom: 15px;
 box-sizing:border-box;
 padding: 0 10px;
 outline: none;

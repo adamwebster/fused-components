@@ -5,7 +5,7 @@ import { action, actions } from "@storybook/addon-actions";
 import Icon from '../components/icon/';
 
 import { Input } from '../components/ui/Input/';
-let test = "test";
+import { InputField } from '../components/ui/InputField/';
 
 <Meta title="FusedComponents / Input" component={Input} />
 
@@ -75,3 +75,17 @@ let test = "test";
 ## Properties
 
 <Props of={Input} />
+
+
+## InputField
+
+<Preview>
+    <InputField
+        id="TestInput"
+        label="Input Field"
+        hint="Type something into the input above"
+        required
+        inError
+        validationMessage="Invalid entry."
+     />
+</Preview>
