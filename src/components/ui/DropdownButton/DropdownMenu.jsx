@@ -8,6 +8,7 @@ export const DropdownMenu = ({ children }) => {
   const menuRef = useRef(null);
   const handleClickOutside = e => {
     if (
+      // Must be some better way to test if the button is being clicked or not
       menuRef.current !== e.target.parentNode &&
       DropdownContext.buttonEl.current !== e.target &&
       DropdownContext.buttonEl.current !== e.target.parentNode.parentNode.parentNode &&
