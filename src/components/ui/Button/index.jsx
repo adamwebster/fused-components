@@ -2,9 +2,9 @@ import React from 'react';
 import { StyledButton } from './style';
 import PropTypes from 'prop-types';
 
-export const Button = ({ buttonColor, disabled, isLoading, loadingIcon, icon, children, ...rest }) => {
+export const Button = ({ buttonColor, disabled, isLoading, buttonRef, loadingIcon, icon, children, ...rest }) => {
   return (
-    <StyledButton icon={icon} buttonColor={buttonColor} disabled={disabled || isLoading} {...rest}>
+    <StyledButton ref={buttonRef} icon={icon} buttonColor={buttonColor} disabled={disabled || isLoading} {...rest}>
       {(isLoading && loadingIcon) && <>{loadingIcon} </>}
       {(icon && !isLoading) && <span className="button-icon">{icon} </span>}
       {children}

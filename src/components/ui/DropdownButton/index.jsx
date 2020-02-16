@@ -7,7 +7,6 @@ import { MenuItem } from "./MenuItem";
 import DropdownMenuContext from "./DropdownMenuContext";
 import Icon from "../../icon";
 
-var ref = null;
 export const DropdownButton = ({
   primary,
   hasIcons,
@@ -17,18 +16,21 @@ export const DropdownButton = ({
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-  const menuEl = useRef(null);
+  const buttonEl = useRef(null);
 
   const hideMenuFunc = () => {
-    setMenuVisible(false);
-    setMenuOpen(false);
-
-    console.log("hideMenu");
+    if (menuOpen) {
+      setMenuOpen(false);
+      setTimeout(() => {
+        setMenuVisible(false);
+      }, 200);
+    }
   };
   const state = {
     menuOpen,
     hasIcons,
-    hideMenu: () => hideMenuFunc()
+    hideMenu: () => hideMenuFunc(),
+    buttonEl,
   };
 
   const toggleMenu = () => {
@@ -47,6 +49,7 @@ export const DropdownButton = ({
     <DropdownButtonWrapper>
       <DropdownMenuContext.Provider value={state}>
         <Button
+          buttonRef={buttonEl}
           fcStyle={fcStyle}
           primary={primary}
           onClick={() => toggleMenu()}

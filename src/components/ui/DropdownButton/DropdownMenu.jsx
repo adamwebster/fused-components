@@ -1,32 +1,35 @@
-import React, {useContext, useEffect, useRef}  from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
 import { DropdownMenuStyled } from "./style";
 import DropdownMenuContext from "./DropdownMenuContext";
 
 export const DropdownMenu = ({ children }) => {
   const DropdownContext = useContext(DropdownMenuContext);
-const menuRef = useRef(null);
-  const handleClickOutside = (e) => {
-    console.log('here', menuRef, e.target.parentNode)
-    console.log(menuRef.current === e.target.parentNode)
-    if(menuRef.current !== e.target.parentNode){
+  const menuRef = useRef(null);
+  const handleClickOutside = e => {
+    if (
+      menuRef.current !== e.target.parentNode &&
+      DropdownContext.buttonEl.current !== e.target &&
+      DropdownContext.buttonEl.current !== e.target.parentNode.parentNode.parentNode &&
+      DropdownContext.buttonEl.current !== e.target.parentNode.parentNode
+    ) {
       DropdownContext.hideMenu();
     }
-  }
+  };
   useEffect(() => {
-  //  DropdownContext.hideMenu();
+    //  DropdownContext.hideMenu();
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  })
+  });
   return (
     <DropdownMenuContext.Consumer>
-      {({ menuOpen, hasIcons}) => (
+      {({ menuOpen, hasIcons }) => (
         <>
           <DropdownMenuStyled
-          ref={menuRef}
+            ref={menuRef}
             hasIcons={hasIcons}
             menuOpen={menuOpen}
           >
