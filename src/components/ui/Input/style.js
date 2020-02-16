@@ -10,6 +10,7 @@ padding: 0 10px;
 outline: none;
 border: solid 1px ${color.border};
 border-radius: ${props => '5px'};
+-webkit-appearance: none;
 &::placeholder{
   font-style:italic; 
 }
