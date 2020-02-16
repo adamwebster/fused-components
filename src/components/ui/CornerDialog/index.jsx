@@ -52,7 +52,7 @@ export const CornerDialog = ({
         <DialogText>{children}</DialogText>
       </DialogContent>
       <DialogFooter>
-        <Button buttonColor={color.border} onClick={e => onCloseClick(e)}>
+        <Button buttonColor={color.mediumdark} onClick={e => onCloseClick(e)}>
           Close
         </Button>
         <Button fcStyle={fcStyle} primary>

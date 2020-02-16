@@ -3,18 +3,16 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 
 import { DropdownButton } from '../components/ui/DropdownButton/';
+import { MenuItem } from '../components/ui/DropdownButton/MenuItem';
+
 import Icon from '../components/icon/';
 
 <Meta title="FusedComponents / Dropdown Button" component={DropdownButton} />
 
-## An Dropdown Button component
- 
+# Dropdown Button
 
-## Default
-<Preview>
-<DropdownButton/>
-</Preview>
-
+The dropdown button allows multiple options to be visible in a drop down menu.  To close the menu the user would click on the button again or anywhere outside of the button.
+<p>
 <DropdownButton
     label="Dropdown Button"
     >
@@ -31,7 +29,31 @@ import Icon from '../components/icon/';
         </DropdownButton.MenuItem>
     </DropdownButton.Menu>
 </DropdownButton>
+</p>
 
-## Properties
+
+    <DropdownButton
+        label="Dropdown Button"
+        >
+        <DropdownButton.Menu>
+            <DropdownButton.MenuItem onClick={() => alert('clicked')} icon="check-circle">
+                Menu Item
+            </DropdownButton.MenuItem>
+            <DropdownButton.MenuItem icon="search">
+                Menu Item
+            </DropdownButton.MenuItem>
+            <DropdownButton.Divider />
+            <DropdownButton.MenuItem icon="user">
+                Menu Item
+            </DropdownButton.MenuItem>
+        </DropdownButton.Menu>
+    </DropdownButton>
+
+
+## Properties of `<DropdownButton />`
 
 <Props of={DropdownButton} />
+
+## Properties of `<DropdownButton.MenuItem />`
+
+<Props of={MenuItem} />

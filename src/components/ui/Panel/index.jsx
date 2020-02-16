@@ -5,7 +5,8 @@ import {
   DialogContent,
   DialogText,
   DialogFooter,
-  CloseButton
+  CloseButton,
+  Overlay,
 } from "./style";
 import { Button } from "../Button";
 import PropTypes from "prop-types";
@@ -19,7 +20,8 @@ export const Panel = ({
   fixed,
   visible,
   children,
-  position
+  position,
+  showOverlay
 }) => {
   const [show, setShow] = useState(false);
 
@@ -36,25 +38,29 @@ export const Panel = ({
   return (
     show && (
       <>
-        <StyledPanel position={position} visible={visible} fixed={fixed}>
-          <DialogTitle fcStyle={fcStyle}>
-            {title && title}
-            <CloseButton onClick={e => onCloseClick(e)} aria-label="Close">
-              <Icon icon="times" />
-            </CloseButton>
-          </DialogTitle>
-          <DialogContent>
-            <DialogText>{children}</DialogText>
-          </DialogContent>
-          <DialogFooter>
-            <Button buttonColor={color.border} onClick={e => onCloseClick(e)}>
-              Close
-            </Button>
-            <Button fcStyle={fcStyle} primary>
-              Save
-            </Button>
-          </DialogFooter>
-        </StyledPanel>
+        {showOverlay && <Overlay onClick={e => onCloseClick(e)}></Overlay>}
+          <StyledPanel position={position} visible={visible} fixed={fixed}>
+            <DialogTitle fcStyle={fcStyle}>
+              {title && title}
+              <CloseButton onClick={e => onCloseClick(e)} aria-label="Close">
+                <Icon icon="times" />
+              </CloseButton>
+            </DialogTitle>
+            <DialogContent>
+              <DialogText>{children}</DialogText>
+            </DialogContent>
+            <DialogFooter>
+              <Button
+                buttonColor={color.mediumdark}
+                onClick={e => onCloseClick(e)}
+              >
+                Close
+              </Button>
+              <Button fcStyle={fcStyle} primary>
+                Save
+              </Button>
+            </DialogFooter>
+          </StyledPanel>
       </>
     )
   );
@@ -69,11 +75,13 @@ Panel.propTypes = {
   onCloseClick: PropTypes.func.isRequired,
   /** left | right*/
   position: PropTypes.string,
+  /* If added will add an overlay */
+  showOverlay: PropTypes.bool
 };
 
 Panel.defaultProps = {
   fixed: true,
   visible: true,
   onCloseClick: () => {},
-  position: 'right'
+  position: "right"
 };
