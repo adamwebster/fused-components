@@ -3,7 +3,7 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
-
+import { DialogDemo } from '../demos/DialogDemo';
 import { Dialog } from '../components/ui/Dialog/';
 
 <Meta title="FusedComponents / Dialog" component={Dialog}/>
@@ -12,9 +12,12 @@ import { Dialog } from '../components/ui/Dialog/';
 
 ## Sizes 
 <Preview>
-    <Dialog title="Dialog">
+    <Dialog visible title="Dialog">
         Dialog content
     </Dialog>
 </Preview>
+
+<DialogDemo />
+
 
 <Props of={Dialog} />
