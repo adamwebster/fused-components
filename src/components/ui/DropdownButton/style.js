@@ -18,7 +18,7 @@ export const DropdownMenuStyled = styled.ul`
     z-index: 99;
     margin-top: 5px;
     border-radius: 5px;
-    animation:  ${props => props.menuOpen ? 'fadein 0.5s ease-in-out' : 'fadeout 0.5s ease-in-out' };
+    animation:  ${props => props.menuOpen ? 'fadein 0.5s ease-in-out' : 'fadeout 0.2s ease-in-out' };
     @keyframes fadein {
         0%{
             opacity: 0;
@@ -49,12 +49,23 @@ export const MenuItemStyled = styled.li`
     &:hover{
         background-color: ${color.light};
     }
+    svg{
+        width: 12px;
+        top: 5px;
+        margin-right: 5px;
+    }
 `
 export const IconStyled = styled.span`
     width: 16px;
-    display:inline-block;
+    display:block;
     float: right;
     margin-top: 3px;
     height: 5px;
     margin-left: 5px;
+`
+
+export const MenuDivider = styled.hr`
+    border-width: 0 0 1px 0;
+    margin: 0;
+    border-color: ${color.border}
 `

@@ -3,6 +3,7 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 
 import { DropdownButton } from '../components/ui/DropdownButton/';
+import Icon from '../components/icon/';
 
 <Meta title="FusedComponents / Dropdown Button" component={DropdownButton} />
 
@@ -14,18 +15,22 @@ import { DropdownButton } from '../components/ui/DropdownButton/';
 <DropdownButton/>
 </Preview>
 
-
 <DropdownButton
     label="Dropdown Button"
-    primary
->
+    >
     <DropdownButton.Menu>
-        <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
-        <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
-        <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
+        <DropdownButton.MenuItem onClick={() => alert('clicked')} icon="check-circle">
+            Menu Item
+        </DropdownButton.MenuItem>
+        <DropdownButton.MenuItem icon="search">
+            Menu Item
+        </DropdownButton.MenuItem>
+        <DropdownButton.Divider />
+        <DropdownButton.MenuItem icon="user">
+            Menu Item
+        </DropdownButton.MenuItem>
     </DropdownButton.Menu>
 </DropdownButton>
-
 
 ## Properties
 

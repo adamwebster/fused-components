@@ -1,15 +1,20 @@
-import React from "react";
+import React  from "react";
 
 import { DropdownMenuStyled } from "./style";
 import DropdownMenuContext from "./DropdownMenuContext";
 
-export const DropdownMenu = ({ children }) => {
+export const DropdownMenu = ({ children, context, props }) => {
   return (
     <DropdownMenuContext.Consumer>
-      {({ menuOpen }) => (
+      {({ menuOpen, hasIcons}) => (
         <>
-        <DropdownMenuStyled menuOpen={menuOpen}>{children}</DropdownMenuStyled>
-      </>
+          <DropdownMenuStyled
+            hasIcons={hasIcons}
+            menuOpen={menuOpen}
+          >
+            {children}
+          </DropdownMenuStyled>
+        </>
       )}
     </DropdownMenuContext.Consumer>
   );
