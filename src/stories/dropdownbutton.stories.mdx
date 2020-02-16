@@ -1,0 +1,32 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+
+import { DropdownButton } from '../components/ui/DropdownButton/';
+
+<Meta title="FusedComponents / Dropdown Button" component={DropdownButton} />
+
+## An Dropdown Button component
+ 
+
+## Default
+<Preview>
+<DropdownButton/>
+</Preview>
+
+
+<DropdownButton
+    label="Dropdown Button"
+    primary
+>
+    <DropdownButton.Menu>
+        <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
+        <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
+        <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
+    </DropdownButton.Menu>
+</DropdownButton>
+
+
+## Properties
+
+<Props of={DropdownButton} />
