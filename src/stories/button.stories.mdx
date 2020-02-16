@@ -36,7 +36,7 @@ import { Button } from '../components/ui/Button/';
 
 <Preview>
     <Button fcStyle="danger" icon={<Icon icon="no-entry-circle" />} primary>Primary Danger Button</Button>
-        <Button fcStyle="warning" icon={<Icon icon="exclamation-circle" />} primary>Primary Warning Button</Button>
+    <Button fcStyle="warning" icon={<Icon icon="exclamation-circle" />} primary>Primary Warning Button</Button>
     <Button fcStyle="info" icon={<Icon icon="info-circle" />} primary>Primary Info Button</Button>
     <Button fcStyle="success" icon={<Icon icon="check-circle" />} primary>Primary Success Button</Button>
 </Preview>
@@ -44,7 +44,7 @@ import { Button } from '../components/ui/Button/';
 
 <Preview>
     <Button fcStyle="danger" icon={<Icon icon="no-entry-circle" />} >Danger Button</Button>
-        <Button fcStyle="warning" icon={<Icon icon="exclamation-circle" />}>Warning Button</Button>
+    <Button fcStyle="warning" icon={<Icon icon="exclamation-circle" />}>Warning Button</Button>
     <Button fcStyle="info" icon={<Icon icon="info-circle" />}>Info Button</Button>
     <Button fcStyle="success" icon={<Icon icon="check-circle" />}>Success Button</Button>
 </Preview>
@@ -53,8 +53,19 @@ import { Button } from '../components/ui/Button/';
 
 <Preview>
     <Button buttonColor="tomato" primary>Primary Button</Button>
-        <Button buttonColor="tomato">Primary Button</Button>
-    </Preview>
+    <Button buttonColor="tomato">Primary Button</Button>
+</Preview>
+
+
+## Link
+
+<Preview>
+    <Button as="a" href="http://google.ca" target="_blank">Link Button</Button>
+    <Button as="a" fcStyle="danger" icon={<Icon icon="no-entry-circle" />}>Link Button</Button>
+    <Button as="a" fcStyle="warning" icon={<Icon icon="exclamation-circle" />}>Link Button</Button>
+    <Button as="a" fcStyle="info" icon={<Icon icon="info-circle" />}>Link Button</Button>
+    <Button as="a" fcStyle="success" icon={<Icon icon="check-circle" />}>Link Button</Button>
+</Preview>
 
 ## Properties
 
