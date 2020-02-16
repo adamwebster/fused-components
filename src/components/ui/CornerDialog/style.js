@@ -82,8 +82,7 @@ export const DialogTitle = styled.h3`
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
-  color: ${colorValue}
-
+  color: ${colorValue};
 `;
 
 export const DialogContent = styled.div`
