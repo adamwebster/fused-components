@@ -6,7 +6,7 @@ export const StyledDialog = styled.div`
   background-color: ${color.lightest};
   border: solid 1px ${color.border};
   z-index: 99;
-  max-width: 500px;
+  width: 500px;
   ${props =>
     props.fixed
       ? css`
