@@ -17,7 +17,6 @@ export const DialogDemo = () => {
         onCloseClick={() => setDialogVisible(false)}
         visible={dialogVisible}
         title="Corner Dialog"
-        showOverlay
       >
         <Label htmlFor="user">Username</Label>
         <Input id="user" icon={<Icon icon="user" />} />

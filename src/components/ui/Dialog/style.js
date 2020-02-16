@@ -12,15 +12,18 @@ export const StyledDialog = styled.div`
       ? css`
           position: fixed;
           margin: 0 auto;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           animation: ${!props.visible
             ? "hide 0.2s ease-in-out"
-            : "bounceup 0.5s ease-in-out"};
+            : "fadein 0.5s ease-in-out"};
         `
       : css`
           position: relative;
           margin-right: 25px;
         `}
-        
+
   @keyframes fadein {
     0% {
       opacity: 0;
@@ -90,3 +93,23 @@ export const CloseButton = styled.button`
     }
   }
 `;
+
+
+export const Overlay = styled.div`
+  background-color: ${color.overlay};
+  position:fixed;
+  width: 100vw;
+  height: 100vh;
+  left:0;
+  top: 0;
+  z-index: 99;
+  animation: fadeIn 0.5s;  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+`
