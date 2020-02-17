@@ -1,7 +1,7 @@
 import React from 'react';
 import { icons } from './icons';
 
-const Icon = ({icon, color}) => {
+export const Icon = ({icon, color}) => {
   return (
     <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -18,5 +18,3 @@ const Icon = ({icon, color}) => {
   </svg>
   )
 }
-
-export default Icon;

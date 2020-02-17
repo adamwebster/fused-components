@@ -11,7 +11,7 @@ import {
 import PropTypes from "prop-types";
 import { Button } from "../Button";
 import { color } from "../../../styles/styles";
-import Icon from "../../icon";
+import { Icon } from "../../icon";
 
 export const CornerDialog = ({
   fixed,

@@ -5,7 +5,7 @@ import { DropdownButtonWrapper, IconStyled, MenuDivider } from "./style";
 import { DropdownMenu } from "./DropdownMenu";
 import { MenuItem } from "./MenuItem";
 import DropdownMenuContext from "./DropdownMenuContext";
-import Icon from "../../icon";
+import { Icon } from "../../icon";
 
 export const DropdownButton = ({
   primary,

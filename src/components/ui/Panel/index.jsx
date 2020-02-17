@@ -11,7 +11,7 @@ import {
 import { Button } from "../Button";
 import PropTypes from "prop-types";
 import { color } from "../../../styles/styles";
-import Icon from "../../icon";
+import { Icon } from "../../icon";
 
 export const Panel = ({
   fcStyle,

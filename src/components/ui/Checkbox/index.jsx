@@ -1,7 +1,7 @@
 import React from "react";
 import { Label, IconStyled, CheckInput } from "./style";
 import PropTypes from "prop-types";
-import Icon from '../../icon/';
+import { Icon } from '../../icon/';
 
 export const Checkbox = ({ children, checked, inError, inWarning, ...checkboxProps }) => {
   return (

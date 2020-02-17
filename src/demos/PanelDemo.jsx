@@ -3,7 +3,7 @@ import { Panel } from "../components/ui/Panel";
 import { Button } from "../components/ui/Button";
 import { Label } from "../components/ui/Label";
 import { Input } from "../components/ui/Input";
-import Icon from "../components/icon";
+import { Icon } from "../components/icon";
 
 export const PanelDemo = () => {
   const [panelVisible, setPanelVisible] = useState(false);
