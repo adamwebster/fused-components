@@ -16,12 +16,12 @@ export const DialogDemo = () => {
       <Dialog
         onCloseClick={() => setDialogVisible(false)}
         visible={dialogVisible}
-        title="Corner Dialog"
+        title="Dialog"
       >
         <Label htmlFor="user">Username</Label>
         <Input id="user" icon={<Icon icon="user" />} />
         <Label htmlFor="Password">Password</Label>
-        <Input id="Password" type="password" icon={<Icon icon="check-circle" />} />
+        <Input id="Password" type="password" icon={<Icon icon="lock-locked" />} />
       
       </Dialog>
     </>

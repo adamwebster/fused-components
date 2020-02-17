@@ -20,6 +20,7 @@ export const Dialog = ({
   children,
   onCloseClick,
   fixed,
+  fcStyle,
   showOverlay
 }) => {
   return (
@@ -27,8 +28,8 @@ export const Dialog = ({
       {visible && (
         <>
           {showOverlay && <Overlay onClick={() => onCloseClick()} />}
-          <StyledDialog visible={visible} fixed={fixed} boxShadow={boxShadow}>
-            <DialogTitle>
+          <StyledDialog fcStyle={fcStyle} visible={visible} fixed={fixed} boxShadow={boxShadow}>
+            <DialogTitle fcStyle={fcStyle}> 
               <h2>{title}</h2>
               <CloseButton aria-label="Close" onClick={() => onCloseClick()}>
                 <Icon icon="times" />
@@ -43,7 +44,7 @@ export const Dialog = ({
                 Cancel
               </Button>
 
-              <Button primary>{confirmText}</Button>
+              <Button primary fcStyle={fcStyle}>{confirmText}</Button>
             </DialogFooter>
           </StyledDialog>
         </>

@@ -1,23 +1,54 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 
+const colorValue = props => {
+  switch (props.fcStyle) {
+    case 'danger':
+        return color.red
+      case 'warning':
+        return color.yellow
+      case 'info':
+        return color.blue
+      case 'success':
+        return color.green
+      default:
+        return color.dark
+  }
+};
+
+const borderColor = props => {
+    switch (props.fcStyle) {
+      case 'danger':
+          return color.red
+        case 'warning':
+          return color.yellow
+        case 'info':
+          return color.blue
+        case 'success':
+          return color.green
+        default:
+          return color.border
+    }
+  };
+
 export const StyledDialog = styled.div`
   border-radius: ${props => (props.borderRadius ? props.borderRadius : "5px")};
   background-color: ${color.lightest};
-  border: solid 1px ${color.border};
+  border: solid 1px ${borderColor};
   z-index: 99;
   width: 500px;
+  left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   ${props =>
     props.fixed
       ? css`
           position: fixed;
           margin: 0 auto;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+       
           animation: ${!props.visible
             ? "hide 0.2s ease-in-out"
-            : "fadein 0.5s ease-in-out"};
+            : "fadein 0.2s"};
         `
       : css`
           position: relative;
@@ -26,10 +57,16 @@ export const StyledDialog = styled.div`
 
   @keyframes fadein {
     0% {
-      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    70% {
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+    85% {
+      transform: translate(-50%, -50%) scale(0.95);
     }
     100% {
-      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
     }
   }
 
@@ -53,6 +90,10 @@ export const DialogTitle = styled.div`
   padding: 10px;
   box-sizing: border-box;
   position: relative;
+  h2{
+    margin: 0;
+    color: ${colorValue};
+  }
 `;
 
 export const DialogContent = styled.div`
@@ -74,8 +115,8 @@ export const DialogFooter = styled.div`
 `;
 
 export const CloseButton = styled.button`
-  right: 20px;
-  top: 20px;
+  right: 15px;
+  top: 12px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
