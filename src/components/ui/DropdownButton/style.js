@@ -4,7 +4,6 @@ import { color } from '../../../styles/styles';
 export const DropdownButtonWrapper = styled.div`
     position: relative;
 `
-
 export const DropdownMenuStyled = styled.ul`
     position:absolute;
     top: 34px;
@@ -46,8 +45,10 @@ export const MenuItemStyled = styled.li`
     color: ${color.dark};
     &:last-child{
     }
-    &:hover{
-        background-color: ${color.light};
+    &:hover,
+    &:focus{
+        background-color: ${color.highlight};
+        outline:none;
     }
     svg{
         width: 12px;
