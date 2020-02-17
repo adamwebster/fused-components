@@ -5,6 +5,7 @@ export const ToggleWrapper = styled.div`
 width: 40px;
 height: 20px;
 border-radius: 15px;
+padding:3px;
 background-color: ${color.light};
 position:relative;
 cursor: pointer;
@@ -16,7 +17,7 @@ ${props => props.active && css`
 
 export const Slider = styled.div`
 width: 20px;
-height: 100%;
+height: 20px;
 background-color: #fff;
 position:absolute;
 box-sizing:border-box;
@@ -24,11 +25,11 @@ box-shadow: 0 0 5px rgba(0,0,0,.25);
 border: solid 1px ${color.border};
 border-radius: 15px;
 transition: all 0.1s ease;  
-left: 0;
+left: 3px;
     &.active{ 
     }
 ${props => props.active && css`
-    left: 20px;
+    left: 23px;
 `}
 `
 
