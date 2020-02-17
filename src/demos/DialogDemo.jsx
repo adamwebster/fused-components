@@ -3,7 +3,7 @@ import { Dialog } from "../components/ui/Dialog";
 import { Button } from "../components/ui/Button";
 import { Label } from "../components/ui/Label";
 import { Input } from "../components/ui/Input";
-import Icon from "../components/icon";
+import { Icon } from "../components/icon";
 
 export const DialogDemo = () => {
   const [dialogVisible, setDialogVisible] = useState(false);

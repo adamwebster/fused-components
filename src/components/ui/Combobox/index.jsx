@@ -9,7 +9,7 @@ import {
   ItemIcon,
   InputStyled
 } from "./style";
-import Icon from "../../icon";
+import { Icon } from "../../icon";
 
 export const Combobox = ({
   items,

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { MenuItemStyled } from "./style";
-import Icon from "../../icon";
+import { Icon } from "../../icon";
 
 export const MenuItem = ({ children, icon, ...rest }) => {
   return <MenuItemStyled {...rest}>

@@ -10,7 +10,7 @@ import {
   Overlay
 } from "./style";
 import { color } from "../../../styles/styles";
-import Icon from "../../icon";
+import { Icon } from "../../icon";
 
 export const Dialog = ({
   boxShadow,

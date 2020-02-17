@@ -1,7 +1,7 @@
 import React from "react";
 import { Label, IconStyled, RadioInput } from "./style";
 import PropTypes from "prop-types";
-import Icon from '../../icon/';
+import { Icon } from '../../icon/';
 
 export const Radio = ({ children, checked, inWarning, inError, ...radioProps }) => {
   return (

@@ -8,7 +8,7 @@ import {
   MenuItemStyled,
   ItemIcon
 } from "./style";
-import Icon from "../../icon";
+import { Icon } from "../../icon";
 
 export const AutoComplete = ({ items, inputIcon, inError, inWarning, disabled, placeholder }) => {
   const [itemsToShow, setItemsToShow] = useState(items);

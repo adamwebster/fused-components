@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CornerDialog } from "../components/ui/CornerDialog";
 import { Button } from "../components/ui/Button";
-import Icon from '../components/icon/';
+import { Icon } from '../components/icon/';
 import { Label } from '../components/ui/Label/';
 
 export const CornerDialogDemo = () => {
