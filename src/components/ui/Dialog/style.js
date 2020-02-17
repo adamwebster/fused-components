@@ -137,14 +137,15 @@ export const CloseButton = styled.button`
 
 
 export const Overlay = styled.div`
-  background-color: ${color.overlay};
+  background-color: ${color.darkest};
   position:fixed;
   width: 100vw;
   height: 100vh;
   left:0;
   top: 0;
+  opacity: 0.5;
   z-index: 99;
-  animation: fadeIn 0.5s;  
+  animation: fadeIn 0.2s ease-in;  
   @keyframes fadeIn {
     0% {
       opacity: 0;

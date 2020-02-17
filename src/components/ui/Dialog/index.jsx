@@ -21,7 +21,8 @@ export const Dialog = ({
   onCloseClick,
   fixed,
   fcStyle,
-  showOverlay
+  showOverlay,
+  cancelText
 }) => {
   return (
     <>
@@ -41,7 +42,7 @@ export const Dialog = ({
                 buttonColor={color.mediumdark}
                 onClick={() => onCloseClick()}
               >
-                Cancel
+                {cancelText}
               </Button>
 
               <Button primary fcStyle={fcStyle}>{confirmText}</Button>
@@ -60,6 +61,8 @@ Dialog.propTypes = {
   boxShadow: PropTypes.bool,
   /** Set the text for the confirm text */
   confirmText: PropTypes.string,
+  /** Sets the text for the cancel button */
+  cancelText: PropTypes.string,
   /** Sets the position for the dialog to be false */
   fixed: PropTypes.bool,
   /** Shows the overlay */
@@ -72,6 +75,7 @@ Dialog.defaultProps = {
   visible: false,
   boxShadow: true,
   confirmText: "Yes",
+  cancelText: 'Cancel',
   fixed: true,
   showOverlay: true,
   onCloseClick: () => {}

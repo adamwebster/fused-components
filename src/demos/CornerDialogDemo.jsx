@@ -31,6 +31,8 @@ export const CornerDialogDemo = () => {
         onCloseClick={() => setDialogVisible(false)}
         visible={dialogVisible}
         title="Corner Dialog"
+        confirmText="Yes"
+        closeText="Close me"
       >
         Click the close button above or below to hide the corner dialog.
       </CornerDialog>
