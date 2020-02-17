@@ -17,6 +17,8 @@ export const CornerDialog = ({
   fixed,
   onCloseClick,
   visible,
+  closeText,
+  confirmText,
   title,
   children,
   fcStyle,
@@ -56,7 +58,7 @@ export const CornerDialog = ({
           Close
         </Button>
         <Button fcStyle={fcStyle} primary>
-          Learn More
+          {confirmText}
         </Button>
       </DialogFooter>
     </CornerDialogStyled>
@@ -73,11 +75,17 @@ CornerDialog.propTypes = {
   /** Sets whether the dialog should be shown or not */
   visible: PropTypes.bool,
   /** Sets what should happen when the close button is clicked. At minimum should set the visible property to false. */
-  onCloseClick: PropTypes.func.isRequired
+  onCloseClick: PropTypes.func.isRequired,
+  /** Sets the text for the confirm button */
+  confirmText: PropTypes.string,
+  /** Sets the text for the close button */
+  closeText: PropTypes.string,
 };
 
 CornerDialog.defaultProps = {
   fixed: true,
   visible: true,
   onCloseClick: () => {},
+  confirmText: 'Learn more',
+  closeText: "Close"
 };
