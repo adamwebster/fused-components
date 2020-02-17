@@ -15,7 +15,7 @@ export const AutoComplete = ({ items }) => {
   const filterItems = e => {
       setFilterValue(e.target.value);
     const filterItemList = items.filter(item =>
-      item.includes(e.target.value)
+      item.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setMenuOpen(true);
     if (filterRef.current.value.length > 0) {
@@ -54,5 +54,5 @@ AutoComplete.propTypes = {
 };
 
 AutoComplete.defaultProps = {
-  items: ["item 1", "item 2", "item 3"]
+  items: ["Apple", "Orange", "Banana"]
 };

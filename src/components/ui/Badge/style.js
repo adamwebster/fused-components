@@ -5,22 +5,6 @@ export const StyledBadge = styled.div`
   padding: 5px 10px;
   border-radius: 5px;
   width: fit-content;
-  background-color: ${
-  props => {
-    switch (props.fcStyle) {
-      case 'danger':
-        return color.danger
-      case 'warning':
-        return color.warning
-      case 'info':
-        return color.info
-      case 'success':
-        return color.success
-      default:
-        return '#efefef'
-    }
-  }
-  };
 
   border: solid 1px
     ${  props => {
