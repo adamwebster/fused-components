@@ -34,17 +34,15 @@ const colorValueDarken = props => {
 };
 
 export const StyledButton = styled.button`
-   
-  padding: 5px 10px;
+  vertical-align: middle;
+  padding: 0 10px;
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  display: block;
-  position:relative;
   outline: 0;
+  position:relative;
   border-radius: ${props => (props.borderRadius ? props.borderRadius : "5px")};
   transition: all 0.2s ease;
-  width: fit-content;
   ${props =>
     !props.primary &&
     css`
@@ -87,20 +85,16 @@ export const StyledButton = styled.button`
         cursor: not-allowed;
       }
     `}
-
-    ${props => props.icon && css`
-      padding-left: 34px;
-    `}
     .button-icon {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 5px;
+    margin-right: 5px;
     border-radius: 50%;
-    position: absolute;
-    left: 5px;
+    display:inline-block;
     box-sizing: border-box;
-    top: ${props => props.primary ? '5px' : '4px'};
     width: 24px;
     height: 24px;
+    vertical-align:middle;
     color: #fff;
     ${props =>
     (!props.primary && !props.completed) &&
