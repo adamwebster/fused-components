@@ -48,14 +48,14 @@ export const StyledDialog = styled.div`
        
           animation: ${!props.visible
             ? "hide 0.2s ease-in-out"
-            : "fadein 0.2s"};
+            : "popin 0.2s"};
         `
       : css`
           position: relative;
           margin-right: 25px;
         `}
 
-  @keyframes fadein {
+  @keyframes popin {
     0% {
       transform: translate(-50%, -50%) scale(0.5);
     }
