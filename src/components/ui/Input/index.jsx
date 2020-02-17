@@ -2,11 +2,11 @@ import React from "react";
 import { StyledInput, InputWrapper, Icon } from "./style";
 import PropTypes from "prop-types";
 
-export const Input = ({ ariaLabel, inError, inWarning, icon, ...rest }) => {
+export const Input = ({ ariaLabel, inError, inputRef, inWarning, icon, ...rest }) => {
   return (
     <InputWrapper>
       {icon && <Icon inError={inError} inWarning={inWarning}>{icon}</Icon>}
-      <StyledInput icon={icon} inError={inError} inWarning={inWarning} aria-label={ariaLabel} {...rest} />
+      <StyledInput ref={inputRef} icon={icon} inError={inError} inWarning={inWarning} aria-label={ariaLabel} {...rest} />
     </InputWrapper>
   );
 };
