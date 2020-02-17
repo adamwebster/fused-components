@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import { color } from '../../../styles/styles';
 
 export const DropdownButtonWrapper = styled.div`
-    position: relative;
+   display:inline-block;
 `
 export const DropdownMenuStyled = styled.ul`
     position:absolute;
-    top: 34px;
     background-color: #fff;
     border: solid 1px ${color.border};
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);

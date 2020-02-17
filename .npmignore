@@ -2,6 +2,6 @@
 public
 build
 src
-storybook-staticnp
+storybook-static
 
 rollup.config.js
