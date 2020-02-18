@@ -1,18 +1,30 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import ToastContext from "./ToastContext";
 import { ToastContainer } from "./styles";
 import { Toast } from "./Toast";
-import { math } from "polished";
-// Idea for auto dismissible handle it in the alert component instead of the useEffect used here as it is currently
+
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   const add = (title, content, fcStyle, options) => {
-    if(options){  
-    const test = toasts.filter(toast => (toast.options.id === options.id))
-      console.log(test)
+    const toAdd = toasts.slice();
+
+    if (options) {
+      const indexValue = toAdd.map((item, index) => {
+        if (item.options) {
+          if (item.options.id === options.id) {
+            return index;
+          }
+        }
+        return false;
+      });
+      indexValue.forEach(item => {
+          if(item){
+          toAdd.splice(item, 1); 
+          }  
+      });
     }
-      const toAdd = toasts.slice();
+    
     toAdd.push({ title, content, fcStyle, key: Math.random(), options });
     setToasts(toAdd);
   };
