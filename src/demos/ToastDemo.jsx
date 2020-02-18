@@ -8,9 +8,13 @@ const Toaster = () => {
 
     return(
         <>
-        <Button onClick={() => {setCount(count + 1); toasts.add('Toast', 'toast content', 'danger')}}>Add Toasts</Button>
-        <Button onClick={() => {setCount(count + 1); toasts.add('Toast', 'toast content', 'success')}}>Add another toasts</Button>
-        <Button onClick={() => {setCount(count + 1); toasts.add('Toast', 'toast content', 'info', {id: 'one'})}}>Add only 1 toasts</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.addInfo('Toast', 'toast content')}}>Info toast</Button>
+  <br/> <br/>
+        <Button onClick={() => {setCount(count + 1); toasts.addSuccess('Toast', 'toast content')}}>Success Toast</Button>
+        <br/> <br/>
+        <Button onClick={() => {setCount(count + 1); toasts.addWarning('Toast', 'toast content', {id: 'one'})}}>Warning Toast (Maximum 1)</Button>
+        <br/> <br/>
+        <Button onClick={() => {setCount(count + 1); toasts.addDanger('Toast', 'toast content')}}>Danger Toast</Button>
 
         </>
         )

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyledToast, LoadingBar } from "./styles";
-
+import { StyledToast, LoadingBar, CloseButton } from "./styles";
+import { Icon } from '../../icon/'
 export const Toast = ({ title, fcStyle, children }) => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
@@ -55,6 +55,10 @@ export const Toast = ({ title, fcStyle, children }) => {
       {visible && (
         <StyledToast timer={timer} onMouseOver={() => mouseOverToast()} onMouseOut={() => mouseOutToast()} removing={removing} fcStyle={fcStyle} title={title}>
           {children}
+          <CloseButton onClick={() => { setRemoving(true); setTimeout(() => setVisible(false), 500) }}>
+            <Icon icon="times" />
+          </CloseButton>
+
           <LoadingBar timer={timer} /> 
         </StyledToast>
       )}

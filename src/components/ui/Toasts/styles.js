@@ -14,6 +14,7 @@ export const ToastContainer = styled.div`
 export const StyledToast = styled(Alert)`
     margin-bottom: 10px;
     transition: all;
+    position: relative;
     animation:  ${props => !props.removing ? 'fadeinToast 0.5s ease-in-out' : 'fadeoutToast 0.5s ease-in-out' };
     @keyframes fadeinToast {
         0%{
@@ -45,4 +46,23 @@ transition: all;
 margin-top: 10px;
 background-color: ${color.medium};
     width: ${props => props.timer}%;
+`
+
+export const CloseButton = styled.button`
+    width:12px;
+    box-sizing:border-box;
+    padding: 0;
+    border:none;
+    color: ${color.mediumdark};
+    background-color: transparent;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    &:hover{
+        color:${color.dark};
+    }
+    svg{
+    color:inherit;
+    }
 `
