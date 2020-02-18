@@ -11,6 +11,8 @@ const Toaster = () => {
         <>
         <Button onClick={() => {setCount(count + 1); toasts.add('Toast #' + count, 'toast content', 'danger')}}>Add Toasts</Button>
         <Button onClick={() => {setCount(count + 1); toasts.add('Toast #' + count, 'toast content', 'success')}}>Add another toasts</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.add('Toast #' + count, 'toast content', 'danger', {id: 'one'})}}>Add only 1 toasts</Button>
+
         </>
         )
 }
