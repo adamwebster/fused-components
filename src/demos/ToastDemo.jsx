@@ -10,7 +10,7 @@ const Toaster = () => {
         <>
         <Button onClick={() => {setCount(count + 1); toasts.addInfo('Toast', 'toast content')}}>Info toast</Button>
   <br/> <br/>
-        <Button onClick={() => {setCount(count + 1); toasts.addSuccess('Toast', 'toast content')}}>Success Toast</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.addSuccess('Toast', 'toast content', {duration: 10})}}>Success Toast (Duration set to 10sec)</Button>
         <br/> <br/>
         <Button onClick={() => {setCount(count + 1); toasts.addWarning('Toast', 'toast content', {id: 'one'})}}>Warning Toast (Maximum 1)</Button>
         <br/> <br/>

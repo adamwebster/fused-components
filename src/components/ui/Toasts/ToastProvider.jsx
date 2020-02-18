@@ -8,14 +8,17 @@ export const ToastProvider = ({ children }) => {
 
   const add = (title, content, fcStyle, options) => {
     const toAdd = toasts.slice();
-
+    console.log(options)
     if (options) {
+      if(options.id){
       const indexValue = toAdd.map((item, index) => {
-        if (item.options) {
+        if(item.options){
+        if (item.options.id) {
           if (item.options.id === options.id) {
             return index;
           }
         }
+      }
         return false;
       });
       indexValue.forEach(item => {
@@ -23,6 +26,7 @@ export const ToastProvider = ({ children }) => {
           toAdd.splice(item, 1);
         }
       });
+    }
     }
 
     toAdd.push({ title, content, fcStyle, key: Math.random(), options });
@@ -47,6 +51,7 @@ export const ToastProvider = ({ children }) => {
                 key={toast.key}
                 fcStyle={toast.fcStyle && toast.fcStyle}
                 title={toast.title && toast.title}
+                duration={toast.options && toast.options.duration}
               >
                 {toast.content && toast.content}
               </Toast>

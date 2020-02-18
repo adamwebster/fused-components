@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import PropTypes from 'prop-types';
 import { StyledToast, LoadingBar, CloseButton } from "./styles";
 import { Icon } from '../../icon/'
-export const Toast = ({ title, fcStyle, children }) => {
+
+export const Toast = ({ title, fcStyle, children, duration }) => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
   const [timer, setTimer] =useState(null);
   const [intervalFunc, setIntervalFunc] =useState(null);
-  useEffect(() => {
-    startTimer(100);
-  }, [])
-
- const startTimer = (countNumber) => {
+  
+ const startTimer = useCallback((countNumber) => {
   var count = countNumber;
     
-  var counter = setInterval(timer, 40); //10 will  run it every 100th of a second
+  var counter = setInterval(timer, duration * 10); //10 will  run it every 100th of a second
   setIntervalFunc(counter);
   function timer()
   {
@@ -38,7 +37,11 @@ export const Toast = ({ title, fcStyle, children }) => {
        }
        setTimer(countNumber)
    }
-  }
+  },[duration])
+
+  useEffect(() => {
+    startTimer(100);
+  }, [startTimer])
 
   const mouseOverToast = () => {
     clearInterval(intervalFunc);
@@ -65,3 +68,11 @@ export const Toast = ({ title, fcStyle, children }) => {
     </>
   );
 };
+
+Toast.propTypes = {
+  duration: PropTypes.number,
+}
+
+Toast.defaultProps = {
+  duration: 4,
+}
