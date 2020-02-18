@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import ToastContext from "./ToastContext";
 import {ToastContainer, StyledToast} from './styles';
-
+// Idea for autodismise handle it in the alert component istead of the useEffect used here as it is currently
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
