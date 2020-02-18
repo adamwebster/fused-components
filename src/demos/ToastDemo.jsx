@@ -8,8 +8,11 @@ const Toaster = () => {
     const [count, setCount] = useState(0)
 
     return(
-        <Button onClick={() => {setCount(count + 1); toasts.add('Toast #' + count, 'toast content', 'danger')}}>Log Toasts</Button>
-    )
+        <>
+        <Button onClick={() => {setCount(count + 1); toasts.add('Toast #' + count, 'toast content', 'danger')}}>Add Toasts</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.add('Toast #' + count, 'toast content', 'success')}}>Add another toasts</Button>
+        </>
+        )
 }
 export const ToastDemo = () => {
     
