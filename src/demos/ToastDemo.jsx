@@ -8,7 +8,7 @@ const Toaster = () => {
 
     return(
         <>
-        <Button onClick={() => {setCount(count + 1); toasts.addInfo('Did you know?', 'That space smells like seared steak.')}}>Info toast</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.addInfo('Did you know?', 'That space smells like seared steak.')}}>Info Toast</Button>
   <br/> <br/>
         <Button onClick={() => {setCount(count + 1); toasts.addSuccess('Hooray!', 'Something went right for once...', {duration: 10})}}>Success Toast (Duration set to 10sec)</Button>
         <br/> <br/>
@@ -22,9 +22,18 @@ const Toaster = () => {
         )
 }
 export const ToastDemo = () => {
+    const [position, setPosition] =useState('top');
     
     return(
-        <ToastProvider>
+        <ToastProvider position={position}>
+            <label>Position</label>
+            <select onChange={(e) => setPosition(e.target.value)}>
+                <option value="top">top</option>
+                <option value="bottom">bottom</option>
+                <option value="bottom-left">top-right</option>
+                <option value="bottom-right">bottom-right</option>
+            </select>
+            <br/><br/>
             <Toaster />
         </ToastProvider>
     )
