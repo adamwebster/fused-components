@@ -19,12 +19,12 @@ export const ToastProvider = ({ children }) => {
         return false;
       });
       indexValue.forEach(item => {
-          if(item){
-          toAdd.splice(item, 1); 
-          }  
+        if (item !== false) {
+          toAdd.splice(item, 1);
+        }
       });
     }
-    
+
     toAdd.push({ title, content, fcStyle, key: Math.random(), options });
     setToasts(toAdd);
   };
