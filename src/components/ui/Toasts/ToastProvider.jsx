@@ -7,14 +7,19 @@ import { math } from "polished";
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
-  const add = (title, content, fcStyle) => {
-    const toAdd = toasts.slice();
-    toAdd.push({ title, content, fcStyle, key: Math.random() });
+  const add = (title, content, fcStyle, options) => {
+    if(options){  
+    const test = toasts.filter(toast => (toast.options.id === options.id))
+      console.log(test)
+    }
+      const toAdd = toasts.slice();
+    toAdd.push({ title, content, fcStyle, key: Math.random(), options });
     setToasts(toAdd);
   };
 
   const state = {
-    add: (title, content, style) => add(title, content, style),
+    add: (title, content, style, options) =>
+      add(title, content, style, options),
     test: "test"
   };
   return (
@@ -43,6 +48,7 @@ export const ToastProvider = ({ children }) => {
 export const useToast = () => {
   const context = useContext(ToastContext);
   return {
-    add: (title, content, style) => context.add(title, content, style)
+    add: (title, content, style, options) =>
+      context.add(title, content, style, options)
   };
 };
