@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Alert } from '../Alert/';
+import { color } from '../../../styles/styles';
 
 export const ToastContainer = styled.div`
     position:fixed;
@@ -35,4 +36,13 @@ export const StyledToast = styled(Alert)`
             transform: scale(0);
         }
     }
+`
+
+export const LoadingBar = styled.div`
+position:relative;
+height: 5px;
+transition: all;
+margin-top: 10px;
+background-color: ${color.medium};
+    width: ${props => props.timer}%;
 `
