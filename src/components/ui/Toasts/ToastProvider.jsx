@@ -1,14 +1,15 @@
 import React, { useState, useContext } from "react";
+import PropTypes from 'prop-types';
+
 import ToastContext from "./ToastContext";
 import { ToastContainer } from "./styles";
 import { Toast } from "./Toast";
 
-export const ToastProvider = ({ children }) => {
+export const ToastProvider = ({ children, position }) => {
   const [toasts, setToasts] = useState([]);
 
   const add = (title, content, fcStyle, icon, options) => {
     const toAdd = toasts.slice();
-    console.log(options)
     if (options) {
       if(options.id){
       const indexValue = toAdd.map((item, index) => {
@@ -41,7 +42,7 @@ export const ToastProvider = ({ children }) => {
   return (
     <ToastContext.Provider value={state}>
       {children}
-      <ToastContainer id="Toasts">
+      <ToastContainer position={position} id="Toasts">
         {toasts
           .slice(0)
           .reverse()
@@ -76,3 +77,13 @@ export const useToast = () => {
       context.add(title, content, 'danger', 'no-entry-circle', options)
     };
 };
+
+
+ToastProvider.propTypes = {
+    /** top | bottom | top-right | bottom-right */
+    position: PropTypes.string,
+}
+
+ToastProvider.defaultProps = {
+    position: 'top',
+}
