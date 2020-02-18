@@ -4,7 +4,6 @@ import { color } from "../../../styles/styles";
 
 export const ToastContainer = styled.div`
   position: fixed;
-  width: 500px;
   ${props => {
     let position = "";
 
@@ -14,6 +13,7 @@ export const ToastContainer = styled.div`
             top:20px;
             left: 50%;
             transform: translateX(-50%);
+            width: 500px;
             `;
         break;
       case "bottom":
@@ -21,6 +21,7 @@ export const ToastContainer = styled.div`
              bottom:20px;
             left: 50%;
             transform: translateX(-50%);
+            width: 500px;
             `;
         break;
 
@@ -28,6 +29,7 @@ export const ToastContainer = styled.div`
         position = `
         bottom:20px;
         right:20px;
+        width: 300px;
             `;
         break;
       case "top-right":
@@ -35,6 +37,8 @@ export const ToastContainer = styled.div`
         position = `
         top:20px;
         right:20px;
+        width: 300px;
+
             `;
     }
     return [position];
@@ -47,6 +51,7 @@ export const StyledToast = styled(Alert)`
   margin-bottom: 10px;
   transition: all;
   position: relative;
+  border-radius: 5px;
   animation: ${props =>
     !props.removing
       ? "fadeinToast 0.5s ease-in-out"
@@ -72,6 +77,8 @@ export const StyledToast = styled(Alert)`
       transform: scale(0);
     }
   }
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+
 `;
 
 export const LoadingBar = styled.div`
