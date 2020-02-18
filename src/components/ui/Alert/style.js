@@ -23,6 +23,7 @@ export const StyledAlert = styled.div`
   };
   h4{
     margin-top:0;
+    margin-bottom: 0;
     color: ${
   props => {
     switch (props.fcStyle) {
@@ -49,6 +50,10 @@ export const StyledAlert = styled.div`
 `
 
 export const Title = styled.span`
-top: -3px;
+top: -5px;
 position: relative;
+`
+
+export const AlertContent = styled.div`
+margin-top: 10px;
 `

@@ -8,13 +8,15 @@ const Toaster = () => {
 
     return(
         <>
-        <Button onClick={() => {setCount(count + 1); toasts.addInfo('Toast', 'toast content')}}>Info toast</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.addInfo('Did you know?', 'That space smells like seared steak.')}}>Info toast</Button>
   <br/> <br/>
-        <Button onClick={() => {setCount(count + 1); toasts.addSuccess('Toast', 'toast content', {duration: 10})}}>Success Toast (Duration set to 10sec)</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.addSuccess('Hooray!', 'Something went right for once...', {duration: 10})}}>Success Toast (Duration set to 10sec)</Button>
         <br/> <br/>
-        <Button onClick={() => {setCount(count + 1); toasts.addWarning('Toast', 'toast content', {id: 'one'})}}>Warning Toast (Maximum 1)</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.addWarning('Warning', 'Winter is coming.', {id: 'one'})}}>Warning Toast (Maximum 1)</Button>
         <br/> <br/>
-        <Button onClick={() => {setCount(count + 1); toasts.addDanger('Toast', 'toast content')}}>Danger Toast</Button>
+        <Button onClick={() => {setCount(count + 1); toasts.addDanger('Ok fly boy', 'Highway to the danger zone')}}>Danger Toast</Button>
+        <br/> <br/>
+        <Button onClick={() => {setCount(count + 1); toasts.addDanger('Danger Will Robinson')}}>Danger Toast No Content</Button>
 
         </>
         )
