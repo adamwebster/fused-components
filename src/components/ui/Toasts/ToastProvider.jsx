@@ -60,7 +60,13 @@ export const ToastProvider = ({ children }) => {
 export const useToast = () => {
   const context = useContext(ToastContext);
   return {
-    add: (title, content, style, options) =>
-      context.add(title, content, style, options)
-  };
+    addInfo: (title, content, options) =>
+      context.add(title, content, 'info', options),
+      addSuccess: (title, content, options) =>
+      context.add(title, content, 'success', options),
+      addWarning: (title, content, options) =>
+      context.add(title, content, 'warning', options),
+      addDanger: (title, content, options) =>
+      context.add(title, content, 'danger', options)
+    };
 };
