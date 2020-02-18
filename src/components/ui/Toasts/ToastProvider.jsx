@@ -1,26 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import ToastContext from "./ToastContext";
-import {ToastContainer, StyledToast} from './styles';
-// Idea for autodismise handle it in the alert component istead of the useEffect used here as it is currently
+import { ToastContainer } from "./styles";
+import { Toast } from "./Toast";
+import { math } from "polished";
+// Idea for auto dismissible handle it in the alert component instead of the useEffect used here as it is currently
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
-  useEffect(() => {
-    if(toasts.length > 0){
-        setTimeout(() => {
-            
-            let toastsToSet = toasts.slice(-1, 1);
-            if(toasts.length === 1){
-                toastsToSet = [];
-            }
-          setToasts(toastsToSet);
-        }, 5000)
-    }
-  },[toasts])
   const add = (title, content, fcStyle) => {
     const toAdd = toasts.slice();
-    toAdd.unshift({ title, content, fcStyle });
-    console.log(toAdd)
+    toAdd.push({ title, content, fcStyle, key: Math.random() });
     setToasts(toAdd);
   };
 
@@ -32,13 +21,20 @@ export const ToastProvider = ({ children }) => {
     <ToastContext.Provider value={state}>
       {children}
       <ToastContainer id="Toasts">
-        {toasts.map((toast) => {
-          return <StyledToast
-            fcStyle={toast.fcStyle && toast.fcStyle}
-            title={toast.title && toast.title}
-          >{toast.content && toast.content}
-          </StyledToast>
-        })}
+        {toasts
+          .slice(0)
+          .reverse()
+          .map(toast => {
+            return (
+              <Toast
+                key={toast.key}
+                fcStyle={toast.fcStyle && toast.fcStyle}
+                title={toast.title && toast.title}
+              >
+                {toast.content && toast.content}
+              </Toast>
+            );
+          })}
       </ToastContainer>
     </ToastContext.Provider>
   );
