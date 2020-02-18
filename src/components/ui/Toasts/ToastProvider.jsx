@@ -6,7 +6,7 @@ import { Toast } from "./Toast";
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
-  const add = (title, content, fcStyle, options) => {
+  const add = (title, content, fcStyle, icon, options) => {
     const toAdd = toasts.slice();
     console.log(options)
     if (options) {
@@ -29,13 +29,13 @@ export const ToastProvider = ({ children }) => {
     }
     }
 
-    toAdd.push({ title, content, fcStyle, key: Math.random(), options });
+    toAdd.push({ title, content, fcStyle, icon, key: Math.random(), options });
     setToasts(toAdd);
   };
 
   const state = {
-    add: (title, content, style, options) =>
-      add(title, content, style, options),
+    add: (title, content, style, icon, options) =>
+      add(title, content, style, icon, options),
     test: "test"
   };
   return (
@@ -52,6 +52,7 @@ export const ToastProvider = ({ children }) => {
                 fcStyle={toast.fcStyle && toast.fcStyle}
                 title={toast.title && toast.title}
                 duration={toast.options && toast.options.duration}
+                icon={toast.icon && toast.icon}
               >
                 {toast.content && toast.content}
               </Toast>
@@ -66,12 +67,12 @@ export const useToast = () => {
   const context = useContext(ToastContext);
   return {
     addInfo: (title, content, options) =>
-      context.add(title, content, 'info', options),
+      context.add(title, content, 'info', 'info-circle', options),
       addSuccess: (title, content, options) =>
-      context.add(title, content, 'success', options),
+      context.add(title, content, 'success', 'check-circle', options),
       addWarning: (title, content, options) =>
-      context.add(title, content, 'warning', options),
+      context.add(title, content, 'warning', 'exclamation-circle', options),
       addDanger: (title, content, options) =>
-      context.add(title, content, 'danger', options)
+      context.add(title, content, 'danger', 'no-entry-circle', options)
     };
 };

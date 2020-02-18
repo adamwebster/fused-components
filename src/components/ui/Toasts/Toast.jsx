@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyledToast, LoadingBar, CloseButton } from "./styles";
 import { Icon } from '../../icon/'
 
-export const Toast = ({ title, fcStyle, children, duration }) => {
+export const Toast = ({ title, fcStyle, children, icon, duration }) => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
   const [timer, setTimer] =useState(null);
@@ -56,7 +56,7 @@ export const Toast = ({ title, fcStyle, children, duration }) => {
   return (
     <>
       {visible && (
-        <StyledToast timer={timer} onMouseOver={() => mouseOverToast()} onMouseOut={() => mouseOutToast()} removing={removing} fcStyle={fcStyle} title={title}>
+        <StyledToast timer={timer} onMouseOver={() => mouseOverToast()} onMouseOut={() => mouseOutToast()} removing={removing} fcStyle={fcStyle} icon={icon} title={title}>
           {children}
           <CloseButton onClick={() => { setRemoving(true); setTimeout(() => setVisible(false), 500) }}>
             <Icon icon="times" />
