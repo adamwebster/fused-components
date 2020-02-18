@@ -1,0 +1,23 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+
+import { ToastProvider, useToast } from '../components/ui/Toasts/ToastProvider';
+import { Button } from '../components/ui/Button/';
+import {ToastDemo} from '../demos/ToastDemo';
+
+<Meta title="FusedComponents / Toasts" component={ToastProvider} />
+
+# Label
+
+## An Label component
+ 
+
+## Default
+
+<ToastDemo />
+
+## Properties
+
+<Props of={ToastProvider} />
