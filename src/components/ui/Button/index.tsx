@@ -5,8 +5,8 @@ export interface Props {
   /** Sets the button to be a primary button */
   primary?: boolean,
   buttonColor?: string,
-  disabled: boolean,
-  isLoading: boolean,
+  disabled?: boolean,
+  isLoading?: boolean,
   buttonRef?: any,
   loadingIcon?: object,
   icon?: object,

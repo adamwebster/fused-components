@@ -1,17 +1,21 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Icon } from "../../icon";
-
 import { StyledAlert, Title, AlertContent } from "./style";
 
+export interface Props {
+  fcStyle?: string,
+  title?: string,
+  icon?: string
+  borderRadius?: string,
+  children?: any
+}
 export const Alert = ({
   fcStyle,
   title,
   icon,
   borderRadius,
   children,
-  ...rest
-}) => {
+  ...rest }:Props) => {
   return (
     <StyledAlert borderRadius={borderRadius} fcStyle={fcStyle} {...rest}>
       {title && (
@@ -22,16 +26,4 @@ export const Alert = ({
       {children && <AlertContent>{children}</AlertContent>}
     </StyledAlert>
   );
-};
-
-Alert.defaultProps = {
-  borderRadius: false
-};
-
-Alert.propTypes = {
-  /** danger | warning | info | success */
-  fcStyle: PropTypes.string,
-  /** if set to true will add a border radius of 5px to the alert */
-  borderRadius: PropTypes.bool,
-  title: PropTypes.string
 };

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Input } from "../Input";
 import PropTypes from "prop-types";
+import { Icon } from "../../icon";
 
 import {
   AutoCompleteWrapper,
@@ -8,16 +9,24 @@ import {
   MenuItemStyled,
   ItemIcon
 } from "./style";
-import { Icon } from "../../icon";
 
-export const AutoComplete = ({ items, inputIcon, inError, inWarning, disabled, placeholder }) => {
+export interface Props {
+  items: Array<string>,
+  inputIcon?: Node,
+  inError?: Boolean,
+  inWarning?: Boolean,
+  disabled?: Boolean,
+  placeholder?: String,
+}
+
+export const AutoComplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon, inError = false, inWarning = false, disabled = false, placeholder }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [filterValue, setFilterValue] = useState("");
   const [itemSelected, setItemSelected] = useState("");
-  const [itemSelectedIndex, setItemSelectedIndex] = useState(null);
+  const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
-  const filterRef = useRef(null);
-  let itemRefs = {};
+  const filterRef = useRef<HTMLInputElement>(null);
+  let itemRefs: Array<HTMLElement> = [];
 
   useEffect(() => {
     window.addEventListener("keydown", handleUserKeyPress);
@@ -27,7 +36,7 @@ export const AutoComplete = ({ items, inputIcon, inError, inWarning, disabled, p
     };
   });
 
-  const handleUserKeyPress = e => {
+  const handleUserKeyPress = (e: { keyCode: number; }) => {
     // Escape Key
     if (e.keyCode === 27) {
       if (menuOpen) {
@@ -48,34 +57,36 @@ export const AutoComplete = ({ items, inputIcon, inError, inWarning, disabled, p
     }
     // Up key
     if (e.keyCode === 38) {
-        if (menuOpen) {
-            itemRefs[itemSelectedIndex - 1].focus();
-            setItemSelectedIndex(itemSelectedIndex - 1);
-        }
+      if (menuOpen) {
+        itemRefs[itemSelectedIndex - 1].focus();
+        setItemSelectedIndex(itemSelectedIndex - 1);
       }
+    }
   };
 
-  const filterItems = e => {
+  const filterItems = (e: { target: { value: string; }; }) => {
     setFilterValue(e.target.value);
     const filterItemList = items.filter(item =>
       item.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setMenuOpen(true);
-    if (filterRef.current.value.length > 0) {
-      setItemsToShow(filterItemList);
-    } else {
-      setItemsToShow(items);
+    if (filterRef.current) {
+      if (filterRef.current.value.length > 0) {
+        setItemsToShow(filterItemList);
+      } else {
+        setItemsToShow(items);
+      }
     }
   };
 
-  const setValue = value => {
+  const setValue = (value: React.SetStateAction<string>) => {
     setFilterValue(value);
     setItemSelected(value);
     setMenuOpen(false);
-    setItemSelectedIndex(null);
+    setItemSelectedIndex(-1);
   };
 
-  const handleItemKeyPress = (e, item) => {
+  const handleItemKeyPress = (e: { charCode: number; }, item: React.SetStateAction<string>) => {
     if (e.charCode === 13) {
       setValue(item);
     }
@@ -102,7 +113,7 @@ export const AutoComplete = ({ items, inputIcon, inError, inWarning, disabled, p
                 onKeyPress={e => handleItemKeyPress(e, item)}
                 onClick={() => setValue(item)}
                 key={item}
-                ref={ref => {
+                ref={(ref: HTMLElement) => {
                   itemRefs[index] = ref;
                 }}
               >
@@ -122,20 +133,4 @@ export const AutoComplete = ({ items, inputIcon, inError, inWarning, disabled, p
       )}
     </AutoCompleteWrapper>
   );
-};
-
-AutoComplete.propTypes = {
-  items: PropTypes.array,
-  /** Sets the icon for the input */
-  inputIcon: PropTypes.node,
-  /** Sets the input to be in error */
-  inError: PropTypes.bool,
-  /** Sets the input to be in warning */
-  inWarning: PropTypes.bool,
-  /** Sets the input to be disabled */
-  disabled: PropTypes.bool
-};
-
-AutoComplete.defaultProps = {
-  items: ["Apple", "Orange", "Banana"]
 };
