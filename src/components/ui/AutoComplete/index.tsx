@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Input } from "../Input";
-import PropTypes from "prop-types";
 import { Icon } from "../../icon";
 
 import {
@@ -98,7 +97,7 @@ export const AutoComplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon,
         value={filterValue}
         icon={inputIcon}
         inputRef={filterRef}
-        onChange={e => filterItems(e)}
+        onChange={(e: { target: { value: string; }; }) => filterItems(e)}
         placeholder={placeholder}
         inError={inError}
         inWarning={inWarning}
@@ -110,7 +109,7 @@ export const AutoComplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon,
             return (
               <MenuItemStyled
                 tabIndex="0"
-                onKeyPress={e => handleItemKeyPress(e, item)}
+                onKeyPress={(e: { charCode: number; }) => handleItemKeyPress(e, item)}
                 onClick={() => setValue(item)}
                 key={item}
                 ref={(ref: HTMLElement) => {
