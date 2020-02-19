@@ -3,17 +3,19 @@ import { StyledButton } from "./style";
 
 export interface Props {
   /** Sets the button to be a primary button */
-  primary?: boolean,
-  buttonColor?: string,
-  disabled?: boolean,
-  isLoading?: boolean,
+  primary?: Boolean,
+  fcStyle?: String,
+  buttonColor?: String,
+  disabled?: Boolean,
+  isLoading?: Boolean,
   buttonRef?: any,
-  loadingIcon?: object,
-  icon?: object,
+  loadingIcon?: Object,
+  icon?: Object,
   children?: any,
+  onClick?: Function,
 }
 
-export const Button = ({buttonColor, disabled = false, isLoading = false, buttonRef, loadingIcon, icon, children, ...rest}:Props ) => {
+export const Button = ({buttonColor, disabled = false, isLoading = false, buttonRef, loadingIcon, icon, children, fcStyle, ...rest}:Props ) => {
   return (
     <StyledButton
       ref={buttonRef}
