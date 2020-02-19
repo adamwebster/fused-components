@@ -17,5 +17,10 @@ export const MenuItem = ({ children, icon, onClick, hasIcons, ...rest }) => {
 };
 
 MenuItem.propTypes = {
-  icon: PropTypes.node
+  icon: PropTypes.node,
+  onClick: PropTypes.func,
 };
+
+MenuItem.defaultProps = {
+  onClick: () => {},
+}
