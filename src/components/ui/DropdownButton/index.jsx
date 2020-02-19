@@ -11,7 +11,8 @@ export const DropdownButton = ({
   primary,
   label,
   fcStyle,
-  children
+  children,
+  as
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -44,21 +45,25 @@ export const DropdownButton = ({
   };
 
   return (
-    <DropdownButtonWrapper>
+    <DropdownButtonWrapper
+    renderAs={as}
+    >
       <DropdownMenuContext.Provider value={state}>
         <Button
           buttonRef={buttonEl}
           fcStyle={fcStyle}
           primary={primary}
           onClick={() => toggleMenu()}
+          as={as}
+
         >
           {label}
           {menuOpen ? (
-            <IconStyled>
+            <IconStyled renderAs={as}>
               <Icon icon="caret-up" />
             </IconStyled>
           ) : (
-            <IconStyled>
+            <IconStyled renderAs={as}>
               <Icon icon="caret-down" />
             </IconStyled>
           )}
@@ -75,7 +80,7 @@ DropdownButton.Divider = MenuDivider;
 
 DropdownButton.propTypes = {
   primary: PropTypes.bool,
-  label: PropTypes.string,
+  label: PropTypes.oneOf(PropTypes.string, PropTypes.object),
   /** Danger | Warning | Info | Success */
   fcStyle: PropTypes.string
 }
