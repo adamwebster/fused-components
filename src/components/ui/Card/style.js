@@ -6,9 +6,6 @@ export const StyledCard = styled.div`
     props.borderRadius ? props.borderRadius : '5px'};
   background-color: ${color.lightest};
   border: solid 1px ${color.border};
-   ${props => props.padding && css`
-   padding: ${props.padding};
-   `};
   box-sizing: border-box;
   ${props =>
     props.boxShadow &&
