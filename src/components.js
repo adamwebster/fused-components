@@ -16,5 +16,7 @@ export { Label } from './components/ui/Label/';
 export { Panel } from './components/ui/Panel/';
 export { Radio } from './components/ui/Radio/';
 export { Table } from './components/ui/Table/';
+export { ToastProvider } from './components/ui/Toasts/ToastProvider';
+export { useToast } from './components/ui/Toasts/ToastProvider';
 export { Toggle } from './components/ui/Toggle/';
 export { color as Colors } from './styles/styles';
