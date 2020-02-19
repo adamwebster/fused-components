@@ -1,8 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
 
 export const DropdownButtonWrapper = styled.div`
    display:inline-block;
+   ${props => props.renderAs === 'a' && css`
+   svg{
+       width:16px;
+   }
+   `}
 `
 export const DropdownMenuStyled = styled.ul`
     position:absolute;
@@ -62,6 +67,9 @@ export const IconStyled = styled.span`
     margin-top: 3px;
     height: 5px;
     margin-left: 5px;
+    ${props => props.renderAs === 'a' && css`
+        display:none;
+    `}
 `
 
 export const MenuDivider = styled.hr`
