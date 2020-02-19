@@ -30,8 +30,7 @@ export const ToastProvider = ({ children, position }) => {
     }
     }
 
-    toAdd.push({ title, content, fcStyle, icon, key: Math.random(), options });
-    setToasts(toAdd);
+    setToasts(toasts => [...toasts, {title, content, fcStyle, icon, key: Math.random(), options}]);
   };
 
   const state = {
@@ -77,7 +76,6 @@ export const useToast = () => {
       context.add(title, content, 'danger', 'no-entry-circle', options)
     };
 };
-
 
 ToastProvider.propTypes = {
     /** top | bottom | top-right | bottom-right */

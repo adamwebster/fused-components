@@ -33,7 +33,7 @@ export const Toast = ({ title, fcStyle, children, icon, duration }) => {
        }
        if(countNumber === 0){
          setRemoving(true)
-         setTimeout(() => setVisible(false), 500)
+         setTimeout(() => setVisible(false), 400)
        }
        setTimer(countNumber)
    }
