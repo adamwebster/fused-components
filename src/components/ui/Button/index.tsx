@@ -38,7 +38,7 @@ export const Button = ({buttonColor, disabled = false, isLoading = false, button
       {...rest}
     >
       {isLoading && loadingIcon && <>{loadingIcon} </>}
-      {icon && !isLoading && <StyledIcon primary={primary}><Icon icon={icon} /></StyledIcon>}
+      {icon && !isLoading && <StyledIcon fcStyle={fcStyle}  primary={primary}><Icon icon={icon} /></StyledIcon>}
       {children}
     </StyledButton>
   );
