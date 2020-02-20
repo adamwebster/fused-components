@@ -9,11 +9,11 @@ export interface Props {
   icon?: string,
   onClick?: () => void
 }
-export const MenuItem = ({ children, icon, onClick, ...rest }:Props) => {
+export const MenuItem = ({ children, icon, onClick = () => {}, ...rest }:Props) => {
   const DropdownContext = useContext(DropdownMenuContext);
 
   return (
-    <MenuItemStyled onClick={() => {DropdownContext.hideMenu(); onClick();}} {...rest}>
+    <MenuItemStyled onClick={() => {if(DropdownContext){DropdownContext.hideMenu()}; onClick();}} {...rest}>
       {icon && <Icon icon={icon} />}
       {children}
     </MenuItemStyled>
