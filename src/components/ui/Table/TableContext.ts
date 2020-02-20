@@ -1,15 +1,14 @@
 import React from 'react';
 
 export interface TableInterface {
-  frozenColumnWidth: string,
-  freezeFirstColumn: boolean,
-  padding: string,
-  tableBgColor: string,
-  frozenColumnBGColor: string,
-  frozenColumnFGColor: string,
-  zebraStrippingColor: string,
-  zebraStripeColor: string,
-  zebraStripping: boolean,
+  padding?: string,
+  frozenColumnBGColor?: string,
+  frozenColumnFGColor?: string,
+  freezeFirstColumn?: boolean,
+  zebraStripping?: boolean,
+  zebraStripeColor?: string,
+  frozenColumnWidth?: string,
+  tableBgColor?: string,
 }
 
 export const TableContext = React.createContext<TableInterface | null>(null);
