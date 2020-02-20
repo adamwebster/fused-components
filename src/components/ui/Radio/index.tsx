@@ -4,8 +4,11 @@ import { Icon } from '../../icon';
 
 export interface Props {
   children :any,
+  /** If the radio is checked */
   checked: boolean,
+  /** If the radio is in its warning state */
   inWarning: boolean,
+  /** If the radio is in its error state */
   inError: boolean,
 }
 export const Radio = ({ children, checked = false, inWarning = false, inError = false, ...radioProps }:Props) => {

@@ -48,7 +48,7 @@ export const InputWrapper = styled.div`
 
 `
 
-export const Icon = styled.span`
+export const IconWrapper = styled.span`
 position: absolute;
 left: 10px;
 top: 7px;

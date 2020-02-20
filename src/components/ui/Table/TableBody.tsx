@@ -7,11 +7,8 @@ import { TableContextContextConsumer } from './TableContext';
 
 export interface Props {
   children: ReactNode,
-  frozenColumnFGColor?: string,
-  zebraStripping?: boolean,
-  zebraStripeColor?: string,
 }
-const TableBody = ({ children, frozenColumnFGColor, zebraStripping, zebraStripeColor, ...rest }:Props) => {
+const TableBody = ({ children, ...rest }:Props) => {
   return (
     <TableContextContextConsumer>
       {tableContext => tableContext && (

@@ -2,9 +2,13 @@ import React from 'react';
 import { StyledAvatar } from './style';
 
 export interface Props {
-    size?: String,
-    borderRadius?: String,
+    /** Sets the size of the avatar */
+    size?: 'tiny' | 'small' | 'medium' | 'large',
+    /** Sets the border radius of the avatar */
+    borderRadius?: 'square' | 'rounded' | 'round',
+    /** Defines if the avatar should have a box shadow or not */
     boxShadow?: Boolean,
+    /** The image url for the avatar */
     image?: String,
 }
 

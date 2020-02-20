@@ -4,7 +4,7 @@ import { StyledAlert, Title, AlertContent } from "./style";
 
 export interface Props {
   /** Sets the style of the alert */
-  fcStyle?: 'Danger' | 'Warning' | 'Info' | 'Success',
+  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
   /** Sets the title for the alert */
   title?: string,
   /** Sets the icon for the alert */

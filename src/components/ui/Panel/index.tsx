@@ -13,13 +13,20 @@ import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 
 export interface Props {
-  fcStyle?: string,
+  /** Set the style for the panel */
+  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
+  /** Set the tile for the panel */
   title?: string,
+  /** What should happen when the close button is clicked */
   onCloseClick: (e: any) => void,
+  /** If the panel should have a fixed position */
   fixed?: boolean,
+  /** If the panel is visible */
   visible?: boolean,
   children: any,
-  position?: string,
+  /** The position of the panel */
+  position?: 'left' | 'right',
+  /** If the overlay is shown */
   showOverlay?: boolean,
 }
 export const Panel = ({
@@ -61,7 +68,7 @@ export const Panel = ({
             <DialogFooter>
               <Button
                 buttonColor={color.mediumdark}
-                onClick={(e: any) => onCloseClick(e)}
+                onClick={(e) => onCloseClick(e)}
               >
                 Close
               </Button>

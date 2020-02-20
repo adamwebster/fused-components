@@ -1,11 +1,14 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Label, IconStyled, CheckInput } from "./style";
 import { Icon } from '../../icon/';
 
 export interface Props {
-  children: Node,
-  checked?: Boolean,
-  inError?: Boolean,
+  children: ReactNode,
+  /** Set to true if the checkbox is checked */
+  checked?: boolean,
+  /** Set the checkbox to be in its error state */
+  inError?: boolean,
+  /** Set the checkbox to be in its warning state */
   inWarning?: boolean,
 }
 export const Checkbox = ({ children, checked = false, inError = false, inWarning = false, ...checkboxProps }: Props) => {

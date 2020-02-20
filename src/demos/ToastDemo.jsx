@@ -1,18 +1,21 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useToast, ToastProvider } from "../components/ui/Toasts/ToastProvider";
 import { Button } from "../components/ui/Button";
-import { ToastContext } from "../components/ui/Toasts/ToastContext";
+
 const ToastLoad = () => {
   const toasts = useToast();
+
   useEffect(() => {
     setTimeout(() => {
       toasts.addInfo('test');
     }, 1000)
+
     setTimeout(() => {
       toasts.addInfo('test2');
-
     }, 3000)
+
   }, [])
+
   return true;
 }
 
