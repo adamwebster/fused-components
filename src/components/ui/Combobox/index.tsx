@@ -11,6 +11,21 @@ import {
 } from "./style";
 import { Icon } from "../../icon";
 
+export interface Props {
+  /** An array of items */
+  items: Array<string>,
+  /** Icon to show in the input */
+  inputIcon?: string,
+  /** If the input should be in error */
+  inError?: boolean,
+  /** If the input should be in warning */
+  inWarning?: boolean,
+  /** If the item should be disabled */
+  disabled?: boolean,
+  /** The placeholder for the input */
+  placeholder?: String,
+}
+
 export const Combobox = ({
   items,
   inputIcon,
@@ -18,33 +33,35 @@ export const Combobox = ({
   inWarning,
   disabled,
   placeholder
-}) => {
+}: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [filterValue, setFilterValue] = useState("");
   const [itemSelected, setItemSelected] = useState("");
-  const [itemSelectedIndex, setItemSelectedIndex] = useState(null);
+  const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
-  let filterRef = useRef(null);
-  let itemRefs = {};
-  const menuRef = useRef(null);
+  let filterRef = useRef<HTMLInputElement>(null);
+  let itemRefs: Array<HTMLElement> = [];
+  const menuRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
     window.addEventListener("keydown", handleUserKeyPress);
-    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("mousedown", e => handleClickOutside(e));
 
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress);
-      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("mousedown", e => handleClickOutside(e));
     };
   });
 
-  const handleClickOutside = e => {
-    if (e.target.parentNode !== menuRef.current && e.target !== filterRef) {
+  const handleClickOutside = (e: MouseEvent) => {
+    const element = (e.target as HTMLElement);
+    if (element.parentNode !== menuRef.current) {
       if (menuOpen) {
         setMenuOpen(false);
       }
     }
-  };
-  const handleUserKeyPress = e => {
+   };
+  const handleUserKeyPress = (e: { keyCode: number; }) => {
     // Escape Key
     if (e.keyCode === 27) {
       if (menuOpen) {
@@ -72,27 +89,29 @@ export const Combobox = ({
     }
   };
 
-  const filterItems = e => {
+  const filterItems = (e: { target: { value: string; }; }) => {
     setFilterValue(e.target.value);
     const filterItemList = items.filter(item =>
       item.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setMenuOpen(true);
-    if (filterRef.value.length > 0) {
-      setItemsToShow(filterItemList);
-    } else {
-      setItemsToShow(items);
+    if (filterRef.current) {
+      if (filterRef.current.value.length > 0) {
+        setItemsToShow(filterItemList);
+      } else {
+        setItemsToShow(items);
+      }
     }
   };
 
-  const setValue = value => {
+  const setValue = (value: React.SetStateAction<string>) => {
     setFilterValue(value);
     setItemSelected(value);
     setMenuOpen(false);
-    setItemSelectedIndex(null);
+    setItemSelectedIndex(-1);
   };
 
-  const handleItemKeyPress = (e, item) => {
+  const handleItemKeyPress = (e: { charCode: number; }, item: string) => {
     if (e.charCode === 13) {
       setValue(item);
     }
@@ -103,8 +122,8 @@ export const Combobox = ({
       <InputStyled
         value={filterValue}
         icon={inputIcon}
-        inputRef={ref => { filterRef = ref;}}
-        onChange={e => filterItems(e)}
+        inputRef={filterRef}
+        onChange={(e: { target: { value: string; }; }) => filterItems(e)}
         placeholder={placeholder}
         inError={inError}
         inWarning={inWarning}
@@ -117,10 +136,10 @@ export const Combobox = ({
             return (
               <MenuItemStyled
                 tabIndex="0"
-                onKeyPress={e => handleItemKeyPress(e, item)}
+                onKeyPress={(e: any) => handleItemKeyPress(e, item)}
                 onClick={() => setValue(item)}
                 key={item}
-                ref={ref => {
+                ref={(ref: HTMLElement) => {
                   itemRefs[index] = ref;
                 }}
               >

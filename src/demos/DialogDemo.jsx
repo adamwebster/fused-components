@@ -3,7 +3,6 @@ import { Dialog } from "../components/ui/Dialog";
 import { Button } from "../components/ui/Button";
 import { Label } from "../components/ui/Label";
 import { Input } from "../components/ui/Input";
-import { Icon } from "../components/icon";
 
 export const DialogDemo = () => {
   const [dialogVisible, setDialogVisible] = useState(false);
@@ -11,7 +10,7 @@ export const DialogDemo = () => {
   return (
     <>
       <Button onClick={() => setDialogVisible(true)} disabled={dialogVisible}>
-        Show Panel
+        Show Dialog
       </Button>
       <Dialog
         onCloseClick={() => setDialogVisible(false)}
@@ -19,9 +18,9 @@ export const DialogDemo = () => {
         title="Dialog"
       >
         <Label htmlFor="user">Username</Label>
-        <Input id="user" icon={<Icon icon="user" />} />
+        <Input id="user" icon="user"/>
         <Label htmlFor="Password">Password</Label>
-        <Input id="Password" type="password" icon={<Icon icon="lock-locked" />} />
+        <Input id="Password" type="password" icon="lock-locked" />
       
       </Dialog>
     </>

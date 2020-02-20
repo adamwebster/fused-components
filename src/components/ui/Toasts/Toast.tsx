@@ -3,10 +3,14 @@ import { StyledToast, LoadingBar, CloseButton } from "./styles";
 import { Icon } from '../../icon'
 
 export interface Props {
+  /** The title of the toast item */
   title? : string,
-  fcStyle?: string,
+  /** The style for the toast */
+  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
   children?: ReactNode,
+  /** The icon for the toast */
   icon?: string,
+  /** how long the toast should be shown in seconds */
   duration: number,
 }
 export const Toast = ({ title, fcStyle, children, icon, duration = 4 }:Props) => {

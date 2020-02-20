@@ -5,6 +5,7 @@ import { Toast } from "./Toast";
 
 export interface Props {
   children: ReactNode,
+  /** The position of the toast provider */
   position?: 'top' | 'bottom' | 'top-right' | 'bottom-right',
 }
 

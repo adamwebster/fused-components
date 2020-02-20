@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactNode } from "react";
 import {
   CornerDialogStyled,
   DialogTitle,
@@ -13,15 +13,15 @@ import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 
 export interface Props {
-  fixed?: Boolean,
-  onCloseClick: Function,
-  visible?: Boolean,
-  cancelText?: String,
-  confirmText?: String,
-  title?: String,
-  fcStyle? : String,
-  icon? : String,
-  children: Node,
+  fixed?: boolean,
+  onCloseClick: () => void,
+  visible?: boolean,
+  cancelText?: string,
+  confirmText?: string,
+  title?: string,
+  fcStyle? : 'danger' | 'warning' | 'info' | 'success',
+  icon? : string,
+  children: ReactNode,
 }
 export const CornerDialog = ({
   fixed = true,
@@ -54,7 +54,7 @@ export const CornerDialog = ({
         <CornerDialogStyled visible={visible} fcStyle={fcStyle} fixed={fixed} {...rest}>
       <DialogTitle fcStyle={fcStyle}>
         {title && title}
-        <CloseButton onClick={(e: any) => onCloseClick(e)} aria-label="Close">
+        <CloseButton onClick={(e: any) => onCloseClick()} aria-label="Close">
           <Icon icon="times" />
         </CloseButton>
       </DialogTitle>

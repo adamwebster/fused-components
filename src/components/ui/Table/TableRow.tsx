@@ -7,13 +7,12 @@ import {TableContextContextConsumer} from './TableContext';
 
 export interface Props {
   children: ReactNode,
-  padding?: string,
+  /** Set the background color of the table row */
   bgColor?: string,
+  /** The foreground color(text) of the table row */
   fgColor?: string,
-  frozenColumnBGColor?: string,
-  frozenColumnFGColor?: string,
 }
-const TableRow = ({ children, padding, bgColor, fgColor, frozenColumnBGColor, frozenColumnFGColor, ...rest }:Props) => {
+const TableRow = ({ children, bgColor, fgColor, ...rest }:Props) => {
   return (
     <TableContextContextConsumer>
       {tableContext => tableContext && (

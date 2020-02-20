@@ -8,10 +8,14 @@ import {DropdownMenuProvider} from "./DropdownMenuContext";
 import { Icon } from "../../icon";
 
 export interface Props {
+  /** Set the button to be primary */
   primary?: boolean,
+  /** Set the text for the button */
   label: string,
-  fcStyle?: 'Danger' | 'Warning' | 'Info' | 'Success',
+  /** Set the style of the button */
+  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
   children: any,
+  /** Set what element the button should be rended as for example as="a" */
   as: any
 }
 export const DropdownButton = ({

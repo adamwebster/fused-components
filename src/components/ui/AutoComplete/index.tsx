@@ -10,12 +10,18 @@ import {
 } from "./style";
 
 export interface Props {
+  /** Defines what items are sent to the auto complete component*/
   items: Array<string>,
-  inputIcon?: Node,
-  inError?: Boolean,
-  inWarning?: Boolean,
-  disabled?: Boolean,
-  placeholder?: String,
+  /** What icon to show for the auto complete input */
+  inputIcon?: string,
+  /** If the input should be in its error state */
+  inError?: boolean,
+  /** If the input should be in its warning state */
+  inWarning?: boolean,
+  /** If the input should be disabled */
+  disabled?: boolean,
+  /** The placeholder text for the input */
+  placeholder?: string,
 }
 
 export const AutoComplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon, inError = false, inWarning = false, disabled = false, placeholder }: Props) => {

@@ -2,34 +2,33 @@ import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { darken } from "polished";
 
-  
 const colorValue = props => {
   switch (props.fcStyle) {
     case 'danger':
-        return color.red
-      case 'warning':
-        return color.yellow
-      case 'info':
-        return color.blue
-      case 'success':
-        return color.green
-      default:
-        return props.buttonColor || color.primary
+      return color.red
+    case 'warning':
+      return color.yellow
+    case 'info':
+      return color.blue
+    case 'success':
+      return color.green
+    default:
+      return props.buttonColor || color.primary
   }
 };
 
 const colorValueDarken = props => {
   switch (props.fcStyle) {
     case 'danger':
-        return darken(0.1, color.red)
-      case 'warning':
-        return darken(0.1, color.yellow)
-      case 'info':
-        return darken(0.1, color.blue)
-      case 'success':
-        return darken(0.1, color.green)
-      default:
-        return darken(0.1, props.buttonColor || color.primary)
+      return darken(0.1, color.red)
+    case 'warning':
+      return darken(0.1, color.yellow)
+    case 'info':
+      return darken(0.1, color.blue)
+    case 'success':
+      return darken(0.1, color.green)
+    default:
+      return darken(0.1, props.buttonColor || color.primary)
   }
 };
 
@@ -85,23 +84,7 @@ export const StyledButton = styled.button`
         cursor: not-allowed;
       }
     `}
-    .button-icon {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 5px;
-    margin-right: 5px;
-    border-radius: 50%;
-    display:inline-block;
-    box-sizing: border-box;
-    width: 24px;
-    height: 24px;
-    vertical-align:middle;
-    color: #fff;
-    ${props =>
-    (!props.primary && !props.completed) &&
-    css`
-        background-color: ${colorValue};
-      `}
-    }
+
    ${props => props.as === 'a' && css`
     border:none;
     text-decoration:underline;
@@ -122,3 +105,22 @@ export const StyledButton = styled.button`
     }
    `}
 `;
+
+export const StyledIcon = styled.span`
+ 
+   background-color: rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 50%;
+    display:inline-block;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    vertical-align:middle;
+    color: #fff;
+    ${props =>
+    (!props.primary && !props.completed) &&
+    css`
+        background-color: ${colorValue};
+    `}
+`

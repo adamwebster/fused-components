@@ -12,14 +12,23 @@ import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 
 export interface Props {
+  /** Sets if the dialog has a box shadow */
   boxShadow?: boolean,
+  /** Sets the tile of the dialog */
   title: string,
+  /** Sets if the dialog should be visible */
   visible: boolean,
+  /** Set the text for the confirm button */
   confirmText?: string,
+  /** Sets what should happen when the close button is clicked */
   onCloseClick: () => void;
+  /** Sets if the dialog should have a fixed position */
   fixed?: boolean,
-  fcStyle: string,
+  /** Set the style for the Dialog */
+  fcStyle: 'danger' | 'warning' | 'info' | 'success',
+  /** Set to show or not show the overlay */
   showOverlay?: boolean,
+  /** Set the text for the cancel button */
   cancelText?: string,
   children: any,
 }
