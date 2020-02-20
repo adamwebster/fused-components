@@ -14,8 +14,8 @@ export const DropdownMenu = ({ children }: Props) => {
       if (
         // Must be some better way to test if the button is being clicked or not
         DropdownContext.buttonEl.current !== e.target &&
-        DropdownContext.buttonEl.current !== e.target.parentNode.parentNode.parentNode &&
-        DropdownContext.buttonEl.current !== e.target.parentNode.parentNode
+        DropdownContext.buttonEl.current !== e.target!.parentNode.parentNode.parentNode &&
+        DropdownContext.buttonEl.current !== e.target!.parentNode.parentNode
       ) {
         DropdownContext.hideMenu();
       }
