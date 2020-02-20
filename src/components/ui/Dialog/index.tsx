@@ -1,6 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Button } from "../Button/";
+import { Button } from "../Button";
 import {
   StyledDialog,
   DialogTitle,
@@ -12,18 +11,30 @@ import {
 import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 
+export interface Props {
+  boxShadow?: boolean,
+  title: string,
+  visible: boolean,
+  confirmText?: string,
+  onCloseClick: () => void;
+  fixed?: boolean,
+  fcStyle: string,
+  showOverlay?: boolean,
+  cancelText?: string,
+  children: any,
+}
 export const Dialog = ({
-  boxShadow,
+  boxShadow = true,
   title,
-  visible,
-  confirmText,
+  visible = false,
+  confirmText = "Yes",
   children,
-  onCloseClick,
-  fixed,
+  onCloseClick = () => {},
+  fixed = true,
   fcStyle,
-  showOverlay,
-  cancelText
-}) => {
+  showOverlay = true,
+  cancelText = "Cancel"
+}:Props) => {
   return (
     <>
       {visible && (
@@ -52,31 +63,4 @@ export const Dialog = ({
       )}
     </>
   );
-};
-
-Dialog.propTypes = {
-  /** Sets the dialog to be visible */
-  visible: PropTypes.bool,
-  /** If set to true will show a box shadow below the dialog */
-  boxShadow: PropTypes.bool,
-  /** Set the text for the confirm text */
-  confirmText: PropTypes.string,
-  /** Sets the text for the cancel button */
-  cancelText: PropTypes.string,
-  /** Sets the position for the dialog to be false */
-  fixed: PropTypes.bool,
-  /** Shows the overlay */
-  showOverlay: PropTypes.bool,
-  /** What should happen when the close button is clicked */
-  onCloseClick: PropTypes.func,
-};
-
-Dialog.defaultProps = {
-  visible: false,
-  boxShadow: true,
-  confirmText: "Yes",
-  cancelText: 'Cancel',
-  fixed: true,
-  showOverlay: true,
-  onCloseClick: () => {}
 };

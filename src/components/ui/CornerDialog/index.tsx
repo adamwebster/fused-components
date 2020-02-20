@@ -24,9 +24,9 @@ export interface Props {
   children: Node,
 }
 export const CornerDialog = ({
-  fixed = false,
+  fixed = true,
   onCloseClick = () => {},
-  visible = false,
+  visible = true,
   cancelText = 'Cancel',
   confirmText = 'Learn More',
   title,
@@ -54,7 +54,7 @@ export const CornerDialog = ({
         <CornerDialogStyled visible={visible} fcStyle={fcStyle} fixed={fixed} {...rest}>
       <DialogTitle fcStyle={fcStyle}>
         {title && title}
-        <CloseButton onClick={e => onCloseClick(e)} aria-label="Close">
+        <CloseButton onClick={(e: any) => onCloseClick(e)} aria-label="Close">
           <Icon icon="times" />
         </CloseButton>
       </DialogTitle>
