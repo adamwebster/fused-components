@@ -1,13 +1,19 @@
-import React, { useState, useEffect, useCallback } from "react";
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useCallback, ReactNode } from "react";
 import { StyledToast, LoadingBar, CloseButton } from "./styles";
-import { Icon } from '../../icon/'
+import { Icon } from '../../icon'
 
-export const Toast = ({ title, fcStyle, children, icon, duration }) => {
+export interface Props {
+  title? : string,
+  fcStyle?: string,
+  children?: ReactNode,
+  icon?: string,
+  duration: number,
+}
+export const Toast = ({ title, fcStyle, children, icon, duration = 4 }:Props) => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
-  const [timer, setTimer] =useState(null);
-  const [intervalFunc, setIntervalFunc] =useState(null);
+  const [timer, setTimer] =useState('0');
+  const [intervalFunc, setIntervalFunc] =useState();
   
  const startTimer = useCallback((countNumber) => {
   var count = countNumber;
@@ -29,9 +35,9 @@ export const Toast = ({ title, fcStyle, children, icon, duration }) => {
          countNumber = countNumber + '0';
        }
        if(countNumber.length === 0){
-         countNumber = 0;
+         countNumber = '0';
        }
-       if(countNumber === 0){
+       if(countNumber === '0'){
          setRemoving(true)
          setTimeout(() => setVisible(false), 400)
        }
@@ -68,11 +74,3 @@ export const Toast = ({ title, fcStyle, children, icon, duration }) => {
     </>
   );
 };
-
-Toast.propTypes = {
-  duration: PropTypes.number,
-}
-
-Toast.defaultProps = {
-  duration: 4,
-}

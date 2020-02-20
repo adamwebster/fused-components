@@ -6,12 +6,9 @@ const ToastLoad = () => {
   const toasts = useToast();
   useEffect(() => {
     setTimeout(() => {
-
       toasts.addInfo('test');
-
     }, 1000)
     setTimeout(() => {
-
       toasts.addInfo('test2');
 
     }, 3000)
