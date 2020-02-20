@@ -13,6 +13,7 @@ export interface Props {
   icon?: Object,
   children?: any,
   onClick?: Function,
+  as: any
 }
 
 export const Button = ({buttonColor, disabled = false, isLoading = false, buttonRef, loadingIcon, icon, children, fcStyle, ...rest}:Props ) => {
