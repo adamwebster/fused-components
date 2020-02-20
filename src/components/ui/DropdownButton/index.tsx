@@ -4,19 +4,26 @@ import PropTypes from "prop-types";
 import { DropdownButtonWrapper, IconStyled, MenuDivider } from "./style";
 import { DropdownMenu } from "./DropdownMenu";
 import { MenuItem } from "./MenuItem";
-import DropdownMenuContext from "./DropdownMenuContext";
+import {DropdownMenuProvider} from "./DropdownMenuContext";
 import { Icon } from "../../icon";
 
+export interface Props {
+  primary?: boolean,
+  label: string,
+  fcStyle?: 'Danger' | 'Warning' | 'Info' | 'Success',
+  children: any,
+  as: any
+}
 export const DropdownButton = ({
   primary,
   label,
   fcStyle,
   children,
   as
-}) => {
+}:Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-  const buttonEl = useRef(null);
+  const buttonEl = useRef();
 
   const hideMenuFunc = () => {
     if (menuOpen) {
@@ -48,7 +55,7 @@ export const DropdownButton = ({
     <DropdownButtonWrapper
     renderAs={as}
     >
-      <DropdownMenuContext.Provider value={state}>
+      <DropdownMenuProvider value={state}>
         <Button
           buttonRef={buttonEl}
           fcStyle={fcStyle}
@@ -69,7 +76,7 @@ export const DropdownButton = ({
           )}
         </Button>
         {menuVisible && children}
-      </DropdownMenuContext.Provider>
+      </DropdownMenuProvider>
     </DropdownButtonWrapper>
   );
 };
