@@ -1,7 +1,11 @@
 import React from 'react';
 import { icons } from './icons';
 
-export const Icon = ({icon, color}) => {
+export interface IconProps {
+  icon?: string,
+  color?: string,
+}
+export const Icon = ({icon, color}: IconProps) => {
   return (
     <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +17,7 @@ export const Icon = ({icon, color}) => {
   >
     <path
       fill={color || "currentColor"}
-      d={icons[icon]}
+      d={icon && icons[icon]}
     ></path>
   </svg>
   )

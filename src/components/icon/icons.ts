@@ -1,4 +1,10 @@
-export const icons = {
+
+interface Icons {
+  [key: string]: string
+
+}
+
+export const icons: Icons = {
   times:
     "M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z",
   "exclamation-circle":
