@@ -3,7 +3,6 @@ import { Panel } from "../components/ui/Panel";
 import { Button } from "../components/ui/Button";
 import { Label } from "../components/ui/Label";
 import { Input } from "../components/ui/Input";
-import { Icon } from "../components/icon";
 
 export const PanelDemo = () => {
   const [panelVisible, setPanelVisible] = useState(false);
@@ -21,7 +20,7 @@ export const PanelDemo = () => {
         showOverlay
       >
         <Label htmlFor="user">Username</Label>
-        <Input id="user" icon={<Icon icon="user" />} />
+        <Input id="user" icon="user" />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed
           molestie orci. Cras auctor ut magna vel sagittis. Nullam cursus

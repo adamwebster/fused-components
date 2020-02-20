@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import { useToast, ToastProvider } from "../components/ui/Toasts/ToastProvider";
 import { Button } from "../components/ui/Button";
 
