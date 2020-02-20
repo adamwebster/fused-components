@@ -1,19 +1,23 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Icon } from "../../icon";
 import { StyledAlert, Title, AlertContent } from "./style";
 
 export interface Props {
-  fcStyle?: string,
+  /** Sets the style of the alert */
+  fcStyle?: 'Danger' | 'Warning' | 'Info' | 'Success',
+  /** Sets the title for the alert */
   title?: string,
+  /** Sets the icon for the alert */
   icon?: string
+  /** Sets the border radius for the alert */
   borderRadius?: string,
-  children?: any
+  children?: ReactNode,
 }
 export const Alert = ({
   fcStyle,
   title,
   icon,
-  borderRadius,
+  borderRadius = '5px',
   children,
   ...rest }:Props) => {
   return (
