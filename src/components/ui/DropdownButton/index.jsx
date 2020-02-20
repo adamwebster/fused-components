@@ -80,7 +80,7 @@ DropdownButton.Divider = MenuDivider;
 
 DropdownButton.propTypes = {
   primary: PropTypes.bool,
-  label: PropTypes.oneOf(PropTypes.string, PropTypes.object),
+  label: PropTypes.oneOf([PropTypes.string, PropTypes.object]),
   /** Danger | Warning | Info | Success */
   fcStyle: PropTypes.string
 }
