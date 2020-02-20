@@ -1,9 +1,14 @@
 import React from "react";
 import { Label, IconStyled, RadioInput } from "./style";
-import PropTypes from "prop-types";
-import { Icon } from '../../icon/';
+import { Icon } from '../../icon';
 
-export const Radio = ({ children, checked, inWarning, inError, ...radioProps }) => {
+export interface Props {
+  children :any,
+  checked: boolean,
+  inWarning: boolean,
+  inError: boolean,
+}
+export const Radio = ({ children, checked = false, inWarning = false, inError = false, ...radioProps }:Props) => {
   return (
     <label>
       <RadioInput inError={inError} inWarning={inWarning} type="radio" {...radioProps} />
@@ -11,16 +16,4 @@ export const Radio = ({ children, checked, inWarning, inError, ...radioProps }) 
       <Label inError={inError} inWarning={inWarning}>{children}</Label>
     </label>
   );
-};
-
-Radio.propTypes = {
-  checked: PropTypes.bool,
-  inError: PropTypes.bool,
-  inWarning: PropTypes.bool,
-};
-
-Radio.defaultProps = {
-  checked: false,
-  inError: false,
-  inWarning: false,
 };
