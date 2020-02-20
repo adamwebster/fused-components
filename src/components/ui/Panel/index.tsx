@@ -9,20 +9,29 @@ import {
   Overlay,
 } from "./style";
 import { Button } from "../Button";
-import PropTypes from "prop-types";
 import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 
+export interface Props {
+  fcStyle?: string,
+  title?: string,
+  onCloseClick: (e: any) => void,
+  fixed?: boolean,
+  visible?: boolean,
+  children: any,
+  position?: string,
+  showOverlay?: boolean,
+}
 export const Panel = ({
   fcStyle,
   title,
-  onCloseClick,
-  fixed,
-  visible,
+  onCloseClick = (e) => {},
+  fixed = true,
+  visible = true,
   children,
-  position,
-  showOverlay
-}) => {
+  position = 'right',
+  showOverlay = false,
+}:Props) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -38,11 +47,11 @@ export const Panel = ({
   return (
     show && (
       <>
-        {showOverlay && <Overlay onClick={e => onCloseClick(e)}></Overlay>}
+        {showOverlay && <Overlay onClick={(e: any) => onCloseClick(e)}></Overlay>}
           <StyledPanel position={position} visible={visible} fixed={fixed}>
             <DialogTitle fcStyle={fcStyle}>
               {title && title}
-              <CloseButton onClick={e => onCloseClick(e)} aria-label="Close">
+              <CloseButton onClick={(e: any) => onCloseClick(e)} aria-label="Close">
                 <Icon icon="times" />
               </CloseButton>
             </DialogTitle>
@@ -52,7 +61,7 @@ export const Panel = ({
             <DialogFooter>
               <Button
                 buttonColor={color.mediumdark}
-                onClick={e => onCloseClick(e)}
+                onClick={(e: any) => onCloseClick(e)}
               >
                 Close
               </Button>
@@ -64,24 +73,4 @@ export const Panel = ({
       </>
     )
   );
-};
-
-Panel.propTypes = {
-  /** Set this to false to not show the dialog in the bottom right of the screen */
-  fixed: PropTypes.bool,
-  /** Sets whether the dialog should be shown or not */
-  visible: PropTypes.bool,
-  /** Sets what should happen when the close button is clicked. At minimum should set the visible property to false. */
-  onCloseClick: PropTypes.func.isRequired,
-  /** left | right*/
-  position: PropTypes.string,
-  /* If added will add an overlay */
-  showOverlay: PropTypes.bool
-};
-
-Panel.defaultProps = {
-  fixed: true,
-  visible: true,
-  onCloseClick: () => {},
-  position: "right"
 };
