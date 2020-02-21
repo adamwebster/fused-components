@@ -1,13 +1,15 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
 
+import { Props } from './';
+
 export const Label = styled.span`
     margin-left: 5px;
     display:inline-block;
-    ${props => props.inError && css`
+    ${(props: Props) => props.inError && css`
         color: ${color.red};
     `}
-    ${props => props.inWarning && css`
+    ${(props: Props)  => props.inWarning && css`
         color: ${color.yellow};
     `}
 `
@@ -20,16 +22,16 @@ export const IconStyled = styled.span`
        top:2px;
        position:relative;
    }
-    ${props => props.inError && css`
+    ${(props: Props) => props.inError && css`
         color: ${color.red};
     `}
-    ${props => props.inWarning && css`
+    ${(props: Props)  => props.inWarning && css`
         color: ${color.yellow};
     `}
 `
 
-export const CheckInput = styled.input`
-position: absolute;
-opacity: 0;
-cursor: pointer;
+export const CheckInput = styled.input.attrs({ type: 'checkbox' })`
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 `

@@ -60,19 +60,19 @@ export const CornerDialog = ({
             </CloseButton>
           </DialogTitle>
           <DialogContent>
-            {icon && <IconStyled fcStyle={fcStyle}>{icon}</IconStyled>}
+            {icon && <IconStyled fcStyle={fcStyle}><Icon icon={icon} /></IconStyled>}
             <DialogText>{children}</DialogText>
           </DialogContent>
-          <DialogFooter>
-            <Button buttonColor={color.mediumdark} onClick={() => onCloseClick()}>
-              {cancelText}
-            </Button>
-            <Button fcStyle={fcStyle} primary>
-              {confirmText}
-            </Button>
-          </DialogFooter>
+              <DialogFooter>
+                <Button buttonColor={color.mediumdark} onClick={() => onCloseClick()}>
+                  {cancelText}
+                </Button>
+                <Button fcStyle={fcStyle} primary>
+                  {confirmText}
+                </Button>
+              </DialogFooter>
         </CornerDialogStyled>
-      }
+          }
     </>
   );
-};
+    };

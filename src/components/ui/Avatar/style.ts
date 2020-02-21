@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Props } from './'
 
 export const StyledAvatar = styled.div`
   ${props => {
@@ -47,10 +48,9 @@ export const StyledAvatar = styled.div`
     return [size, borderRadius];
   }}
  
-
-  background-image: url(${props => props.image});
+  background-image: url(${(props: Props) => props.image as string});
   background-size: cover;
-  ${props =>
+  ${(props: Props) =>
     props.boxShadow &&
     css`
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.40);

@@ -7,9 +7,9 @@ export interface Props {
     /** Sets the border radius of the avatar */
     borderRadius?: 'square' | 'rounded' | 'round',
     /** Defines if the avatar should have a box shadow or not */
-    boxShadow?: Boolean,
+    boxShadow?: boolean,
     /** The image url for the avatar */
-    image?: String,
+    image?: string,
 }
 
 export const Avatar = ({ size = 'small', borderRadius = 'rounded', boxShadow = false, image, ...rest }: Props) => {

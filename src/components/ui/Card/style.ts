@@ -1,8 +1,9 @@
 import {color} from "../../../styles/styles";
 import styled, { css } from "styled-components";
+import { Props } from './';
 
 export const StyledCard = styled.div`
-  border-radius: ${props =>
+  border-radius: ${(props: Props) =>
     props.borderRadius ? props.borderRadius : '5px'};
   background-color: ${color.lightest};
   border: solid 1px ${color.border};

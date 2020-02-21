@@ -1,12 +1,13 @@
-import styled, {css} from "styled-components";
-import {color} from '../../../styles/styles';
+import styled, { css } from "styled-components";
+import { color } from '../../../styles/styles';
+import { Props } from './'
 
 export const StyledAlert = styled.div`
   background-color: #fff;
   border-style: solid;
   border-width: 5px 1px 1px 1px;
   border-color: ${
-  props => {
+  (props: Props) => {
     switch (props.fcStyle) {
       case 'danger':
         return color.red
@@ -25,7 +26,7 @@ export const StyledAlert = styled.div`
     margin-top:0;
     margin-bottom: 0;
     color: ${
-  props => {
+  (props: Props) => {
     switch (props.fcStyle) {
       case 'danger':
         return color.red
@@ -46,7 +47,7 @@ export const StyledAlert = styled.div`
   }
   color: ${color.darker};
   padding: 10px;
-  ${props => props.borderRadius && css`border-radius: 5px;`}
+  ${(props: Props) => props.borderRadius && css`border-radius: 5px;`}
 `
 
 export const Title = styled.span`

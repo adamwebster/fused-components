@@ -1,8 +1,9 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { darken } from "polished";
+import { Props } from "./";
 
-const colorValue = props => {
+const colorValue = (props:Props) => {
   switch (props.fcStyle) {
     case 'danger':
       return color.red
@@ -17,7 +18,7 @@ const colorValue = props => {
   }
 };
 
-const colorValueDarken = props => {
+const colorValueDarken = (props:Props) => {
   switch (props.fcStyle) {
     case 'danger':
       return darken(0.1, color.red)
@@ -40,9 +41,9 @@ export const StyledButton = styled.button`
   cursor: pointer;
   outline: 0;
   position:relative;
-  border-radius: ${props => (props.borderRadius ? props.borderRadius : "5px")};
+  border-radius: 5px;
   transition: all 0.2s ease;
-  ${props =>
+  ${(props:Props) =>
     !props.primary &&
     css`
       background-color: transparent;
@@ -118,8 +119,8 @@ export const StyledIcon = styled.span`
     height: 24px;
     vertical-align:middle;
     color: #fff;
-    ${props =>
-    (!props.primary && !props.completed) &&
+    ${(props:Props) =>
+    !props.primary &&
     css`
         background-color: ${colorValue};
     `}

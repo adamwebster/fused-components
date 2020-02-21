@@ -31,7 +31,7 @@ export interface Props {
   showOverlay?: boolean,
   /** Set the text for the cancel button */
   cancelText?: string,
-  children: any,
+  children?: any,
 }
 export const Dialog = ({
   boxShadow = true,
@@ -41,7 +41,7 @@ export const Dialog = ({
   children,
   onCloseClick = () => {},
   fixed = true,
-  fcStyle,
+  fcStyle = undefined,
   showOverlay = true,
   cancelText = "Cancel"
 }:Props) => {
@@ -50,7 +50,7 @@ export const Dialog = ({
       {visible && (
         <>
           {showOverlay && <Overlay onClick={() => onCloseClick()} />}
-          <StyledDialog fcStyle={fcStyle} visible={visible} fixed={fixed} boxShadow={boxShadow}>
+          <StyledDialog visible={visible} fixed={fixed} boxShadow={boxShadow}>
             <DialogTitle fcStyle={fcStyle}> 
               <h2>{title}</h2>
               <CloseButton aria-label="Close" onClick={() => onCloseClick()}>

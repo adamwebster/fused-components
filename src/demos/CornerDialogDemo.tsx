@@ -7,7 +7,7 @@ import { fcStyles } from '../common/types';
 export const CornerDialogDemo = () => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [style, setStyle] = useState('danger' as fcStyles);
-  const [icon, setIcon] = useState('no-entry-circle' as string);
+  const [icon, setIcon] = useState('no-entry-circle');
   return (
     <>
       <p>

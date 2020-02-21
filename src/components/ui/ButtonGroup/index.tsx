@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { ButtonGroupStyled } from './style';
 
-export interface ButtonGroupProps {
-    children: ReactNode
+export interface Props {
+    children: any
 }
 
-export const ButtonGroup = ({children}:ButtonGroupProps) =>
+export const ButtonGroup = ({children}:Props) =>
 {
     return(
         <ButtonGroupStyled>{children}</ButtonGroupStyled>
