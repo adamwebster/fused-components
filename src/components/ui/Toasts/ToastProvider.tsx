@@ -70,14 +70,14 @@ export const useToast = () => {
   const context = useContext(ToastContext);
   if (context) {
     return {
-      addInfo: (title: string, content: string, options: Options) =>
-        context.add(title, content, 'info', 'info-circle', options),
-      addSuccess: (title: string, content: string, options: Options) =>
-        context.add(title, content, 'success', 'check-circle', options),
-      addWarning: (title: string, content: string, options: Options) =>
-        context.add(title, content, 'warning', 'exclamation-circle', options),
-      addDanger: (title: string, content: string, options: Options) =>
-        context.add(title, content, 'danger', 'no-entry-circle', options)
+      addInfo: (title: string, content?: string, options?: Options) =>
+        context.add(title, content as string, 'info', 'info-circle', options as Options),
+      addSuccess: (title: string, content?: string, options?: Options) =>
+        context.add(title, content as string, 'success', 'check-circle', options as Options),
+      addWarning: (title: string, content?: string, options?: Options) =>
+        context.add(title, content as string, 'warning', 'exclamation-circle', options as Options),
+      addDanger: (title: string, content?: string, options?: Options) =>
+        context.add(title, content as string, 'danger', 'no-entry-circle', options as Options)
     };
   }
 };

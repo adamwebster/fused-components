@@ -1,5 +1,11 @@
 const path = require("path");
 
+const excludeProps = (prop) => {
+  if (prop.parent) {
+    return !prop.parent.fileName.includes('node_modules')
+  }
+  return true
+}
 module.exports = {
   presets: [{
     name: 'storybook-addon-deps/preset',
@@ -12,7 +18,8 @@ module.exports = {
     name: '@storybook/preset-create-react-app',
     options: {
       tsDocgenLoaderOptions: {
-        tsconfigPath: path.resolve(__dirname, "../tsconfig.json")
+        tsconfigPath: path.resolve(__dirname, "../tsconfig.json"),
+        propFilter: props => excludeProps(props),
       }
     }
     },

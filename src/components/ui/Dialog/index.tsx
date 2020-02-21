@@ -10,6 +10,7 @@ import {
 } from "./style";
 import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
+import { fcStyles } from "../../../common/types";
 
 export interface Props {
   /** Sets if the dialog has a box shadow */
@@ -25,7 +26,7 @@ export interface Props {
   /** Sets if the dialog should have a fixed position */
   fixed?: boolean,
   /** Set the style for the Dialog */
-  fcStyle: 'danger' | 'warning' | 'info' | 'success',
+  fcStyle?: fcStyles,
   /** Set to show or not show the overlay */
   showOverlay?: boolean,
   /** Set the text for the cancel button */

@@ -8,16 +8,16 @@ const ToastLoad = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      toasts.addInfo('test');
+      toasts?.addInfo('test');
     }, 1000)
 
     setTimeout(() => {
-      toasts.addInfo('test2');
+      toasts?.addInfo('test2');
     }, 3000)
 
   }, [])
 
-  return true;
+  return null;
 }
 
 const Toaster = () => {
@@ -28,7 +28,7 @@ const Toaster = () => {
       <ToastLoad />
       <Button
         onClick={() => {
-          toasts.addInfo(
+          toasts?.addInfo(
             "Did you know?",
             "That space smells like seared steak."
           );
@@ -39,7 +39,7 @@ const Toaster = () => {
       <br /> <br />
       <Button
         onClick={() => {
-          toasts.addSuccess("Hooray!", "Something went right for once...", {
+          toasts?.addSuccess("Hooray!", "Something went right for once...", {
             duration: 10
           });
         }}
@@ -49,7 +49,7 @@ const Toaster = () => {
       <br /> <br />
       <Button
         onClick={() => {
-          toasts.addWarning("Warning", "Winter is coming.", { id: "one" });
+          toasts?.addWarning("Warning", "Winter is coming.", { id: "one" });
         }}
       >
         Warning Toast (Maximum 1)
@@ -57,7 +57,7 @@ const Toaster = () => {
       <br /> <br />
       <Button
         onClick={() => {
-          toasts.addDanger("Ok fly boy", "Highway to the danger zone");
+          toasts?.addDanger("Ok fly boy", "Highway to the danger zone");
         }}
       >
         Danger Toast
@@ -65,7 +65,7 @@ const Toaster = () => {
       <br /> <br />
       <Button
         onClick={() => {
-          toasts.addDanger("Danger Will Robinson");
+          toasts?.addDanger("Danger Will Robinson");
         }}
       >
         Danger Toast No Content
@@ -77,7 +77,7 @@ export const ToastDemo = () => {
   const [position, setPosition] = useState("top");
 
   return (
-    <ToastProvider position={position}>
+    <ToastProvider position={position as unknown as undefined}>
       <label>Position</label>
       <select onChange={e => setPosition(e.target.value)}>
         <option value="top">top</option>

@@ -11,21 +11,22 @@ import {
 import { Button } from "../Button";
 import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
+import { fcStyles } from "../../../common/types";
 
 export interface Props {
   fixed?: boolean,
-  onCloseClick: () => void,
+  onCloseClick?: () => void,
   visible?: boolean,
   cancelText?: string,
   confirmText?: string,
   title?: string,
-  fcStyle? : 'danger' | 'warning' | 'info' | 'success',
-  icon? : string,
+  fcStyle?: fcStyles,
+  icon?: string,
   children: ReactNode,
 }
 export const CornerDialog = ({
   fixed = true,
-  onCloseClick = () => {},
+  onCloseClick = () => { },
   visible = true,
   cancelText = 'Cancel',
   confirmText = 'Learn More',
@@ -34,43 +35,44 @@ export const CornerDialog = ({
   fcStyle,
   icon,
   ...rest
-}:Props) => {
+}: Props) => {
 
- const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
- useEffect(() => {
-     if(!visible){
-        setTimeout(() => {
-            setShow(false);
-        }, 150)
-     }else{
-         setShow(true)
-     }
- }, [visible])
-      
+  useEffect(() => {
+    if (!visible) {
+      setTimeout(() => {
+        setShow(false);
+      }, 150)
+    } else {
+      setShow(true)
+    }
+  }, [visible])
+
   return (
-     show &&
-        <>  
+    <>
+      {show &&
         <CornerDialogStyled visible={visible} fcStyle={fcStyle} fixed={fixed} {...rest}>
-      <DialogTitle fcStyle={fcStyle}>
-        {title && title}
-        <CloseButton onClick={(e: any) => onCloseClick()} aria-label="Close">
-          <Icon icon="times" />
-        </CloseButton>
-      </DialogTitle>
-      <DialogContent>
-        {icon && <IconStyled fcStyle={fcStyle}>{icon}</IconStyled>}
-        <DialogText>{children}</DialogText>
-      </DialogContent>
-      <DialogFooter>
-        <Button buttonColor={color.mediumdark} onClick={() => onCloseClick()}>
-          {cancelText}
-        </Button>
-        <Button fcStyle={fcStyle} primary>
-          {confirmText}
-        </Button>
-      </DialogFooter>
-    </CornerDialogStyled>
+          <DialogTitle fcStyle={fcStyle}>
+            {title && title}
+            <CloseButton onClick={(e: any) => onCloseClick()} aria-label="Close">
+              <Icon icon="times" />
+            </CloseButton>
+          </DialogTitle>
+          <DialogContent>
+            {icon && <IconStyled fcStyle={fcStyle}>{icon}</IconStyled>}
+            <DialogText>{children}</DialogText>
+          </DialogContent>
+          <DialogFooter>
+            <Button buttonColor={color.mediumdark} onClick={() => onCloseClick()}>
+              {cancelText}
+            </Button>
+            <Button fcStyle={fcStyle} primary>
+              {confirmText}
+            </Button>
+          </DialogFooter>
+        </CornerDialogStyled>
+      }
     </>
   );
 };
