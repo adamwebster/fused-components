@@ -1,6 +1,12 @@
 const path = require("path");
 
 module.exports = {
+  presets: [{
+    name: 'storybook-addon-deps/preset',
+    options: {
+      exclude:  /^@babel/
+    }
+  }],
   addons: [
     {
     name: '@storybook/preset-create-react-app',
