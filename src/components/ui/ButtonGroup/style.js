@@ -13,5 +13,8 @@ export const ButtonGroupStyled = styled.div`
             border-radius: 0 5px 5px 0;
             border-left: 0px;
         }
+        &:active{
+            transform: scale(1)!important;
+        }
     }
 `
