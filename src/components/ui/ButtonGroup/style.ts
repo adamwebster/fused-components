@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
 import { StyledButton } from '../Button/style';
+import { Props } from './';
 
-const PrimaryButtonStyles = (props) => {
-    const styles = props.children.map(child => {
-        if (child.props.primary) {
+const PrimaryButtonStyles = (props: Props) => {
+    const styles = props.children.map((child: any) => {
+        if (child?.props.primary) {
             return (css`
                 &:not(:last-child){
                     margin-right:1px;
@@ -32,6 +33,6 @@ export const ButtonGroupStyled = styled.div`
         &:active{
             transform: scale(1)!important;
         }
-        ${PrimaryButtonStyles}
+        ${props => PrimaryButtonStyles(props as Props)}
     }
 `

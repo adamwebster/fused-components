@@ -2,8 +2,8 @@ import React, { ReactNode } from "react";
 import { Label, IconStyled, CheckInput } from "./style";
 import { Icon } from '../../icon/';
 
-export interface Props extends React.HTMLProps<HTMLInputElement>{
-  children: ReactNode,
+export interface Props extends React.HTMLProps<HTMLInputElement> {
+  children?: ReactNode,
   /** Set to true if the checkbox is checked */
   checked?: boolean,
   /** Set the checkbox to be in its error state */
@@ -11,10 +11,16 @@ export interface Props extends React.HTMLProps<HTMLInputElement>{
   /** Set the checkbox to be in its warning state */
   inWarning?: boolean,
 }
-export const Checkbox = ({ children, checked = false, inError = false, inWarning = false, ...checkboxProps }: Props) => {
+
+const CheckboxInput = ({checked = false, ...rest }) => {
+  return(
+  <CheckInput checked={checked} {...rest} />
+  )
+}
+export const Checkbox = ({ children, checked = false, inError = false, inWarning = false, ...rest }: Props) => {
   return (
     <label>
-      <CheckInput checked={checked} type="checkbox" {...checkboxProps} />
+      <CheckboxInput checked={checked} {...rest} />
       {checked ? <IconStyled inError={inError} inWarning={inWarning}> <Icon icon="checkbox-checked" /></IconStyled> : <IconStyled inError={inError} inWarning={inWarning}> <Icon icon="checkbox" /></IconStyled>}
       <Label inError={inError} inWarning={inWarning}>{children}</Label>
     </label>

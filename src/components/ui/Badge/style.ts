@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {color} from '../../../styles/styles';
+import {Props} from './'
 
 export const StyledBadge = styled.div`
   padding: 5px 10px;
@@ -7,7 +8,7 @@ export const StyledBadge = styled.div`
   width: fit-content;
 
   border: solid 1px
-    ${  props => {
+    ${(props:Props) => {
     switch (props.fcStyle) {
       case 'danger':
         return color.red

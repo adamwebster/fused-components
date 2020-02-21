@@ -114,11 +114,11 @@ export const AutoComplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon,
           {itemsToShow.map((item, index) => {
             return (
               <MenuItemStyled
-                tabIndex="0"
+                tabIndex={0}
                 onKeyPress={(e: { charCode: number; }) => handleItemKeyPress(e, item)}
                 onClick={() => setValue(item)}
                 key={item}
-                ref={(ref: HTMLElement) => {
+                ref={(ref: any) => {
                   itemRefs[index] = ref;
                 }}
               >

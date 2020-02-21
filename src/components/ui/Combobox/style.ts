@@ -62,5 +62,3 @@ export const CaretIcon = styled.div`
      margin-right: 5px;
  }
 `
-
-

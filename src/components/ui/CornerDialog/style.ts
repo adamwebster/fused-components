@@ -1,38 +1,39 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
+import { Props } from './';
 
-const colorValue = props => {
+const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case 'danger':
-        return color.red
-      case 'warning':
-        return color.yellow
-      case 'info':
-        return color.blue
-      case 'success':
-        return color.green
-      default:
-        return color.dark
+      return color.red
+    case 'warning':
+      return color.yellow
+    case 'info':
+      return color.blue
+    case 'success':
+      return color.green
+    default:
+      return color.dark
   }
 };
 
-const borderColor = props => {
-    switch (props.fcStyle) {
-      case 'danger':
-          return color.red
-        case 'warning':
-          return color.yellow
-        case 'info':
-          return color.blue
-        case 'success':
-          return color.green
-        default:
-          return color.border
-    }
-  };
+const borderColor = (props: Props) => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return color.red
+    case 'warning':
+      return color.yellow
+    case 'info':
+      return color.blue
+    case 'success':
+      return color.green
+    default:
+      return color.border
+  }
+};
 export const CornerDialogStyled = styled.div`
   max-width: 320px;
-  ${props =>
+  ${(props:Props) =>
     props.fixed
       ? css`
           position: fixed;
