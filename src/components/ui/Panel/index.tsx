@@ -19,14 +19,14 @@ export interface Props {
   /** Set the tile for the panel */
   title?: string,
   /** What should happen when the close button is clicked */
-  onCloseClick: (e: any) => void,
+  onCloseClick?: (e: any) => void,
   /** If the panel should have a fixed position */
   fixed?: boolean,
   /** If the panel is visible */
   visible?: boolean,
   children: any,
   /** The position of the panel */
-  position?: 'left' | 'right' | string,
+  position?: 'left' | 'right',
   /** If the overlay is shown */
   showOverlay?: boolean,
 }

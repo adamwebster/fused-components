@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
+import { fcStyles } from "../../../common/types";
+import {Props} from './';
 
-const colorValue = props => {
+const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case "danger":
       return color.red;
@@ -15,8 +17,12 @@ const colorValue = props => {
       return color.dark;
   }
 };
-
-export const StyledPanel = styled.div`
+export interface IStyledPanel extends React.HTMLProps<HTMLDivElement>{
+  fixed: boolean,
+  position: 'left' | 'right',
+  visible: boolean,
+}
+export const StyledPanel = styled.div<IStyledPanel>`
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
@@ -83,14 +89,19 @@ export const StyledPanel = styled.div`
   }
 `;
 
-export const DialogTitle = styled.h3`
+export interface IDialogTile extends React.HTMLProps<HTMLDivElement> {
+  fcStyle?: fcStyles,
+  children: any
+}
+
+export const DialogTitle = styled.h3<IDialogTile>`
   border-bottom: solid 1px ${color.border};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
   height: fit-content;
 
-  color: ${colorValue};
+  color: ${(props: IDialogTile) => colorValue(props)};
 `;
 
 export const DialogContent = styled.div`
