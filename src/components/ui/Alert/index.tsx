@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react";
 import { Icon } from "../../icon";
 import { StyledAlert, Title, AlertContent } from "./style";
+import { fcStyles } from "../../../common/types";
 
 export interface Props {
   /** Sets the style of the alert */
-  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
+  fcStyle?: fcStyles,
   /** Sets the title for the alert */
   title?: string,
   /** Sets the icon for the alert */

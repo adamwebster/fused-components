@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Label, IconStyled, CheckInput } from "./style";
 import { Icon } from '../../icon/';
 
-export interface Props {
+export interface Props extends React.HTMLProps<HTMLInputElement>{
   children: ReactNode,
   /** Set to true if the checkbox is checked */
   checked?: boolean,
@@ -10,10 +10,6 @@ export interface Props {
   inError?: boolean,
   /** Set the checkbox to be in its warning state */
   inWarning?: boolean,
-  /** What should happen when the radio changes its state.  
-   * At a minimum the property check should be set to true 
-  */
-  onChange?: () => void,
 }
 export const Checkbox = ({ children, checked = false, inError = false, inWarning = false, ...checkboxProps }: Props) => {
   return (

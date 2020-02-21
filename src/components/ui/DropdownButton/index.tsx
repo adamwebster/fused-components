@@ -5,6 +5,7 @@ import { DropdownMenu } from "./DropdownMenu";
 import { MenuItem } from "./MenuItem";
 import {DropdownMenuProvider} from "./DropdownMenuContext";
 import { Icon } from "../../icon";
+import { fcStyles } from "../../../common/types";
 
 export interface Props {
   /** Set the button to be primary */
@@ -12,7 +13,7 @@ export interface Props {
   /** Set the text for the button */
   label: string,
   /** Set the style of the button */
-  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
+  fcStyle?: fcStyles,
   children: any,
   /** Set what element the button should be rended as for example as="a" */
   as: any
