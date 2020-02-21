@@ -1,7 +1,9 @@
 import { Meta, IconGallery, IconItem } from '@storybook/addon-docs/blocks';
 import { Icon } from '../components/icon/';
 
-<Meta title="Fused Components Icons" />
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+<Meta title="Fused Components Icons" component={Icon} parameters={{ component: Icon }} />
 
 # Icons
 Icons can be used by import the Icon component with:
@@ -54,3 +56,6 @@ The following code is an example of using an IconGallery
   </IconItem> 
 </IconGallery>
 
+
+# Icon
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Icon} />

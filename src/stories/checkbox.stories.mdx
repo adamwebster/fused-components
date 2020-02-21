@@ -5,8 +5,9 @@ import { action, actions } from "@storybook/addon-actions";
 import variables from "../styles/variables";
 import { Checkbox } from "../components/ui/Checkbox/";
 import { CheckboxDemo } from "../demos/CheckboxDemo";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
-<Meta title="FusedComponents / Checkbox" component={Checkbox} />
+<Meta title="FusedComponents / Checkbox" component={Checkbox} parameters={{ component: Checkbox }} />
 
 # Checkbox
 
@@ -28,3 +29,8 @@ import { CheckboxDemo } from "../demos/CheckboxDemo";
 ## Properties
 
 <Props of={Checkbox} />
+
+
+# Checkbox dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Checkbox} />
+
