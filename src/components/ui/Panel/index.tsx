@@ -11,10 +11,11 @@ import {
 import { Button } from "../Button";
 import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
+import { fcStyles } from "../../../common/types";
 
 export interface Props {
   /** Set the style for the panel */
-  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
+  fcStyle?: fcStyles,
   /** Set the tile for the panel */
   title?: string,
   /** What should happen when the close button is clicked */
@@ -25,7 +26,7 @@ export interface Props {
   visible?: boolean,
   children: any,
   /** The position of the panel */
-  position?: 'left' | 'right',
+  position?: 'left' | 'right' | string,
   /** If the overlay is shown */
   showOverlay?: boolean,
 }
@@ -51,8 +52,11 @@ export const Panel = ({
     }
   }, [visible]);
 
+  if(!show){
+    return;
+  }
+
   return (
-    show && (
       <>
         {showOverlay && <Overlay onClick={(e: any) => onCloseClick(e)}></Overlay>}
           <StyledPanel position={position} visible={visible} fixed={fixed}>
@@ -79,5 +83,4 @@ export const Panel = ({
           </StyledPanel>
       </>
     )
-  );
 };

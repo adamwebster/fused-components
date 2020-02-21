@@ -1,15 +1,16 @@
 import React from 'react';
 
 export interface Options {
-    id: string,
+    id?: string,
+    duration?: number
 }
 
 export interface ToastObject {
   title: string,
-  content: string,
-  style: string,
-  icon: string,
-  options: Options,
+  content?: string,
+  style?: string,
+  icon?: string,
+  options?: Options,
 }
 
 export interface ToastInterface {

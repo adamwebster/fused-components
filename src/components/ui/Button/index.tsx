@@ -1,12 +1,13 @@
 import React from "react";
 import { StyledButton, StyledIcon } from "./style";
 import { Icon } from "../../icon";
+import { fcStyles } from "../../../common/types";
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLButtonElement>{
   /** Sets the button to be a primary button */
   primary?: boolean,
   /** Set the style of the button */
-  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
+  fcStyle?: fcStyles,
   /** Set the color of the button */
   buttonColor?: string,
   /** Set the button to be disabled */
@@ -20,8 +21,6 @@ export interface Props {
   /** Set the icon for the button */
   icon?: string,
   children?: any,
-  /** Set the click function for the button */
-  onClick?: (e: any) => void,
   /** What the button should be rendered as for example as="a" */
   as?: any
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { StyledInput, InputWrapper, IconWrapper } from "./style";
 import { Icon } from "../../icon";
 
-export interface Props {
+export interface Props extends React.HTMLProps<HTMLInputElement> {
   /** Set the aria label for the input */
   ariaLabel?: string,
   /** Set the icon for the input */
@@ -23,6 +23,8 @@ export interface Props {
   placeholder?: string,
   /** Whether the input should be disabled or not */
   disabled?: boolean,
+  /** The input type */
+  type?: string
 }
 export const Input = ({ ariaLabel, id, inError = false, inputRef, inWarning = false, icon, ...rest }:Props) => {
   return (

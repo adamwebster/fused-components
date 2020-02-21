@@ -19,6 +19,8 @@ export interface Props {
   inWarning?: boolean,
   /** The id for the input */
   id?: string,
+  /** The input type */
+  type?: string
 }
 export const InputField = ({ label, hint, required = false, validationMessage, inError = false, inWarning =false, id }:Props) => {
   return (
