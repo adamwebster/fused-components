@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback, ReactNode } from "react";
 import { StyledToast, LoadingBar, CloseButton } from "./styles";
 import { Icon } from '../../icon'
+import { fcStyles } from "../../../common/types";
 
 export interface Props {
   /** The title of the toast item */
   title? : string,
   /** The style for the toast */
-  fcStyle?: 'danger' | 'warning' | 'info' | 'success',
+  fcStyle?: fcStyles,
   children?: ReactNode,
   /** The icon for the toast */
   icon?: string,

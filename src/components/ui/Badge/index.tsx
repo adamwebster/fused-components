@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyledBadge } from './style';
+import { fcStyles } from '../../../common/types';
 
 export interface Props {
     /** Set the style of the badge */
-    fcStyle?: 'danger' | 'warning' | 'info' | 'success'
+    fcStyle?: fcStyles
 }
 export const Badge = ({ fcStyle = "info", ...rest }: Props) => {
     return (

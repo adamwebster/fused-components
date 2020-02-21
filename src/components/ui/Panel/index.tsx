@@ -33,13 +33,13 @@ export interface Props {
 export const Panel = ({
   fcStyle,
   title,
-  onCloseClick = (e) => {},
+  onCloseClick = (e) => { },
   fixed = true,
   visible = true,
   children,
   position = 'right',
   showOverlay = false,
-}:Props) => {
+}: Props) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -52,35 +52,33 @@ export const Panel = ({
     }
   }, [visible]);
 
-  if(!show){
-    return;
-  }
-
   return (
-      <>
-        {showOverlay && <Overlay onClick={(e: any) => onCloseClick(e)}></Overlay>}
-          <StyledPanel position={position} visible={visible} fixed={fixed}>
-            <DialogTitle fcStyle={fcStyle}>
-              {title && title}
-              <CloseButton onClick={(e: any) => onCloseClick(e)} aria-label="Close">
-                <Icon icon="times" />
-              </CloseButton>
-            </DialogTitle>
-            <DialogContent>
-              <DialogText>{children}</DialogText>
-            </DialogContent>
-            <DialogFooter>
-              <Button
-                buttonColor={color.mediumdark}
-                onClick={(e) => onCloseClick(e)}
-              >
-                Close
+    <>
+      {(show && showOverlay) && <Overlay onClick={(e: any) => onCloseClick(e)}></Overlay>}
+      {show &&
+        <StyledPanel position={position} visible={visible} fixed={fixed}>
+          <DialogTitle fcStyle={fcStyle}>
+            {title && title}
+            <CloseButton onClick={(e: any) => onCloseClick(e)} aria-label="Close">
+              <Icon icon="times" />
+            </CloseButton>
+          </DialogTitle>
+          <DialogContent>
+            <DialogText>{children}</DialogText>
+          </DialogContent>
+          <DialogFooter>
+            <Button
+              buttonColor={color.mediumdark}
+              onClick={(e) => onCloseClick(e)}
+            >
+              Close
               </Button>
-              <Button fcStyle={fcStyle} primary>
-                Save
+            <Button fcStyle={fcStyle} primary>
+              Save
               </Button>
-            </DialogFooter>
-          </StyledPanel>
-      </>
-    )
+          </DialogFooter>
+        </StyledPanel>
+      }
+    </>
+  )
 };
