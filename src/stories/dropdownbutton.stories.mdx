@@ -4,10 +4,11 @@ import { action, actions } from "@storybook/addon-actions";
 
 import { DropdownButton } from '../components/ui/DropdownButton/';
 import { MenuItem } from '../components/ui/DropdownButton/MenuItem';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
 import { Icon } from '../components/icon/';
 
-<Meta title="FusedComponents / Dropdown Button" component={DropdownButton} />
+<Meta title="FusedComponents / Dropdown Button" component={DropdownButton}  parameters={{ component: DropdownButton }}/>
 
 # Dropdown Button
 
@@ -64,3 +65,6 @@ The dropdown button allows multiple options to be visible in a drop down menu.  
 ## Properties of `<DropdownButton.MenuItem />`
 
 <Props of={MenuItem} />
+
+# Dropdown Button dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={DropdownButton} />

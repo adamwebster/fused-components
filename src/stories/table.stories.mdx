@@ -7,7 +7,10 @@ import {
   boolean,
 } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
 import { Table } from "../components/ui/Table/";
+
 import TableHeader from "../components/ui/Table/TableHeader";
 import TableCell from "../components/ui/Table/TableCell";
 
@@ -15,7 +18,7 @@ import { Button } from "../components/ui/Button/"
 import { SampleData, SampleDataFixed } from '../data/SampleTableData'
 import { color } from '../styles/styles';
 
-<Meta title="FusedComponents / Table" component={Table} />
+<Meta title="FusedComponents / Table" component={Table} parameters={{ component: Table }} />
 
 # Table
 
@@ -210,3 +213,6 @@ import { color } from '../styles/styles';
 
 ## Properties of `<Table.Cell/>`
 <Props of={TableCell} />
+
+# Table dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Table} />

@@ -5,8 +5,9 @@ import { action, actions } from "@storybook/addon-actions";
 import {CornerDialog} from '../components/ui/CornerDialog';
 import { CornerDialogDemo } from '../demos/CornerDialogDemo';
 import { Icon } from '../components/icon/';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
-<Meta title="FusedComponents / Corner Dialog" component={CornerDialog} />
+<Meta title="FusedComponents / Corner Dialog" component={CornerDialog}  parameters={{ component: CornerDialog }} />
 
 # Corner Dialog
 
@@ -43,3 +44,6 @@ If this button is disabled close the corner dialog that is displayed.
 ## Properties
 
 <Props of={CornerDialog} />
+
+# Corner Dialog dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={CornerDialog} />

@@ -6,7 +6,7 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 import { DialogDemo } from '../demos/DialogDemo';
 import { Dialog } from '../components/ui/Dialog/';
 
-<Meta title="FusedComponents / Dialog" component={Dialog}/>
+<Meta title="FusedComponents / Dialog" component={Dialog} parameters={{ component: Dialog }}/>
 
 # Dialog
 
@@ -33,3 +33,6 @@ import { Dialog } from '../components/ui/Dialog/';
 
 
 <Props of={Dialog} />
+
+# Alert dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Dialog} />

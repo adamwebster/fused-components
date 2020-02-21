@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { Button } from "../Button";
-import PropTypes from "prop-types";
 import { DropdownButtonWrapper, IconStyled, MenuDivider } from "./style";
 import { DropdownMenu } from "./DropdownMenu";
 import { MenuItem } from "./MenuItem";
@@ -88,10 +87,3 @@ export const DropdownButton = ({
 DropdownButton.Menu = DropdownMenu;
 DropdownButton.MenuItem = MenuItem;
 DropdownButton.Divider = MenuDivider;
-
-DropdownButton.propTypes = {
-  primary: PropTypes.bool,
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.object]),
-  /** Danger | Warning | Info | Success */
-  fcStyle: PropTypes.string
-}
