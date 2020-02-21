@@ -1,9 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { StyledButton } from '../Button/style';
 
 export const ButtonGroupStyled = styled.div`
-    button{
+    ${StyledButton}{
         margin: 0;
         border-radius: 0;
+
         &:first-child{
             border-radius: 5px 0 0 5px;
             border-right: 0px;
@@ -16,5 +18,17 @@ export const ButtonGroupStyled = styled.div`
         &:active{
             transform: scale(1)!important;
         }
+
+        ${props => props.children.map(child => {
+            if (child.props.primary) {
+                return (css`
+                    &:not(:last-child){
+                        margin-right:1px;
+                    }
+                    `
+                     )
+            }
+            return true;
+        })}
     }
 `
