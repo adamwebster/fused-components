@@ -1,5 +1,5 @@
 export { Alert } from './components/ui/Alert';
-export { AutoComplete } from './components/ui/AutoComplete';
+export { Autocomplete } from './components/ui/Autocomplete';
 export { Avatar } from './components/ui/Avatar';
 export { Badge } from './components/ui/Badge';
 export { Button } from './components/ui/Button';
