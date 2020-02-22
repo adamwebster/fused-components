@@ -23,7 +23,7 @@ export interface Props {
   /** If the item should be disabled */
   disabled?: boolean,
   /** The placeholder for the input */
-  placeholder?: String,
+  placeholder?: string,
 }
 
 export const Combobox = ({
@@ -118,7 +118,7 @@ export const Combobox = ({
   };
 
   return (
-    <ComboboxWrapper>
+    <ComboboxWrapper onClick={() => setMenuOpen(!menuOpen)}>
       <InputStyled
         value={filterValue}
         icon={inputIcon}
@@ -128,14 +128,13 @@ export const Combobox = ({
         inError={inError}
         inWarning={inWarning}
         disabled={disabled}
-        onClick={() => setMenuOpen(!menuOpen)}
       />
       {menuOpen && (
         <ComboboxMenu ref={menuRef}>
           {itemsToShow.map((item, index) => {
             return (
               <MenuItemStyled
-                tabIndex="0"
+                tabIndex={0}
                 onKeyPress={(e: any) => handleItemKeyPress(e, item)}
                 onClick={() => setValue(item)}
                 key={item}

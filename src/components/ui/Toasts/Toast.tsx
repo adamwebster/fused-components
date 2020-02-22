@@ -18,7 +18,7 @@ export const Toast = ({ title, fcStyle, children, icon, duration = 4 }:Props) =>
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
   const [timer, setTimer] =useState('0');
-  const [intervalFunc, setIntervalFunc] =useState();
+  const [intervalFunc, setIntervalFunc] =useState(0);
   
  const startTimer = useCallback((countNumber) => {
   var count = countNumber;
