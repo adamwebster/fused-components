@@ -2,12 +2,13 @@ import {useState} from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
 import { ToastProvider, useToast } from '../components/ui/Toasts/ToastProvider';
 import { Button } from '../components/ui/Button/';
 import {ToastDemo} from '../demos/ToastDemo';
 
-<Meta title="FusedComponents / Toasts" component={ToastProvider} />
+<Meta title="FusedComponents / Toasts" component={ToastProvider} parameters={{ component: ToastProvider }} />
 
 # Toast
 
@@ -99,3 +100,6 @@ The item the calls the toast must be set as a child of the `<ToastProvider />`
 ## Properties of `<ToastProvider />`
 
 <Props of={ToastProvider} />
+
+# Toasts dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={ToastProvider} />

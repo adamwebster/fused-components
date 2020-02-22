@@ -5,8 +5,9 @@ import { action, actions } from "@storybook/addon-actions";
 import {CornerDialog} from '../components/ui/CornerDialog';
 import { CornerDialogDemo } from '../demos/CornerDialogDemo';
 import { Icon } from '../components/icon/';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
-<Meta title="FusedComponents / Corner Dialog" component={CornerDialog} />
+<Meta title="FusedComponents / Corner Dialog" component={CornerDialog}  parameters={{ component: CornerDialog }} />
 
 # Corner Dialog
 
@@ -21,16 +22,16 @@ import { Icon } from '../components/icon/';
 
 ## Styles
 <Preview>
-    <CornerDialog fcStyle="danger" icon={<Icon icon="no-entry-circle" />} title="Corner Dialog" fixed={false}>
+    <CornerDialog fcStyle="danger" icon="no-entry-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
-        <CornerDialog fcStyle="warning" icon={<Icon icon="exclamation-circle" />} title="Corner Dialog" fixed={false}>
+        <CornerDialog fcStyle="warning" icon="exclamation-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
-         <CornerDialog fcStyle="info" icon={<Icon icon="question-circle" />} title="Corner Dialog" fixed={false}>
+         <CornerDialog fcStyle="info" icon="question-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
-        <CornerDialog fcStyle="success" icon={<Icon icon="check-circle" />} title="Corner Dialog" fixed={false}>
+        <CornerDialog fcStyle="success" icon="check-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
 </Preview>
@@ -43,3 +44,6 @@ If this button is disabled close the corner dialog that is displayed.
 ## Properties
 
 <Props of={CornerDialog} />
+
+# Corner Dialog dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={CornerDialog} />

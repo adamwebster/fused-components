@@ -2,7 +2,7 @@ import babel from 'rollup-plugin-babel'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 
-const extensions = ['.js', '.jsx']
+const extensions = ['.js', '.jsx', '.ts', '.tsx']
 
 const globals = {
   react: 'React',

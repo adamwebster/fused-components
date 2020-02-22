@@ -7,7 +7,7 @@ import { PanelDemo } from '../demos/PanelDemo';
 
 import { Panel } from '../components/ui/Panel/';
 
-<Meta title="FusedComponents / Panel" component={Panel}/>
+<Meta title="FusedComponents / Panel" component={Panel} parameters={{ component: Panel }}/>
 
 # Panel
 
@@ -21,3 +21,6 @@ import { Panel } from '../components/ui/Panel/';
    <PanelDemo />
    
 <Props of={Panel} />
+
+# Panel dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Panel} />

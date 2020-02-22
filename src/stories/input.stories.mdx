@@ -3,11 +3,12 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../components/icon/';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
 import { Input } from '../components/ui/Input/';
 import { InputField } from '../components/ui/InputField/';
 
-<Meta title="FusedComponents / Input" component={Input} />
+<Meta title="FusedComponents / Input" component={Input} parameters={{ component: Input }}/>
 
 # Input
 
@@ -16,21 +17,17 @@ import { InputField } from '../components/ui/InputField/';
 
 ## Not Active
 <Preview>
-    <Story name="default">
     <Input
      ariaLabel="Text Input" 
     />
-    </Story>
 </Preview>
 
 ## Disabled 
 <Preview>
-    <Story name="disabled">
     <Input
     ariaLabel="Disabled Input" 
     disabled
     />
-    </Story>
 </Preview>
 
 ## Error
@@ -55,19 +52,19 @@ import { InputField } from '../components/ui/InputField/';
 
 <Preview>
     <Input
-    icon={<Icon icon="search" />}
+    icon="search"
     ariaLabel="Icon Input"
     />
     <br/>
      <Input
      inError
-    icon={<Icon icon="times-circle" />}
+    icon="times-circle"
     ariaLabel="Icon Input"
     />
         <br/>
      <Input
      inWarning
-    icon={<Icon icon="exclamation-circle" />}
+    icon="exclamation-circle"
     ariaLabel="Icon Input"
     />
 </Preview>
@@ -89,3 +86,6 @@ import { InputField } from '../components/ui/InputField/';
         validationMessage="Invalid entry."
      />
 </Preview>
+
+# Input dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Input} />
