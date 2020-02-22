@@ -5,3 +5,5 @@ src
 storybook-static
 
 rollup.config.js
+
+.npmrc
