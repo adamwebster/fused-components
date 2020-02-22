@@ -20,7 +20,7 @@ const sourceMap = true;
 
 export default {
   input: {
-    index: './src/components.js'
+    index: './src/components.ts'
   },
   preserveModules: true,
   treeshake: false,
