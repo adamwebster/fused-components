@@ -13,11 +13,6 @@
     "react-dom": "^16.12.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build-scripts": "react-scripts build",
-    "build": "rollup -c ./rollup.config.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "storybook-docs": "start-storybook -p 9009 -s public --docs",
     "build-storybook": "build-storybook -s public",
@@ -58,6 +53,7 @@
     "@storybook/addon-viewport": "^5.3.13",
     "@storybook/addons": "^5.3.13",
     "@storybook/preset-create-react-app": "^1.5.2",
+    "@storybook/preset-typescript": "^1.2.0",
     "@storybook/react": "^5.3.13",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -71,10 +67,10 @@
     "polished": "^3.4.4",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
-    "react-scripts": "3.3.0",
     "rollup": "^1.31.0",
     "rollup-plugin-babel": "^4.3.3",
     "storybook-addon-deps": "^1.0.11",
+    "ts-loader": "^6.2.1",
     "typescript": "^3.7.5"
   },
   "babel": {

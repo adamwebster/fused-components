@@ -10,7 +10,11 @@ export const InputStyled = styled(Input)`
   padding-right: 35px;
 `
 
-export const ComboboxMenu = styled.ul`
+interface IComboboxMenu extends React.HTMLProps<HTMLElement>{
+  ref: any
+}
+
+export const ComboboxMenu = styled.ul<IComboboxMenu>`
   position: absolute;
   top: 34px;
   background-color: #fff;
@@ -25,7 +29,11 @@ export const ComboboxMenu = styled.ul`
   border-radius: 5px;
 `;
 
-export const MenuItemStyled = styled.li`
+interface IMenuItemStyled extends React.HTMLProps<HTMLElement>{
+  ref?: any
+}
+
+export const MenuItemStyled = styled.li<IMenuItemStyled>`
     width: 100%;
     padding: 10px;
     box-sizing:border-box;

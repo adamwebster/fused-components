@@ -15,7 +15,7 @@ module.exports = {
   }],
   addons: [
     {
-    name: '@storybook/preset-create-react-app',
+    name: '@storybook/preset-typescript',
     options: {
       tsDocgenLoaderOptions: {
         tsconfigPath: path.resolve(__dirname, "../tsconfig.json"),
@@ -32,4 +32,20 @@ module.exports = {
     'storybook-addon-deps'
   ],
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.js'],
+  webpackFinal: async config => {
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      use: [
+        {
+          loader: require.resolve('ts-loader'),
+        },
+        // Optional
+        {
+          loader: require.resolve('react-docgen-typescript-loader'),
+        },
+      ],
+    });
+    config.resolve.extensions.push('.ts', '.tsx');
+    return config;
+  },
 };
