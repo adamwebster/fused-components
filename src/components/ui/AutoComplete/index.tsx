@@ -24,7 +24,7 @@ export interface Props {
   placeholder?: string,
 }
 
-export const AutoComplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon, inError = false, inWarning = false, disabled = false, placeholder }: Props) => {
+export const Autocomplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon, inError = false, inWarning = false, disabled = false, placeholder }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [filterValue, setFilterValue] = useState("");
   const [itemSelected, setItemSelected] = useState("");
