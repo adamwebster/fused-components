@@ -7,7 +7,10 @@ import {
   boolean,
 } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
 import { Table } from "../components/ui/Table/";
+
 import TableHeader from "../components/ui/Table/TableHeader";
 import TableCell from "../components/ui/Table/TableCell";
 
@@ -15,7 +18,7 @@ import { Button } from "../components/ui/Button/"
 import { SampleData, SampleDataFixed } from '../data/SampleTableData'
 import { color } from '../styles/styles';
 
-<Meta title="FusedComponents / Table" component={Table} />
+<Meta title="FusedComponents / Table" component={Table} parameters={{ component: Table }} />
 
 # Table
 
@@ -24,7 +27,6 @@ import { color } from '../styles/styles';
 ## Default
 
 <Preview>
-  <Story name="table">
     <Table>
       <Table.Header>
         <Table.Row>
@@ -75,11 +77,9 @@ import { color } from '../styles/styles';
         </Table.Row>
       </Table.Body>
     </Table>
-  </Story>
 </Preview>
 
 ## Zebra Stripping
-
 <Preview>
     <Table
       zebraStripping
@@ -213,3 +213,6 @@ import { color } from '../styles/styles';
 
 ## Properties of `<Table.Cell/>`
 <Props of={TableCell} />
+
+# Table dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Table} />

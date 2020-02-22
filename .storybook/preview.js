@@ -13,7 +13,7 @@ library.add(fab, fas, far);
 
 addParameters({
   docs: { page: DocsPage },
-  dependencies: { withStoriesOnly: true, hideEmpty: true }
+  dependencies: { withStoriesOnly: true, hideEmpty: false }
 });
 
 addDecorator(withA11y)

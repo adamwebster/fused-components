@@ -4,8 +4,9 @@ import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import variables from '../styles/variables';
 import { Badge } from '../components/ui/Badge/';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
-<Meta title="FusedComponents / Badge" component={Badge} />
+<Meta title="FusedComponents / Badge" component={Badge} parameters={{ component: Badge }} />
 
 # Badge
 
@@ -24,3 +25,8 @@ import { Badge } from '../components/ui/Badge/';
 ## Properties
 
 <Props of={Badge} />
+
+
+
+# Badge dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Badge} />

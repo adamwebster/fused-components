@@ -3,20 +3,24 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../components/icon/';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
 import { Combobox } from '../components/ui/Combobox/';
 
-<Meta title="FusedComponents / Combobox" component={Combobox} />
+<Meta title="FusedComponents / Combobox" component={Combobox}  parameters={{ component: Combobox }}/>
 
 # Combobox
  
 
 ## Default
 <Combobox
-    inputIcon={<Icon icon="filter" />}
+    inputIcon="filter"
     placeholder="Type to search for a fruit"
  />
 
 ## Properties
 
 <Props of={Combobox} />
+
+# Combobox dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Combobox} />
