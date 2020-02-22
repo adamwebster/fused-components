@@ -16,13 +16,13 @@ export interface Props {
   /** Sets if the dialog has a box shadow */
   boxShadow?: boolean,
   /** Sets the tile of the dialog */
-  title: string,
+  title?: string,
   /** Sets if the dialog should be visible */
-  visible: boolean,
+  visible?: boolean,
   /** Set the text for the confirm button */
   confirmText?: string,
   /** Sets what should happen when the close button is clicked */
-  onCloseClick: () => void;
+  onCloseClick?: () => void;
   /** Sets if the dialog should have a fixed position */
   fixed?: boolean,
   /** Set the style for the Dialog */

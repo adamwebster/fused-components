@@ -24,7 +24,7 @@ export interface Props {
 }
 export const InputField = ({ label, hint, required = false, validationMessage, inError = false, inWarning =false, id }:Props) => {
   return (
-    <>
+    <> 
       <Label htmlFor={id}>
         {required && <RequiredMark>* </RequiredMark>}
         {label}

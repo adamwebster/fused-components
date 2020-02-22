@@ -1,9 +1,8 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { Props } from './';
-import { ReactHTMLElement } from "react";
 import { fcStyles } from "../../../common/types";
-const colorValue: any = (props: Props) => {
+const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case 'danger':
       return color.red
@@ -39,7 +38,7 @@ export interface IStyledDialog extends React.HTMLProps<HTMLDivElement>{
   boxShadow?: boolean,
 }
 
-export const StyledDialog = styled.div`
+export const StyledDialog = styled.div<IStyledDialog>`
   border-radius: 5px;
   background-color: ${color.lightest};
   border: solid 1px ${borderColor};
