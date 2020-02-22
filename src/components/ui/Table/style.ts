@@ -2,7 +2,11 @@ import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { darken } from 'polished';
 
-export const StyledTable = styled.table`
+interface IStyledTable {
+  bgColor?: string,
+  fgColor?: string,
+}
+export const StyledTable = styled.table<IStyledTable>`
   display: flex;
   flex: 1 1;
   flex-flow: column;
@@ -20,7 +24,16 @@ export const StyledTable = styled.table`
     `}
 `;
 
-export const TableHeaderStyled = styled.thead`
+interface ITableHeaderStyled {
+  showBottomBorder?: boolean,
+  bgColor?: string,
+  fgColor?: string,
+  freezeFirstColumn?: boolean,
+  frozenColumnWidth?: string,
+  padding?: string,
+}
+
+export const TableHeaderStyled = styled.thead<ITableHeaderStyled>`
   display: flex;
   flex: 1 1;
   font-weight: bold;
@@ -57,7 +70,13 @@ ${props =>
     `}
 `;
 
-export const TableRowStyled = styled.tr`
+interface ITableRowStyled {
+  zebraStripping?: boolean,
+  zebraStripeColor?: string,
+  bgColor?: string,
+}
+
+export const TableRowStyled = styled.tr<ITableRowStyled>`
   display: flex;
   flex: 1 1;
   ${props =>
@@ -68,11 +87,20 @@ export const TableRowStyled = styled.tr`
       }
     `}
     ${props => props.bgColor && css`
-      background-color: purple;
+      background-color: ${props.bgColor};
     `}
 `;
 
-export const TableCellStyled = styled.td`
+interface ITableCellStyled {
+    width?: string,
+    padding?: string,
+    bgColor?: string,
+    fgColor?: string,
+    frozenColumnBGColor?: string,
+    frozenColumnFGColor?: string,
+    freezeFirstColumn?: boolean,
+}
+export const TableCellStyled = styled.td<ITableCellStyled>`
   display: flex;
   flex: 1 1;
   ${props =>
@@ -101,7 +129,15 @@ export const TableCellStyled = styled.td`
     `}
 `;
 
-export const TableBodyStyled = styled.tbody`
+interface ITableBodyStyled {
+  tableBodyBGColor?: string,
+  tableBodyTextColor?: string,
+  bgColor?: string,
+  freezeFirstColumn?: boolean,
+  frozenColumnWidth?: string,
+  padding?: string
+}
+export const TableBodyStyled = styled.tbody<ITableBodyStyled>`
   display: flex;
   flex: 1 1;
   flex-flow: column;

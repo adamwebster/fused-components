@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
 
-export const DropdownButtonWrapper = styled.div`
+interface IDropdownButtonWrapper {
+    renderAs?: string,
+}
+export const DropdownButtonWrapper = styled.div<IDropdownButtonWrapper>`
    display:inline-block;
    ${props => props.renderAs === 'a' && css`
    svg{
@@ -9,7 +12,11 @@ export const DropdownButtonWrapper = styled.div`
    }
    `}
 `
-export const DropdownMenuStyled = styled.ul`
+
+interface IDropdownMenuStyled {
+    menuOpen?: boolean,
+}
+export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
     position:absolute;
     background-color: #fff;
     border: solid 1px ${color.border};
@@ -42,6 +49,7 @@ export const DropdownMenuStyled = styled.ul`
 
 `
 
+
 export const MenuItemStyled = styled.li`
     width: 100%;
     padding: 10px;
@@ -60,7 +68,11 @@ export const MenuItemStyled = styled.li`
         margin-right: 5px;
     }
 `
-export const IconStyled = styled.span`
+
+interface IIconStyled {
+    renderAs: string,
+}
+export const IconStyled = styled.span<IIconStyled>`
     width: 16px;
     display:block;
     float: right;

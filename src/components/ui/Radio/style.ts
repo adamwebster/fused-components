@@ -32,7 +32,8 @@ export const IconStyled = styled.span`
 `
 
 interface IRadioInput extends React.HTMLProps<HTMLInputElement>{
-    checked: boolean;
+    checked: boolean,
+    onChange: (e: any) => void,
 } 
 export const RadioInput = styled.input<IRadioInput>`
 position: absolute;

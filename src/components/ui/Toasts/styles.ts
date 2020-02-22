@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import { Alert } from "../Alert/";
+import { Alert } from "../Alert";
 import { color } from "../../../styles/styles";
 
-export const ToastContainer = styled.div`
+interface IToastContainer {
+  position?: 'top' | 'bottom' | 'top-right' | 'bottom-right',
+}
+export const ToastContainer = styled.div<IToastContainer>`
   position: fixed;
   ${props => {
     let position = "";
@@ -47,7 +50,11 @@ export const ToastContainer = styled.div`
   z-index:99;
 `;
 
-export const StyledToast = styled(Alert)`
+interface IStyledToast  extends React.HTMLProps<HTMLElement> {
+  removing: boolean,
+  timer: string,
+}
+export const StyledToast = styled(Alert)<IStyledToast>`
   margin-bottom: 10px;
   transition: all;
   position: relative;
@@ -81,7 +88,10 @@ export const StyledToast = styled(Alert)`
 
 `;
 
-export const LoadingBar = styled.div`
+interface ILoadingBar {
+  timer: string,
+}
+export const LoadingBar = styled.div<ILoadingBar>`
   position: relative;
   height: 5px;
   transition: all;

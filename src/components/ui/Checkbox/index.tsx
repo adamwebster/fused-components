@@ -5,11 +5,13 @@ import { Icon } from "../../icon/";
 export interface Props extends React.HTMLProps<HTMLInputElement> {
   children?: ReactNode;
   /** Set to true if the checkbox is checked */
-  checked?: boolean;
+  checked?: boolean,
   /** Set the checkbox to be in its error state */
-  inError?: boolean;
+  inError?: boolean,
   /** Set the checkbox to be in its warning state */
-  inWarning?: boolean;
+  inWarning?: boolean,
+  /** The on change function for the input */
+  onChange?: () => void,
 }
 
 export const Checkbox = ({
@@ -17,11 +19,12 @@ export const Checkbox = ({
   checked = false,
   inError = false,
   inWarning = false,
+  onChange = () => {},
   ...rest
 }: Props) => {
   return (
     <label>
-      <CheckInput type="checkbox" checked={checked} />
+      <CheckInput type="checkbox" checked={checked} onChange={() => onChange()}  />
       {checked ? (
         <IconStyled inError={inError} inWarning={inWarning}>
           {" "}
