@@ -31,7 +31,8 @@ export const IconStyled = styled.span`
 `
 
 interface ICheckboxInput extends React.HTMLProps<HTMLInputElement>{
-    checked: boolean;
+    checked: boolean,
+    onChange: () => void,
 } 
 export const CheckInput = styled.input<ICheckboxInput>`
     position: absolute;

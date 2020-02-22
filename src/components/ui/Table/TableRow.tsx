@@ -17,10 +17,8 @@ const TableRow = ({ children, bgColor, fgColor, ...rest }:Props) => {
     <TableContextContextConsumer>
       {tableContext => tableContext && (
         <TableRowStyled
-          freezeFirstColumn={tableContext.freezeFirstColumn}
           zebraStripping={tableContext.zebraStripping}
           bgColor={bgColor}
-          fgColor={fgColor}
           zebraStripeColor={tableContext.zebraStripeColor}
         >
           {children}
