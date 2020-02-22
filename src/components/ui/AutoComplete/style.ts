@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { color } from '../../../styles/styles';
 
-export const AutoCompleteWrapper = styled.div`
+export const AutocompleteWrapper = styled.div`
   position: relative;
 `;
 
-export const AutoCompleteMenu = styled.ul`
+export const AutocompleteMenu = styled.ul`
   position: absolute;
   top: 34px;
   background-color: #fff;

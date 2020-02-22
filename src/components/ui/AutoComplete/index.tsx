@@ -3,8 +3,8 @@ import { Input } from "../Input";
 import { Icon } from "../../icon";
 
 import {
-  AutoCompleteWrapper,
-  AutoCompleteMenu,
+  AutocompleteWrapper,
+  AutocompleteMenu,
   MenuItemStyled,
   ItemIcon
 } from "./style";
@@ -98,7 +98,7 @@ export const Autocomplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon,
   };
 
   return (
-    <AutoCompleteWrapper>
+    <AutocompleteWrapper>
       <Input
         value={filterValue}
         icon={inputIcon}
@@ -110,7 +110,7 @@ export const Autocomplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon,
         disabled={disabled}
       />
       {menuOpen && (
-        <AutoCompleteMenu>
+        <AutocompleteMenu>
           {itemsToShow.map((item, index) => {
             return (
               <MenuItemStyled
@@ -134,8 +134,8 @@ export const Autocomplete = ({ items = ["Apple", "Orange", "Banana"], inputIcon,
           {itemsToShow.length === 0 && (
             <MenuItemStyled>Nothing found</MenuItemStyled>
           )}
-        </AutoCompleteMenu>
+        </AutocompleteMenu>
       )}
-    </AutoCompleteWrapper>
+    </AutocompleteWrapper>
   );
 };
