@@ -6,9 +6,12 @@ export interface Props {
   borderRadius?: string,
   /** Sets the card to have a box shadow */
   boxShadow?: boolean,
+  children?: any,
 }
-export const Card = ({ borderRadius = '5px', boxShadow = false, ...rest }:Props) => {
+export const Card = ({ borderRadius = '5px', boxShadow = false, children, ...rest }:Props) => {
   return (
-    <StyledCard borderRadius={borderRadius} boxShadow={boxShadow} {...rest} />
+    <StyledCard borderRadius={borderRadius} boxShadow={boxShadow} {...rest}>
+      {children}
+    </StyledCard>
   )
 }
