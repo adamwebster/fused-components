@@ -1,46 +1,47 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
-import { Props } from './';
+import { Props } from "./";
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
-    case 'danger':
-      return color.red
-    case 'warning':
-      return color.yellow
-    case 'info':
-      return color.blue
-    case 'success':
-      return color.green
+    case "danger":
+      return color.red;
+    case "warning":
+      return color.yellow;
+    case "info":
+      return color.blue;
+    case "success":
+      return color.green;
     default:
-      return color.dark
+      return color.dark;
   }
 };
 
 const borderColor = (props: Props) => {
   switch (props.fcStyle) {
-    case 'danger':
-      return color.red
-    case 'warning':
-      return color.yellow
-    case 'info':
-      return color.blue
-    case 'success':
-      return color.green
+    case "danger":
+      return color.red;
+    case "warning":
+      return color.yellow;
+    case "info":
+      return color.blue;
+    case "success":
+      return color.green;
     default:
-      return color.border
+      return color.border;
   }
 };
 export const CornerDialogStyled = styled.div`
   max-width: 320px;
-  ${(props:Props) =>
+  ${(props: Props) =>
     props.fixed
       ? css`
           position: fixed;
           bottom: 25px;
           right: 25px;
-          animation: ${!props.visible ? 'hide 0.2s ease-in-out' : 'bounceup 0.5s ease-in-out'};
-
+          animation: ${!props.visible
+            ? "hide 0.2s ease-in-out"
+            : "bounceup 0.5s ease-in-out"};
         `
       : css`
           position: relative;
@@ -66,16 +67,15 @@ export const CornerDialogStyled = styled.div`
       bottom: 25px;
     }
   }
- 
+
   @keyframes hide {
     0% {
       opacity: 1;
     }
     100% {
-        opacity: 0;
+      opacity: 0;
     }
   }
-
 `;
 
 export const DialogTitle = styled.h3`
@@ -101,8 +101,9 @@ export const DialogFooter = styled.div`
   text-align: right;
   button {
     display: inline-block;
-    &:last-child {
-      margin-left: 10px;
+    width: calc(50% - 5px);
+    &:first-child{
+      margin-right: 10px;
     }
   }
 `;
@@ -133,6 +134,6 @@ export const IconStyled = styled.div`
   display: block;
   svg {
     width: 32px;
-    color: ${colorValue}
+    color: ${colorValue};
   }
 `;
