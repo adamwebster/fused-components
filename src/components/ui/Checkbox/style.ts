@@ -30,7 +30,10 @@ export const IconStyled = styled.span`
     `}
 `
 
-export const CheckInput = styled.input.attrs({ type: 'checkbox' })`
+interface ICheckboxInput extends React.HTMLProps<HTMLInputElement>{
+    checked: boolean;
+} 
+export const CheckInput = styled.input<ICheckboxInput>`
     position: absolute;
     opacity: 0;
     cursor: pointer;

@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
 
-export const StyledInput = styled.input`
+interface ICheckboxInput extends React.HTMLProps<HTMLInputElement>{
+  icon?: string,
+  inError?: boolean,
+  inWarning?: boolean,
+}
+export const StyledInput = styled.input<ICheckboxInput>`
 width: 100%;
 height:34px;
 box-sizing:border-box;
@@ -48,7 +53,13 @@ export const InputWrapper = styled.div`
 
 `
 
-export const IconWrapper = styled.span`
+interface IIconWrapper {
+  inError: boolean,
+  inWarning: boolean,
+
+}
+
+export const IconWrapper = styled.span<IIconWrapper>`
 position: absolute;
 left: 10px;
 top: 7px;
