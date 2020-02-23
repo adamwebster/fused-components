@@ -31,6 +31,7 @@ export const ToastProvider = ({ children, position = 'top' }: Props) => {
             toAdd.splice(item, 1);
           }
         });
+        setToasts(toAdd);
       }
     }
 

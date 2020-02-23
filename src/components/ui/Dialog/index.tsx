@@ -14,24 +14,24 @@ import { fcStyles } from "../../../common/types";
 
 export interface Props {
   /** Sets if the dialog has a box shadow */
-  boxShadow?: boolean,
+  boxShadow?: boolean;
   /** Sets the tile of the dialog */
-  title?: string,
+  title?: string;
   /** Sets if the dialog should be visible */
-  visible?: boolean,
+  visible?: boolean;
   /** Set the text for the confirm button */
-  confirmText?: string,
+  confirmText?: string;
   /** Sets what should happen when the close button is clicked */
   onCloseClick?: () => void;
   /** Sets if the dialog should have a fixed position */
-  fixed?: boolean,
+  fixed?: boolean;
   /** Set the style for the Dialog */
-  fcStyle?: fcStyles,
+  fcStyle?: fcStyles;
   /** Set to show or not show the overlay */
-  showOverlay?: boolean,
+  showOverlay?: boolean;
   /** Set the text for the cancel button */
-  cancelText?: string,
-  children?: any,
+  cancelText?: string;
+  children?: any;
 }
 export const Dialog = ({
   boxShadow = true,
