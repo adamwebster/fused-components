@@ -30,12 +30,12 @@ export const FormField = ({
 }: Props) => {
   return (
     <>
-      {label && (
+      {label && 
         <Label htmlFor={htmlFor}>
           {required && <RequiredMark>* </RequiredMark>}
           {label}
         </Label>
-      )}
+      }
       <InputWrapper>{children}</InputWrapper>
 
       {hint && <HintText>{hint}</HintText>}
