@@ -3,22 +3,26 @@ import { Alert } from "../components/ui/Alert";
 import { FCThemeProvider } from "../theming/FCTheme";
 
 export const AlertDemo = () => {
+    const AlertText = "This is some text that will be shown with the alert"
   return (
     <FCThemeProvider value={{ theme: "dark" }}>
-      <Alert icon="no-entry-circle" title="Themed Danger" fcStyle="danger">
-        Demo
+      <Alert icon="no-entry-circle" title="Dark Mode Danger" fcStyle="danger">
+        {AlertText}
       </Alert>
       <br /><br />
-      <Alert  icon="check-circle"  title="Themed Danger" fcStyle="success">
-        Demo
+      <Alert  icon="check-circle"  title="Dark Mode Success" fcStyle="success">
+      {AlertText}
+
       </Alert>
       <br /><br />
-      <Alert  icon="exclamation-circle"  title="Themed Danger" fcStyle="warning">
-        Demo
+      <Alert  icon="exclamation-circle"  title="Dark Mode Warning" fcStyle="warning">
+      {AlertText}
+
       </Alert>
       <br /><br />
-      <Alert icon="question-circle" title="Themed Danger" fcStyle="info">
-        Demo
+      <Alert icon="question-circle" title="Dark Mode Info" fcStyle="info">
+      {AlertText}
+
       </Alert>
     </FCThemeProvider>
   );
