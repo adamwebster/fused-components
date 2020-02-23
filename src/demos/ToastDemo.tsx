@@ -12,7 +12,7 @@ const ToastLoad = () => {
     }, 1000)
 
     setTimeout(() => {
-      toasts?.addInfo('test2');
+      toasts?.addInfo('test2', `Message with <strong>HTML in it</strong>`);
     }, 3000)
 
   }, [])
