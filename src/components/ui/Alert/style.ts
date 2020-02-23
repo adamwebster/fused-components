@@ -3,6 +3,9 @@ import { color } from '../../../styles/styles';
 import { Props } from './'
 
 export const StyledAlert = styled.div`
+${props => (props.theme === 'dark') && css`
+  background-color: black;
+` }
   background-color: #fff;
   border-style: solid;
   border-width: 5px 1px 1px 1px;
