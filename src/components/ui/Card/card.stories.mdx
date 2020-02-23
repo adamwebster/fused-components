@@ -1,0 +1,25 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Card } from './';
+
+<Meta title="FusedComponents / Card" component={Card} parameters={{ component: Card }} />
+
+# Card
+
+## An Card component 
+
+## Default
+<Preview>
+    <Card boxShadow borderRadius="5px">Card</Card>
+</Preview>
+
+## Properties
+
+<Props of={Card} />
+
+# Card dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Card} />

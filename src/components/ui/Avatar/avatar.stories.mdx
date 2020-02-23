@@ -1,0 +1,40 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Avatar } from './';
+
+<Meta title="FusedComponents / Avatar" component={Avatar} parameters={{ component: Avatar }} />
+
+# Avatar
+
+## Sizes 
+<Preview>
+        <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="tiny" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="small" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="medium" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="large" />
+</Preview>
+
+## Border Radius Examples
+You can set the border radius of the component to have different appearances.
+<Preview>
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="large" borderRadius="rounded" />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="large" borderRadius="round"  />
+    <Avatar  image={'https://adamwebster.me/static/avatar.jpg'} size="large" borderRadius="square"  />
+</Preview>
+
+## Box Shadow
+<Preview>
+    <Avatar boxShadow image={'https://adamwebster.me/static/avatar.jpg'} size="large" />
+</Preview>
+
+## Properties
+
+<Props of={Avatar} />
+
+
+# Table dependents + dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Avatar} />

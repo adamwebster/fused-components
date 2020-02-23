@@ -1,0 +1,30 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Heading } from './';
+
+<Meta title="FusedComponents Typography / Heading" component={Heading}  parameters={{ component: Heading }} />
+
+# Heading
+
+## Default
+ <Preview>
+    <Heading>Heading 1</Heading>
+    <Heading as="h2">Heading 2</Heading>
+    <Heading as="h3">Heading 3</Heading>
+    <Heading as="h4">Heading 4</Heading>
+    <Heading as="h5">Heading 5</Heading>
+    <Heading as="h6">Heading 6</Heading>
+ </Preview>
+
+## Default
+
+## Properties
+
+<Props of={Heading} />
+
+# Heading dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Heading} />

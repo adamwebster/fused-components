@@ -1,0 +1,26 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Label } from './';
+
+<Meta title="FusedComponents / Label" component={Label} parameters={{ component: Label }}/>
+
+# Label
+
+## An Label component
+ 
+
+## Default
+<Preview>
+    <Label>Label</Label>
+</Preview>
+
+## Properties
+
+<Props of={Label} />
+
+# Label dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Label} />

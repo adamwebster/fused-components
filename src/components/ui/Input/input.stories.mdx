@@ -1,0 +1,91 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { Icon } from '../../icon/';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Input } from './';
+import { InputField } from '../InputField/';
+
+<Meta title="FusedComponents / Input" component={Input} parameters={{ component: Input }}/>
+
+# Input
+
+## An input component
+ 
+
+## Not Active
+<Preview>
+    <Input
+     ariaLabel="Text Input" 
+    />
+</Preview>
+
+## Disabled 
+<Preview>
+    <Input
+    ariaLabel="Disabled Input" 
+    disabled
+    />
+</Preview>
+
+## Error
+
+<Preview>
+    <Input
+    inError
+    ariaLabel="Error Input"
+    />
+</Preview>
+
+## Warning
+
+<Preview>
+    <Input
+    inWarning
+    ariaLabel="Warning Input"
+    />
+</Preview>
+
+## Icon
+
+<Preview>
+    <Input
+    icon="search"
+    ariaLabel="Icon Input"
+    />
+    <br/>
+     <Input
+     inError
+    icon="times-circle"
+    ariaLabel="Icon Input"
+    />
+        <br/>
+     <Input
+     inWarning
+    icon="exclamation-circle"
+    ariaLabel="Icon Input"
+    />
+</Preview>
+
+## Properties
+
+<Props of={Input} />
+
+
+## InputField
+
+<Preview>
+    <InputField
+        id="TestInput"
+        label="Input Field"
+        hint="Type something into the input above"
+        required
+        inError
+        validationMessage="Invalid entry."
+     />
+</Preview>
+
+# Input dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Input} />
