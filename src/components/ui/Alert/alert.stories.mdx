@@ -4,6 +4,7 @@ import { withKnobs, select, text, boolean } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
 import variables from "../../../styles/variables";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { AlertDemo } from "../../../demos/AlertDemo";
 
 import { Alert } from "./";
 import { Icon } from '../../icon/';
@@ -53,3 +54,6 @@ import { Icon } from '../../icon/';
 
 # Alert dependents & dependencies
 <DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Alert} />
+
+
+<AlertDemo />
