@@ -1,0 +1,46 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Toggle } from './';
+import { ToggleDemo } from '../../../demos/ToggleDemo';
+let test = "test";
+
+
+<Meta title="FusedComponents / Toggle" component={Toggle} parameters={{ component: Toggle }}/>
+
+# Toggle
+
+## An toggle that has an active and not active state
+ 
+To change the state of the toggle update the active property to set to true or false.
+
+## Default
+<Preview>
+    <Toggle/>
+    <Toggle active />
+</Preview>
+
+
+## With Labels
+<Preview>
+    <Toggle showLabels/>
+    <Toggle showLabels active />
+</Preview>
+
+
+
+## Demo
+
+Click the toggle below to show the interaction
+<Preview withSource={'none'}>
+<ToggleDemo  />
+</Preview>
+
+## Properties
+
+<Props of={Toggle} />
+
+# Toggle dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Toggle} />

@@ -1,0 +1,4 @@
+- https://evergreen.segment.com/components/
+- https://material-ui.com
+- https://react.semantic-ui.com
+- https://github.com/jossmac/react-toast-notifications

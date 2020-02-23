@@ -1,0 +1,70 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+
+import { DropdownButton } from './';
+import { MenuItem } from './MenuItem';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Icon } from '../../icon/';
+
+<Meta title="FusedComponents / Dropdown Button" component={DropdownButton}  parameters={{ component: DropdownButton }}/>
+
+# Dropdown Button
+
+The dropdown button allows multiple options to be visible in a drop down menu.  To close the menu the user would click on the button again or anywhere outside of the button.
+<p>
+<DropdownButton
+    label="Dropdown Button"
+    >
+    <DropdownButton.Menu>
+        <DropdownButton.MenuItem onClick={() => alert('clicked')} icon="check-circle">
+            Menu Item
+        </DropdownButton.MenuItem>
+        <DropdownButton.MenuItem icon="search">
+            Menu Item
+        </DropdownButton.MenuItem>
+        <DropdownButton.Divider />
+        <DropdownButton.MenuItem icon="user">
+            Menu Item
+        </DropdownButton.MenuItem>
+    </DropdownButton.Menu>
+</DropdownButton>
+</p>
+
+
+<DropdownButton as="a" label={<Icon icon="times" />}>
+<DropdownButton.Menu>
+    <DropdownButton.MenuItem icon="check-circle">Like</DropdownButton.MenuItem>
+    <DropdownButton.MenuItem>Unlike</DropdownButton.MenuItem>
+</DropdownButton.Menu>
+</DropdownButton>
+
+    <DropdownButton
+        label="Dropdown Button"
+        >
+        <DropdownButton.Menu>
+            <DropdownButton.MenuItem onClick={() => alert('clicked')} icon="check-circle">
+                Menu Item
+            </DropdownButton.MenuItem>
+            <DropdownButton.MenuItem icon="search">
+                Menu Item
+            </DropdownButton.MenuItem>
+            <DropdownButton.Divider />
+            <DropdownButton.MenuItem icon="user">
+                Menu Item
+            </DropdownButton.MenuItem>
+        </DropdownButton.Menu>
+    </DropdownButton>
+
+
+## Properties of `<DropdownButton />`
+
+<Props of={DropdownButton} />
+
+## Properties of `<DropdownButton.MenuItem />`
+
+<Props of={MenuItem} />
+
+# Dropdown Button dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={DropdownButton} />

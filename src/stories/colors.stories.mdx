@@ -1,0 +1,33 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+
+import { color } from '../styles/styles';
+
+<Meta title="Fused Components Colors" />
+
+<ColorPalette>
+  <ColorItem title="theme.color.primary" subtitle="Blue" colors={[color.primary]} />
+  <ColorItem title="theme.color.secondary" subtitle="Tomato" colors={[color.secondary]} />
+  <ColorItem title="theme.color.tertiary" subtitle="Gray" colors={[color.tertiary]} />
+  <ColorItem title="theme.color.danger" subtitle="Red" colors={[color.danger]} />
+  <ColorItem title="theme.color.warning" subtitle="Yellow" colors={[color.warning]} />
+  <ColorItem title="theme.color.info" subtitle="Blue" colors={[color.info]} />
+  <ColorItem title="theme.color.success" subtitle="Green" colors={[color.success]} />
+  <ColorItem title="theme.color.red" subtitle="Red" colors={[color.red]} />
+  <ColorItem title="theme.color.yellow" subtitle="Yellow" colors={[color.yellow]} />
+  <ColorItem title="theme.color.blue" subtitle="Blue" colors={[color.blue]} />
+  <ColorItem title="theme.color.green" subtitle="Green" colors={[color.green]} />
+    <ColorItem
+    title="Monochrome"
+    colors={[
+      color.darkest,
+      color.darker,
+      color.dark,
+      color.mediumdark,
+      color.medium,
+      color.mediumlight,
+      color.light,
+      color.lighter,
+      color.lightest,
+    ]}
+  />
+  </ColorPalette>
