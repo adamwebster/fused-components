@@ -3,10 +3,10 @@ import { color } from '../../../styles/styles';
 import { Props } from './'
 
 export const StyledAlert = styled.div`
-${props => (props.theme === 'dark') && css`
-  background-color: black;
-` }
-  background-color: #fff;
+
+  background-color: ${props => (props.theme === 'dark') ? color.darkModeBG : '#fff'};
+  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
+
   border-style: solid;
   border-width: 5px 1px 1px 1px;
   border-color: ${
@@ -48,7 +48,6 @@ ${props => (props.theme === 'dark') && css`
     width:20px;
   }
   }
-  color: ${color.darker};
   padding: 10px;
   ${(props: Props) => props.borderRadius && css`border-radius: 5px;`}
 `
