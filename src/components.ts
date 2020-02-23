@@ -9,6 +9,7 @@ export { Combobox } from './components/ui/Combobox';
 export { CornerDialog } from './components/ui/CornerDialog';
 export { Dialog } from './components/ui/Dialog';
 export { DropdownButton } from './components/ui/DropdownButton';
+export { Heading } from './components/typography/Heading';
 export { Icon } from './components/icon'
 export { Input } from './components/ui/Input';
 export { InputField } from './components/ui/InputField';
@@ -16,6 +17,7 @@ export { Label } from './components/ui/Label';
 export { Panel } from './components/ui/Panel';
 export { Radio } from './components/ui/Radio';
 export { Table } from './components/ui/Table';
+export { Textarea } from './components/ui/Textarea';
 export { ToastProvider } from './components/ui/Toasts/ToastProvider';
 export { useToast } from './components/ui/Toasts/ToastProvider';
 export { Toggle } from './components/ui/Toggle';
