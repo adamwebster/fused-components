@@ -56,6 +56,7 @@ export default {
     }),
     typescript({
       typescript: require("typescript"),
+      useTsconfigDeclarationDir: true,
       tsconfigOverride: {
         exclude: ['src/demos/*', 'src/common/*', 'src/data/*', 'src/styles/*', 'src/themes/*']
       }

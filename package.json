@@ -5,7 +5,7 @@
   "repository": "https://github.com/adamwebster/fused-components",
   "module": "dist/src/index.js",
   "main": "dist/src/index.js",
-  "types": "dist/components.d.ts",
+  "types": "dist/types/components.d.ts",
   "dependencies": {
     "styled-components": "^5.0.1"
   },
@@ -98,5 +98,5 @@
       ],
       "@babel/preset-typescript"
     ]
-}
+  }
 }
