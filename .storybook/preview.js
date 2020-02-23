@@ -12,6 +12,9 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 library.add(fab, fas, far);
 
 addParameters({
+  options: {
+    showRoots: true,
+  },
   docs: { page: DocsPage },
   dependencies: { withStoriesOnly: true, hideEmpty: false }
 });
