@@ -17,6 +17,9 @@ export const ToastContainer = styled.div<IToastContainer>`
             left: 50%;
             transform: translateX(-50%);
             width: 500px;
+            @media (max-width: 500px) {
+              width: calc(100% - 20px);
+            }
             `;
         break;
       case "bottom":
@@ -25,6 +28,9 @@ export const ToastContainer = styled.div<IToastContainer>`
             left: 50%;
             transform: translateX(-50%);
             width: 500px;
+            @media (max-width: 500px) {
+              width: calc(100% - 20px);
+            }
             `;
         break;
 
