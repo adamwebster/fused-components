@@ -1,0 +1,29 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { FormField } from './';
+import { Textarea } from '../Textarea';
+
+<Meta title="FusedComponents / Form Field" component={FormField} parameters={{ component: FormField }}/>
+
+# Input Field
+
+## An Input Field component
+ 
+
+## Default
+<Preview>
+    <FormField  htmlFor="textarea" hint="This is a hint" validationMessage="Something went wrong">
+    <Textarea id="textarea" />
+    </FormField>
+</Preview>
+
+## Properties
+
+<Props of={FormField} />
+
+# Input Field dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={FormField} />

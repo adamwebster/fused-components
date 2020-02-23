@@ -9,6 +9,7 @@ export { Combobox } from './components/ui/Combobox';
 export { CornerDialog } from './components/ui/CornerDialog';
 export { Dialog } from './components/ui/Dialog';
 export { DropdownButton } from './components/ui/DropdownButton';
+export { FormField } from './components/ui/FormField';
 export { Heading } from './components/typography/Heading';
 export { Icon } from './components/icon'
 export { Input } from './components/ui/Input';

@@ -1,12 +1,11 @@
-import {useState} from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
-import { ToastProvider, useToast } from '../components/ui/Toasts/ToastProvider';
-import { Button } from '../components/ui/Button/';
-import {ToastDemo} from '../demos/ToastDemo';
+import { ToastProvider, useToast } from './ToastProvider';
+import { Button } from '../Button/';
+import {ToastDemo} from '../../../demos/ToastDemo';
 
 <Meta title="FusedComponents / Toasts" component={ToastProvider} parameters={{ component: ToastProvider }} />
 

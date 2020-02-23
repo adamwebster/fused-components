@@ -2,24 +2,25 @@ import {useState} from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
-import { Icon } from '../components/icon/';
+import { Icon } from '../../../components/icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
-import { Autocomplete } from '../components/ui/Autocomplete/';
+import { Combobox } from './';
 
-<Meta title="FusedComponents / Auto Complete" component={Autocomplete} parameters={{ component: Autocomplete }} />
+<Meta title="FusedComponents / Combobox" component={Combobox}  parameters={{ component: Combobox }}/>
 
-# Auto Complete
+# Combobox
+ 
 
 ## Default
-<Autocomplete
+<Combobox
     inputIcon="filter"
     placeholder="Type to search for a fruit"
  />
 
 ## Properties
 
-<Props of={Autocomplete} />
+<Props of={Combobox} />
 
-# Auto Complete dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Autocomplete} />
+# Combobox dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Combobox} />

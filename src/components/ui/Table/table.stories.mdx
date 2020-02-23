@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Meta, Story, Props, Preview } from "@storybook/addon-docs/blocks";
 import {
   withKnobs,
@@ -9,14 +8,14 @@ import {
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
-import { Table } from "../components/ui/Table/";
+import { Table } from "./";
 
-import TableHeader from "../components/ui/Table/TableHeader";
-import TableCell from "../components/ui/Table/TableCell";
+import TableHeader from "./TableHeader";
+import TableCell from "./TableCell";
 
-import { Button } from "../components/ui/Button/"
-import { SampleData, SampleDataFixed } from '../data/SampleTableData'
-import { color } from '../styles/styles';
+import { Button } from "../Button/"
+import { SampleData, SampleDataFixed } from '../../../data/SampleTableData'
+import { color } from '../../../styles/styles';
 
 <Meta title="FusedComponents / Table" component={Table} parameters={{ component: Table }} />
 
