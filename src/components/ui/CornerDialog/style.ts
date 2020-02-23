@@ -47,7 +47,9 @@ export const CornerDialogStyled = styled.div`
           position: relative;
           margin-right: 25px;
         `}
-  background-color: #fff;
+  background-color: ${props => props.theme === 'dark' ? color.darkModeBG : "#fff"};
+  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
+
   border-radius: 5px;
   border: solid 1px ${borderColor};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
@@ -115,7 +117,7 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${color.mediumdark};
+  color: ${props => (props.theme === 'dark') ? color.mediumlight : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {

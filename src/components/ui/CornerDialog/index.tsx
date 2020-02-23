@@ -12,6 +12,7 @@ import { Button } from "../Button";
 import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
+import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props {
   fixed?: boolean;
@@ -51,16 +52,20 @@ export const CornerDialog = ({
   }, [visible]);
 
   return (
+    <FCThemeConsumer>
+    {themeContext => (
     <>
       {show && (
         <CornerDialogStyled
           visible={visible}
           fcStyle={fcStyle}
           fixed={fixed}
+          theme={themeContext?.theme}
         >
           <DialogTitle fcStyle={fcStyle}>
             {title && title}
             <CloseButton
+            theme={themeContext?.theme}
               onClick={(e: any) => onCloseClick()}
               aria-label="Close"
             >
@@ -77,7 +82,7 @@ export const CornerDialog = ({
           </DialogContent>
           <DialogFooter>
             <Button
-              buttonColor={color.mediumdark}
+              buttonColor={themeContext?.theme === 'dark' ? color.medium : color.mediumdark}
               onClick={() => onCloseClick()}
             >
               {cancelText}
@@ -89,5 +94,7 @@ export const CornerDialog = ({
         </CornerDialogStyled>
       )}
     </>
+    )}
+    </FCThemeConsumer>
   );
 };
