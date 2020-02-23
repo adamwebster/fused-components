@@ -26,7 +26,6 @@ export const Alert = ({
     <FCThemeConsumer>
       {themeContext => (
         <>
-        {console.log(themeContext)}
           <StyledAlert theme={themeContext?.theme && themeContext.theme} borderRadius={borderRadius} fcStyle={fcStyle} {...rest}>
             {title && (
               <h4>

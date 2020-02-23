@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useToast, ToastProvider } from "../components/ui/Toasts/ToastProvider";
 import { Button } from "../components/ui/Button";
+import { FCThemeProvider } from "../theming/FCTheme";
 
 const ToastLoad = () => {
   const toasts = useToast();
@@ -25,6 +26,7 @@ const Toaster = () => {
 
   return (
     <>
+
       <ToastLoad />
       <Button
         onClick={() => {
@@ -71,12 +73,15 @@ const Toaster = () => {
         Danger Toast No Content
       </Button>
     </>
+  
   );
 };
 export const ToastDemo = () => {
   const [position, setPosition] = useState("top");
+  const [theme, setTheme] = useState("light");
 
   return (
+    <FCThemeProvider value={{ theme }}>
     <ToastProvider position={position as unknown as undefined}>
       <label>Position</label>
       <select onChange={e => setPosition(e.target.value)}>
@@ -85,9 +90,15 @@ export const ToastDemo = () => {
         <option value="bottom-left">top-right</option>
         <option value="bottom-right">bottom-right</option>
       </select>
+      <label>theme</label>
+      <select onChange={e => setTheme(e.target.value)}>
+        <option value="light">light</option>
+        <option value="dark">dark</option>
+      </select>
       <br />
       <br />
       <Toaster />
     </ToastProvider>
+    </FCThemeProvider>
   );
 };
