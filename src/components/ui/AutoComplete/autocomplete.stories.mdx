@@ -4,7 +4,7 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../../icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
-
+import { AutocompleteDemo } from "../../../demos/AutocompleteDemo";
 import { Autocomplete } from './';
 
 <Meta title="Components / Auto Complete" component={Autocomplete} parameters={{ component: Autocomplete }} />
@@ -16,6 +16,11 @@ import { Autocomplete } from './';
     inputIcon="filter"
     placeholder="Type to search for a fruit"
  />
+
+
+## Dark mode
+
+<AutocompleteDemo />
 
 ## Properties
 
