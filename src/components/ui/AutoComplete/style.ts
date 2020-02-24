@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { color } from '../../../styles/styles';
 import { darken } from "polished";
-import { cpus } from "os";
 
 export const AutocompleteWrapper = styled.div`
   position: relative;
