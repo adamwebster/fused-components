@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { Label, IconStyled, CheckInput } from "./style";
 import { Icon } from "../../icon/";
+import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props extends React.HTMLProps<HTMLInputElement> {
   children?: ReactNode;
@@ -23,10 +24,12 @@ export const Checkbox = ({
   ...rest
 }: Props) => {
   return (
+    <FCThemeConsumer>
+    {themeContext => (
     <label>
       <CheckInput type="checkbox" checked={checked} onChange={() => onChange()}  />
       {checked ? (
-        <IconStyled inError={inError} inWarning={inWarning}>
+        <IconStyled theme={themeContext?.theme} inError={inError} inWarning={inWarning}>
           {" "}
           <Icon icon="checkbox-checked" />
         </IconStyled>
@@ -36,9 +39,11 @@ export const Checkbox = ({
           <Icon icon="checkbox" />
         </IconStyled>
       )}
-      <Label inError={inError} inWarning={inWarning}>
+      <Label theme={themeContext?.theme} inError={inError} inWarning={inWarning}>
         {children}
       </Label>
     </label>
+    )}
+    </FCThemeConsumer>
   );
 };
