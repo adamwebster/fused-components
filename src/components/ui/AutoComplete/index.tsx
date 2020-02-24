@@ -140,7 +140,9 @@ export const Autocomplete = ({
                     }}
                   >
                     {item === itemSelected && (
-                      <ItemIcon>
+                      <ItemIcon
+                      theme={themeContext?.theme}
+                      >
                         <Icon icon="check-circle" />
                       </ItemIcon>
                     )}
@@ -149,7 +151,7 @@ export const Autocomplete = ({
                 );
               })}
               {itemsToShow.length === 0 && (
-                <MenuItemStyled>Nothing found</MenuItemStyled>
+                <MenuItemStyled theme={themeContext?.theme}>Nothing found</MenuItemStyled>
               )}
             </AutocompleteMenu>
           )}

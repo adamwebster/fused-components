@@ -1,12 +1,14 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { darken, lighten } from 'polished';
 
-interface ICheckboxInput extends React.HTMLProps<HTMLInputElement>{
+interface IInput extends React.HTMLProps<HTMLInputElement>{
   icon?: string,
   inError?: boolean,
   inWarning?: boolean,
+  theme: string,
 }
-export const StyledInput = styled.input<ICheckboxInput>`
+export const StyledInput = styled.input<IInput>`
 width: 100%;
 height:34px;
 box-sizing:border-box;
@@ -16,15 +18,16 @@ border: solid 1px ${color.border};
 border-radius: ${props => '5px'};
 -webkit-appearance: none;
 background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
-color: ${props => props.theme === 'dark' ? color.lighter : 'inherit'};
+color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};
 
 &::placeholder{
   font-style:italic; 
+  color: ${props => props.theme === 'dark' ? lighten(0.2, color.darkModeBG) : 'inherit'};
 }
 
 &:focus{
-  border-color: ${color.focus};
-  box-shadow: 0 0 6px ${color.focus};
+  border-color:${props => props.theme === 'dark' ? darken(0.2, color.focus) : color.focus};
+  box-shadow: 0 0 6px ${props => props.theme === 'dark' ? darken(0.1, color.focus) : color.focus};
 }
 &[disabled]{
   cursor: not-allowed;
@@ -59,6 +62,7 @@ export const InputWrapper = styled.div`
 interface IIconWrapper {
   inError: boolean,
   inWarning: boolean,
+  theme: string,
 
 }
 
@@ -66,8 +70,8 @@ export const IconWrapper = styled.span<IIconWrapper>`
 position: absolute;
 left: 10px;
 top: 7px;
-color: ${color.mediumdark};
-border-right: solid 1px ${color.border};
+color: ${props => props.theme === 'dark' ? lighten(0.2, color.darkModeBG) : color.mediumdark};
+border-right: solid 1px ${props => props.theme === 'dark' ? lighten(0.2, color.darkModeBG) : color.border};
 box-sizing:border-box;
 
 svg{
