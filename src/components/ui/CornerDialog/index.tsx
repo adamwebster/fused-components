@@ -28,8 +28,8 @@ export interface Props {
 }
 export const CornerDialog = ({
   fixed = true,
-  onCloseClick = () => {},
-  onConfirmClick = () => {},
+  onCloseClick = () => { },
+  onConfirmClick = () => { },
   visible = true,
   cancelText = "Cancel",
   confirmText = "Learn More",
@@ -53,48 +53,48 @@ export const CornerDialog = ({
 
   return (
     <FCThemeConsumer>
-    {themeContext => (
-    <>
-      {show && (
-        <CornerDialogStyled
-          visible={visible}
-          fcStyle={fcStyle}
-          fixed={fixed}
-          theme={themeContext?.theme}
-        >
-          <DialogTitle fcStyle={fcStyle}>
-            {title && title}
-            <CloseButton
-            theme={themeContext?.theme}
-              onClick={(e: any) => onCloseClick()}
-              aria-label="Close"
+      {themeContext => (
+        <>
+          {show && (
+            <CornerDialogStyled
+              visible={visible}
+              fcStyle={fcStyle}
+              fixed={fixed}
+              theme={themeContext?.theme}
             >
-              <Icon icon="times" />
-            </CloseButton>
-          </DialogTitle>
-          <DialogContent>
-            {icon && (
-              <IconStyled fcStyle={fcStyle}>
-                <Icon icon={icon} />
-              </IconStyled>
-            )}
-            <DialogText>{children}</DialogText>
-          </DialogContent>
-          <DialogFooter>
-            <Button
-              buttonColor={themeContext?.theme === 'dark' ? color.medium : color.mediumdark}
-              onClick={() => onCloseClick()}
-            >
-              {cancelText}
-            </Button>
-            <Button onClick={() => onConfirmClick()} fcStyle={fcStyle} primary>
-              {confirmText}
-            </Button>
-          </DialogFooter>
-        </CornerDialogStyled>
+              <DialogTitle fcStyle={fcStyle} theme={themeContext?.theme}>
+                {title && title}
+                <CloseButton
+                  theme={themeContext?.theme}
+                  onClick={(e: any) => onCloseClick()}
+                  aria-label="Close"
+                >
+                  <Icon icon="times" />
+                </CloseButton>
+              </DialogTitle>
+              <DialogContent theme={themeContext?.theme}>
+                {icon && (
+                  <IconStyled fcStyle={fcStyle}>
+                    <Icon icon={icon} />
+                  </IconStyled>
+                )}
+                <DialogText>{children}</DialogText>
+              </DialogContent>
+              <DialogFooter theme={themeContext?.theme}>
+                <Button
+                  buttonColor={themeContext?.theme === 'dark' ? color.darkModeButton : color.mediumdark}
+                  onClick={() => onCloseClick()}
+                >
+                  {cancelText}
+                </Button>
+                <Button onClick={() => onConfirmClick()} fcStyle={fcStyle} primary>
+                  {confirmText}
+                </Button>
+              </DialogFooter>
+            </CornerDialogStyled>
+          )}
+        </>
       )}
-    </>
-    )}
     </FCThemeConsumer>
   );
 };

@@ -41,7 +41,7 @@ const Toaster = () => {
       <br /> <br />
       <Button
         onClick={() => {
-          toasts?.addSuccess("Hooray!", "Something went right for once...", {
+          toasts?.addSuccess("This is a really really long title that should wrap down to the next line and not around the icon. Hooray!", "Something went right for once...", {
             duration: 10
           });
         }}
