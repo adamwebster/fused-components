@@ -20,6 +20,7 @@ export const AutocompleteMenu = styled.ul`
   z-index: 99;
   margin-top: 5px;
   border-radius: 5px;
+  overflow:hidden;
 `;
 
 export const MenuItemStyled = styled.li`
@@ -31,7 +32,7 @@ export const MenuItemStyled = styled.li`
     }
     &:hover,
     &:focus{
-      background-color: ${props => props.theme === 'dark' ? darken(0.2, color.highlight) : color.highlight};
+      background-color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.highlight};
       color: ${props => props.theme === 'dark' ? color.light : 'inherit'};
 
         outline:none;
@@ -46,9 +47,8 @@ export const ItemIcon = styled.span`
 width: 16px;
 display: inline-block;
  svg{
-     color: ${color.mediumdark};
+     color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.mediumdark};
+
      margin-right: 5px;
  }
 `
-
-

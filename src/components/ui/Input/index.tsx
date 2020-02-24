@@ -27,11 +27,11 @@ export interface Props {
   type?: string,
   theme?: any,
 }
-export const Input = ({ ariaLabel, id, inError = false, inputRef, inWarning = false, icon, ...rest }:Props) => {
+export const Input = ({ ariaLabel, id, inError = false, inputRef, inWarning = false, icon, theme, ...rest }:Props) => {
   return (
     <InputWrapper>
-      {icon && <IconWrapper inError={inError} inWarning={inWarning}><Icon icon={icon} /></IconWrapper>}
-      <StyledInput id={id} ref={inputRef} icon={icon} inError={inError} inWarning={inWarning} aria-label={ariaLabel} {...rest} />
+      {icon && <IconWrapper theme={theme} inError={inError} inWarning={inWarning}><Icon icon={icon} /></IconWrapper>}
+      <StyledInput id={id} ref={inputRef} icon={icon} inError={inError} inWarning={inWarning} aria-label={ariaLabel} theme={theme} {...rest} />
     </InputWrapper>
   );
 };
