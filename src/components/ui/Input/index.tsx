@@ -24,7 +24,8 @@ export interface Props {
   /** Whether the input should be disabled or not */
   disabled?: boolean,
   /** The input type */
-  type?: string
+  type?: string,
+  theme?: any,
 }
 export const Input = ({ ariaLabel, id, inError = false, inputRef, inWarning = false, icon, ...rest }:Props) => {
   return (

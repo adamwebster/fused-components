@@ -15,6 +15,9 @@ outline: none;
 border: solid 1px ${color.border};
 border-radius: ${props => '5px'};
 -webkit-appearance: none;
+background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
+color: ${props => props.theme === 'dark' ? color.lighter : 'inherit'};
+
 &::placeholder{
   font-style:italic; 
 }
