@@ -10,6 +10,7 @@ import {
   InputStyled
 } from "./style";
 import { Icon } from "../../icon";
+import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props {
   /** An array of items */
@@ -60,7 +61,7 @@ export const Combobox = ({
         setMenuOpen(false);
       }
     }
-   };
+  };
   const handleUserKeyPress = (e: { keyCode: number; }) => {
     // Escape Key
     if (e.keyCode === 27) {
@@ -118,48 +119,54 @@ export const Combobox = ({
   };
 
   return (
-    <ComboboxWrapper onClick={() => setMenuOpen(!menuOpen)}>
-      <InputStyled
-        value={filterValue}
-        icon={inputIcon}
-        inputRef={filterRef}
-        onChange={(e: { target: { value: string; }; }) => filterItems(e)}
-        placeholder={placeholder}
-        inError={inError}
-        inWarning={inWarning}
-        disabled={disabled}
-      />
-      {menuOpen && (
-        <ComboboxMenu ref={menuRef}>
-          {itemsToShow.map((item, index) => {
-            return (
-              <MenuItemStyled
-                tabIndex={0}
-                onKeyPress={(e: any) => handleItemKeyPress(e, item)}
-                onClick={() => setValue(item)}
-                key={item}
-                ref={(ref: HTMLElement) => {
-                  itemRefs[index] = ref;
-                }}
-              >
-                {item === itemSelected && (
-                  <ItemIcon>
-                    <Icon icon="check-circle" />
-                  </ItemIcon>
-                )}
-                {item}
-              </MenuItemStyled>
-            );
-          })}
-          {itemsToShow.length === 0 && (
-            <MenuItemStyled>Nothing found</MenuItemStyled>
+    <FCThemeConsumer>
+      {themeContext => (
+        <ComboboxWrapper onClick={() => setMenuOpen(!menuOpen)}>
+          <InputStyled
+            value={filterValue}
+            icon={inputIcon}
+            inputRef={filterRef}
+            onChange={(e: { target: { value: string; }; }) => filterItems(e)}
+            placeholder={placeholder}
+            inError={inError}
+            inWarning={inWarning}
+            disabled={disabled}
+            theme={themeContext?.theme}
+          />
+          {menuOpen && (
+            <ComboboxMenu theme={themeContext?.theme} ref={menuRef}>
+              {itemsToShow.map((item, index) => {
+                return (
+                  <MenuItemStyled
+                    tabIndex={0}
+                    onKeyPress={(e: any) => handleItemKeyPress(e, item)}
+                    onClick={() => setValue(item)}
+                    key={item}
+                    theme={themeContext?.theme}
+                    ref={(ref: HTMLElement) => {
+                      itemRefs[index] = ref;
+                    }}
+                  >
+                    {item === itemSelected && (
+                      <ItemIcon theme={themeContext?.theme}>
+                        <Icon icon="check-circle" />
+                      </ItemIcon>
+                    )}
+                    {item}
+                  </MenuItemStyled>
+                );
+              })}
+              {itemsToShow.length === 0 && (
+                <MenuItemStyled>Nothing found</MenuItemStyled>
+              )}
+            </ComboboxMenu>
           )}
-        </ComboboxMenu>
+          <CaretIcon>
+            <Icon icon={menuOpen ? "caret-up" : "caret-down"} />
+          </CaretIcon>
+        </ComboboxWrapper>
       )}
-      <CaretIcon>
-        <Icon icon={menuOpen ? "caret-up" : "caret-down"} />
-      </CaretIcon>
-    </ComboboxWrapper>
+    </FCThemeConsumer>
   );
 };
 

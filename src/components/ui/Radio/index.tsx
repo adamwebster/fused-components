@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { Label, IconStyled, RadioInput } from "./style";
 import { Icon } from "../../icon";
+import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props extends React.HTMLProps<HTMLInputElement> {
   children: ReactNode,
@@ -25,6 +26,8 @@ export const Radio = ({
   ...rest
 }: Props) => {
   return (
+    <FCThemeConsumer>
+      {themeContext => (
     <label>
       <RadioInput value={value} type="radio" checked={checked} onChange={(e: any) => onChange(e)} />
       {checked ? (
@@ -38,9 +41,11 @@ export const Radio = ({
           <Icon icon="radio" />
         </IconStyled>
       )}
-      <Label inError={inError} inWarning={inWarning}>
+      <Label theme={themeContext?.theme} inError={inError} inWarning={inWarning}>
         {children}
       </Label>
     </label>
+    )}
+    </FCThemeConsumer>
   );
 };

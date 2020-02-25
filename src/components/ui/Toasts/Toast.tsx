@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, ReactNode } from "react";
 import { StyledToast, LoadingBar, CloseButton } from "./styles";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
+import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props {
   /** The title of the toast item */
@@ -71,35 +72,35 @@ export const Toast = ({
   };
 
   return (
-    <>
-      {visible && (
-        <StyledToast
-          timer={timer}
-          onMouseOver={() => mouseOverToast()}
-          onMouseOut={() => mouseOutToast()}
-          removing={removing}
-          fcStyle={fcStyle}
-          icon={icon}
-          title={title}
-        >
-          {children && (
-            <span
-              dangerouslySetInnerHTML={{
-                __html: children
-              }}
-            />
+        <>
+          {visible && (
+            <StyledToast
+              timer={timer}
+              onMouseOver={() => mouseOverToast()}
+              onMouseOut={() => mouseOutToast()}
+              removing={removing}
+              fcStyle={fcStyle}
+              icon={icon}
+              title={title}
+            >
+              {children && (
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: children
+                  }}
+                />
+              )}
+              <CloseButton
+                onClick={() => {
+                  setRemoving(true);
+                  setTimeout(() => setVisible(false), 500);
+                }}
+              >
+                <Icon icon="times" />
+              </CloseButton>
+              <LoadingBar timer={timer} />
+            </StyledToast>
           )}
-          <CloseButton
-            onClick={() => {
-              setRemoving(true);
-              setTimeout(() => setVisible(false), 500);
-            }}
-          >
-            <Icon icon="times" />
-          </CloseButton>
-          <LoadingBar timer={timer} />
-        </StyledToast>
-      )}
-    </>
+        </>
   );
 };

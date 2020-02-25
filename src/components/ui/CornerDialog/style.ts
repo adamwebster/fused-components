@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { Props } from "./";
+import { darken, lighten } from "polished";
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
@@ -47,7 +48,9 @@ export const CornerDialogStyled = styled.div`
           position: relative;
           margin-right: 25px;
         `}
-  background-color: #fff;
+  background-color: ${props => props.theme === 'dark' ? color.darkModeBG : "#fff"};
+  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
+
   border-radius: 5px;
   border: solid 1px ${borderColor};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
@@ -79,7 +82,7 @@ export const CornerDialogStyled = styled.div`
 `;
 
 export const DialogTitle = styled.h3`
-  border-bottom: solid 1px ${color.border};
+  border-bottom:  solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
@@ -95,7 +98,7 @@ export const DialogContent = styled.div`
 export const DialogText = styled.div``;
 
 export const DialogFooter = styled.div`
-  border-top: solid 1px ${color.border};
+  border-top:  solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -115,17 +118,14 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${color.mediumdark};
+  color: ${props => (props.theme === 'dark') ? color.darkModeButton : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${color.dark};
+    color: ${props => (props.theme === 'dark') ? darken(0.2,color.darkModeButton) : color.dark};  
   }
   svg {
     width: 16px;
-    &:hover {
-      color: ${color.dark};
-    }
   }
 `;
 

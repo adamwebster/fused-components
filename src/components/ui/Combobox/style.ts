@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { color } from '../../../styles/styles';
 import { Input } from "../Input";
+import { darken } from "polished";
 
 export const ComboboxWrapper = styled.div`
   position: relative;
@@ -17,7 +18,7 @@ interface IComboboxMenu extends React.HTMLProps<HTMLElement>{
 export const ComboboxMenu = styled.ul<IComboboxMenu>`
   position: absolute;
   top: 34px;
-  background-color: #fff;
+  background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
   border: solid 1px ${color.border};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   margin: 0;
@@ -37,12 +38,13 @@ export const MenuItemStyled = styled.li<IMenuItemStyled>`
     width: 100%;
     padding: 10px;
     box-sizing:border-box;
-    color: ${color.dark};
+    color: ${props => props.theme === 'dark' ? color.medium : color.dark};
     &:last-child{
     }
     &:hover,
     &:focus{
-        background-color: ${color.highlight};
+      background-color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.highlight};
+      color: ${props => props.theme === 'dark' ? color.light : 'inherit'};
         outline:none;
     }
     svg{
@@ -55,7 +57,7 @@ export const ItemIcon = styled.span`
 width: 16px;
 display: inline-block;
  svg{
-     color: ${color.mediumdark};
+  color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.mediumdark};
      margin-right: 5px;
  }
 `
