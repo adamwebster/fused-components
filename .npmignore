@@ -1,7 +1,7 @@
 .storybook
 public
 build
-./src
+/src
 storybook-static
 rollup.config.js
 .npmrc
