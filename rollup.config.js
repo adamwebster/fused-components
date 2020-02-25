@@ -8,7 +8,6 @@ const extensions = [".js", ".jsx", ".ts", ".tsx"];
 const globals = {
   react: "React",
   "react-dom": "ReactDOM",
-  "core-js": "core-js",
   "prop-types": "PropTypes",
   "styled-components": "styled",
   "@fortawesome/react-fontawesome": "FontAwesomeIcon",
@@ -68,5 +67,5 @@ export default {
       exclude: ["node_modules/**", "**/*.css"]
     })
   ],
-  external: id => globalModules.includes(id) || /core-js/.test(id)
+  external: id => globalModules.includes(id)
 };
