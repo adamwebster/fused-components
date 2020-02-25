@@ -4,6 +4,7 @@ import { withKnobs, select, text, boolean } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
 import variables from "../../../styles/variables";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { AlertDemo } from "../../../demos/AlertDemo";
 
 import { Alert } from "./";
 import { Icon } from '../../icon/';
@@ -15,6 +16,12 @@ import { Icon } from '../../icon/';
 ## An Alert component
 
 ## Default
+
+<Preview>
+  <Alert>
+  Alert
+  </Alert>
+</Preview>
 
 <Preview>
     <Alert title='Default'>
@@ -29,7 +36,7 @@ import { Icon } from '../../icon/';
 </Preview>
 
 <Preview>
-        <Alert borderRadius fcStyle="success" title="Success" icon="check-circle">
+        <Alert borderRadius fcStyle="success" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in nisl ut tortor volutpat eleifend ac eu ante. Proin sit amet purus orci. Fusce porttitor tortor sit amet diam maximus, euismod lobortis felis finibus." icon="check-circle">
       Alert
     </Alert>
 </Preview>
@@ -45,6 +52,10 @@ import { Icon } from '../../icon/';
       Alert
     </Alert>
 </Preview>
+
+## Dark Mode Preview
+
+<AlertDemo />
 
 ## Properties
 

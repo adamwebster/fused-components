@@ -2,33 +2,40 @@ import React, { ReactNode } from "react";
 import { Icon } from "../../icon";
 import { StyledAlert, Title, AlertContent } from "./style";
 import { fcStyles } from "../../../common/types";
-
+import { FCThemeConsumer } from "../../../theming/FCTheme";
 export interface Props {
   /** Sets the style of the alert */
-  fcStyle?: fcStyles,
+  fcStyle?: fcStyles;
   /** Sets the title for the alert */
-  title?: string,
+  title?: string;
   /** Sets the icon for the alert */
-  icon?: string
+  icon?: string;
   /** Sets the border radius for the alert */
-  borderRadius?: string,
-  children?: ReactNode,
+  borderRadius?: string;
+  children?: ReactNode;
 }
 export const Alert = ({
   fcStyle,
   title,
   icon,
-  borderRadius = '5px',
+  borderRadius = "5px",
   children,
-  ...rest }:Props) => {
+  ...rest
+}: Props) => {
   return (
-    <StyledAlert borderRadius={borderRadius} fcStyle={fcStyle} {...rest}>
-      {title && (
-        <h4>
-          {icon && <Icon icon={icon} />} <Title>{title}</Title>
-        </h4>
+    <FCThemeConsumer>
+      {themeContext => (
+        <>
+          <StyledAlert theme={themeContext?.theme && themeContext.theme} borderRadius={borderRadius} fcStyle={fcStyle} {...rest}>
+            {title && (
+              <h4>
+                {icon && <Icon icon={icon} />} <Title>{title}</Title>
+              </h4>
+            )}
+            {children && <AlertContent>{children}</AlertContent>}
+          </StyledAlert>
+        </>
       )}
-      {children && <AlertContent>{children}</AlertContent>}
-    </StyledAlert>
+    </FCThemeConsumer>
   );
 };

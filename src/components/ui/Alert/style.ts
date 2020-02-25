@@ -3,7 +3,10 @@ import { color } from '../../../styles/styles';
 import { Props } from './'
 
 export const StyledAlert = styled.div`
-  background-color: #fff;
+
+  background-color: ${props => (props.theme === 'dark') ? color.darkModeBG : '#fff'};
+  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
+
   border-style: solid;
   border-width: 5px 1px 1px 1px;
   border-color: ${
@@ -24,7 +27,9 @@ export const StyledAlert = styled.div`
   };
   h4{
     margin-top:0;
-    margin-bottom: 0;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-content: center;
     color: ${
   (props: Props) => {
     switch (props.fcStyle) {
@@ -43,18 +48,21 @@ export const StyledAlert = styled.div`
   };
   svg{
     width:20px;
+    min-width: 20px;
+    height: 20px;
+    margin-right:5px;
   }
   }
-  color: ${color.darker};
   padding: 10px;
   ${(props: Props) => props.borderRadius && css`border-radius: 5px;`}
 `
 
 export const Title = styled.span`
 top: -5px;
-position: relative;
+margin-left: 5px;
+display: inline-block;
 `
 
 export const AlertContent = styled.div`
-margin-top: 10px;
+
 `

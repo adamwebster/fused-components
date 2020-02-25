@@ -63,6 +63,9 @@ export const StyledButton = styled.button`
         color: ${color.mediumdark};
         transition:none;
         cursor: not-allowed;
+        ${StyledIcon}{
+          background-color: ${color.mediumdark};
+        }
       }
     `}
   ${props =>

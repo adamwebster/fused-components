@@ -3,18 +3,30 @@ import { color } from '../../../styles/styles';
 
 import { Props } from './';
 
-export const Label = styled.span`
+interface Label extends React.HTMLProps<HTMLElement> {
+    inError?: boolean;
+    inWarning?: boolean;
+    theme?: string;
+}
+export const Label = styled.span<Label>`
     margin-left: 5px;
     display:inline-block;
-    ${(props: Props) => props.inError && css`
+    ${props => props.inError && css`
         color: ${color.red};
     `}
-    ${(props: Props)  => props.inWarning && css`
+    ${props => props.inWarning && css`
         color: ${color.yellow};
     `}
+    ${props => (props.theme === 'dark' && !props.inWarning && !props.inError) && css`
+        color: ${color.medium};
+    `}
 `
-
-export const IconStyled = styled.span`
+interface IIconStyled extends React.HTMLProps<HTMLElement> {
+    inError?: boolean;
+    inWarning?: boolean;
+    theme?: string;
+}
+export const IconStyled = styled.span<IIconStyled>`
     color: ${color.primary};
     font-size: 15px;
    svg{
@@ -22,18 +34,18 @@ export const IconStyled = styled.span`
        top:2px;
        position:relative;
    }
-    ${(props: Props) => props.inError && css`
+    ${props => props.inError && css`
         color: ${color.red};
     `}
-    ${(props: Props)  => props.inWarning && css`
+    ${props => props.inWarning && css`
         color: ${color.yellow};
     `}
 `
 
-interface ICheckboxInput extends React.HTMLProps<HTMLInputElement>{
+interface ICheckboxInput extends React.HTMLProps<HTMLInputElement> {
     checked: boolean,
     onChange: () => void,
-} 
+}
 export const CheckInput = styled.input<ICheckboxInput>`
     position: absolute;
     opacity: 0;

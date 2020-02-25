@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { Props } from './';
 import { fcStyles } from "../../../common/types";
+import { lighten, darken } from 'polished';
+
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case 'danger':
@@ -13,7 +15,11 @@ const colorValue = (props: Props) => {
     case 'success':
       return color.green
     default:
-      return color.dark
+      if (props.theme === 'dark') {
+        return color.medium;
+      } else {
+        return color.dark
+      }
   }
 };
 
@@ -32,7 +38,7 @@ const borderColor: any = (props: Props) => {
   }
 };
 
-export interface IStyledDialog extends React.HTMLProps<HTMLDivElement>{
+export interface IStyledDialog extends React.HTMLProps<HTMLDivElement> {
   fixed?: boolean,
   visible?: boolean,
   boxShadow?: boolean,
@@ -40,19 +46,20 @@ export interface IStyledDialog extends React.HTMLProps<HTMLDivElement>{
 
 export const StyledDialog = styled.div<IStyledDialog>`
   border-radius: 5px;
-  background-color: ${color.lightest};
+  background-color: ${props => props.theme === 'dark' ? color.darkModeBG : "#fff"};
   border: solid 1px ${borderColor};
-  z-index: 99;
+  z-index: 98;
   width: 500px;
-  left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  
   ${(props: IStyledDialog) =>
     props.fixed
       ? css`
           position: fixed;
           margin: 0 auto;
-       
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 99;
           animation: ${!props.visible
           ? "hide 0.2s ease-in-out"
           : "popin 0.2s"};
@@ -97,23 +104,26 @@ export interface IDialogTile extends React.HTMLProps<HTMLDivElement> {
   children: any
 }
 export const DialogTitle = styled.div<IDialogTile>`
-  border-bottom: solid 1px ${color.border};
+  border-bottom: solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
   padding: 10px;
   box-sizing: border-box;
   position: relative;
   h2{
     margin: 0;
-    color: ${(props: IDialogTile) => colorValue(props)};
+    width: calc(100% - 40px);
+        color: ${(props: IDialogTile) => colorValue(props)};
   }
 `;
 
 export const DialogContent = styled.div`
   padding: 10px;
   box-sizing: border-box;
+  color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};
+
 `;
 
 export const DialogFooter = styled.div`
-  border-top: solid 1px ${color.border};
+  border-top: solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -132,17 +142,14 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${color.mediumdark};
+  color: ${props => (props.theme === 'dark') ? color.darkModeButton : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${color.dark};
+    color: ${props => (props.theme === 'dark') ? darken(0.2,color.darkModeButton) : color.dark};  
   }
   svg {
     width: 16px;
-    &:hover {
-      color: ${color.dark};
-    }
   }
 `;
 
