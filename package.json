@@ -1,6 +1,6 @@
 {
   "name": "@adamwebster/fused-components",
-  "version": "0.4.4",
+  "version": "1.0.1",
   "author": "Adam Webster",
   "repository": "https://github.com/adamwebster/fused-components",
   "module": "dist/src/index.js",
