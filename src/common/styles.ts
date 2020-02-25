@@ -8,4 +8,5 @@ export const DarkModeWrapper = styled.div`
   box-sizing: border-box;
   border-radius: 5px;
   box-shadow: rgba(0,0,0,0.10) 0 1px 3px 0;
+  margin: 25px 0 40px;
 `
