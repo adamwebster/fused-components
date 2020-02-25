@@ -49,6 +49,7 @@ export const StyledAlert = styled.div`
   svg{
     width:20px;
     min-width: 20px;
+    height: 20px;
     margin-right:5px;
   }
   }
