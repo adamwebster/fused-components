@@ -13,6 +13,9 @@ export const Label = styled.span`
     ${(props:Props) => props.inWarning && css`
         color: ${color.yellow};
     `}
+    ${props => (props.theme === 'dark' && !props.inWarning && !props.inError) && css`
+        color: ${color.medium};
+    `}
 `
 
 export const IconStyled = styled.span`
