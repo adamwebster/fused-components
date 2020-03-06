@@ -9,6 +9,7 @@ const globals = {
   react: "React",
   "react-dom": "ReactDOM",
   "prop-types": "PropTypes",
+  "core-js": "core-js",
   "styled-components": "styled",
   "@fortawesome/react-fontawesome": "FontAwesomeIcon",
   polished: ["darken", "lighten"]
@@ -67,5 +68,5 @@ export default {
       exclude: ["node_modules/**", "**/*.css"]
     })
   ],
-  external: id => globalModules.includes(id)
+  external: id => globalModules.includes(id) || /core-js/.test(id),
 };
