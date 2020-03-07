@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import {color} from '../../../styles/styles';
-import {Props} from './'
+import { fcStyles } from "../../../common/types";
 
-export const StyledBadge = styled.div`
+export interface Props {
+  /** Set the style of the badge */
+  fcStyle?: fcStyles;
+  theme: any;
+}export const StyledBadge = styled.div`
   padding: 5px 10px;
   border-radius: 5px;
   width: fit-content;
-
+  background-color: ${props => props.theme === "dark" ? color.darkModeBG : 'transparent'};
   border: solid 1px
-    ${(props:Props) => {
+    ${(props: Props) => {
     switch (props.fcStyle) {
       case 'danger':
         return color.red
@@ -19,8 +23,8 @@ export const StyledBadge = styled.div`
       case 'success':
         return color.green
       default:
-        return '#333'
+        props.theme === "dark" ? color.medium : '#333'
     }
   }};
-  color:#333;
+  color:${props => props.theme === "dark" ? color.medium : '#333'};;
 `;
