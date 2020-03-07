@@ -14,15 +14,18 @@ export interface Props {
   label: string,
   /** Set the style of the button */
   fcStyle?: fcStyles,
+  /** Set the color of the button */
+  buttonColor?: string,
   children: any,
   /** Set what element the button should be rended as for example as="a" */
-  as: any
+  as?: any
 }
 export const DropdownButton = ({
   primary,
   label,
   fcStyle,
   children,
+  buttonColor,
   as
 }:Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -66,7 +69,7 @@ export const DropdownButton = ({
           primary={primary}
           onClick={() => toggleMenu()}
           as={as}
-
+          buttonColor={buttonColor}
         >
           {label}
           {menuOpen ? (
