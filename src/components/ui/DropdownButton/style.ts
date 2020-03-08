@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { darken } from "polished";
 
 interface IDropdownButtonWrapper {
     renderAs?: string,
@@ -18,7 +19,8 @@ interface IDropdownMenuStyled {
 }
 export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
     position:absolute;
-    background-color: #fff;
+    background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
+    overflow: hidden;
     border: solid 1px ${color.border};
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
     min-width: 200px;
@@ -54,13 +56,13 @@ export const MenuItemStyled = styled.li`
     width: 100%;
     padding: 10px;
     box-sizing:border-box;
-    color: ${color.dark};
+    color: ${props => props.theme === 'dark' ? color.medium : color.dark};
     &:last-child{
     }
     &:hover,
     &:focus{
-        background-color: ${color.highlight};
-        outline:none;
+        background-color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.highlight};
+      color: ${props => props.theme === 'dark' ? color.light : 'inherit'};
     }
     svg{
         width: 12px;

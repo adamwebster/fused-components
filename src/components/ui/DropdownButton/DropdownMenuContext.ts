@@ -5,6 +5,7 @@ export interface DropdownMenuInterface {
     menuOpen: boolean,
     hideMenu: () => void,
     buttonEl: any,
+    theme?: any
 }
 
 export const DropdownMenuContext = React.createContext<DropdownMenuInterface | null>(null);
