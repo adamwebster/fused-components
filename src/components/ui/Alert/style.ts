@@ -1,6 +1,13 @@
 import styled, { css } from "styled-components";
 import { color } from '../../../styles/styles';
-import { Props } from './'
+import { fcStyles } from "../../../common/types";
+
+interface Props {
+  /** Set the style of the badge */
+  fcStyle?: fcStyles;
+  theme: any;
+  borderRadius: any
+}
 
 export const StyledAlert = styled.div`
 
@@ -21,7 +28,7 @@ export const StyledAlert = styled.div`
       case 'success':
         return color.green
       default:
-        return color.dark
+      return props.theme === "dark" ? color.medium : color.dark
     }
   }
   };
@@ -42,7 +49,7 @@ export const StyledAlert = styled.div`
       case 'success':
         return color.green
       default:
-        return color.dark
+       return props.theme === "dark" ? color.medium : color.dark
     }
   }
   };

@@ -14,7 +14,7 @@ height:34px;
 box-sizing:border-box;
 padding: 0 10px;
 outline: none;
-border: solid 1px ${color.border};
+border: solid 1px ${props => props.theme === 'dark' ? darken(0.3, color.focus) : color.border};
 border-radius: ${props => '5px'};
 -webkit-appearance: none;
 background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
@@ -31,7 +31,8 @@ color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};
 }
 &[disabled]{
   cursor: not-allowed;
-  background-color: #e9e9e9;
+  background-color: ${props => props.theme === 'dark' ? darken(0.1, color.darkModeBG) : '#e9e9e9'};
+
 }
 ${props => props.inError && css`
   border:solid 1px ${color.red};

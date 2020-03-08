@@ -8,8 +8,7 @@ export const StyledCard = styled.div`
   background-color: ${props =>
     props.theme === "dark" ? color.darkModeBG : color.lightest};
 
- color: ${props =>
-    props.theme === "dark" ? color.medium : 'inherit'};
+  color: ${props => (props.theme === "dark" ? color.medium : "inherit")};
   border: solid 1px ${color.border};
   box-sizing: border-box;
   ${props =>

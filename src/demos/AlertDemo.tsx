@@ -8,6 +8,11 @@ export const AlertDemo = () => {
   return (
     <FCThemeProvider value={{ theme: "dark" }}>
       <DarkModeWrapper>
+      <Alert icon="no-entry-circle" title="Dark Mode Default">
+          {AlertText}
+        </Alert>
+        <br />
+        <br />
         <Alert icon="no-entry-circle" title="Dark Mode Danger" fcStyle="danger">
           {AlertText}
         </Alert>

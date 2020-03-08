@@ -87,6 +87,13 @@ export const CornerDialogDark = () => {
   return (
     <DarkModeWrapperStyled>
       <FCThemeProvider value={{ theme: "dark" }}>
+      <CornerDialog
+          title="Corner Dialog Default"
+          fixed={false}
+        >
+          This is a Corner Dialog that will appear in the bottom right corner of
+          the users screen. With text that should not wrap around icon.
+        </CornerDialog>
         <CornerDialog
           fcStyle="danger"
           icon="no-entry-circle"

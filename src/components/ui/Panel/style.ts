@@ -1,7 +1,13 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { fcStyles } from "../../../common/types";
-import {Props} from './';
+import { darken, lighten } from "polished";
+
+interface Props {
+  /** Set the style of the badge */
+  fcStyle?: fcStyles;
+  theme?: any;
+}
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
@@ -14,7 +20,7 @@ const colorValue = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return color.dark;
+      return props.theme === "dark" ? color.medium : color.dark
   }
 };
 export interface IStyledPanel extends React.HTMLProps<HTMLDivElement>{
@@ -24,7 +30,8 @@ export interface IStyledPanel extends React.HTMLProps<HTMLDivElement>{
 }
 export const StyledPanel = styled.div<IStyledPanel>`
   border-radius: 5px;
-  background-color: #fff;
+  background-color: ${props => (props.theme === 'dark') ? color.darkModeBG : '#fff'};
+  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   height: calc(100vh - 50px);
   width: 300px;
@@ -95,7 +102,7 @@ export interface IDialogTile extends React.HTMLProps<HTMLDivElement> {
 }
 
 export const DialogTitle = styled.h3<IDialogTile>`
-  border-bottom: solid 1px ${color.border};
+  border-bottom:  solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
@@ -118,7 +125,7 @@ export const DialogContent = styled.div`
 export const DialogText = styled.div``;
 
 export const DialogFooter = styled.div`
-  border-top: solid 1px ${color.border};
+  border-top:  solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -138,17 +145,13 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${color.mediumdark};
-  position: absolute;
+  color: ${props => (props.theme === 'dark') ? color.darkModeButton : color.mediumdark};  position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${color.dark};
+    color: ${props => (props.theme === 'dark') ? darken(0.2,color.darkModeButton) : color.dark};  
   }
   svg {
     width: 16px;
-    &:hover {
-      color: ${color.dark};
-    }
   }
 `;
 

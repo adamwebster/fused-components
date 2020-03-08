@@ -1,7 +1,16 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
-import { Props } from "./";
 import { darken, lighten } from "polished";
+
+import { fcStyles } from "../../../common/types";
+
+export interface Props {
+  /** Set the style of the badge */
+  fcStyle?: fcStyles;
+  theme?: any;
+  visible?: any;
+  fixed?: any;
+}
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
@@ -14,8 +23,8 @@ const colorValue = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return color.dark;
-  }
+      props.theme === "dark" ? color.medium : color.border;
+    }
 };
 
 const borderColor = (props: Props) => {
@@ -29,7 +38,7 @@ const borderColor = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return color.border;
+      return props.theme === "dark" ? lighten(1, color.border) : color.border;
   }
 };
 export const CornerDialogStyled = styled.div`
