@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Label } from "../Label";
 import {
   HintText,
@@ -6,6 +6,8 @@ import {
   ValidationMessage,
   InputWrapper
 } from "./style";
+import { FCTheme } from "../../../theming/FCTheme";
+
 
 export interface Props {
   /** The label for the input field */
@@ -28,6 +30,8 @@ export const FormField = ({
   htmlFor,
   children
 }: Props) => {
+  const theme = useContext(FCTheme);
+
   return (
     <>
       {label && 
@@ -38,7 +42,7 @@ export const FormField = ({
       }
       <InputWrapper>{children}</InputWrapper>
 
-      {hint && <HintText>{hint}</HintText>}
+      {hint && <HintText theme={theme?.theme}>{hint}</HintText>}
       {validationMessage && (
         <ValidationMessage>{validationMessage}</ValidationMessage>
       )}
