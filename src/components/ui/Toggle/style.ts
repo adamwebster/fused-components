@@ -8,7 +8,7 @@ width: 40px;
 height: 20px;
 border-radius: 15px;
 padding:3px;
-background-color: ${props => props.theme === 'dark' ? color.darkModeBG : color.light};
+background-color: ${props => props.theme === 'dark' ? lighten(0.1, color.darkModeBG) : color.light};
 position:relative;
 cursor: pointer;
 border: solid 1px ${color.border};
@@ -25,7 +25,7 @@ interface ISlider {
 export const Slider = styled.div<ISlider>`
 width: 20px;
 height: 20px;
-background-color: ${props => props.theme === 'dark' ? lighten(0.2 ,color.darkModeBG) : "#fff"};
+background-color: ${props => props.theme === 'dark' ? lighten(0.4 ,color.darkModeBG) : "#fff"};
 position:absolute;
 box-sizing:border-box;
 box-shadow: 0 0 5px rgba(0,0,0,.25);
