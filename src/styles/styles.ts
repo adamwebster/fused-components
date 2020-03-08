@@ -26,6 +26,6 @@ export const color = {
   darkest: "#333333",
   overlay: "rgba(0,0,0,.5)",
   border: "rgba(0,0,0,.1)",
-  darkModeBG: "#002e51",
+  darkModeBG: "#00477c",
   darkModeButton: "#6284a7",
 };

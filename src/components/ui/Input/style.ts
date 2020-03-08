@@ -17,7 +17,7 @@ outline: none;
 border: solid 1px ${props => props.theme === 'dark' ? darken(0.3, color.focus) : color.border};
 border-radius: ${props => '5px'};
 -webkit-appearance: none;
-background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
+background-color: ${props => props.theme === 'dark' ? darken(0.1, color.darkModeBG) : '#fff'};
 color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};
 
 &::placeholder{
