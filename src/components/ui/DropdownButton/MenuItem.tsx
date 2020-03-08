@@ -13,7 +13,7 @@ export const MenuItem = ({ children, icon, onClick = () => {}, ...rest }:Props) 
   const DropdownContext = useContext(DropdownMenuContext);
 
   return (
-    <MenuItemStyled onClick={() => {if(DropdownContext){DropdownContext.hideMenu()}; onClick();}} {...rest}>
+    <MenuItemStyled theme={DropdownContext?.theme} onClick={() => {if(DropdownContext){DropdownContext.hideMenu()}; onClick();}} {...rest}>
       {icon && <Icon icon={icon} />}
       {children}
     </MenuItemStyled>

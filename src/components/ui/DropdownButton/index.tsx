@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Button } from "../Button";
 import { DropdownButtonWrapper, IconStyled, MenuDivider } from "./style";
 import { DropdownMenu } from "./DropdownMenu";
@@ -6,6 +6,7 @@ import { MenuItem } from "./MenuItem";
 import {DropdownMenuProvider} from "./DropdownMenuContext";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
+import { FCTheme } from "../../../theming/FCTheme";
 
 export interface Props {
   /** Set the button to be primary */
@@ -31,7 +32,7 @@ export const DropdownButton = ({
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const buttonEl = useRef();
-
+  const theme = useContext(FCTheme);
   const hideMenuFunc = () => {
     if (menuOpen) {
       setMenuOpen(false);
@@ -44,6 +45,7 @@ export const DropdownButton = ({
     menuOpen,
     hideMenu: () => hideMenuFunc(),
     buttonEl,
+    theme: theme?.theme,
   };
 
   const toggleMenu = () => {

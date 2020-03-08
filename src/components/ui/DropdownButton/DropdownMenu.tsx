@@ -35,8 +35,10 @@ export const DropdownMenu = ({ children }: Props) => {
     <DropdownMenuConsumer>
     {appContext => appContext && (
         <>
+        {console.log(appContext)}
           <DropdownMenuStyled
             ref={menuRef}
+            theme={appContext.theme}
             menuOpen={appContext.menuOpen}
           >
             {children}
