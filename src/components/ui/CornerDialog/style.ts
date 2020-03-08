@@ -38,7 +38,7 @@ const borderColor = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return props.theme === "dark" ? lighten(1, color.border) : color.border;
+      return props.theme === "dark" ? darken(0.4, color.highlight) : color.border;
   }
 };
 export const CornerDialogStyled = styled.div`
@@ -91,7 +91,7 @@ export const CornerDialogStyled = styled.div`
 `;
 
 export const DialogTitle = styled.h3`
-  border-bottom:  solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
+  border-bottom:  solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
@@ -107,7 +107,7 @@ export const DialogContent = styled.div`
 export const DialogText = styled.div``;
 
 export const DialogFooter = styled.div`
-  border-top:  solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
+  border-top: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
