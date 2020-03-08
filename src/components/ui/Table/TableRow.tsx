@@ -17,6 +17,7 @@ const TableRow = ({ children, bgColor, fgColor, ...rest }:Props) => {
     <TableContextContextConsumer>
       {tableContext => tableContext && (
         <TableRowStyled
+          theme={tableContext?.theme}
           zebraStripping={tableContext.zebraStripping}
           bgColor={bgColor}
           zebraStripeColor={tableContext.zebraStripeColor}
