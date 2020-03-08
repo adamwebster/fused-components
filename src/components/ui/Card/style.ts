@@ -1,11 +1,15 @@
-import {color} from "../../../styles/styles";
+import { color } from "../../../styles/styles";
 import styled, { css } from "styled-components";
-import { Props } from './';
+import { Props } from "./";
 
 export const StyledCard = styled.div`
   border-radius: ${(props: Props) =>
-    props.borderRadius ? props.borderRadius : '5px'};
-  background-color: ${color.lightest};
+    props.borderRadius ? props.borderRadius : "5px"};
+  background-color: ${props =>
+    props.theme === "dark" ? color.darkModeBG : color.lightest};
+
+ color: ${props =>
+    props.theme === "dark" ? color.medium : 'inherit'};
   border: solid 1px ${color.border};
   box-sizing: border-box;
   ${props =>
