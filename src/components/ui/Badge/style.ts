@@ -6,7 +6,8 @@ export interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
   theme: any;
-}export const StyledBadge = styled.div`
+}
+export const StyledBadge = styled.div`
   padding: 5px 10px;
   border-radius: 5px;
   width: fit-content;
