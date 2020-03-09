@@ -6,7 +6,7 @@ export const StyledCard = styled.div`
   border-radius: ${(props: Props) =>
     props.borderRadius ? props.borderRadius : "5px"};
   background-color: ${props =>
-    props.theme === "dark" ? color.darkModeBG : color.lightest};
+    props.theme === "dark" ? color.darkModeDarker : color.lightest};
 
   color: ${props => (props.theme === "dark" ? color.medium : "inherit")};
   border: solid 1px ${color.border};

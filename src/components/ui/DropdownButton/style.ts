@@ -19,7 +19,7 @@ interface IDropdownMenuStyled {
 }
 export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
     position:absolute;
-    background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
+    background-color: ${props => props.theme === 'dark' ? color.darkModeDarker : '#fff'};
     overflow: hidden;
     border: solid 1px ${color.border};
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
@@ -30,7 +30,7 @@ export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
     z-index: 99;
     margin-top: 5px;
     border-radius: 5px;
-    animation:  ${props => props.menuOpen ? 'fadein 0.5s ease-in-out' : 'fadeout 0.2s ease-in-out' };
+    animation:  ${props => props.menuOpen ? 'fadein 0.5s ease-in-out' : 'fadeout 0.2s ease-in-out'};
     @keyframes fadein {
         0%{
             opacity: 0;
@@ -51,7 +51,6 @@ export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
 
 `
 
-
 export const MenuItemStyled = styled.li`
     width: 100%;
     padding: 10px;
@@ -61,7 +60,7 @@ export const MenuItemStyled = styled.li`
     }
     &:hover,
     &:focus{
-        background-color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.highlight};
+        background-color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.highlight};
       color: ${props => props.theme === 'dark' ? color.light : 'inherit'};
     }
     svg{

@@ -85,7 +85,7 @@ export const CornerDialog = ({
                 <Button
                   buttonColor={
                     themeContext?.theme === "dark"
-                      ? darken(0.2, color.highlight)
+                      ? color.darkModeMedium
                       : color.mediumdark
                   }
                   onClick={() => onCloseClick()}

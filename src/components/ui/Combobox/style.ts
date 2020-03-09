@@ -18,7 +18,7 @@ interface IComboboxMenu extends React.HTMLProps<HTMLElement>{
 export const ComboboxMenu = styled.ul<IComboboxMenu>`
   position: absolute;
   top: 34px;
-  background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
+  background-color: ${props => props.theme === 'dark' ? color.darkModeDarker : '#fff'};
   border: solid 1px ${color.border};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   margin: 0;
@@ -28,6 +28,7 @@ export const ComboboxMenu = styled.ul<IComboboxMenu>`
   z-index: 99;
   margin-top: 5px;
   border-radius: 5px;
+  overflow:hidden;
 `;
 
 interface IMenuItemStyled extends React.HTMLProps<HTMLElement>{
@@ -43,7 +44,7 @@ export const MenuItemStyled = styled.li<IMenuItemStyled>`
     }
     &:hover,
     &:focus{
-      background-color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.highlight};
+      background-color: ${props => props.theme === 'dark' ?  color.darkModeMedium : color.highlight};
       color: ${props => props.theme === 'dark' ? color.light : 'inherit'};
         outline:none;
     }

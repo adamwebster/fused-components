@@ -23,7 +23,7 @@ const colorValue = (props: Props) => {
     case "success":
       return color.green;
     default:
-      props.theme === "dark" ? color.medium : color.border;
+      props.theme === "dark" ? color.darkModeMedium : color.border;
     }
 };
 
@@ -38,7 +38,7 @@ const borderColor = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return props.theme === "dark" ? darken(0.4, color.highlight) : color.border;
+      return props.theme === "dark" ? color.darkModeMedium : color.border;
   }
 };
 export const CornerDialogStyled = styled.div`
@@ -57,7 +57,7 @@ export const CornerDialogStyled = styled.div`
           position: relative;
           margin-right: 25px;
         `}
-  background-color: ${props => props.theme === 'dark' ? color.darkModeBG : "#fff"};
+  background-color: ${props => props.theme === 'dark' ? color.darkModeDark : "#fff"};
   color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
 
   border-radius: 5px;
@@ -127,11 +127,11 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${props => (props.theme === 'dark') ? color.darkModeButton : color.mediumdark};
+  color: ${props => (props.theme === 'dark') ? color.darkModeMedium : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props => (props.theme === 'dark') ? darken(0.2,color.darkModeButton) : color.dark};  
+    color: ${props => (props.theme === 'dark') ? darken(0.1,color.darkModeMedium) : color.dark};  
   }
   svg {
     width: 16px;
