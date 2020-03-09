@@ -22,7 +22,7 @@ color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};
 
 &::placeholder{
   font-style:italic; 
-  color: ${props => props.theme === 'dark' ? color.darkModeMediumLight : 'inherit'};
+  color: ${props => props.theme === 'dark' ? color.darkModeMediumLight : color.mediumdark};
 }
 
 &:focus{
