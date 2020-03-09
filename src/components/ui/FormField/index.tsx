@@ -4,10 +4,10 @@ import {
   HintText,
   RequiredMark,
   ValidationMessage,
-  InputWrapper
+  InputWrapper,
+  FormFieldWrapper
 } from "./style";
 import { FCTheme } from "../../../theming/FCTheme";
-
 
 export interface Props {
   /** The label for the input field */
@@ -33,7 +33,7 @@ export const FormField = ({
   const theme = useContext(FCTheme);
 
   return (
-    <>
+    <FormFieldWrapper>
       {label && 
         <Label htmlFor={htmlFor}>
           {required && <RequiredMark>* </RequiredMark>}
@@ -46,6 +46,6 @@ export const FormField = ({
       {validationMessage && (
         <ValidationMessage>{validationMessage}</ValidationMessage>
       )}
-    </>
+    </FormFieldWrapper>
   );
 };
