@@ -157,7 +157,7 @@ export const Combobox = ({
                 );
               })}
               {itemsToShow.length === 0 && (
-                <MenuItemStyled>Nothing found</MenuItemStyled>
+                <MenuItemStyled theme={themeContext?.theme}>Nothing found</MenuItemStyled>
               )}
             </ComboboxMenu>
           )}

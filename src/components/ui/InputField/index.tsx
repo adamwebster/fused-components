@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Input } from "../Input";
 import { Label } from "../Label";
 import { HintText,RequiredMark, ValidationMessage } from "./style";
+import { FCTheme } from "../../../theming/FCTheme";
 
 export interface Props {
   /** The label for the input field */
@@ -23,14 +24,16 @@ export interface Props {
   type?: string
 }
 export const InputField = ({ label, hint, required = false, validationMessage, inError = false, inWarning =false, id }:Props) => {
+const theme = useContext(FCTheme);
   return (
     <> 
+
       <Label htmlFor={id}>
         {required && <RequiredMark>* </RequiredMark>}
         {label}
       </Label>
       <Input inWarning={inWarning} inError={inError} id={id} />
-      {hint && <HintText>{hint}</HintText>}
+      {hint && <HintText theme={theme?.theme}>{hint}</HintText>}
       {validationMessage && <ValidationMessage>{validationMessage}</ValidationMessage>}
 
     </>

@@ -9,8 +9,8 @@ export const AutocompleteWrapper = styled.div`
 export const AutocompleteMenu = styled.ul`
   position: absolute;
   top: 34px;
-  background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
-  border: solid 1px ${color.border};
+  background-color: ${props => props.theme === 'dark' ? color.darkModeDark : '#fff'};
+  border: solid 1px ${props => props.theme === "dark" ? color.darkModeMedium : color.border};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   margin: 0;
   padding: 0;
@@ -31,7 +31,7 @@ export const MenuItemStyled = styled.li`
     }
     &:hover,
     &:focus{
-      background-color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.highlight};
+      background-color: ${props => props.theme === 'dark' ?  color.darkModeMedium : color.highlight};
       color: ${props => props.theme === 'dark' ? color.light : 'inherit'};
 
         outline:none;
@@ -46,7 +46,7 @@ export const ItemIcon = styled.span`
 width: 16px;
 display: inline-block;
  svg{
-     color: ${props => props.theme === 'dark' ? darken(0.4, color.highlight) : color.mediumdark};
+  color: ${props => props.theme === 'dark' ? color.darkModeMediumLight: color.mediumdark};
 
      margin-right: 5px;
  }

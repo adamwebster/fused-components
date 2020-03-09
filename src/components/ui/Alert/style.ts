@@ -1,10 +1,17 @@
 import styled, { css } from "styled-components";
 import { color } from '../../../styles/styles';
-import { Props } from './'
+import { fcStyles } from "../../../common/types";
+import { lighten } from "polished";
+interface Props {
+  /** Set the style of the badge */
+  fcStyle?: fcStyles;
+  theme: any;
+  borderRadius: any
+}
 
 export const StyledAlert = styled.div`
 
-  background-color: ${props => (props.theme === 'dark') ? color.darkModeBG : '#fff'};
+  background-color: ${props => (props.theme === 'dark') ? color.darkModeDark : '#fff'};
   color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
 
   border-style: solid;
@@ -13,7 +20,7 @@ export const StyledAlert = styled.div`
   (props: Props) => {
     switch (props.fcStyle) {
       case 'danger':
-        return color.red
+        return  props.theme === "dark" ? lighten(0.1, color.red) : color.red
       case 'warning':
         return color.yellow
       case 'info':
@@ -21,7 +28,7 @@ export const StyledAlert = styled.div`
       case 'success':
         return color.green
       default:
-        return color.dark
+      return props.theme === "dark" ? color.medium : color.dark
     }
   }
   };
@@ -34,7 +41,7 @@ export const StyledAlert = styled.div`
   (props: Props) => {
     switch (props.fcStyle) {
       case 'danger':
-        return color.red
+        return  props.theme === "dark" ? lighten(0.1, color.red) : color.red
       case 'warning':
         return color.yellow
       case 'info':
@@ -42,7 +49,7 @@ export const StyledAlert = styled.div`
       case 'success':
         return color.green
       default:
-        return color.dark
+       return props.theme === "dark" ? color.medium : color.dark
     }
   }
   };

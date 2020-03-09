@@ -3,6 +3,8 @@ import { Panel } from "../components/ui/Panel";
 import { Button } from "../components/ui/Button";
 import { Label } from "../components/ui/Label";
 import { Input } from "../components/ui/Input";
+import { DarkModeWrapper } from "../common/styles";
+import { FCThemeProvider } from "../theming/FCTheme";
 
 export const PanelDemo = () => {
   const [panelVisible, setPanelVisible] = useState(false);
@@ -52,3 +54,16 @@ export const PanelDemo = () => {
     </>
   );
 };
+
+export const PanelDark = () => {
+  return(
+    <DarkModeWrapper>
+    <FCThemeProvider value={{theme: 'dark'}}>
+    <Panel fixed={false} title="Dialog">
+    Dialog content
+    <Input placeholder="input placeholder" />
+</Panel>
+    </FCThemeProvider>
+    </DarkModeWrapper>
+  )
+}

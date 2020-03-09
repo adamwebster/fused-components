@@ -2,12 +2,12 @@ import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { Props } from './';
 import { fcStyles } from "../../../common/types";
-import { lighten, darken } from 'polished';
+import { lighten, darken, border } from 'polished';
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case 'danger':
-      return color.red
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case 'warning':
       return color.yellow
     case 'info':
@@ -26,7 +26,7 @@ const colorValue = (props: Props) => {
 const borderColor: any = (props: Props) => {
   switch (props.fcStyle) {
     case 'danger':
-      return color.red
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case 'warning':
       return color.yellow
     case 'info':
@@ -34,7 +34,7 @@ const borderColor: any = (props: Props) => {
     case 'success':
       return color.green
     default:
-      return color.border
+      return props.theme === "dark" ? color.darkModeMedium : color.border;
   }
 };
 
@@ -42,11 +42,12 @@ export interface IStyledDialog extends React.HTMLProps<HTMLDivElement> {
   fixed?: boolean,
   visible?: boolean,
   boxShadow?: boolean,
+  fcStyle?: fcStyles
 }
 
 export const StyledDialog = styled.div<IStyledDialog>`
   border-radius: 5px;
-  background-color: ${props => props.theme === 'dark' ? color.darkModeBG : "#fff"};
+  background-color: ${props => props.theme === 'dark' ? color.darkModeDark : "#fff"};
   border: solid 1px ${borderColor};
   z-index: 98;
   width: 500px;
@@ -104,7 +105,7 @@ export interface IDialogTile extends React.HTMLProps<HTMLDivElement> {
   children: any
 }
 export const DialogTitle = styled.div<IDialogTile>`
-  border-bottom: solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
+  border-bottom: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   position: relative;
@@ -122,8 +123,11 @@ export const DialogContent = styled.div`
 
 `;
 
-export const DialogFooter = styled.div`
-  border-top: solid 1px ${props => (props.theme === 'dark') ? lighten(1, color.border) : color.border};
+interface Footer extends React.HTMLProps<HTMLDivElement> {
+  fcStyle?: fcStyles;
+}
+export const DialogFooter = styled.div<Footer>`
+  border-top: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -142,11 +146,11 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${props => (props.theme === 'dark') ? color.darkModeButton : color.mediumdark};
+  color: ${props => (props.theme === 'dark') ? color.darkModeMedium : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props => (props.theme === 'dark') ? darken(0.2,color.darkModeButton) : color.dark};  
+    color: ${props => (props.theme === 'dark') ? darken(0.1,color.darkModeMedium) : color.dark};  
   }
   svg {
     width: 16px;
