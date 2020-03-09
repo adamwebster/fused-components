@@ -17,3 +17,25 @@ export const AutocompleteDemo = () => {
     </FCThemeProvider>
   );
 };
+
+export const AutocompleteDemoFormatter = () => {
+  const data = [{ label: "Apple", description: 'Apples are red and are crunchy.' }, { label: "Banana", description: 'Bananas are yellow you have to peel them.' }, { label: "Orange", description: 'Oranges have a hard peel and are full of vitamin C.' }];
+  return (
+        <Autocomplete
+          itemFormatter={(value) => {
+            console.log(value)
+            return (
+              <>
+              <div>{data[value].label}</div>
+              <div style={{fontSize: '12px', color: '#aaa'}}>{data[value].description}</div>
+              </>
+            )
+          }
+          }
+          inputIcon="search"
+          placeholder="Search with formatting"
+          keyToSearch="label"
+          items={data}
+        />
+  );
+};
