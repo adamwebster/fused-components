@@ -11,7 +11,7 @@ export const StyledBadge = styled.div`
   padding: 5px 10px;
   border-radius: 5px;
   width: fit-content;
-  background-color: ${props => props.theme === "dark" ? color.darkModeBG : 'transparent'};
+  background-color: ${props => props.theme === "dark" ? color.darkModeDarker : 'transparent'};
   border: solid 1px
     ${(props: Props) => {
     switch (props.fcStyle) {

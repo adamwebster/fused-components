@@ -61,6 +61,7 @@ export const Panel = ({
       {show && (
         <StyledPanel
           theme={theme?.theme}
+          fcStyle={fcStyle}
           position={position}
           visible={visible}
           fixed={fixed}
@@ -78,11 +79,11 @@ export const Panel = ({
           <DialogContent>
             <DialogText>{children}</DialogText>
           </DialogContent>
-          <DialogFooter theme={theme?.theme}>
+          <DialogFooter fcStyle={fcStyle} theme={theme?.theme}>
             <Button
               buttonColor={
                 theme?.theme === "dark"
-                  ? color.darkModeButton
+                  ? color.darkModeMedium
                   : color.mediumdark
               }
               onClick={e => onCloseClick(e)}

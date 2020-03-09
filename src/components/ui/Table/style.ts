@@ -171,7 +171,7 @@ export const TableBodyStyled = styled.tbody<ITableBodyStyled>`
     
     & tr:hover {
     background-color: ${props =>
-      props.bgColor ? darken(0.1, props.bgColor) : props.theme === "dark" ? darken(0.4, color.highlight) : color.highlight};
+      props.bgColor ? darken(0.1, props.bgColor) : props.theme === "dark" ? color.darkModeMedium : color.highlight};
   }
 
   ${props =>

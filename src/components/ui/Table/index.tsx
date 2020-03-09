@@ -47,7 +47,7 @@ export const Table = ({
 }:Props) => {
   const themeContext = useContext(FCTheme);
 
-  const zebraStripeColorValue = themeContext?.theme === 'dark' ? color.darkModeBG : '#ebebeb';
+  const zebraStripeColorValue = themeContext?.theme === 'dark' ? color.darkModeDark : '#ebebeb';
 
   const state = {
     padding,

@@ -11,7 +11,7 @@ interface Props {
 
 export const StyledAlert = styled.div`
 
-  background-color: ${props => (props.theme === 'dark') ? color.darkModeBG : '#fff'};
+  background-color: ${props => (props.theme === 'dark') ? color.darkModeDark : '#fff'};
   color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
 
   border-style: solid;

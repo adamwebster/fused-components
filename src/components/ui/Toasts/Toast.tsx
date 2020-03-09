@@ -14,13 +14,15 @@ export interface Props {
   icon?: string;
   /** how long the toast should be shown in seconds */
   duration: number;
+  theme?: any;
 }
 export const Toast = ({
   title,
   fcStyle,
   children,
   icon,
-  duration = 4
+  duration = 4,
+  theme
 }: Props) => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
@@ -82,6 +84,7 @@ export const Toast = ({
               fcStyle={fcStyle}
               icon={icon}
               title={title}
+              theme={theme}
             >
               {children && (
                 <span
@@ -91,6 +94,7 @@ export const Toast = ({
                 />
               )}
               <CloseButton
+              theme={theme}
                 onClick={() => {
                   setRemoving(true);
                   setTimeout(() => setVisible(false), 500);
@@ -98,7 +102,7 @@ export const Toast = ({
               >
                 <Icon icon="times" />
               </CloseButton>
-              <LoadingBar timer={timer} />
+              <LoadingBar theme={theme} timer={timer} />
             </StyledToast>
           )}
         </>
