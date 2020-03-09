@@ -18,7 +18,7 @@ interface IComboboxMenu extends React.HTMLProps<HTMLElement>{
 export const ComboboxMenu = styled.ul<IComboboxMenu>`
   position: absolute;
   top: 34px;
-  background-color: ${props => props.theme === 'dark' ? color.darkModeDarker : '#fff'};
+  background-color: ${props => props.theme === 'dark' ? color.darkModeDark : '#fff'};
   border: solid 1px ${color.border};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   margin: 0;

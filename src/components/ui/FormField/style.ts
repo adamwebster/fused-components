@@ -26,3 +26,7 @@ export const RequiredMark = styled.span`
 export const InputWrapper = styled.div`
     width: 100%;
 `
+
+export const FormFieldWrapper = styled.div`
+    margin-bottom: 10px;
+`
