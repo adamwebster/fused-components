@@ -31,7 +31,7 @@ export const MenuItemStyled = styled.li`
     }
     &:hover,
     &:focus{
-      background-color: ${props => props.theme === 'dark' ?  color.darkModeMedium : color.highlight};
+      background-color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.highlight};
       color: ${props => props.theme === 'dark' ? color.light : 'inherit'};
 
         outline:none;
@@ -42,12 +42,19 @@ export const MenuItemStyled = styled.li`
         margin-right: 5px;
     }
 `
+
+export const NoItemFound = styled.li`
+      width: 100%;
+    padding: 10px;
+    box-sizing:border-box;
+    text-align:center;
+    color: ${props => props.theme === 'dark' ? color.medium : color.dark};
+`
 export const ItemIcon = styled.span`
 width: 16px;
 display: inline-block;
  svg{
-  color: ${props => props.theme === 'dark' ? color.darkModeMediumLight: color.mediumdark};
-
+  color: ${props => props.theme === 'dark' ? color.darkModeMediumLight : color.mediumdark};
      margin-right: 5px;
  }
 `

@@ -6,13 +6,14 @@ import {
   AutocompleteWrapper,
   AutocompleteMenu,
   MenuItemStyled,
-  ItemIcon
+  ItemIcon,
+  NoItemFound
 } from "./style";
 import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props {
   /** Defines what items are sent to the auto complete component*/
-  items: Array<string>;
+  items: Array<any>;
   /** What icon to show for the auto complete input */
   inputIcon?: string;
   /** If the input should be in its error state */
@@ -23,6 +24,8 @@ export interface Props {
   disabled?: boolean;
   /** The placeholder text for the input */
   placeholder?: string;
+  itemFormatter?: (value: any) => any;
+  keyToSearch?: string;
 }
 
 export const Autocomplete = ({
@@ -31,9 +34,12 @@ export const Autocomplete = ({
   inError = false,
   inWarning = false,
   disabled = false,
-  placeholder
+  placeholder,
+  itemFormatter,
+  keyToSearch
 }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
+  const [initialItems, setInitialItems] = useState(items);
   const [filterValue, setFilterValue] = useState("");
   const [itemSelected, setItemSelected] = useState("");
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
@@ -43,11 +49,25 @@ export const Autocomplete = ({
 
   useEffect(() => {
     window.addEventListener("keydown", handleUserKeyPress);
-
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress);
     };
   });
+  useEffect(() => {
+    formatItems();
+  }, [menuOpen])
+
+  const formatItems = () => {
+    if (itemFormatter) {
+      const itemsToFormat = initialItems;
+      if (itemsToFormat) {
+        itemsToFormat.forEach((item, index) => {
+          item.index = index
+        })
+      }
+      setInitialItems(itemsToFormat);
+    }
+  }
 
   const handleUserKeyPress = (e: { keyCode: number }) => {
     // Escape Key
@@ -79,15 +99,24 @@ export const Autocomplete = ({
 
   const filterItems = (e: { target: { value: string } }) => {
     setFilterValue(e.target.value);
-    const filterItemList = items.filter(item =>
-      item.toLowerCase().includes(e.target.value.toLowerCase())
-    );
+    let filterItemList;
+    if (keyToSearch) {
+      filterItemList = items.filter(item =>
+        item[keyToSearch].toLowerCase().includes(e.target.value.toLowerCase())
+      )
+    } else {
+      filterItemList = items.filter(item =>
+        item.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+    }
+
     setMenuOpen(true);
     if (filterRef.current) {
       if (filterRef.current.value.length > 0) {
         setItemsToShow(filterItemList);
       } else {
         setItemsToShow(items);
+        setMenuOpen(false);
       }
     }
   };
@@ -125,33 +154,59 @@ export const Autocomplete = ({
           />
           {menuOpen && (
             <AutocompleteMenu theme={themeContext?.theme}>
-              {itemsToShow.map((item, index) => {
-                return (
-                  <MenuItemStyled
-                    theme={themeContext?.theme}
-                    tabIndex={0}
-                    onKeyPress={(e: { charCode: number }) =>
-                      handleItemKeyPress(e, item)
-                    }
-                    onClick={() => setValue(item)}
-                    key={item}
-                    ref={(ref: any) => {
-                      itemRefs[index] = ref;
-                    }}
-                  >
-                    {item === itemSelected && (
-                      <ItemIcon
-                      theme={themeContext?.theme}
+
+              {itemFormatter ?
+                <>
+                  {itemsToShow.map((item, index) => {
+                    return (
+                      <MenuItemStyled
+                        theme={themeContext?.theme}
+                        tabIndex={0}
+                        onKeyPress={(e: { charCode: number }) =>
+                          handleItemKeyPress(e, item[keyToSearch as string])
+                        }
+                        onClick={() => setValue(item[keyToSearch as string])}
+                        key={item.index}
+                        ref={(ref: any) => {
+                          itemRefs[index] = ref;
+                        }}
                       >
-                        <Icon icon="check-circle" />
-                      </ItemIcon>
-                    )}
-                    {item}
-                  </MenuItemStyled>
-                );
-              })}
+                        {itemFormatter(item.index)}
+                      </MenuItemStyled>
+                    )
+                  })}
+                </>
+                :
+                <>
+                  {itemsToShow.map((item, index) => {
+                    return (
+                      <MenuItemStyled
+                        theme={themeContext?.theme}
+                        tabIndex={0}
+                        onKeyPress={(e: { charCode: number }) =>
+                          handleItemKeyPress(e, item)
+                        }
+                        onClick={() => setValue(item)}
+                        key={item}
+                        ref={(ref: any) => {
+                          itemRefs[index] = ref;
+                        }}
+                      >
+                        {item === itemSelected && (
+                          <ItemIcon
+                            theme={themeContext?.theme}
+                          >
+                            <Icon icon="check-circle" />
+                          </ItemIcon>
+                        )}
+                        {item}
+                      </MenuItemStyled>
+                    );
+                  })}
+                </>
+              }
               {itemsToShow.length === 0 && (
-                <MenuItemStyled theme={themeContext?.theme}>Nothing found</MenuItemStyled>
+                <NoItemFound theme={themeContext?.theme}>Nothing found</NoItemFound>
               )}
             </AutocompleteMenu>
           )}
