@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { color } from '../../../styles/styles';
 import { fcStyles } from "../../../common/types";
-
+import { lighten } from "polished";
 interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
@@ -20,7 +20,7 @@ export const StyledAlert = styled.div`
   (props: Props) => {
     switch (props.fcStyle) {
       case 'danger':
-        return color.red
+        return  props.theme === "dark" ? lighten(0.1, color.red) : color.red
       case 'warning':
         return color.yellow
       case 'info':
@@ -41,7 +41,7 @@ export const StyledAlert = styled.div`
   (props: Props) => {
     switch (props.fcStyle) {
       case 'danger':
-        return color.red
+        return  props.theme === "dark" ? lighten(0.1, color.red) : color.red
       case 'warning':
         return color.yellow
       case 'info':

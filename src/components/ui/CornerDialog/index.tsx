@@ -75,7 +75,7 @@ export const CornerDialog = ({
               </DialogTitle>
               <DialogContent theme={themeContext?.theme}>
                 {icon && (
-                  <IconStyled fcStyle={fcStyle}>
+                  <IconStyled theme={themeContext?.theme} fcStyle={fcStyle}>
                     <Icon icon={icon} />
                   </IconStyled>
                 )}

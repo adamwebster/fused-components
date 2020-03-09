@@ -15,7 +15,7 @@ export interface Props {
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case "danger":
-      return color.red;
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case "warning":
       return color.yellow;
     case "info":
@@ -24,13 +24,13 @@ const colorValue = (props: Props) => {
       return color.green;
     default:
       props.theme === "dark" ? color.darkModeMedium : color.border;
-    }
+  }
 };
 
 const borderColor = (props: Props) => {
   switch (props.fcStyle) {
     case "danger":
-      return color.red;
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case "warning":
       return color.yellow;
     case "info":
@@ -50,8 +50,8 @@ export const CornerDialogStyled = styled.div`
           bottom: 25px;
           right: 25px;
           animation: ${!props.visible
-            ? "hide 0.2s ease-in-out"
-            : "bounceup 0.5s ease-in-out"};
+          ? "hide 0.2s ease-in-out"
+          : "bounceup 0.5s ease-in-out"};
         `
       : css`
           position: relative;
@@ -131,7 +131,7 @@ export const CloseButton = styled.button`
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props => (props.theme === 'dark') ? darken(0.1,color.darkModeMedium) : color.dark};  
+    color: ${props => (props.theme === 'dark') ? darken(0.1, color.darkModeMedium) : color.dark};  
   }
   svg {
     width: 16px;

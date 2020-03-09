@@ -7,7 +7,7 @@ import { lighten, darken, border } from 'polished';
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case 'danger':
-      return color.red
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case 'warning':
       return color.yellow
     case 'info':
@@ -26,7 +26,7 @@ const colorValue = (props: Props) => {
 const borderColor: any = (props: Props) => {
   switch (props.fcStyle) {
     case 'danger':
-      return color.red
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case 'warning':
       return color.yellow
     case 'info':
