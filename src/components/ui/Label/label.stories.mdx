@@ -3,6 +3,8 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { DarkModeWrapper } from "../../../common/styles";
+import { LabelDark } from "../../../demos/LabelDemo";
 
 import { Label } from './';
 
@@ -17,6 +19,8 @@ import { Label } from './';
 <Preview>
     <Label>Label</Label>
 </Preview>
+
+<LabelDark />
 
 ## Properties
 

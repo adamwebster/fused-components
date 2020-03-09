@@ -1,11 +1,21 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
-import { Props } from "./";
+import { darken, lighten } from "polished";
+
+import { fcStyles } from "../../../common/types";
+
+export interface Props {
+  /** Set the style of the badge */
+  fcStyle?: fcStyles;
+  theme?: any;
+  visible?: any;
+  fixed?: any;
+}
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case "danger":
-      return color.red;
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case "warning":
       return color.yellow;
     case "info":
@@ -13,14 +23,14 @@ const colorValue = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return color.dark;
+      props.theme === "dark" ? color.darkModeMedium : color.border;
   }
 };
 
 const borderColor = (props: Props) => {
   switch (props.fcStyle) {
     case "danger":
-      return color.red;
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case "warning":
       return color.yellow;
     case "info":
@@ -28,7 +38,7 @@ const borderColor = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return color.border;
+      return props.theme === "dark" ? color.darkModeMedium : color.border;
   }
 };
 export const CornerDialogStyled = styled.div`
@@ -40,14 +50,16 @@ export const CornerDialogStyled = styled.div`
           bottom: 25px;
           right: 25px;
           animation: ${!props.visible
-            ? "hide 0.2s ease-in-out"
-            : "bounceup 0.5s ease-in-out"};
+          ? "hide 0.2s ease-in-out"
+          : "bounceup 0.5s ease-in-out"};
         `
       : css`
           position: relative;
           margin-right: 25px;
         `}
-  background-color: #fff;
+  background-color: ${props => props.theme === 'dark' ? color.darkModeDark : "#fff"};
+  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
+
   border-radius: 5px;
   border: solid 1px ${borderColor};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
@@ -79,7 +91,7 @@ export const CornerDialogStyled = styled.div`
 `;
 
 export const DialogTitle = styled.h3`
-  border-bottom: solid 1px ${color.border};
+  border-bottom:  solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
@@ -95,7 +107,7 @@ export const DialogContent = styled.div`
 export const DialogText = styled.div``;
 
 export const DialogFooter = styled.div`
-  border-top: solid 1px ${color.border};
+  border-top: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -115,17 +127,14 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${color.mediumdark};
+  color: ${props => (props.theme === 'dark') ? color.darkModeMedium : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${color.dark};
+    color: ${props => (props.theme === 'dark') ? darken(0.1, color.darkModeMedium) : color.dark};  
   }
   svg {
     width: 16px;
-    &:hover {
-      color: ${color.dark};
-    }
   }
 `;
 

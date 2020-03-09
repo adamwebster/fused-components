@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyledInput, InputWrapper, IconWrapper } from "./style";
 import { Icon } from "../../icon";
+import { FCTheme } from "../../../theming/FCTheme";
 
 export interface Props {
   /** Set the aria label for the input */
@@ -24,13 +25,16 @@ export interface Props {
   /** Whether the input should be disabled or not */
   disabled?: boolean,
   /** The input type */
-  type?: string
+  type?: string,
+  theme?: any,
 }
 export const Input = ({ ariaLabel, id, inError = false, inputRef, inWarning = false, icon, ...rest }:Props) => {
+  const theme = useContext(FCTheme);
+  
   return (
     <InputWrapper>
-      {icon && <IconWrapper inError={inError} inWarning={inWarning}><Icon icon={icon} /></IconWrapper>}
-      <StyledInput id={id} ref={inputRef} icon={icon} inError={inError} inWarning={inWarning} aria-label={ariaLabel} {...rest} />
+      {icon && <IconWrapper theme={theme?.theme} inError={inError} inWarning={inWarning}><Icon icon={icon} /></IconWrapper>}
+      <StyledInput id={id} ref={inputRef} icon={icon} inError={inError} inWarning={inWarning} aria-label={ariaLabel} theme={theme?.theme} {...rest} />
     </InputWrapper>
   );
 };

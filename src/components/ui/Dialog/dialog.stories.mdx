@@ -3,7 +3,7 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
-import { DialogDemo } from '../../../demos/DialogDemo';
+import { DialogDemo, DialogDarkDemo } from '../../../demos/DialogDemo';
 import { Dialog } from './';
 
 <Meta title="Components / Dialog" component={Dialog} parameters={{ component: Dialog }}/>
@@ -31,6 +31,9 @@ import { Dialog } from './';
 
 <DialogDemo />
 
+## Dark Mode
+
+<DialogDarkDemo />
 
 <Props of={Dialog} />
 
