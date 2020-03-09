@@ -21,7 +21,7 @@ export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
     position:absolute;
     background-color: ${props => props.theme === 'dark' ? color.darkModeDark : '#fff'};
     overflow: hidden;
-    border: solid 1px ${color.border};
+    border: solid 1px ${props => props.theme === "dark" ? color.darkModeMedium : color.border};
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
     min-width: 200px;
     margin: 0;
