@@ -13,6 +13,7 @@ import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
 import { FCThemeConsumer } from "../../../theming/FCTheme";
+import { darken } from "polished";
 
 export interface Props {
   fixed?: boolean;
@@ -28,8 +29,8 @@ export interface Props {
 }
 export const CornerDialog = ({
   fixed = true,
-  onCloseClick = () => { },
-  onConfirmClick = () => { },
+  onCloseClick = () => {},
+  onConfirmClick = () => {},
   visible = true,
   cancelText = "Cancel",
   confirmText = "Learn More",
@@ -74,20 +75,28 @@ export const CornerDialog = ({
               </DialogTitle>
               <DialogContent theme={themeContext?.theme}>
                 {icon && (
-                  <IconStyled fcStyle={fcStyle}>
+                  <IconStyled theme={themeContext?.theme} fcStyle={fcStyle}>
                     <Icon icon={icon} />
                   </IconStyled>
                 )}
                 <DialogText>{children}</DialogText>
               </DialogContent>
-              <DialogFooter theme={themeContext?.theme}>
+              <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
                 <Button
-                  buttonColor={themeContext?.theme === 'dark' ? color.darkModeButton : color.mediumdark}
+                  buttonColor={
+                    themeContext?.theme === "dark"
+                      ? color.darkModeMedium
+                      : color.mediumdark
+                  }
                   onClick={() => onCloseClick()}
                 >
                   {cancelText}
                 </Button>
-                <Button onClick={() => onConfirmClick()} fcStyle={fcStyle} primary>
+                <Button
+                  onClick={() => onConfirmClick()}
+                  fcStyle={fcStyle}
+                  primary
+                >
                   {confirmText}
                 </Button>
               </DialogFooter>

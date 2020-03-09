@@ -1,7 +1,13 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { fcStyles } from "../../../common/types";
-import {Props} from './';
+import { darken, lighten } from "polished";
+
+interface Props {
+  /** Set the style of the badge */
+  fcStyle?: fcStyles;
+  theme?: any;
+}
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
@@ -14,17 +20,38 @@ const colorValue = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return color.dark;
+      return props.theme === "dark" ? color.medium : color.dark
   }
 };
+
+const borderColor: any = (props: Props) => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return color.red
+    case 'warning':
+      return color.yellow
+    case 'info':
+      return color.blue
+    case 'success':
+      return color.green
+    default:
+      return props.theme === "dark" ? color.darkModeMedium : color.border;
+  }
+};
+
 export interface IStyledPanel extends React.HTMLProps<HTMLDivElement>{
   fixed: boolean,
   position: 'left' | 'right',
   visible: boolean,
+  fcStyle?: fcStyles,
 }
+
 export const StyledPanel = styled.div<IStyledPanel>`
   border-radius: 5px;
-  background-color: #fff;
+  background-color: ${props => (props.theme === 'dark') ? color.darkModeDark : '#fff'};
+  border: solid 1px ${borderColor};
+
+  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   height: calc(100vh - 50px);
   width: 300px;
@@ -95,7 +122,7 @@ export interface IDialogTile extends React.HTMLProps<HTMLDivElement> {
 }
 
 export const DialogTitle = styled.h3<IDialogTile>`
-  border-bottom: solid 1px ${color.border};
+  border-bottom:  solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
@@ -117,8 +144,12 @@ export const DialogContent = styled.div`
 
 export const DialogText = styled.div``;
 
-export const DialogFooter = styled.div`
-  border-top: solid 1px ${color.border};
+interface Footer {
+  fcStyle?: fcStyles;
+  theme?: any
+}
+export const DialogFooter = styled.div<Footer>`
+  border-top:  solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -138,17 +169,14 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${color.mediumdark};
+  color: ${props => (props.theme === 'dark') ? color.darkModeMedium : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${color.dark};
+    color: ${props => (props.theme === 'dark') ? darken(0.1,color.darkModeMedium) : color.dark};  
   }
   svg {
     width: 16px;
-    &:hover {
-      color: ${color.dark};
-    }
   }
 `;
 

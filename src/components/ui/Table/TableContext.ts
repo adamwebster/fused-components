@@ -9,6 +9,7 @@ export interface TableInterface {
   zebraStripeColor?: string,
   frozenColumnWidth?: string,
   tableBgColor?: string,
+  theme?: any
 }
 
 export const TableContext = React.createContext<TableInterface | null>(null);

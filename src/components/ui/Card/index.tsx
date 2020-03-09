@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyledCard } from './style';
-
+import { FCTheme } from "../../../theming/FCTheme";
 export interface Props {
   /** Sets the border radius for the card */
   borderRadius?: string,
@@ -9,8 +9,11 @@ export interface Props {
   children?: any,
 }
 export const Card = ({ borderRadius = '5px', boxShadow = false, children, ...rest }:Props) => {
+  const theme = useContext(FCTheme);
+
+  console.log(theme)
   return (
-    <StyledCard borderRadius={borderRadius} boxShadow={boxShadow} {...rest}>
+    <StyledCard theme={theme?.theme} borderRadius={borderRadius} boxShadow={boxShadow} {...rest}>
       {children}
     </StyledCard>
   )

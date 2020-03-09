@@ -14,24 +14,25 @@ height:34px;
 box-sizing:border-box;
 padding: 0 10px;
 outline: none;
-border: solid 1px ${color.border};
+border: solid 1px ${props => props.theme === 'dark' ? color.darkModeMedium : color.border};
 border-radius: ${props => '5px'};
 -webkit-appearance: none;
-background-color: ${props => props.theme === 'dark' ? color.darkModeBG : '#fff'};
+background-color: ${props => props.theme === 'dark' ? color.darkModeDark : '#fff'};
 color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};
 
 &::placeholder{
   font-style:italic; 
-  color: ${props => props.theme === 'dark' ? lighten(0.2, color.darkModeBG) : 'inherit'};
+  color: ${props => props.theme === 'dark' ? color.darkModeMediumLight : 'inherit'};
 }
 
 &:focus{
-  border-color:${props => props.theme === 'dark' ? darken(0.2, color.focus) : color.focus};
-  box-shadow: 0 0 6px ${props => props.theme === 'dark' ? darken(0.1, color.focus) : color.focus};
+  border-color:${props => props.theme === 'dark' ? color.darkModeMedium : color.focus};
+  box-shadow: 0 0 6px ${props => props.theme === 'dark' ? color.darkModeMedium : color.focus};
 }
 &[disabled]{
   cursor: not-allowed;
-  background-color: #e9e9e9;
+  background-color: ${props => props.theme === 'dark' ? color.darkModeDarker : '#e9e9e9'};
+
 }
 ${props => props.inError && css`
   border:solid 1px ${color.red};
@@ -70,8 +71,8 @@ export const IconWrapper = styled.span<IIconWrapper>`
 position: absolute;
 left: 10px;
 top: 7px;
-color: ${props => props.theme === 'dark' ? lighten(0.2, color.darkModeBG) : color.mediumdark};
-border-right: solid 1px ${props => props.theme === 'dark' ? lighten(0.2, color.darkModeBG) : color.border};
+color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.mediumdark};
+border-right: solid 1px ${props => props.theme === 'dark' ? color.darkModeMedium : color.border};
 box-sizing:border-box;
 
 svg{

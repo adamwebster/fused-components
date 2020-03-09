@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyledButton, StyledIcon } from "./style";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
+import { FCTheme } from "../../../theming/FCTheme";
 
 export interface Props extends React.HTMLAttributes<HTMLButtonElement>{
   /** Sets the button to be a primary button */
@@ -26,6 +27,8 @@ export interface Props extends React.HTMLAttributes<HTMLButtonElement>{
 }
 
 export const Button = ({buttonColor, disabled = false, isLoading = false, buttonRef, primary, loadingIcon, icon, children, fcStyle, ...rest}:Props ) => {
+  const theme = useContext(FCTheme);
+
   return (
     <StyledButton
       ref={buttonRef}
@@ -34,6 +37,7 @@ export const Button = ({buttonColor, disabled = false, isLoading = false, button
       disabled={disabled || isLoading}
       primary={primary}
       fcStyle={fcStyle}
+      theme={theme?.theme}
       {...rest}
     >
       {isLoading && loadingIcon && <>{loadingIcon} </>}

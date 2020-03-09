@@ -55,7 +55,7 @@ export const Dialog = ({
           {showOverlay && <Overlay onClick={() => onCloseClick()} />}
           <FCThemeConsumer>
             {themeContext => (
-              <StyledDialog theme={themeContext?.theme} visible={visible} fixed={fixed} boxShadow={boxShadow}>
+              <StyledDialog fcStyle={fcStyle} theme={themeContext?.theme} visible={visible} fixed={fixed} boxShadow={boxShadow}>
                 <DialogTitle theme={themeContext?.theme} fcStyle={fcStyle}>
                   <h2>{title}</h2>
                   <CloseButton theme={themeContext?.theme} aria-label="Close" onClick={() => onCloseClick()}>
@@ -63,9 +63,9 @@ export const Dialog = ({
                   </CloseButton>
                 </DialogTitle>
                 <DialogContent theme={themeContext?.theme}>{children}</DialogContent>
-                <DialogFooter theme={themeContext?.theme}>
+                <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
                   <Button
-                   buttonColor={themeContext?.theme === 'dark' ? color.darkModeButton : color.mediumdark}
+                   buttonColor={themeContext?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
                     onClick={() => onCloseClick()}
                   >
                     {cancelText}

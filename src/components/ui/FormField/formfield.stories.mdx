@@ -3,6 +3,7 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { FormFieldDark } from '../../../demos/FormFieldDemo';
 
 import { FormField } from './';
 import { Textarea } from '../Textarea';
@@ -20,6 +21,10 @@ import { Textarea } from '../Textarea';
     <Textarea id="textarea" />
     </FormField>
 </Preview>
+
+## Dark Mode
+
+<FormFieldDark />
 
 ## Properties
 
