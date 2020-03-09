@@ -25,6 +25,17 @@ export const color = {
   darker: "#444444",
   darkest: "#333333",
   overlay: "rgba(0,0,0,.5)",
-
-  border: "rgba(0,0,0,.1)"
+  border: "rgba(0,0,0,.1)",
+  darkModeBG: "#00477c",
+  darkModeButton: "#6284a7",
+  darkModeDarkest: "#27241d",
+  darkModeDarker: "#423d33",
+  darkModeDark: "#504a40",
+  darkModeMediumDark: "#625d52",
+  darkModeMedium: "#857f72",
+  darkModeMediumLight: "#a39e93",
+  darkModeLight: "#b8b2a7",
+  darkModeLighter: "#d3cec4",
+  darkModeLightest: "#e7e6e1",
+  darkModeBright: "#FAF9f7",
 };

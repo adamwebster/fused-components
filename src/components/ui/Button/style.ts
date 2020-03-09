@@ -1,12 +1,18 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
-import { darken } from "polished";
+import { darken, lighten } from "polished";
 import { Props } from "./";
+import { fcStyles } from "../../../common/types";
 
-const colorValue = (props:Props) => {
+interface colorProps {
+  theme?: any;
+  buttonColor?: any;
+  fcStyle?: fcStyles;
+}
+const colorValue = (props:colorProps) => {
   switch (props.fcStyle) {
     case 'danger':
-      return color.red
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
     case 'warning':
       return color.yellow
     case 'info':
@@ -63,6 +69,9 @@ export const StyledButton = styled.button`
         color: ${color.mediumdark};
         transition:none;
         cursor: not-allowed;
+        ${StyledIcon}{
+          background-color: ${color.mediumdark};
+        }
       }
     `}
   ${props =>

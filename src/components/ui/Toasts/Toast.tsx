@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, ReactNode } from "react";
 import { StyledToast, LoadingBar, CloseButton } from "./styles";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
+import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props {
   /** The title of the toast item */
@@ -13,13 +14,15 @@ export interface Props {
   icon?: string;
   /** how long the toast should be shown in seconds */
   duration: number;
+  theme?: any;
 }
 export const Toast = ({
   title,
   fcStyle,
   children,
   icon,
-  duration = 4
+  duration = 4,
+  theme
 }: Props) => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
@@ -71,35 +74,37 @@ export const Toast = ({
   };
 
   return (
-    <>
-      {visible && (
-        <StyledToast
-          timer={timer}
-          onMouseOver={() => mouseOverToast()}
-          onMouseOut={() => mouseOutToast()}
-          removing={removing}
-          fcStyle={fcStyle}
-          icon={icon}
-          title={title}
-        >
-          {children && (
-            <span
-              dangerouslySetInnerHTML={{
-                __html: children
-              }}
-            />
+        <>
+          {visible && (
+            <StyledToast
+              timer={timer}
+              onMouseOver={() => mouseOverToast()}
+              onMouseOut={() => mouseOutToast()}
+              removing={removing}
+              fcStyle={fcStyle}
+              icon={icon}
+              title={title}
+              theme={theme}
+            >
+              {children && (
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: children
+                  }}
+                />
+              )}
+              <CloseButton
+              theme={theme}
+                onClick={() => {
+                  setRemoving(true);
+                  setTimeout(() => setVisible(false), 500);
+                }}
+              >
+                <Icon icon="times" />
+              </CloseButton>
+              <LoadingBar theme={theme} timer={timer} />
+            </StyledToast>
           )}
-          <CloseButton
-            onClick={() => {
-              setRemoving(true);
-              setTimeout(() => setVisible(false), 500);
-            }}
-          >
-            <Icon icon="times" />
-          </CloseButton>
-          <LoadingBar timer={timer} />
-        </StyledToast>
-      )}
-    </>
+        </>
   );
 };

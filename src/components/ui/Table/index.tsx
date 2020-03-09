@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
 import {
   StyledTable,
 } from "./style";
@@ -8,6 +8,8 @@ import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import TableBody from './TableBody';
 import TableCell from './TableCell';
+import { FCTheme, FCThemeConsumer } from "../../../theming/FCTheme";
+import { color } from "../../../styles/styles";
 
 export interface Props {
   /** Set the padding for the table */
@@ -34,7 +36,7 @@ export interface Props {
 export const Table = ({
   padding = '5px',
   zebraStripping = false,
-  zebraStripeColor = '#ebebeb',
+  zebraStripeColor,
   bgColor,
   fgColor,
   freezeFirstColumn = false,
@@ -43,21 +45,27 @@ export const Table = ({
   frozenColumnBGColor,
   frozenColumnFGColor,
 }:Props) => {
+  const themeContext = useContext(FCTheme);
+
+  const zebraStripeColorValue = themeContext?.theme === 'dark' ? color.darkModeDark : '#ebebeb';
+
   const state = {
     padding,
     frozenColumnBGColor,
     frozenColumnFGColor,
     freezeFirstColumn,
     zebraStripping,
-    zebraStripeColor,
+    zebraStripeColor: zebraStripeColorValue,
     frozenColumnWidth,
-    tableBgColor: bgColor
+    tableBgColor: bgColor,
+    theme: themeContext?.theme
   }
   return (
     <>
       <StyledTable
         fgColor={fgColor && fgColor}
         bgColor={bgColor && bgColor}
+        theme={themeContext?.theme}
       >
         <TableContextProvider value={state}>
           {children}

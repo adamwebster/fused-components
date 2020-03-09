@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { darken } from "polished";
 
 interface IDropdownButtonWrapper {
     renderAs?: string,
@@ -18,8 +19,9 @@ interface IDropdownMenuStyled {
 }
 export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
     position:absolute;
-    background-color: #fff;
-    border: solid 1px ${color.border};
+    background-color: ${props => props.theme === 'dark' ? color.darkModeDark : '#fff'};
+    overflow: hidden;
+    border: solid 1px ${props => props.theme === "dark" ? color.darkModeMedium : color.border};
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
     min-width: 200px;
     margin: 0;
@@ -28,7 +30,7 @@ export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
     z-index: 99;
     margin-top: 5px;
     border-radius: 5px;
-    animation:  ${props => props.menuOpen ? 'fadein 0.5s ease-in-out' : 'fadeout 0.2s ease-in-out' };
+    animation:  ${props => props.menuOpen ? 'fadein 0.5s ease-in-out' : 'fadeout 0.2s ease-in-out'};
     @keyframes fadein {
         0%{
             opacity: 0;
@@ -49,18 +51,17 @@ export const DropdownMenuStyled = styled.ul<IDropdownMenuStyled>`
 
 `
 
-
 export const MenuItemStyled = styled.li`
     width: 100%;
     padding: 10px;
     box-sizing:border-box;
-    color: ${color.dark};
+    color: ${props => props.theme === 'dark' ? color.medium : color.dark};
     &:last-child{
     }
     &:hover,
     &:focus{
-        background-color: ${color.highlight};
-        outline:none;
+        background-color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.highlight};
+      color: ${props => props.theme === 'dark' ? color.light : 'inherit'};
     }
     svg{
         width: 12px;

@@ -3,6 +3,7 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { ButtonGroupDarkMode } from "../../../demos/ButtonGroupDemo";
 
 import { ButtonGroup } from './';
 import { Button } from '../Button/';
@@ -22,6 +23,7 @@ import { Button } from '../Button/';
     </ButtonGroup>
 </Preview>
 
+
 <Preview>
     <ButtonGroup>
         <Button primary>Button 1</Button>
@@ -29,6 +31,9 @@ import { Button } from '../Button/';
         <Button primary>Button 3</Button>
     </ButtonGroup>
 </Preview>
+
+## Dark Mode
+<ButtonGroupDarkMode />
 
 ## Properties
 

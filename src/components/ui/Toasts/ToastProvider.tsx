@@ -2,6 +2,7 @@ import React, { useState, useContext, ReactNode } from "react";
 import { ToastContext,  ToastContextProvider, Options, ToastObject} from "./ToastContext";
 import { ToastContainer } from "./styles";
 import { Toast } from "./Toast";
+import { FCTheme } from "../../../theming/FCTheme";
 
 export interface Props {
   children: ReactNode,
@@ -11,7 +12,7 @@ export interface Props {
 
 export const ToastProvider = ({ children, position = 'top' }: Props) => {
   const [toasts, setToasts] = useState(new Array<ToastObject>());
-
+  const theme = useContext(FCTheme);
   const add = (title: string, content: string, fcStyle: string, icon: string, options: Options) => {
     const toAdd = toasts.slice();
     if (options) {
@@ -53,6 +54,7 @@ export const ToastProvider = ({ children, position = 'top' }: Props) => {
             return (
               <Toast
                 key={toast.key}
+                theme={theme?.theme}
                 fcStyle={toast.fcStyle && toast.fcStyle}
                 title={toast.title && toast.title}
                 duration={toast.options && toast.options.duration}

@@ -1,31 +1,38 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { darken, lighten } from 'polished';
 
-interface ICheckboxInput extends React.HTMLProps<HTMLInputElement>{
+interface IInput extends React.HTMLProps<HTMLInputElement>{
   icon?: string,
   inError?: boolean,
   inWarning?: boolean,
+  theme: string,
 }
-export const StyledInput = styled.input<ICheckboxInput>`
+export const StyledInput = styled.input<IInput>`
 width: 100%;
 height:34px;
 box-sizing:border-box;
 padding: 0 10px;
 outline: none;
-border: solid 1px ${color.border};
+border: solid 1px ${props => props.theme === 'dark' ? color.darkModeMedium : color.border};
 border-radius: ${props => '5px'};
 -webkit-appearance: none;
+background-color: ${props => props.theme === 'dark' ? color.darkModeDark : '#fff'};
+color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};
+
 &::placeholder{
   font-style:italic; 
+  color: ${props => props.theme === 'dark' ? color.darkModeMediumLight : 'inherit'};
 }
 
 &:focus{
-  border-color: ${color.focus};
-  box-shadow: 0 0 6px ${color.focus};
+  border-color:${props => props.theme === 'dark' ? color.darkModeMedium : color.focus};
+  box-shadow: 0 0 6px ${props => props.theme === 'dark' ? color.darkModeMedium : color.focus};
 }
 &[disabled]{
   cursor: not-allowed;
-  background-color: #e9e9e9;
+  background-color: ${props => props.theme === 'dark' ? color.darkModeDarker : '#e9e9e9'};
+
 }
 ${props => props.inError && css`
   border:solid 1px ${color.red};
@@ -56,6 +63,7 @@ export const InputWrapper = styled.div`
 interface IIconWrapper {
   inError: boolean,
   inWarning: boolean,
+  theme: string,
 
 }
 
@@ -63,8 +71,8 @@ export const IconWrapper = styled.span<IIconWrapper>`
 position: absolute;
 left: 10px;
 top: 7px;
-color: ${color.mediumdark};
-border-right: solid 1px ${color.border};
+color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.mediumdark};
+border-right: solid 1px ${props => props.theme === 'dark' ? color.darkModeMedium : color.border};
 box-sizing:border-box;
 
 svg{

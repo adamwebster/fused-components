@@ -4,6 +4,7 @@ import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { Badge } from './';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { BadgeDemoDarkMode } from "../../../demos/BadgeDemo";
 
 <Meta title="Components / Badge" component={Badge} parameters={{ component: Badge }} />
 
@@ -14,12 +15,16 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 
 
 <Preview>
-      <Badge fcStyle='default'>Badge</Badge>
+      <Badge>Badge</Badge>
         <Badge fcStyle='info'>Info</Badge>
         <Badge fcStyle='warning'>Warning</Badge>
         <Badge fcStyle='danger'>Danger</Badge>
         <Badge fcStyle='success'>Success</Badge>
 </Preview>
+
+## Dark Mode
+
+<BadgeDemoDarkMode />
 
 ## Properties
 

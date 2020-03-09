@@ -10,11 +10,11 @@ import {TableContextContextConsumer} from './TableContext';
 export interface Props {
   children: ReactNode,
   /** The background color of the table cell */
-  bgColor: string,
+  bgColor?: string,
   /** The foreground color(text) of the table cell */
-  fgColor: string,
+  fgColor?: string,
   /** The width of the table cell */
-  width: string,
+  width?: string,
 }
 const TableCell = ({ children, bgColor, fgColor, width, ...rest }:Props) => {
   return (

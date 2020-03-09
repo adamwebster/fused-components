@@ -12,7 +12,7 @@ const TableBody = ({ children, ...rest }:Props) => {
   return (
     <TableContextContextConsumer>
       {tableContext => tableContext && (
-        <TableBodyStyled bgColor={tableContext.tableBgColor}  padding={tableContext.padding} freezeFirstColumn={tableContext.freezeFirstColumn} frozenColumnWidth={tableContext.frozenColumnWidth}>
+        <TableBodyStyled theme={tableContext.theme} bgColor={tableContext.tableBgColor}  padding={tableContext.padding} freezeFirstColumn={tableContext.freezeFirstColumn} frozenColumnWidth={tableContext.frozenColumnWidth}>
           {children}
         </TableBodyStyled>
       )}

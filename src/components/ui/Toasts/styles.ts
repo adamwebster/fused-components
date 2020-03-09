@@ -17,6 +17,9 @@ export const ToastContainer = styled.div<IToastContainer>`
             left: 50%;
             transform: translateX(-50%);
             width: 500px;
+            @media (max-width: 500px) {
+              width: calc(100% - 20px);
+            }
             `;
         break;
       case "bottom":
@@ -25,6 +28,9 @@ export const ToastContainer = styled.div<IToastContainer>`
             left: 50%;
             transform: translateX(-50%);
             width: 500px;
+            @media (max-width: 500px) {
+              width: calc(100% - 20px);
+            }
             `;
         break;
 
@@ -53,6 +59,7 @@ export const ToastContainer = styled.div<IToastContainer>`
 interface IStyledToast  extends React.HTMLProps<HTMLElement> {
   removing: boolean,
   timer: string,
+  theme?:any
 }
 export const StyledToast = styled(Alert)<IStyledToast>`
   margin-bottom: 10px;
@@ -90,13 +97,14 @@ export const StyledToast = styled(Alert)<IStyledToast>`
 
 interface ILoadingBar {
   timer: string,
+  theme?:any
 }
 export const LoadingBar = styled.div<ILoadingBar>`
   position: relative;
   height: 5px;
   transition: all;
   margin-top: 10px;
-  background-color: ${color.medium};
+  background-color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.medium};
   width: ${props => props.timer}%;
 `;
 
@@ -105,7 +113,7 @@ export const CloseButton = styled.button`
   box-sizing: border-box;
   padding: 0;
   border: none;
-  color: ${color.mediumdark};
+  color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.medium};
   background-color: transparent;
   position: absolute;
   top: 15px;
