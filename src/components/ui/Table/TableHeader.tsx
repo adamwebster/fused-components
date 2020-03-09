@@ -19,7 +19,7 @@ const TableHeader = ({ fgColor, showBottomBorder = true, bgColor, children, ...r
   return (
     <TableContextContextConsumer>
       {tableContext => tableContext && (
-       <>{console.log(tableContext)}
+       <>
           <TableHeaderStyled
             theme={tableContext.theme}
             showBottomBorder={showBottomBorder}

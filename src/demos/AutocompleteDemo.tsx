@@ -23,7 +23,6 @@ export const AutocompleteDemoFormatter = () => {
   return (
         <Autocomplete
           itemFormatter={(value) => {
-            console.log(value)
             return (
               <>
               <div>{data[value].label}</div>

@@ -10,8 +10,6 @@ export interface Props {
 }
 export const Card = ({ borderRadius = '5px', boxShadow = false, children, ...rest }:Props) => {
   const theme = useContext(FCTheme);
-
-  console.log(theme)
   return (
     <StyledCard theme={theme?.theme} borderRadius={borderRadius} boxShadow={boxShadow} {...rest}>
       {children}

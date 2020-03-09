@@ -14,7 +14,7 @@ import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props {
   /** An array of items */
-  items: Array<string>,
+  items: Array<any>,
   /** Icon to show in the input */
   inputIcon?: string,
   /** If the input should be in error */
@@ -25,6 +25,8 @@ export interface Props {
   disabled?: boolean,
   /** The placeholder for the input */
   placeholder?: string,
+  itemFormatter?: (value: any) => any;
+  keyToSearch?: string;
 }
 
 export const Combobox = ({
@@ -33,9 +35,12 @@ export const Combobox = ({
   inError,
   inWarning,
   disabled,
-  placeholder
+  placeholder,
+  itemFormatter,
+  keyToSearch
 }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
+  const [initialItems, setInitialItems] = useState(items);
   const [filterValue, setFilterValue] = useState("");
   const [itemSelected, setItemSelected] = useState("");
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
@@ -54,14 +59,40 @@ export const Combobox = ({
     };
   });
 
+  useEffect(() => {
+    formatItems();
+  }, [menuOpen])
+
+  const formatItems = () => {
+    if (itemFormatter) {
+      const itemsToFormat = initialItems;
+      if (itemsToFormat) {
+        itemsToFormat.forEach((item, index) => {
+          item.index = index
+        })
+      }
+      setInitialItems(itemsToFormat);
+    }
+  }
+
+  const checkIfParent = (el:any, elToCompare:any) =>  {
+    while (el.parentNode) {
+        el = el.parentNode;
+        if (el === elToCompare)
+            return true;
+    }
+    return false;
+}
   const handleClickOutside = (e: MouseEvent) => {
     const element = (e.target as HTMLElement);
-    if (element.parentNode !== menuRef.current) {
+    const test = checkIfParent(element, menuRef.current )
+    if (!test) {
       if (menuOpen) {
-        setMenuOpen(false);
+       setMenuOpen(false);
       }
     }
   };
+
   const handleUserKeyPress = (e: { keyCode: number; }) => {
     // Escape Key
     if (e.keyCode === 27) {
@@ -92,15 +123,24 @@ export const Combobox = ({
 
   const filterItems = (e: { target: { value: string; }; }) => {
     setFilterValue(e.target.value);
-    const filterItemList = items.filter(item =>
-      item.toLowerCase().includes(e.target.value.toLowerCase())
-    );
+    let filterItemList;
+    if (keyToSearch) {
+      filterItemList = items.filter(item =>
+        item[keyToSearch].toLowerCase().includes(e.target.value.toLowerCase())
+      )
+    } else {
+      filterItemList = items.filter(item =>
+        item.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+    }
+
     setMenuOpen(true);
     if (filterRef.current) {
       if (filterRef.current.value.length > 0) {
         setItemsToShow(filterItemList);
       } else {
         setItemsToShow(items);
+        setMenuOpen(false);
       }
     }
   };
@@ -135,27 +175,56 @@ export const Combobox = ({
           />
           {menuOpen && (
             <ComboboxMenu theme={themeContext?.theme} ref={menuRef}>
-              {itemsToShow.map((item, index) => {
-                return (
-                  <MenuItemStyled
-                    tabIndex={0}
-                    onKeyPress={(e: any) => handleItemKeyPress(e, item)}
-                    onClick={() => setValue(item)}
-                    key={item}
-                    theme={themeContext?.theme}
-                    ref={(ref: HTMLElement) => {
-                      itemRefs[index] = ref;
-                    }}
-                  >
-                    {item === itemSelected && (
-                      <ItemIcon theme={themeContext?.theme}>
-                        <Icon icon="check-circle" />
-                      </ItemIcon>
-                    )}
-                    {item}
-                  </MenuItemStyled>
-                );
-              })}
+            {itemFormatter ?
+                <>
+                  {itemsToShow.map((item, index) => {
+                    return (
+                      <MenuItemStyled
+                        theme={themeContext?.theme}
+                        tabIndex={0}
+                        onKeyPress={(e: { charCode: number }) =>
+                          handleItemKeyPress(e, item[keyToSearch as string])
+                        }
+                        onClick={() => setValue(item[keyToSearch as string])}
+                        key={item.index}
+                        ref={(ref: any) => {
+                          itemRefs[index] = ref;
+                        }}
+                      >
+                        {itemFormatter(item.index)}
+                      </MenuItemStyled>
+                    )
+                  })}
+                </>
+                :
+                <>
+                  {itemsToShow.map((item, index) => {
+                    return (
+                      <MenuItemStyled
+                        theme={themeContext?.theme}
+                        tabIndex={0}
+                        onKeyPress={(e: { charCode: number }) =>
+                          handleItemKeyPress(e, item)
+                        }
+                        onClick={() => setValue(item)}
+                        key={item}
+                        ref={(ref: any) => {
+                          itemRefs[index] = ref;
+                        }}
+                      >
+                        {item === itemSelected && (
+                          <ItemIcon
+                            theme={themeContext?.theme}
+                          >
+                            <Icon icon="check-circle" />
+                          </ItemIcon>
+                        )}
+                        {item}
+                      </MenuItemStyled>
+                    );
+                  })}
+                </>
+              }
               {itemsToShow.length === 0 && (
                 <MenuItemStyled theme={themeContext?.theme}>Nothing found</MenuItemStyled>
               )}
@@ -180,8 +249,4 @@ Combobox.propTypes = {
   inWarning: PropTypes.bool,
   /** Sets the input to be disabled */
   disabled: PropTypes.bool
-};
-
-Combobox.defaultProps = {
-  items: ["Apple", "Orange", "Banana"]
 };
