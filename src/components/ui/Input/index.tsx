@@ -3,7 +3,7 @@ import { StyledInput, InputWrapper, IconWrapper } from "./style";
 import { Icon } from "../../icon";
 import { FCTheme } from "../../../theming/FCTheme";
 
-export interface Props {
+export interface Props extends React.HtmlHTMLAttributes<HTMLInputElement> {
   /** Set the aria label for the input */
   ariaLabel?: string,
   /** Set the icon for the input */

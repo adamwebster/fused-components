@@ -27,6 +27,7 @@ export interface Props {
   itemFormatter?: (value: any) => any;
   keyToSearch?: string;
   onInputChange?: (e: any) => void;
+  onItemClick?: (index: any) => void;
 }
 
 export const Autocomplete = ({
@@ -38,11 +39,12 @@ export const Autocomplete = ({
   placeholder,
   itemFormatter,
   keyToSearch,
-  onInputChange
+  onInputChange,
+  onItemClick
 }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [initialItems, setInitialItems] = useState(items);
-  const [menuItems, setMenuItems] = useState([] as any)
+  const [menuItems, setMenuItems] = useState([] as any);
   const [filterValue, setFilterValue] = useState("");
   const [itemSelected, setItemSelected] = useState("");
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
@@ -52,24 +54,29 @@ export const Autocomplete = ({
 
   useEffect(() => {
     window.addEventListener("keydown", handleUserKeyPress);
-    console.log(items);
     formatItems();
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress);
     };
   });
 
+  useEffect(() => {
+    if (onInputChange) {
+      setItemsToShow(items);
+      filterItems();
+    }
+  }, [items]);
   const formatItems = () => {
     if (itemFormatter) {
       const itemsToFormat = items;
       if (itemsToFormat) {
         itemsToFormat.forEach((item, index) => {
-          item.index = index
-        })
+          item.index = index;
+        });
       }
       setInitialItems(itemsToFormat);
     }
-  }
+  };
 
   const handleUserKeyPress = (e: { keyCode: number }) => {
     // Escape Key
@@ -98,33 +105,32 @@ export const Autocomplete = ({
       }
     }
   };
-
-  const filterItems = (e: { target: { value: string } }) => {
-
+  const onChangeFunc = (e: any) => {
+    if (onInputChange) {
+      onInputChange(e);
+    }
     setFilterValue(e.target.value);
+
+    filterItems();
+  };
+  const filterItems = () => {
     let filterItemList;
     if (keyToSearch) {
       filterItemList = items.filter(item =>
-        item[keyToSearch].toLowerCase().includes(e.target.value.toLowerCase())
-      )
+        item[keyToSearch].toLowerCase().includes(filterValue.toLowerCase())
+      );
     } else {
       filterItemList = items.filter(item =>
-        item.toLowerCase().includes(e.target.value.toLowerCase())
+        item.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
 
-    if(onInputChange){
-      setMenuItems(filterItemList);
-      console.log('fi', filterItemList);
-      onInputChange(e);
-    }
-
-  //  setMenuOpen(true);
+    setMenuOpen(true);
     if (filterRef.current) {
       if (filterRef.current.value.length > 0) {
-       // setItemsToShow(filterItemList);
+        setItemsToShow(filterItemList);
       } else {
-    //    setItemsToShow(items);
+        setItemsToShow(items);
         setMenuOpen(false);
       }
     }
@@ -154,28 +160,30 @@ export const Autocomplete = ({
             value={filterValue}
             icon={inputIcon}
             inputRef={filterRef}
-            onChange={(e: { target: { value: string } }) => filterItems(e)}
+            onChange={e => onChangeFunc(e)}
             placeholder={placeholder}
             inError={inError}
             inWarning={inWarning}
             disabled={disabled}
             theme={themeContext?.theme}
           />
-          {console.log('3', menuItems)}
           {menuOpen && (
             <AutocompleteMenu theme={themeContext?.theme}>
-              {itemFormatter ?
+              {itemFormatter ? (
                 <>
-                {console.log('2', itemsToShow)}
-                  {itemsToShow.map((item, index) => {
+                  {itemsToShow.map((item: any, index: any) => {
                     return (
                       <MenuItemStyled
                         theme={themeContext?.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }) =>
-                          handleItemKeyPress(e, item[keyToSearch as string])
-                        }
-                        onClick={() => setValue(item[keyToSearch as string])}
+                        onKeyPress={(e: { charCode: number }) => {
+                          handleItemKeyPress(e, item[keyToSearch as string]);
+                          if (onItemClick) onItemClick(item.index);
+                        }}
+                        onClick={() => {
+                          setValue(item[keyToSearch as string]);
+                          if (onItemClick) onItemClick(item.index);
+                        }}
                         key={item.index}
                         ref={(ref: any) => {
                           itemRefs[index] = ref;
@@ -183,10 +191,10 @@ export const Autocomplete = ({
                       >
                         {itemFormatter(item.index)}
                       </MenuItemStyled>
-                    )
+                    );
                   })}
                 </>
-                :
+              ) : (
                 <>
                   {itemsToShow.map((item, index) => {
                     return (
@@ -203,9 +211,7 @@ export const Autocomplete = ({
                         }}
                       >
                         {item === itemSelected && (
-                          <ItemIcon
-                            theme={themeContext?.theme}
-                          >
+                          <ItemIcon theme={themeContext?.theme}>
                             <Icon icon="check-circle" />
                           </ItemIcon>
                         )}
@@ -214,9 +220,11 @@ export const Autocomplete = ({
                     );
                   })}
                 </>
-              }
+              )}
               {itemsToShow.length === 0 && (
-                <NoItemFound theme={themeContext?.theme}>Nothing found</NoItemFound>
+                <NoItemFound theme={themeContext?.theme}>
+                  Nothing found
+                </NoItemFound>
               )}
             </AutocompleteMenu>
           )}
