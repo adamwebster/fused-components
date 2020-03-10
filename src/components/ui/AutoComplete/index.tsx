@@ -26,6 +26,7 @@ export interface Props {
   placeholder?: string;
   itemFormatter?: (value: any) => any;
   keyToSearch?: string;
+  onInputChange?: (e: any) => void;
 }
 
 export const Autocomplete = ({
@@ -36,10 +37,12 @@ export const Autocomplete = ({
   disabled = false,
   placeholder,
   itemFormatter,
-  keyToSearch
+  keyToSearch,
+  onInputChange
 }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [initialItems, setInitialItems] = useState(items);
+  const [menuItems, setMenuItems] = useState([] as any)
   const [filterValue, setFilterValue] = useState("");
   const [itemSelected, setItemSelected] = useState("");
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
@@ -49,17 +52,16 @@ export const Autocomplete = ({
 
   useEffect(() => {
     window.addEventListener("keydown", handleUserKeyPress);
+    console.log(items);
+    formatItems();
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress);
     };
   });
-  useEffect(() => {
-    formatItems();
-  }, [menuOpen])
 
   const formatItems = () => {
     if (itemFormatter) {
-      const itemsToFormat = initialItems;
+      const itemsToFormat = items;
       if (itemsToFormat) {
         itemsToFormat.forEach((item, index) => {
           item.index = index
@@ -98,6 +100,7 @@ export const Autocomplete = ({
   };
 
   const filterItems = (e: { target: { value: string } }) => {
+
     setFilterValue(e.target.value);
     let filterItemList;
     if (keyToSearch) {
@@ -110,12 +113,18 @@ export const Autocomplete = ({
       );
     }
 
-    setMenuOpen(true);
+    if(onInputChange){
+      setMenuItems(filterItemList);
+      console.log('fi', filterItemList);
+      onInputChange(e);
+    }
+
+  //  setMenuOpen(true);
     if (filterRef.current) {
       if (filterRef.current.value.length > 0) {
-        setItemsToShow(filterItemList);
+       // setItemsToShow(filterItemList);
       } else {
-        setItemsToShow(items);
+    //    setItemsToShow(items);
         setMenuOpen(false);
       }
     }
@@ -152,11 +161,12 @@ export const Autocomplete = ({
             disabled={disabled}
             theme={themeContext?.theme}
           />
+          {console.log('3', menuItems)}
           {menuOpen && (
             <AutocompleteMenu theme={themeContext?.theme}>
-
               {itemFormatter ?
                 <>
+                {console.log('2', itemsToShow)}
                   {itemsToShow.map((item, index) => {
                     return (
                       <MenuItemStyled

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Autocomplete } from "../components/ui/Autocomplete/";
 import { FCThemeProvider } from "../theming/FCTheme";
 import { DarkModeWrapper } from "../common/styles";
+import { Button } from "../components/ui/Button";
 
 export const AutocompleteDemo = () => {
   const [theme] = useState("dark");
@@ -19,9 +20,15 @@ export const AutocompleteDemo = () => {
 };
 
 export const AutocompleteDemoFormatter = () => {
-  const data = [{ label: "Apple", description: 'Apples are red and are crunchy.' }, { label: "Banana", description: 'Bananas are yellow you have to peel them.' }, { label: "Orange", description: 'Oranges have a hard peel and are full of vitamin C.' }];
+  const [data, setData] = useState([] as any);
+
   return (
+    <>
+    <Button onClick={() => setData([{ label: "Apple", description: 'Apples are red and are crunchy.' }, { label: "Banana", description: 'Bananas are yellow you have to peel them.' }, { label: "Orange", description: 'Oranges have a hard peel and are full of vitamin C.' }])}>
+      Set Data
+    </Button>
         <Autocomplete
+        onInputChange={() => setData([{ label: "Apple", description: 'Apples are red and are crunchy.' }, { label: "Banana", description: 'Bananas are yellow you have to peel them.' }, { label: "Orange", description: 'Oranges have a hard peel and are full of vitamin C.' }])}
           itemFormatter={(value) => {
             return (
               <>
@@ -36,5 +43,6 @@ export const AutocompleteDemoFormatter = () => {
           keyToSearch="label"
           items={data}
         />
+        </>
   );
 };
