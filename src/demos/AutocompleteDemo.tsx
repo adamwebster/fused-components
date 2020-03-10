@@ -24,9 +24,6 @@ export const AutocompleteDemoFormatter = () => {
 
   return (
     <>
-    <Button onClick={() => setData([{ label: "Apple", description: 'Apples are red and are crunchy.' }, { label: "Banana", description: 'Bananas are yellow you have to peel them.' }, { label: "Orange", description: 'Oranges have a hard peel and are full of vitamin C.' }])}>
-      Set Data
-    </Button>
         <Autocomplete
         onInputChange={() => setData([{ label: "Apple", description: 'Apples are red and are crunchy.' }, { label: "Banana", description: 'Bananas are yellow you have to peel them.' }, { label: "Orange", description: 'Oranges have a hard peel and are full of vitamin C.' }])}
           itemFormatter={(value) => {
