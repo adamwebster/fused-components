@@ -24,10 +24,16 @@ export interface Props {
   disabled?: boolean;
   /** The placeholder text for the input */
   placeholder?: string;
+  /** Define what an item in the dropdown menu looks */
   itemFormatter?: (value: any) => any;
+  /** Used in conjunction with item formatter to define what key in your data that should be searched */
   keyToSearch?: string;
-  onInputChange?: (e: any) => void;
+  /** The onChange handler for the input. Returns the element */
+  onChange?: (e: any) => void;
+  /** What should happen when an item in the menu is clicked. Returns the index of the item clicked */
   onItemClick?: (index: any) => void;
+  /** If you would like the value to be empty when an item is selected add this property */
+  clearValueOnSelect?: boolean
 }
 
 export const Autocomplete = ({
@@ -39,8 +45,9 @@ export const Autocomplete = ({
   placeholder,
   itemFormatter,
   keyToSearch,
-  onInputChange,
-  onItemClick
+  onChange,
+  onItemClick,
+  clearValueOnSelect = false
 }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [initialItems, setInitialItems] = useState(items);
@@ -61,7 +68,7 @@ export const Autocomplete = ({
   });
 
   useEffect(() => {
-    if (onInputChange) {
+    if (onChange) {
       setItemsToShow(items);
       filterItems();
     }
@@ -106,8 +113,8 @@ export const Autocomplete = ({
     }
   };
   const onChangeFunc = (e: any) => {
-    if (onInputChange) {
-      onInputChange(e);
+    if (onChange) {
+      onChange(e);
     }
     setFilterValue(e.target.value);
 
@@ -137,7 +144,11 @@ export const Autocomplete = ({
   };
 
   const setValue = (value: React.SetStateAction<string>) => {
-    setFilterValue(value);
+    if (clearValueOnSelect) {
+      setFilterValue('')
+    } else {
+      setFilterValue(value);
+    }
     setItemSelected(value);
     setMenuOpen(false);
     setItemSelectedIndex(-1);
@@ -195,32 +206,32 @@ export const Autocomplete = ({
                   })}
                 </>
               ) : (
-                <>
-                  {itemsToShow.map((item, index) => {
-                    return (
-                      <MenuItemStyled
-                        theme={themeContext?.theme}
-                        tabIndex={0}
-                        onKeyPress={(e: { charCode: number }) =>
-                          handleItemKeyPress(e, item)
-                        }
-                        onClick={() => setValue(item)}
-                        key={item}
-                        ref={(ref: any) => {
-                          itemRefs[index] = ref;
-                        }}
-                      >
-                        {item === itemSelected && (
-                          <ItemIcon theme={themeContext?.theme}>
-                            <Icon icon="check-circle" />
-                          </ItemIcon>
-                        )}
-                        {item}
-                      </MenuItemStyled>
-                    );
-                  })}
-                </>
-              )}
+                  <>
+                    {itemsToShow.map((item, index) => {
+                      return (
+                        <MenuItemStyled
+                          theme={themeContext?.theme}
+                          tabIndex={0}
+                          onKeyPress={(e: { charCode: number }) =>
+                            handleItemKeyPress(e, item)
+                          }
+                          onClick={() => setValue(item)}
+                          key={item}
+                          ref={(ref: any) => {
+                            itemRefs[index] = ref;
+                          }}
+                        >
+                          {item === itemSelected && (
+                            <ItemIcon theme={themeContext?.theme}>
+                              <Icon icon="check-circle" />
+                            </ItemIcon>
+                          )}
+                          {item}
+                        </MenuItemStyled>
+                      );
+                    })}
+                  </>
+                )}
               {itemsToShow.length === 0 && (
                 <NoItemFound theme={themeContext?.theme}>
                   Nothing found
