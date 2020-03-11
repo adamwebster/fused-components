@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
-
 import {
   ComboboxWrapper,
   ComboboxMenu,
@@ -25,16 +23,18 @@ export interface Props {
   disabled?: boolean,
   /** The placeholder for the input */
   placeholder?: string,
-  itemFormatter?: (value: any) => any;
-  keyToSearch?: string;
+  /** Defines the formatting for the item */
+  itemFormatter?: (value: any) => any,
+  /** What key should be search in the data that you send to the Combobox */
+  keyToSearch?: string,
 }
 
 export const Combobox = ({
   items,
   inputIcon,
-  inError,
-  inWarning,
-  disabled,
+  inError = false,
+  inWarning = false,
+  disabled = false,
   placeholder,
   itemFormatter,
   keyToSearch
@@ -237,16 +237,4 @@ export const Combobox = ({
       )}
     </FCThemeConsumer>
   );
-};
-
-Combobox.propTypes = {
-  items: PropTypes.array,
-  /** Sets the icon for the input */
-  inputIcon: PropTypes.node,
-  /** Sets the input to be in error */
-  inError: PropTypes.bool,
-  /** Sets the input to be in warning */
-  inWarning: PropTypes.bool,
-  /** Sets the input to be disabled */
-  disabled: PropTypes.bool
 };
