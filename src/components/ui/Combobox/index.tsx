@@ -23,8 +23,8 @@ export interface Props {
   disabled?: boolean,
   /** The placeholder for the input */
   placeholder?: string,
-  /** Defines the formatting for the item */
-  itemFormatter?: (value: any) => any,
+  /** Defines the formatting for the item. Returns the index of the item */
+  itemFormatter?: (index: any) => any,
   /** What key should be search in the data that you send to the Combobox */
   keyToSearch?: string,
 }
