@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export interface DropdownMenuInterface {
   menuOpen: boolean;
@@ -7,9 +7,7 @@ export interface DropdownMenuInterface {
   theme?: any;
 }
 
-export const DropdownMenuContext = React.createContext<DropdownMenuInterface | null>(
-  null
-);
+export const DropdownMenuContext = React.createContext<DropdownMenuInterface | null>(null);
 
 export const DropdownMenuProvider = DropdownMenuContext.Provider;
 

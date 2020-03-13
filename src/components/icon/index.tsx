@@ -1,5 +1,5 @@
-import React from "react";
-import { icons } from "./icons";
+import React from 'react';
+import { icons } from './icons';
 
 export interface IconProps {
   icon?: string;
@@ -15,7 +15,7 @@ export const Icon = ({ icon, color }: IconProps) => {
       clipRule="evenodd"
       viewBox="0 0 48 48"
     >
-      <path fill={color || "currentColor"} d={icon && icons[icon]}></path>
+      <path fill={color || 'currentColor'} d={icon && icons[icon]}></path>
     </svg>
   );
 };

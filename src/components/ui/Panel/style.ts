@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
-import { fcStyles } from "../../../common/types";
-import { darken } from "polished";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
+import { fcStyles } from '../../../common/types';
+import { darken } from 'polished';
 
 interface Props {
   /** Set the style of the badge */
@@ -11,48 +11,47 @@ interface Props {
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
-    case "danger":
+    case 'danger':
       return color.red;
-    case "warning":
+    case 'warning':
       return color.yellow;
-    case "info":
+    case 'info':
       return color.blue;
-    case "success":
+    case 'success':
       return color.green;
     default:
-      return props.theme === "dark" ? color.medium : color.dark;
+      return props.theme === 'dark' ? color.medium : color.dark;
   }
 };
 
 const borderColor: any = (props: Props) => {
   switch (props.fcStyle) {
-    case "danger":
+    case 'danger':
       return color.red;
-    case "warning":
+    case 'warning':
       return color.yellow;
-    case "info":
+    case 'info':
       return color.blue;
-    case "success":
+    case 'success':
       return color.green;
     default:
-      return props.theme === "dark" ? color.darkModeMedium : color.border;
+      return props.theme === 'dark' ? color.darkModeMedium : color.border;
   }
 };
 
 export interface SP extends React.HTMLProps<HTMLDivElement> {
   fixed: boolean;
-  position: "left" | "right";
+  position: 'left' | 'right';
   visible: boolean;
   fcStyle?: fcStyles;
 }
 
 export const StyledPanel = styled.div<SP>`
   border-radius: 5px;
-  background-color: ${props =>
-    props.theme === "dark" ? color.darkModeDark : "#fff"};
+  background-color: ${props => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
   border: solid 1px ${borderColor};
 
-  color: ${props => (props.theme === "dark" ? color.medium : color.darker)};
+  color: ${props => (props.theme === 'dark' ? color.medium : color.darker)};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   height: calc(100vh - 50px);
   width: 300px;
@@ -64,15 +63,11 @@ export const StyledPanel = styled.div<SP>`
       ? css`
           position: fixed;
           top: 25px;
-          ${props.position === "right" ? "right: 25px;" : "left: 25px;"}
+          ${props.position === 'right' ? 'right: 25px;' : 'left: 25px;'}
           animation: ${
             !props.visible
-              ? `${
-                  props.position === "right" ? "bounceout" : "bounceoutleft"
-                } 0.5s ease-in-out`
-              : `${
-                  props.position === "right" ? "bouncein" : "bounceinleft"
-                } 0.5s ease-in-out`
+              ? `${props.position === 'right' ? 'bounceout' : 'bounceoutleft'} 0.5s ease-in-out`
+              : `${props.position === 'right' ? 'bouncein' : 'bounceinleft'} 0.5s ease-in-out`
           };
           `
       : css`
@@ -170,13 +165,11 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${props =>
-    props.theme === "dark" ? color.darkModeMedium : color.mediumdark};
+  color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props =>
-      props.theme === "dark" ? darken(0.1, color.darkModeMedium) : color.dark};
+    color: ${props => (props.theme === 'dark' ? darken(0.1, color.darkModeMedium) : color.dark)};
   }
   svg {
     width: 16px;

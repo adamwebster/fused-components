@@ -1,19 +1,14 @@
-import React, { useContext } from "react";
-import { MenuItemStyled } from "./style";
-import { Icon } from "../../icon";
-import { DropdownMenuContext } from "./DropdownMenuContext";
+import React, { useContext } from 'react';
+import { MenuItemStyled } from './style';
+import { Icon } from '../../icon';
+import { DropdownMenuContext } from './DropdownMenuContext';
 
 export interface Props {
   children?: any;
   icon?: string;
   onClick?: () => void;
 }
-export const MenuItem = ({
-  children,
-  icon,
-  onClick = () => undefined,
-  ...rest
-}: Props) => {
+export const MenuItem = ({ children, icon, onClick = () => undefined, ...rest }: Props) => {
   const DropdownContext = useContext(DropdownMenuContext);
 
   return (

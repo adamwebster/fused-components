@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {
   icon?: string;
@@ -13,30 +13,24 @@ height:34px;
 box-sizing:border-box;
 padding: 0 10px;
 outline: none;
-border: solid 1px ${props =>
-  props.theme === "dark" ? color.darkModeMedium : color.border};
+border: solid 1px ${props => (props.theme === 'dark' ? color.darkModeMedium : color.border)};
 border-radius:5px;
 -webkit-appearance: none;
-background-color: ${props =>
-  props.theme === "dark" ? color.darkModeDark : "#fff"};
-color: ${props => (props.theme === "dark" ? color.medium : "inherit")};
+background-color: ${props => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+color: ${props => (props.theme === 'dark' ? color.medium : 'inherit')};
 
 &::placeholder{
   font-style:italic; 
-  color: ${props =>
-    props.theme === "dark" ? color.darkModeMediumLight : color.mediumdark};
+  color: ${props => (props.theme === 'dark' ? color.darkModeMediumLight : color.mediumdark)};
 }
 
 &:focus{
-  border-color:${props =>
-    props.theme === "dark" ? color.darkModeMedium : color.focus};
-  box-shadow: 0 0 6px ${props =>
-    props.theme === "dark" ? color.darkModeMedium : color.focus};
+  border-color:${props => (props.theme === 'dark' ? color.darkModeMedium : color.focus)};
+  box-shadow: 0 0 6px ${props => (props.theme === 'dark' ? color.darkModeMedium : color.focus)};
 }
 &[disabled]{
   cursor: not-allowed;
-  background-color: ${props =>
-    props.theme === "dark" ? color.darkModeDarker : "#e9e9e9"};
+  background-color: ${props => (props.theme === 'dark' ? color.darkModeDarker : '#e9e9e9')};
 
 }
 ${props =>
@@ -80,10 +74,8 @@ export const IconWrapper = styled.span<IconWrappersProps>`
   position: absolute;
   left: 10px;
   top: 7px;
-  color: ${props =>
-    props.theme === "dark" ? color.darkModeMedium : color.mediumdark};
-  border-right: solid 1px
-    ${props => (props.theme === "dark" ? color.darkModeMedium : color.border)};
+  color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
+  border-right: solid 1px ${props => (props.theme === 'dark' ? color.darkModeMedium : color.border)};
   box-sizing: border-box;
 
   svg {

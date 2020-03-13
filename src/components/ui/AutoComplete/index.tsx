@@ -1,15 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Input } from "../Input";
-import { Icon } from "../../icon";
+import React, { useState, useRef, useEffect } from 'react';
+import { Input } from '../Input';
+import { Icon } from '../../icon';
 
-import {
-  AutocompleteWrapper,
-  AutocompleteMenu,
-  MenuItemStyled,
-  ItemIcon,
-  NoItemFound
-} from "./style";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+import { AutocompleteWrapper, AutocompleteMenu, MenuItemStyled, ItemIcon, NoItemFound } from './style';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** Defines what items are sent to the auto complete component*/
@@ -37,7 +31,7 @@ export interface Props {
 }
 
 export const Autocomplete = ({
-  items = ["Apple", "Orange", "Banana"],
+  items = ['Apple', 'Orange', 'Banana'],
   inputIcon,
   inError = false,
   inWarning = false,
@@ -47,11 +41,11 @@ export const Autocomplete = ({
   keyToSearch,
   onChange,
   onItemClick,
-  clearValueOnSelect = false
+  clearValueOnSelect = false,
 }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
-  const [filterValue, setFilterValue] = useState("");
-  const [itemSelected, setItemSelected] = useState("");
+  const [filterValue, setFilterValue] = useState('');
+  const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
   const filterRef = useRef<HTMLInputElement>(null);
@@ -99,13 +93,9 @@ export const Autocomplete = ({
   const filterItems = () => {
     let filterItemList;
     if (keyToSearch) {
-      filterItemList = items.filter(item =>
-        item[keyToSearch].toLowerCase().includes(filterValue.toLowerCase())
-      );
+      filterItemList = items.filter(item => item[keyToSearch].toLowerCase().includes(filterValue.toLowerCase()));
     } else {
-      filterItemList = items.filter(item =>
-        item.toLowerCase().includes(filterValue.toLowerCase())
-      );
+      filterItemList = items.filter(item => item.toLowerCase().includes(filterValue.toLowerCase()));
     }
 
     setMenuOpen(true);
@@ -130,7 +120,7 @@ export const Autocomplete = ({
 
   const setValue = (value: React.SetStateAction<string>) => {
     if (clearValueOnSelect) {
-      setFilterValue("");
+      setFilterValue('');
     } else {
       setFilterValue(value);
     }
@@ -139,20 +129,17 @@ export const Autocomplete = ({
     setItemSelectedIndex(-1);
   };
 
-  const handleItemKeyPress = (
-    e: { charCode: number },
-    item: React.SetStateAction<string>
-  ) => {
+  const handleItemKeyPress = (e: { charCode: number }, item: React.SetStateAction<string>) => {
     if (e.charCode === 13) {
       setValue(item);
     }
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleUserKeyPress);
+    window.addEventListener('keydown', handleUserKeyPress);
     formatItems();
     return () => {
-      window.removeEventListener("keydown", handleUserKeyPress);
+      window.removeEventListener('keydown', handleUserKeyPress);
     };
   });
 
@@ -212,9 +199,7 @@ export const Autocomplete = ({
                       <MenuItemStyled
                         theme={themeContext?.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }) =>
-                          handleItemKeyPress(e, item)
-                        }
+                        onKeyPress={(e: { charCode: number }) => handleItemKeyPress(e, item)}
                         onClick={() => setValue(item)}
                         key={item}
                         ref={(ref: any) => {
@@ -232,11 +217,7 @@ export const Autocomplete = ({
                   })}
                 </>
               )}
-              {itemsToShow.length === 0 && (
-                <NoItemFound theme={themeContext?.theme}>
-                  Nothing found
-                </NoItemFound>
-              )}
+              {itemsToShow.length === 0 && <NoItemFound theme={themeContext?.theme}>Nothing found</NoItemFound>}
             </AutocompleteMenu>
           )}
         </AutocompleteWrapper>

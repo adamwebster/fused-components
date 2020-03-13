@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from 'react';
 
-import { DropdownMenuStyled } from "./style";
-import {
-  DropdownMenuContext,
-  DropdownMenuConsumer
-} from "./DropdownMenuContext";
+import { DropdownMenuStyled } from './style';
+import { DropdownMenuContext, DropdownMenuConsumer } from './DropdownMenuContext';
 
 export interface Props {
   children: any;
@@ -28,10 +25,10 @@ export const DropdownMenu = ({ children }: Props) => {
   };
   useEffect(() => {
     //  DropdownContext.hideMenu();
-    document.addEventListener("mousedown", e => handleClickOutside(e));
+    document.addEventListener('mousedown', e => handleClickOutside(e));
     return () => {
       // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", e => handleClickOutside(e));
+      document.removeEventListener('mousedown', e => handleClickOutside(e));
     };
   });
   return (
@@ -39,11 +36,7 @@ export const DropdownMenu = ({ children }: Props) => {
       {appContext =>
         appContext && (
           <>
-            <DropdownMenuStyled
-              ref={menuRef}
-              theme={appContext.theme}
-              menuOpen={appContext.menuOpen}
-            >
+            <DropdownMenuStyled ref={menuRef} theme={appContext.theme} menuOpen={appContext.menuOpen}>
               {children}
             </DropdownMenuStyled>
           </>

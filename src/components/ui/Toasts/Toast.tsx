@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { StyledToast, LoadingBar, CloseButton } from "./styles";
-import { Icon } from "../../icon";
-import { fcStyles } from "../../../common/types";
+import React, { useState, useEffect, useCallback } from 'react';
+import { StyledToast, LoadingBar, CloseButton } from './styles';
+import { Icon } from '../../icon';
+import { fcStyles } from '../../../common/types';
 
 export interface Props {
   /** The title of the toast item */
@@ -15,17 +15,10 @@ export interface Props {
   duration: number;
   theme?: any;
 }
-export const Toast = ({
-  title,
-  fcStyle,
-  children,
-  icon,
-  duration = 4,
-  theme
-}: Props) => {
+export const Toast = ({ title, fcStyle, children, icon, duration = 4, theme }: Props) => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
-  const [timer, setTimer] = useState("0");
+  const [timer, setTimer] = useState('0');
   const [intervalFunc, setIntervalFunc] = useState(0);
 
   const startTimer = useCallback(
@@ -37,12 +30,12 @@ export const Toast = ({
 
         let countNumber = (count / 100).toString().slice(2);
         if (countNumber.length === 1) {
-          countNumber = countNumber + "0";
+          countNumber = countNumber + '0';
         }
         if (countNumber.length === 0) {
-          countNumber = "0";
+          countNumber = '0';
         }
-        if (countNumber === "0") {
+        if (countNumber === '0') {
           setRemoving(true);
           setTimeout(() => setVisible(false), 400);
         }
@@ -58,7 +51,7 @@ export const Toast = ({
 
       setIntervalFunc(counter);
     },
-    [duration]
+    [duration],
   );
 
   useEffect(() => {
@@ -91,7 +84,7 @@ export const Toast = ({
           {children && (
             <span
               dangerouslySetInnerHTML={{
-                __html: children
+                __html: children,
               }}
             />
           )}

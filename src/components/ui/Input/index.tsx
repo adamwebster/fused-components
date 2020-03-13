@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { StyledInput, InputWrapper, IconWrapper } from "./style";
-import { Icon } from "../../icon";
-import { FCTheme } from "../../../theming/FCTheme";
+import React, { useContext } from 'react';
+import { StyledInput, InputWrapper, IconWrapper } from './style';
+import { Icon } from '../../icon';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props extends React.HtmlHTMLAttributes<HTMLInputElement> {
   /** Set the aria label for the input */
@@ -28,25 +28,13 @@ export interface Props extends React.HtmlHTMLAttributes<HTMLInputElement> {
   type?: string;
   theme?: any;
 }
-export const Input = ({
-  ariaLabel,
-  id,
-  inError = false,
-  inputRef,
-  inWarning = false,
-  icon,
-  ...rest
-}: Props) => {
+export const Input = ({ ariaLabel, id, inError = false, inputRef, inWarning = false, icon, ...rest }: Props) => {
   const theme = useContext(FCTheme);
 
   return (
     <InputWrapper>
       {icon && (
-        <IconWrapper
-          theme={theme?.theme}
-          inError={inError}
-          inWarning={inWarning}
-        >
+        <IconWrapper theme={theme?.theme} inError={inError} inWarning={inWarning}>
           <Icon icon={icon} />
         </IconWrapper>
       )}

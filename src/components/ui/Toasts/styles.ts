@@ -1,17 +1,17 @@
-import styled from "styled-components";
-import { Alert } from "../Alert";
-import { color } from "../../../styles/styles";
+import styled from 'styled-components';
+import { Alert } from '../Alert';
+import { color } from '../../../styles/styles';
 
 interface ToastContainerInterface {
-  position?: "top" | "bottom" | "top-right" | "bottom-right";
+  position?: 'top' | 'bottom' | 'top-right' | 'bottom-right';
 }
 export const ToastContainer = styled.div<ToastContainerInterface>`
   position: fixed;
   ${props => {
-    let position = "";
+    let position = '';
 
     switch (props.position) {
-      case "top":
+      case 'top':
         position = `
             top:20px;
             left: 50%;
@@ -22,7 +22,7 @@ export const ToastContainer = styled.div<ToastContainerInterface>`
             }
             `;
         break;
-      case "bottom":
+      case 'bottom':
         position = `
              bottom:20px;
             left: 50%;
@@ -34,14 +34,14 @@ export const ToastContainer = styled.div<ToastContainerInterface>`
             `;
         break;
 
-      case "bottom-right":
+      case 'bottom-right':
         position = `
         bottom:20px;
         right:20px;
         width: 300px;
             `;
         break;
-      case "top-right":
+      case 'top-right':
       default:
         position = `
         top:20px;
@@ -66,10 +66,7 @@ export const StyledToast = styled(Alert)<ST>`
   transition: all;
   position: relative;
   border-radius: 5px;
-  animation: ${props =>
-    !props.removing
-      ? "fadeinToast 0.5s ease-in-out"
-      : "fadeoutToast 0.5s ease-in-out"};
+  animation: ${props => (!props.removing ? 'fadeinToast 0.5s ease-in-out' : 'fadeoutToast 0.5s ease-in-out')};
   @keyframes fadeinToast {
     0% {
       transform: scale(0);
@@ -103,8 +100,7 @@ export const LoadingBar = styled.div<LB>`
   height: 5px;
   transition: all;
   margin-top: 10px;
-  background-color: ${props =>
-    props.theme === "dark" ? color.darkModeMedium : color.medium};
+  background-color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
   width: ${props => props.timer}%;
 `;
 
@@ -113,8 +109,7 @@ export const CloseButton = styled.button`
   box-sizing: border-box;
   padding: 0;
   border: none;
-  color: ${props =>
-    props.theme === "dark" ? color.darkModeMedium : color.medium};
+  color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
   background-color: transparent;
   position: absolute;
   top: 15px;

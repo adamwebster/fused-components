@@ -1,6 +1,6 @@
-import React, { ReactElement, ReactNode } from "react";
-import { ToggleWrapper, Slider, ToggleLabel } from "./style";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+import React, { ReactElement, ReactNode } from 'react';
+import { ToggleWrapper, Slider, ToggleLabel } from './style';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** If the toggle is active or not */

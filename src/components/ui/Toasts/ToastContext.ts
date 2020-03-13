@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface Options {
   id?: string;
@@ -14,13 +14,7 @@ export interface ToastObject {
 }
 
 export interface ToastInterface {
-  add: (
-    title: string,
-    content: string,
-    style: string,
-    icon: string,
-    options: Options
-  ) => void;
+  add: (title: string, content: string, style: string, icon: string, options: Options) => void;
 }
 
 export const ToastContext = React.createContext<ToastInterface | null>(null);

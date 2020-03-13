@@ -1,17 +1,10 @@
-import React from "react";
-import { Button } from "../Button";
-import {
-  StyledDialog,
-  DialogTitle,
-  DialogContent,
-  CloseButton,
-  DialogFooter,
-  Overlay
-} from "./style";
-import { color } from "../../../styles/styles";
-import { Icon } from "../../icon";
-import { fcStyles } from "../../../common/types";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+import React from 'react';
+import { Button } from '../Button';
+import { StyledDialog, DialogTitle, DialogContent, CloseButton, DialogFooter, Overlay } from './style';
+import { color } from '../../../styles/styles';
+import { Icon } from '../../icon';
+import { fcStyles } from '../../../common/types';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** Sets if the dialog has a box shadow */
@@ -39,13 +32,13 @@ export const Dialog = ({
   boxShadow = true,
   title,
   visible = false,
-  confirmText = "Yes",
+  confirmText = 'Yes',
   children,
   onCloseClick = () => undefined,
   fixed = true,
   fcStyle = undefined,
   showOverlay = true,
-  cancelText = "Cancel"
+  cancelText = 'Cancel',
 }: Props) => {
   return (
     <>
@@ -63,24 +56,14 @@ export const Dialog = ({
               >
                 <DialogTitle theme={themeContext?.theme} fcStyle={fcStyle}>
                   <h2>{title}</h2>
-                  <CloseButton
-                    theme={themeContext?.theme}
-                    aria-label="Close"
-                    onClick={() => onCloseClick()}
-                  >
+                  <CloseButton theme={themeContext?.theme} aria-label="Close" onClick={() => onCloseClick()}>
                     <Icon icon="times" />
                   </CloseButton>
                 </DialogTitle>
-                <DialogContent theme={themeContext?.theme}>
-                  {children}
-                </DialogContent>
+                <DialogContent theme={themeContext?.theme}>{children}</DialogContent>
                 <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
                   <Button
-                    buttonColor={
-                      themeContext?.theme === "dark"
-                        ? color.darkModeMedium
-                        : color.mediumdark
-                    }
+                    buttonColor={themeContext?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
                     onClick={() => onCloseClick()}
                   >
                     {cancelText}

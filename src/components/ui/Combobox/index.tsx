@@ -1,14 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import {
-  ComboboxWrapper,
-  ComboboxMenu,
-  MenuItemStyled,
-  CaretIcon,
-  ItemIcon,
-  InputStyled
-} from "./style";
-import { Icon } from "../../icon";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+import React, { useState, useRef, useEffect } from 'react';
+import { ComboboxWrapper, ComboboxMenu, MenuItemStyled, CaretIcon, ItemIcon, InputStyled } from './style';
+import { Icon } from '../../icon';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** An array of items */
@@ -37,12 +30,12 @@ export const Combobox = ({
   disabled = false,
   placeholder,
   itemFormatter,
-  keyToSearch
+  keyToSearch,
 }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [initialItems, setInitialItems] = useState(items);
-  const [filterValue, setFilterValue] = useState("");
-  const [itemSelected, setItemSelected] = useState("");
+  const [filterValue, setFilterValue] = useState('');
+  const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
   const filterRef = useRef<HTMLInputElement>(null);
@@ -110,13 +103,9 @@ export const Combobox = ({
     setFilterValue(e.target.value);
     let filterItemList;
     if (keyToSearch) {
-      filterItemList = items.filter(item =>
-        item[keyToSearch].toLowerCase().includes(e.target.value.toLowerCase())
-      );
+      filterItemList = items.filter(item => item[keyToSearch].toLowerCase().includes(e.target.value.toLowerCase()));
     } else {
-      filterItemList = items.filter(item =>
-        item.toLowerCase().includes(e.target.value.toLowerCase())
-      );
+      filterItemList = items.filter(item => item.toLowerCase().includes(e.target.value.toLowerCase()));
     }
 
     setMenuOpen(true);
@@ -144,12 +133,12 @@ export const Combobox = ({
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleUserKeyPress);
-    window.addEventListener("mousedown", e => handleClickOutside(e));
+    window.addEventListener('keydown', handleUserKeyPress);
+    window.addEventListener('mousedown', e => handleClickOutside(e));
 
     return () => {
-      window.removeEventListener("keydown", handleUserKeyPress);
-      window.removeEventListener("mousedown", e => handleClickOutside(e));
+      window.removeEventListener('keydown', handleUserKeyPress);
+      window.removeEventListener('mousedown', e => handleClickOutside(e));
     };
   });
 
@@ -181,9 +170,7 @@ export const Combobox = ({
                       <MenuItemStyled
                         theme={themeContext?.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }) =>
-                          handleItemKeyPress(e, item[keyToSearch as string])
-                        }
+                        onKeyPress={(e: { charCode: number }) => handleItemKeyPress(e, item[keyToSearch as string])}
                         onClick={() => setValue(item[keyToSearch as string])}
                         key={item.index}
                         ref={(ref: any) => {
@@ -202,9 +189,7 @@ export const Combobox = ({
                       <MenuItemStyled
                         theme={themeContext?.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }) =>
-                          handleItemKeyPress(e, item)
-                        }
+                        onKeyPress={(e: { charCode: number }) => handleItemKeyPress(e, item)}
                         onClick={() => setValue(item)}
                         key={item}
                         ref={(ref: any) => {
@@ -222,15 +207,11 @@ export const Combobox = ({
                   })}
                 </>
               )}
-              {itemsToShow.length === 0 && (
-                <MenuItemStyled theme={themeContext?.theme}>
-                  Nothing found
-                </MenuItemStyled>
-              )}
+              {itemsToShow.length === 0 && <MenuItemStyled theme={themeContext?.theme}>Nothing found</MenuItemStyled>}
             </ComboboxMenu>
           )}
           <CaretIcon>
-            <Icon icon={menuOpen ? "caret-up" : "caret-down"} />
+            <Icon icon={menuOpen ? 'caret-up' : 'caret-down'} />
           </CaretIcon>
         </ComboboxWrapper>
       )}

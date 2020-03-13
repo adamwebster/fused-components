@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
 
 interface DBW {
   renderAs?: string;
@@ -7,7 +7,7 @@ interface DBW {
 export const DropdownButtonWrapper = styled.div<DBW>`
   display: inline-block;
   ${props =>
-    props.renderAs === "a" &&
+    props.renderAs === 'a' &&
     css`
       svg {
         width: 16px;
@@ -20,11 +20,9 @@ interface DMS {
 }
 export const DropdownMenuStyled = styled.ul<DMS>`
   position: absolute;
-  background-color: ${props =>
-    props.theme === "dark" ? color.darkModeDark : "#fff"};
+  background-color: ${props => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
   overflow: hidden;
-  border: solid 1px
-    ${props => (props.theme === "dark" ? color.darkModeMedium : color.border)};
+  border: solid 1px ${props => (props.theme === 'dark' ? color.darkModeMedium : color.border)};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   min-width: 200px;
   margin: 0;
@@ -33,8 +31,7 @@ export const DropdownMenuStyled = styled.ul<DMS>`
   z-index: 99;
   margin-top: 5px;
   border-radius: 5px;
-  animation: ${props =>
-    props.menuOpen ? "fadein 0.5s ease-in-out" : "fadeout 0.2s ease-in-out"};
+  animation: ${props => (props.menuOpen ? 'fadein 0.5s ease-in-out' : 'fadeout 0.2s ease-in-out')};
   @keyframes fadein {
     0% {
       opacity: 0;
@@ -58,14 +55,13 @@ export const MenuItemStyled = styled.li`
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
-  color: ${props => (props.theme === "dark" ? color.medium : color.dark)};
+  color: ${props => (props.theme === 'dark' ? color.medium : color.dark)};
   &:last-child {
   }
   &:hover,
   &:focus {
-    background-color: ${props =>
-      props.theme === "dark" ? color.darkModeMedium : color.highlight};
-    color: ${props => (props.theme === "dark" ? color.light : "inherit")};
+    background-color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.highlight)};
+    color: ${props => (props.theme === 'dark' ? color.light : 'inherit')};
   }
   svg {
     width: 12px;
@@ -85,7 +81,7 @@ export const IconStyled = styled.span<IconProps>`
   height: 5px;
   margin-left: 5px;
   ${props =>
-    props.renderAs === "a" &&
+    props.renderAs === 'a' &&
     css`
       display: none;
     `}
