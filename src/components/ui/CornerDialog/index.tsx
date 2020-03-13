@@ -28,15 +28,15 @@ export interface Props {
 }
 export const CornerDialog = ({
   fixed = true,
-  onCloseClick = () => {},
-  onConfirmClick = () => {},
+  onCloseClick = () => undefined,
+  onConfirmClick = () => undefined,
   visible = true,
   cancelText = "Cancel",
   confirmText = "Learn More",
   title,
   children,
   fcStyle,
-  icon,
+  icon
 }: Props) => {
   const [show, setShow] = useState(false);
 

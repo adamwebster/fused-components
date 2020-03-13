@@ -1,36 +1,46 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from "react";
 import PropTypes from "prop-types";
 
-import {
-  TableCellStyled,
-} from "./style";
+import { TableCellStyled } from "./style";
 
-import {TableContextContextConsumer} from './TableContext';
+import { TableContextContextConsumer } from "./TableContext";
 
 export interface Props {
-  children: ReactNode,
+  children: ReactNode;
   /** The background color of the table cell */
-  bgColor?: string,
+  bgColor?: string;
   /** The foreground color(text) of the table cell */
-  fgColor?: string,
+  fgColor?: string;
   /** The width of the table cell */
-  width?: string,
+  width?: string;
 }
-const TableCell = ({ children, bgColor, fgColor, width }:Props) => {
+const TableCell = ({ children, bgColor, fgColor, width }: Props) => {
   return (
     <TableContextContextConsumer>
-      {tableContext => tableContext && (
-        <>
-          <TableCellStyled fgColor={fgColor} bgColor={bgColor} width={width} freezeFirstColumn={tableContext.freezeFirstColumn} frozenColumnBGColor={tableContext.frozenColumnBGColor} frozenColumnFGColor={tableContext.frozenColumnFGColor} padding={tableContext.padding}>{children}</TableCellStyled>
-        </>
-      )}
+      {tableContext =>
+        tableContext && (
+          <>
+            <TableCellStyled
+              fgColor={fgColor}
+              bgColor={bgColor}
+              width={width}
+              freezeFirstColumn={tableContext.freezeFirstColumn}
+              frozenColumnBGColor={tableContext.frozenColumnBGColor}
+              frozenColumnFGColor={tableContext.frozenColumnFGColor}
+              padding={tableContext.padding}
+            >
+              {children}
+            </TableCellStyled>
+          </>
+        )
+      }
     </TableContextContextConsumer>
-  )
-}
+  );
+};
 
 TableCell.propTypes = {
   bgColor: PropTypes.string,
-  fgColor: PropTypes.string,
-}
+  fgColor: PropTypes.string
+};
 
 export default TableCell;

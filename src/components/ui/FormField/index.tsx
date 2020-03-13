@@ -34,12 +34,12 @@ export const FormField = ({
 
   return (
     <FormFieldWrapper>
-      {label && 
+      {label && (
         <Label htmlFor={htmlFor}>
           {required && <RequiredMark>* </RequiredMark>}
           {label}
         </Label>
-      }
+      )}
       <InputWrapper>{children}</InputWrapper>
 
       {hint && <HintText theme={theme?.theme}>{hint}</HintText>}

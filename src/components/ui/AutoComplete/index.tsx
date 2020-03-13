@@ -33,7 +33,7 @@ export interface Props {
   /** What should happen when an item in the menu is clicked. Returns the index of the item clicked */
   onItemClick?: (index: any) => void;
   /** If you would like the value to be empty when an item is selected add this property */
-  clearValueOnSelect?: boolean
+  clearValueOnSelect?: boolean;
 }
 
 export const Autocomplete = ({
@@ -55,22 +55,8 @@ export const Autocomplete = ({
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
   const filterRef = useRef<HTMLInputElement>(null);
-  let itemRefs: Array<HTMLElement> = [];
+  const itemRefs: Array<HTMLElement> = [];
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleUserKeyPress);
-    formatItems();
-    return () => {
-      window.removeEventListener("keydown", handleUserKeyPress);
-    };
-  });
-
-  useEffect(() => {
-    if (onChange) {
-      setItemsToShow(items);
-      filterItems();
-    }
-  }, [items]);
   const formatItems = () => {
     if (itemFormatter) {
       const itemsToFormat = items;
@@ -109,14 +95,7 @@ export const Autocomplete = ({
       }
     }
   };
-  const onChangeFunc = (e: any) => {
-    if (onChange) {
-      onChange(e);
-    }
-    setFilterValue(e.target.value);
 
-    filterItems();
-  };
   const filterItems = () => {
     let filterItemList;
     if (keyToSearch) {
@@ -140,9 +119,18 @@ export const Autocomplete = ({
     }
   };
 
+  const onChangeFunc = (e: any) => {
+    if (onChange) {
+      onChange(e);
+    }
+    setFilterValue(e.target.value);
+
+    filterItems();
+  };
+
   const setValue = (value: React.SetStateAction<string>) => {
     if (clearValueOnSelect) {
-      setFilterValue('')
+      setFilterValue("");
     } else {
       setFilterValue(value);
     }
@@ -159,6 +147,21 @@ export const Autocomplete = ({
       setValue(item);
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleUserKeyPress);
+    formatItems();
+    return () => {
+      window.removeEventListener("keydown", handleUserKeyPress);
+    };
+  });
+
+  useEffect(() => {
+    if (onChange) {
+      setItemsToShow(items);
+      filterItems();
+    }
+  }, [items]);
 
   return (
     <FCThemeConsumer>
@@ -203,32 +206,32 @@ export const Autocomplete = ({
                   })}
                 </>
               ) : (
-                  <>
-                    {itemsToShow.map((item, index) => {
-                      return (
-                        <MenuItemStyled
-                          theme={themeContext?.theme}
-                          tabIndex={0}
-                          onKeyPress={(e: { charCode: number }) =>
-                            handleItemKeyPress(e, item)
-                          }
-                          onClick={() => setValue(item)}
-                          key={item}
-                          ref={(ref: any) => {
-                            itemRefs[index] = ref;
-                          }}
-                        >
-                          {item === itemSelected && (
-                            <ItemIcon theme={themeContext?.theme}>
-                              <Icon icon="check-circle" />
-                            </ItemIcon>
-                          )}
-                          {item}
-                        </MenuItemStyled>
-                      );
-                    })}
-                  </>
-                )}
+                <>
+                  {itemsToShow.map((item, index) => {
+                    return (
+                      <MenuItemStyled
+                        theme={themeContext?.theme}
+                        tabIndex={0}
+                        onKeyPress={(e: { charCode: number }) =>
+                          handleItemKeyPress(e, item)
+                        }
+                        onClick={() => setValue(item)}
+                        key={item}
+                        ref={(ref: any) => {
+                          itemRefs[index] = ref;
+                        }}
+                      >
+                        {item === itemSelected && (
+                          <ItemIcon theme={themeContext?.theme}>
+                            <Icon icon="check-circle" />
+                          </ItemIcon>
+                        )}
+                        {item}
+                      </MenuItemStyled>
+                    );
+                  })}
+                </>
+              )}
               {itemsToShow.length === 0 && (
                 <NoItemFound theme={themeContext?.theme}>
                   Nothing found

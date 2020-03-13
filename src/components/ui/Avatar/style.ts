@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Props } from './'
+import { Props } from "./";
 
 export const StyledAvatar = styled.div`
   ${props => {
@@ -53,6 +53,6 @@ export const StyledAvatar = styled.div`
   ${(props: Props) =>
     props.boxShadow &&
     css`
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.40);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
     `}
 `;

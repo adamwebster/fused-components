@@ -4,29 +4,40 @@ import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
 import { FCTheme } from "../../../theming/FCTheme";
 
-export interface Props extends React.HTMLAttributes<HTMLButtonElement>{
+export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   /** Sets the button to be a primary button */
-  primary?: boolean,
+  primary?: boolean;
   /** Set the style of the button */
-  fcStyle?: fcStyles,
+  fcStyle?: fcStyles;
   /** Set the color of the button */
-  buttonColor?: string,
+  buttonColor?: string;
   /** Set the button to be disabled */
-  disabled?: boolean,
+  disabled?: boolean;
   /** Set the button to be in its loading state */
-  isLoading?: boolean,
+  isLoading?: boolean;
   /** Set an ref for the button */
-  buttonRef?: any,
+  buttonRef?: any;
   /** Set the loading icon */
-  loadingIcon?: object,
+  loadingIcon?: object;
   /** Set the icon for the button */
-  icon?: string,
-  children?: any,
+  icon?: string;
+  children?: any;
   /** What the button should be rendered as for example as="a" */
-  as?: any
+  as?: any;
 }
 
-export const Button = ({buttonColor, disabled = false, isLoading = false, buttonRef, primary, loadingIcon, icon, children, fcStyle, ...rest}:Props ) => {
+export const Button = ({
+  buttonColor,
+  disabled = false,
+  isLoading = false,
+  buttonRef,
+  primary,
+  loadingIcon,
+  icon,
+  children,
+  fcStyle,
+  ...rest
+}: Props) => {
   const theme = useContext(FCTheme);
 
   return (
@@ -41,7 +52,11 @@ export const Button = ({buttonColor, disabled = false, isLoading = false, button
       {...rest}
     >
       {isLoading && loadingIcon && <>{loadingIcon} </>}
-      {icon && !isLoading && <StyledIcon fcStyle={fcStyle}  primary={primary}><Icon icon={icon} /></StyledIcon>}
+      {icon && !isLoading && (
+        <StyledIcon fcStyle={fcStyle} primary={primary}>
+          <Icon icon={icon} />
+        </StyledIcon>
+      )}
       {children}
     </StyledButton>
   );

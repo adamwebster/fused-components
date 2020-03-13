@@ -3,23 +3,23 @@ import { Button } from "../Button";
 import { DropdownButtonWrapper, IconStyled, MenuDivider } from "./style";
 import { DropdownMenu } from "./DropdownMenu";
 import { MenuItem } from "./MenuItem";
-import {DropdownMenuProvider} from "./DropdownMenuContext";
+import { DropdownMenuProvider } from "./DropdownMenuContext";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
 import { FCTheme } from "../../../theming/FCTheme";
 
 export interface Props {
   /** Set the button to be primary */
-  primary?: boolean,
+  primary?: boolean;
   /** Set the text for the button */
-  label: string,
+  label: string;
   /** Set the style of the button */
-  fcStyle?: fcStyles,
+  fcStyle?: fcStyles;
   /** Set the color of the button */
-  buttonColor?: string,
-  children: any,
+  buttonColor?: string;
+  children: any;
   /** Set what element the button should be rended as for example as="a" */
-  as?: any
+  as?: any;
 }
 export const DropdownButton = ({
   primary,
@@ -28,7 +28,7 @@ export const DropdownButton = ({
   children,
   buttonColor,
   as
-}:Props) => {
+}: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const buttonEl = useRef();
@@ -45,7 +45,7 @@ export const DropdownButton = ({
     menuOpen,
     hideMenu: () => hideMenuFunc(),
     buttonEl,
-    theme: theme?.theme,
+    theme: theme?.theme
   };
 
   const toggleMenu = () => {
@@ -61,9 +61,7 @@ export const DropdownButton = ({
   };
 
   return (
-    <DropdownButtonWrapper
-    renderAs={as}
-    >
+    <DropdownButtonWrapper renderAs={as}>
       <DropdownMenuProvider value={state}>
         <Button
           buttonRef={buttonEl}

@@ -1,92 +1,107 @@
-import styled, { css } from 'styled-components';
-import { color } from '../../../styles/styles';
+import styled, { css } from "styled-components";
+import { color } from "../../../styles/styles";
 
-interface IInput extends React.HTMLProps<HTMLInputElement>{
-  icon?: string,
-  inError?: boolean,
-  inWarning?: boolean,
-  theme: string,
+interface InputProps extends React.HTMLProps<HTMLInputElement> {
+  icon?: string;
+  inError?: boolean;
+  inWarning?: boolean;
+  theme: string;
 }
-export const StyledInput = styled.input<IInput>`
+export const StyledInput = styled.input<InputProps>`
 width: 100%;
 height:34px;
 box-sizing:border-box;
 padding: 0 10px;
 outline: none;
-border: solid 1px ${props => props.theme === 'dark' ? color.darkModeMedium : color.border};
+border: solid 1px ${props =>
+  props.theme === "dark" ? color.darkModeMedium : color.border};
 border-radius:5px;
 -webkit-appearance: none;
-background-color: ${props => props.theme === 'dark' ? color.darkModeDark : '#fff'};
-color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};
+background-color: ${props =>
+  props.theme === "dark" ? color.darkModeDark : "#fff"};
+color: ${props => (props.theme === "dark" ? color.medium : "inherit")};
 
 &::placeholder{
   font-style:italic; 
-  color: ${props => props.theme === 'dark' ? color.darkModeMediumLight : color.mediumdark};
+  color: ${props =>
+    props.theme === "dark" ? color.darkModeMediumLight : color.mediumdark};
 }
 
 &:focus{
-  border-color:${props => props.theme === 'dark' ? color.darkModeMedium : color.focus};
-  box-shadow: 0 0 6px ${props => props.theme === 'dark' ? color.darkModeMedium : color.focus};
+  border-color:${props =>
+    props.theme === "dark" ? color.darkModeMedium : color.focus};
+  box-shadow: 0 0 6px ${props =>
+    props.theme === "dark" ? color.darkModeMedium : color.focus};
 }
 &[disabled]{
   cursor: not-allowed;
-  background-color: ${props => props.theme === 'dark' ? color.darkModeDarker : '#e9e9e9'};
+  background-color: ${props =>
+    props.theme === "dark" ? color.darkModeDarker : "#e9e9e9"};
 
 }
-${props => props.inError && css`
-  border:solid 1px ${color.red};
-  &:focus{
-  border-color: ${color.red};
-  box-shadow: 0 0 6px ${color.red};
-}
-`}
+${props =>
+  props.inError &&
+  css`
+    border: solid 1px ${color.red};
+    &:focus {
+      border-color: ${color.red};
+      box-shadow: 0 0 6px ${color.red};
+    }
+  `}
 
-${props => props.inWarning && css`
-  border:solid 1px ${color.yellow};
-  &:focus{
-  border-color: ${color.yellow};
-  box-shadow: 0 0 6px ${color.yellow};
-}
-`}
+${props =>
+  props.inWarning &&
+  css`
+    border: solid 1px ${color.yellow};
+    &:focus {
+      border-color: ${color.yellow};
+      box-shadow: 0 0 6px ${color.yellow};
+    }
+  `}
 
-${props => props.icon && css`
-  padding-left: 35px;
-`}
-`
+${props =>
+  props.icon &&
+  css`
+    padding-left: 35px;
+  `}
+`;
 
 export const InputWrapper = styled.div`
-  position:relative;
+  position: relative;
+`;
 
-`
-
-interface IIconWrapper {
-  inError: boolean,
-  inWarning: boolean,
-  theme: string,
-
+interface IconWrappersProps {
+  inError: boolean;
+  inWarning: boolean;
+  theme: string;
 }
 
-export const IconWrapper = styled.span<IIconWrapper>`
-position: absolute;
-left: 10px;
-top: 7px;
-color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.mediumdark};
-border-right: solid 1px ${props => props.theme === 'dark' ? color.darkModeMedium : color.border};
-box-sizing:border-box;
+export const IconWrapper = styled.span<IconWrappersProps>`
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  color: ${props =>
+    props.theme === "dark" ? color.darkModeMedium : color.mediumdark};
+  border-right: solid 1px
+    ${props => (props.theme === "dark" ? color.darkModeMedium : color.border)};
+  box-sizing: border-box;
 
-svg{
-  top: 2px;
-  position:relative;
-  margin-right: 5px;
-  width:12px;
-
-}
-${props => props.inError && css`
-  color: ${color.red};
-  border-color: ${color.red};
-`}
-${props => props.inWarning && css`
-  color: ${color.yellow};
-  border-color: ${color.yellow};
-`}
-`
+  svg {
+    top: 2px;
+    position: relative;
+    margin-right: 5px;
+    width: 12px;
+  }
+  ${props =>
+    props.inError &&
+    css`
+      color: ${color.red};
+      border-color: ${color.red};
+    `}
+  ${props =>
+    props.inWarning &&
+    css`
+      color: ${color.yellow};
+      border-color: ${color.yellow};
+    `}
+`;
