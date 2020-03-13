@@ -12,7 +12,6 @@ import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
 import { FCThemeConsumer } from "../../../theming/FCTheme";
-import { lighten } from "polished";
 
 export interface Props {
   /** Sets if the dialog has a box shadow */

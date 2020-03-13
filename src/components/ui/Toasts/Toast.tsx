@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback, ReactNode } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { StyledToast, LoadingBar, CloseButton } from "./styles";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
 
 export interface Props {
   /** The title of the toast item */

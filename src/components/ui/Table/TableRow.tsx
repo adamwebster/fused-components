@@ -9,10 +9,8 @@ export interface Props {
   children: ReactNode,
   /** Set the background color of the table row */
   bgColor?: string,
-  /** The foreground color(text) of the table row */
-  fgColor?: string,
 }
-const TableRow = ({ children, bgColor, fgColor, ...rest }:Props) => {
+const TableRow = ({ children, bgColor }:Props) => {
   return (
     <TableContextContextConsumer>
       {tableContext => tableContext && (

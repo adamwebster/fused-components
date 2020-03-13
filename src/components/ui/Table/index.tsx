@@ -8,7 +8,7 @@ import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import TableBody from './TableBody';
 import TableCell from './TableCell';
-import { FCTheme, FCThemeConsumer } from "../../../theming/FCTheme";
+import { FCTheme } from "../../../theming/FCTheme";
 import { color } from "../../../styles/styles";
 
 export interface Props {
@@ -36,7 +36,6 @@ export interface Props {
 export const Table = ({
   padding = '5px',
   zebraStripping = false,
-  zebraStripeColor,
   bgColor,
   fgColor,
   freezeFirstColumn = false,

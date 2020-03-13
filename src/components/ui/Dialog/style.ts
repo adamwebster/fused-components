@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { Props } from './';
 import { fcStyles } from "../../../common/types";
-import { lighten, darken, border } from 'polished';
+import { lighten, darken } from 'polished';
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {

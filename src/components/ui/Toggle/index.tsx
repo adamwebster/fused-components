@@ -13,7 +13,7 @@ export interface Props {
 export const Toggle = ({
   active = false,
   showLabels = false,
-  onClick = e => {},
+  onClick = () => {},
   ...rest
 }: Props) => {
   return (

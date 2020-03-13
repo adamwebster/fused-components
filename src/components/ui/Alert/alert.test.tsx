@@ -6,7 +6,7 @@ afterEach(cleanup);
 
 describe("Alert Tests", () => {
   test("Renders Alert with text", () => {
-    const { getByText, debug } = render(<Alert>This is an alert</Alert>);
+    const { getByText } = render(<Alert>This is an alert</Alert>);
     expect(getByText("This is an alert")).toBeInTheDocument();
   });
 });

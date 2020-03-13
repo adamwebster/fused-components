@@ -11,7 +11,6 @@ const FlexWrapper = styled.div`
   }
 `
 export const BadgeDemoDarkMode = () => {
-  const AlertText = "This is some text that will be shown with the alert";
   return (
     <FCThemeProvider value={{ theme: "dark" }}>
       <DarkModeWrapper>

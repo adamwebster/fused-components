@@ -16,7 +16,7 @@ export interface Props {
   /** The width of the table cell */
   width?: string,
 }
-const TableCell = ({ children, bgColor, fgColor, width, ...rest }:Props) => {
+const TableCell = ({ children, bgColor, fgColor, width }:Props) => {
   return (
     <TableContextContextConsumer>
       {tableContext => tableContext && (

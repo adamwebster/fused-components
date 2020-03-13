@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import { color } from "../../../styles/styles";
 import { Props } from './';
-import { lighten } from 'polished';
 
 export const ToggleWrapper = styled.div`
 width: 40px;

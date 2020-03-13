@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { fcStyles } from "../../../common/types";
-import { darken, lighten } from "polished";
+import { darken } from "polished";
 
 interface Props {
   /** Set the style of the badge */

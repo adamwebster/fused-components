@@ -50,8 +50,6 @@ export const Autocomplete = ({
   clearValueOnSelect = false
 }: Props) => {
   const [itemsToShow, setItemsToShow] = useState(items);
-  const [initialItems, setInitialItems] = useState(items);
-  const [menuItems, setMenuItems] = useState([] as any);
   const [filterValue, setFilterValue] = useState("");
   const [itemSelected, setItemSelected] = useState("");
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
@@ -81,7 +79,6 @@ export const Autocomplete = ({
           item.index = index;
         });
       }
-      setInitialItems(itemsToFormat);
     }
   };
 
