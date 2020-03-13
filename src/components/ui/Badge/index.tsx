@@ -11,7 +11,9 @@ export interface Props {
 export const Badge = ({ fcStyle, ...rest }: Props) => {
   return (
     <FCThemeConsumer>
-      {themeContext => <StyledBadge fcStyle={fcStyle} theme={themeContext?.theme} {...rest} />}
+      {themeContext => (
+        <StyledBadge fcStyle={fcStyle} theme={themeContext?.theme} {...rest} />
+      )}
     </FCThemeConsumer>
   );
 };

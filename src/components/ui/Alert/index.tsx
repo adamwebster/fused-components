@@ -26,10 +26,16 @@ export const Alert = ({
     <FCThemeConsumer>
       {themeContext => (
         <>
-          <StyledAlert theme={themeContext?.theme && themeContext.theme} borderRadius={borderRadius} fcStyle={fcStyle} {...rest}>
+          <StyledAlert
+            theme={themeContext?.theme && themeContext.theme}
+            borderRadius={borderRadius}
+            fcStyle={fcStyle}
+            {...rest}
+          >
             {title && (
               <h4>
-                {icon && <Icon icon={icon} />} <Title theme={themeContext?.theme}>{title}</Title>
+                {icon && <Icon icon={icon} />}{" "}
+                <Title theme={themeContext?.theme}>{title}</Title>
               </h4>
             )}
             {children && <AlertContent>{children}</AlertContent>}

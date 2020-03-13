@@ -41,7 +41,7 @@ export const Dialog = ({
   visible = false,
   confirmText = "Yes",
   children,
-  onCloseClick = () => { },
+  onCloseClick = () => undefined,
   fixed = true,
   fcStyle = undefined,
   showOverlay = true,
@@ -54,23 +54,41 @@ export const Dialog = ({
           {showOverlay && <Overlay onClick={() => onCloseClick()} />}
           <FCThemeConsumer>
             {themeContext => (
-              <StyledDialog fcStyle={fcStyle} theme={themeContext?.theme} visible={visible} fixed={fixed} boxShadow={boxShadow}>
+              <StyledDialog
+                fcStyle={fcStyle}
+                theme={themeContext?.theme}
+                visible={visible}
+                fixed={fixed}
+                boxShadow={boxShadow}
+              >
                 <DialogTitle theme={themeContext?.theme} fcStyle={fcStyle}>
                   <h2>{title}</h2>
-                  <CloseButton theme={themeContext?.theme} aria-label="Close" onClick={() => onCloseClick()}>
+                  <CloseButton
+                    theme={themeContext?.theme}
+                    aria-label="Close"
+                    onClick={() => onCloseClick()}
+                  >
                     <Icon icon="times" />
                   </CloseButton>
                 </DialogTitle>
-                <DialogContent theme={themeContext?.theme}>{children}</DialogContent>
+                <DialogContent theme={themeContext?.theme}>
+                  {children}
+                </DialogContent>
                 <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
                   <Button
-                   buttonColor={themeContext?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
+                    buttonColor={
+                      themeContext?.theme === "dark"
+                        ? color.darkModeMedium
+                        : color.mediumdark
+                    }
                     onClick={() => onCloseClick()}
                   >
                     {cancelText}
                   </Button>
 
-                  <Button primary fcStyle={fcStyle}>{confirmText}</Button>
+                  <Button primary fcStyle={fcStyle}>
+                    {confirmText}
+                  </Button>
                 </DialogFooter>
               </StyledDialog>
             )}

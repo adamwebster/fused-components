@@ -4,40 +4,58 @@ import { darken, lighten } from "polished";
 import { Props } from "./";
 import { fcStyles } from "../../../common/types";
 
-interface colorProps {
+interface ColorProps {
   theme?: any;
   buttonColor?: any;
   fcStyle?: fcStyles;
 }
-const colorValue = (props:colorProps) => {
+const colorValue = (props: ColorProps) => {
   switch (props.fcStyle) {
-    case 'danger':
-      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
-    case 'warning':
-      return color.yellow
-    case 'info':
-      return color.blue
-    case 'success':
-      return color.green
+    case "danger":
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red;
+    case "warning":
+      return color.yellow;
+    case "info":
+      return color.blue;
+    case "success":
+      return color.green;
     default:
-      return props.buttonColor || color.primary
+      return props.buttonColor || color.primary;
   }
 };
 
-const colorValueDarken = (props:Props) => {
+const colorValueDarken = (props: Props) => {
   switch (props.fcStyle) {
-    case 'danger':
-      return darken(0.1, color.red)
-    case 'warning':
-      return darken(0.1, color.yellow)
-    case 'info':
-      return darken(0.1, color.blue)
-    case 'success':
-      return darken(0.1, color.green)
+    case "danger":
+      return darken(0.1, color.red);
+    case "warning":
+      return darken(0.1, color.yellow);
+    case "info":
+      return darken(0.1, color.blue);
+    case "success":
+      return darken(0.1, color.green);
     default:
-      return darken(0.1, props.buttonColor || color.primary)
+      return darken(0.1, props.buttonColor || color.primary);
   }
 };
+
+export const StyledIcon = styled.span`
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  color: #fff;
+  ${(props: Props) =>
+    !props.primary &&
+    css`
+      background-color: ${colorValue};
+    `}
+`;
 
 export const StyledButton = styled.button`
   vertical-align: middle;
@@ -49,7 +67,7 @@ export const StyledButton = styled.button`
   position:relative;
   border-radius: 5px;
   transition: all 0.2s ease;
-  ${(props:Props) =>
+  ${(props: Props) =>
     !props.primary &&
     css`
       background-color: transparent;
@@ -61,15 +79,15 @@ export const StyledButton = styled.button`
         background-color: ${colorValue};
         transform: scale(1.05);
       }
-      &:active:not(:disabled){
+      &:active:not(:disabled) {
         transform: scale(0.95);
       }
-      &:disabled{
+      &:disabled {
         border-color: ${color.mediumdark};
         color: ${color.mediumdark};
-        transition:none;
+        transition: none;
         cursor: not-allowed;
-        ${StyledIcon}{
+        ${StyledIcon} {
           background-color: ${color.mediumdark};
         }
       }
@@ -84,53 +102,38 @@ export const StyledButton = styled.button`
         background-color: ${colorValueDarken};
         transform: scale(1.05);
       }
-      &:active:not(:disabled){
+      &:active:not(:disabled) {
         transform: scale(0.95);
       }
-      &:disabled{
+      &:disabled {
         background-color: ${color.medium};
         color: ${color.mediumdark};
-        transition:none;
+        transition: none;
         cursor: not-allowed;
       }
     `}
 
-   ${props => props.as === 'a' && css`
-    border:none;
-    text-decoration:underline;
-    height: fit-content;
-    background-color: transparent;
-    color: ${colorValueDarken};
-    display:inline-block;
-    ${props => !props.icon && css`
-      height:fit-content;
-      padding: 0;
-    `}
-    .button-icon {
-      background-color: ${colorValue};
-    }
-    &:hover{
-      background-color:transparent!important;
-      color: ${colorValueDarken}!important;
-    }
-   `}
+   ${props =>
+     props.as === "a" &&
+     css`
+       border: none;
+       text-decoration: underline;
+       height: fit-content;
+       background-color: transparent;
+       color: ${colorValueDarken};
+       display: inline-block;
+       ${props =>
+         !props.icon &&
+         css`
+           height: fit-content;
+           padding: 0;
+         `}
+       .button-icon {
+         background-color: ${colorValue};
+       }
+       &:hover {
+         background-color: transparent !important;
+         color: ${colorValueDarken}!important;
+       }
+     `}
 `;
-
-export const StyledIcon = styled.span`
- 
-   background-color: rgba(0, 0, 0, 0.2);
-    padding: 5px;
-    margin-right: 5px;
-    border-radius: 50%;
-    display:inline-block;
-    box-sizing: border-box;
-    width: 24px;
-    height: 24px;
-    vertical-align:middle;
-    color: #fff;
-    ${(props:Props) =>
-    !props.primary &&
-    css`
-        background-color: ${colorValue};
-    `}
-`

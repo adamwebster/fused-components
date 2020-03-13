@@ -20,38 +20,39 @@ const colorValue = (props: Props) => {
     case "success":
       return color.green;
     default:
-      return props.theme === "dark" ? color.medium : color.dark
+      return props.theme === "dark" ? color.medium : color.dark;
   }
 };
 
 const borderColor: any = (props: Props) => {
   switch (props.fcStyle) {
-    case 'danger':
-      return color.red
-    case 'warning':
-      return color.yellow
-    case 'info':
-      return color.blue
-    case 'success':
-      return color.green
+    case "danger":
+      return color.red;
+    case "warning":
+      return color.yellow;
+    case "info":
+      return color.blue;
+    case "success":
+      return color.green;
     default:
       return props.theme === "dark" ? color.darkModeMedium : color.border;
   }
 };
 
-export interface IStyledPanel extends React.HTMLProps<HTMLDivElement>{
-  fixed: boolean,
-  position: 'left' | 'right',
-  visible: boolean,
-  fcStyle?: fcStyles,
+export interface SP extends React.HTMLProps<HTMLDivElement> {
+  fixed: boolean;
+  position: "left" | "right";
+  visible: boolean;
+  fcStyle?: fcStyles;
 }
 
-export const StyledPanel = styled.div<IStyledPanel>`
+export const StyledPanel = styled.div<SP>`
   border-radius: 5px;
-  background-color: ${props => (props.theme === 'dark') ? color.darkModeDark : '#fff'};
+  background-color: ${props =>
+    props.theme === "dark" ? color.darkModeDark : "#fff"};
   border: solid 1px ${borderColor};
 
-  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
+  color: ${props => (props.theme === "dark" ? color.medium : color.darker)};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   height: calc(100vh - 50px);
   width: 300px;
@@ -116,19 +117,19 @@ export const StyledPanel = styled.div<IStyledPanel>`
   }
 `;
 
-export interface IDialogTile extends React.HTMLProps<HTMLDivElement> {
-  fcStyle?: fcStyles,
-  children: any
+export interface DT extends React.HTMLProps<HTMLDivElement> {
+  fcStyle?: fcStyles;
+  children: any;
 }
 
-export const DialogTitle = styled.h3<IDialogTile>`
-  border-bottom:  solid 1px ${borderColor};
+export const DialogTitle = styled.h3<DT>`
+  border-bottom: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
   height: fit-content;
 
-  color: ${(props: IDialogTile) => colorValue(props)};
+  color: ${(props: DT) => colorValue(props)};
 `;
 
 export const DialogContent = styled.div`
@@ -146,10 +147,10 @@ export const DialogText = styled.div``;
 
 interface Footer {
   fcStyle?: fcStyles;
-  theme?: any
+  theme?: any;
 }
 export const DialogFooter = styled.div<Footer>`
-  border-top:  solid 1px ${borderColor};
+  border-top: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -169,11 +170,13 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${props => (props.theme === 'dark') ? color.darkModeMedium : color.mediumdark};
+  color: ${props =>
+    props.theme === "dark" ? color.darkModeMedium : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props => (props.theme === 'dark') ? darken(0.1,color.darkModeMedium) : color.dark};  
+    color: ${props =>
+      props.theme === "dark" ? darken(0.1, color.darkModeMedium) : color.dark};
   }
   svg {
     width: 16px;
@@ -182,13 +185,13 @@ export const CloseButton = styled.button`
 
 export const Overlay = styled.div`
   background-color: ${color.overlay};
-  position:fixed;
+  position: fixed;
   width: 100vw;
   height: 100vh;
-  left:0;
+  left: 0;
   top: 0;
   z-index: 99;
-  animation: fadeIn 0.1s;  
+  animation: fadeIn 0.1s;
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -197,4 +200,4 @@ export const Overlay = styled.div`
       opacity: 0.5;
     }
   }
-`
+`;

@@ -2,11 +2,11 @@ import styled, { css } from "styled-components";
 import { color } from "../../../styles/styles";
 import { darken } from "polished";
 
-interface IStyledTable {
+interface ST {
   bgColor?: string;
   fgColor?: string;
 }
-export const StyledTable = styled.table<IStyledTable>`
+export const StyledTable = styled.table<ST>`
   display: flex;
   flex: 1 1;
   flex-flow: column;
@@ -30,7 +30,7 @@ export const StyledTable = styled.table<IStyledTable>`
     `}
 `;
 
-interface ITableHeaderStyled {
+interface THS {
   showBottomBorder?: boolean;
   bgColor?: string;
   fgColor?: string;
@@ -39,7 +39,7 @@ interface ITableHeaderStyled {
   padding?: string;
 }
 
-export const TableHeaderStyled = styled.thead<ITableHeaderStyled>`
+export const TableHeaderStyled = styled.thead<THS>`
   display: flex;
   flex: 1 1;
   font-weight: bold;
@@ -77,13 +77,13 @@ ${props =>
   `}
 `;
 
-interface ITableRowStyled {
+interface TRS {
   zebraStripping?: boolean;
   zebraStripeColor?: string;
   bgColor?: string;
 }
 
-export const TableRowStyled = styled.tr<ITableRowStyled>`
+export const TableRowStyled = styled.tr<TRS>`
   display: flex;
   flex: 1 1;
   ${props =>
@@ -100,7 +100,7 @@ export const TableRowStyled = styled.tr<ITableRowStyled>`
     `}
 `;
 
-interface ITableCellStyled {
+interface TCS {
   width?: string;
   padding?: string;
   bgColor?: string;
@@ -109,7 +109,7 @@ interface ITableCellStyled {
   frozenColumnFGColor?: string;
   freezeFirstColumn?: boolean;
 }
-export const TableCellStyled = styled.td<ITableCellStyled>`
+export const TableCellStyled = styled.td<TCS>`
   display: flex;
   flex: 1 1;
   ${props =>
@@ -146,7 +146,7 @@ export const TableCellStyled = styled.td<ITableCellStyled>`
       `}
 `;
 
-interface ITableBodyStyled {
+interface TBS {
   tableBodyBGColor?: string;
   tableBodyTextColor?: string;
   bgColor?: string;
@@ -154,7 +154,7 @@ interface ITableBodyStyled {
   frozenColumnWidth?: string;
   padding?: string;
 }
-export const TableBodyStyled = styled.tbody<ITableBodyStyled>`
+export const TableBodyStyled = styled.tbody<TBS>`
   display: flex;
   flex: 1 1;
   flex-flow: column;
@@ -171,7 +171,11 @@ export const TableBodyStyled = styled.tbody<ITableBodyStyled>`
     
     & tr:hover {
     background-color: ${props =>
-      props.bgColor ? darken(0.1, props.bgColor) : props.theme === "dark" ? color.darkModeMedium : color.highlight};
+      props.bgColor
+        ? darken(0.1, props.bgColor)
+        : props.theme === "dark"
+        ? color.darkModeMedium
+        : color.highlight};
   }
 
   ${props =>

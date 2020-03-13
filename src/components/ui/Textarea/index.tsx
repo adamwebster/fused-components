@@ -5,7 +5,5 @@ import { FCTheme } from "../../../theming/FCTheme";
 export const Textarea = ({ ...rest }) => {
   const theme = useContext(FCTheme);
 
-    return(
-  <StyledTextarea theme={theme?.theme} {...rest} />
-    )
+  return <StyledTextarea theme={theme?.theme} {...rest} />;
 };

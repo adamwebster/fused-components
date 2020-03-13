@@ -30,15 +30,9 @@ export const Toast = ({
 
   const startTimer = useCallback(
     countNumber => {
-      var count = countNumber;
+      let count = countNumber;
 
-      var counter = setInterval(timer, duration * 10); //10 will  run it every 100th of a second
-      setIntervalFunc(counter);
       function timer() {
-        if (count <= 0) {
-          clearInterval(counter);
-          return;
-        }
         count--;
 
         let countNumber = (count / 100).toString().slice(2);
@@ -54,6 +48,15 @@ export const Toast = ({
         }
         setTimer(countNumber);
       }
+
+      const counter = setInterval(timer, duration * 10); //10 will  run it every 100th of a second
+
+      if (count <= 0) {
+        clearInterval(counter);
+        return;
+      }
+
+      setIntervalFunc(counter);
     },
     [duration]
   );
@@ -73,37 +76,37 @@ export const Toast = ({
   };
 
   return (
-        <>
-          {visible && (
-            <StyledToast
-              timer={timer}
-              onMouseOver={() => mouseOverToast()}
-              onMouseOut={() => mouseOutToast()}
-              removing={removing}
-              fcStyle={fcStyle}
-              icon={icon}
-              title={title}
-              theme={theme}
-            >
-              {children && (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: children
-                  }}
-                />
-              )}
-              <CloseButton
-              theme={theme}
-                onClick={() => {
-                  setRemoving(true);
-                  setTimeout(() => setVisible(false), 500);
-                }}
-              >
-                <Icon icon="times" />
-              </CloseButton>
-              <LoadingBar theme={theme} timer={timer} />
-            </StyledToast>
+    <>
+      {visible && (
+        <StyledToast
+          timer={timer}
+          onMouseOver={() => mouseOverToast()}
+          onMouseOut={() => mouseOutToast()}
+          removing={removing}
+          fcStyle={fcStyle}
+          icon={icon}
+          title={title}
+          theme={theme}
+        >
+          {children && (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: children
+              }}
+            />
           )}
-        </>
+          <CloseButton
+            theme={theme}
+            onClick={() => {
+              setRemoving(true);
+              setTimeout(() => setVisible(false), 500);
+            }}
+          >
+            <Icon icon="times" />
+          </CloseButton>
+          <LoadingBar theme={theme} timer={timer} />
+        </StyledToast>
+      )}
+    </>
   );
 };

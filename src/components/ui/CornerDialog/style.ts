@@ -15,7 +15,7 @@ export interface Props {
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
     case "danger":
-      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red;
     case "warning":
       return color.yellow;
     case "info":
@@ -30,7 +30,7 @@ const colorValue = (props: Props) => {
 const borderColor = (props: Props) => {
   switch (props.fcStyle) {
     case "danger":
-      return props.theme === "dark" ? lighten(0.1, color.red) : color.red
+      return props.theme === "dark" ? lighten(0.1, color.red) : color.red;
     case "warning":
       return color.yellow;
     case "info":
@@ -50,15 +50,16 @@ export const CornerDialogStyled = styled.div`
           bottom: 25px;
           right: 25px;
           animation: ${!props.visible
-          ? "hide 0.2s ease-in-out"
-          : "bounceup 0.5s ease-in-out"};
+            ? "hide 0.2s ease-in-out"
+            : "bounceup 0.5s ease-in-out"};
         `
       : css`
           position: relative;
           margin-right: 25px;
         `}
-  background-color: ${props => props.theme === 'dark' ? color.darkModeDark : "#fff"};
-  color: ${props => (props.theme === 'dark') ? color.medium : color.darker};
+  background-color: ${props =>
+    props.theme === "dark" ? color.darkModeDark : "#fff"};
+  color: ${props => (props.theme === "dark" ? color.medium : color.darker)};
 
   border-radius: 5px;
   border: solid 1px ${borderColor};
@@ -91,7 +92,7 @@ export const CornerDialogStyled = styled.div`
 `;
 
 export const DialogTitle = styled.h3`
-  border-bottom:  solid 1px ${borderColor};
+  border-bottom: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
@@ -114,7 +115,7 @@ export const DialogFooter = styled.div`
   button {
     display: inline-block;
     width: calc(50% - 5px);
-    &:first-child{
+    &:first-child {
       margin-right: 10px;
     }
   }
@@ -127,11 +128,13 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${props => (props.theme === 'dark') ? color.darkModeMedium : color.mediumdark};
+  color: ${props =>
+    props.theme === "dark" ? color.darkModeMedium : color.mediumdark};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props => (props.theme === 'dark') ? darken(0.1, color.darkModeMedium) : color.dark};  
+    color: ${props =>
+      props.theme === "dark" ? darken(0.1, color.darkModeMedium) : color.dark};
   }
   svg {
     width: 16px;
