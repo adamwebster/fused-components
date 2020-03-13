@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
 
-import { Props } from './';
-
 interface Label extends React.HTMLProps<HTMLElement> {
     inError?: boolean;
     inWarning?: boolean;

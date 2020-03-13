@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { color } from '../../../styles/styles';
 import { Input } from "../Input";
-import { darken } from "polished";
 
 export const ComboboxWrapper = styled.div`
   position: relative;

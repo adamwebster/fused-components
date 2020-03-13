@@ -21,7 +21,6 @@ export const Checkbox = ({
   inError = false,
   inWarning = false,
   onChange = () => {},
-  ...rest
 }: Props) => {
   return (
     <FCThemeConsumer>

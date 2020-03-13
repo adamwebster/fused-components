@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
-import { darken, lighten } from 'polished';
 
 interface IInput extends React.HTMLProps<HTMLInputElement>{
   icon?: string,
@@ -15,7 +14,7 @@ box-sizing:border-box;
 padding: 0 10px;
 outline: none;
 border: solid 1px ${props => props.theme === 'dark' ? color.darkModeMedium : color.border};
-border-radius: ${props => '5px'};
+border-radius:5px;
 -webkit-appearance: none;
 background-color: ${props => props.theme === 'dark' ? color.darkModeDark : '#fff'};
 color: ${props => props.theme === 'dark' ? color.medium : 'inherit'};

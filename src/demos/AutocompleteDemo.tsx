@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Autocomplete } from "../components/ui/Autocomplete/";
 import { FCThemeProvider } from "../theming/FCTheme";
 import { DarkModeWrapper } from "../common/styles";
-import { Button } from "../components/ui/Button";
 
 export const AutocompleteDemo = () => {
   const [theme] = useState("dark");

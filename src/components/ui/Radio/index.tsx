@@ -22,8 +22,7 @@ export const Radio = ({
   inWarning = false,
   inError = false,
   value,
-  onChange = (e) => {},
-  ...rest
+  onChange = () => {},
 }: Props) => {
   return (
     <FCThemeConsumer>

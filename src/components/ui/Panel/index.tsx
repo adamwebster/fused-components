@@ -34,7 +34,7 @@ export interface Props {
 export const Panel = ({
   fcStyle,
   title,
-  onCloseClick = e => {},
+  onCloseClick = () => {},
   fixed = true,
   visible = true,
   children,

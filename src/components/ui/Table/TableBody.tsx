@@ -8,7 +8,7 @@ import { TableContextContextConsumer } from './TableContext';
 export interface Props {
   children: ReactNode,
 }
-const TableBody = ({ children, ...rest }:Props) => {
+const TableBody = ({ children }:Props) => {
   return (
     <TableContextContextConsumer>
       {tableContext => tableContext && (

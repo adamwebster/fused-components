@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
-import { darken } from "polished";
 
 interface IDropdownButtonWrapper {
     renderAs?: string,

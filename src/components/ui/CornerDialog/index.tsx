@@ -13,7 +13,6 @@ import { color } from "../../../styles/styles";
 import { Icon } from "../../icon";
 import { fcStyles } from "../../../common/types";
 import { FCThemeConsumer } from "../../../theming/FCTheme";
-import { darken } from "polished";
 
 export interface Props {
   fixed?: boolean;
@@ -38,7 +37,6 @@ export const CornerDialog = ({
   children,
   fcStyle,
   icon,
-  ...rest
 }: Props) => {
   const [show, setShow] = useState(false);
 
@@ -67,7 +65,7 @@ export const CornerDialog = ({
                 {title && title}
                 <CloseButton
                   theme={themeContext?.theme}
-                  onClick={(e: any) => onCloseClick()}
+                  onClick={() => onCloseClick()}
                   aria-label="Close"
                 >
                   <Icon icon="times" />
