@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
-import { Label, IconStyled, RadioInput } from "./style";
-import { Icon } from "../../icon";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+import React, { ReactNode } from 'react';
+import { Label, IconStyled, RadioInput } from './style';
+import { Icon } from '../../icon';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props extends React.HTMLProps<HTMLInputElement> {
   children: ReactNode;
@@ -22,34 +22,25 @@ export const Radio = ({
   inWarning = false,
   inError = false,
   value,
-  onChange = () => undefined
+  onChange = () => undefined,
 }: Props) => {
   return (
     <FCThemeConsumer>
       {themeContext => (
         <label>
-          <RadioInput
-            value={value}
-            type="radio"
-            checked={checked}
-            onChange={(e: any) => onChange(e)}
-          />
+          <RadioInput value={value} type="radio" checked={checked} onChange={(e: any) => onChange(e)} />
           {checked ? (
             <IconStyled inError={inError} inWarning={inWarning}>
-              {" "}
+              {' '}
               <Icon icon="radio-checked" />
             </IconStyled>
           ) : (
             <IconStyled inError={inError} inWarning={inWarning}>
-              {" "}
+              {' '}
               <Icon icon="radio" />
             </IconStyled>
           )}
-          <Label
-            theme={themeContext?.theme}
-            inError={inError}
-            inWarning={inWarning}
-          >
+          <Label theme={themeContext?.theme} inError={inError} inWarning={inWarning}>
             {children}
           </Label>
         </label>

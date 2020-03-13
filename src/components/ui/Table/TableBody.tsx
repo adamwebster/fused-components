@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
-import { TableBodyStyled } from "./style";
+import React, { ReactNode } from 'react';
+import { TableBodyStyled } from './style';
 
-import { TableContextContextConsumer } from "./TableContext";
+import { TableContextContextConsumer } from './TableContext';
 
 export interface Props {
   children: ReactNode;

@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
-import { darken } from "polished";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
+import { darken } from 'polished';
 
 interface ST {
   bgColor?: string;
@@ -19,7 +19,7 @@ export const StyledTable = styled.table<ST>`
     `}
     
  ${props =>
-   props.theme === "dark" &&
+   props.theme === 'dark' &&
    css`
      color: ${color.medium};
    `}
@@ -46,8 +46,7 @@ export const TableHeaderStyled = styled.thead<THS>`
   ${props =>
     props.showBottomBorder &&
     css`
-      border-bottom: solid 1px
-        ${props.theme === "dark" ? color.mediumdark : color.border};
+      border-bottom: solid 1px ${props.theme === 'dark' ? color.mediumdark : color.border};
       border-collapse: collapse;
     `}
   ${props =>
@@ -123,12 +122,8 @@ export const TableCellStyled = styled.td<TCS>`
     props.freezeFirstColumn &&
     css`
       &:first-child {
-        background-color: ${props.frozenColumnBGColor
-          ? props.frozenColumnBGColor
-          : color.medium};
-        color: ${props.frozenColumnFGColor
-          ? props.frozenColumnFGColor
-          : "inherit"};
+        background-color: ${props.frozenColumnBGColor ? props.frozenColumnBGColor : color.medium};
+        color: ${props.frozenColumnFGColor ? props.frozenColumnFGColor : 'inherit'};
         position: absolute;
         left: 0;
         border-right: solid 3px ${color.border};
@@ -171,11 +166,7 @@ export const TableBodyStyled = styled.tbody<TBS>`
     
     & tr:hover {
     background-color: ${props =>
-      props.bgColor
-        ? darken(0.1, props.bgColor)
-        : props.theme === "dark"
-        ? color.darkModeMedium
-        : color.highlight};
+      props.bgColor ? darken(0.1, props.bgColor) : props.theme === 'dark' ? color.darkModeMedium : color.highlight};
   }
 
   ${props =>

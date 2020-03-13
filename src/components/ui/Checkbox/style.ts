@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
 
 interface Label extends React.HTMLProps<HTMLElement> {
   inError?: boolean;
@@ -20,7 +20,7 @@ export const Label = styled.span<Label>`
         color: ${color.yellow};
       `}
     ${props =>
-      props.theme === "dark" &&
+      props.theme === 'dark' &&
       !props.inWarning &&
       !props.inError &&
       css`

@@ -1,13 +1,7 @@
-import React, { useContext } from "react";
-import { Label } from "../Label";
-import {
-  HintText,
-  RequiredMark,
-  ValidationMessage,
-  InputWrapper,
-  FormFieldWrapper
-} from "./style";
-import { FCTheme } from "../../../theming/FCTheme";
+import React, { useContext } from 'react';
+import { Label } from '../Label';
+import { HintText, RequiredMark, ValidationMessage, InputWrapper, FormFieldWrapper } from './style';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props {
   /** The label for the input field */
@@ -22,14 +16,7 @@ export interface Props {
   htmlFor?: string;
   children: any;
 }
-export const FormField = ({
-  label,
-  hint,
-  required = false,
-  validationMessage,
-  htmlFor,
-  children
-}: Props) => {
+export const FormField = ({ label, hint, required = false, validationMessage, htmlFor, children }: Props) => {
   const theme = useContext(FCTheme);
 
   return (
@@ -43,9 +30,7 @@ export const FormField = ({
       <InputWrapper>{children}</InputWrapper>
 
       {hint && <HintText theme={theme?.theme}>{hint}</HintText>}
-      {validationMessage && (
-        <ValidationMessage>{validationMessage}</ValidationMessage>
-      )}
+      {validationMessage && <ValidationMessage>{validationMessage}</ValidationMessage>}
     </FormFieldWrapper>
   );
 };

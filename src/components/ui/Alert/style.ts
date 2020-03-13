@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
-import { fcStyles } from "../../../common/types";
-import { lighten } from "polished";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
+import { fcStyles } from '../../../common/types';
+import { lighten } from 'polished';
 interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
@@ -10,24 +10,23 @@ interface Props {
 }
 
 export const StyledAlert = styled.div`
-  background-color: ${props =>
-    props.theme === "dark" ? color.darkModeDark : "#fff"};
-  color: ${props => (props.theme === "dark" ? color.medium : color.darker)};
+  background-color: ${props => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  color: ${props => (props.theme === 'dark' ? color.medium : color.darker)};
 
   border-style: solid;
   border-width: 5px 1px 1px 1px;
   border-color: ${(props: Props) => {
     switch (props.fcStyle) {
-      case "danger":
-        return props.theme === "dark" ? lighten(0.1, color.red) : color.red;
-      case "warning":
+      case 'danger':
+        return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
+      case 'warning':
         return color.yellow;
-      case "info":
+      case 'info':
         return color.blue;
-      case "success":
+      case 'success':
         return color.green;
       default:
-        return props.theme === "dark" ? color.medium : color.dark;
+        return props.theme === 'dark' ? color.medium : color.dark;
     }
   }};
   h4 {
@@ -37,16 +36,16 @@ export const StyledAlert = styled.div`
     align-content: center;
     color: ${(props: Props) => {
       switch (props.fcStyle) {
-        case "danger":
-          return props.theme === "dark" ? lighten(0.1, color.red) : color.red;
-        case "warning":
+        case 'danger':
+          return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
+        case 'warning':
           return color.yellow;
-        case "info":
+        case 'info':
           return color.blue;
-        case "success":
+        case 'success':
           return color.green;
         default:
-          return props.theme === "dark" ? color.medium : color.dark;
+          return props.theme === 'dark' ? color.medium : color.dark;
       }
     }};
     svg {

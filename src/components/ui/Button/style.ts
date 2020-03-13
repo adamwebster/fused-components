@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
-import { darken, lighten } from "polished";
-import { Props } from "./";
-import { fcStyles } from "../../../common/types";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
+import { darken, lighten } from 'polished';
+import { Props } from './';
+import { fcStyles } from '../../../common/types';
 
 interface ColorProps {
   theme?: any;
@@ -11,13 +11,13 @@ interface ColorProps {
 }
 const colorValue = (props: ColorProps) => {
   switch (props.fcStyle) {
-    case "danger":
-      return props.theme === "dark" ? lighten(0.1, color.red) : color.red;
-    case "warning":
+    case 'danger':
+      return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
+    case 'warning':
       return color.yellow;
-    case "info":
+    case 'info':
       return color.blue;
-    case "success":
+    case 'success':
       return color.green;
     default:
       return props.buttonColor || color.primary;
@@ -26,13 +26,13 @@ const colorValue = (props: ColorProps) => {
 
 const colorValueDarken = (props: Props) => {
   switch (props.fcStyle) {
-    case "danger":
+    case 'danger':
       return darken(0.1, color.red);
-    case "warning":
+    case 'warning':
       return darken(0.1, color.yellow);
-    case "info":
+    case 'info':
       return darken(0.1, color.blue);
-    case "success":
+    case 'success':
       return darken(0.1, color.green);
     default:
       return darken(0.1, props.buttonColor || color.primary);
@@ -114,7 +114,7 @@ export const StyledButton = styled.button`
     `}
 
    ${props =>
-     props.as === "a" &&
+     props.as === 'a' &&
      css`
        border: none;
        text-decoration: underline;

@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
-import { darken, lighten } from "polished";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
+import { darken, lighten } from 'polished';
 
-import { fcStyles } from "../../../common/types";
+import { fcStyles } from '../../../common/types';
 
 export interface Props {
   /** Set the style of the badge */
@@ -14,31 +14,31 @@ export interface Props {
 
 const colorValue = (props: Props) => {
   switch (props.fcStyle) {
-    case "danger":
-      return props.theme === "dark" ? lighten(0.1, color.red) : color.red;
-    case "warning":
+    case 'danger':
+      return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
+    case 'warning':
       return color.yellow;
-    case "info":
+    case 'info':
       return color.blue;
-    case "success":
+    case 'success':
       return color.green;
     default:
-      props.theme === "dark" ? color.darkModeMedium : color.border;
+      props.theme === 'dark' ? color.darkModeMedium : color.border;
   }
 };
 
 const borderColor = (props: Props) => {
   switch (props.fcStyle) {
-    case "danger":
-      return props.theme === "dark" ? lighten(0.1, color.red) : color.red;
-    case "warning":
+    case 'danger':
+      return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
+    case 'warning':
       return color.yellow;
-    case "info":
+    case 'info':
       return color.blue;
-    case "success":
+    case 'success':
       return color.green;
     default:
-      return props.theme === "dark" ? color.darkModeMedium : color.border;
+      return props.theme === 'dark' ? color.darkModeMedium : color.border;
   }
 };
 export const CornerDialogStyled = styled.div`
@@ -49,17 +49,14 @@ export const CornerDialogStyled = styled.div`
           position: fixed;
           bottom: 25px;
           right: 25px;
-          animation: ${!props.visible
-            ? "hide 0.2s ease-in-out"
-            : "bounceup 0.5s ease-in-out"};
+          animation: ${!props.visible ? 'hide 0.2s ease-in-out' : 'bounceup 0.5s ease-in-out'};
         `
       : css`
           position: relative;
           margin-right: 25px;
         `}
-  background-color: ${props =>
-    props.theme === "dark" ? color.darkModeDark : "#fff"};
-  color: ${props => (props.theme === "dark" ? color.medium : color.darker)};
+  background-color: ${props => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  color: ${props => (props.theme === 'dark' ? color.medium : color.darker)};
 
   border-radius: 5px;
   border: solid 1px ${borderColor};
@@ -128,13 +125,11 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${props =>
-    props.theme === "dark" ? color.darkModeMedium : color.mediumdark};
+  color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props =>
-      props.theme === "dark" ? darken(0.1, color.darkModeMedium) : color.dark};
+    color: ${props => (props.theme === 'dark' ? darken(0.1, color.darkModeMedium) : color.dark)};
   }
   svg {
     width: 16px;

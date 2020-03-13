@@ -1,32 +1,32 @@
-import styled, { css } from "styled-components";
-import { Props } from "./";
+import styled, { css } from 'styled-components';
+import { Props } from './';
 
 export const StyledAvatar = styled.div`
   ${props => {
-    let size = "";
-    let borderRadius = "";
+    let size = '';
+    let borderRadius = '';
 
     switch (props.size) {
-      case "medium":
+      case 'medium':
         size = `
             width: 44px;
             height: 44px;
             `;
         break;
-      case "large":
+      case 'large':
         size = `
             width: 64px;
             height: 64px;
             `;
         break;
 
-      case "tiny":
+      case 'tiny':
         size = `
             width: 16px;
             height: 16px;
             `;
         break;
-      case "small":
+      case 'small':
       default:
         size = `
             width:24px;
@@ -35,15 +35,15 @@ export const StyledAvatar = styled.div`
     }
 
     switch (props.borderRadius) {
-      case "round":
-        borderRadius = "border-radius: 50%;";
+      case 'round':
+        borderRadius = 'border-radius: 50%;';
         break;
-      case "square":
-        borderRadius = "border-radius: 0;";
+      case 'square':
+        borderRadius = 'border-radius: 0;';
         break;
-      case "rounded":
+      case 'rounded':
       default:
-        borderRadius = "border-radius: 10%;";
+        borderRadius = 'border-radius: 10%;';
     }
     return [size, borderRadius];
   }}

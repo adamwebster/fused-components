@@ -1,12 +1,12 @@
-import React, { useState, useRef, useContext } from "react";
-import { Button } from "../Button";
-import { DropdownButtonWrapper, IconStyled, MenuDivider } from "./style";
-import { DropdownMenu } from "./DropdownMenu";
-import { MenuItem } from "./MenuItem";
-import { DropdownMenuProvider } from "./DropdownMenuContext";
-import { Icon } from "../../icon";
-import { fcStyles } from "../../../common/types";
-import { FCTheme } from "../../../theming/FCTheme";
+import React, { useState, useRef, useContext } from 'react';
+import { Button } from '../Button';
+import { DropdownButtonWrapper, IconStyled, MenuDivider } from './style';
+import { DropdownMenu } from './DropdownMenu';
+import { MenuItem } from './MenuItem';
+import { DropdownMenuProvider } from './DropdownMenuContext';
+import { Icon } from '../../icon';
+import { fcStyles } from '../../../common/types';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props {
   /** Set the button to be primary */
@@ -21,14 +21,7 @@ export interface Props {
   /** Set what element the button should be rended as for example as="a" */
   as?: any;
 }
-export const DropdownButton = ({
-  primary,
-  label,
-  fcStyle,
-  children,
-  buttonColor,
-  as
-}: Props) => {
+export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor, as }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const buttonEl = useRef();
@@ -45,7 +38,7 @@ export const DropdownButton = ({
     menuOpen,
     hideMenu: () => hideMenuFunc(),
     buttonEl,
-    theme: theme?.theme
+    theme: theme?.theme,
   };
 
   const toggleMenu = () => {

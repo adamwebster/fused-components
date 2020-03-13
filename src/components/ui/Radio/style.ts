@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
+import styled, { css } from 'styled-components';
+import { color } from '../../../styles/styles';
 
-import { Props } from "./";
-import React from "react";
+import { Props } from './';
+import React from 'react';
 
 export const Label = styled.span`
     margin-left: 5px;
@@ -18,7 +18,7 @@ export const Label = styled.span`
         color: ${color.yellow};
       `}
     ${props =>
-      props.theme === "dark" &&
+      props.theme === 'dark' &&
       !props.inWarning &&
       !props.inError &&
       css`

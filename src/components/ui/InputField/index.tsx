@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import { Input } from "../Input";
-import { Label } from "../Label";
-import { HintText, RequiredMark, ValidationMessage } from "./style";
-import { FCTheme } from "../../../theming/FCTheme";
+import { Input } from '../Input';
+import { Label } from '../Label';
+import { HintText, RequiredMark, ValidationMessage } from './style';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props {
   /** The label for the input field */
@@ -30,7 +30,7 @@ export const InputField = ({
   validationMessage,
   inError = false,
   inWarning = false,
-  id
+  id,
 }: Props) => {
   const theme = useContext(FCTheme);
   return (
@@ -41,9 +41,7 @@ export const InputField = ({
       </Label>
       <Input inWarning={inWarning} inError={inError} id={id} />
       {hint && <HintText theme={theme?.theme}>{hint}</HintText>}
-      {validationMessage && (
-        <ValidationMessage>{validationMessage}</ValidationMessage>
-      )}
+      {validationMessage && <ValidationMessage>{validationMessage}</ValidationMessage>}
     </>
   );
 };

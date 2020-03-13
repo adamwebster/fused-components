@@ -1,18 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import {
-  StyledPanel,
-  DialogTitle,
-  DialogContent,
-  DialogText,
-  DialogFooter,
-  CloseButton,
-  Overlay
-} from "./style";
-import { Button } from "../Button";
-import { color } from "../../../styles/styles";
-import { Icon } from "../../icon";
-import { fcStyles } from "../../../common/types";
-import { FCTheme } from "../../../theming/FCTheme";
+import React, { useState, useEffect, useContext } from 'react';
+import { StyledPanel, DialogTitle, DialogContent, DialogText, DialogFooter, CloseButton, Overlay } from './style';
+import { Button } from '../Button';
+import { color } from '../../../styles/styles';
+import { Icon } from '../../icon';
+import { fcStyles } from '../../../common/types';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props {
   /** Set the style for the panel */
@@ -27,7 +19,7 @@ export interface Props {
   visible?: boolean;
   children: any;
   /** The position of the panel */
-  position?: "left" | "right";
+  position?: 'left' | 'right';
   /** If the overlay is shown */
   showOverlay?: boolean;
 }
@@ -38,8 +30,8 @@ export const Panel = ({
   fixed = true,
   visible = true,
   children,
-  position = "right",
-  showOverlay = false
+  position = 'right',
+  showOverlay = false,
 }: Props) => {
   const [show, setShow] = useState(false);
   const theme = useContext(FCTheme);
@@ -55,24 +47,12 @@ export const Panel = ({
 
   return (
     <>
-      {show && showOverlay && (
-        <Overlay onClick={(e: any) => onCloseClick(e)}></Overlay>
-      )}
+      {show && showOverlay && <Overlay onClick={(e: any) => onCloseClick(e)}></Overlay>}
       {show && (
-        <StyledPanel
-          theme={theme?.theme}
-          fcStyle={fcStyle}
-          position={position}
-          visible={visible}
-          fixed={fixed}
-        >
+        <StyledPanel theme={theme?.theme} fcStyle={fcStyle} position={position} visible={visible} fixed={fixed}>
           <DialogTitle theme={theme?.theme} fcStyle={fcStyle}>
             {title && title}
-            <CloseButton
-              theme={theme?.theme}
-              onClick={(e: any) => onCloseClick(e)}
-              aria-label="Close"
-            >
+            <CloseButton theme={theme?.theme} onClick={(e: any) => onCloseClick(e)} aria-label="Close">
               <Icon icon="times" />
             </CloseButton>
           </DialogTitle>
@@ -81,11 +61,7 @@ export const Panel = ({
           </DialogContent>
           <DialogFooter fcStyle={fcStyle} theme={theme?.theme}>
             <Button
-              buttonColor={
-                theme?.theme === "dark"
-                  ? color.darkModeMedium
-                  : color.mediumdark
-              }
+              buttonColor={theme?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
               onClick={e => onCloseClick(e)}
             >
               Close

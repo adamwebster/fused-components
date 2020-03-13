@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { StyledButton, StyledIcon } from "./style";
-import { Icon } from "../../icon";
-import { fcStyles } from "../../../common/types";
-import { FCTheme } from "../../../theming/FCTheme";
+import React, { useContext } from 'react';
+import { StyledButton, StyledIcon } from './style';
+import { Icon } from '../../icon';
+import { fcStyles } from '../../../common/types';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   /** Sets the button to be a primary button */

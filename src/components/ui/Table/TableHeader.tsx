@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
-import { TableHeaderStyled } from "./style";
+import { TableHeaderStyled } from './style';
 
-import { TableContextContextConsumer } from "./TableContext";
+import { TableContextContextConsumer } from './TableContext';
 
 export interface Props {
   /** The foreground color(text) pf the table cell */
@@ -13,13 +13,7 @@ export interface Props {
   bgColor?: string;
   children?: ReactNode;
 }
-const TableHeader = ({
-  fgColor,
-  showBottomBorder = true,
-  bgColor,
-  children,
-  ...rest
-}: Props) => {
+const TableHeader = ({ fgColor, showBottomBorder = true, bgColor, children, ...rest }: Props) => {
   return (
     <TableContextContextConsumer>
       {tableContext =>

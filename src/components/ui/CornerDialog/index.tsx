@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactNode } from "react";
+import React, { useEffect, useState, ReactNode } from 'react';
 import {
   CornerDialogStyled,
   DialogTitle,
@@ -6,13 +6,13 @@ import {
   DialogText,
   DialogFooter,
   CloseButton,
-  IconStyled
-} from "./style";
-import { Button } from "../Button";
-import { color } from "../../../styles/styles";
-import { Icon } from "../../icon";
-import { fcStyles } from "../../../common/types";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+  IconStyled,
+} from './style';
+import { Button } from '../Button';
+import { color } from '../../../styles/styles';
+import { Icon } from '../../icon';
+import { fcStyles } from '../../../common/types';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   fixed?: boolean;
@@ -31,12 +31,12 @@ export const CornerDialog = ({
   onCloseClick = () => undefined,
   onConfirmClick = () => undefined,
   visible = true,
-  cancelText = "Cancel",
-  confirmText = "Learn More",
+  cancelText = 'Cancel',
+  confirmText = 'Learn More',
   title,
   children,
   fcStyle,
-  icon
+  icon,
 }: Props) => {
   const [show, setShow] = useState(false);
 
@@ -55,19 +55,10 @@ export const CornerDialog = ({
       {themeContext => (
         <>
           {show && (
-            <CornerDialogStyled
-              visible={visible}
-              fcStyle={fcStyle}
-              fixed={fixed}
-              theme={themeContext?.theme}
-            >
+            <CornerDialogStyled visible={visible} fcStyle={fcStyle} fixed={fixed} theme={themeContext?.theme}>
               <DialogTitle fcStyle={fcStyle} theme={themeContext?.theme}>
                 {title && title}
-                <CloseButton
-                  theme={themeContext?.theme}
-                  onClick={() => onCloseClick()}
-                  aria-label="Close"
-                >
+                <CloseButton theme={themeContext?.theme} onClick={() => onCloseClick()} aria-label="Close">
                   <Icon icon="times" />
                 </CloseButton>
               </DialogTitle>
@@ -81,20 +72,12 @@ export const CornerDialog = ({
               </DialogContent>
               <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
                 <Button
-                  buttonColor={
-                    themeContext?.theme === "dark"
-                      ? color.darkModeMedium
-                      : color.mediumdark
-                  }
+                  buttonColor={themeContext?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
                   onClick={() => onCloseClick()}
                 >
                   {cancelText}
                 </Button>
-                <Button
-                  onClick={() => onConfirmClick()}
-                  fcStyle={fcStyle}
-                  primary
-                >
+                <Button onClick={() => onConfirmClick()} fcStyle={fcStyle} primary>
                   {confirmText}
                 </Button>
               </DialogFooter>

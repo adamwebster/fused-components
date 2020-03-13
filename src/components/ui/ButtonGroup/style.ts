@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import { StyledButton } from "../Button/style";
-import { Props } from "./";
+import styled, { css } from 'styled-components';
+import { StyledButton } from '../Button/style';
+import { Props } from './';
 
 const PrimaryButtonStyles = (props: Props) => {
   const styles = props.children.map((child: any) => {
