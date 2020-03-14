@@ -1,23 +1,23 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, ReactElement, ReactNode } from 'react';
 
 import { DropdownMenuStyled } from './style';
 import { DropdownMenuContext, DropdownMenuConsumer } from './DropdownMenuContext';
 
 export interface Props {
-  children: any;
+  children: ReactNode;
 }
 
-export const DropdownMenu = ({ children }: Props) => {
+export const DropdownMenu = ({ children }: Props): ReactElement => {
   const DropdownContext = useContext(DropdownMenuContext);
   const menuRef = useRef(null);
-  const handleClickOutside = (e: MouseEvent) => {
+  const handleClickOutside = (e: MouseEvent): void => {
     const test = (e.target as HTMLElement).parentNode;
     if (DropdownContext) {
       if (
         // Must be some better way to test if the button is being clicked or not
         DropdownContext.buttonEl.current !== e.target &&
-        DropdownContext.buttonEl.current !== test!.parentNode!.parentNode &&
-        DropdownContext.buttonEl.current !== test!.parentNode
+        DropdownContext.buttonEl.current !== test?.parentNode?.parentNode &&
+        DropdownContext.buttonEl.current !== test?.parentNode
       ) {
         DropdownContext.hideMenu();
       }
@@ -26,14 +26,14 @@ export const DropdownMenu = ({ children }: Props) => {
   useEffect(() => {
     //  DropdownContext.hideMenu();
     document.addEventListener('mousedown', e => handleClickOutside(e));
-    return () => {
+    return (): void => {
       // Unbind the event listener on clean up
       document.removeEventListener('mousedown', e => handleClickOutside(e));
     };
   });
   return (
     <DropdownMenuConsumer>
-      {appContext =>
+      {(appContext): ReactNode =>
         appContext && (
           <>
             <DropdownMenuStyled ref={menuRef} theme={appContext.theme} menuOpen={appContext.menuOpen}>

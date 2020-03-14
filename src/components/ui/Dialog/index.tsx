@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { Button } from '../Button';
 import { StyledDialog, DialogTitle, DialogContent, CloseButton, DialogFooter, Overlay } from './style';
 import { color } from '../../../styles/styles';
@@ -25,7 +25,7 @@ export interface Props {
   showOverlay?: boolean;
   /** Set the text for the cancel button */
   cancelText?: string;
-  children?: any;
+  children?: ReactNode;
   theme?: string;
 }
 export const Dialog = ({
@@ -34,19 +34,19 @@ export const Dialog = ({
   visible = false,
   confirmText = 'Yes',
   children,
-  onCloseClick = () => undefined,
+  onCloseClick = (): void => undefined,
   fixed = true,
   fcStyle = undefined,
   showOverlay = true,
   cancelText = 'Cancel',
-}: Props) => {
+}: Props): ReactElement => {
   return (
     <>
       {visible && (
         <>
-          {showOverlay && <Overlay onClick={() => onCloseClick()} />}
+          {showOverlay && <Overlay onClick={(): void => onCloseClick()} />}
           <FCThemeConsumer>
-            {themeContext => (
+            {(themeContext): ReactNode => (
               <StyledDialog
                 fcStyle={fcStyle}
                 theme={themeContext?.theme}
@@ -56,7 +56,7 @@ export const Dialog = ({
               >
                 <DialogTitle theme={themeContext?.theme} fcStyle={fcStyle}>
                   <h2>{title}</h2>
-                  <CloseButton theme={themeContext?.theme} aria-label="Close" onClick={() => onCloseClick()}>
+                  <CloseButton theme={themeContext?.theme} aria-label="Close" onClick={(): void => onCloseClick()}>
                     <Icon icon="times" />
                   </CloseButton>
                 </DialogTitle>
@@ -64,7 +64,7 @@ export const Dialog = ({
                 <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
                   <Button
                     buttonColor={themeContext?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
-                    onClick={() => onCloseClick()}
+                    onClick={(): void => onCloseClick()}
                   >
                     {cancelText}
                   </Button>

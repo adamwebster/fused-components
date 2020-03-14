@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { fcStyles } from '../../../common/types';
 import { darken } from 'polished';
@@ -6,10 +6,10 @@ import { darken } from 'polished';
 interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
-  theme?: any;
+  theme?: unknown;
 }
 
-const colorValue = (props: Props) => {
+const colorValue = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
       return color.red;
@@ -24,7 +24,7 @@ const colorValue = (props: Props) => {
   }
 };
 
-const borderColor: any = (props: Props) => {
+const borderColor = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
       return color.red;
@@ -48,17 +48,17 @@ export interface SP extends React.HTMLProps<HTMLDivElement> {
 
 export const StyledPanel = styled.div<SP>`
   border-radius: 5px;
-  background-color: ${props => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
   border: solid 1px ${borderColor};
 
-  color: ${props => (props.theme === 'dark' ? color.medium : color.darker)};
+  color: ${(props): string => (props.theme === 'dark' ? color.medium : color.darker)};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   height: calc(100vh - 50px);
   width: 300px;
   display: flex;
   flex-flow: column;
   z-index: 99;
-  ${props =>
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.fixed
       ? css`
           position: fixed;
@@ -112,9 +112,9 @@ export const StyledPanel = styled.div<SP>`
   }
 `;
 
-export interface DT extends React.HTMLProps<HTMLDivElement> {
+export interface DT {
   fcStyle?: fcStyles;
-  children: any;
+  children: unknown;
 }
 
 export const DialogTitle = styled.h3<DT>`
@@ -124,7 +124,7 @@ export const DialogTitle = styled.h3<DT>`
   margin: 0;
   height: fit-content;
 
-  color: ${(props: DT) => colorValue(props)};
+  color: ${(props: DT): string => colorValue(props)};
 `;
 
 export const DialogContent = styled.div`
@@ -142,7 +142,8 @@ export const DialogText = styled.div``;
 
 interface Footer {
   fcStyle?: fcStyles;
-  theme?: any;
+  theme?: unknown;
+  children?: unknown;
 }
 export const DialogFooter = styled.div<Footer>`
   border-top: solid 1px ${borderColor};
@@ -165,11 +166,11 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props => (props.theme === 'dark' ? darken(0.1, color.darkModeMedium) : color.dark)};
+    color: ${(props): string => (props.theme === 'dark' ? darken(0.1, color.darkModeMedium) : color.dark)};
   }
   svg {
     width: 16px;

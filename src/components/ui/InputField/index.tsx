@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, ReactElement } from 'react';
 
 import { Input } from '../Input';
 import { Label } from '../Label';
@@ -31,7 +31,7 @@ export const InputField = ({
   inError = false,
   inWarning = false,
   id,
-}: Props) => {
+}: Props): ReactElement => {
   const theme = useContext(FCTheme);
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { TableCellStyled } from './style';
@@ -14,10 +14,10 @@ export interface Props {
   /** The width of the table cell */
   width?: string;
 }
-const TableCell = ({ children, bgColor, fgColor, width }: Props) => {
+const TableCell = ({ children, bgColor, fgColor, width }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
-      {tableContext =>
+      {(tableContext): ReactNode =>
         tableContext && (
           <>
             <TableCellStyled

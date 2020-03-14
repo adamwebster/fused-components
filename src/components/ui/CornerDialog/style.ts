@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { darken, lighten } from 'polished';
 
@@ -7,12 +7,12 @@ import { fcStyles } from '../../../common/types';
 export interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
-  theme?: any;
-  visible?: any;
-  fixed?: any;
+  theme?: unknown;
+  visible?: boolean;
+  fixed?: boolean;
 }
 
-const colorValue = (props: Props) => {
+const colorValue = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
       return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
@@ -23,11 +23,11 @@ const colorValue = (props: Props) => {
     case 'success':
       return color.green;
     default:
-      props.theme === 'dark' ? color.darkModeMedium : color.border;
+      return props.theme === 'dark' ? color.darkModeMedium : color.border;
   }
 };
 
-const borderColor = (props: Props) => {
+const borderColor = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
       return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
@@ -43,7 +43,7 @@ const borderColor = (props: Props) => {
 };
 export const CornerDialogStyled = styled.div`
   max-width: 320px;
-  ${(props: Props) =>
+  ${(props: Props): FlattenSimpleInterpolation =>
     props.fixed
       ? css`
           position: fixed;
@@ -55,8 +55,8 @@ export const CornerDialogStyled = styled.div`
           position: relative;
           margin-right: 25px;
         `}
-  background-color: ${props => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
-  color: ${props => (props.theme === 'dark' ? color.medium : color.darker)};
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  color: ${(props): string => (props.theme === 'dark' ? color.medium : color.darker)};
 
   border-radius: 5px;
   border: solid 1px ${borderColor};
@@ -125,11 +125,11 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
   position: absolute;
   cursor: pointer;
   &:hover {
-    color: ${props => (props.theme === 'dark' ? darken(0.1, color.darkModeMedium) : color.dark)};
+    color: ${(props): string => (props.theme === 'dark' ? darken(0.1, color.darkModeMedium) : color.dark)};
   }
   svg {
     width: 16px;

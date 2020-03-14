@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { TableRowStyled } from './style';
 
 import { TableContextContextConsumer } from './TableContext';
@@ -8,10 +8,10 @@ export interface Props {
   /** Set the background color of the table row */
   bgColor?: string;
 }
-const TableRow = ({ children, bgColor }: Props) => {
+const TableRow = ({ children, bgColor }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
-      {tableContext =>
+      {(tableContext): ReactNode =>
         tableContext && (
           <TableRowStyled
             theme={tableContext?.theme}
