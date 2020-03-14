@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, ReactElement } from 'react';
 import { StyledToast, LoadingBar, CloseButton } from './styles';
 import { Icon } from '../../icon';
 import { fcStyles } from '../../../common/types';
@@ -8,14 +8,14 @@ export interface Props {
   title?: string;
   /** The style for the toast */
   style?: fcStyles;
-  children?: any;
+  children?: string;
   /** The icon for the toast */
   icon?: string;
   /** how long the toast should be shown in seconds */
   duration?: number;
-  theme?: any;
+  theme?: unknown;
 }
-export const Toast = ({ title, style, children, icon, duration = 4, theme }: Props) => {
+export const Toast = ({ title, style, children, icon, duration = 4, theme }: Props): ReactElement => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
   const [timer, setTimer] = useState('0');
@@ -25,7 +25,7 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
     countNumber => {
       let count = countNumber;
 
-      function timer() {
+      function timer(): void {
         count--;
 
         let countNumber = (count / 100).toString().slice(2);
@@ -58,13 +58,13 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
     startTimer(100);
   }, [startTimer]);
 
-  const mouseOverToast = () => {
+  const mouseOverToast = (): void => {
     clearInterval(intervalFunc);
     const time = timer;
     setTimer(time);
   };
 
-  const mouseOutToast = () => {
+  const mouseOutToast = (): void => {
     startTimer(timer);
   };
 
@@ -73,8 +73,8 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
       {visible && (
         <StyledToast
           timer={timer}
-          onMouseOver={() => mouseOverToast()}
-          onMouseOut={() => mouseOutToast()}
+          onMouseOver={(): void => mouseOverToast()}
+          onMouseOut={(): void => mouseOutToast()}
           removing={removing}
           fcStyle={style}
           icon={icon}
@@ -90,7 +90,7 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
           )}
           <CloseButton
             theme={theme}
-            onClick={() => {
+            onClick={(): void => {
               setRemoving(true);
               setTimeout(() => setVisible(false), 500);
             }}
