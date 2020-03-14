@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, ReactElement, ReactNode } from 'react';
 import { StyledCard } from './style';
 import { FCTheme } from '../../../theming/FCTheme';
 export interface Props {
@@ -6,9 +6,9 @@ export interface Props {
   borderRadius?: string;
   /** Sets the card to have a box shadow */
   boxShadow?: boolean;
-  children?: any;
+  children?: ReactNode;
 }
-export const Card = ({ borderRadius = '5px', boxShadow = false, children, ...rest }: Props) => {
+export const Card = ({ borderRadius = '5px', boxShadow = false, children, ...rest }: Props): ReactElement => {
   const theme = useContext(FCTheme);
   return (
     <StyledCard theme={theme?.theme} borderRadius={borderRadius} boxShadow={boxShadow} {...rest}>

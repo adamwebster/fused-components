@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, RefObject, ReactNode, ReactElement } from 'react';
 import { StyledButton, StyledIcon } from './style';
 import { Icon } from '../../icon';
 import { fcStyles } from '../../../common/types';
@@ -16,14 +16,14 @@ export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   /** Set the button to be in its loading state */
   isLoading?: boolean;
   /** Set an ref for the button */
-  buttonRef?: any;
+  buttonRef?: RefObject<HTMLButtonElement>;
   /** Set the loading icon */
   loadingIcon?: object;
   /** Set the icon for the button */
   icon?: string;
-  children?: any;
+  children?: ReactNode;
   /** What the button should be rendered as for example as="a" */
-  as?: any;
+  as?: string;
 }
 
 export const Button = ({
@@ -36,8 +36,9 @@ export const Button = ({
   icon,
   children,
   fcStyle,
+  as,
   ...rest
-}: Props) => {
+}: Props): ReactElement => {
   const theme = useContext(FCTheme);
 
   return (
@@ -49,6 +50,7 @@ export const Button = ({
       primary={primary}
       fcStyle={fcStyle}
       theme={theme?.theme}
+      renderAs={as}
       {...rest}
     >
       {isLoading && loadingIcon && <>{loadingIcon} </>}

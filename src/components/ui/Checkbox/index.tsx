@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { Label, IconStyled, CheckInput } from './style';
 import { Icon } from '../../icon/';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
@@ -20,13 +20,13 @@ export const Checkbox = ({
   checked = false,
   inError = false,
   inWarning = false,
-  onChange = () => undefined,
-}: Props) => {
+  onChange = (): void => undefined,
+}: Props): ReactElement => {
   return (
     <FCThemeConsumer>
-      {themeContext => (
+      {(themeContext): ReactNode => (
         <label>
-          <CheckInput type="checkbox" checked={checked} onChange={() => onChange()} />
+          <CheckInput type="checkbox" checked={checked} onChange={(): void => onChange()} />
           {checked ? (
             <IconStyled theme={themeContext?.theme} inError={inError} inWarning={inWarning}>
               {' '}
