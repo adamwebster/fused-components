@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { ButtonGroupStyled } from './style';
 
 export interface Props {
-  children: any;
+  children: Array<ReactElement>;
 }
 
-export const ButtonGroup = ({ children }: Props) => {
+export const ButtonGroup = ({ children }: Props): ReactElement => {
   return <ButtonGroupStyled>{children}</ButtonGroupStyled>;
 };
