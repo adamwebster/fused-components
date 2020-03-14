@@ -5,6 +5,7 @@ import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** An array of items */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: Array<any>;
   /** Icon to show in the input */
   inputIcon?: string;

@@ -7,6 +7,7 @@ import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** Defines what items are sent to the auto complete component*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: Array<any>;
   /** What icon to show for the auto complete input */
   inputIcon?: string;
