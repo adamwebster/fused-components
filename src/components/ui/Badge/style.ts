@@ -5,15 +5,15 @@ import { fcStyles } from '../../../common/types';
 export interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
-  theme: any;
+  theme: unknown;
 }
 export const StyledBadge = styled.div`
   padding: 5px 10px;
   border-radius: 5px;
   width: fit-content;
-  background-color: ${props => (props.theme === 'dark' ? color.darkModeDarker : 'transparent')};
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarker : 'transparent')};
   border: solid 1px
-    ${(props: Props) => {
+    ${(props: Props): string => {
       switch (props.fcStyle) {
         case 'danger':
           return color.red;
@@ -24,8 +24,8 @@ export const StyledBadge = styled.div`
         case 'success':
           return color.green;
         default:
-          props.theme === 'dark' ? color.medium : '#333';
+          return props.theme === 'dark' ? color.medium : '#333';
       }
     }};
-  color: ${props => (props.theme === 'dark' ? color.medium : '#333')};
+  color: ${(props): string => (props.theme === 'dark' ? color.medium : '#333')};
 `;

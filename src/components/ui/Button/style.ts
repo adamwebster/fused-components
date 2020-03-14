@@ -1,15 +1,16 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, ThemedStyledProps } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { darken, lighten } from 'polished';
 import { Props } from './';
 import { fcStyles } from '../../../common/types';
+import { RefObject } from 'react';
 
 interface ColorProps {
-  theme?: any;
-  buttonColor?: any;
+  theme?: unknown;
+  buttonColor?: string;
   fcStyle?: fcStyles;
 }
-const colorValue = (props: ColorProps) => {
+const colorValue = (props: ColorProps): string => {
   switch (props.fcStyle) {
     case 'danger':
       return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
@@ -24,7 +25,7 @@ const colorValue = (props: ColorProps) => {
   }
 };
 
-const colorValueDarken = (props: Props) => {
+const colorValueDarken = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
       return darken(0.1, color.red);
@@ -50,14 +51,24 @@ export const StyledIcon = styled.span`
   height: 24px;
   vertical-align: middle;
   color: #fff;
-  ${(props: Props) =>
+  ${(props: Props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> =>
     !props.primary &&
     css`
       background-color: ${colorValue};
     `}
 `;
 
-export const StyledButton = styled.button`
+interface SB extends React.HTMLAttributes<HTMLButtonElement> {
+  ref?: RefObject<HTMLButtonElement>;
+  icon?: string;
+  buttonColor?: string;
+  disabled?: boolean;
+  primary?: boolean;
+  fcStyle?: fcStyles;
+  theme?: unknown;
+  renderAs?: string;
+}
+export const StyledButton = styled.button<SB>`
   vertical-align: middle;
   padding: 0 10px;
   box-sizing: border-box;
@@ -67,7 +78,7 @@ export const StyledButton = styled.button`
   position:relative;
   border-radius: 5px;
   transition: all 0.2s ease;
-  ${(props: Props) =>
+  ${(props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> =>
     !props.primary &&
     css`
       background-color: transparent;
@@ -92,29 +103,29 @@ export const StyledButton = styled.button`
         }
       }
     `}
-  ${props =>
-    props.primary &&
-    css`
-      background-color: ${colorValue};
-      color: ${color.light};
-      border: none;
-      &:hover:not(:disabled) {
-        background-color: ${colorValueDarken};
-        transform: scale(1.05);
-      }
-      &:active:not(:disabled) {
-        transform: scale(0.95);
-      }
-      &:disabled {
-        background-color: ${color.medium};
-        color: ${color.mediumdark};
-        transition: none;
-        cursor: not-allowed;
-      }
-    `}
+    ${(props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> | undefined =>
+      props.primary &&
+      css`
+        background-color: ${colorValue};
+        color: ${color.light};
+        border: none;
+        &:hover:not(:disabled) {
+          background-color: ${colorValueDarken};
+          transform: scale(1.05);
+        }
+        &:active:not(:disabled) {
+          transform: scale(0.95);
+        }
+        &:disabled {
+          background-color: ${color.medium};
+          color: ${color.mediumdark};
+          transition: none;
+          cursor: not-allowed;
+        }
+      `}
 
-   ${props =>
-     props.as === 'a' &&
+   ${(props): false | FlattenInterpolation<ThemedStyledProps<Props, unknown>> =>
+     props.renderAs === 'a' &&
      css`
        border: none;
        text-decoration: underline;
@@ -122,7 +133,7 @@ export const StyledButton = styled.button`
        background-color: transparent;
        color: ${colorValueDarken};
        display: inline-block;
-       ${props =>
+       ${(props): false | FlattenSimpleInterpolation =>
          !props.icon &&
          css`
            height: fit-content;

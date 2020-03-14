@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Props } from './';
 
 export const StyledAvatar = styled.div`
-  ${props => {
+  ${(props): string[] => {
     let size = '';
     let borderRadius = '';
 
@@ -48,9 +48,9 @@ export const StyledAvatar = styled.div`
     return [size, borderRadius];
   }}
  
-  background-image: url(${(props: Props) => props.image as string});
+  background-image: url(${(props: Props): string => props.image as string});
   background-size: cover;
-  ${(props: Props) =>
+  ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
     props.boxShadow &&
     css`
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);

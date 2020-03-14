@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { icons } from './icons';
 
 export interface IconProps {
   icon?: string;
   color?: string;
 }
-export const Icon = ({ icon, color }: IconProps) => {
+export const Icon = ({ icon, color }: IconProps): ReactElement => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

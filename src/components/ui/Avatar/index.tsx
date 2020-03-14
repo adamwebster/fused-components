@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { StyledAvatar } from './style';
 
 export interface Props {
@@ -12,6 +12,12 @@ export interface Props {
   image?: string;
 }
 
-export const Avatar = ({ size = 'small', borderRadius = 'rounded', boxShadow = false, image, ...rest }: Props) => {
+export const Avatar = ({
+  size = 'small',
+  borderRadius = 'rounded',
+  boxShadow = false,
+  image,
+  ...rest
+}: Props): ReactElement => {
   return <StyledAvatar size={size} borderRadius={borderRadius} boxShadow={boxShadow} image={image} {...rest} />;
 };

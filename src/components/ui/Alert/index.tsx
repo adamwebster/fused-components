@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { Icon } from '../../icon';
 import { StyledAlert, Title, AlertContent } from './style';
 import { fcStyles } from '../../../common/types';
@@ -14,10 +14,10 @@ export interface Props {
   borderRadius?: string;
   children?: ReactNode;
 }
-export const Alert = ({ fcStyle, title, icon, borderRadius = '5px', children, ...rest }: Props) => {
+export const Alert = ({ fcStyle, title, icon, borderRadius = '5px', children, ...rest }: Props): ReactElement => {
   return (
     <FCThemeConsumer>
-      {themeContext => (
+      {(themeContext): ReactNode => (
         <>
           <StyledAlert
             theme={themeContext?.theme && themeContext.theme}

@@ -1,21 +1,21 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { fcStyles } from '../../../common/types';
 import { lighten } from 'polished';
 interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
-  theme: any;
-  borderRadius: any;
+  theme: unknown;
+  borderRadius: string;
 }
 
 export const StyledAlert = styled.div`
-  background-color: ${props => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
-  color: ${props => (props.theme === 'dark' ? color.medium : color.darker)};
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  color: ${(props): string => (props.theme === 'dark' ? color.medium : color.darker)};
 
   border-style: solid;
   border-width: 5px 1px 1px 1px;
-  border-color: ${(props: Props) => {
+  border-color: ${(props: Props): string => {
     switch (props.fcStyle) {
       case 'danger':
         return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
@@ -34,7 +34,7 @@ export const StyledAlert = styled.div`
     margin-bottom: 10px;
     display: inline-flex;
     align-content: center;
-    color: ${(props: Props) => {
+    color: ${(props: Props): string => {
       switch (props.fcStyle) {
         case 'danger':
           return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
@@ -56,7 +56,7 @@ export const StyledAlert = styled.div`
     }
   }
   padding: 10px;
-  ${(props: Props) =>
+  ${(props: Props): '' | FlattenSimpleInterpolation =>
     props.borderRadius &&
     css`
       border-radius: 5px;
