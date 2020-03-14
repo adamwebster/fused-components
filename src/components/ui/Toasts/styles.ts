@@ -7,7 +7,7 @@ interface ToastContainerInterface {
 }
 export const ToastContainer = styled.div<ToastContainerInterface>`
   position: fixed;
-  ${props => {
+  ${(props): string[] => {
     let position = '';
 
     switch (props.position) {
@@ -59,14 +59,14 @@ export const ToastContainer = styled.div<ToastContainerInterface>`
 interface ST extends React.HTMLProps<HTMLElement> {
   removing: boolean;
   timer: string;
-  theme?: any;
+  theme?: unknown;
 }
 export const StyledToast = styled(Alert)<ST>`
   margin-bottom: 10px;
   transition: all;
   position: relative;
   border-radius: 5px;
-  animation: ${props => (!props.removing ? 'fadeinToast 0.5s ease-in-out' : 'fadeoutToast 0.5s ease-in-out')};
+  animation: ${(props): string => (!props.removing ? 'fadeinToast 0.5s ease-in-out' : 'fadeoutToast 0.5s ease-in-out')};
   @keyframes fadeinToast {
     0% {
       transform: scale(0);
@@ -93,15 +93,15 @@ export const StyledToast = styled(Alert)<ST>`
 
 interface LB {
   timer: string;
-  theme?: any;
+  theme?: unknown;
 }
 export const LoadingBar = styled.div<LB>`
   position: relative;
   height: 5px;
   transition: all;
   margin-top: 10px;
-  background-color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
-  width: ${props => props.timer}%;
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
+  width: ${(props): string => props.timer}%;
 `;
 
 export const CloseButton = styled.button`
@@ -109,7 +109,7 @@ export const CloseButton = styled.button`
   box-sizing: border-box;
   padding: 0;
   border: none;
-  color: ${props => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
   background-color: transparent;
   position: absolute;
   top: 15px;

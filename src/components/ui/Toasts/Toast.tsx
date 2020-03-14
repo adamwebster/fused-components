@@ -7,15 +7,15 @@ export interface Props {
   /** The title of the toast item */
   title?: string;
   /** The style for the toast */
-  fcStyle?: fcStyles;
+  style?: fcStyles;
   children?: any;
   /** The icon for the toast */
   icon?: string;
   /** how long the toast should be shown in seconds */
-  duration: number;
+  duration?: number;
   theme?: any;
 }
-export const Toast = ({ title, fcStyle, children, icon, duration = 4, theme }: Props) => {
+export const Toast = ({ title, style, children, icon, duration = 4, theme }: Props) => {
   const [visible, setVisible] = useState(true);
   const [removing, setRemoving] = useState(false);
   const [timer, setTimer] = useState('0');
@@ -76,7 +76,7 @@ export const Toast = ({ title, fcStyle, children, icon, duration = 4, theme }: P
           onMouseOver={() => mouseOverToast()}
           onMouseOut={() => mouseOutToast()}
           removing={removing}
-          fcStyle={fcStyle}
+          fcStyle={style}
           icon={icon}
           title={title}
           theme={theme}
