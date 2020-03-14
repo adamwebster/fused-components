@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 
 import { TableHeaderStyled } from './style';
 
@@ -13,10 +13,10 @@ export interface Props {
   bgColor?: string;
   children?: ReactNode;
 }
-const TableHeader = ({ fgColor, showBottomBorder = true, bgColor, children, ...rest }: Props) => {
+const TableHeader = ({ fgColor, showBottomBorder = true, bgColor, children, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
-      {tableContext =>
+      {(tableContext): ReactNode =>
         tableContext && (
           <>
             <TableHeaderStyled

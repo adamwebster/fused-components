@@ -1,20 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, ReactNode, ReactElement } from 'react';
 import { MenuItemStyled } from './style';
 import { Icon } from '../../icon';
 import { DropdownMenuContext } from './DropdownMenuContext';
 
 export interface Props {
-  children?: any;
+  children?: ReactNode;
   icon?: string;
   onClick?: () => void;
 }
-export const MenuItem = ({ children, icon, onClick = () => undefined, ...rest }: Props) => {
+export const MenuItem = ({ children, icon, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
   const DropdownContext = useContext(DropdownMenuContext);
 
   return (
     <MenuItemStyled
       theme={DropdownContext?.theme}
-      onClick={() => {
+      onClick={(): void => {
         if (DropdownContext) {
           DropdownContext.hideMenu();
         }

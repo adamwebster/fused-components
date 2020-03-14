@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { TableBodyStyled } from './style';
 
 import { TableContextContextConsumer } from './TableContext';
@@ -6,10 +6,10 @@ import { TableContextContextConsumer } from './TableContext';
 export interface Props {
   children: ReactNode;
 }
-const TableBody = ({ children }: Props) => {
+const TableBody = ({ children }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
-      {tableContext =>
+      {(tableContext): ReactNode =>
         tableContext && (
           <TableBodyStyled
             theme={tableContext.theme}

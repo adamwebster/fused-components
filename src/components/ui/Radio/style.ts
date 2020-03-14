@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 
 import { Props } from './';
@@ -7,17 +7,17 @@ import React from 'react';
 export const Label = styled.span`
     margin-left: 5px;
     display:inline-block;
-    ${(props: Props) =>
+    ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
       props.inError &&
       css`
         color: ${color.red};
       `}
-    ${(props: Props) =>
+    ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
       props.inWarning &&
       css`
         color: ${color.yellow};
       `}
-    ${props =>
+    ${(props): false | FlattenSimpleInterpolation | undefined =>
       props.theme === 'dark' &&
       !props.inWarning &&
       !props.inError &&
@@ -34,12 +34,12 @@ export const IconStyled = styled.span`
     top: 2px;
     position: relative;
   }
-  ${(props: Props) =>
+  ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
     props.inError &&
     css`
       color: ${color.red};
     `}
-  ${(props: Props) =>
+  ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
     props.inWarning &&
     css`
       color: ${color.yellow};
@@ -48,7 +48,7 @@ export const IconStyled = styled.span`
 
 interface RI extends React.HTMLProps<HTMLInputElement> {
   checked: boolean;
-  onChange: (e: any) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export const RadioInput = styled.input<RI>`
   position: absolute;

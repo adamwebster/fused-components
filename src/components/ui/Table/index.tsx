@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode, useContext, ReactElement } from 'react';
 import { StyledTable } from './style';
 
 import { TableContextProvider } from './TableContext';
@@ -41,7 +41,7 @@ export const Table = ({
   frozenColumnWidth,
   frozenColumnBGColor,
   frozenColumnFGColor,
-}: Props) => {
+}: Props): ReactElement => {
   const themeContext = useContext(FCTheme);
 
   const zebraStripeColorValue = themeContext?.theme === 'dark' ? color.darkModeDark : '#ebebeb';
