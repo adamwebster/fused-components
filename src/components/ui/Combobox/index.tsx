@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
 import { ComboboxWrapper, ComboboxMenu, MenuItemStyled, CaretIcon, ItemIcon, InputStyled } from './style';
 import { Icon } from '../../icon';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
@@ -17,7 +17,7 @@ export interface Props {
   /** The placeholder for the input */
   placeholder?: string;
   /** Defines the formatting for the item. Returns the index of the item */
-  itemFormatter?: (index: any) => any;
+  itemFormatter?: (index: number) => ReactElement;
   /** What key should be search in the data that you send to the Combobox */
   keyToSearch?: string;
 }
@@ -31,7 +31,7 @@ export const Combobox = ({
   placeholder,
   itemFormatter,
   keyToSearch,
-}: Props) => {
+}: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [initialItems, setInitialItems] = useState(items);
   const [filterValue, setFilterValue] = useState('');
@@ -40,9 +40,9 @@ export const Combobox = ({
   const [menuOpen, setMenuOpen] = useState(false);
   const filterRef = useRef<HTMLInputElement>(null);
   const itemRefs: Array<HTMLElement> = [];
-  const menuRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
 
-  const formatItems = () => {
+  const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = initialItems;
       if (itemsToFormat) {
@@ -54,16 +54,17 @@ export const Combobox = ({
     }
   };
 
-  const checkIfParent = (el: any, elToCompare: any) => {
-    while (el.parentNode) {
-      el = el.parentNode;
+  const checkIfParent = (el: HTMLElement | null, elToCompare: unknown): boolean => {
+    while (el?.parentNode) {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      el = el.parentNode as HTMLElement;
       if (el === elToCompare) return true;
     }
     return false;
   };
-  const handleClickOutside = (e: MouseEvent) => {
-    const element = e.target as HTMLElement;
-    const test = checkIfParent(element, menuRef.current);
+  const handleClickOutside = (e: MouseEvent): void => {
+    const element = e.target;
+    const test = checkIfParent(element as HTMLElement, menuRef.current);
     if (!test) {
       if (menuOpen) {
         setMenuOpen(false);
@@ -71,7 +72,7 @@ export const Combobox = ({
     }
   };
 
-  const handleUserKeyPress = (e: { keyCode: number }) => {
+  const handleUserKeyPress = (e: { keyCode: number }): void => {
     // Escape Key
     if (e.keyCode === 27) {
       if (menuOpen) {
@@ -99,7 +100,7 @@ export const Combobox = ({
     }
   };
 
-  const filterItems = (e: { target: { value: string } }) => {
+  const filterItems = (e: { target: { value: string } }): void => {
     setFilterValue(e.target.value);
     let filterItemList;
     if (keyToSearch) {
@@ -119,14 +120,14 @@ export const Combobox = ({
     }
   };
 
-  const setValue = (value: React.SetStateAction<string>) => {
+  const setValue = (value: React.SetStateAction<string>): void => {
     setFilterValue(value);
     setItemSelected(value);
     setMenuOpen(false);
     setItemSelectedIndex(-1);
   };
 
-  const handleItemKeyPress = (e: { charCode: number }, item: string) => {
+  const handleItemKeyPress = (e: { charCode: number }, item: string): void => {
     if (e.charCode === 13) {
       setValue(item);
     }
@@ -136,7 +137,7 @@ export const Combobox = ({
     window.addEventListener('keydown', handleUserKeyPress);
     window.addEventListener('mousedown', e => handleClickOutside(e));
 
-    return () => {
+    return (): void => {
       window.removeEventListener('keydown', handleUserKeyPress);
       window.removeEventListener('mousedown', e => handleClickOutside(e));
     };
@@ -148,13 +149,13 @@ export const Combobox = ({
 
   return (
     <FCThemeConsumer>
-      {themeContext => (
-        <ComboboxWrapper onClick={() => setMenuOpen(!menuOpen)}>
+      {(themeContext): ReactNode => (
+        <ComboboxWrapper onClick={(): void => setMenuOpen(!menuOpen)}>
           <InputStyled
             value={filterValue}
             icon={inputIcon}
             inputRef={filterRef}
-            onChange={(e: { target: { value: string } }) => filterItems(e)}
+            onChange={(e: { target: { value: string } }): void => filterItems(e)}
             placeholder={placeholder}
             inError={inError}
             inWarning={inWarning}
@@ -170,10 +171,12 @@ export const Combobox = ({
                       <MenuItemStyled
                         theme={themeContext?.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }) => handleItemKeyPress(e, item[keyToSearch as string])}
-                        onClick={() => setValue(item[keyToSearch as string])}
+                        onKeyPress={(e: { charCode: number }): void =>
+                          handleItemKeyPress(e, item[keyToSearch as string])
+                        }
+                        onClick={(): void => setValue(item[keyToSearch as string])}
                         key={item.index}
-                        ref={(ref: any) => {
+                        ref={(ref: HTMLLIElement): void => {
                           itemRefs[index] = ref;
                         }}
                       >
@@ -189,10 +192,10 @@ export const Combobox = ({
                       <MenuItemStyled
                         theme={themeContext?.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }) => handleItemKeyPress(e, item)}
-                        onClick={() => setValue(item)}
+                        onKeyPress={(e: { charCode: number }): void => handleItemKeyPress(e, item)}
+                        onClick={(): void => setValue(item)}
                         key={item}
-                        ref={(ref: any) => {
+                        ref={(ref: HTMLLIElement): void => {
                           itemRefs[index] = ref;
                         }}
                       >
