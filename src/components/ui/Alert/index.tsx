@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
-import { Icon } from "../../icon";
-import { StyledAlert, Title, AlertContent } from "./style";
-import { fcStyles } from "../../../common/types";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+import React, { ReactNode, ReactElement } from 'react';
+import { Icon } from '../../icon';
+import { StyledAlert, Title, AlertContent } from './style';
+import { fcStyles } from '../../../common/types';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 export interface Props {
   /** Sets the style of the alert */
   fcStyle?: fcStyles;
@@ -14,19 +14,17 @@ export interface Props {
   borderRadius?: string;
   children?: ReactNode;
 }
-export const Alert = ({
-  fcStyle,
-  title,
-  icon,
-  borderRadius = "5px",
-  children,
-  ...rest
-}: Props) => {
+export const Alert = ({ fcStyle, title, icon, borderRadius = '5px', children, ...rest }: Props): ReactElement => {
   return (
     <FCThemeConsumer>
-      {themeContext => (
+      {(themeContext): ReactNode => (
         <>
-          <StyledAlert theme={themeContext?.theme && themeContext.theme} borderRadius={borderRadius} fcStyle={fcStyle} {...rest}>
+          <StyledAlert
+            theme={themeContext?.theme && themeContext.theme}
+            borderRadius={borderRadius}
+            fcStyle={fcStyle}
+            {...rest}
+          >
             {title && (
               <h4>
                 {icon && <Icon icon={icon} />} <Title theme={themeContext?.theme}>{title}</Title>

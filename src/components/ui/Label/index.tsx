@@ -1,12 +1,9 @@
-
-import React, { useContext } from 'react';
+import React, { useContext, ReactElement } from 'react';
 
 import { LabelStyled } from './style';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export const Label = ({...rest}) => {
-    const theme = useContext(FCTheme);
-    return(
-        <LabelStyled theme={theme?.theme} {...rest} />
-    )
-}
+export const Label = ({ ...rest }): ReactElement => {
+  const theme = useContext(FCTheme);
+  return <LabelStyled theme={theme?.theme} {...rest} />;
+};

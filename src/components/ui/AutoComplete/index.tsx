@@ -1,18 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Input } from "../Input";
-import { Icon } from "../../icon";
+import React, { useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
+import { Input } from '../Input';
+import { Icon } from '../../icon';
 
-import {
-  AutocompleteWrapper,
-  AutocompleteMenu,
-  MenuItemStyled,
-  ItemIcon,
-  NoItemFound
-} from "./style";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+import { AutocompleteWrapper, AutocompleteMenu, MenuItemStyled, ItemIcon, NoItemFound } from './style';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** Defines what items are sent to the auto complete component*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: Array<any>;
   /** What icon to show for the auto complete input */
   inputIcon?: string;
@@ -25,19 +20,19 @@ export interface Props {
   /** The placeholder text for the input */
   placeholder?: string;
   /** Define what an item in the dropdown menu looks */
-  itemFormatter?: (value: any) => any;
+  itemFormatter?: (index: number) => ReactElement;
   /** Used in conjunction with item formatter to define what key in your data that should be searched */
   keyToSearch?: string;
   /** The onChange handler for the input. Returns the element */
-  onChange?: (e: any) => void;
+  onChange?: (e: { target: { value: string } }) => void;
   /** What should happen when an item in the menu is clicked. Returns the index of the item clicked */
-  onItemClick?: (index: any) => void;
+  onItemClick?: (index: number) => void;
   /** If you would like the value to be empty when an item is selected add this property */
-  clearValueOnSelect?: boolean
+  clearValueOnSelect?: boolean;
 }
 
 export const Autocomplete = ({
-  items = ["Apple", "Orange", "Banana"],
+  items = ['Apple', 'Orange', 'Banana'],
   inputIcon,
   inError = false,
   inWarning = false,
@@ -47,31 +42,17 @@ export const Autocomplete = ({
   keyToSearch,
   onChange,
   onItemClick,
-  clearValueOnSelect = false
-}: Props) => {
+  clearValueOnSelect = false,
+}: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
-  const [filterValue, setFilterValue] = useState("");
-  const [itemSelected, setItemSelected] = useState("");
+  const [filterValue, setFilterValue] = useState('');
+  const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
   const filterRef = useRef<HTMLInputElement>(null);
-  let itemRefs: Array<HTMLElement> = [];
+  const itemRefs: Array<HTMLLIElement> = [];
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleUserKeyPress);
-    formatItems();
-    return () => {
-      window.removeEventListener("keydown", handleUserKeyPress);
-    };
-  });
-
-  useEffect(() => {
-    if (onChange) {
-      setItemsToShow(items);
-      filterItems();
-    }
-  }, [items]);
-  const formatItems = () => {
+  const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = items;
       if (itemsToFormat) {
@@ -82,7 +63,7 @@ export const Autocomplete = ({
     }
   };
 
-  const handleUserKeyPress = (e: { keyCode: number }) => {
+  const handleUserKeyPress = (e: { keyCode: number }): void => {
     // Escape Key
     if (e.keyCode === 27) {
       if (menuOpen) {
@@ -109,24 +90,13 @@ export const Autocomplete = ({
       }
     }
   };
-  const onChangeFunc = (e: any) => {
-    if (onChange) {
-      onChange(e);
-    }
-    setFilterValue(e.target.value);
 
-    filterItems();
-  };
-  const filterItems = () => {
+  const filterItems = (): void => {
     let filterItemList;
     if (keyToSearch) {
-      filterItemList = items.filter(item =>
-        item[keyToSearch].toLowerCase().includes(filterValue.toLowerCase())
-      );
+      filterItemList = items.filter(item => item[keyToSearch].toLowerCase().includes(filterValue.toLowerCase()));
     } else {
-      filterItemList = items.filter(item =>
-        item.toLowerCase().includes(filterValue.toLowerCase())
-      );
+      filterItemList = items.filter(item => item.toLowerCase().includes(filterValue.toLowerCase()));
     }
 
     setMenuOpen(true);
@@ -140,9 +110,18 @@ export const Autocomplete = ({
     }
   };
 
-  const setValue = (value: React.SetStateAction<string>) => {
+  const onChangeFunc = (e: { target: { value: string } }): void => {
+    if (onChange) {
+      onChange(e);
+    }
+    setFilterValue(e.target.value);
+
+    filterItems();
+  };
+
+  const setValue = (value: React.SetStateAction<string>): void => {
     if (clearValueOnSelect) {
-      setFilterValue('')
+      setFilterValue('');
     } else {
       setFilterValue(value);
     }
@@ -151,24 +130,36 @@ export const Autocomplete = ({
     setItemSelectedIndex(-1);
   };
 
-  const handleItemKeyPress = (
-    e: { charCode: number },
-    item: React.SetStateAction<string>
-  ) => {
+  const handleItemKeyPress = (e: { charCode: number }, item: React.SetStateAction<string>): void => {
     if (e.charCode === 13) {
       setValue(item);
     }
   };
 
+  useEffect(() => {
+    window.addEventListener('keydown', handleUserKeyPress);
+    formatItems();
+    return (): void => {
+      window.removeEventListener('keydown', handleUserKeyPress);
+    };
+  });
+
+  useEffect(() => {
+    if (onChange) {
+      setItemsToShow(items);
+      filterItems();
+    }
+  }, [items]);
+
   return (
     <FCThemeConsumer>
-      {themeContext => (
+      {(themeContext): ReactNode => (
         <AutocompleteWrapper>
           <Input
             value={filterValue}
             icon={inputIcon}
             inputRef={filterRef}
-            onChange={e => onChangeFunc(e)}
+            onChange={(e): void => onChangeFunc(e)}
             placeholder={placeholder}
             inError={inError}
             inWarning={inWarning}
@@ -179,21 +170,21 @@ export const Autocomplete = ({
             <AutocompleteMenu theme={themeContext?.theme}>
               {itemFormatter ? (
                 <>
-                  {itemsToShow.map((item: any, index: any) => {
+                  {itemsToShow.map((item, index) => {
                     return (
                       <MenuItemStyled
                         theme={themeContext?.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }) => {
+                        onKeyPress={(e: { charCode: number }): void => {
                           handleItemKeyPress(e, item[keyToSearch as string]);
                           if (onItemClick) onItemClick(item.index);
                         }}
-                        onClick={() => {
+                        onClick={(): void => {
                           setValue(item[keyToSearch as string]);
                           if (onItemClick) onItemClick(item.index);
                         }}
                         key={item.index}
-                        ref={(ref: any) => {
+                        ref={(ref: HTMLLIElement): void => {
                           itemRefs[index] = ref;
                         }}
                       >
@@ -203,37 +194,31 @@ export const Autocomplete = ({
                   })}
                 </>
               ) : (
-                  <>
-                    {itemsToShow.map((item, index) => {
-                      return (
-                        <MenuItemStyled
-                          theme={themeContext?.theme}
-                          tabIndex={0}
-                          onKeyPress={(e: { charCode: number }) =>
-                            handleItemKeyPress(e, item)
-                          }
-                          onClick={() => setValue(item)}
-                          key={item}
-                          ref={(ref: any) => {
-                            itemRefs[index] = ref;
-                          }}
-                        >
-                          {item === itemSelected && (
-                            <ItemIcon theme={themeContext?.theme}>
-                              <Icon icon="check-circle" />
-                            </ItemIcon>
-                          )}
-                          {item}
-                        </MenuItemStyled>
-                      );
-                    })}
-                  </>
-                )}
-              {itemsToShow.length === 0 && (
-                <NoItemFound theme={themeContext?.theme}>
-                  Nothing found
-                </NoItemFound>
+                <>
+                  {itemsToShow.map((item, index) => {
+                    return (
+                      <MenuItemStyled
+                        theme={themeContext?.theme}
+                        tabIndex={0}
+                        onKeyPress={(e: { charCode: number }): void => handleItemKeyPress(e, item)}
+                        onClick={(): void => setValue(item)}
+                        key={item}
+                        ref={(ref: HTMLLIElement): void => {
+                          itemRefs[index] = ref;
+                        }}
+                      >
+                        {item === itemSelected && (
+                          <ItemIcon theme={themeContext?.theme}>
+                            <Icon icon="check-circle" />
+                          </ItemIcon>
+                        )}
+                        {item}
+                      </MenuItemStyled>
+                    );
+                  })}
+                </>
               )}
+              {itemsToShow.length === 0 && <NoItemFound theme={themeContext?.theme}>Nothing found</NoItemFound>}
             </AutocompleteMenu>
           )}
         </AutocompleteWrapper>

@@ -21,10 +21,8 @@
     "storybook": "start-storybook -p 9009 -s public",
     "storybook-docs": "start-storybook -p 9009 -s public --docs",
     "build-storybook": "build-storybook -s public",
-    "build-storybook-docs": "build-storybook -s public --docs"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "build-storybook-docs": "build-storybook -s public --docs",
+    "lint-components": "eslint './src/components/**'"
   },
   "browserslist": {
     "production": [
@@ -69,7 +67,13 @@
     "@types/react": "^16.9.20",
     "@types/react-dom": "^16.9.5",
     "@types/styled-components": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
     "babel-loader": "^8.0.6",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
     "jest": "^25.1.0",
     "polished": "^3.4.4",
     "prettier": "^1.19.1",
