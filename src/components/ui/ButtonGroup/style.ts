@@ -1,9 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { StyledButton } from '../Button/style';
 import { Props } from './';
+import { ReactElement } from 'react';
 
-const PrimaryButtonStyles = (props: Props) => {
-  const styles = props.children.map((child: any) => {
+const PrimaryButtonStyles = (props: Props): FlattenSimpleInterpolation => {
+  const styles: (true | FlattenSimpleInterpolation)[] = props.children.map((child: ReactElement) => {
     if (child?.props.primary) {
       return css`
         &:not(:last-child) {
@@ -13,7 +14,7 @@ const PrimaryButtonStyles = (props: Props) => {
     }
     return true;
   });
-  return styles;
+  return styles as FlattenSimpleInterpolation;
 };
 
 export const ButtonGroupStyled = styled.div`
@@ -33,6 +34,8 @@ export const ButtonGroupStyled = styled.div`
     &:active {
       transform: scale(1) !important;
     }
-    ${props => PrimaryButtonStyles(props as Props)}
+    ${(props): FlattenSimpleInterpolation => {
+      return PrimaryButtonStyles(props as Props);
+    }}
   }
 `;
