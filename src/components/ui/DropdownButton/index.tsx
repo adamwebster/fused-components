@@ -1,39 +1,32 @@
-import React, { useState, useRef, useContext } from "react";
-import { Button } from "../Button";
-import { DropdownButtonWrapper, IconStyled, MenuDivider } from "./style";
-import { DropdownMenu } from "./DropdownMenu";
-import { MenuItem } from "./MenuItem";
-import {DropdownMenuProvider} from "./DropdownMenuContext";
-import { Icon } from "../../icon";
-import { fcStyles } from "../../../common/types";
-import { FCTheme } from "../../../theming/FCTheme";
+import React, { useState, useRef, useContext, ReactElement, ReactNode } from 'react';
+import { Button } from '../Button';
+import { DropdownButtonWrapper, IconStyled, MenuDivider } from './style';
+import { DropdownMenu } from './DropdownMenu';
+import { MenuItem } from './MenuItem';
+import { DropdownMenuProvider } from './DropdownMenuContext';
+import { Icon } from '../../icon';
+import { fcStyles } from '../../../common/types';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props {
   /** Set the button to be primary */
-  primary?: boolean,
+  primary?: boolean;
   /** Set the text for the button */
-  label: string,
+  label: string;
   /** Set the style of the button */
-  fcStyle?: fcStyles,
+  fcStyle?: fcStyles;
   /** Set the color of the button */
-  buttonColor?: string,
-  children: any,
+  buttonColor?: string;
+  children: ReactNode;
   /** Set what element the button should be rended as for example as="a" */
-  as?: any
+  as?: string;
 }
-export const DropdownButton = ({
-  primary,
-  label,
-  fcStyle,
-  children,
-  buttonColor,
-  as
-}:Props) => {
+export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor, as }: Props): ReactElement => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-  const buttonEl = useRef();
+  const buttonEl = useRef<HTMLButtonElement>(null);
   const theme = useContext(FCTheme);
-  const hideMenuFunc = () => {
+  const hideMenuFunc = (): void => {
     if (menuOpen) {
       setMenuOpen(false);
       setTimeout(() => {
@@ -43,12 +36,12 @@ export const DropdownButton = ({
   };
   const state = {
     menuOpen,
-    hideMenu: () => hideMenuFunc(),
+    hideMenu: (): void => hideMenuFunc(),
     buttonEl,
     theme: theme?.theme,
   };
 
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     if (menuOpen) {
       setMenuOpen(false);
       setTimeout(() => {
@@ -61,15 +54,13 @@ export const DropdownButton = ({
   };
 
   return (
-    <DropdownButtonWrapper
-    renderAs={as}
-    >
+    <DropdownButtonWrapper renderAs={as}>
       <DropdownMenuProvider value={state}>
         <Button
           buttonRef={buttonEl}
           fcStyle={fcStyle}
           primary={primary}
-          onClick={() => toggleMenu()}
+          onClick={(): void => toggleMenu()}
           as={as}
           buttonColor={buttonColor}
         >

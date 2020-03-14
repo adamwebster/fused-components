@@ -1,40 +1,61 @@
-import React, { useContext } from "react";
-import { StyledInput, InputWrapper, IconWrapper } from "./style";
-import { Icon } from "../../icon";
-import { FCTheme } from "../../../theming/FCTheme";
+import React, { useContext, ReactElement, RefObject } from 'react';
+import { StyledInput, InputWrapper, IconWrapper } from './style';
+import { Icon } from '../../icon';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props extends React.HtmlHTMLAttributes<HTMLInputElement> {
   /** Set the aria label for the input */
-  ariaLabel?: string,
+  ariaLabel?: string;
   /** Set the icon for the input */
-  icon?: string,
+  icon?: string;
   /** Set if the input is in error */
-  inError?: boolean,
+  inError?: boolean;
   /** Set if the input is in warning */
-  inWarning?: boolean,
+  inWarning?: boolean;
   /** The ref for the input */
-  inputRef?: any,
+  inputRef?: RefObject<HTMLInputElement>;
   /** The id for the input */
-  id?: string,
+  id?: string;
   /** The value for the input */
-  value?: string,
+  value?: string;
   /** What should happen when the input value changes */
-  onChange?: (e: any) => void,
+  onChange?: (e: never) => void;
   /** The placeholder for the input */
-  placeholder?: string,
+  placeholder?: string;
   /** Whether the input should be disabled or not */
-  disabled?: boolean,
+  disabled?: boolean;
   /** The input type */
-  type?: string,
-  theme?: any,
+  type?: string;
+  theme?: unknown;
 }
-export const Input = ({ ariaLabel, id, inError = false, inputRef, inWarning = false, icon, ...rest }:Props) => {
+export const Input = ({
+  ariaLabel,
+  id,
+  inError = false,
+  inputRef,
+  inWarning = false,
+  icon,
+  ...rest
+}: Props): ReactElement => {
   const theme = useContext(FCTheme);
-  
+
   return (
     <InputWrapper>
-      {icon && <IconWrapper theme={theme?.theme} inError={inError} inWarning={inWarning}><Icon icon={icon} /></IconWrapper>}
-      <StyledInput id={id} ref={inputRef} icon={icon} inError={inError} inWarning={inWarning} aria-label={ariaLabel} theme={theme?.theme} {...rest} />
+      {icon && (
+        <IconWrapper theme={theme?.theme} inError={inError} inWarning={inWarning}>
+          <Icon icon={icon} />
+        </IconWrapper>
+      )}
+      <StyledInput
+        id={id}
+        ref={inputRef}
+        icon={icon}
+        inError={inError}
+        inWarning={inWarning}
+        aria-label={ariaLabel}
+        theme={theme?.theme}
+        {...rest}
+      />
     </InputWrapper>
   );
 };
