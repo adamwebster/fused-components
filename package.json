@@ -22,7 +22,7 @@
     "storybook-docs": "start-storybook -p 9009 -s public --docs",
     "build-storybook": "build-storybook -s public",
     "build-storybook-docs": "build-storybook -s public --docs",
-    "lint-components": "eslint ./src/components/**"
+    "lint-components": "eslint './src/components/**'"
   },
   "browserslist": {
     "production": [
