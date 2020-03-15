@@ -17,7 +17,10 @@ const PrimaryButtonStyles = (props: Props): FlattenSimpleInterpolation => {
   return styles as FlattenSimpleInterpolation;
 };
 
-export const ButtonGroupStyled = styled.div`
+interface BTS {
+  children: Array<ReactElement>;
+}
+export const ButtonGroupStyled = styled.div<BTS>`
   ${StyledButton} {
     margin: 0;
     border-radius: 0;
@@ -29,8 +32,15 @@ export const ButtonGroupStyled = styled.div`
 
     &:last-child {
       border-radius: 0 5px 5px 0;
-      border-left: 0px;
     }
+    ${(props): false | FlattenSimpleInterpolation | undefined =>
+      props.children &&
+      props.children.length > 2 &&
+      css`
+        &:last-child {
+          border-left: 0px;
+        }
+      `}
     &:active {
       transform: scale(1) !important;
     }
