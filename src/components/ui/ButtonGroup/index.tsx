@@ -5,6 +5,6 @@ export interface Props {
   children: Array<ReactElement>;
 }
 
-export const ButtonGroup = ({ children }: Props): ReactElement => {
-  return <ButtonGroupStyled>{children}</ButtonGroupStyled>;
+export const ButtonGroup = ({ children, ...rest }: Props): ReactElement => {
+  return <ButtonGroupStyled {...rest}>{children}</ButtonGroupStyled>;
 };
