@@ -1,28 +1,28 @@
-import React from "react";
-import { ToggleWrapper, Slider, ToggleLabel } from "./style";
-import { FCThemeConsumer } from "../../../theming/FCTheme";
+import React, { ReactElement, ReactNode } from 'react';
+import { ToggleWrapper, Slider, ToggleLabel } from './style';
+import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** If the toggle is active or not */
-  active?: boolean;
+  active: boolean;
   /** Display the on and off labels */
   showLabels?: boolean;
   /** What should happen when the toggle is clicked */
-  onClick?: (e: any) => void;
+  onClick?: (e: unknown) => void;
 }
 export const Toggle = ({
   active = false,
   showLabels = false,
-  onClick = e => {},
+  onClick = (): void => undefined,
   ...rest
-}: Props) => {
+}: Props): ReactElement => {
   return (
     <FCThemeConsumer>
-      {themeContext => (
+      {(themeContext): ReactNode => (
         <ToggleWrapper
           active={active}
           theme={themeContext?.theme}
-          onClick={(e: any) => {
+          onClick={(e: unknown): void => {
             onClick(e);
           }}
           {...rest}
@@ -30,8 +30,8 @@ export const Toggle = ({
           <Slider theme={themeContext?.theme} active={active} />
           {showLabels && (
             <>
-              <ToggleLabel theme={themeContext?.theme} >On</ToggleLabel>
-              <ToggleLabel theme={themeContext?.theme} >Off</ToggleLabel>
+              <ToggleLabel theme={themeContext?.theme}>On</ToggleLabel>
+              <ToggleLabel theme={themeContext?.theme}>Off</ToggleLabel>
             </>
           )}
         </ToggleWrapper>

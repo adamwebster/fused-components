@@ -1,23 +1,31 @@
-import React, { useState, useContext, ReactNode } from "react";
-import { ToastContext,  ToastContextProvider, Options, ToastObject} from "./ToastContext";
-import { ToastContainer } from "./styles";
-import { Toast } from "./Toast";
-import { FCTheme } from "../../../theming/FCTheme";
+import React, { useState, useContext, ReactNode, ReactElement } from 'react';
+import { ToastContext, ToastContextProvider, Options, ToastObject } from './ToastContext';
+import { ToastContainer } from './styles';
+import { Toast } from './Toast';
+import { FCTheme } from '../../../theming/FCTheme';
+import { fcStyles } from '../../../common/types';
 
 export interface Props {
-  children: ReactNode,
+  children: ReactNode;
   /** The position of the toast provider */
-  position?: 'top' | 'bottom' | 'top-right' | 'bottom-right',
+  position?: 'top' | 'bottom' | 'top-right' | 'bottom-right';
 }
 
-export const ToastProvider = ({ children, position = 'top' }: Props) => {
+export const ToastProvider = ({ children, position = 'top' }: Props): ReactElement => {
   const [toasts, setToasts] = useState(new Array<ToastObject>());
   const theme = useContext(FCTheme);
-  const add = (title: string, content: string, fcStyle: string, icon: string, options: Options) => {
+  const add = (
+    title: string,
+    content: string,
+    style?: string,
+    icon?: string,
+    key?: number,
+    options?: Options,
+  ): void => {
     const toAdd = toasts.slice();
     if (options) {
       if (options.id) {
-        const indexValue = toAdd.map((item: any, index) => {
+        const indexValue = toAdd.map((item: ToastObject, index) => {
           if (item.options) {
             if (item.options.id) {
               if (item.options.id === options.id) {
@@ -36,12 +44,12 @@ export const ToastProvider = ({ children, position = 'top' }: Props) => {
       }
     }
 
-    setToasts((toasts: any) => [...toasts, { title, content, fcStyle, icon, key: Math.random(), options }]);
+    setToasts((toasts: Array<ToastObject>) => [...toasts, { title, content, style, icon, key, options }]);
   };
 
   const state = {
-    add: (title: string, content: string, style: string, icon: string, options: Options) =>
-      add(title, content, style, icon, options),
+    add: (title: string, content: string, style: fcStyles, icon: string, key: number, options: Options): void =>
+      add(title, content, style, icon, key, options),
   };
   return (
     <ToastContextProvider value={state}>
@@ -50,12 +58,12 @@ export const ToastProvider = ({ children, position = 'top' }: Props) => {
         {toasts
           .slice(0)
           .reverse()
-          .map((toast: any) => {
+          .map((toast: ToastObject) => {
             return (
               <Toast
                 key={toast.key}
                 theme={theme?.theme}
-                fcStyle={toast.fcStyle && toast.fcStyle}
+                style={toast.style as fcStyles}
                 title={toast.title && toast.title}
                 duration={toast.options && toast.options.duration}
                 icon={toast.icon && toast.icon}
@@ -69,18 +77,21 @@ export const ToastProvider = ({ children, position = 'top' }: Props) => {
   );
 };
 
-export const useToast = () => {
+export const useToast = (): {
+  addInfo: (title: string, content?: string | undefined, options?: Options | undefined) => void;
+  addSuccess: (title: string, content?: string | undefined, options?: Options | undefined) => void;
+  addWarning: (title: string, content?: string | undefined, options?: Options | undefined) => void;
+  addDanger: (title: string, content?: string | undefined, options?: Options | undefined) => void;
+} => {
   const context = useContext(ToastContext);
-  if (context) {
-    return {
-      addInfo: (title: string, content?: string, options?: Options) =>
-        context.add(title, content as string, 'info', 'info-circle', options as Options),
-      addSuccess: (title: string, content?: string, options?: Options) =>
-        context.add(title, content as string, 'success', 'check-circle', options as Options),
-      addWarning: (title: string, content?: string, options?: Options) =>
-        context.add(title, content as string, 'warning', 'exclamation-circle', options as Options),
-      addDanger: (title: string, content?: string, options?: Options) =>
-        context.add(title, content as string, 'danger', 'no-entry-circle', options as Options)
-    };
-  }
+  return {
+    addInfo: (title: string, content?: string, options?: Options): void =>
+      context?.add(title, content as string, 'info', 'info-circle', Math.random(), options as Options),
+    addSuccess: (title: string, content?: string, options?: Options): void =>
+      context?.add(title, content as string, 'success', 'check-circle', Math.random(), options as Options),
+    addWarning: (title: string, content?: string, options?: Options): void =>
+      context?.add(title, content as string, 'warning', 'exclamation-circle', Math.random(), options as Options),
+    addDanger: (title: string, content?: string, options?: Options): void =>
+      context?.add(title, content as string, 'danger', 'no-entry-circle', Math.random(), options as Options),
+  };
 };
