@@ -1,36 +1,36 @@
-import styled, { css } from "styled-components";
-import { color } from "../../../styles/styles";
-import { darken } from "polished";
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { color } from '../../../styles/styles';
+import { darken } from 'polished';
 
-interface IStyledTable {
+interface ST {
   bgColor?: string;
   fgColor?: string;
 }
-export const StyledTable = styled.table<IStyledTable>`
+export const StyledTable = styled.table<ST>`
   display: flex;
   flex: 1 1;
   flex-flow: column;
 
   overflow: auto;
-  ${props =>
+  ${(props): '' | FlattenSimpleInterpolation | undefined =>
     props.bgColor &&
     css`
       background-color: ${props.bgColor};
     `}
     
- ${props =>
-   props.theme === "dark" &&
-   css`
-     color: ${color.medium};
-   `}
-  ${props =>
-    props.fgColor &&
-    css`
-      color: ${props.fgColor};
-    `}
+    ${(props): false | FlattenSimpleInterpolation | undefined =>
+      props.theme === 'dark' &&
+      css`
+        color: ${color.medium};
+      `}
+   ${(props): '' | FlattenSimpleInterpolation | undefined =>
+     props.fgColor &&
+     css`
+       color: ${props.fgColor};
+     `}
 `;
 
-interface ITableHeaderStyled {
+interface THS {
   showBottomBorder?: boolean;
   bgColor?: string;
   fgColor?: string;
@@ -39,36 +39,35 @@ interface ITableHeaderStyled {
   padding?: string;
 }
 
-export const TableHeaderStyled = styled.thead<ITableHeaderStyled>`
+export const TableHeaderStyled = styled.thead<THS>`
   display: flex;
   flex: 1 1;
   font-weight: bold;
-  ${props =>
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.showBottomBorder &&
     css`
-      border-bottom: solid 1px
-        ${props.theme === "dark" ? color.mediumdark : color.border};
+      border-bottom: solid 1px ${props.theme === 'dark' ? color.mediumdark : color.border};
       border-collapse: collapse;
     `}
-  ${props =>
-    props.bgColor &&
-    css`
-      background-color: ${props.bgColor};
-    `}
-  ${props =>
-    props.fgColor &&
-    css`
-      color: ${props.fgColor};
-    `}
+    ${(props): '' | FlattenSimpleInterpolation | undefined =>
+      props.bgColor &&
+      css`
+        background-color: ${props.bgColor};
+      `}
+    ${(props): '' | FlattenSimpleInterpolation | undefined =>
+      props.fgColor &&
+      css`
+        color: ${props.fgColor};
+      `}
 
 td:first-of-type{
-${props =>
-  props.freezeFirstColumn &&
-  css`
-    border-bottom: solid 1px ${color.border};
-  `}
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
+    props.freezeFirstColumn &&
+    css`
+      border-bottom: solid 1px ${color.border};
+    `}
 }
-${props =>
+${(props): false | FlattenSimpleInterpolation | undefined =>
   props.freezeFirstColumn &&
   css`
     width: fit-content;
@@ -77,30 +76,30 @@ ${props =>
   `}
 `;
 
-interface ITableRowStyled {
+interface TRS {
   zebraStripping?: boolean;
   zebraStripeColor?: string;
   bgColor?: string;
 }
 
-export const TableRowStyled = styled.tr<ITableRowStyled>`
+export const TableRowStyled = styled.tr<TRS>`
   display: flex;
   flex: 1 1;
-  ${props =>
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.zebraStripping &&
     css`
       &:nth-child(even) {
         background-color: ${props.zebraStripeColor};
       }
     `}
-  ${props =>
+  ${(props): '' | FlattenSimpleInterpolation | undefined =>
     props.bgColor &&
     css`
       background-color: ${props.bgColor};
     `}
 `;
 
-interface ITableCellStyled {
+interface TCS {
   width?: string;
   padding?: string;
   bgColor?: string;
@@ -109,44 +108,40 @@ interface ITableCellStyled {
   frozenColumnFGColor?: string;
   freezeFirstColumn?: boolean;
 }
-export const TableCellStyled = styled.td<ITableCellStyled>`
+export const TableCellStyled = styled.td<TCS>`
   display: flex;
   flex: 1 1;
-  ${props =>
+  ${(props): '' | FlattenSimpleInterpolation | undefined =>
     props.width &&
     css`
       flex: unset;
       width: ${props.width};
     `};
-  padding: ${props => props.padding};
-  ${props =>
+  padding: ${(props): string | undefined => props.padding};
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.freezeFirstColumn &&
     css`
       &:first-child {
-        background-color: ${props.frozenColumnBGColor
-          ? props.frozenColumnBGColor
-          : color.medium};
-        color: ${props.frozenColumnFGColor
-          ? props.frozenColumnFGColor
-          : "inherit"};
+        background-color: ${props.frozenColumnBGColor ? props.frozenColumnBGColor : color.medium};
+        color: ${props.frozenColumnFGColor ? props.frozenColumnFGColor : 'inherit'};
         position: absolute;
         left: 0;
         border-right: solid 3px ${color.border};
       }
     `}
-    ${props =>
+    ${(props): '' | FlattenSimpleInterpolation | undefined =>
       props.bgColor &&
       css`
         background-color: ${props.bgColor};
       `}
-    ${props =>
+    ${(props): '' | FlattenSimpleInterpolation | undefined =>
       props.fgColor &&
       css`
         color: ${props.fgColor};
       `}
 `;
 
-interface ITableBodyStyled {
+interface TBS {
   tableBodyBGColor?: string;
   tableBodyTextColor?: string;
   bgColor?: string;
@@ -154,27 +149,27 @@ interface ITableBodyStyled {
   frozenColumnWidth?: string;
   padding?: string;
 }
-export const TableBodyStyled = styled.tbody<ITableBodyStyled>`
+export const TableBodyStyled = styled.tbody<TBS>`
   display: flex;
   flex: 1 1;
   flex-flow: column;
-  ${props =>
+  ${(props): '' | FlattenSimpleInterpolation | undefined =>
     props.tableBodyBGColor &&
     css`
       background-color: ${props.tableBodyBGColor};
     `}
-  ${props =>
+  ${(props): '' | FlattenSimpleInterpolation | undefined =>
     props.tableBodyTextColor &&
     css`
       color: ${props.tableBodyTextColor};
     `}
     
     & tr:hover {
-    background-color: ${props =>
-      props.bgColor ? darken(0.1, props.bgColor) : props.theme === "dark" ? color.darkModeMedium : color.highlight};
+    background-color: ${(props): string =>
+      props.bgColor ? darken(0.1, props.bgColor) : props.theme === 'dark' ? color.darkModeMedium : color.highlight};
   }
 
-  ${props =>
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.freezeFirstColumn &&
     css`
       width: fit-content;

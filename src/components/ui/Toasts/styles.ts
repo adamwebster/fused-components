@@ -1,17 +1,17 @@
-import styled from "styled-components";
-import { Alert } from "../Alert";
-import { color } from "../../../styles/styles";
+import styled from 'styled-components';
+import { Alert } from '../Alert';
+import { color } from '../../../styles/styles';
 
-interface IToastContainer {
-  position?: 'top' | 'bottom' | 'top-right' | 'bottom-right',
+interface ToastContainerInterface {
+  position?: 'top' | 'bottom' | 'top-right' | 'bottom-right';
 }
-export const ToastContainer = styled.div<IToastContainer>`
+export const ToastContainer = styled.div<ToastContainerInterface>`
   position: fixed;
-  ${props => {
-    let position = "";
+  ${(props): string[] => {
+    let position = '';
 
     switch (props.position) {
-      case "top":
+      case 'top':
         position = `
             top:20px;
             left: 50%;
@@ -22,7 +22,7 @@ export const ToastContainer = styled.div<IToastContainer>`
             }
             `;
         break;
-      case "bottom":
+      case 'bottom':
         position = `
              bottom:20px;
             left: 50%;
@@ -34,14 +34,14 @@ export const ToastContainer = styled.div<IToastContainer>`
             `;
         break;
 
-      case "bottom-right":
+      case 'bottom-right':
         position = `
         bottom:20px;
         right:20px;
         width: 300px;
             `;
         break;
-      case "top-right":
+      case 'top-right':
       default:
         position = `
         top:20px;
@@ -56,20 +56,17 @@ export const ToastContainer = styled.div<IToastContainer>`
   z-index:99;
 `;
 
-interface IStyledToast  extends React.HTMLProps<HTMLElement> {
-  removing: boolean,
-  timer: string,
-  theme?:any
+interface ST extends React.HTMLProps<HTMLElement> {
+  removing: boolean;
+  timer: string;
+  theme?: unknown;
 }
-export const StyledToast = styled(Alert)<IStyledToast>`
+export const StyledToast = styled(Alert)<ST>`
   margin-bottom: 10px;
   transition: all;
   position: relative;
   border-radius: 5px;
-  animation: ${props =>
-    !props.removing
-      ? "fadeinToast 0.5s ease-in-out"
-      : "fadeoutToast 0.5s ease-in-out"};
+  animation: ${(props): string => (!props.removing ? 'fadeinToast 0.5s ease-in-out' : 'fadeoutToast 0.5s ease-in-out')};
   @keyframes fadeinToast {
     0% {
       transform: scale(0);
@@ -92,20 +89,19 @@ export const StyledToast = styled(Alert)<IStyledToast>`
     }
   }
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-
 `;
 
-interface ILoadingBar {
-  timer: string,
-  theme?:any
+interface LB {
+  timer: string;
+  theme?: unknown;
 }
-export const LoadingBar = styled.div<ILoadingBar>`
+export const LoadingBar = styled.div<LB>`
   position: relative;
   height: 5px;
   transition: all;
   margin-top: 10px;
-  background-color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.medium};
-  width: ${props => props.timer}%;
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
+  width: ${(props): string => props.timer}%;
 `;
 
 export const CloseButton = styled.button`
@@ -113,7 +109,7 @@ export const CloseButton = styled.button`
   box-sizing: border-box;
   padding: 0;
   border: none;
-  color: ${props => props.theme === 'dark' ? color.darkModeMedium : color.medium};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
   background-color: transparent;
   position: absolute;
   top: 15px;
