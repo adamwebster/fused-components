@@ -4,7 +4,7 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../../../components/icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
-import { ComboboxDemo } from "../../../demos/ComboboxDemo";
+import { ComboboxDemo, ComboboxDemoItemFormatter } from "../../../demos/ComboboxDemo";
 
 import { Combobox } from './';
 
@@ -17,8 +17,39 @@ import { Combobox } from './';
 <Combobox
     inputIcon="filter"
     placeholder="Type to search for a fruit"
+    items={["Apple", "Orange", "Banana"]}
  />
 
+## Item Formatter
+
+<ComboboxDemoItemFormatter />
+
+Below is an example code for the item formatter
+
+### Code Example for item formatter
+
+    export const ComboboxDemoItemFormatter = () => {
+    const data = [{ label: "Apple", description: 'Apples are red and are crunchy.' }, { label: "Banana", description: 'Bananas are yellow you have to peel them.' }, { label: "Orange", description: 'Oranges have a hard peel and are full of vitamin C.' }];
+
+    return (
+        <Combobox
+        inputIcon="filter"
+        placeholder="Dark mode combobox"
+        items={data}
+        itemFormatter={(index) => {
+            return (
+            <>
+                <div>{data[index].label}</div>
+                <div style={{ fontSize: '12px', color: '#aaa' }}>{data[value].description}</div>
+            </>
+            )
+        }
+        }
+        keyToSearch="label"
+
+        />
+    )
+    }
 ## Dark Mode
 <ComboboxDemo />
 

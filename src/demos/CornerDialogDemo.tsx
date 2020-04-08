@@ -3,7 +3,6 @@ import { CornerDialog } from "../components/ui/CornerDialog";
 import { Button } from "../components/ui/Button";
 import { Label } from "../components/ui/Label";
 import { fcStyles } from "../common/types";
-import { Textarea } from "../components/ui/Textarea";
 import { FCThemeProvider } from "../theming/FCTheme";
 import { DarkModeWrapper } from "../common/styles";
 import styled from "styled-components";
