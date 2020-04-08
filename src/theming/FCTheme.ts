@@ -5,7 +5,7 @@ export interface Theme {
     children?: any,
 }
 
-export const FCTheme = React.createContext<Theme | null>(null);
+export const FCTheme = React.createContext<Theme | null>({theme: ''});
 
 export const FCThemeProvider = FCTheme.Provider;
 

@@ -1,32 +1,30 @@
-import React, { ReactNode } from 'react';
-import {
-  TableRowStyled,
-} from "./style";
+import React, { ReactNode, ReactElement } from 'react';
+import { TableRowStyled } from './style';
 
-import {TableContextContextConsumer} from './TableContext';
+import { TableContextContextConsumer } from './TableContext';
 
 export interface Props {
-  children: ReactNode,
+  children: ReactNode;
   /** Set the background color of the table row */
-  bgColor?: string,
-  /** The foreground color(text) of the table row */
-  fgColor?: string,
+  bgColor?: string;
 }
-const TableRow = ({ children, bgColor, fgColor, ...rest }:Props) => {
+const TableRow = ({ children, bgColor }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
-      {tableContext => tableContext && (
-        <TableRowStyled
-          theme={tableContext?.theme}
-          zebraStripping={tableContext.zebraStripping}
-          bgColor={bgColor}
-          zebraStripeColor={tableContext.zebraStripeColor}
-        >
-          {children}
-        </TableRowStyled>
-      )}
+      {(tableContext): ReactNode =>
+        tableContext && (
+          <TableRowStyled
+            theme={tableContext?.theme}
+            zebraStripping={tableContext.zebraStripping}
+            bgColor={bgColor}
+            zebraStripeColor={tableContext.zebraStripeColor}
+          >
+            {children}
+          </TableRowStyled>
+        )
+      }
     </TableContextContextConsumer>
-  )
-}
+  );
+};
 
 export default TableRow;
