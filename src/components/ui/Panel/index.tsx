@@ -61,7 +61,7 @@ export const Panel = ({
           </DialogContent>
           <DialogFooter fcStyle={fcStyle} theme={theme?.theme}>
             <Button
-              buttonColor={theme?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
+              buttonColor={theme?.theme === 'dark' ? color.darkModeLight : color.mediumdark}
               onClick={(e): void => onCloseClick(e)}
             >
               Close
