@@ -13,7 +13,9 @@ export const Icon = ({ icon, color }: IconProps): ReactElement => {
       strokeLinejoin="round"
       strokeMiterlimit="2"
       clipRule="evenodd"
+      role="img"
       viewBox="0 0 48 48"
+      className={icon}
     >
       <path fill={color || 'currentColor'} d={icon && icons[icon]}></path>
     </svg>
