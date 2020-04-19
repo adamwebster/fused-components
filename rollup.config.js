@@ -58,7 +58,7 @@ export default {
       exclude: ['node_modules/**', '**/*.css'],
     }),
   ],
-  // toggle comment below if using npm/yarn link
+  // toggle comment below if using npm/yarn link you might not need the second option
   external: id => globalModules.includes(id) || /core-js/.test(id),
   // external: id => globalModules.includes(id),
 };
