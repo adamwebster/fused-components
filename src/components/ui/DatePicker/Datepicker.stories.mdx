@@ -3,24 +3,23 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from '@storybook/addon-actions';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
-import { Calendar } from './';
+import { DatePicker } from './';
+import { DatePickerDemo } from '../../../demos/DatePickerDemo';
 
-<Meta title="Components / Calendar" component={Calendar} parameters={{ component: Calendar }} />
+<Meta title="Components / DatePicker" component={DatePicker} parameters={{ component: DatePicker }} />
 
-# Calendar
+# Date Picker
 
-## An Calendar component
+## An Date Picker component
 
 ## Default
 
-<Preview>
-  <Calendar />
-</Preview>
+<DatePickerDemo />
 
 ## Properties
 
-<Props of={Calendar} />
+<Props of={DatePicker} />
 
 # Label dependents & dependencies
 
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Calendar} />
+<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={DatePicker} />

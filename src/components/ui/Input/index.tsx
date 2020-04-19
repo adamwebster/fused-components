@@ -3,7 +3,7 @@ import { StyledInput, InputWrapper, IconWrapper } from './style';
 import { Icon } from '../../icon';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props extends React.HtmlHTMLAttributes<HTMLInputElement> {
+export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   /** Set the aria label for the input */
   ariaLabel?: string;
   /** Set the icon for the input */
@@ -27,6 +27,8 @@ export interface Props extends React.HtmlHTMLAttributes<HTMLInputElement> {
   /** The input type */
   type?: string;
   theme?: unknown;
+  // sets if the input is in a read only mode
+  readOnly?: boolean;
 }
 export const Input = ({
   ariaLabel,
@@ -35,6 +37,7 @@ export const Input = ({
   inputRef,
   inWarning = false,
   icon,
+  readOnly = false,
   ...rest
 }: Props): ReactElement => {
   const theme = useContext(FCTheme);
@@ -54,6 +57,7 @@ export const Input = ({
         inWarning={inWarning}
         aria-label={ariaLabel}
         theme={theme?.theme}
+        readOnly={readOnly}
         {...rest}
       />
     </InputWrapper>
