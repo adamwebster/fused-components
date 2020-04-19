@@ -59,6 +59,6 @@ export default {
     }),
   ],
   // toggle comment below if using npm/yarn link
-  //  external: id => globalModules.includes(id) || /core-js/.test(id),
+  external: id => globalModules.includes(id) || /core-js/.test(id),
   // external: id => globalModules.includes(id),
 };

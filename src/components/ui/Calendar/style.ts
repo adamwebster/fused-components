@@ -83,7 +83,6 @@ export const Day = styled.td`
     font-size: 1em;
     padding: 5px;
     width: 100%;
-    height: 100%;
     border-radius: 0;
     &:hover {
       color: #fff !important;
