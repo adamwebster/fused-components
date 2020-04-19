@@ -58,7 +58,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     for (let d = 1; d <= daysInTheMonth; d++) {
       daysInMonth.push({
         day: d,
-        date: new Date(`${date.get('year')}-${date.get('month') + 1}-${d}/`),
+        date: `${date.get('year')}-${date.get('month') + 1}-${d}`,
       });
     }
 
