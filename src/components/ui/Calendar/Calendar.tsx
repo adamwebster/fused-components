@@ -22,7 +22,7 @@ dayjs.extend(duration);
 
 interface Props {
   onChange?: (date: any) => void;
-  selectedDate?: dayjs.Dayjs;
+  selectedDate?: dayjs.Dayjs | string;
   size?: number;
 }
 const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), size }: Props): React.ReactElement => {
@@ -108,7 +108,9 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                 className={`${item.day.toString() === currentDay ? `current-day` : ''}${
                   item.otherMonth ? 'other-month' : ''
                 }${
-                  dayjs(item.date).format('MMMM/DD/YYYY') === selectedDate.format('MMMM/DD/YYYY') ? ' selected-day' : ''
+                  item.date && dayjs(item.date).format('MMMM/DD/YYYY') === dayjs(selectedDate).format('MMMM/DD/YYYY')
+                    ? ' selected-day'
+                    : ''
                 }`}
                 key={item.day ? `day-${item.day}` : `blank-day-${index}`}
               >
