@@ -55,7 +55,7 @@ export const CornerDialogStyled = styled.div`
           position: relative;
           margin-right: 25px;
         `}
-  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarker : '#fff')};
   color: ${(props): string => (props.theme === 'dark' ? color.medium : color.darker)};
 
   border-radius: 5px;

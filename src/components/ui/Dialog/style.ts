@@ -48,7 +48,7 @@ export interface SD extends React.HTMLProps<HTMLDivElement> {
 
 export const StyledDialog = styled.div<SD>`
   border-radius: 5px;
-  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarker : '#fff')};
   border: solid 1px ${borderColor};
   z-index: 98;
   width: 500px;

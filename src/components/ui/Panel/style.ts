@@ -48,7 +48,7 @@ export interface SP extends React.HTMLProps<HTMLDivElement> {
 
 export const StyledPanel = styled.div<SP>`
   border-radius: 5px;
-  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarker : '#fff')};
   border: solid 1px ${borderColor};
 
   color: ${(props): string => (props.theme === 'dark' ? color.medium : color.darker)};
