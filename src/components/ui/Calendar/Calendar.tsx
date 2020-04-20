@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import localeDate from 'dayjs/plugin/localeData';
+import localeData from 'dayjs/plugin/localeData';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import duration from 'dayjs/plugin/duration';
 import { Icon } from '../../icon/index';
@@ -16,7 +16,7 @@ import {
   DayName,
   Week,
 } from './style';
-dayjs.extend(localeDate);
+dayjs.extend(localeData);
 dayjs.extend(advancedFormat);
 dayjs.extend(duration);
 
