@@ -1,5 +1,5 @@
 import { create } from '@storybook/theming/create';
-import logo from '../src/static/FusedComponentsLogo.svg'
+import logo from '../src/static/FusedComponentsLogo.svg';
 export default create({
   base: 'light',
 
@@ -33,5 +33,5 @@ export default create({
 
   brandTitle: 'Fused Components',
   // brandUrl: 'https://example.com',
-  brandImage: 'https://adamwebster.me/FusedComponentsLogo.svg',
+  brandImage: logo,
 });
