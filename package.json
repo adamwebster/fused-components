@@ -11,7 +11,6 @@
   "dependencies": {
     "@types/react-test-renderer": "^16.9.2",
     "dayjs": "^1.8.24",
-    "storybook-chromatic": "^3.5.3",
     "styled-components": "^5.0.1"
   },
   "peerDependencies": {
@@ -91,6 +90,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-typescript2": "^0.26.0",
     "storybook-addon-deps": "^1.0.12",
+    "storybook-chromatic": "^3.5.3",
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5"
