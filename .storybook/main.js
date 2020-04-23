@@ -37,7 +37,7 @@ module.exports = {
     '@storybook/addon-a11y/register',
     'storybook-addon-deps',
   ],
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.js'],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.js', '../src/**/*.stories.ts', '../src/**/*.stories.tsx'],
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
