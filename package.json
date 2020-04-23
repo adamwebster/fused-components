@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/react-test-renderer": "^16.9.2",
     "dayjs": "^1.8.24",
+    "storybook-chromatic": "^3.5.3",
     "styled-components": "^5.0.1"
   },
   "peerDependencies": {
@@ -24,7 +25,8 @@
     "storybook-docs": "start-storybook -p 9009 -s public --docs",
     "build-storybook": "build-storybook -s public",
     "build-storybook-docs": "build-storybook -s public --docs --quiet",
-    "lint-components": "eslint './src/components/**'"
+    "lint-components": "eslint './src/components/**'",
+    "chromatic": "CHROMATIC_APP_CODE=5pjils4jmtg chromatic"
   },
   "browserslist": {
     "production": [
