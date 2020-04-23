@@ -1,4 +1,4 @@
-import React, { useContext, ReactElement, RefObject } from 'react';
+import React, { useContext } from 'react';
 import { StyledInput, InputWrapper, IconWrapper } from './style';
 import { Icon } from '../../icon';
 import { FCTheme } from '../../../theming/FCTheme';
@@ -12,8 +12,6 @@ export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   inError?: boolean;
   /** Set if the input is in warning */
   inWarning?: boolean;
-  /** The ref for the input */
-  inputRef?: RefObject<HTMLInputElement>;
   /** The id for the input */
   id?: string;
   /** The value for the input */
@@ -30,18 +28,9 @@ export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   // sets if the input is in a read only mode
   readOnly?: boolean;
 }
-export const Input = ({
-  ariaLabel,
-  id,
-  inError = false,
-  inputRef,
-  inWarning = false,
-  icon,
-  readOnly = false,
-  ...rest
-}: Props): ReactElement => {
+export const Input = React.forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
   const theme = useContext(FCTheme);
-
+  const { ariaLabel, id, inError = false, inWarning = false, icon, readOnly = false, ...rest } = props;
   return (
     <InputWrapper>
       {icon && (
@@ -51,7 +40,7 @@ export const Input = ({
       )}
       <StyledInput
         id={id}
-        ref={inputRef}
+        ref={ref}
         icon={icon}
         inError={inError}
         inWarning={inWarning}
@@ -62,4 +51,6 @@ export const Input = ({
       />
     </InputWrapper>
   );
-};
+});
+
+Input.displayName = 'Input';
