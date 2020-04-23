@@ -6,7 +6,6 @@ export const HintText = styled.p`
   color: ${(props): string => (props.theme === 'dark' ? color.medium : color.mediumdark)};
   margin-top: 3px;
   margin-bottom: 3px;
-  font-weight: 300;
 `;
 
 export const ValidationMessage = styled.p`
@@ -14,7 +13,6 @@ export const ValidationMessage = styled.p`
   color: ${color.danger};
   margin-top: 3px;
   margin-bottom: 3px;
-  font-weight: 300;
 `;
 
 export const RequiredMark = styled.span`
