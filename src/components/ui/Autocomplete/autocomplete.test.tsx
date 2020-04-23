@@ -1,14 +1,24 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import { Autocomplete } from './index';
+import userEvent from '@testing-library/user-event';
 
 afterEach(cleanup);
 
 describe('Autocomplete Tests', () => {
   test('Renders Autocomplete with placeholder', () => {
     const { getByPlaceholderText } = render(
-      <Autocomplete items={['Test', 'AnotherItem']} placeholder="Auto complete test" />,
+      <Autocomplete items={['Test', 'AnotherItem']} placeholder="Autocomplete test" />,
     );
-    expect(getByPlaceholderText('Auto complete test')).toBeInTheDocument();
+    expect(getByPlaceholderText('Autocomplete test')).toBeInTheDocument();
+  });
+
+  test('Menu opens when input is typed into and has content', () => {
+    const { getByPlaceholderText, getByText } = render(
+      <Autocomplete items={['Test', 'Another Item']} placeholder="Autocomplete test" />,
+    );
+    const input = getByPlaceholderText('Autocomplete test');
+    userEvent.type(input, 't');
+    expect(getByText('Another Item')).toBeInTheDocument();
   });
 });

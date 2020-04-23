@@ -72,7 +72,7 @@ export const CornerDialog = ({
               </DialogContent>
               <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
                 <Button
-                  buttonColor={themeContext?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
+                  buttonColor={themeContext?.theme === 'dark' ? color.darkModeLight : color.mediumdark}
                   onClick={(): void => onCloseClick()}
                 >
                   {cancelText}

@@ -1,0 +1,26 @@
+import { useState } from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from '@storybook/addon-actions';
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { Calendar } from './';
+
+<Meta title="Components / Calendar" component={Calendar} parameters={{ component: Calendar }} />
+
+# Calendar
+
+## An Calendar component
+
+## Default
+
+<Preview>
+  <Calendar />
+</Preview>
+
+## Properties
+
+<Props of={Calendar} />
+
+# Label dependents & dependencies
+
+<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Calendar} />
