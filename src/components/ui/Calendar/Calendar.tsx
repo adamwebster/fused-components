@@ -59,6 +59,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
       daysInMonth.push({
         day: d,
         date: date.format(`YYYY-${date.get('month') + 1}-${d}`),
+        timeStamp: dayjs(`${date.get('year')}-${date.get('month') + 1}-${d}`).format(),
       });
     }
 
@@ -102,7 +103,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     if (row.length > 0)
       return (
         <Week key={Math.random()}>
-          {row.map((item: { day: string; otherMonth: boolean; date: string }, index: number) => {
+          {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }, index: number) => {
             return (
               <Day
                 className={`${item.day.toString() === currentDay ? `current-day` : ''}${
@@ -114,7 +115,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                 }`}
                 key={item.day ? `day-${item.day}` : `blank-day-${index}`}
               >
-                <Button disabled={item.otherMonth} onClick={(): void => onChange(item.date)} as="a">
+                <Button disabled={item.otherMonth} onClick={(): void => onChange(item.timeStamp)} as="a">
                   {item.day}
                 </Button>
               </Day>
