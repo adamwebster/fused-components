@@ -159,7 +159,7 @@ export const Autocomplete = ({
           <Input
             value={filterValue}
             icon={inputIcon}
-            inputRef={filterRef}
+            ref={filterRef}
             onChange={(e): void => onChangeFunc(e)}
             placeholder={placeholder}
             inError={inError}
