@@ -155,7 +155,7 @@ export const Combobox = ({
           <InputStyled
             value={filterValue}
             icon={inputIcon}
-            inputRef={filterRef}
+            ref={filterRef}
             onChange={(e: { target: { value: string } }): void => filterItems(e)}
             placeholder={placeholder}
             inError={inError}

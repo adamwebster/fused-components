@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { fcStyles } from '../../../common/types';
-import { lighten } from 'polished';
+import { lighten, darken } from 'polished';
 interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
@@ -10,12 +10,11 @@ interface Props {
 }
 
 export const StyledAlert = styled.div`
-  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarker : '#fff')};
   color: ${(props): string => (props.theme === 'dark' ? color.medium : color.darker)};
 
   border-style: solid;
   border-width: 5px 1px 1px 1px;
-  border-color: ${(props: Props): string => {
+  background-color: ${(props: Props): string => {
     switch (props.fcStyle) {
       case 'danger':
         return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
@@ -26,7 +25,22 @@ export const StyledAlert = styled.div`
       case 'success':
         return color.green;
       default:
-        return props.theme === 'dark' ? color.medium : color.dark;
+        return props.theme === 'dark' ? color.medium : color.light;
+    }
+  }};
+
+  border-color: ${(props: Props): string => {
+    switch (props.fcStyle) {
+      case 'danger':
+        return props.theme === 'dark' ? color.light : darken(0.3, color.red);
+      case 'warning':
+        return color.yellow;
+      case 'info':
+        return color.blue;
+      case 'success':
+        return color.green;
+      default:
+        return props.theme === 'dark' ? color.medium : color.light;
     }
   }};
   h4 {
@@ -37,15 +51,15 @@ export const StyledAlert = styled.div`
     color: ${(props: Props): string => {
       switch (props.fcStyle) {
         case 'danger':
-          return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
+          return color.lightest;
         case 'warning':
-          return color.yellow;
+          return color.lightest;
         case 'info':
-          return color.blue;
+          return color.lightest;
         case 'success':
-          return color.green;
+          return color.lightest;
         default:
-          return props.theme === 'dark' ? color.medium : color.dark;
+          return color.dark;
       }
     }};
     svg {
@@ -69,4 +83,24 @@ export const Title = styled.span`
   display: inline-block;
 `;
 
-export const AlertContent = styled.div``;
+interface ACP {
+  fcStyle?: fcStyles;
+  theme: unknown;
+}
+
+export const AlertContent = styled.div`
+  color: ${(props: ACP): string => {
+    switch (props.fcStyle) {
+      case 'danger':
+        return color.lightest;
+      case 'warning':
+        return color.lightest;
+      case 'info':
+        return color.lightest;
+      case 'success':
+        return color.lightest;
+      default:
+        return props.theme === 'dark' ? color.medium : color.dark;
+    }
+  }};
+`;
