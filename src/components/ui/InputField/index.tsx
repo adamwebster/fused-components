@@ -23,7 +23,7 @@ export interface Props {
   /** The input type */
   type?: string;
 }
-export const InputField = React.memo(function InputField({
+export const InputField = ({
   label,
   hint,
   required = false,
@@ -31,7 +31,7 @@ export const InputField = React.memo(function InputField({
   inError = false,
   inWarning = false,
   id,
-}: Props): ReactElement {
+}: Props): ReactElement => {
   const theme = useContext(FCTheme);
   return (
     <>
@@ -44,6 +44,6 @@ export const InputField = React.memo(function InputField({
       {validationMessage && <ValidationMessage>{validationMessage}</ValidationMessage>}
     </>
   );
-});
+};
 
 InputField.displayName = 'InputField';

@@ -16,14 +16,14 @@ export interface Props {
   htmlFor?: string;
   children: ReactNode;
 }
-export const FormField = React.memo(function FormField({
+export const FormField = ({
   label,
   hint,
   required = false,
   validationMessage,
   htmlFor,
   children,
-}: Props): ReactElement {
+}: Props): ReactElement => {
   const theme = useContext(FCTheme);
 
   return (
@@ -40,6 +40,6 @@ export const FormField = React.memo(function FormField({
       {validationMessage && <ValidationMessage>{validationMessage}</ValidationMessage>}
     </FormFieldWrapper>
   );
-});
+};
 
 FormField.displayName = 'FormField';
