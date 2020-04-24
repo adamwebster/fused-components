@@ -97,7 +97,7 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
           >
             <Icon icon="times" />
           </CloseButton>
-          <LoadingBar theme={theme} timer={timer} />
+          <LoadingBar fcStyle={style} theme={theme} timer={timer} />
         </StyledToast>
       )}
     </>
