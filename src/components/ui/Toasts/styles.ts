@@ -125,14 +125,14 @@ export const CloseButton = styled.button`
   box-sizing: border-box;
   padding: 0;
   border: none;
-  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
+  color: ${color.medium};
   background-color: transparent;
   position: absolute;
   top: 15px;
   right: 15px;
   cursor: pointer;
   &:hover {
-    color: ${color.dark};
+    color: ${color.light};
   }
   svg {
     color: inherit;
