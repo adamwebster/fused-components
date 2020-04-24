@@ -1,6 +1,6 @@
 import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, ThemedStyledProps } from 'styled-components';
 import { color } from '../../../styles/styles';
-import { darken, lighten } from 'polished';
+import { darken } from 'polished';
 import { Props } from './';
 import { fcStyles } from '../../../common/types';
 import { RefObject } from 'react';
@@ -13,13 +13,13 @@ interface ColorProps {
 const colorValue = (props: ColorProps): string => {
   switch (props.fcStyle) {
     case 'danger':
-      return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
+      return color.danger;
     case 'warning':
-      return color.yellow;
+      return color.warning;
     case 'info':
-      return color.blue;
+      return color.info;
     case 'success':
-      return color.green;
+      return color.success;
     default:
       return props.buttonColor || color.primary;
   }
@@ -28,13 +28,13 @@ const colorValue = (props: ColorProps): string => {
 const colorValueDarken = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
-      return darken(0.1, color.red);
+      return darken(0.1, color.danger);
     case 'warning':
-      return darken(0.1, color.yellow);
+      return darken(0.1, color.warning);
     case 'info':
-      return darken(0.1, color.blue);
+      return darken(0.1, color.info);
     case 'success':
-      return darken(0.1, color.green);
+      return darken(0.1, color.success);
     default:
       return darken(0.1, props.buttonColor || color.primary);
   }
