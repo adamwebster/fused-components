@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Alert } from '../Alert';
 import { color } from '../../../styles/styles';
+import { lighten, darken } from 'polished';
+import { fcStyles } from '../../../common/types';
 
 interface ToastContainerInterface {
   position?: 'top' | 'bottom' | 'top-right' | 'bottom-right';
@@ -94,13 +96,27 @@ export const StyledToast = styled(Alert)<ST>`
 interface LB {
   timer: string;
   theme?: unknown;
+  fcStyle?: fcStyles;
 }
 export const LoadingBar = styled.div<LB>`
   position: relative;
   height: 5px;
   transition: all;
   margin-top: 10px;
-  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.medium)};
+  background-color: ${(props): string => {
+    switch (props.fcStyle) {
+      case 'danger':
+        return darken(0.1, color.danger);
+      case 'warning':
+        return lighten(0.2, color.warning);
+      case 'info':
+        return lighten(0.2, color.info);
+      case 'success':
+        return lighten(0.1, color.success);
+      default:
+        return props.theme === 'dark' ? color.medium : color.light;
+    }
+  }};
   width: ${(props): string => props.timer}%;
 `;
 
