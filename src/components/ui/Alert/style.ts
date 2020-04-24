@@ -17,13 +17,13 @@ export const StyledAlert = styled.div`
   background-color: ${(props: Props): string => {
     switch (props.fcStyle) {
       case 'danger':
-        return props.theme === 'dark' ? lighten(0.1, color.red) : color.red;
+        return color.danger;
       case 'warning':
-        return color.yellow;
+        return color.warning;
       case 'info':
-        return color.blue;
+        return color.info;
       case 'success':
-        return color.green;
+        return color.success;
       default:
         return props.theme === 'dark' ? color.medium : color.light;
     }
@@ -32,15 +32,15 @@ export const StyledAlert = styled.div`
   border-color: ${(props: Props): string => {
     switch (props.fcStyle) {
       case 'danger':
-        return props.theme === 'dark' ? color.light : darken(0.3, color.red);
+        return darken(0.1, color.danger);
       case 'warning':
-        return color.yellow;
+        return lighten(0.1, color.warning);
       case 'info':
-        return color.blue;
+        return lighten(0.1, color.info);
       case 'success':
-        return color.green;
+        return lighten(0.1, color.success);
       default:
-        return props.theme === 'dark' ? color.medium : color.light;
+        return color.dark;
     }
   }};
   h4 {
@@ -100,7 +100,7 @@ export const AlertContent = styled.div`
       case 'success':
         return color.lightest;
       default:
-        return props.theme === 'dark' ? color.medium : color.dark;
+        return color.dark;
     }
   }};
 `;

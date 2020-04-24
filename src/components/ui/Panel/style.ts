@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { fcStyles } from '../../../common/types';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 
 interface Props {
   /** Set the style of the badge */
@@ -12,33 +12,36 @@ interface Props {
 const colorValue = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
-      return color.red;
+      return props.theme === 'dark' ? lighten(0.1, color.danger) : color.danger;
     case 'warning':
-      return color.yellow;
+      return props.theme === 'dark' ? lighten(0.1, color.warning) : color.warning;
     case 'info':
-      return color.blue;
+      return props.theme === 'dark' ? lighten(0.3, color.info) : color.info;
     case 'success':
-      return color.green;
+      return props.theme === 'dark' ? lighten(0.1, color.success) : color.success;
     default:
-      return props.theme === 'dark' ? color.medium : color.dark;
+      if (props.theme === 'dark') {
+        return color.medium;
+      } else {
+        return color.dark;
+      }
   }
 };
 
 const borderColor = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
-      return color.red;
+      return props.theme === 'dark' ? lighten(0.1, color.danger) : color.danger;
     case 'warning':
-      return color.yellow;
+      return color.warning;
     case 'info':
-      return color.blue;
+      return color.info;
     case 'success':
-      return color.green;
+      return color.success;
     default:
       return props.theme === 'dark' ? color.darkModeMedium : color.border;
   }
 };
-
 export interface SP extends React.HTMLProps<HTMLDivElement> {
   fixed: boolean;
   position: 'left' | 'right';
