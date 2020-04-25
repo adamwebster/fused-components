@@ -1,4 +1,4 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, ThemeProps, FlattenInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { darken } from 'polished';
 
@@ -148,6 +148,7 @@ interface TBS {
   freezeFirstColumn?: boolean;
   frozenColumnWidth?: string;
   padding?: string;
+  highlightOnHover?: boolean;
 }
 export const TableBodyStyled = styled.tbody<TBS>`
   display: flex;
@@ -163,11 +164,14 @@ export const TableBodyStyled = styled.tbody<TBS>`
     css`
       color: ${props.tableBodyTextColor};
     `}
-    
-    & tr:hover {
-    background-color: ${(props): string =>
-      props.bgColor ? darken(0.1, props.bgColor) : props.theme === 'dark' ? color.darkModeMedium : color.highlight};
-  }
+    ${({ highlightOnHover, bgColor }): false | FlattenInterpolation<ThemeProps<any>> | undefined =>
+      highlightOnHover &&
+      css`
+        tr:hover {
+          background-color: ${(props): string =>
+            bgColor ? darken(0.1, bgColor) : props.theme === 'dark' ? color.darkModeMedium : color.highlight};
+        }
+      `}
 
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.freezeFirstColumn &&
