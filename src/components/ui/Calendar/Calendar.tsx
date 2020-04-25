@@ -115,9 +115,9 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                 }`}
                 key={item.day ? `day-${item.day}` : `blank-day-${index}`}
               >
-                <Button disabled={item.otherMonth} onClick={(): void => onChange(item.timeStamp)} as="a">
-                  {item.day}
-                </Button>
+                <button disabled={item.otherMonth} onClick={(): void => onChange(item.timeStamp)}>
+                  <span className="day-number">{item.day}</span>
+                </button>
               </Day>
             );
           })}
