@@ -30,7 +30,7 @@ export const Alert = ({ fcStyle, title, icon, borderRadius = '5px', children, ..
                 {icon && <Icon icon={icon} />} <Title theme={themeContext?.theme}>{title}</Title>
               </h4>
             )}
-            {children && <AlertContent>{children}</AlertContent>}
+            {children && <AlertContent fcStyle={fcStyle}>{children}</AlertContent>}
           </StyledAlert>
         </>
       )}

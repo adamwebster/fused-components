@@ -43,6 +43,7 @@ export const Autocomplete = ({
   onChange,
   onItemClick,
   clearValueOnSelect = false,
+  ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [filterValue, setFilterValue] = useState('');
@@ -158,13 +159,14 @@ export const Autocomplete = ({
           <Input
             value={filterValue}
             icon={inputIcon}
-            inputRef={filterRef}
+            ref={filterRef}
             onChange={(e): void => onChangeFunc(e)}
             placeholder={placeholder}
             inError={inError}
             inWarning={inWarning}
             disabled={disabled}
             theme={themeContext?.theme}
+            {...rest}
           />
           {menuOpen && (
             <AutocompleteMenu theme={themeContext?.theme}>

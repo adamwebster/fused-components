@@ -45,3 +45,5 @@ export const InputField = ({
     </>
   );
 };
+
+InputField.displayName = 'InputField';

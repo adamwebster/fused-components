@@ -53,48 +53,75 @@ export const SvgWrapper = styled.span`
 export const Day = styled.td`
   text-align: center;
   box-sizing: border-box;
+  position: relative;
   padding: 0;
+  vertical-align: top;
+  &.has-todos {
+    &:after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: turquoise;
+      position: absolute;
+      bottom: 5px;
+      left: 16px;
+      border-radius: 50%;
+    }
+  }
   &.current-day {
     button {
-      border: solid 2px tomato;
-      box-sizing: border-box;
-      transition: none;
-      &:hover {
-        border-color: transparent;
-        border-width: none;
+      .day-number {
+        border: solid 1px tomato;
       }
     }
   }
   &.selected-day {
-    background-color: tomato;
-    color: #fff;
+    button {
+      .day-number {
+        background-color: tomato;
+        color: #fff;
+      }
+    }
   }
   &:hover:not(.selected-day):not(.other-month) {
-    background-color: ${color.primary};
-    color: #fff;
-    cursor: pointer;
+    button {
+      .day-number {
+        background-color: ${color.primary};
+        color: #fff;
+        cursor: pointer;
+      }
+    }
   }
   &.other-month {
     color: ${color.mediumdark};
   }
   button {
-    color: inherit;
-    text-decoration: none;
-    font-size: 1em;
-    padding: 5px;
+    height: 100%;
     width: 100%;
-    border-radius: 0;
-    &:hover {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    .day-number {
+      width: 25px;
+      padding-top: 5px;
+      height: 25px;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    &:hover:not(:disabled) {
       color: #fff !important;
     }
-    &:active,
     &:focus {
-      box-sizing: border-box;
-      background-color: ${color.primary};
-      color: #fff;
+      outline: none;
+      .day-number {
+        box-sizing: border-box;
+        background-color: ${color.primary};
+        color: #fff;
+      }
     }
     &:disabled:hover {
-      color: inherit !important;
       cursor: default;
     }
   }

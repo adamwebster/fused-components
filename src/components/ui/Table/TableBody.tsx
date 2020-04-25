@@ -14,6 +14,7 @@ const TableBody = ({ children }: Props): ReactElement => {
           <TableBodyStyled
             theme={tableContext.theme}
             bgColor={tableContext.tableBgColor}
+            highlightOnHover={tableContext.highlightOnHover}
             padding={tableContext.padding}
             freezeFirstColumn={tableContext.freezeFirstColumn}
             frozenColumnWidth={tableContext.frozenColumnWidth}

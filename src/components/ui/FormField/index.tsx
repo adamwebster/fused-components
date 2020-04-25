@@ -41,3 +41,5 @@ export const FormField = ({
     </FormFieldWrapper>
   );
 };
+
+FormField.displayName = 'FormField';
