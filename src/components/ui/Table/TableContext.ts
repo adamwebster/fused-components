@@ -10,6 +10,7 @@ export interface TableInterface {
   frozenColumnWidth?: string;
   tableBgColor?: string;
   theme?: unknown;
+  highlightOnHover?: boolean;
 }
 
 export const TableContext = React.createContext<TableInterface | null>(null);

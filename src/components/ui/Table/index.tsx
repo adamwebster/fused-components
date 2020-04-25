@@ -28,6 +28,8 @@ export interface Props {
   frozenColumnBGColor?: string;
   /** Frozen column foreground(text) color */
   frozenColumnFGColor?: string;
+  /** If this is set to true then the table rows will highlight on hover */
+  highlightOnHover?: boolean;
   children: ReactNode;
 }
 
@@ -41,6 +43,7 @@ export const Table = ({
   frozenColumnWidth,
   frozenColumnBGColor,
   frozenColumnFGColor,
+  highlightOnHover = false,
 }: Props): ReactElement => {
   const themeContext = useContext(FCTheme);
 
@@ -56,6 +59,7 @@ export const Table = ({
     frozenColumnWidth,
     tableBgColor: bgColor,
     theme: themeContext?.theme,
+    highlightOnHover,
   };
   return (
     <>
