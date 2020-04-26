@@ -1,0 +1,27 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+
+import { Tooltip } from './';
+
+<Meta title="Components / Tooltip" component={Tooltip} parameters={{ component: Tooltip }}/>
+
+# Tooltip
+
+## Default
+<Preview>
+    <div style={{fontSize: 'inherit', position:'relative', top: 10+'px', margin: 10+'px',}}>
+    <Tooltip content={"Hello World"}>
+        Hello
+    </Tooltip>
+    </div>
+</Preview>
+
+
+## Properties
+
+<Props of={Tooltip} />
+
+# Tooltip dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Tooltip} />
