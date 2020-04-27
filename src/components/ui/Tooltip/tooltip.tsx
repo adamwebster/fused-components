@@ -98,7 +98,7 @@ export const Tooltip = ({ children, content, targetElementId = '' }: Props): Rea
     setToolTipVisible(false);
   };
   return (
-    <ToolTipWrapper onMouseOver={(): void => showTooltip()} onMouseOut={(): void => hideTooltip()} ref={ref}>
+    <ToolTipWrapper onMouseOver={(): void => showTooltip()} onMouseLeave={(): void => hideTooltip()} ref={ref}>
       <TooltipPopover
         targetElementId={targetElementId}
         targetElement={target}
