@@ -17,7 +17,7 @@ export const StyledTooltip = styled.div<STP>`
   white-space: nowrap;
   border-radius: 5px;
   ${({ divHeight }): FlattenSimpleInterpolation => css`
-    top: -${divHeight + 5}px;
+    top: ${divHeight - 5}px;
   `};
   ${({ leftPosition }): FlattenSimpleInterpolation => css`
     left: ${leftPosition}px;
