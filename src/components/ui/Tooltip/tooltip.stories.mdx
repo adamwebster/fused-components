@@ -9,7 +9,8 @@ import { Tooltip } from './';
 
 # Tooltip
 
-## Attached to child element
+The tooltip component allows a tooltip to be displayed over an specific element.
+
 <Story name="Default"  parameters={{ docs: { disable: true }}}>
     <div style={{margin: 50 +'px', fontSize: 'inherit', position:'relative', top: 10+'px'}}>
     <Tooltip content={"Hello World"}>
@@ -18,7 +19,6 @@ import { Tooltip } from './';
     </div>
 </Story>
 
-## Attached to another element
 <Story name="Attached to another element"  parameters={{ docs: { disable: true }}}>
     <>
     <div style={{fontSize: 'inherit', position:'relative'}}>
@@ -30,7 +30,6 @@ import { Tooltip } from './';
     </>
 </Story>
 
-## Attached to the body element of the page
 <Story name="Attached to the body"  parameters={{ docs: { disable: true }}}>
     <div style={{width: 300 + 'px', border: 'solid 1px #ccc', padding: 10+'px', margin: 30 + 'px', height: 100+'px', overflow: 'auto'}}>
         <p>
@@ -45,7 +44,6 @@ import { Tooltip } from './';
     </div>
 </Story>
 
-## Attached to an icon 
 <Story name="Attached to an icon"  parameters={{ docs: { disable: true }}}>
     <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
         <Tooltip content="Hey I am a tooltip">
