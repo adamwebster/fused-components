@@ -22,7 +22,6 @@ const TooltipPopover = ({
 
   useEffect(() => {
     setSelf(ref.current);
-    console.log(parentRef.offsetWidth);
     window.addEventListener('scroll', function() {
       const scroll = this.scrollY;
       console.log(scroll);
@@ -73,11 +72,13 @@ const TooltipPopover = ({
 };
 interface Props {
   children?: ReactNode;
+  /** Sets the content for the popover */
   content?: ReactNode;
-  targetElementId: string;
+  /** The target element for the id if you want it to be the body just use body as the value */
+  targetElementId?: string;
 }
 
-const Tooltip = ({ children, content, targetElementId = '' }: Props): ReactElement => {
+export const Tooltip = ({ children, content, targetElementId = '' }: Props): ReactElement => {
   const [parentNode, setParentNode] = useState<any>(document.body);
   const [toolTipVisible, setToolTipVisible] = useState(false);
   const [target, setTarget] = useState<any>(null);
