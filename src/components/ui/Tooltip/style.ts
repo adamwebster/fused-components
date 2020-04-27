@@ -9,19 +9,25 @@ export const ToolTipWrapper = styled.div`
 interface STP {
   divHeight: number;
   leftPosition: number;
+  self?: any;
 }
 export const StyledTooltip = styled.div<STP>`
   padding: 10px;
+  font-size: 13px;
   box-sizing: border-box;
   position: absolute;
   white-space: nowrap;
   border-radius: 5px;
-  ${({ divHeight }): FlattenSimpleInterpolation => css`
-    top: ${divHeight - 5}px;
-  `};
-  ${({ leftPosition }): FlattenSimpleInterpolation => css`
-    left: ${leftPosition}px;
-  `};
+  ${({ divHeight, self }): FlattenSimpleInterpolation =>
+    self &&
+    css`
+      top: ${divHeight - 5}px;
+    `};
+  ${({ leftPosition, self }): FlattenSimpleInterpolation =>
+    self &&
+    css`
+      left: ${leftPosition}px;
+    `};
   background-color: ${color.dark};
   color: ${color.light};
   &:after {

@@ -2,39 +2,57 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
-
+import { Icon } from '../../icon'
 import { Tooltip } from './';
 
 <Meta title="Components / Tooltip" component={Tooltip} parameters={{ component: Tooltip }}/>
 
 # Tooltip
 
-## Default
-<Preview>
-    <div style={{fontSize: 'inherit', position:'relative', top: 10+'px', margin: 10+'px',}}>
+## Attached to child element
+<Story name="Default"  parameters={{ docs: { disable: true }}}>
+    <div style={{margin: 50 +'px', fontSize: 'inherit', position:'relative', top: 10+'px'}}>
     <Tooltip content={"Hello World"}>
         Hello
     </Tooltip>
     </div>
-</Preview>
+</Story>
 
-<Preview>
-    <div style={{fontSize: 'inherit', position:'relative', top: 10+'px', margin: 10+'px',}}>
+## Attached to another element
+<Story name="Attached to another element"  parameters={{ docs: { disable: true }}}>
+    <>
+    <div style={{fontSize: 'inherit', position:'relative'}}>
     <Tooltip targetElementId="attachHere" content={"Hello World"}>
-        Hello
+        Hello I am attached to another element
     </Tooltip>
     </div>
-    <div style={{fontSize: 'inherit', position: 'relative', width: 'fit-content'}} id="attachHere">Attach Here</div>
-</Preview>
+    <div style={{fontSize: 'inherit', position: 'relative', width: 'fit-content', top: 50+'px'}} id="attachHere">Attach Here</div>
+    </>
+</Story>
 
-
-<Preview>
-    <div style={{fontSize: 'inherit', position:'relative', top: 10+'px', margin: 10+'px',}}>
-    <Tooltip targetElementId="body" content={"Hello World"}>
-        Hello
-    </Tooltip>
+## Attached to the body element of the page
+<Story name="Attached to the body"  parameters={{ docs: { disable: true }}}>
+    <div style={{width: 300 + 'px', border: 'solid 1px #ccc', padding: 10+'px', margin: 30 + 'px', height: 100+'px', overflow: 'auto'}}>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi blandit dolor a sollicitudin suscipit. Nam in tortor dapibus, sollicitudin leo vel, consectetur diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam vel libero diam. Praesent suscipit hendrerit diam non efficitur. In feugiat arcu non ante mattis faucibus. Etiam aliquam justo ac nunc ornare, nec mollis nisl laoreet. Fusce quis nibh faucibus, blandit ipsum vitae, dignissim enim. Cras sed risus at sem commodo sodales a a orci. Cras eleifend finibus rhoncus. Etiam pulvinar, est vel suscipit varius, diam eros elementum odio, varius faucibus massa nisi et elit. In sed neque ut augue hendrerit fermentum. Cras sagittis ac metus nec dictum. Vivamus eu odio vel orci finibus pharetra. Nam bibendum vulputate nisi, vitae venenatis nibh pretium in. Nulla scelerisque euismod lorem non lobortis.
+        </p>
+        <Tooltip targetElementId="body" content={"Hello World"}>
+            Hello I am attached to the body
+        </Tooltip>
+        <p>
+            Sed a elit tincidunt, posuere odio sit amet, volutpat nunc. Morbi fringilla, nibh ut mollis faucibus, ipsum felis hendrerit sapien, et sodales felis mauris vel ligula. Mauris lorem risus, feugiat non neque quis, semper aliquet felis. Fusce ac leo quis risus congue vestibulum. Proin semper diam commodo, rhoncus lorem molestie, viverra dui. Nulla pretium molestie ultrices. Quisque mollis tortor at posuere imperdiet. Praesent malesuada lorem ut faucibus dictum. Morbi molestie rutrum lacus, vitae mattis ipsum dictum vel. 
+        </p>
     </div>
-</Preview>
+</Story>
+
+## Attached to an icon 
+<Story name="Attached to an icon"  parameters={{ docs: { disable: true }}}>
+    <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
+        <Tooltip content="Hey I am a tooltip">
+            <Icon icon="question-circle"/>  
+        </Tooltip>
+    </div>
+</Story>
 
 
 ## Properties

@@ -36,10 +36,10 @@ const TooltipPopover = ({
     return ReactDOM.createPortal(
       <StyledTooltip
         ref={ref}
-        leftPosition={self ? rect.left - self.offsetWidth / 2 : 0}
+        self={self}
+        leftPosition={self ? rect.left - self.offsetWidth / 2 + parentRef.offsetWidth / 2 : 0}
         divHeight={self ? rect.top - self.offsetHeight + scrollY : 0}
       >
-        {self && console.log(rect.top)}
         {content}
       </StyledTooltip>,
       document.body,
@@ -49,6 +49,7 @@ const TooltipPopover = ({
     return ReactDOM.createPortal(
       <StyledTooltip
         ref={ref}
+        self={self}
         leftPosition={self ? targetElement.offsetWidth / 2 - self.offsetWidth / 2 : 0}
         divHeight={self ? -self.offsetHeight : 0}
       >
@@ -61,6 +62,7 @@ const TooltipPopover = ({
     return (
       <StyledTooltip
         ref={ref}
+        self={self}
         leftPosition={self ? parentRef.offsetWidth / 2 - self.offsetWidth / 2 : 0}
         divHeight={self ? -self.offsetHeight : 0}
       >
