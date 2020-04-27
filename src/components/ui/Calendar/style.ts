@@ -1,5 +1,6 @@
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { Button } from '../Button/index';
 
 export const Table = styled.table`
   padding: 0;
@@ -29,12 +30,14 @@ export const CalendarHeader = styled.div`
 
 export const CalendarTitle = styled.div`
   flex: 1 1;
+  text-align: left;
   span {
     margin: 0;
     padding-left: 5px;
     margin-bottom: 10px;
     font-weight: normal;
-    font-size: 1.5em;
+    font-size: 20px;
+    color: ${color.darkest};
     display: inline-block;
   }
 `;
@@ -50,6 +53,11 @@ export const SvgWrapper = styled.span`
   width: 16px;
   display: block;
 `;
+
+export const CalendarControlButtons = styled(Button)`
+  font-size: 16px;
+`;
+
 export const Day = styled.td`
   text-align: center;
   box-sizing: border-box;
@@ -130,6 +138,8 @@ export const Day = styled.td`
 export const DayName = styled.th`
   text-align: center;
   padding: 5px;
+  font-size: 13px;
+  color: ${color.darkest};
   width: 14%;
   border-bottom: solid 1px ${color.medium};
 `;

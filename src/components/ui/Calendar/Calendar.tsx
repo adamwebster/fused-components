@@ -4,7 +4,6 @@ import localeData from 'dayjs/plugin/localeData';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import duration from 'dayjs/plugin/duration';
 import { Icon } from '../../icon/index';
-import { Button } from '../Button/index';
 import {
   Table,
   CalendarWrapper,
@@ -15,6 +14,7 @@ import {
   Day,
   DayName,
   Week,
+  CalendarControlButtons,
 } from './style';
 dayjs.extend(localeData);
 dayjs.extend(advancedFormat);
@@ -144,16 +144,16 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
           <span>{`${date.format('MMMM')} ${date.format('YYYY')}`}</span>
         </CalendarTitle>
         <CalendarControl>
-          <Button as="a">
-            <SvgWrapper onClick={(): void => previousMonth()}>
+          <CalendarControlButtons forwardedAs="a" onClick={(): void => previousMonth()}>
+            <SvgWrapper>
               <Icon icon="chevron-left" />
             </SvgWrapper>
-          </Button>
-          <Button as="a" onClick={(): void => nextMonth()}>
+          </CalendarControlButtons>
+          <CalendarControlButtons forwardedAs="a" onClick={(): void => nextMonth()}>
             <SvgWrapper>
               <Icon icon="chevron-right" />
             </SvgWrapper>
-          </Button>
+          </CalendarControlButtons>
         </CalendarControl>
       </CalendarHeader>
       <Table>

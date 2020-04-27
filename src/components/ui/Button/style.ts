@@ -42,8 +42,9 @@ const colorValueDarken = (props: Props): string => {
 
 export const StyledIcon = styled.span`
   background-color: rgba(0, 0, 0, 0.2);
-  padding: 5px;
   margin-right: 5px;
+  padding: 5px;
+  font-size: 14px;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;

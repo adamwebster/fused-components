@@ -1,23 +1,19 @@
-import React from "react";
-import { DarkModeWrapper } from "../common/styles";
-import { ThemeProvider } from "styled-components";
-import { Button } from "../components/ui/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { DarkModeWrapper } from '../common/styles';
+import { ThemeProvider } from 'styled-components';
+import { Button } from '../components/ui/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ButtonDarkMode = () => {
   return (
-    <ThemeProvider theme={{ theme: "dark" }}>
+    <ThemeProvider theme={{ theme: 'dark' }}>
       <DarkModeWrapper>
         <Button>Button</Button>
         <Button primary>Button</Button>
         <Button isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner" />}>
           Button
         </Button>
-        <Button
-          primary
-          isLoading
-          loadingIcon={<FontAwesomeIcon spin icon="spinner" />}
-        >
+        <Button primary isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner" />}>
           Button
         </Button>
         <Button as="a">Button</Button>

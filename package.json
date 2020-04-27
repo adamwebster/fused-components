@@ -1,6 +1,6 @@
 {
   "name": "@adamwebster/fused-components",
-  "version": "1.2.0-beta.15",
+  "version": "1.2.0-beta.17",
   "author": "Adam Webster",
   "repository": "https://github.com/adamwebster/fused-components",
   "homepage": "https://design.adamwebster.me",
@@ -9,11 +9,10 @@
   "license": "MIT",
   "types": "dist/types/components.d.ts",
   "dependencies": {
-    "@types/react-test-renderer": "^16.9.2",
-    "dayjs": "^1.8.24",
     "styled-components": "^5.0.1"
   },
   "peerDependencies": {
+    "dayjs": "^1.8.24",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
@@ -69,10 +68,12 @@
     "@types/node": "^13.7.2",
     "@types/react": "^16.9.20",
     "@types/react-dom": "^16.9.5",
+    "@types/react-test-renderer": "^16.9.2",
     "@types/styled-components": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "@typescript-eslint/parser": "^2.23.0",
     "babel-loader": "^8.0.6",
+    "dayjs": "^1.8.24",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",

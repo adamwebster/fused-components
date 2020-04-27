@@ -20,7 +20,7 @@ const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) =
       menuRef.current !== test?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode &&
       menuRef.current !== test?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode
     ) {
-      setMenuOpen(false);
+      setMenuOpen(true);
     }
   };
 
