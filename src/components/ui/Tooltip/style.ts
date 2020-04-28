@@ -1,9 +1,64 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, FlattenInterpolation, ThemedStyledProps } from 'styled-components';
 import { color } from '../../../styles/styles';
 
 interface TTWProps {
   trigger: string;
 }
+
+const arrowIconPosition = (props: STP) => {
+  switch (props.position) {
+    case 'top':
+      return `${color.dark} transparent transparent transparent`;
+    case 'right':
+      return `transparent ${color.dark} transparent transparent`;
+    default:
+      return `${color.dark} transparent transparent transparent`;
+  }
+};
+
+const arrowLeftPosition = (props: STP) => {
+  switch (props.position) {
+    case 'top':
+      return `50%`;
+    case 'right':
+      return `-5px`;
+    default:
+      return `50%`;
+  }
+};
+
+const arrowTopPosition = (props: STP) => {
+  switch (props.position) {
+    case 'top':
+      return `100%`;
+    case 'right':
+      return `calc(50% - 5px)`;
+    default:
+      return `100%`;
+  }
+};
+
+const tooltipTopPosition = (props: STP) => {
+  switch (props.position) {
+    case 'top':
+      return `${props.divHeight - 5}px`;
+    case 'right':
+      return `${props.divHeight / 2 + 7}px`;
+    default:
+      return `${props.divHeight - 5}px`;
+  }
+};
+
+const tooltipLeftPosition = (props: STP) => {
+  switch (props.position) {
+    case 'top':
+      return `${props.leftPosition}px`;
+    case 'right':
+      return `${props.leftPosition}px`;
+    default:
+      return `${props.leftPosition}px`;
+  }
+};
 export const ToolTipWrapper = styled.div<TTWProps>`
   position: relative;
   width: fit-content;
@@ -18,24 +73,15 @@ interface STP {
   divHeight: number;
   leftPosition?: number;
   self?: any;
+  position?: string;
 }
 export const StyledTooltip = styled.div<STP>`
   @keyframes fadeInTooltip {
     0% {
       opacity: 0;
-      ${({ divHeight, self }): FlattenSimpleInterpolation =>
-        self &&
-        css`
-          top: ${divHeight}px;
-        `};
     }
     100% {
       opacity: 1;
-      ${({ divHeight, self }): FlattenSimpleInterpolation =>
-        self &&
-        css`
-          top: ${divHeight - 5}px;
-        `};
     }
   }
   animation: 0.2s ease-in-out 0s 1 fadeInTooltip;
@@ -46,26 +92,26 @@ export const StyledTooltip = styled.div<STP>`
   position: absolute;
   white-space: nowrap;
   border-radius: 5px;
-  ${({ divHeight, self }): FlattenSimpleInterpolation =>
+  ${({ self }): FlattenInterpolation<ThemedStyledProps<STP, any>> =>
     self &&
     css`
-      top: ${divHeight - 5}px;
+      top: ${tooltipTopPosition};
     `};
-  ${({ leftPosition, self }): FlattenSimpleInterpolation =>
+  ${({ self }): FlattenInterpolation<ThemedStyledProps<STP, any>> =>
     self &&
     css`
-      left: ${leftPosition}px;
+      left: ${tooltipLeftPosition};
     `};
   background-color: ${color.dark};
   color: ${color.light};
   &:after {
     content: ' ';
     position: absolute;
-    top: 100%; /* At the bottom of the tooltip */
-    left: 50%;
+    top: ${arrowTopPosition}; /* At the bottom of the tooltip */
+    left: ${arrowLeftPosition};
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: ${color.dark} transparent transparent transparent;
+    border-color: ${arrowIconPosition};
   }
 `;

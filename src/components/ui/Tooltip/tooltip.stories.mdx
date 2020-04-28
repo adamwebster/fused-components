@@ -13,7 +13,7 @@ The tooltip help information related to the thing that is being hovered over.
 
 <Story name="Default"  parameters={{ docs: { disable: true }}}>
     <div style={{margin: 50 +'px', fontSize: 'inherit', position:'relative', top: 10+'px'}}>
-    <Tooltip content={"Hello World"}>
+    <Tooltip content={"Hello World"} position="right">
         Hello
     </Tooltip>
     </div>
@@ -22,7 +22,7 @@ The tooltip help information related to the thing that is being hovered over.
 <Story name="Attached to another element"  parameters={{ docs: { disable: true }}}>
     <>
     <div style={{fontSize: 'inherit', position:'relative'}}>
-    <Tooltip targetElementId="attachHere" content={"Hello World"}>
+    <Tooltip targetElementId="attachHere"  position="right" content={"Hello World"}>
         Hello I am attached to another element
     </Tooltip>
     </div>
@@ -35,7 +35,7 @@ The tooltip help information related to the thing that is being hovered over.
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi blandit dolor a sollicitudin suscipit. Nam in tortor dapibus, sollicitudin leo vel, consectetur diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam vel libero diam. Praesent suscipit hendrerit diam non efficitur. In feugiat arcu non ante mattis faucibus. Etiam aliquam justo ac nunc ornare, nec mollis nisl laoreet. Fusce quis nibh faucibus, blandit ipsum vitae, dignissim enim. Cras sed risus at sem commodo sodales a a orci. Cras eleifend finibus rhoncus. Etiam pulvinar, est vel suscipit varius, diam eros elementum odio, varius faucibus massa nisi et elit. In sed neque ut augue hendrerit fermentum. Cras sagittis ac metus nec dictum. Vivamus eu odio vel orci finibus pharetra. Nam bibendum vulputate nisi, vitae venenatis nibh pretium in. Nulla scelerisque euismod lorem non lobortis.
         </p>
-        <Tooltip targetElementId="body" content={"Hello World"}>
+        <Tooltip position="right" targetElementId="body" content={"Hello World"}>
             Hello I am attached to the body
         </Tooltip>
         <p>
@@ -52,6 +52,14 @@ The tooltip help information related to the thing that is being hovered over.
     </div>
 </Story>
 
+<Story name="Attached to an icon and forced to be visible"  parameters={{ docs: { disable: true }}}>
+    <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
+        <Tooltip visible content="Hey I am a tooltip">
+            <Icon icon="question-circle"/>  
+        </Tooltip>
+    </div>
+</Story>
+
 <Story name="Attached to an icon trigger on click"  parameters={{ docs: { disable: true }}}>
     <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
         <Tooltip trigger="click" content="Hey I am a tooltip">
@@ -60,6 +68,14 @@ The tooltip help information related to the thing that is being hovered over.
     </div>
 </Story>
 
+
+<Story name="Attached to an icon and forced to be visible postioned to the right"  parameters={{ docs: { disable: true }}}>
+    <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
+        <Tooltip position="right" visible content="Hey I am a tooltip">
+            <Icon icon="question-circle"/>  
+        </Tooltip>
+    </div>
+</Story>
 
 ## Properties
 

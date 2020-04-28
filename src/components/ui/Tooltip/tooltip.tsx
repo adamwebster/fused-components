@@ -8,6 +8,7 @@ interface TooltipPopoverProps {
   toolTipVisible: boolean;
   targetElement: HTMLElement | null;
   targetElementId: string;
+  position: string;
 }
 const TooltipPopover = ({
   parentRef,
@@ -15,10 +16,12 @@ const TooltipPopover = ({
   targetElement,
   targetElementId,
   toolTipVisible,
+  position = 'top',
 }: TooltipPopoverProps): ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
   const [self, setSelf] = useState<any>(null);
   const [scrollY, setScrollY] = useState<number>(0);
+  const rect = parentRef.getBoundingClientRect();
 
   useEffect(() => {
     setSelf(ref.current);
@@ -28,15 +31,57 @@ const TooltipPopover = ({
     });
   }, [toolTipVisible]);
 
-  if (targetElementId === 'body') {
-    const rect = parentRef.getBoundingClientRect();
+  let leftPosition = 0;
+  let divHeight = 0;
+  if (self) {
+    divHeight = -self.offsetHeight;
+    if (targetElementId === 'body') {
+      switch (position) {
+        case 'top':
+          leftPosition = rect.left - self.offsetWidth / 2 + parentRef.offsetWidth / 2;
+          divHeight = rect.top - self.offsetHeight + scrollY;
+          break;
+        case 'right':
+          leftPosition = rect.left + parentRef.offsetWidth + 7;
+          divHeight = rect.top - self.offsetHeight + scrollY;
+          break;
+        default:
+          leftPosition = rect.left - self.offsetWidth / 2 + parentRef.offsetWidth / 2;
+          divHeight = rect.top - self.offsetHeight + scrollY;
+      }
+    } else if (targetElement !== null) {
+      switch (position) {
+        case 'top':
+          leftPosition = targetElement.offsetWidth / 2 - self.offsetWidth / 2;
+          break;
+        case 'right':
+          leftPosition = targetElement.offsetWidth + 7;
+          break;
+        default:
+          leftPosition = targetElement.offsetWidth / 2 - self.offsetWidth / 2;
+      }
+    } else {
+      switch (position) {
+        case 'top':
+          leftPosition = parentRef.offsetWidth / 2 - self.offsetWidth / 2;
+          break;
+        case 'right':
+          leftPosition = parentRef.offsetWidth + 7;
+          break;
+        default:
+          leftPosition = parentRef.offsetWidth / 2 - self.offsetWidth / 2;
+      }
+    }
+  }
 
+  if (targetElementId === 'body') {
     return ReactDOM.createPortal(
       <StyledTooltip
         ref={ref}
         self={self}
-        leftPosition={self ? rect.left - self.offsetWidth / 2 + parentRef.offsetWidth / 2 : 0}
-        divHeight={self ? rect.top - self.offsetHeight + scrollY : 0}
+        leftPosition={self ? leftPosition : 0}
+        divHeight={self ? divHeight : 0}
+        position={position}
       >
         {content}
       </StyledTooltip>,
@@ -48,8 +93,9 @@ const TooltipPopover = ({
       <StyledTooltip
         ref={ref}
         self={self}
-        leftPosition={self ? targetElement.offsetWidth / 2 - self.offsetWidth / 2 : 0}
-        divHeight={self ? -self.offsetHeight : 0}
+        leftPosition={self ? leftPosition : 0}
+        divHeight={self ? divHeight : 0}
+        position={position}
       >
         {content}
       </StyledTooltip>,
@@ -61,8 +107,9 @@ const TooltipPopover = ({
     <StyledTooltip
       ref={ref}
       self={self}
-      leftPosition={self ? parentRef.offsetWidth / 2 - self.offsetWidth / 2 : 0}
-      divHeight={self ? -self.offsetHeight : 0}
+      leftPosition={leftPosition}
+      divHeight={self ? divHeight : 0}
+      position={position}
     >
       {content}
     </StyledTooltip>
@@ -76,9 +123,18 @@ interface Props {
   /** The target element for the id if you want it to be the body just use body as the value */
   targetElementId?: string;
   trigger?: string;
+  visible?: boolean;
+  position?: string;
 }
 
-export const Tooltip = ({ children, content, targetElementId = '', trigger }: Props): ReactElement => {
+export const Tooltip = ({
+  children,
+  content,
+  targetElementId = '',
+  trigger,
+  visible = false,
+  position = 'top',
+}: Props): ReactElement => {
   const [parentNode, setParentNode] = useState<any>(document.body);
   const [toolTipVisible, setToolTipVisible] = useState(false);
   const [target, setTarget] = useState<any>(null);
@@ -89,13 +145,18 @@ export const Tooltip = ({ children, content, targetElementId = '', trigger }: Pr
     if (targetElementId) {
       setTarget(document.getElementById(targetElementId));
     }
+    if (visible) {
+      setToolTipVisible(true);
+    }
   }, []);
 
   const showTooltip = (): void => {
     setToolTipVisible(true);
   };
   const hideTooltip = (): void => {
-    setToolTipVisible(false);
+    if (!visible) {
+      setToolTipVisible(false);
+    }
   };
 
   let triggerProps: any = {
@@ -116,6 +177,7 @@ export const Tooltip = ({ children, content, targetElementId = '', trigger }: Pr
           toolTipVisible={toolTipVisible}
           content={content}
           parentRef={parentNode}
+          position={position}
         />
       )}
       {children}
