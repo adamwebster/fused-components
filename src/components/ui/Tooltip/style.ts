@@ -20,6 +20,26 @@ interface STP {
   self?: any;
 }
 export const StyledTooltip = styled.div<STP>`
+  @keyframes fadeInTooltip {
+    0% {
+      opacity: 0;
+      ${({ divHeight, self }): FlattenSimpleInterpolation =>
+        self &&
+        css`
+          top: ${divHeight}px;
+        `};
+    }
+    100% {
+      opacity: 1;
+      ${({ divHeight, self }): FlattenSimpleInterpolation =>
+        self &&
+        css`
+          top: ${divHeight - 5}px;
+        `};
+    }
+  }
+  animation: 0.2s ease-in-out 0s 1 fadeInTooltip;
+
   padding: 10px;
   font-size: 13px;
   box-sizing: border-box;
