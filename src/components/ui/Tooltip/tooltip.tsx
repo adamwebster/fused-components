@@ -18,18 +18,17 @@ const TooltipPopover = ({
 }: TooltipPopoverProps): ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
   const [self, setSelf] = useState<any>(null);
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState<number>(0);
 
   useEffect(() => {
     setSelf(ref.current);
     window.addEventListener('scroll', function() {
       const scroll = this.scrollY;
-      console.log(scroll);
       setScrollY(scroll);
     });
   }, [toolTipVisible]);
 
-  if (targetElementId === 'body' && toolTipVisible) {
+  if (targetElementId === 'body') {
     const rect = parentRef.getBoundingClientRect();
 
     return ReactDOM.createPortal(
@@ -44,7 +43,7 @@ const TooltipPopover = ({
       document.body,
     );
   }
-  if (targetElement !== null && toolTipVisible) {
+  if (targetElement !== null) {
     return ReactDOM.createPortal(
       <StyledTooltip
         ref={ref}
@@ -57,17 +56,17 @@ const TooltipPopover = ({
       targetElement,
     );
   }
-  if (toolTipVisible)
-    return (
-      <StyledTooltip
-        ref={ref}
-        self={self}
-        leftPosition={self ? parentRef.offsetWidth / 2 - self.offsetWidth / 2 : 0}
-        divHeight={self ? -self.offsetHeight : 0}
-      >
-        {content}
-      </StyledTooltip>
-    );
+
+  return (
+    <StyledTooltip
+      ref={ref}
+      self={self}
+      leftPosition={self ? parentRef.offsetWidth / 2 - self.offsetWidth / 2 : 0}
+      divHeight={self ? -self.offsetHeight : 0}
+    >
+      {content}
+    </StyledTooltip>
+  );
   return <></>;
 };
 interface Props {
@@ -76,9 +75,10 @@ interface Props {
   content?: ReactNode;
   /** The target element for the id if you want it to be the body just use body as the value */
   targetElementId?: string;
+  trigger?: string;
 }
 
-export const Tooltip = ({ children, content, targetElementId = '' }: Props): ReactElement => {
+export const Tooltip = ({ children, content, targetElementId = '', trigger }: Props): ReactElement => {
   const [parentNode, setParentNode] = useState<any>(document.body);
   const [toolTipVisible, setToolTipVisible] = useState(false);
   const [target, setTarget] = useState<any>(null);
@@ -97,15 +97,27 @@ export const Tooltip = ({ children, content, targetElementId = '' }: Props): Rea
   const hideTooltip = (): void => {
     setToolTipVisible(false);
   };
+
+  let triggerProps: any = {
+    onMouseOver: (): void => showTooltip(),
+  };
+  if (trigger === 'click') {
+    triggerProps = {
+      onClick: (): void => showTooltip(),
+    };
+  }
+
   return (
-    <ToolTipWrapper onMouseOver={(): void => showTooltip()} onMouseLeave={(): void => hideTooltip()} ref={ref}>
-      <TooltipPopover
-        targetElementId={targetElementId}
-        targetElement={target}
-        toolTipVisible={toolTipVisible}
-        content={content}
-        parentRef={parentNode}
-      />
+    <ToolTipWrapper trigger={trigger} {...triggerProps} onMouseLeave={(): void => hideTooltip()} ref={ref}>
+      {toolTipVisible && parentNode && (
+        <TooltipPopover
+          targetElementId={targetElementId}
+          targetElement={target}
+          toolTipVisible={toolTipVisible}
+          content={content}
+          parentRef={parentNode}
+        />
+      )}
       {children}
     </ToolTipWrapper>
   );

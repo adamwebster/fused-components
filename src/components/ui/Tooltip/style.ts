@@ -1,14 +1,22 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 
-export const ToolTipWrapper = styled.div`
+interface TTWProps {
+  trigger: string;
+}
+export const ToolTipWrapper = styled.div<TTWProps>`
   position: relative;
   width: fit-content;
+  ${({ trigger }): false | FlattenSimpleInterpolation =>
+    trigger === 'click' &&
+    css`
+      cursor: pointer;
+    `}
 `;
 
 interface STP {
   divHeight: number;
-  leftPosition: number;
+  leftPosition?: number;
   self?: any;
 }
 export const StyledTooltip = styled.div<STP>`
