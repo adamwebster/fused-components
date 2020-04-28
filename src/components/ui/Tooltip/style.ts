@@ -1,81 +1,11 @@
-import styled, { css, FlattenSimpleInterpolation, FlattenInterpolation, ThemedStyledProps } from 'styled-components';
+import styled from 'styled-components';
 import { color } from '../../../styles/styles';
-
-interface TTWProps {
-  trigger: string;
-}
-
-const arrowIconPosition = (props: STP) => {
-  switch (props.position) {
-    case 'top':
-      return `${color.dark} transparent transparent transparent`;
-    case 'right':
-      return `transparent ${color.dark} transparent transparent`;
-    default:
-      return `${color.dark} transparent transparent transparent`;
-  }
-};
-
-const arrowLeftPosition = (props: STP) => {
-  switch (props.position) {
-    case 'top':
-      return `50%`;
-    case 'right':
-      return `-5px`;
-    default:
-      return `50%`;
-  }
-};
-
-const arrowTopPosition = (props: STP) => {
-  switch (props.position) {
-    case 'top':
-      return `100%`;
-    case 'right':
-      return `calc(50% - 5px)`;
-    default:
-      return `100%`;
-  }
-};
-
-const tooltipTopPosition = (props: STP) => {
-  switch (props.position) {
-    case 'top':
-      return `${props.divHeight - 5}px`;
-    case 'right':
-      return `${props.divHeight / 2 + 7}px`;
-    default:
-      return `${props.divHeight - 5}px`;
-  }
-};
-
-const tooltipLeftPosition = (props: STP) => {
-  switch (props.position) {
-    case 'top':
-      return `${props.leftPosition}px`;
-    case 'right':
-      return `${props.leftPosition}px`;
-    default:
-      return `${props.leftPosition}px`;
-  }
-};
-export const ToolTipWrapper = styled.div<TTWProps>`
+export const TooltipWrapper = styled.div`
+  display: inline-block;
   position: relative;
-  width: fit-content;
-  ${({ trigger }): false | FlattenSimpleInterpolation =>
-    trigger === 'click' &&
-    css`
-      cursor: pointer;
-    `}
 `;
 
-interface STP {
-  divHeight: number;
-  leftPosition?: number;
-  self?: any;
-  position?: string;
-}
-export const StyledTooltip = styled.div<STP>`
+export const TooltipStyled = styled.div`
   @keyframes fadeInTooltip {
     0% {
       opacity: 0;
@@ -85,33 +15,45 @@ export const StyledTooltip = styled.div<STP>`
     }
   }
   animation: 0.2s ease-in-out 0s 1 fadeInTooltip;
-
-  padding: 10px;
-  font-size: 13px;
-  box-sizing: border-box;
-  position: absolute;
-  white-space: nowrap;
-  border-radius: 5px;
-  ${({ self }): FlattenInterpolation<ThemedStyledProps<STP, any>> =>
-    self &&
-    css`
-      top: ${tooltipTopPosition};
-    `};
-  ${({ self }): FlattenInterpolation<ThemedStyledProps<STP, any>> =>
-    self &&
-    css`
-      left: ${tooltipLeftPosition};
-    `};
-  background-color: ${color.dark};
+  background: ${color.dark};
   color: ${color.light};
-  &:after {
-    content: ' ';
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+  .tooltip-arrow,
+  .tooltip-arrow::before {
     position: absolute;
-    top: ${arrowTopPosition}; /* At the bottom of the tooltip */
-    left: ${arrowLeftPosition};
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: ${arrowIconPosition};
+    width: 8px;
+    height: 8px;
+    z-index: -1;
+  }
+  .tooltip-arrow::before {
+    content: '';
+    transform: rotate(45deg);
+    background: ${color.dark};
+  }
+
+  &[data-popper-placement^='top'] {
+    .tooltip-arrow {
+      bottom: -4px;
+    }
+  }
+
+  &[data-popper-placement^='bottom'] {
+    .tooltip-arrow {
+      top: -4px;
+    }
+  }
+
+  &[data-popper-placement^='left'] {
+    .tooltip-arrow {
+      right: -4px;
+    }
+  }
+
+  &[data-popper-placement^='right'] {
+    .tooltip-arrow {
+      left: -4px;
+    }
   }
 `;

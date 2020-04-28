@@ -11,70 +11,34 @@ import Tooltip from './tooltip';
 
 The tooltip help information related to the thing that is being hovered over.
 
-<Story name="Default"  parameters={{ docs: { disable: true }}}>
-    <div style={{margin: 50 +'px', fontSize: 'inherit', position:'relative', top: 10+'px'}}>
-    <Tooltip content={"Hello World"} position="right">
-        Hello
+<Preview>
+    <Tooltip content="World">
+    Hello
+    </Tooltip>
+</Preview>
+
+<Story name="Tooltip default settings" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <div style={{padding: 150 + 'px'}}>
+    <Tooltip placement={select('Placement', ['auto', 'auto-start', 'auto-end', 'top', 'left', 'right', 'bottom', 'top-start', 'top-end', 'bottom-start', 'bottom-end', 'right-start', 'right-end', 'left-start', 'left-end'], 'auto', 'placement1')} content={"Here I am..."}>
+        Where is the tooltip
     </Tooltip>
     </div>
 </Story>
 
-<Story name="Attached to another element"  parameters={{ docs: { disable: true }}}>
-    <>
-    <div style={{fontSize: 'inherit', position:'relative'}}>
-    <Tooltip targetElementId="attachHere"  position="right" content={"Hello World"}>
-        Hello I am attached to another element
-    </Tooltip>
+
+<Story name="Tooltip attached to the body" parameters={{ docs: { disable: true }}}>
+   <>
+    <div style={{position: 'relative', display: 'inline-block', border: 'solid 1px #000', padding: 30 + 'px', overflow: 'hidden'}}>
+        <Tooltip targetElement="body" content={"Here I am..."}>
+           I am attached to the body so I will breakout of the containing element.
+        </Tooltip>
     </div>
-    <div style={{fontSize: 'inherit', position: 'relative', width: 'fit-content', top: 50+'px'}} id="attachHere">Attach Here</div>
+     <div style={{position: 'relative', display: 'inline-block', border: 'solid 1px #000', padding: 30 + 'px', overflow: 'hidden'}}>
+        <Tooltip content={"Here I am..."}>
+           I am not so I will be hidden by the containing element.
+        </Tooltip>
+    </div>
     </>
-</Story>
-
-<Story name="Attached to the body"  parameters={{ docs: { disable: true }}}>
-    <div style={{width: 300 + 'px', border: 'solid 1px #ccc', padding: 10+'px', margin: 30 + 'px', height: 100+'px', overflow: 'auto'}}>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi blandit dolor a sollicitudin suscipit. Nam in tortor dapibus, sollicitudin leo vel, consectetur diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam vel libero diam. Praesent suscipit hendrerit diam non efficitur. In feugiat arcu non ante mattis faucibus. Etiam aliquam justo ac nunc ornare, nec mollis nisl laoreet. Fusce quis nibh faucibus, blandit ipsum vitae, dignissim enim. Cras sed risus at sem commodo sodales a a orci. Cras eleifend finibus rhoncus. Etiam pulvinar, est vel suscipit varius, diam eros elementum odio, varius faucibus massa nisi et elit. In sed neque ut augue hendrerit fermentum. Cras sagittis ac metus nec dictum. Vivamus eu odio vel orci finibus pharetra. Nam bibendum vulputate nisi, vitae venenatis nibh pretium in. Nulla scelerisque euismod lorem non lobortis.
-        </p>
-        <Tooltip position="right" targetElementId="body" content={"Hello World"}>
-            Hello I am attached to the body
-        </Tooltip>
-        <p>
-            Sed a elit tincidunt, posuere odio sit amet, volutpat nunc. Morbi fringilla, nibh ut mollis faucibus, ipsum felis hendrerit sapien, et sodales felis mauris vel ligula. Mauris lorem risus, feugiat non neque quis, semper aliquet felis. Fusce ac leo quis risus congue vestibulum. Proin semper diam commodo, rhoncus lorem molestie, viverra dui. Nulla pretium molestie ultrices. Quisque mollis tortor at posuere imperdiet. Praesent malesuada lorem ut faucibus dictum. Morbi molestie rutrum lacus, vitae mattis ipsum dictum vel. 
-        </p>
-    </div>
-</Story>
-
-<Story name="Attached to an icon"  parameters={{ docs: { disable: true }}}>
-    <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
-        <Tooltip content="Hey I am a tooltip">
-            <Icon icon="question-circle"/>  
-        </Tooltip>
-    </div>
-</Story>
-
-<Story name="Attached to an icon and forced to be visible"  parameters={{ docs: { disable: true }}}>
-    <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
-        <Tooltip visible content="Hey I am a tooltip">
-            <Icon icon="question-circle"/>  
-        </Tooltip>
-    </div>
-</Story>
-
-<Story name="Attached to an icon trigger on click"  parameters={{ docs: { disable: true }}}>
-    <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
-        <Tooltip trigger="click" content="Hey I am a tooltip">
-            <Icon icon="question-circle"/>  
-        </Tooltip>
-    </div>
-</Story>
-
-
-<Story name="Attached to an icon and forced to be visible postioned to the right"  parameters={{ docs: { disable: true }}}>
-    <div style={{marginLeft: 60 + 'px', marginTop: 60 + 'px'}}>
-        <Tooltip position="right" visible content="Hey I am a tooltip">
-            <Icon icon="question-circle"/>  
-        </Tooltip>
-    </div>
 </Story>
 
 ## Properties
