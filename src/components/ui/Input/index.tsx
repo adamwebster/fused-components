@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, forwardRef } from 'react';
 import { StyledInput, InputWrapper, IconWrapper } from './style';
 import { Icon } from '../../icon';
 import { FCTheme } from '../../../theming/FCTheme';
@@ -28,7 +28,7 @@ export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   // sets if the input is in a read only mode
   readOnly?: boolean;
 }
-export const Input = React.forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
+export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
   const theme = useContext(FCTheme);
   const { ariaLabel, id, inError = false, inWarning = false, icon, readOnly = false, ...rest } = props;
   return (

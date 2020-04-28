@@ -1,11 +1,22 @@
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
-export const TooltipWrapper = styled.div`
+
+interface TWProps {
+  triggerEvent: 'click' | 'mouseOver' | undefined;
+}
+export const TooltipWrapper = styled.div<TWProps>`
   display: inline-block;
   position: relative;
+  ${({ triggerEvent }): false | FlattenSimpleInterpolation =>
+    triggerEvent === 'click' &&
+    css`
+      cursor: pointer;
+    `}
 `;
 
 export const TooltipStyled = styled.div`
+  font-size: 12px;
+  text-align: left;
   @keyframes fadeInTooltip {
     0% {
       opacity: 0;

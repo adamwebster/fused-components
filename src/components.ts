@@ -25,5 +25,6 @@ export { Textarea } from './components/ui/Textarea';
 export { ToastProvider } from './components/ui/Toasts/ToastProvider';
 export { useToast } from './components/ui/Toasts/ToastProvider';
 export { Toggle } from './components/ui/Toggle';
+export { Tooltip } from './components/ui/Tooltip';
 export { color as Colors } from './styles/styles';
 export { FCTheme, FCThemeConsumer, FCThemeProvider } from './theming/FCTheme';

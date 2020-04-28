@@ -3,7 +3,7 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { Icon } from '../../icon'
-import Tooltip from './tooltip';
+import { Tooltip } from './';
 
 <Meta title="Components / Tooltip" component={Tooltip} parameters={{ component: Tooltip }}/>
 
@@ -39,6 +39,14 @@ The tooltip help information related to the thing that is being hovered over.
         </Tooltip>
     </div>
     </>
+</Story>
+
+<Story name="Tooltip icon trigger on click" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <div>
+    <Tooltip triggerEvent="click" placement={select('Placement', ['auto', 'auto-start', 'auto-end', 'top', 'left', 'right', 'bottom', 'top-start', 'top-end', 'bottom-start', 'bottom-end', 'right-start', 'right-end', 'left-start', 'left-end'], 'auto', 'placement1')} content={"Here I am..."}>
+       <Icon icon="question-circle" />
+    </Tooltip>
+    </div>
 </Story>
 
 ## Properties

@@ -12,11 +12,21 @@ export interface Props {
   targetElement?: string;
   /** Set the placement of the tooltip */
   placement?: PopperPlacements;
+  /** The trigger event that should cause the tooltip to show.  Defaults to mouseOver.  */
+  triggerEvent?: 'click' | 'mouseOver';
+  visible?: boolean;
 }
 
-const Tooltip = ({ children, content, targetElement = '', placement = 'auto' }: Props): ReactElement => {
+export const Tooltip = ({
+  children,
+  triggerEvent,
+  content,
+  targetElement = '',
+  placement = 'auto',
+  visible = false,
+}: Props): ReactElement => {
   const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
-  const [tooltipVisible, setToolTipVisible] = useState(false);
+  const [tooltipVisible, setToolTipVisible] = useState(visible);
 
   const showTooltip = (): void => {
     setToolTipVisible(true);
@@ -25,10 +35,21 @@ const Tooltip = ({ children, content, targetElement = '', placement = 'auto' }: 
   const hideTooltip = (): void => {
     setToolTipVisible(false);
   };
+
+  let triggerProps: { onMouseOver?: () => void; onClick?: () => void } = {
+    onMouseOver: (): void => showTooltip(),
+  };
+
+  if (triggerEvent === 'click') {
+    triggerProps = {
+      onClick: (): void => showTooltip(),
+    };
+  }
   return (
     <>
       <TooltipWrapper
-        onMouseOver={(): void => showTooltip()}
+        triggerEvent={triggerEvent}
+        {...triggerProps}
         onMouseLeave={(): void => hideTooltip()}
         ref={setReferenceElement}
       >

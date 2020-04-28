@@ -8,9 +8,9 @@ interface Props {
   onChange?: (date: string) => void;
   selectedDate?: string;
 }
-const DatePicker = React.forwardRef<HTMLInputElement, Props>(
+export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
   ({ value, selectedDate, onChange = (): unknown => undefined }: Props, ref): ReactElement => {
-    const [menuOpen, setMenuOpen] = useState(true);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const changeDate = (date: string): void => {
       onChange(date);
