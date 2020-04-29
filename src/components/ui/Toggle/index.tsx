@@ -4,7 +4,7 @@ import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
   /** If the toggle is active or not */
-  active: boolean;
+  active?: boolean;
   /** Display the on and off labels */
   showLabels?: boolean;
   /** What should happen when the toggle is clicked */
@@ -22,7 +22,10 @@ export const Toggle = ({
         <ToggleWrapper
           active={active}
           theme={themeContext?.theme}
+          role="checkbox"
+          aria-checked={active}
           onClick={(e: unknown): void => {
+            console.log(1);
             onClick(e);
           }}
           {...rest}
