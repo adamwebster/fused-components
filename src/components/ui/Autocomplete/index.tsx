@@ -49,6 +49,7 @@ export const Autocomplete = ({
   const [filterValue, setFilterValue] = useState('');
   const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
+  const [activeDescendant, setActiveDescendant] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const filterRef = useRef<HTMLInputElement>(null);
   const itemRefs: Array<HTMLLIElement> = [];
@@ -69,6 +70,7 @@ export const Autocomplete = ({
     if (e.keyCode === 27) {
       if (menuOpen) {
         setMenuOpen(false);
+        setActiveDescendant('');
       }
     }
     // Down Key
@@ -76,9 +78,19 @@ export const Autocomplete = ({
       if (menuOpen) {
         if (document.activeElement !== itemRefs[0] && itemSelectedIndex < 1) {
           itemRefs[0].focus();
+          if (keyToSearch) {
+            setActiveDescendant(items[0][keyToSearch]);
+          } else {
+            setActiveDescendant(items[0]);
+          }
           setItemSelectedIndex(0);
         } else {
           itemRefs[itemSelectedIndex + 1].focus();
+          if (keyToSearch) {
+            setActiveDescendant(items[itemSelectedIndex + 1][keyToSearch]);
+          } else {
+            setActiveDescendant(items[itemSelectedIndex + 1]);
+          }
           setItemSelectedIndex(itemSelectedIndex + 1);
         }
       }
@@ -88,6 +100,12 @@ export const Autocomplete = ({
       if (menuOpen) {
         itemRefs[itemSelectedIndex - 1].focus();
         setItemSelectedIndex(itemSelectedIndex - 1);
+
+        if (keyToSearch) {
+          setActiveDescendant(items[itemSelectedIndex - 1][keyToSearch]);
+        } else {
+          setActiveDescendant(items[itemSelectedIndex - 1]);
+        }
       }
     }
   };
@@ -107,6 +125,7 @@ export const Autocomplete = ({
       } else {
         setItemsToShow(items);
         setMenuOpen(false);
+        setActiveDescendant('');
       }
     }
   };
@@ -128,6 +147,7 @@ export const Autocomplete = ({
     }
     setItemSelected(value);
     setMenuOpen(false);
+    setActiveDescendant('');
     setItemSelectedIndex(-1);
   };
 
@@ -157,6 +177,7 @@ export const Autocomplete = ({
       {(themeContext): ReactNode => (
         <AutocompleteWrapper>
           <Input
+            aria-activedescendant={activeDescendant}
             value={filterValue}
             icon={inputIcon}
             ref={filterRef}
@@ -169,12 +190,13 @@ export const Autocomplete = ({
             {...rest}
           />
           {menuOpen && (
-            <AutocompleteMenu theme={themeContext?.theme}>
+            <AutocompleteMenu role="listbox" theme={themeContext?.theme}>
               {itemFormatter ? (
                 <>
                   {itemsToShow.map((item, index) => {
                     return (
                       <MenuItemStyled
+                        role="option"
                         theme={themeContext?.theme}
                         tabIndex={0}
                         onKeyPress={(e: { charCode: number }): void => {
