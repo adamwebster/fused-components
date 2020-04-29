@@ -32,7 +32,6 @@ describe('Toggle Tests', () => {
   test('Clicking the toggle activates the toggle', () => {
     let active = false;
     const click = jest.fn(() => {
-      console.log('here');
       active = true;
     });
     const { getByRole, rerender } = render(<Toggle onClick={click} active={active} />);

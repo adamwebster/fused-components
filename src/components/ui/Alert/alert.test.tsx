@@ -3,7 +3,9 @@ import { render, cleanup } from '@testing-library/react';
 import 'jest-styled-components';
 import { Alert } from './index';
 import renderer from 'react-test-renderer';
+import { color } from '../../../styles/styles';
 import { fcStyles } from '../../../common/types';
+import { FCThemeProvider } from '../../../theming/FCTheme';
 
 afterEach(cleanup);
 
@@ -15,35 +17,12 @@ const styledAlert = (style: fcStyles) =>
       </Alert>,
     )
     .toJSON();
+
 describe('Alert Tests', () => {
-  test('Renders Alert with text', () => {
-    const { getByText } = render(<Alert>This is an alert</Alert>);
+  test('Renders Alert with text and title', () => {
+    const { getByText } = render(<Alert title="Alert Title">This is an alert</Alert>);
     expect(getByText('This is an alert')).toBeInTheDocument();
-  });
-
-  test('Alert has correct border color when no style is set', () => {
-    const container = renderer.create(<Alert>Alert</Alert>).toJSON();
-    expect(container).toHaveStyleRule('border-color', '#666666');
-  });
-
-  test('Alert has correct border color when it is an danger alert', () => {
-    const container = styledAlert('danger');
-    expect(container).toHaveStyleRule('border-color', '#dd2c2e');
-  });
-
-  test('Alert has correct border color when it is an warning alert', () => {
-    const container = styledAlert('warning');
-    expect(container).toHaveStyleRule('border-color', '#eba300');
-  });
-
-  test('Alert has correct border color when it is an success alert', () => {
-    const container = styledAlert('success');
-    expect(container).toHaveStyleRule('border-color', '#79ca4c');
-  });
-
-  test('Alert has correct border color when it is an info alert', () => {
-    const container = styledAlert('info');
-    expect(container).toHaveStyleRule('border-color', '#1c91dc');
+    expect(getByText('Alert Title')).toBeInTheDocument();
   });
 
   test('Alert has the correct icon when an icon is passed', () => {
@@ -55,5 +34,45 @@ describe('Alert Tests', () => {
 
     const icon = getByRole('img');
     expect(icon).toHaveClass('fcInfo');
+  });
+
+  test('Renders correctly with no title added', () => {
+    render(<Alert>Danger Alert </Alert>);
+  });
+
+  test('Setting the border radius to false resets the border radius', () => {
+    const container = renderer.create(<Alert borderRadius={false}>Alert</Alert>).toJSON();
+    expect(container).toHaveStyleRule('border-radius', undefined);
+  });
+
+  test('Renders the correct color the fcStyle prop is set to danger', () => {
+    const container = styledAlert('danger');
+    expect(container).toHaveStyleRule('background-color', color.danger);
+  });
+
+  test('Renders the correct color the fcStyle prop is set to warning', () => {
+    const container = styledAlert('warning');
+    expect(container).toHaveStyleRule('background-color', color.warning);
+  });
+
+  test('Renders the correct color the fcStyle prop is set to info', () => {
+    const container = styledAlert('info');
+    expect(container).toHaveStyleRule('background-color', color.info);
+  });
+
+  test('Renders the correct color the fcStyle prop is set to success', () => {
+    const container = styledAlert('success');
+    expect(container).toHaveStyleRule('background-color', color.success);
+  });
+
+  test('Text color is the correct color', () => {
+    const container = renderer
+      .create(
+        <FCThemeProvider value={{ theme: 'dark' }}>
+          <Alert borderRadius={false}>Alert</Alert>
+        </FCThemeProvider>,
+      )
+      .toJSON();
+    expect(container).toHaveStyleRule('color', color.medium);
   });
 });

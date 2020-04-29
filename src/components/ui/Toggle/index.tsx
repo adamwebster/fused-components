@@ -25,7 +25,6 @@ export const Toggle = ({
           role="checkbox"
           aria-checked={active}
           onClick={(e: unknown): void => {
-            console.log(1);
             onClick(e);
           }}
           {...rest}

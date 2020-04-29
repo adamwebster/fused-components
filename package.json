@@ -21,6 +21,7 @@
   },
   "scripts": {
     "test": "jest -c jest.config.js --watch",
+    "test:coverage": "jest -c --collectCoverage",
     "build": "rollup -c ./rollup.config.js",
     "storybook": "start-storybook -p 9009 -s public",
     "storybook-docs": "start-storybook -p 9009 -s public --docs",
@@ -62,7 +63,7 @@
     "@storybook/addon-viewport": "5.3.18",
     "@storybook/addons": "5.3.18",
     "@storybook/preset-create-react-app": "^2.0.0",
-    "@storybook/preset-typescript": "^2.1.0",
+    "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "5.3.18",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.0",

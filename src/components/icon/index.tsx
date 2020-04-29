@@ -23,6 +23,7 @@ export const Icon = ({ icon, color }: IconProps): ReactElement => {
       viewBox="0 0 48 48"
       className={icon}
     >
+      <title>{icon}</title>
       <path fill={color || 'currentColor'} d={icon && icons[icon]}></path>
     </SVGIcon>
   );
