@@ -16,13 +16,13 @@ export const StyledBadge = styled.div`
     ${(props: Props): string => {
       switch (props.fcStyle) {
         case 'danger':
-          return color.red;
+          return color.danger;
         case 'warning':
-          return color.yellow;
+          return color.warning;
         case 'info':
-          return color.blue;
+          return color.info;
         case 'success':
-          return color.green;
+          return color.success;
         default:
           return props.theme === 'dark' ? color.medium : '#333';
       }

@@ -157,7 +157,7 @@ describe('Autocomplete Tests', () => {
         description: 'Another fruit',
       },
     ];
-    const { getAllByRole, getByPlaceholderText, debug } = render(
+    const { getAllByRole, getByPlaceholderText } = render(
       <Autocomplete
         id="ac1"
         itemFormatter={(index): ReactElement => (
@@ -178,7 +178,6 @@ describe('Autocomplete Tests', () => {
     const item = getAllByRole('option');
 
     fireEvent.mouseEnter(item[0]);
-    debug();
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_0');
   });
 
