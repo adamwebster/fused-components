@@ -218,6 +218,7 @@ export const Autocomplete = ({
                         tabIndex={0}
                         id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
                         role="option"
+                        aria-selected={item === itemSelected}
                         onKeyDown={(e: { key: string }): void => handleItemKeyPress(e, item)}
                         onClick={(): void => setValue(item)}
                         onFocus={(e: any): void => {
