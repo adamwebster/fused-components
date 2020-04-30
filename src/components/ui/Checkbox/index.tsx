@@ -28,7 +28,7 @@ export const Checkbox = ({
         <label>
           <CheckInput type="checkbox" checked={checked} onChange={(): void => onChange()} />
           {checked ? (
-            <IconStyled theme={themeContext?.theme} inError={inError} inWarning={inWarning}>
+            <IconStyled theme={themeContext.theme} inError={inError} inWarning={inWarning}>
               {' '}
               <Icon icon="checkbox-checked" />
             </IconStyled>
@@ -38,7 +38,7 @@ export const Checkbox = ({
               <Icon icon="checkbox" />
             </IconStyled>
           )}
-          <Label theme={themeContext?.theme} inError={inError} inWarning={inWarning}>
+          <Label theme={themeContext.theme} inError={inError} inWarning={inWarning}>
             {children}
           </Label>
         </label>
