@@ -3,11 +3,9 @@ import { render, cleanup } from '@testing-library/react';
 import 'jest-styled-components';
 import { Badge } from './index';
 import renderer from 'react-test-renderer';
-import 'jest-styled-components';
 import { color } from '../../../styles/styles';
 import { fcStyles } from '../../../common/types';
 import { FCThemeProvider } from '../../../theming/FCTheme';
-// import { FCThemeProvider } from '../../../theming/FCTheme';
 
 afterEach(cleanup);
 

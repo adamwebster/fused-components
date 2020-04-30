@@ -40,7 +40,13 @@ export const Button = ({
   ...rest
 }: Props): ReactElement => {
   const theme = useContext(FCTheme);
-
+  let asProps = {};
+  if (as === 'a') {
+    asProps = {
+      as,
+      role: 'button',
+    };
+  }
   return (
     <StyledButton
       ref={buttonRef}
@@ -49,13 +55,13 @@ export const Button = ({
       disabled={disabled || isLoading}
       primary={primary}
       fcStyle={fcStyle}
-      theme={theme?.theme}
-      renderAs={as}
+      theme={theme.theme}
+      {...asProps}
       {...rest}
     >
       {isLoading && loadingIcon && <>{loadingIcon} </>}
       {icon && !isLoading && (
-        <StyledIcon fcStyle={fcStyle} primary={primary}>
+        <StyledIcon className="button-icon" fcStyle={fcStyle} primary={primary}>
           <Icon icon={icon} />
         </StyledIcon>
       )}
