@@ -3,7 +3,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Props } from './';
 
 export const StyledCard = styled.div`
-  border-radius: ${(props: Props): string => (props.borderRadius ? props.borderRadius : '5px')};
+  border-radius: ${(props: Props): string | undefined => props.borderRadius};
   background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarker : color.lightest)};
 
   color: ${(props): string => (props.theme === 'dark' ? color.medium : 'inherit')};

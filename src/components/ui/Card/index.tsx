@@ -11,7 +11,7 @@ export interface Props {
 export const Card = ({ borderRadius = '5px', boxShadow = false, children, ...rest }: Props): ReactElement => {
   const theme = useContext(FCTheme);
   return (
-    <StyledCard theme={theme?.theme} borderRadius={borderRadius} boxShadow={boxShadow} {...rest}>
+    <StyledCard theme={theme.theme} borderRadius={borderRadius} boxShadow={boxShadow} {...rest}>
       {children}
     </StyledCard>
   );

@@ -33,8 +33,8 @@ describe('Calendar tests', () => {
 
   test('Clicking the previous buttons has the desired effect', () => {
     const { getAllByRole } = render(<Calendar />);
-    const nextButton = getAllByRole('button')[0];
-    fireEvent.click(nextButton);
+    const prevButton = getAllByRole('button')[0];
+    fireEvent.click(prevButton);
   });
 
   test('Setting the selected day sets the correct date', () => {

@@ -137,6 +137,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   const previousMonth = (): void => {
     setDate(date.subtract(1, 'month'));
   };
+
   return (
     <CalendarWrapper calendarWidth={size}>
       <CalendarHeader>
