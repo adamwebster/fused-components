@@ -51,7 +51,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
       blankDays.push({
         day: startOfMonth.subtract(d + 1, 'day').format('D'),
         otherMonth: true,
-        date: null,
+        date: endOfMonth.subtract(d + 1, 'day').format('YYYY MM DD'),
       });
     }
 
@@ -71,7 +71,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
       blankDaysEnd.push({
         day: endOfMonth.add(i + 1, 'day').format('D'),
         otherMonth: true,
-        date: null,
+        date: endOfMonth.add(i + 1, 'day').format('YYYY MM DD'),
       });
     }
     const totalSlots = [...blankDays.reverse(), ...daysInMonth, ...blankDaysEnd];
@@ -103,7 +103,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     if (row.length > 0)
       return (
         <Week key={Math.random()}>
-          {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }, index: number) => {
+          {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }) => {
             return (
               <Day
                 className={`${item.day.toString() === currentDay ? `current-day` : ''}${
@@ -113,7 +113,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                     ? ' selected-day'
                     : ''
                 }`}
-                key={item.day ? `day-${item.day}` : `blank-day-${index}`}
+                key={item.date}
               >
                 <button disabled={item.otherMonth} onClick={(): void => onChange(item.timeStamp)}>
                   <span className="day-number">{item.day}</span>
