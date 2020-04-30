@@ -10,11 +10,15 @@ import { Autocomplete } from './';
 <Meta title="Components / Auto Complete" component={Autocomplete} parameters={{ component: Autocomplete }} />
 
 <Story name="Autocomplete" parameters={{ docs: { disable: true }}}>
-	<Autocomplete ariaLabel="Search for a fruit"/>
+	<Autocomplete
+		items={['Apple', 'Banana', 'Pear']}
+ 		ariaLabel="Search for a fruit"
+ 	/>
 </Story>
 
 ## Default
 <Autocomplete
+	items={['Apple', 'Banana', 'Pear']}
     inputIcon="filter"
     placeholder="Type to search for a fruit"
  />

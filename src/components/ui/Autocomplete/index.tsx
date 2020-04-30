@@ -32,17 +32,17 @@ export interface Props {
 }
 
 export const Autocomplete = ({
-  items = [],
+  items,
   inputIcon,
-  inError = false,
-  inWarning = false,
-  disabled = false,
+  inError,
+  inWarning,
+  disabled,
   placeholder,
   itemFormatter,
   keyToSearch,
   onChange,
   onItemClick,
-  clearValueOnSelect = false,
+  clearValueOnSelect,
   ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
@@ -51,17 +51,15 @@ export const Autocomplete = ({
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [activeDescendant, setActiveDescendant] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
-  const filterRef = useRef<HTMLInputElement>(null);
+  const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
   const itemRefs: Array<HTMLLIElement> = [];
 
   const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = items;
-      if (itemsToFormat) {
-        itemsToFormat.forEach((item, index) => {
-          item.index = index;
-        });
-      }
+      itemsToFormat.forEach((item, index) => {
+        item.index = index;
+      });
     }
   };
 
@@ -115,14 +113,12 @@ export const Autocomplete = ({
     }
 
     setMenuOpen(true);
-    if (filterRef.current) {
-      if (filterRef.current.value.length > 0) {
-        setItemsToShow(filterItemList);
-      } else {
-        setItemsToShow(items);
-        setMenuOpen(false);
-        setActiveDescendant('');
-      }
+    if (filterRef.current.value.length > 0) {
+      setItemsToShow(filterItemList);
+    } else {
+      setItemsToShow(items);
+      setMenuOpen(false);
+      setActiveDescendant('');
     }
   };
 
@@ -147,8 +143,8 @@ export const Autocomplete = ({
     setItemSelectedIndex(-1);
   };
 
-  const handleItemKeyPress = (e: { charCode: number }, item: React.SetStateAction<string>): void => {
-    if (e.charCode === 13) {
+  const handleItemKeyPress = (e: { key: string }, item: React.SetStateAction<string>): void => {
+    if (e.key === 'Enter') {
       setValue(item);
     }
   };
@@ -195,7 +191,7 @@ export const Autocomplete = ({
                         role="option"
                         theme={themeContext.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }): void => {
+                        onKeyDown={(e: { key: string }): void => {
                           handleItemKeyPress(e, item[keyToSearch as string]);
                           if (onItemClick) onItemClick(item.index);
                         }}
@@ -218,9 +214,9 @@ export const Autocomplete = ({
                   {itemsToShow.map((item, index) => {
                     return (
                       <MenuItemStyled
-                        theme={themeContext?.theme}
+                        theme={themeContext.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }): void => handleItemKeyPress(e, item)}
+                        onKeyDown={(e: { key: string }): void => handleItemKeyPress(e, item)}
                         onClick={(): void => setValue(item)}
                         key={item}
                         ref={(ref: HTMLLIElement): void => {
@@ -228,7 +224,7 @@ export const Autocomplete = ({
                         }}
                       >
                         {item === itemSelected && (
-                          <ItemIcon theme={themeContext?.theme}>
+                          <ItemIcon theme={themeContext.theme}>
                             <Icon icon="check-circle" />
                           </ItemIcon>
                         )}
@@ -238,7 +234,7 @@ export const Autocomplete = ({
                   })}
                 </>
               )}
-              {itemsToShow.length === 0 && <NoItemFound theme={themeContext?.theme}>Nothing found</NoItemFound>}
+              {itemsToShow.length === 0 && <NoItemFound theme={themeContext.theme}>Nothing found</NoItemFound>}
             </AutocompleteMenu>
           )}
         </AutocompleteWrapper>

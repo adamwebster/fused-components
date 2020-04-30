@@ -33,7 +33,7 @@ describe('Autocomplete Tests', () => {
     expect(queryByText('Another Item')).toBeFalsy();
   });
 
-  test('itemFormatter renders the menu itmes', () => {
+  test('itemFormatter renders the menu items', () => {
     const data = [
       {
         label: 'Apple',
@@ -192,8 +192,22 @@ describe('Autocomplete Tests', () => {
     userEvent.type(input, 'tes');
 
     const Option = getByText('Test');
-    fireEvent.keyPress(Option, { keyCode: 13 });
+    fireEvent.keyDown(Option, { keyCode: 13 });
     expect(input.getAttribute('value')).toBe('Test');
+  });
+
+  test('Nothing happens When any key but enter is clicked when an item is active in the list', () => {
+    const { getByText, getByPlaceholderText } = render(
+      <Autocomplete items={['Test', 'Test2']} placeholder="Autocomplete test" />,
+    );
+    const input = getByPlaceholderText('Autocomplete test');
+
+    userEvent.type(input, 'tes');
+
+    const Option = getByText('Test');
+    fireEvent.keyDown(Option, { key: 'a', keyCode: 'KeyA' });
+
+    expect(input.getAttribute('value')).toBe('tes');
   });
 
   test('When an item is selected by clicking enter the value is set when itemFormatter is used', () => {
@@ -225,7 +239,7 @@ describe('Autocomplete Tests', () => {
     userEvent.type(input, 'ap');
 
     const Option = getByText('Apple');
-    fireEvent.keyPress(Option, { keyCode: 13 });
+    fireEvent.keyDown(Option, { keyCode: 13 });
     expect(input.getAttribute('value')).toBe('Apple');
   });
 
@@ -240,14 +254,8 @@ describe('Autocomplete Tests', () => {
         description: 'Another fruit',
       },
     ];
-    let initialValue = 'test';
-    const onItemClick = () =>
-      jest.fn(() => {
-        initialValue = 'new test';
-      });
     const { getByText, getByPlaceholderText } = render(
       <Autocomplete
-        onItemClick={(): any => onItemClick()}
         itemFormatter={(index): ReactElement => (
           <div>
             <span>{data[index].label}</span> <br />
@@ -266,7 +274,78 @@ describe('Autocomplete Tests', () => {
     const Option = getByText('Apple');
     fireEvent.click(Option);
     expect(input.getAttribute('value')).toBe('Apple');
-    expect(initialValue).toBe('new test');
+  });
+
+  test('Value is returned when onItemClick is used with itemFormatter and an item is clicked', () => {
+    const data = [
+      {
+        label: 'Apple',
+        description: 'A fruit',
+      },
+      {
+        label: 'Banana',
+        description: 'Another fruit',
+      },
+    ];
+    let initialValue = 1;
+    const onItemClick = jest.fn(index => {
+      initialValue = index;
+    });
+    const { getByText, getByPlaceholderText } = render(
+      <Autocomplete
+        onItemClick={(index): any => onItemClick(index)}
+        itemFormatter={(index): ReactElement => (
+          <div>
+            <span>{data[index].label}</span> <br />
+            <span>{data[index].description}</span>
+          </div>
+        )}
+        items={data}
+        keyToSearch="label"
+        placeholder="Autocomplete test"
+      />,
+    );
+    const input = getByPlaceholderText('Autocomplete test');
+    userEvent.type(input, 'ap');
+    const Option = getByText('Apple');
+    fireEvent.click(Option);
+    expect(initialValue).toBe(0);
+  });
+
+  test('Value is returned when onItemClick is used with itemFormatter and an item is chosen using enter', () => {
+    const data = [
+      {
+        label: 'Apple',
+        description: 'A fruit',
+      },
+      {
+        label: 'Banana',
+        description: 'Another fruit',
+      },
+    ];
+    let initialValue = 1;
+    const onItemClick = jest.fn(index => {
+      initialValue = index;
+    });
+    const { getByText, getByPlaceholderText } = render(
+      <Autocomplete
+        onItemClick={(index): any => onItemClick(index)}
+        itemFormatter={(index): ReactElement => (
+          <div>
+            <span>{data[index].label}</span> <br />
+            <span>{data[index].description}</span>
+          </div>
+        )}
+        items={data}
+        keyToSearch="label"
+        placeholder="Autocomplete test"
+      />,
+    );
+    const input = getByPlaceholderText('Autocomplete test');
+    userEvent.type(input, 'ap');
+    const Option = getByText('Apple');
+    fireEvent.keyDown(Option, { keyCode: 13 });
+    expect(initialValue).toBe(0);
   });
 
   test('When no data is sent then the empty message shows', () => {
@@ -281,5 +360,18 @@ describe('Autocomplete Tests', () => {
     const { getByPlaceholderText } = render(<Autocomplete items={[]} disabled placeholder="Autocomplete test" />);
     const input = getByPlaceholderText('Autocomplete test');
     expect(input).toBeDisabled();
+  });
+
+  test('Check icon shows up for the item selected', () => {
+    const { getByPlaceholderText, getByText, getByRole } = render(
+      <Autocomplete items={['Test', 'Another Item']} placeholder="Autocomplete test" />,
+    );
+    const input = getByPlaceholderText('Autocomplete test');
+    userEvent.type(input, 't');
+    const item = getByText('Test');
+    fireEvent.click(item);
+    userEvent.type(input, ' ');
+    const svg = getByRole('img');
+    expect(svg).toHaveClass('check-circle');
   });
 });
