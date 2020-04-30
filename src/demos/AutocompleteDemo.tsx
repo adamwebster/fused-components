@@ -8,7 +8,12 @@ export const AutocompleteDemo = () => {
   return (
     <FCThemeProvider value={{ theme }}>
       <DarkModeWrapper>
-        <Autocomplete inputIcon="filter" placeholder="Search for something" items={['Apple', 'Orange', 'Banana']} />
+        <Autocomplete
+          id="ac1"
+          inputIcon="filter"
+          placeholder="Search for something"
+          items={['Apple', 'Orange', 'Banana']}
+        />
       </DarkModeWrapper>
     </FCThemeProvider>
   );
@@ -20,6 +25,7 @@ export const AutocompleteDemoFormatter = () => {
   return (
     <>
       <Autocomplete
+        id="ac2"
         onChange={() =>
           setData([
             { label: 'Apple', description: 'Apples are red and are crunchy.' },

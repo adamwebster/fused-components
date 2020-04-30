@@ -27,10 +27,11 @@ export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   theme?: unknown;
   // sets if the input is in a read only mode
   readOnly?: boolean;
+  autoComplete?: string;
 }
 export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
   const theme = useContext(FCTheme);
-  const { ariaLabel, id, inError = false, inWarning = false, icon, readOnly = false, ...rest } = props;
+  const { ariaLabel, id, inError = false, inWarning = false, icon, readOnly = false, autoComplete, ...rest } = props;
   return (
     <InputWrapper>
       {icon && (
@@ -47,6 +48,7 @@ export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => 
         aria-label={ariaLabel}
         theme={theme?.theme}
         readOnly={readOnly}
+        autoComplete={autoComplete}
         {...rest}
       />
     </InputWrapper>
