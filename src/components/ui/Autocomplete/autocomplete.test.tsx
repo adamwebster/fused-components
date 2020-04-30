@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
+import 'jest-styled-components';
 import { Autocomplete } from './index';
 import userEvent from '@testing-library/user-event';
 
@@ -239,8 +240,14 @@ describe('Autocomplete Tests', () => {
         description: 'Another fruit',
       },
     ];
+    let initialValue = 'test';
+    const onItemClick = () =>
+      jest.fn(() => {
+        initialValue = 'new test';
+      });
     const { getByText, getByPlaceholderText } = render(
       <Autocomplete
+        onItemClick={(): any => onItemClick()}
         itemFormatter={(index): ReactElement => (
           <div>
             <span>{data[index].label}</span> <br />
@@ -259,6 +266,7 @@ describe('Autocomplete Tests', () => {
     const Option = getByText('Apple');
     fireEvent.click(Option);
     expect(input.getAttribute('value')).toBe('Apple');
+    expect(initialValue).toBe('new test');
   });
 
   test('When no data is sent then the empty message shows', () => {
@@ -267,5 +275,11 @@ describe('Autocomplete Tests', () => {
 
     userEvent.type(input, 't');
     expect(getByText('Nothing found')).toBeInTheDocument();
+  });
+
+  test('Is disabled', () => {
+    const { getByPlaceholderText } = render(<Autocomplete items={[]} disabled placeholder="Autocomplete test" />);
+    const input = getByPlaceholderText('Autocomplete test');
+    expect(input).toBeDisabled();
   });
 });

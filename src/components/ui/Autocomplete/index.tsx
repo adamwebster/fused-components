@@ -32,7 +32,7 @@ export interface Props {
 }
 
 export const Autocomplete = ({
-  items = ['Apple', 'Orange', 'Banana'],
+  items = [],
   inputIcon,
   inError = false,
   inWarning = false,
@@ -66,16 +66,14 @@ export const Autocomplete = ({
   };
 
   const handleUserKeyPress = (e: { keyCode: number }): void => {
-    // Escape Key
-    if (e.keyCode === 27) {
-      if (menuOpen) {
+    if (menuOpen) {
+      // Escape Key
+      if (e.keyCode === 27) {
         setMenuOpen(false);
         setActiveDescendant('');
       }
-    }
-    // Down Key
-    if (e.keyCode === 40) {
-      if (menuOpen) {
+      // Down Key
+      if (e.keyCode === 40) {
         if (document.activeElement !== itemRefs[0] && itemSelectedIndex < 1) {
           itemRefs[0].focus();
           if (keyToSearch) {
@@ -94,10 +92,8 @@ export const Autocomplete = ({
           setItemSelectedIndex(itemSelectedIndex + 1);
         }
       }
-    }
-    // Up key
-    if (e.keyCode === 38) {
-      if (menuOpen) {
+      // Up key
+      if (e.keyCode === 38) {
         itemRefs[itemSelectedIndex - 1].focus();
         setItemSelectedIndex(itemSelectedIndex - 1);
 
@@ -186,18 +182,18 @@ export const Autocomplete = ({
             inError={inError}
             inWarning={inWarning}
             disabled={disabled}
-            theme={themeContext?.theme}
+            theme={themeContext.theme}
             {...rest}
           />
           {menuOpen && (
-            <AutocompleteMenu role="listbox" theme={themeContext?.theme}>
+            <AutocompleteMenu role="listbox" theme={themeContext.theme}>
               {itemFormatter ? (
                 <>
                   {itemsToShow.map((item, index) => {
                     return (
                       <MenuItemStyled
                         role="option"
-                        theme={themeContext?.theme}
+                        theme={themeContext.theme}
                         tabIndex={0}
                         onKeyPress={(e: { charCode: number }): void => {
                           handleItemKeyPress(e, item[keyToSearch as string]);
