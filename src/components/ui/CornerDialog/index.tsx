@@ -55,24 +55,29 @@ export const CornerDialog = ({
       {(themeContext): ReactNode => (
         <>
           {show && (
-            <CornerDialogStyled visible={visible} fcStyle={fcStyle} fixed={fixed} theme={themeContext?.theme}>
-              <DialogTitle fcStyle={fcStyle} theme={themeContext?.theme}>
+            <CornerDialogStyled visible={visible} fcStyle={fcStyle} fixed={fixed} theme={themeContext.theme}>
+              <DialogTitle fcStyle={fcStyle} theme={themeContext.theme}>
                 {title && title}
-                <CloseButton theme={themeContext?.theme} onClick={(): void => onCloseClick()} aria-label="Close">
+                <CloseButton
+                  title="Close"
+                  theme={themeContext.theme}
+                  onClick={(): void => onCloseClick()}
+                  aria-label="Close"
+                >
                   <Icon icon="times" />
                 </CloseButton>
               </DialogTitle>
-              <DialogContent theme={themeContext?.theme}>
+              <DialogContent theme={themeContext.theme}>
                 {icon && (
-                  <IconStyled theme={themeContext?.theme} fcStyle={fcStyle}>
+                  <IconStyled theme={themeContext.theme} fcStyle={fcStyle}>
                     <Icon icon={icon} />
                   </IconStyled>
                 )}
                 <DialogText>{children}</DialogText>
               </DialogContent>
-              <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
+              <DialogFooter fcStyle={fcStyle} theme={themeContext.theme}>
                 <Button
-                  buttonColor={themeContext?.theme === 'dark' ? color.darkModeLight : color.mediumdark}
+                  buttonColor={themeContext.theme === 'dark' ? color.darkModeLight : color.mediumdark}
                   onClick={(): void => onCloseClick()}
                 >
                   {cancelText}

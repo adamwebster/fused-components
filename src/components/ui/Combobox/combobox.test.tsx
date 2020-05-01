@@ -3,6 +3,9 @@ import { render, cleanup, fireEvent } from '@testing-library/react';
 import 'jest-styled-components';
 import { Combobox } from './index';
 import userEvent from '@testing-library/user-event';
+import { color } from '../../../styles/styles';
+
+import { FCThemeProvider } from '../../../theming/FCTheme';
 
 afterEach(cleanup);
 
@@ -12,6 +15,21 @@ describe('Combobox Tests', () => {
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
     );
     expect(getByPlaceholderText('Combobox test')).toBeInTheDocument();
+  });
+
+  test('Renders the Combobox component with the theme provider set to dark', () => {
+    const { getByPlaceholderText, getByRole, getByText } = render(
+      <FCThemeProvider value={{ theme: 'dark' }}>
+        <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
+      </FCThemeProvider>,
+    );
+    const input = getByPlaceholderText('Combobox test');
+    userEvent.type(input, 'test');
+    const menu = getByRole('listbox');
+    expect(menu).toHaveStyleRule('background-color', color.darkModeDark);
+    userEvent.type(input, 'testfff');
+    const noItemFound = getByText('Nothing found');
+    expect(noItemFound).toHaveStyleRule('color', color.medium);
   });
 
   test('Options show when menu is opened', () => {
@@ -204,5 +222,20 @@ describe('Combobox Tests', () => {
     userEvent.type(input, 'A');
     const checkIcon = getAllByRole('img')[0];
     expect(checkIcon).toHaveClass('check-circle');
+  });
+
+  test('Check icon shows up for the item selected in dark mode correctly', () => {
+    const { getByPlaceholderText, getByText, getAllByRole } = render(
+      <FCThemeProvider value={{ theme: 'dark' }}>
+        <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
+      </FCThemeProvider>,
+    );
+    const input = getByPlaceholderText('Combobox test');
+    userEvent.type(input, 'a');
+    const item = getByText('Apple');
+    fireEvent.mouseDown(item);
+    fireEvent.click(input);
+    const svg = getAllByRole('img')[0];
+    expect(svg).toHaveClass('check-circle');
   });
 });

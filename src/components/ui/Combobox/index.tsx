@@ -57,16 +57,16 @@ export const Combobox = ({
     }
   };
 
-  const checkIfParent = (el: HTMLElement | null, elToCompare: unknown): boolean => {
-    while (el?.parentNode) {
+  const checkIfParent = (el: HTMLElement, elToCompare: unknown): boolean => {
+    while (el.parentNode) {
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
       el = el.parentNode as HTMLElement;
       if (el === elToCompare) return true;
     }
     return false;
   };
-  const handleClickOutside = (e: MouseEvent): void => {
-    const element = e.target;
+  const handleClickOutside = (e: any): void => {
+    const element: HTMLElement = e.target;
     const test = checkIfParent(element as HTMLElement, menuRef.current);
     if (!test) {
       if (menuOpen) {
