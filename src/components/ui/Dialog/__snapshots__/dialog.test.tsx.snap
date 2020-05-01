@@ -1,0 +1,2141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mode 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #627d98;
+  border: solid 1px #627d98;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #4e6479;
+  background-color: #627d98;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #dd2c2e;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #b81e1f;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #243b53;
+  border: solid 1px #e4585a;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #e4585a;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #e4585a;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #DDDDDD;
+}
+
+.c5 {
+  border-top: solid 1px #e4585a;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #627d98;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #4e6479;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #999999;
+  border: solid 1px #999999;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #808080;
+  background-color: #999999;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #dd2c2e;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #b81e1f;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #fff;
+  border: solid 1px #dd2c2e;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #dd2c2e;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #dd2c2e;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+.c5 {
+  border-top: solid 1px #dd2c2e;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #999999;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #666666;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #627d98;
+  border: solid 1px #627d98;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #4e6479;
+  background-color: #627d98;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #205A8E;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #174064;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #243b53;
+  border: solid 1px #205A8E;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #205A8E;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #6aa7dd;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #DDDDDD;
+}
+
+.c5 {
+  border-top: solid 1px #205A8E;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #627d98;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #4e6479;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #999999;
+  border: solid 1px #999999;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #808080;
+  background-color: #999999;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #205A8E;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #174064;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #fff;
+  border: solid 1px #205A8E;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #205A8E;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #205A8E;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+.c5 {
+  border-top: solid 1px #205A8E;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #999999;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #666666;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mode 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #627d98;
+  border: solid 1px #627d98;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #4e6479;
+  background-color: #627d98;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #00844d;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #00512f;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #243b53;
+  border: solid 1px #00844d;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #00844d;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #00b76b;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #DDDDDD;
+}
+
+.c5 {
+  border-top: solid 1px #00844d;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #627d98;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #4e6479;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #999999;
+  border: solid 1px #999999;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #808080;
+  background-color: #999999;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #00844d;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #00512f;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #fff;
+  border: solid 1px #00844d;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #00844d;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #00844d;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+.c5 {
+  border-top: solid 1px #00844d;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #999999;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #666666;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mode 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #627d98;
+  border: solid 1px #627d98;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #4e6479;
+  background-color: #627d98;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #eba300;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #b88000;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #243b53;
+  border: solid 1px #eba300;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #eba300;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #ffba1f;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #DDDDDD;
+}
+
+.c5 {
+  border-top: solid 1px #eba300;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #627d98;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #4e6479;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #999999;
+  border: solid 1px #999999;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #808080;
+  background-color: #999999;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #eba300;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #b88000;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #fff;
+  border: solid 1px #eba300;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #eba300;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #eba300;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+.c5 {
+  border-top: solid 1px #eba300;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #999999;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #666666;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles for the default option | dark mode 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #627d98;
+  border: solid 1px #627d98;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #4e6479;
+  background-color: #627d98;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #4799ff;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #147dff;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #243b53;
+  border: solid 1px #627d98;
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px #627d98;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #DDDDDD;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #DDDDDD;
+}
+
+.c5 {
+  border-top: solid 1px #627d98;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #627d98;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #4e6479;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Dialog Tests Has the correct styles for the default option 1`] = `
+.c6 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #999999;
+  border: solid 1px #999999;
+}
+
+.c6:hover:not(:disabled) {
+  color: #fff;
+  border-color: #808080;
+  background-color: #999999;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c6:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c6:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c6:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c7 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: #4799ff;
+  color: #F3F3F3;
+  border: none;
+}
+
+.c7:hover:not(:disabled) {
+  background-color: #147dff;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c7:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c7:disabled {
+  background-color: #DDDDDD;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
+.c0 {
+  border-radius: 5px;
+  background-color: #fff;
+  border: solid 1px rgba(0,0,0,.1);
+  z-index: 98;
+  width: 500px;
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  -webkit-animation: popin 0.2s;
+  animation: popin 0.2s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+}
+
+.c1 {
+  border-bottom: solid 1px rgba(0,0,0,.1);
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.c1 h2 {
+  margin: 0;
+  width: calc(100% - 40px);
+  color: #666666;
+}
+
+.c4 {
+  padding: 10px;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+.c5 {
+  border-top: solid 1px rgba(0,0,0,.1);
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.c5 button {
+  display: inline-block;
+}
+
+.c5 button:last-child {
+  margin-left: 10px;
+}
+
+.c2 {
+  right: 15px;
+  top: 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #999999;
+  position: absolute;
+  cursor: pointer;
+}
+
+.c2:hover {
+  color: #666666;
+}
+
+.c2 svg {
+  width: 16px;
+}
+
+<div
+  class="c0"
+  role="dialog"
+>
+  <div
+    class="c1"
+  >
+    <h2 />
+    <button
+      aria-label="Close"
+      class="c2"
+      title="Close dialog"
+    >
+      <svg
+        class="c3 times"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        role="img"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          times
+        </title>
+        <path
+          d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="c4"
+  >
+    Dialog
+  </div>
+  <div
+    class="c5"
+  >
+    <button
+      class="c6"
+    >
+      Cancel
+    </button>
+    <button
+      class="c7"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
