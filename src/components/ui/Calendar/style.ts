@@ -1,6 +1,7 @@
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { Button } from '../Button/index';
+import { darken } from 'polished';
 
 export const Table = styled.table`
   padding: 0;
@@ -37,7 +38,7 @@ export const CalendarTitle = styled.div`
     margin-bottom: 10px;
     font-weight: normal;
     font-size: 20px;
-    color: ${color.darkest};
+    color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
     display: inline-block;
   }
 `;
@@ -111,6 +112,7 @@ export const Day = styled.td`
     align-items: center;
     background-color: transparent;
     border: none;
+    color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
     .day-number {
       width: 25px;
       padding-top: 5px;
@@ -129,6 +131,9 @@ export const Day = styled.td`
         color: #fff;
       }
     }
+    &:disabled {
+      color: ${(props): string => (props.theme === 'dark' ? darken(0.2, color.darkModeLight) : color.medium)};
+    }
     &:disabled:hover {
       cursor: default;
     }
@@ -142,6 +147,7 @@ export const DayName = styled.th`
   color: ${color.darkest};
   width: 14%;
   border-bottom: solid 1px ${color.medium};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
 `;
 
 export const Week = styled.tr``;

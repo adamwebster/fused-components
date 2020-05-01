@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { CalendarMenu } from './style';
 import { Calendar } from '../Calendar';
+import { FCTheme } from '../../../theming/FCTheme';
 
 interface Props {
   menuOpened: boolean;
@@ -10,7 +11,7 @@ interface Props {
 }
 const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) => {
   const menuRef = useRef(null);
-
+  const theme = useContext(FCTheme);
   const handleClickOutside = (e: MouseEvent): void => {
     const test = (e.target as HTMLElement).parentNode;
     if (
@@ -33,7 +34,7 @@ const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) =
   return (
     <>
       {menuOpened && (
-        <CalendarMenu ref={menuRef}>
+        <CalendarMenu theme={theme.theme} role="dialog" aria-expanded="true" ref={menuRef}>
           <Calendar onChange={date => changeDate(date)} selectedDate={value} />
         </CalendarMenu>
       )}

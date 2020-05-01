@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
@@ -16,6 +16,7 @@ import {
   Week,
   CalendarControlButtons,
 } from './style';
+import { FCTheme } from '../../../theming/FCTheme';
 dayjs.extend(localeData);
 dayjs.extend(advancedFormat);
 dayjs.extend(duration);
@@ -33,11 +34,14 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
       .weekdaysShort(),
   );
   const [currentDay, setCurrentDay] = useState('');
-
   const [calendar, setCalendar] = useState([]);
-
+  const theme = useContext(FCTheme);
   const dayNames = daysOfTheWeek.map((day: string) => {
-    return <DayName key={day}>{day}</DayName>;
+    return (
+      <DayName theme={theme.theme} key={day}>
+        {day}
+      </DayName>
+    );
   });
   const getWeeks = (): void => {
     const blankDays = [];
@@ -106,6 +110,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
           {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }) => {
             return (
               <Day
+                theme={theme.theme}
                 className={`${item.day.toString() === currentDay ? `current-day` : ''}${
                   item.otherMonth ? 'other-month' : ''
                 }${
@@ -141,7 +146,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   return (
     <CalendarWrapper calendarWidth={size}>
       <CalendarHeader>
-        <CalendarTitle>
+        <CalendarTitle theme={theme.theme}>
           <span>{`${date.format('MMMM')} ${date.format('YYYY')}`}</span>
         </CalendarTitle>
         <CalendarControl>
