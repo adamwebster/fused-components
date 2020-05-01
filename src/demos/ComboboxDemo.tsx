@@ -7,7 +7,7 @@ export const ComboboxDemo = () => {
   return (
     <FCThemeProvider value={{ theme: 'dark' }}>
       <DarkModeWrapper>
-        <Combobox inputIcon="filter" items={['Apple', 'Orange', 'Banana']} placeholder="Dark mode combobox" />
+        <Combobox id="cb2" inputIcon="filter" items={['Apple', 'Orange', 'Banana']} placeholder="Dark mode combobox" />
       </DarkModeWrapper>
     </FCThemeProvider>
   );
@@ -22,6 +22,7 @@ export const ComboboxDemoItemFormatter = () => {
 
   return (
     <Combobox
+      id="cb3"
       inputIcon="filter"
       placeholder="Dark mode combobox"
       items={data}
