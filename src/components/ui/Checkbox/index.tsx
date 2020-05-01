@@ -29,12 +29,10 @@ export const Checkbox = ({
           <CheckInput type="checkbox" checked={checked} onChange={(): void => onChange()} />
           {checked ? (
             <IconStyled theme={themeContext.theme} inError={inError} inWarning={inWarning}>
-              {' '}
               <Icon icon="checkbox-checked" />
             </IconStyled>
           ) : (
             <IconStyled inError={inError} inWarning={inWarning}>
-              {' '}
               <Icon icon="checkbox" />
             </IconStyled>
           )}

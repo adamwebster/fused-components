@@ -12,12 +12,12 @@ export const Label = styled.span<Label>`
     ${(props): false | FlattenSimpleInterpolation | undefined =>
       props.inError &&
       css`
-        color: ${color.red};
+        color: ${color.danger};
       `}
       ${(props): false | FlattenSimpleInterpolation | undefined =>
         props.inWarning &&
         css`
-          color: ${color.yellow};
+          color: ${color.warning};
         `}
       ${(props): false | FlattenSimpleInterpolation | undefined =>
         props.theme === 'dark' &&
@@ -43,12 +43,12 @@ export const IconStyled = styled.span<IconProps>`
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.inError &&
     css`
-      color: ${color.red};
+      color: ${color.danger};
     `}
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.inWarning &&
     css`
-      color: ${color.yellow};
+      color: ${color.warning};
     `}
 `;
 
