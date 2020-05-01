@@ -53,6 +53,7 @@ export const Dialog = ({
                 visible={visible}
                 fixed={fixed}
                 boxShadow={boxShadow}
+                role="dialog"
               >
                 <DialogTitle theme={themeContext?.theme} fcStyle={fcStyle}>
                   <h2>{title}</h2>
