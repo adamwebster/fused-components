@@ -44,7 +44,7 @@ export const Dialog = ({
     <>
       {visible && (
         <>
-          {showOverlay && <Overlay onClick={(): void => onCloseClick()} />}
+          {showOverlay && <Overlay data-testid="modal-overlay" onClick={(): void => onCloseClick()} />}
           <FCThemeConsumer>
             {(themeContext): ReactNode => (
               <StyledDialog

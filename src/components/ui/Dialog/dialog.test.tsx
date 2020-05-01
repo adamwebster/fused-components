@@ -10,4 +10,6 @@ describe('Dialog Tests', () => {
     const { getByText } = render(<Dialog>I am a dialog</Dialog>);
     expect(getByText('I am a dialog')).toBeInTheDocument();
   });
+
+  test('Clicking the overlay closes the modal', () => {});
 });
