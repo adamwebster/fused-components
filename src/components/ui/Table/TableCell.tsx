@@ -14,20 +14,17 @@ export interface Props {
   /** The width of the table cell */
   width?: string;
 }
-const TableCell = ({ children, bgColor, fgColor, width }: Props): ReactElement => {
+const TableCell = ({ children, width, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
       {(tableContext): ReactNode =>
         tableContext && (
           <>
             <TableCellStyled
-              fgColor={fgColor}
-              bgColor={bgColor}
               width={width}
               freezeFirstColumn={tableContext.freezeFirstColumn}
-              frozenColumnBGColor={tableContext.frozenColumnBGColor}
-              frozenColumnFGColor={tableContext.frozenColumnFGColor}
               padding={tableContext.padding}
+              {...rest}
             >
               {children}
             </TableCellStyled>

@@ -12,58 +12,46 @@ import { color } from '../../../styles/styles';
 export interface Props {
   /** Set the padding for the table */
   padding?: string;
-  /** Set if the table has zebra stripping */
-  zebraStripping?: boolean;
+  /** Set if the table has zebra Striping */
+  zebraStriping?: boolean;
   /** Set the zebra stripe color */
   zebraStripeColor?: string;
-  /** Set the background color of the table */
-  bgColor?: string;
-  /** Set the foreground color(text) of the table */
-  fgColor?: string;
   /** If the first column should be frozen */
   freezeFirstColumn?: boolean;
   /** The width of the first column */
   frozenColumnWidth?: string;
   /** Frozen column background color */
-  frozenColumnBGColor?: string;
-  /** Frozen column foreground(text) color */
-  frozenColumnFGColor?: string;
-  /** If this is set to true then the table rows will highlight on hover */
   highlightOnHover?: boolean;
   children: ReactNode;
 }
 
 export const Table = ({
   padding = '5px',
-  zebraStripping = false,
-  bgColor,
-  fgColor,
+  zebraStriping = false,
+  zebraStripeColor,
   freezeFirstColumn = false,
   children,
   frozenColumnWidth,
-  frozenColumnBGColor,
-  frozenColumnFGColor,
   highlightOnHover = false,
+  ...rest
 }: Props): ReactElement => {
   const themeContext = useContext(FCTheme);
 
-  const zebraStripeColorValue = themeContext?.theme === 'dark' ? color.darkModeDark : '#ebebeb';
+  const zebraStripeColorValue =
+    themeContext.theme === 'dark' ? color.darkModeDark : zebraStripeColor ? zebraStripeColor : '#ebebeb';
 
   const state = {
     padding,
-    frozenColumnBGColor,
-    frozenColumnFGColor,
     freezeFirstColumn,
-    zebraStripping,
+    zebraStriping,
     zebraStripeColor: zebraStripeColorValue,
     frozenColumnWidth,
-    tableBgColor: bgColor,
-    theme: themeContext?.theme,
+    theme: themeContext.theme,
     highlightOnHover,
   };
   return (
     <>
-      <StyledTable fgColor={fgColor && fgColor} bgColor={bgColor && bgColor} theme={themeContext?.theme}>
+      <StyledTable theme={themeContext.theme} {...rest}>
         <TableContextProvider value={state}>{children}</TableContextProvider>
       </StyledTable>
     </>

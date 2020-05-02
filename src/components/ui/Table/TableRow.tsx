@@ -8,16 +8,16 @@ export interface Props {
   /** Set the background color of the table row */
   bgColor?: string;
 }
-const TableRow = ({ children, bgColor }: Props): ReactElement => {
+const TableRow = ({ children, bgColor, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
       {(tableContext): ReactNode =>
         tableContext && (
           <TableRowStyled
-            theme={tableContext?.theme}
-            zebraStripping={tableContext.zebraStripping}
-            bgColor={bgColor}
+            theme={tableContext.theme}
+            zebraStriping={tableContext.zebraStriping}
             zebraStripeColor={tableContext.zebraStripeColor}
+            {...rest}
           >
             {children}
           </TableRowStyled>

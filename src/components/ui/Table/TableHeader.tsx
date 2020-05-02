@@ -13,7 +13,7 @@ export interface Props {
   bgColor?: string;
   children?: ReactNode;
 }
-const TableHeader = ({ fgColor, showBottomBorder = true, bgColor, children, ...rest }: Props): ReactElement => {
+const TableHeader = ({ showBottomBorder = true, children, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
       {(tableContext): ReactNode =>
@@ -22,8 +22,6 @@ const TableHeader = ({ fgColor, showBottomBorder = true, bgColor, children, ...r
             <TableHeaderStyled
               theme={tableContext.theme}
               showBottomBorder={showBottomBorder}
-              bgColor={bgColor}
-              fgColor={fgColor}
               padding={tableContext.padding}
               freezeFirstColumn={tableContext.freezeFirstColumn}
               frozenColumnWidth={tableContext.frozenColumnWidth}
