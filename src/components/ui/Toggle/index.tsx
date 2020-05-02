@@ -21,7 +21,7 @@ export const Toggle = ({
       {(themeContext): ReactNode => (
         <ToggleWrapper
           active={active}
-          theme={themeContext?.theme}
+          theme={themeContext.theme}
           role="checkbox"
           aria-checked={active}
           onClick={(e: unknown): void => {
@@ -29,11 +29,11 @@ export const Toggle = ({
           }}
           {...rest}
         >
-          <Slider theme={themeContext?.theme} active={active} />
+          <Slider theme={themeContext.theme} active={active} />
           {showLabels && (
             <>
-              <ToggleLabel theme={themeContext?.theme}>On</ToggleLabel>
-              <ToggleLabel theme={themeContext?.theme}>Off</ToggleLabel>
+              <ToggleLabel theme={themeContext.theme}>On</ToggleLabel>
+              <ToggleLabel theme={themeContext.theme}>Off</ToggleLabel>
             </>
           )}
         </ToggleWrapper>

@@ -2,6 +2,7 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import 'jest-styled-components';
 import { Toggle } from './index';
+import { FCThemeProvider } from '../../../theming/FCTheme';
 
 afterEach(cleanup);
 
@@ -41,5 +42,22 @@ describe('Toggle Tests', () => {
     expect(click).toHaveBeenCalledTimes(1);
     rerender(<Toggle onClick={click} active={active} />);
     expect(toggle.getAttribute('aria-checked')).toBe('true');
+  });
+  test('It renders as expected in dark mode', () => {
+    const { container } = render(
+      <FCThemeProvider value={{ theme: 'dark' }}>
+        <Toggle showLabels active={false} />
+      </FCThemeProvider>,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  test('It renders as expected in dark mode when active', () => {
+    const { container } = render(
+      <FCThemeProvider value={{ theme: 'dark' }}>
+        <Toggle showLabels active={true} />
+      </FCThemeProvider>,
+    );
+    expect(container).toMatchSnapshot();
   });
 });

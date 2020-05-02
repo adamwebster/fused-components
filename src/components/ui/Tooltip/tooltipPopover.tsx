@@ -7,15 +7,10 @@ import { TooltipStyled } from './style';
 interface Props {
   content: ReactNode;
   referenceElement?: HTMLDivElement | null;
-  targetElement: string;
-  placement: PopperPlacements;
+  targetElement?: string;
+  placement?: PopperPlacements;
 }
-const TooltipComponent = ({
-  content,
-  referenceElement,
-  targetElement = '',
-  placement = 'auto',
-}: Props): ReactElement => {
+const TooltipComponent = ({ content, referenceElement, targetElement, placement }: Props): ReactElement => {
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {

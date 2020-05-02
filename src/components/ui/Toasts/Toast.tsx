@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, ReactElement } from 'react';
+import React, { useState, useEffect, useCallback, ReactElement, useRef } from 'react';
 import { StyledToast, LoadingBar, CloseButton } from './styles';
 import { Icon } from '../../icon';
 import { fcStyles } from '../../../common/types';
@@ -20,11 +20,10 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
   const [removing, setRemoving] = useState(false);
   const [timer, setTimer] = useState('0');
   const [intervalFunc, setIntervalFunc] = useState(0);
-
+  const isMounted = useRef(true);
   const startTimer = useCallback(
     countNumber => {
       let count = countNumber;
-
       function timer(): void {
         count--;
 
@@ -36,12 +35,14 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
           countNumber = '0';
         }
         if (countNumber === '0') {
-          setRemoving(true);
-          setTimeout(() => setVisible(false), 400);
+          if (isMounted.current) {
+            setRemoving(true);
+            setTimeout(() => setVisible(false), 400);
+          }
         }
-        setTimer(countNumber);
-      }
 
+        if (isMounted.current) setTimer(countNumber);
+      }
       const counter = setInterval(timer, duration * 10); //10 will  run it every 100th of a second
 
       if (count <= 0) {
@@ -58,6 +59,11 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
     startTimer(100);
   }, [startTimer]);
 
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
   const mouseOverToast = (): void => {
     clearInterval(intervalFunc);
     const time = timer;
@@ -90,6 +96,7 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
           )}
           <CloseButton
             theme={theme}
+            title="Close Alert"
             onClick={(): void => {
               setRemoving(true);
               setTimeout(() => setVisible(false), 500);

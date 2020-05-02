@@ -14,13 +14,32 @@ export interface Props {
   borderRadius?: boolean;
   children?: ReactNode;
   className?: string;
+  onMouseOver?: () => void;
+  onMouseOut?: () => void;
 }
-export const Alert = ({ fcStyle, title, icon, borderRadius = true, children, className }: Props): ReactElement => {
+export const Alert = ({
+  fcStyle,
+  title,
+  icon,
+  borderRadius = true,
+  children,
+  className,
+  onMouseOver,
+  onMouseOut,
+}: Props): ReactElement => {
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
         <>
-          <StyledAlert theme={themeContext.theme} borderRadius={borderRadius} className={className} fcStyle={fcStyle}>
+          <StyledAlert
+            onMouseOver={(): void => onMouseOver && onMouseOver()}
+            onMouseOut={(): void => onMouseOut && onMouseOut()}
+            theme={themeContext.theme}
+            borderRadius={borderRadius}
+            className={className}
+            fcStyle={fcStyle}
+            role="alert"
+          >
             {title && (
               <h4>
                 {icon && <Icon icon={icon} />} <Title theme={themeContext.theme}>{title}</Title>
