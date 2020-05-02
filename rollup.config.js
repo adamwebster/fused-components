@@ -16,6 +16,8 @@ const globals = {
   'styled-components': 'styled',
   '@fortawesome/react-fontawesome': 'FontAwesomeIcon',
   polished: ['darken', 'lighten'],
+  '@popperjs/core': ['Placement'],
+  'react-popper': 'userPopper',
 };
 
 const globalModules = Object.keys(globals);
