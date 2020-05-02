@@ -184,7 +184,7 @@ export const Autocomplete = ({
                         role="option"
                         theme={themeContext.theme}
                         tabIndex={0}
-                        id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
+                        id={`${id.toLowerCase().replace(/\./g, '')}_option_${index}`}
                         onKeyDown={(e: any): void => {
                           handleItemKeyPress(e, item[keyToSearch as string]);
                           if (onItemClick) onItemClick(item.index);

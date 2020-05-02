@@ -142,6 +142,7 @@ export const CloseButton = styled.button`
 
 export const IconStyled = styled.div`
   margin-right: 15px;
+  font-size: 32px;
   display: block;
   svg {
     width: 32px;
