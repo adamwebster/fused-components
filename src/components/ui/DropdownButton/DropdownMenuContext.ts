@@ -2,7 +2,7 @@ import React, { RefObject } from 'react';
 
 export interface DropdownMenuInterface {
   menuOpen: boolean;
-  hideMenu: () => void;
+  hideMenu: (isMounted: boolean) => void;
   buttonEl: RefObject<HTMLButtonElement>;
   theme?: unknown;
 }

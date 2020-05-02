@@ -8,6 +8,7 @@ interface Props {
   value: string | undefined;
   changeDate: (date: string) => void;
   setMenuOpen: (value: boolean) => void;
+  ref: any;
 }
 const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) => {
   const menuRef = useRef(null);

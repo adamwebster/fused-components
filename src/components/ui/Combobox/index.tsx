@@ -45,7 +45,7 @@ export const Combobox = ({
   const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
   const itemRefs: Array<HTMLElement> = [];
   const menuRef = useRef<HTMLUListElement>(('' as unknown) as HTMLUListElement);
-
+  const isMounted = useRef(true);
   const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = initialItems;
@@ -70,8 +70,10 @@ export const Combobox = ({
     const test = checkIfParent(element as HTMLElement, menuRef.current);
     if (!test) {
       if (menuOpen) {
-        setMenuOpen(false);
-        setActiveDescendant('');
+        if (menuRef.current) {
+          setMenuOpen(false);
+          setActiveDescendant('');
+        }
       }
     }
   };
@@ -148,6 +150,12 @@ export const Combobox = ({
   useEffect(() => {
     formatItems();
   }, [menuOpen]);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current === false;
+    };
+  }, []);
   let ariaProps = {};
   if (activeDescendant) {
     ariaProps = { ...ariaProps, 'aria-activedescendant': activeDescendant };

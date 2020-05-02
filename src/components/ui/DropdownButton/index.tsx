@@ -26,8 +26,8 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
   const [menuVisible, setMenuVisible] = useState(false);
   const buttonEl = useRef<HTMLButtonElement>(null);
   const theme = useContext(FCTheme);
-  const hideMenuFunc = (): void => {
-    if (menuOpen) {
+  const hideMenuFunc = (isMounted: boolean): void => {
+    if (menuOpen && isMounted) {
       setMenuOpen(false);
       setTimeout(() => {
         setMenuVisible(false);
@@ -36,7 +36,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
   };
   const state = {
     menuOpen,
-    hideMenu: (): void => hideMenuFunc(),
+    hideMenu: (isMounted: boolean): void => hideMenuFunc(isMounted),
     buttonEl,
     theme: theme.theme,
   };
