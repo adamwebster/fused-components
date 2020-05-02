@@ -36,7 +36,7 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
       {(appContext): ReactNode =>
         appContext && (
           <>
-            <DropdownMenuStyled ref={menuRef} theme={appContext.theme} menuOpen={appContext.menuOpen}>
+            <DropdownMenuStyled role="listbox" ref={menuRef} theme={appContext.theme} menuOpen={appContext.menuOpen}>
               {children}
             </DropdownMenuStyled>
           </>

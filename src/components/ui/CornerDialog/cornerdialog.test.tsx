@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent, waitForDomChange } from '@testing-library/react';
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import 'jest-styled-components';
 import { CornerDialog } from './index';
 import { color } from '../../../styles/styles';
@@ -33,8 +33,12 @@ describe('Corner Dialog Tests', () => {
         I am a corner dialog
       </CornerDialog>,
     );
-    await waitForDomChange();
-    expect(queryByText('I am a corner dialog')).toBeFalsy();
+    await waitFor(
+      () => {
+        expect(queryByText('I am a corner dialog')).toBeFalsy();
+      },
+      { timeout: 300 },
+    );
   });
 
   test('Dialog closes on confirm click', async () => {
@@ -56,8 +60,12 @@ describe('Corner Dialog Tests', () => {
         I am a corner dialog
       </CornerDialog>,
     );
-    await waitForDomChange();
-    expect(queryByText('I am a corner dialog')).toBeFalsy();
+    await waitFor(
+      () => {
+        expect(queryByText('I am a corner dialog')).toBeFalsy();
+      },
+      { timeout: 300 },
+    );
   });
   test('Dialog closes on close button click', async () => {
     let visible = true;
@@ -78,8 +86,12 @@ describe('Corner Dialog Tests', () => {
         I am a corner dialog
       </CornerDialog>,
     );
-    await waitForDomChange();
-    expect(queryByText('I am a corner dialog')).toBeFalsy();
+    await waitFor(
+      () => {
+        expect(queryByText('I am a corner dialog')).toBeFalsy();
+      },
+      { timeout: 300 },
+    );
   });
 
   test('It renders if fixed is set to false', () => {

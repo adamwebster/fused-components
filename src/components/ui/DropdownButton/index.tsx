@@ -12,7 +12,7 @@ export interface Props {
   /** Set the button to be primary */
   primary?: boolean;
   /** Set the text for the button */
-  label: string;
+  label: any;
   /** Set the style of the button */
   fcStyle?: fcStyles;
   /** Set the color of the button */
@@ -38,7 +38,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
     menuOpen,
     hideMenu: (): void => hideMenuFunc(),
     buttonEl,
-    theme: theme?.theme,
+    theme: theme.theme,
   };
 
   const toggleMenu = (): void => {
