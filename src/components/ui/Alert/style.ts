@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { fcStyles } from '../../../common/types';
-import { lighten, darken } from 'polished';
+
 interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
@@ -13,8 +13,9 @@ export const StyledAlert = styled.div`
   color: ${(props): string => (props.theme === 'dark' ? color.medium : color.darker)};
 
   border-style: solid;
-  border-width: 5px 1px 1px 1px;
-  background-color: ${(props: Props): string => {
+  border-width: 10px 1px 1px 1px;
+  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
+  border-color: ${(props: Props): string => {
     switch (props.fcStyle) {
       case 'danger':
         return color.danger;
@@ -25,22 +26,7 @@ export const StyledAlert = styled.div`
       case 'success':
         return color.success;
       default:
-        return props.theme === 'dark' ? color.medium : color.light;
-    }
-  }};
-
-  border-color: ${(props: Props): string => {
-    switch (props.fcStyle) {
-      case 'danger':
-        return darken(0.1, color.danger);
-      case 'warning':
-        return lighten(0.1, color.warning);
-      case 'info':
-        return lighten(0.1, color.info);
-      case 'success':
-        return lighten(0.1, color.success);
-      default:
-        return color.dark;
+        return props.theme === 'dark' ? '#fff' : color.dark;
     }
   }};
   h4 {
@@ -48,26 +34,27 @@ export const StyledAlert = styled.div`
     margin-bottom: 10px;
     display: inline-flex;
     align-content: center;
+    font-size: 14px;
+  }
+  svg.notification-icon {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    margin-right: 5px;
     color: ${(props: Props): string => {
       switch (props.fcStyle) {
         case 'danger':
-          return color.lightest;
+          return color.danger;
         case 'warning':
-          return color.lightest;
+          return color.warning;
         case 'info':
-          return color.lightest;
+          return color.info;
         case 'success':
-          return color.lightest;
+          return color.success;
         default:
-          return color.dark;
+          return props.theme === 'dark' ? '#fff' : color.dark;
       }
     }};
-    svg {
-      width: 20px;
-      min-width: 20px;
-      height: 20px;
-      margin-right: 5px;
-    }
   }
   padding: 10px;
   ${(props: Props): false | FlattenSimpleInterpolation =>
@@ -89,18 +76,5 @@ interface ACP {
 }
 
 export const AlertContent = styled.div`
-  color: ${(props: ACP): string => {
-    switch (props.fcStyle) {
-      case 'danger':
-        return color.lightest;
-      case 'warning':
-        return color.lightest;
-      case 'info':
-        return color.lightest;
-      case 'success':
-        return color.lightest;
-      default:
-        return color.dark;
-    }
-  }};
+  color: ${(props: ACP): string => (props.theme === 'dark' ? '#fff' : color.dark)};
 `;

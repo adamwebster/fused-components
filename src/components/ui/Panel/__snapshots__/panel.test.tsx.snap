@@ -190,7 +190,7 @@ exports[`Panel Tests Correct styles for danger panel | Dark mode 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"
@@ -427,7 +427,7 @@ exports[`Panel Tests Correct styles for danger panel 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"
@@ -477,7 +477,7 @@ exports[`Panel Tests Correct styles for info panel | Dark mode 1`] = `
 .c0 {
   border-radius: 5px;
   background-color: #243b53;
-  border: solid 1px #205A8E;
+  border: solid 1px #2f83cf;
   color: #DDDDDD;
   box-shadow: 0 0 5px rgba(0,0,0,0.25);
   height: calc(100vh - 50px);
@@ -498,14 +498,14 @@ exports[`Panel Tests Correct styles for info panel | Dark mode 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #205A8E;
+  border-bottom: solid 1px #2f83cf;
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  color: #6aa7dd;
+  color: #abcdec;
 }
 
 .c4 {
@@ -526,7 +526,7 @@ exports[`Panel Tests Correct styles for info panel | Dark mode 1`] = `
 }
 
 .c5 {
-  border-top: solid 1px #205A8E;
+  border-top: solid 1px #2f83cf;
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -617,13 +617,13 @@ exports[`Panel Tests Correct styles for info panel | Dark mode 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #205A8E;
+  background-color: #2f83cf;
   color: #F3F3F3;
   border: none;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #174064;
+  background-color: #2669a5;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -663,7 +663,7 @@ exports[`Panel Tests Correct styles for info panel | Dark mode 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"
@@ -714,7 +714,7 @@ exports[`Panel Tests Correct styles for info panel 1`] = `
 .c0 {
   border-radius: 5px;
   background-color: #fff;
-  border: solid 1px #205A8E;
+  border: solid 1px #2f83cf;
   color: #444444;
   box-shadow: 0 0 5px rgba(0,0,0,0.25);
   height: calc(100vh - 50px);
@@ -735,14 +735,14 @@ exports[`Panel Tests Correct styles for info panel 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #205A8E;
+  border-bottom: solid 1px #2f83cf;
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  color: #205A8E;
+  color: #2f83cf;
 }
 
 .c4 {
@@ -763,7 +763,7 @@ exports[`Panel Tests Correct styles for info panel 1`] = `
 }
 
 .c5 {
-  border-top: solid 1px #205A8E;
+  border-top: solid 1px #2f83cf;
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -854,13 +854,13 @@ exports[`Panel Tests Correct styles for info panel 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #205A8E;
+  background-color: #2f83cf;
   color: #F3F3F3;
   border: none;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #174064;
+  background-color: #2669a5;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -900,7 +900,7 @@ exports[`Panel Tests Correct styles for info panel 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"
@@ -950,7 +950,7 @@ exports[`Panel Tests Correct styles for success panel | Dark mode 1`] = `
 .c0 {
   border-radius: 5px;
   background-color: #243b53;
-  border: solid 1px #00844d;
+  border: solid 1px #00b76b;
   color: #DDDDDD;
   box-shadow: 0 0 5px rgba(0,0,0,0.25);
   height: calc(100vh - 50px);
@@ -971,14 +971,14 @@ exports[`Panel Tests Correct styles for success panel | Dark mode 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #00844d;
+  border-bottom: solid 1px #00b76b;
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  color: #00b76b;
+  color: #00ea89;
 }
 
 .c4 {
@@ -999,7 +999,7 @@ exports[`Panel Tests Correct styles for success panel | Dark mode 1`] = `
 }
 
 .c5 {
-  border-top: solid 1px #00844d;
+  border-top: solid 1px #00b76b;
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -1090,13 +1090,13 @@ exports[`Panel Tests Correct styles for success panel | Dark mode 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #00844d;
+  background-color: #00b76b;
   color: #F3F3F3;
   border: none;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #00512f;
+  background-color: #00844d;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1136,7 +1136,7 @@ exports[`Panel Tests Correct styles for success panel | Dark mode 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"
@@ -1186,7 +1186,7 @@ exports[`Panel Tests Correct styles for success panel 1`] = `
 .c0 {
   border-radius: 5px;
   background-color: #fff;
-  border: solid 1px #00844d;
+  border: solid 1px #00b76b;
   color: #444444;
   box-shadow: 0 0 5px rgba(0,0,0,0.25);
   height: calc(100vh - 50px);
@@ -1207,14 +1207,14 @@ exports[`Panel Tests Correct styles for success panel 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #00844d;
+  border-bottom: solid 1px #00b76b;
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  color: #00844d;
+  color: #00b76b;
 }
 
 .c4 {
@@ -1235,7 +1235,7 @@ exports[`Panel Tests Correct styles for success panel 1`] = `
 }
 
 .c5 {
-  border-top: solid 1px #00844d;
+  border-top: solid 1px #00b76b;
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -1326,13 +1326,13 @@ exports[`Panel Tests Correct styles for success panel 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #00844d;
+  background-color: #00b76b;
   color: #F3F3F3;
   border: none;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #00512f;
+  background-color: #00844d;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1372,7 +1372,7 @@ exports[`Panel Tests Correct styles for success panel 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"
@@ -1608,7 +1608,7 @@ exports[`Panel Tests Correct styles for warning panel | Dark mode 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"
@@ -1845,7 +1845,7 @@ exports[`Panel Tests Correct styles for warning panel 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"
@@ -2081,7 +2081,7 @@ exports[`Panel Tests Setting the title prop sets the title 1`] = `
         title="Close panel"
       >
         <svg
-          class="c3 times"
+          class="c3  times"
           clip-rule="evenodd"
           fill-rule="evenodd"
           role="img"

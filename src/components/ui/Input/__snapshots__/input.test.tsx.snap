@@ -78,7 +78,7 @@ exports[`FormField Input Has the correct styles when in dark mode 1`] = `
       class="c1"
     >
       <svg
-        class="c2 check-circle"
+        class="c2  check-circle"
         clip-rule="evenodd"
         fill-rule="evenodd"
         role="img"
@@ -190,7 +190,7 @@ exports[`FormField Input Has the correct styles when in error 1`] = `
       class="c1"
     >
       <svg
-        class="c2 check-circle"
+        class="c2  check-circle"
         clip-rule="evenodd"
         fill-rule="evenodd"
         role="img"
@@ -302,7 +302,7 @@ exports[`FormField Input Has the correct styles when in warning 1`] = `
       class="c1"
     >
       <svg
-        class="c2 check-circle"
+        class="c2  check-circle"
         clip-rule="evenodd"
         fill-rule="evenodd"
         role="img"
