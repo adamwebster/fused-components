@@ -2,6 +2,7 @@ import React from 'react';
 import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import 'jest-styled-components';
 import { Tooltip } from './index';
+import { act } from 'react-dom/test-utils';
 
 afterEach(cleanup);
 
@@ -11,37 +12,45 @@ describe('Tooltip Tests', () => {
     expect(getByText('This is an tooltip')).toBeInTheDocument();
   });
 
-  test('Renders tooltip  content when visible is set to true', () => {
+  test('Renders tooltip  content when visible is set to true', async () => {
     const { getByText } = render(
       <Tooltip visible content="Hey look at me">
         This is an tooltip
       </Tooltip>,
     );
-    expect(getByText('Hey look at me')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Hey look at me')).toBeInTheDocument();
+    });
   });
 
-  test('Renders tooltip  content when visible is set to true and attached to the body', () => {
+  test('Renders tooltip  content when visible is set to true and attached to the body', async () => {
     const { getByText } = render(
       <Tooltip targetElement="body" visible content="Hey look at me">
         This is an tooltip
       </Tooltip>,
     );
-    expect(getByText('Hey look at me')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Hey look at me')).toBeInTheDocument();
+    });
   });
 
-  test('Renders tooltip  content when visible is set to true and attached to the body and placement is set', () => {
+  test('Renders tooltip  content when visible is set to true and attached to the body and placement is set', async () => {
     const { getByText } = render(
       <Tooltip targetElement="body" placement="top" visible content="Hey look at me">
         This is an tooltip
       </Tooltip>,
     );
-    expect(getByText('Hey look at me')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Hey look at me')).toBeInTheDocument();
+    });
   });
 
   test('Renders tooltip when it is hover', async () => {
     const { getByText } = render(<Tooltip content="Hey look at me">This is an tooltip</Tooltip>);
     const ToHover = getByText('This is an tooltip');
-    fireEvent.mouseOver(ToHover);
+    act(() => {
+      fireEvent.mouseOver(ToHover);
+    });
     await waitFor(
       () => {
         expect(getByText('Hey look at me')).toBeInTheDocument();
@@ -53,14 +62,18 @@ describe('Tooltip Tests', () => {
   test('Tooltip hides on mouseLeave', async () => {
     const { getByText, queryByText } = render(<Tooltip content="Hey look at me">This is an tooltip</Tooltip>);
     const ToHover = getByText('This is an tooltip');
-    fireEvent.mouseOver(ToHover);
+    act(() => {
+      fireEvent.mouseOver(ToHover);
+    });
     await waitFor(
       () => {
         expect(getByText('Hey look at me')).toBeInTheDocument();
       },
       { timeout: 300 },
     );
-    fireEvent.mouseLeave(ToHover);
+    act(() => {
+      fireEvent.mouseLeave(ToHover);
+    });
     expect(queryByText('Hey look at me')).not.toBeInTheDocument();
   });
 
@@ -71,7 +84,9 @@ describe('Tooltip Tests', () => {
       </Tooltip>,
     );
     const toClick = getByText('This is an tooltip');
-    fireEvent.click(toClick);
+    act(() => {
+      fireEvent.click(toClick);
+    });
     await waitFor(
       () => {
         expect(getByText('Hey look at me')).toBeInTheDocument();
