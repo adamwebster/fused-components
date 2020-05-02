@@ -10,6 +10,8 @@ export interface Props {
 export const DropdownMenu = ({ children }: Props): ReactElement => {
   const DropdownContext = useContext(DropdownMenuContext);
   const menuRef = useRef(null);
+  const isMounted = useRef(true);
+
   const handleClickOutside = (e: MouseEvent): void => {
     const test = (e.target as HTMLElement).parentNode;
     if (DropdownContext) {
@@ -19,7 +21,7 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
         DropdownContext.buttonEl.current !== test?.parentNode?.parentNode &&
         DropdownContext.buttonEl.current !== test?.parentNode
       ) {
-        DropdownContext.hideMenu();
+        DropdownContext.hideMenu(isMounted.current);
       }
     }
   };
@@ -31,12 +33,17 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
       document.removeEventListener('mousedown', e => handleClickOutside(e));
     };
   });
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
   return (
     <DropdownMenuConsumer>
       {(appContext): ReactNode =>
         appContext && (
           <>
-            <DropdownMenuStyled ref={menuRef} theme={appContext.theme} menuOpen={appContext.menuOpen}>
+            <DropdownMenuStyled role="listbox" ref={menuRef} theme={appContext.theme} menuOpen={appContext.menuOpen}>
               {children}
             </DropdownMenuStyled>
           </>

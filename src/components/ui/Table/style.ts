@@ -1,39 +1,20 @@
 import styled, { css, FlattenSimpleInterpolation, ThemeProps, FlattenInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
-import { darken } from 'polished';
 
-interface ST {
-  bgColor?: string;
-  fgColor?: string;
-}
-export const StyledTable = styled.table<ST>`
+export const StyledTable = styled.table`
   display: flex;
   flex: 1 1;
   flex-flow: column;
-
   overflow: auto;
-  ${(props): '' | FlattenSimpleInterpolation | undefined =>
-    props.bgColor &&
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
+    props.theme === 'dark' &&
     css`
-      background-color: ${props.bgColor};
+      color: ${color.medium};
     `}
-    
-    ${(props): false | FlattenSimpleInterpolation | undefined =>
-      props.theme === 'dark' &&
-      css`
-        color: ${color.medium};
-      `}
-   ${(props): '' | FlattenSimpleInterpolation | undefined =>
-     props.fgColor &&
-     css`
-       color: ${props.fgColor};
-     `}
 `;
 
 interface THS {
   showBottomBorder?: boolean;
-  bgColor?: string;
-  fgColor?: string;
   freezeFirstColumn?: boolean;
   frozenColumnWidth?: string;
   padding?: string;
@@ -49,61 +30,42 @@ export const TableHeaderStyled = styled.thead<THS>`
       border-bottom: solid 1px ${props.theme === 'dark' ? color.mediumdark : color.border};
       border-collapse: collapse;
     `}
-    ${(props): '' | FlattenSimpleInterpolation | undefined =>
-      props.bgColor &&
-      css`
-        background-color: ${props.bgColor};
-      `}
-    ${(props): '' | FlattenSimpleInterpolation | undefined =>
-      props.fgColor &&
-      css`
-        color: ${props.fgColor};
-      `}
 
-td:first-of-type{
+  td:first-of-type {
+    ${(props): false | FlattenSimpleInterpolation | undefined =>
+      props.freezeFirstColumn &&
+      css`
+        border-bottom: solid 1px ${color.border};
+      `}
+  }
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.freezeFirstColumn &&
     css`
-      border-bottom: solid 1px ${color.border};
+      width: fit-content;
+      min-width: 100%;
+      margin-left: ${`calc(${props.frozenColumnWidth} + (${props.padding} + 13px));`};
     `}
-}
-${(props): false | FlattenSimpleInterpolation | undefined =>
-  props.freezeFirstColumn &&
-  css`
-    width: fit-content;
-    min-width: 100%;
-    margin-left: ${`calc(${props.frozenColumnWidth} + (${props.padding} + 13px));`};
-  `}
 `;
 
 interface TRS {
-  zebraStripping?: boolean;
+  zebraStriping?: boolean;
   zebraStripeColor?: string;
-  bgColor?: string;
 }
 
 export const TableRowStyled = styled.tr<TRS>`
   display: flex;
   flex: 1 1;
   ${(props): false | FlattenSimpleInterpolation | undefined =>
-    props.zebraStripping &&
+    props.zebraStriping &&
     css`
       &:nth-child(even) {
         background-color: ${props.zebraStripeColor};
       }
     `}
-  ${(props): '' | FlattenSimpleInterpolation | undefined =>
-    props.bgColor &&
-    css`
-      background-color: ${props.bgColor};
-    `}
 `;
 
 interface TCS {
-  width?: string;
   padding?: string;
-  bgColor?: string;
-  fgColor?: string;
   frozenColumnBGColor?: string;
   frozenColumnFGColor?: string;
   freezeFirstColumn?: boolean;
@@ -111,40 +73,21 @@ interface TCS {
 export const TableCellStyled = styled.td<TCS>`
   display: flex;
   flex: 1 1;
-  ${(props): '' | FlattenSimpleInterpolation | undefined =>
-    props.width &&
-    css`
-      flex: unset;
-      width: ${props.width};
-    `};
   padding: ${(props): string | undefined => props.padding};
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.freezeFirstColumn &&
     css`
       &:first-child {
-        background-color: ${props.frozenColumnBGColor ? props.frozenColumnBGColor : color.medium};
-        color: ${props.frozenColumnFGColor ? props.frozenColumnFGColor : 'inherit'};
+        background-color: ${color.medium};
+        color: 'inherit';
         position: absolute;
         left: 0;
         border-right: solid 3px ${color.border};
       }
     `}
-    ${(props): '' | FlattenSimpleInterpolation | undefined =>
-      props.bgColor &&
-      css`
-        background-color: ${props.bgColor};
-      `}
-    ${(props): '' | FlattenSimpleInterpolation | undefined =>
-      props.fgColor &&
-      css`
-        color: ${props.fgColor};
-      `}
 `;
 
 interface TBS {
-  tableBodyBGColor?: string;
-  tableBodyTextColor?: string;
-  bgColor?: string;
   freezeFirstColumn?: boolean;
   frozenColumnWidth?: string;
   padding?: string;
@@ -154,24 +97,14 @@ export const TableBodyStyled = styled.tbody<TBS>`
   display: flex;
   flex: 1 1;
   flex-flow: column;
-  ${(props): '' | FlattenSimpleInterpolation | undefined =>
-    props.tableBodyBGColor &&
+
+  ${({ highlightOnHover }): false | FlattenInterpolation<ThemeProps<any>> | undefined =>
+    highlightOnHover &&
     css`
-      background-color: ${props.tableBodyBGColor};
+      tr:hover {
+        background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.highlight)};
+      }
     `}
-  ${(props): '' | FlattenSimpleInterpolation | undefined =>
-    props.tableBodyTextColor &&
-    css`
-      color: ${props.tableBodyTextColor};
-    `}
-    ${({ highlightOnHover, bgColor }): false | FlattenInterpolation<ThemeProps<any>> | undefined =>
-      highlightOnHover &&
-      css`
-        tr:hover {
-          background-color: ${(props): string =>
-            bgColor ? darken(0.1, bgColor) : props.theme === 'dark' ? color.darkModeMedium : color.highlight};
-        }
-      `}
 
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.freezeFirstColumn &&

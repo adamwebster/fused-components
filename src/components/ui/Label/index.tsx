@@ -9,7 +9,7 @@ interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {
 export const Label = ({ children, ...rest }: Props): ReactElement => {
   const theme = useContext(FCTheme);
   return (
-    <LabelStyled theme={theme?.theme} {...rest}>
+    <LabelStyled theme={theme.theme} {...rest}>
       {children}
     </LabelStyled>
   );

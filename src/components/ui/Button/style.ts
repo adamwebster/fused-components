@@ -42,8 +42,9 @@ const colorValueDarken = (props: Props): string => {
 
 export const StyledIcon = styled.span`
   background-color: rgba(0, 0, 0, 0.2);
-  padding: 5px;
   margin-right: 5px;
+  padding: 5px;
+  font-size: 14px;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
@@ -66,7 +67,7 @@ interface SB extends React.HTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
   fcStyle?: fcStyles;
   theme?: unknown;
-  renderAs?: string;
+  as?: string;
 }
 export const StyledButton = styled.button<SB>`
   vertical-align: middle;
@@ -82,7 +83,7 @@ export const StyledButton = styled.button<SB>`
     !props.primary &&
     css`
       background-color: transparent;
-      color: ${colorValue || color.primary};
+      color: ${colorValue};
       border: solid 1px ${colorValue};
       &:hover:not(:disabled) {
         color: #fff;
@@ -125,7 +126,7 @@ export const StyledButton = styled.button<SB>`
       `}
 
    ${(props): false | FlattenInterpolation<ThemedStyledProps<Props, unknown>> =>
-     props.renderAs === 'a' &&
+     props.as === 'a' &&
      css`
        border: none;
        text-decoration: underline;
@@ -136,11 +137,12 @@ export const StyledButton = styled.button<SB>`
        ${(props): false | FlattenSimpleInterpolation =>
          !props.icon &&
          css`
-           height: fit-content;
            padding: 0;
          `}
        .button-icon {
          background-color: ${colorValue};
+         padding: 4px 5px;
+         text-align: center;
        }
        &:hover {
          background-color: transparent !important;

@@ -7,27 +7,17 @@ import { TableContextContextConsumer } from './TableContext';
 
 export interface Props {
   children: ReactNode;
-  /** The background color of the table cell */
-  bgColor?: string;
-  /** The foreground color(text) of the table cell */
-  fgColor?: string;
-  /** The width of the table cell */
-  width?: string;
 }
-const TableCell = ({ children, bgColor, fgColor, width }: Props): ReactElement => {
+const TableCell = ({ children, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
       {(tableContext): ReactNode =>
         tableContext && (
           <>
             <TableCellStyled
-              fgColor={fgColor}
-              bgColor={bgColor}
-              width={width}
               freezeFirstColumn={tableContext.freezeFirstColumn}
-              frozenColumnBGColor={tableContext.frozenColumnBGColor}
-              frozenColumnFGColor={tableContext.frozenColumnFGColor}
               padding={tableContext.padding}
+              {...rest}
             >
               {children}
             </TableCellStyled>

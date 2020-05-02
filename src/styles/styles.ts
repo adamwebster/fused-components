@@ -6,7 +6,7 @@ export const color = {
   secondary: '#ff6347',
   tertiary: '#DDDDDD',
   danger: '#dd2c2e',
-  warning: '#C25600',
+  warning: '#eba300',
   info: '#205A8E',
   success: '#00844d',
   red: '#dd2c2e',

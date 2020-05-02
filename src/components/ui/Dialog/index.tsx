@@ -12,7 +12,7 @@ export interface Props {
   /** Sets the tile of the dialog */
   title?: string;
   /** Sets if the dialog should be visible */
-  visible?: boolean;
+  visible: boolean;
   /** Set the text for the confirm button */
   confirmText?: string;
   /** Sets what should happen when the close button is clicked */
@@ -31,12 +31,12 @@ export interface Props {
 export const Dialog = ({
   boxShadow = true,
   title,
-  visible = false,
+  visible,
   confirmText = 'Yes',
   children,
   onCloseClick = (): void => undefined,
   fixed = true,
-  fcStyle = undefined,
+  fcStyle,
   showOverlay = true,
   cancelText = 'Cancel',
 }: Props): ReactElement => {
@@ -44,26 +44,32 @@ export const Dialog = ({
     <>
       {visible && (
         <>
-          {showOverlay && <Overlay onClick={(): void => onCloseClick()} />}
+          {showOverlay && <Overlay data-testid="dialog-overlay" onClick={(): void => onCloseClick()} />}
           <FCThemeConsumer>
             {(themeContext): ReactNode => (
               <StyledDialog
                 fcStyle={fcStyle}
-                theme={themeContext?.theme}
+                theme={themeContext.theme}
                 visible={visible}
                 fixed={fixed}
                 boxShadow={boxShadow}
+                role="dialog"
               >
-                <DialogTitle theme={themeContext?.theme} fcStyle={fcStyle}>
+                <DialogTitle theme={themeContext.theme} fcStyle={fcStyle}>
                   <h2>{title}</h2>
-                  <CloseButton theme={themeContext?.theme} aria-label="Close" onClick={(): void => onCloseClick()}>
+                  <CloseButton
+                    theme={themeContext.theme}
+                    title="Close dialog"
+                    aria-label="Close"
+                    onClick={(): void => onCloseClick()}
+                  >
                     <Icon icon="times" />
                   </CloseButton>
                 </DialogTitle>
-                <DialogContent theme={themeContext?.theme}>{children}</DialogContent>
-                <DialogFooter fcStyle={fcStyle} theme={themeContext?.theme}>
+                <DialogContent theme={themeContext.theme}>{children}</DialogContent>
+                <DialogFooter fcStyle={fcStyle} theme={themeContext.theme}>
                   <Button
-                    buttonColor={themeContext?.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
+                    buttonColor={themeContext.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
                     onClick={(): void => onCloseClick()}
                   >
                     {cancelText}

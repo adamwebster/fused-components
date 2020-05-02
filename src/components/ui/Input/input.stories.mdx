@@ -7,7 +7,6 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 import { InputDarkMode } from '../../../demos/InputDemo';
 
 import { Input } from './';
-import { InputField } from '../InputField/';
 
 <Meta title="Components / Input" component={Input} parameters={{ component: Input }}/>
 
@@ -19,14 +18,14 @@ import { InputField } from '../InputField/';
 ## Not Active
 <Preview>
     <Input
-     ariaLabel="Text Input" 
+     aria-label="Text Input" 
     />
 </Preview>
 
 ## Disabled 
 <Preview>
     <Input
-    ariaLabel="Disabled Input" 
+    aria-label="Disabled Input" 
     disabled
     />
 </Preview>
@@ -36,7 +35,7 @@ import { InputField } from '../InputField/';
 <Preview>
     <Input
     inError
-    ariaLabel="Error Input"
+    aria-label="Error Input"
     />
 </Preview>
 
@@ -45,7 +44,7 @@ import { InputField } from '../InputField/';
 <Preview>
     <Input
     inWarning
-    ariaLabel="Warning Input"
+    aria-label="Warning Input"
     />
 </Preview>
 
@@ -54,19 +53,19 @@ import { InputField } from '../InputField/';
 <Preview>
     <Input
     icon="search"
-    ariaLabel="Icon Input"
+    aria-label="Icon Input"
     />
     <br/>
      <Input
      inError
     icon="times-circle"
-    ariaLabel="Icon Input"
+    aria-label="Icon Input"
     />
         <br/>
      <Input
      inWarning
     icon="exclamation-circle"
-    ariaLabel="Icon Input"
+    aria-label="Icon Input"
     />
 </Preview>
 
@@ -77,20 +76,6 @@ import { InputField } from '../InputField/';
 ## Properties
 
 <Props of={Input} />
-
-
-## InputField
-
-<Preview>
-    <InputField
-        id="TestInput"
-        label="Input Field"
-        hint="Type something into the input above"
-        required
-        inError
-        validationMessage="Invalid entry."
-     />
-</Preview>
 
 # Input dependents & dependencies
 <DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Input} />

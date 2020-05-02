@@ -8,7 +8,7 @@ const ToastLoad = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      toasts?.addInfo('test');
+      toasts?.addInfo('First automatic toast');
     }, 1000);
 
     setTimeout(() => {
@@ -26,6 +26,7 @@ const Toaster = () => {
     <>
       <ToastLoad />
       <Button
+        title="Add info toast"
         onClick={() => {
           toasts?.addInfo('Did you know?', 'That space smells like seared steak.');
         }}

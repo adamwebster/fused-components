@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggle Tests It renders as expected in dark mode 1`] = `
+.c0 {
+  width: 40px;
+  height: 20px;
+  border-radius: 15px;
+  padding: 3px;
+  background-color: #486581;
+  position: relative;
+  cursor: pointer;
+  border: solid 1px rgba(0,0,0,.1);
+}
+
+.c1 {
+  width: 20px;
+  height: 20px;
+  background-color: #bcccdc;
+  position: absolute;
+  box-sizing: border-box;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+  border: solid 1px rgba(0,0,0,.1);
+  border-radius: 15px;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  left: 3px;
+}
+
+.c2 {
+  color: #999999;
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+.c2:first-of-type {
+  color: #102A43;
+  padding-left: 5px;
+  padding-right: 4px;
+}
+
+.c3 {
+  color: #fff;
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+.c3:first-of-type {
+  color: #102A43;
+  padding-left: 5px;
+  padding-right: 4px;
+}
+
+<div>
+  <div
+    aria-checked="false"
+    class="c0"
+    role="checkbox"
+  >
+    <div
+      class="c1"
+    />
+    <span
+      class="c2"
+    >
+      On
+    </span>
+    <span
+      class="c3"
+    >
+      Off
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Toggle Tests It renders as expected in dark mode when active 1`] = `
+.c0 {
+  width: 40px;
+  height: 20px;
+  border-radius: 15px;
+  padding: 3px;
+  background-color: #829ab1;
+  position: relative;
+  cursor: pointer;
+  border: solid 1px rgba(0,0,0,.1);
+}
+
+.c1 {
+  width: 20px;
+  height: 20px;
+  background-color: #bcccdc;
+  position: absolute;
+  box-sizing: border-box;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25);
+  border: solid 1px rgba(0,0,0,.1);
+  border-radius: 15px;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  left: 23px;
+}
+
+.c2 {
+  color: #999999;
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+.c2:first-of-type {
+  color: #102A43;
+  padding-left: 5px;
+  padding-right: 4px;
+}
+
+.c3 {
+  color: #fff;
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+.c3:first-of-type {
+  color: #102A43;
+  padding-left: 5px;
+  padding-right: 4px;
+}
+
+<div>
+  <div
+    aria-checked="true"
+    class="c0"
+    role="checkbox"
+  >
+    <div
+      class="c1"
+    />
+    <span
+      class="c2"
+    >
+      On
+    </span>
+    <span
+      class="c3"
+    >
+      Off
+    </span>
+  </div>
+</div>
+`;

@@ -21,68 +21,73 @@ export interface Props {
   itemFormatter?: (index: number) => ReactElement;
   /** What key should be search in the data that you send to the Combobox */
   keyToSearch?: string;
+  id: string;
 }
 
 export const Combobox = ({
   items,
   inputIcon,
-  inError = false,
-  inWarning = false,
-  disabled = false,
+  inError,
+  inWarning,
+  disabled,
   placeholder,
   itemFormatter,
   keyToSearch,
+  id,
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [initialItems, setInitialItems] = useState(items);
   const [filterValue, setFilterValue] = useState('');
   const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
+  const [activeDescendant, setActiveDescendant] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
-  const filterRef = useRef<HTMLInputElement>(null);
+  const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
   const itemRefs: Array<HTMLElement> = [];
-  const menuRef = useRef<HTMLUListElement>(null);
-
+  const menuRef = useRef<HTMLUListElement>(('' as unknown) as HTMLUListElement);
+  const isMounted = useRef(true);
   const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = initialItems;
-      if (itemsToFormat) {
-        itemsToFormat.forEach((item, index) => {
-          item.index = index;
-        });
-      }
+      itemsToFormat.forEach((item, index) => {
+        item.index = index;
+      });
+
       setInitialItems(itemsToFormat);
     }
   };
 
-  const checkIfParent = (el: HTMLElement | null, elToCompare: unknown): boolean => {
-    while (el?.parentNode) {
+  const checkIfParent = (el: HTMLElement, elToCompare: unknown): boolean => {
+    while (el.parentNode) {
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
       el = el.parentNode as HTMLElement;
       if (el === elToCompare) return true;
     }
     return false;
   };
-  const handleClickOutside = (e: MouseEvent): void => {
-    const element = e.target;
+  const handleClickOutside = (e: any): void => {
+    const element: HTMLElement = e.target;
     const test = checkIfParent(element as HTMLElement, menuRef.current);
     if (!test) {
       if (menuOpen) {
-        setMenuOpen(false);
+        if (menuRef.current) {
+          setMenuOpen(false);
+          setActiveDescendant('');
+        }
       }
     }
   };
 
-  const handleUserKeyPress = (e: { keyCode: number }): void => {
-    // Escape Key
-    if (e.keyCode === 27) {
-      if (menuOpen) {
+  const handleUserKeyPress = (e: any): void => {
+    if (menuOpen) {
+      // Escape Key
+      if (e.keyCode === 27) {
         setMenuOpen(false);
+        setActiveDescendant('');
       }
-    }
-    // Down Key
-    if (e.keyCode === 40) {
-      if (menuOpen) {
+      // Down Key
+      if (e.keyCode === 40) {
+        e.preventDefault();
         if (document.activeElement !== itemRefs[0] && itemSelectedIndex < 1) {
           itemRefs[0].focus();
           setItemSelectedIndex(0);
@@ -91,10 +96,9 @@ export const Combobox = ({
           setItemSelectedIndex(itemSelectedIndex + 1);
         }
       }
-    }
-    // Up key
-    if (e.keyCode === 38) {
-      if (menuOpen) {
+      // Up key
+      if (e.keyCode === 38) {
+        e.preventDefault();
         itemRefs[itemSelectedIndex - 1].focus();
         setItemSelectedIndex(itemSelectedIndex - 1);
       }
@@ -111,13 +115,12 @@ export const Combobox = ({
     }
 
     setMenuOpen(true);
-    if (filterRef.current) {
-      if (filterRef.current.value.length > 0) {
-        setItemsToShow(filterItemList);
-      } else {
-        setItemsToShow(items);
-        setMenuOpen(false);
-      }
+    if (filterRef.current.value.length > 0) {
+      setItemsToShow(filterItemList);
+    } else {
+      setItemsToShow(items);
+      setMenuOpen(false);
+      setActiveDescendant('');
     }
   };
 
@@ -128,8 +131,8 @@ export const Combobox = ({
     setItemSelectedIndex(-1);
   };
 
-  const handleItemKeyPress = (e: { charCode: number }, item: string): void => {
-    if (e.charCode === 13) {
+  const handleItemKeyPress = (e: { key: string }, item: string): void => {
+    if (e.key === 'Enter') {
       setValue(item);
     }
   };
@@ -148,11 +151,21 @@ export const Combobox = ({
     formatItems();
   }, [menuOpen]);
 
+  useEffect(() => {
+    return () => {
+      isMounted.current === false;
+    };
+  }, []);
+  let ariaProps = {};
+  if (activeDescendant) {
+    ariaProps = { ...ariaProps, 'aria-activedescendant': activeDescendant };
+  }
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
         <ComboboxWrapper onClick={(): void => setMenuOpen(!menuOpen)}>
           <InputStyled
+            id={id}
             value={filterValue}
             icon={inputIcon}
             ref={filterRef}
@@ -161,57 +174,45 @@ export const Combobox = ({
             inError={inError}
             inWarning={inWarning}
             disabled={disabled}
-            theme={themeContext?.theme}
+            theme={themeContext.theme}
+            autoComplete="off"
+            {...ariaProps}
           />
           {menuOpen && (
-            <ComboboxMenu theme={themeContext?.theme} ref={menuRef}>
-              {itemFormatter ? (
-                <>
-                  {itemsToShow.map((item, index) => {
-                    return (
-                      <MenuItemStyled
-                        theme={themeContext?.theme}
-                        tabIndex={0}
-                        onKeyPress={(e: { charCode: number }): void =>
-                          handleItemKeyPress(e, item[keyToSearch as string])
-                        }
-                        onClick={(): void => setValue(item[keyToSearch as string])}
-                        key={item.index}
-                        ref={(ref: HTMLLIElement): void => {
-                          itemRefs[index] = ref;
-                        }}
-                      >
-                        {itemFormatter(item.index)}
-                      </MenuItemStyled>
-                    );
-                  })}
-                </>
-              ) : (
-                <>
-                  {itemsToShow.map((item, index) => {
-                    return (
-                      <MenuItemStyled
-                        theme={themeContext?.theme}
-                        tabIndex={0}
-                        onKeyPress={(e: { charCode: number }): void => handleItemKeyPress(e, item)}
-                        onClick={(): void => setValue(item)}
-                        key={item}
-                        ref={(ref: HTMLLIElement): void => {
-                          itemRefs[index] = ref;
-                        }}
-                      >
-                        {item === itemSelected && (
-                          <ItemIcon theme={themeContext?.theme}>
-                            <Icon icon="check-circle" />
-                          </ItemIcon>
-                        )}
-                        {item}
-                      </MenuItemStyled>
-                    );
-                  })}
-                </>
-              )}
-              {itemsToShow.length === 0 && <MenuItemStyled theme={themeContext?.theme}>Nothing found</MenuItemStyled>}
+            <ComboboxMenu role="listbox" theme={themeContext.theme} ref={menuRef}>
+              <>
+                {itemsToShow.map((item: any, index) => {
+                  const value = itemFormatter ? item[keyToSearch as string] : item;
+                  return (
+                    <MenuItemStyled
+                      theme={themeContext.theme}
+                      tabIndex={0}
+                      id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
+                      onKeyDown={(e: { key: string }): void => handleItemKeyPress(e, value)}
+                      onMouseDown={(): void => setValue(value)}
+                      onFocus={(e: any): void => {
+                        setActiveDescendant(e.target.id);
+                      }}
+                      onMouseEnter={(e: any): void => {
+                        setActiveDescendant(e.target.id);
+                      }}
+                      key={item}
+                      ref={(ref: HTMLLIElement): void => {
+                        itemRefs[index] = ref;
+                      }}
+                    >
+                      {!itemFormatter && item === itemSelected && (
+                        <ItemIcon theme={themeContext.theme}>
+                          <Icon icon="check-circle" />
+                        </ItemIcon>
+                      )}
+                      {itemFormatter ? itemFormatter(item.index) : item}
+                    </MenuItemStyled>
+                  );
+                })}
+              </>
+
+              {itemsToShow.length === 0 && <MenuItemStyled theme={themeContext.theme}>Nothing found</MenuItemStyled>}
             </ComboboxMenu>
           )}
           <CaretIcon>

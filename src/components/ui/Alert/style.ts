@@ -6,7 +6,7 @@ interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
   theme: unknown;
-  borderRadius: string;
+  borderRadius: boolean;
 }
 
 export const StyledAlert = styled.div`
@@ -70,7 +70,7 @@ export const StyledAlert = styled.div`
     }
   }
   padding: 10px;
-  ${(props: Props): '' | FlattenSimpleInterpolation =>
+  ${(props: Props): false | FlattenSimpleInterpolation =>
     props.borderRadius &&
     css`
       border-radius: 5px;

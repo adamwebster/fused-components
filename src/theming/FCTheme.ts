@@ -1,11 +1,11 @@
 import React from 'react';
 
 export interface Theme {
-    theme?: string,
-    children?: any,
+  theme?: string;
+  children?: any;
 }
 
-export const FCTheme = React.createContext<Theme | null>({theme: ''});
+export const FCTheme = React.createContext<Theme>({ theme: 'light' });
 
 export const FCThemeProvider = FCTheme.Provider;
 

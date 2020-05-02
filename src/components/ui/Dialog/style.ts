@@ -1,11 +1,9 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
-import { Props } from './';
 import { fcStyles } from '../../../common/types';
 import { lighten, darken } from 'polished';
-import { ReactNode } from 'react';
 
-const colorValue = (props: Props): string => {
+const colorValue = (props: any): string => {
   switch (props.fcStyle) {
     case 'danger':
       return props.theme === 'dark' ? lighten(0.1, color.danger) : color.danger;
@@ -24,7 +22,7 @@ const colorValue = (props: Props): string => {
   }
 };
 
-const borderColor = (props: Props): string => {
+const borderColor = (props: any): string => {
   switch (props.fcStyle) {
     case 'danger':
       return props.theme === 'dark' ? lighten(0.1, color.danger) : color.danger;
@@ -41,8 +39,9 @@ const borderColor = (props: Props): string => {
 
 export interface SD extends React.HTMLProps<HTMLDivElement> {
   fixed?: boolean;
-  visible?: boolean;
+  visible: boolean;
   boxShadow?: boolean;
+  theme: string;
   fcStyle?: fcStyles;
 }
 
@@ -99,11 +98,10 @@ export const StyledDialog = styled.div<SD>`
     `}
 `;
 
-export interface DT extends React.HTMLProps<HTMLDivElement> {
+interface DTProps {
   fcStyle?: fcStyles;
-  children: ReactNode;
 }
-export const DialogTitle = styled.div<DT>`
+export const DialogTitle = styled.div<DTProps>`
   border-bottom: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
@@ -111,7 +109,7 @@ export const DialogTitle = styled.div<DT>`
   h2 {
     margin: 0;
     width: calc(100% - 40px);
-    color: ${(props: DT): string => colorValue(props)};
+    color: ${(props): string => colorValue(props)};
   }
 `;
 
@@ -121,10 +119,10 @@ export const DialogContent = styled.div`
   color: ${(props): string => (props.theme === 'dark' ? color.medium : 'inherit')};
 `;
 
-interface Footer extends React.HTMLProps<HTMLDivElement> {
+interface DFProps {
   fcStyle?: fcStyles;
 }
-export const DialogFooter = styled.div<Footer>`
+export const DialogFooter = styled.div<DFProps>`
   border-top: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;

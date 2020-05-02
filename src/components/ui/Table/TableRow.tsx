@@ -5,19 +5,17 @@ import { TableContextContextConsumer } from './TableContext';
 
 export interface Props {
   children: ReactNode;
-  /** Set the background color of the table row */
-  bgColor?: string;
 }
-const TableRow = ({ children, bgColor }: Props): ReactElement => {
+const TableRow = ({ children, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
       {(tableContext): ReactNode =>
         tableContext && (
           <TableRowStyled
-            theme={tableContext?.theme}
-            zebraStripping={tableContext.zebraStripping}
-            bgColor={bgColor}
+            theme={tableContext.theme}
+            zebraStriping={tableContext.zebraStriping}
             zebraStripeColor={tableContext.zebraStripeColor}
+            {...rest}
           >
             {children}
           </TableRowStyled>

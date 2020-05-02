@@ -1,13 +1,19 @@
 import React, { ReactElement } from 'react';
 import { icons } from './icons';
+import styled from 'styled-components';
 
 export interface IconProps {
   icon?: string;
   color?: string;
 }
+
+const SVGIcon = styled.svg`
+  width: 1em;
+  height: 1em;
+`;
 export const Icon = ({ icon, color }: IconProps): ReactElement => {
   return (
-    <svg
+    <SVGIcon
       xmlns="http://www.w3.org/2000/svg"
       fillRule="evenodd"
       strokeLinejoin="round"
@@ -17,7 +23,8 @@ export const Icon = ({ icon, color }: IconProps): ReactElement => {
       viewBox="0 0 48 48"
       className={icon}
     >
+      <title>{icon}</title>
       <path fill={color || 'currentColor'} d={icon && icons[icon]}></path>
-    </svg>
+    </SVGIcon>
   );
 };

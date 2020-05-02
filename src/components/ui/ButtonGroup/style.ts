@@ -5,7 +5,7 @@ import { ReactElement } from 'react';
 
 const PrimaryButtonStyles = (props: Props): FlattenSimpleInterpolation => {
   const styles: (true | FlattenSimpleInterpolation)[] = props.children.map((child: ReactElement) => {
-    if (child?.props.primary) {
+    if (child.props.primary) {
       return css`
         &:not(:last-child) {
           margin-right: 1px;

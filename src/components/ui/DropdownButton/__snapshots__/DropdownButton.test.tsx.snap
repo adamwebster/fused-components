@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown Button Tests To match snapshot 1`] = `
+.c0 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #4799ff;
+  border: solid 1px #4799ff;
+}
+
+.c0:hover:not(:disabled) {
+  color: #fff;
+  border-color: #147dff;
+  background-color: #4799ff;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c0:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c0:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c0:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c2 {
+  width: 1em;
+  height: 1em;
+}
+
+.c1 {
+  width: 16px;
+  display: block;
+  float: right;
+  margin-top: 3px;
+  height: 5px;
+  margin-left: 5px;
+}
+
+<button
+  class="c0"
+>
+  Dropdown Button
+  <span
+    class="c1"
+  >
+    <svg
+      class="c2 caret-up"
+      clip-rule="evenodd"
+      fill-rule="evenodd"
+      role="img"
+      stroke-linejoin="round"
+      stroke-miterlimit="2"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>
+        caret-up
+      </title>
+      <path
+        d="M16,0l16,16l-32,0l16,-16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
+.c0 {
+  vertical-align: middle;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 34px;
+  cursor: pointer;
+  outline: 0;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #4799ff;
+  border: solid 1px #4799ff;
+}
+
+.c0:hover:not(:disabled) {
+  color: #fff;
+  border-color: #147dff;
+  background-color: #4799ff;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.c0:active:not(:disabled) {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.c0:disabled {
+  border-color: #999999;
+  color: #999999;
+  -webkit-transition: none;
+  transition: none;
+  cursor: not-allowed;
+}
+
+.c0:disabled .sc-AxjAm {
+  background-color: #999999;
+}
+
+.c2 {
+  width: 1em;
+  height: 1em;
+}
+
+.c1 {
+  width: 16px;
+  display: block;
+  float: right;
+  margin-top: 3px;
+  height: 5px;
+  margin-left: 5px;
+}
+
+<button
+  class="c0"
+>
+  Dropdown Button
+  <span
+    class="c1"
+  >
+    <svg
+      class="c2 caret-up"
+      clip-rule="evenodd"
+      fill-rule="evenodd"
+      role="img"
+      stroke-linejoin="round"
+      stroke-miterlimit="2"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>
+        caret-up
+      </title>
+      <path
+        d="M16,0l16,16l-32,0l16,-16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;

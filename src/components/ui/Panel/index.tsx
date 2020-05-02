@@ -13,6 +13,8 @@ export interface Props {
   title?: string;
   /** What should happen when the close button is clicked */
   onCloseClick?: (e: unknown) => void;
+  /** What should happen when the save button is clicked */
+  onSaveClick?: (e: unknown) => void;
   /** If the panel should have a fixed position */
   fixed?: boolean;
   /** If the panel is visible */
@@ -27,6 +29,7 @@ export const Panel = ({
   fcStyle,
   title,
   onCloseClick = (): void => undefined,
+  onSaveClick = (): void => undefined,
   fixed = true,
   visible = true,
   children,
@@ -47,26 +50,40 @@ export const Panel = ({
 
   return (
     <>
-      {show && showOverlay && <Overlay onClick={(e: unknown): void => onCloseClick(e)}></Overlay>}
+      {show && showOverlay && (
+        <Overlay data-testid="panel-overlay" onClick={(e: unknown): void => onCloseClick(e)}></Overlay>
+      )}
       {show && (
-        <StyledPanel theme={theme?.theme} fcStyle={fcStyle} position={position} visible={visible} fixed={fixed}>
-          <DialogTitle theme={theme?.theme} fcStyle={fcStyle}>
+        <StyledPanel
+          role="dialog"
+          theme={theme.theme}
+          fcStyle={fcStyle}
+          position={position}
+          visible={visible}
+          fixed={fixed}
+        >
+          <DialogTitle theme={theme.theme} fcStyle={fcStyle}>
             {title && title}
-            <CloseButton theme={theme?.theme} onClick={(e: unknown): void => onCloseClick(e)} aria-label="Close">
+            <CloseButton
+              title="Close panel"
+              theme={theme.theme}
+              onClick={(e: unknown): void => onCloseClick(e)}
+              aria-label="Close"
+            >
               <Icon icon="times" />
             </CloseButton>
           </DialogTitle>
           <DialogContent>
             <DialogText>{children}</DialogText>
           </DialogContent>
-          <DialogFooter fcStyle={fcStyle} theme={theme?.theme}>
+          <DialogFooter fcStyle={fcStyle} theme={theme.theme}>
             <Button
-              buttonColor={theme?.theme === 'dark' ? color.darkModeLight : color.mediumdark}
+              buttonColor={theme.theme === 'dark' ? color.darkModeLight : color.mediumdark}
               onClick={(e): void => onCloseClick(e)}
             >
               Close
             </Button>
-            <Button fcStyle={fcStyle} primary>
+            <Button onClick={e => onSaveClick(e)} fcStyle={fcStyle} primary>
               Save
             </Button>
           </DialogFooter>

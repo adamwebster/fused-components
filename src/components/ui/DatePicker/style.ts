@@ -4,6 +4,11 @@ import { color } from '../../../styles/styles';
 interface DMS {
   menuOpen?: boolean;
 }
+
+export const DatePickerWrapper = styled.div`
+  position: relative;
+`;
+
 export const CalendarMenu = styled.ul<DMS>`
   padding: 10px;
   position: absolute;

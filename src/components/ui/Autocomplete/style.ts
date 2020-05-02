@@ -5,7 +5,10 @@ export const AutocompleteWrapper = styled.div`
   position: relative;
 `;
 
-export const AutocompleteMenu = styled.ul`
+interface ACMProps {
+  menuOpen: boolean;
+}
+export const AutocompleteMenu = styled.ul<ACMProps>`
   position: absolute;
   top: 34px;
   background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
@@ -52,8 +55,6 @@ export const NoItemFound = styled.li`
 export const ItemIcon = styled.span`
   width: 16px;
   display: inline-block;
-  svg {
-    color: ${(props): string => (props.theme === 'dark' ? color.darkModeMediumLight : color.mediumdark)};
-    margin-right: 5px;
-  }
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMediumLight : color.mediumdark)};
+  margin-right: 5px;
 `;

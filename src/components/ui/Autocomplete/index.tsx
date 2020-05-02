@@ -6,6 +6,7 @@ import { AutocompleteWrapper, AutocompleteMenu, MenuItemStyled, ItemIcon, NoItem
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
+  id: string;
   /** Defines what items are sent to the auto complete component*/
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: Array<any>;
@@ -32,48 +33,47 @@ export interface Props {
 }
 
 export const Autocomplete = ({
-  items = ['Apple', 'Orange', 'Banana'],
+  id,
+  items,
   inputIcon,
-  inError = false,
-  inWarning = false,
-  disabled = false,
+  inError,
+  inWarning,
+  disabled,
   placeholder,
   itemFormatter,
   keyToSearch,
   onChange,
   onItemClick,
-  clearValueOnSelect = false,
+  clearValueOnSelect,
   ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
   const [filterValue, setFilterValue] = useState('');
   const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
+  const [activeDescendant, setActiveDescendant] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
-  const filterRef = useRef<HTMLInputElement>(null);
+  const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
   const itemRefs: Array<HTMLLIElement> = [];
 
   const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = items;
-      if (itemsToFormat) {
-        itemsToFormat.forEach((item, index) => {
-          item.index = index;
-        });
-      }
+      itemsToFormat.forEach((item, index) => {
+        item.index = index;
+      });
     }
   };
 
   const handleUserKeyPress = (e: { keyCode: number }): void => {
-    // Escape Key
-    if (e.keyCode === 27) {
-      if (menuOpen) {
+    if (menuOpen) {
+      // Escape Key
+      if (e.keyCode === 27) {
         setMenuOpen(false);
+        setActiveDescendant('');
       }
-    }
-    // Down Key
-    if (e.keyCode === 40) {
-      if (menuOpen) {
+      // Down Key
+      if (e.keyCode === 40) {
         if (document.activeElement !== itemRefs[0] && itemSelectedIndex < 1) {
           itemRefs[0].focus();
           setItemSelectedIndex(0);
@@ -82,10 +82,8 @@ export const Autocomplete = ({
           setItemSelectedIndex(itemSelectedIndex + 1);
         }
       }
-    }
-    // Up key
-    if (e.keyCode === 38) {
-      if (menuOpen) {
+      // Up key
+      if (e.keyCode === 38) {
         itemRefs[itemSelectedIndex - 1].focus();
         setItemSelectedIndex(itemSelectedIndex - 1);
       }
@@ -101,13 +99,12 @@ export const Autocomplete = ({
     }
 
     setMenuOpen(true);
-    if (filterRef.current) {
-      if (filterRef.current.value.length > 0) {
-        setItemsToShow(filterItemList);
-      } else {
-        setItemsToShow(items);
-        setMenuOpen(false);
-      }
+    if (filterRef.current.value.length > 0) {
+      setItemsToShow(filterItemList);
+    } else {
+      setItemsToShow(items);
+      setMenuOpen(false);
+      setActiveDescendant('');
     }
   };
 
@@ -128,11 +125,12 @@ export const Autocomplete = ({
     }
     setItemSelected(value);
     setMenuOpen(false);
+    setActiveDescendant('');
     setItemSelectedIndex(-1);
   };
 
-  const handleItemKeyPress = (e: { charCode: number }, item: React.SetStateAction<string>): void => {
-    if (e.charCode === 13) {
+  const handleItemKeyPress = (e: { key: string }, item: React.SetStateAction<string>): void => {
+    if (e.key === 'Enter') {
       setValue(item);
     }
   };
@@ -140,6 +138,7 @@ export const Autocomplete = ({
   useEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress);
     formatItems();
+
     return (): void => {
       window.removeEventListener('keydown', handleUserKeyPress);
     };
@@ -152,11 +151,16 @@ export const Autocomplete = ({
     }
   }, [items]);
 
+  let ariaProps = {};
+  if (activeDescendant) {
+    ariaProps = { ...ariaProps, 'aria-activedescendant': activeDescendant };
+  }
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
         <AutocompleteWrapper>
           <Input
+            id={id}
             value={filterValue}
             icon={inputIcon}
             ref={filterRef}
@@ -165,25 +169,35 @@ export const Autocomplete = ({
             inError={inError}
             inWarning={inWarning}
             disabled={disabled}
-            theme={themeContext?.theme}
+            autoComplete="off"
+            theme={themeContext.theme}
+            {...ariaProps}
             {...rest}
           />
           {menuOpen && (
-            <AutocompleteMenu theme={themeContext?.theme}>
+            <AutocompleteMenu menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
               {itemFormatter ? (
                 <>
                   {itemsToShow.map((item, index) => {
                     return (
                       <MenuItemStyled
-                        theme={themeContext?.theme}
+                        role="option"
+                        theme={themeContext.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }): void => {
+                        id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
+                        onKeyDown={(e: any): void => {
                           handleItemKeyPress(e, item[keyToSearch as string]);
                           if (onItemClick) onItemClick(item.index);
                         }}
                         onClick={(): void => {
                           setValue(item[keyToSearch as string]);
                           if (onItemClick) onItemClick(item.index);
+                        }}
+                        onFocus={(e: any): void => {
+                          setActiveDescendant(e.target.id);
+                        }}
+                        onMouseEnter={(e: any): void => {
+                          setActiveDescendant(e.target.id);
                         }}
                         key={item.index}
                         ref={(ref: HTMLLIElement): void => {
@@ -200,17 +214,26 @@ export const Autocomplete = ({
                   {itemsToShow.map((item, index) => {
                     return (
                       <MenuItemStyled
-                        theme={themeContext?.theme}
+                        theme={themeContext.theme}
                         tabIndex={0}
-                        onKeyPress={(e: { charCode: number }): void => handleItemKeyPress(e, item)}
+                        id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
+                        role="option"
+                        aria-selected={item === itemSelected}
+                        onKeyDown={(e: { key: string }): void => handleItemKeyPress(e, item)}
                         onClick={(): void => setValue(item)}
+                        onFocus={(e: any): void => {
+                          setActiveDescendant(e.target.id);
+                        }}
+                        onMouseEnter={(e: any): void => {
+                          setActiveDescendant(e.target.id);
+                        }}
                         key={item}
                         ref={(ref: HTMLLIElement): void => {
                           itemRefs[index] = ref;
                         }}
                       >
                         {item === itemSelected && (
-                          <ItemIcon theme={themeContext?.theme}>
+                          <ItemIcon theme={themeContext.theme}>
                             <Icon icon="check-circle" />
                           </ItemIcon>
                         )}
@@ -220,7 +243,7 @@ export const Autocomplete = ({
                   })}
                 </>
               )}
-              {itemsToShow.length === 0 && <NoItemFound theme={themeContext?.theme}>Nothing found</NoItemFound>}
+              {itemsToShow.length === 0 && <NoItemFound theme={themeContext.theme}>Nothing found</NoItemFound>}
             </AutocompleteMenu>
           )}
         </AutocompleteWrapper>

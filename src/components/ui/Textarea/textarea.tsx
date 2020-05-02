@@ -4,7 +4,7 @@ import { FCTheme } from '../../../theming/FCTheme';
 
 const Textarea = ({ ...rest }: TextareaHTMLAttributes<HTMLTextAreaElement>): ReactElement => {
   const theme = useContext(FCTheme);
-  return <StyledTextarea theme={theme?.theme} {...rest} />;
+  return <StyledTextarea theme={theme.theme} {...rest} />;
 };
 
 export default Textarea;

@@ -36,7 +36,7 @@ export const FormField = ({
       )}
       <InputWrapper>{children}</InputWrapper>
 
-      {hint && <HintText theme={theme?.theme}>{hint}</HintText>}
+      {hint && <HintText theme={theme.theme}>{hint}</HintText>}
       {validationMessage && <ValidationMessage>{validationMessage}</ValidationMessage>}
     </FormFieldWrapper>
   );

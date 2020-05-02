@@ -2,13 +2,10 @@ import React from 'react';
 
 export interface TableInterface {
   padding?: string;
-  frozenColumnBGColor?: string;
-  frozenColumnFGColor?: string;
   freezeFirstColumn?: boolean;
-  zebraStripping?: boolean;
+  zebraStriping?: boolean;
   zebraStripeColor?: string;
   frozenColumnWidth?: string;
-  tableBgColor?: string;
   theme?: unknown;
   highlightOnHover?: boolean;
 }

@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table Tests Renders correct styles in dark mode 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
+  flex: 1 1;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  overflow: auto;
+  color: #DDDDDD;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
+  flex: 1 1;
+  font-weight: bold;
+  border-bottom: solid 1px #999999;
+  border-collapse: collapse;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
+  flex: 1 1;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
+  flex: 1 1;
+  padding: 5px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
+  flex: 1 1;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+<div>
+  <table
+    class="c0"
+  >
+    <thead
+      class="c1"
+    >
+      <tr
+        class="c2"
+      >
+        <td
+          class="c3"
+        >
+          First Name
+        </td>
+        <td
+          class="c3"
+        >
+          Last Name
+        </td>
+        <td
+          class="c3"
+        >
+          Job
+        </td>
+      </tr>
+    </thead>
+    <tbody
+      class="c4"
+    >
+      <tr
+        class="c2"
+      >
+        <td
+          class="c3"
+        >
+          Clark
+        </td>
+        <td
+          class="c3"
+        >
+          Kent
+        </td>
+        <td
+          class="c3"
+        >
+          Superman
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

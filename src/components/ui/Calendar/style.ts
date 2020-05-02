@@ -1,5 +1,7 @@
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { Button } from '../Button/index';
+import { darken } from 'polished';
 
 export const Table = styled.table`
   padding: 0;
@@ -29,12 +31,14 @@ export const CalendarHeader = styled.div`
 
 export const CalendarTitle = styled.div`
   flex: 1 1;
+  text-align: left;
   span {
     margin: 0;
     padding-left: 5px;
     margin-bottom: 10px;
     font-weight: normal;
-    font-size: 1.5em;
+    font-size: 20px;
+    color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
     display: inline-block;
   }
 `;
@@ -50,6 +54,11 @@ export const SvgWrapper = styled.span`
   width: 16px;
   display: block;
 `;
+
+export const CalendarControlButtons = styled(Button)`
+  font-size: 16px;
+`;
+
 export const Day = styled.td`
   text-align: center;
   box-sizing: border-box;
@@ -69,14 +78,14 @@ export const Day = styled.td`
     }
   }
   &.current-day {
-    button {
+    button:not(:disabled) {
       .day-number {
         border: solid 1px tomato;
       }
     }
   }
   &.selected-day {
-    button {
+    button:not(:disabled) {
       .day-number {
         background-color: tomato;
         color: #fff;
@@ -98,11 +107,15 @@ export const Day = styled.td`
   button {
     height: 100%;
     width: 100%;
+    min-height: 30px;
+
     display: flex;
     flex-flow: column;
     align-items: center;
     background-color: transparent;
     border: none;
+    justify-content: center;
+    color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
     .day-number {
       width: 25px;
       padding-top: 5px;
@@ -121,6 +134,9 @@ export const Day = styled.td`
         color: #fff;
       }
     }
+    &:disabled {
+      color: ${(props): string => (props.theme === 'dark' ? darken(0.2, color.darkModeLight) : color.medium)};
+    }
     &:disabled:hover {
       cursor: default;
     }
@@ -130,8 +146,11 @@ export const Day = styled.td`
 export const DayName = styled.th`
   text-align: center;
   padding: 5px;
+  font-size: 13px;
+  color: ${color.darkest};
   width: 14%;
   border-bottom: solid 1px ${color.medium};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
 `;
 
 export const Week = styled.tr``;

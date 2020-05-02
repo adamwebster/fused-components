@@ -12,7 +12,7 @@ export interface Props {
   /** Set the button to be primary */
   primary?: boolean;
   /** Set the text for the button */
-  label: string;
+  label: any;
   /** Set the style of the button */
   fcStyle?: fcStyles;
   /** Set the color of the button */
@@ -26,8 +26,8 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
   const [menuVisible, setMenuVisible] = useState(false);
   const buttonEl = useRef<HTMLButtonElement>(null);
   const theme = useContext(FCTheme);
-  const hideMenuFunc = (): void => {
-    if (menuOpen) {
+  const hideMenuFunc = (isMounted: boolean): void => {
+    if (menuOpen && isMounted) {
       setMenuOpen(false);
       setTimeout(() => {
         setMenuVisible(false);
@@ -36,9 +36,9 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
   };
   const state = {
     menuOpen,
-    hideMenu: (): void => hideMenuFunc(),
+    hideMenu: (isMounted: boolean): void => hideMenuFunc(isMounted),
     buttonEl,
-    theme: theme?.theme,
+    theme: theme.theme,
   };
 
   const toggleMenu = (): void => {
