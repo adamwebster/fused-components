@@ -13,13 +13,14 @@ export interface Props {
   /** Sets the border radius for the alert */
   borderRadius?: boolean;
   children?: ReactNode;
+  className?: string;
 }
-export const Alert = ({ fcStyle, title, icon, borderRadius = true, children }: Props): ReactElement => {
+export const Alert = ({ fcStyle, title, icon, borderRadius = true, children, className }: Props): ReactElement => {
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
         <>
-          <StyledAlert theme={themeContext.theme} borderRadius={borderRadius} fcStyle={fcStyle}>
+          <StyledAlert theme={themeContext.theme} borderRadius={borderRadius} className={className} fcStyle={fcStyle}>
             {title && (
               <h4>
                 {icon && <Icon icon={icon} />} <Title theme={themeContext.theme}>{title}</Title>
