@@ -65,8 +65,8 @@ export const InputWrapper = styled.div`
 `;
 
 interface IconWrappersProps {
-  inError: boolean;
-  inWarning: boolean;
+  inError?: boolean;
+  inWarning?: boolean;
   theme: string;
 }
 

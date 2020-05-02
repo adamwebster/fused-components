@@ -16,7 +16,6 @@ export { FormField } from './components/ui/FormField';
 export { Heading } from './components/typography/Heading';
 export { Icon } from './components/icon';
 export { Input } from './components/ui/Input';
-export { InputField } from './components/ui/InputField';
 export { Label } from './components/ui/Label';
 export { Panel } from './components/ui/Panel';
 export { Radio } from './components/ui/Radio';
