@@ -12,7 +12,7 @@ describe('Dialog Tests', () => {
     expect(getByText('I am a dialog')).toBeInTheDocument();
   });
 
-  test('Clicking the overlay closes the modal', () => {
+  test('Clicking the overlay closes the dialog', () => {
     let visible = true;
     const setVisible = jest.fn(() => {
       visible = false;
@@ -23,7 +23,7 @@ describe('Dialog Tests', () => {
       </Dialog>,
     );
 
-    const overlay = getByTestId('modal-overlay');
+    const overlay = getByTestId('dialog-overlay');
     fireEvent.click(overlay);
     expect(visible).toBe(false);
 
@@ -36,7 +36,7 @@ describe('Dialog Tests', () => {
     expect(queryByText('I am a dialog')).toBeFalsy();
   });
 
-  test('Clicking the close button closes the modal', () => {
+  test('Clicking the close button closes the dialog', () => {
     let visible = true;
     const setVisible = jest.fn(() => {
       visible = false;
@@ -60,7 +60,7 @@ describe('Dialog Tests', () => {
     expect(queryByText('I am a dialog')).toBeFalsy();
   });
 
-  test('Clicking the cancel button closes the modal', () => {
+  test('Clicking the cancel button closes the dialog', () => {
     let visible = true;
     const setVisible = jest.fn(() => {
       visible = false;

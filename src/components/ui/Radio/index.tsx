@@ -45,7 +45,7 @@ export const Radio = ({
               <Icon icon="radio" />
             </IconStyled>
           )}
-          <Label theme={themeContext?.theme} inError={inError} inWarning={inWarning}>
+          <Label theme={themeContext.theme} inError={inError} inWarning={inWarning}>
             {children}
           </Label>
         </label>
