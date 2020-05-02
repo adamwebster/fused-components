@@ -5,10 +5,8 @@ import { TableContextContextConsumer } from './TableContext';
 
 export interface Props {
   children: ReactNode;
-  /** Set the background color of the table row */
-  bgColor?: string;
 }
-const TableRow = ({ children, bgColor, ...rest }: Props): ReactElement => {
+const TableRow = ({ children, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
       {(tableContext): ReactNode =>

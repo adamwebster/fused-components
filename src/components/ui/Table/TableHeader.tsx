@@ -5,12 +5,8 @@ import { TableHeaderStyled } from './style';
 import { TableContextContextConsumer } from './TableContext';
 
 export interface Props {
-  /** The foreground color(text) pf the table cell */
-  fgColor?: string;
   /** If the bottom border should be shown */
   showBottomBorder?: boolean;
-  /** What the background color of the table header should be */
-  bgColor?: string;
   children?: ReactNode;
 }
 const TableHeader = ({ showBottomBorder = true, children, ...rest }: Props): ReactElement => {
