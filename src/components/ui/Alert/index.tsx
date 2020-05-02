@@ -42,10 +42,15 @@ export const Alert = ({
           >
             {title && (
               <h4>
-                {icon && <Icon icon={icon} />} <Title theme={themeContext.theme}>{title}</Title>
+                {icon && <Icon className="notification-icon" icon={icon} />}{' '}
+                <Title theme={themeContext.theme}>{title}</Title>
               </h4>
             )}
-            {children && <AlertContent fcStyle={fcStyle}>{children}</AlertContent>}
+            {children && (
+              <AlertContent theme={themeContext.theme} fcStyle={fcStyle}>
+                {children}
+              </AlertContent>
+            )}
           </StyledAlert>
         </>
       )}

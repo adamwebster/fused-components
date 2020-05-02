@@ -5,6 +5,8 @@ import { action, actions } from '@storybook/addon-actions';
 import variables from '../../../styles/variables';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { AlertDemo } from '../../../demos/AlertDemo';
+import { FCThemeProvider } from "../../../theming/FCTheme";
+import { color } from '../../../styles/styles';
 
 import { Alert } from './';
 import { Icon } from '../../icon/';
@@ -59,6 +61,59 @@ import { Icon } from '../../icon/';
   </Alert>
   </Story>
 </Preview>
+
+
+<Story
+  name="Default Dark mode"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Alert title="Default">Alert</Alert>
+  </FCThemeProvider>
+</Story>
+
+<Story
+  name="Danger Dark mode"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Alert title="Default" fcStyle="danger">Alert</Alert>
+  </FCThemeProvider>
+</Story>
+
+<Story
+  name="Waring Dark mode"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Alert title="Default" fcStyle="warning">Alert</Alert>
+  </FCThemeProvider>
+</Story>
+
+
+<Story
+  name="Success Dark mode"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Alert title="Default" fcStyle="success">Alert</Alert>
+  </FCThemeProvider>
+</Story>
+
+
+<Story
+  name="Info Dark mode"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Alert title="Default" fcStyle="Info">Alert</Alert>
+  </FCThemeProvider>
+</Story>
 
 ## Dark Mode Preview
 

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Alert } from '../Alert';
 import { color } from '../../../styles/styles';
-import { lighten, darken } from 'polished';
 import { fcStyles } from '../../../common/types';
 
 interface ToastContainerInterface {
@@ -106,13 +105,13 @@ export const LoadingBar = styled.div<LB>`
   background-color: ${(props): string => {
     switch (props.fcStyle) {
       case 'danger':
-        return darken(0.1, color.danger);
+        return color.danger;
       case 'warning':
-        return lighten(0.2, color.warning);
+        return color.warning;
       case 'info':
-        return lighten(0.2, color.info);
+        return color.info;
       case 'success':
-        return lighten(0.1, color.success);
+        return color.success;
       default:
         return props.theme === 'dark' ? color.medium : color.light;
     }
@@ -121,20 +120,16 @@ export const LoadingBar = styled.div<LB>`
 `;
 
 export const CloseButton = styled.button`
-  width: 12px;
-  box-sizing: border-box;
-  padding: 0;
+  padding: 0px;
   border: none;
   color: ${color.medium};
   background-color: transparent;
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
   cursor: pointer;
   &:hover {
-    color: ${color.light};
-  }
-  svg {
-    color: inherit;
+    color: ${color.mediumdark};
   }
 `;
