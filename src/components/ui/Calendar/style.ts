@@ -78,14 +78,14 @@ export const Day = styled.td`
     }
   }
   &.current-day {
-    button {
+    button:not(:disabled) {
       .day-number {
         border: solid 1px tomato;
       }
     }
   }
   &.selected-day {
-    button {
+    button:not(:disabled) {
       .day-number {
         background-color: tomato;
         color: #fff;
@@ -107,11 +107,14 @@ export const Day = styled.td`
   button {
     height: 100%;
     width: 100%;
+    min-height: 30px;
+
     display: flex;
     flex-flow: column;
     align-items: center;
     background-color: transparent;
     border: none;
+    justify-content: center;
     color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
     .day-number {
       width: 25px;

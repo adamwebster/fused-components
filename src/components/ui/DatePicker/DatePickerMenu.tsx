@@ -7,8 +7,7 @@ interface Props {
   menuOpened: boolean;
   value: string | undefined;
   changeDate: (date: string) => void;
-  setMenuOpen: (value: boolean) => void;
-  ref: any;
+  setMenuOpen: (value: boolean, menuMounted: boolean) => void;
 }
 const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) => {
   const menuRef = useRef(null);
@@ -22,7 +21,9 @@ const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) =
       menuRef.current !== test?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode &&
       menuRef.current !== test?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode
     ) {
-      setMenuOpen(false);
+      if (menuRef.current) {
+        setMenuOpen(false, true);
+      }
     }
   };
 
@@ -32,6 +33,11 @@ const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) =
       document.removeEventListener('mousedown', e => handleClickOutside(e));
     };
   });
+  useEffect(() => {
+    return () => {
+      menuRef.current = null;
+    };
+  }, []);
   return (
     <>
       {menuOpened && (
