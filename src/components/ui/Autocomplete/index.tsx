@@ -190,9 +190,16 @@ export const Autocomplete = ({
     }
   }, [items]);
 
-  let ariaProps = {};
+  let ariaProps: any = {
+    'aria-haspopop': 'listbox',
+    'aria-controls': id + '-menu',
+    'aria-expanded': false,
+  };
   if (activeDescendant) {
     ariaProps = { ...ariaProps, 'aria-activedescendant': activeDescendant };
+  }
+  if (menuOpen) {
+    ariaProps = { ...ariaProps, 'aria-expanded': true };
   }
   return (
     <FCThemeConsumer>
@@ -210,11 +217,12 @@ export const Autocomplete = ({
             disabled={disabled}
             autoComplete="off"
             theme={themeContext.theme}
+            role="combobox"
             {...ariaProps}
             {...rest}
           />
           {menuOpen && (
-            <AutocompleteMenu menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
+            <AutocompleteMenu id={`${id}-menu`} menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
               <>
                 {itemsToShow.map((item, index) => {
                   return (
@@ -230,9 +238,6 @@ export const Autocomplete = ({
                         setValue(item[keyToSearch as string]);
                         if (onItemClick) onItemClick(item.index);
                       }}
-                      onFocus={(e: any): void => {
-                        setActiveDescendant(e.target.id);
-                      }}
                       onMouseEnter={(e: any): void => {
                         setActiveDescendant(e.target.id);
                       }}
@@ -240,6 +245,7 @@ export const Autocomplete = ({
                       ref={(ref: HTMLLIElement): void => {
                         itemRefs[index] = ref;
                       }}
+                      tabIndex={-1}
                       aria-selected={index === itemSelectedIndex ? 'true' : 'false'}
                     >
                       {itemFormatter ? (
