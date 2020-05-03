@@ -191,10 +191,10 @@ export const Autocomplete = ({
   }, [items]);
 
   let ariaProps: any = {
-    'aria-haspopop': 'listbox',
     'aria-controls': id + '-menu',
     'aria-expanded': false,
   };
+
   if (activeDescendant) {
     ariaProps = { ...ariaProps, 'aria-activedescendant': activeDescendant };
   }
@@ -252,12 +252,14 @@ export const Autocomplete = ({
                         itemFormatter(item.index)
                       ) : (
                         <>
-                          {item === itemSelected && (
-                            <ItemIcon theme={themeContext.theme}>
-                              <Icon icon="check-circle" />
-                            </ItemIcon>
-                          )}
-                          {item.label}
+                          <span aria-label={`${item.label} press enter to choose this option`}>
+                            {item === itemSelected && (
+                              <ItemIcon theme={themeContext.theme}>
+                                <Icon icon="check-circle" />
+                              </ItemIcon>
+                            )}
+                            {item.label}
+                          </span>
                         </>
                       )}
                     </MenuItemStyled>
