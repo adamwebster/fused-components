@@ -20,19 +20,16 @@ export const AutocompleteDemo = () => {
 };
 
 export const AutocompleteDemoFormatter = () => {
-  const [data, setData] = useState([] as any);
+  const [data] = useState([
+    { label: 'Apple', description: 'Apples are red and are crunchy.' },
+    { label: 'Banana', description: 'Bananas are yellow you have to peel them.' },
+    { label: 'Orange', description: 'Oranges have a hard peel and are full of vitamin C.' },
+  ]);
 
   return (
     <>
       <Autocomplete
         id="ac2"
-        onChange={() =>
-          setData([
-            { label: 'Apple', description: 'Apples are red and are crunchy.' },
-            { label: 'Banana', description: 'Bananas are yellow you have to peel them.' },
-            { label: 'Orange', description: 'Oranges have a hard peel and are full of vitamin C.' },
-          ])
-        }
         itemFormatter={value => {
           return (
             <>

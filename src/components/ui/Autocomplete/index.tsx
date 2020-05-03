@@ -48,73 +48,35 @@ export const Autocomplete = ({
   ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
+  const [formattedItems, setFormattedItems] = useState<any>([]);
   const [filterValue, setFilterValue] = useState('');
   const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [activeDescendant, setActiveDescendant] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeListItem, setActiveListItem] = useState<HTMLLIElement | null>(null);
   const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
   const itemRefs: Array<HTMLLIElement> = [];
-
+  const autoCompleteRef = useRef<HTMLDivElement>(('' as unknown) as HTMLDivElement);
   const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = items;
       itemsToFormat.forEach((item, index) => {
         item.index = index;
+        item.htmlID = `${id.toLowerCase().replace(/\./g, '')}_option_${index}`;
       });
-    }
-  };
-
-  const handleUserKeyPress = (e: { keyCode: number }): void => {
-    if (menuOpen) {
-      // Escape Key
-      if (e.keyCode === 27) {
-        setMenuOpen(false);
-        setActiveDescendant('');
-      }
-      // Down Key
-      if (e.keyCode === 40) {
-        if (document.activeElement !== itemRefs[0] && itemSelectedIndex < 1) {
-          itemRefs[0].focus();
-          setItemSelectedIndex(0);
-        } else {
-          itemRefs[itemSelectedIndex + 1].focus();
-          setItemSelectedIndex(itemSelectedIndex + 1);
-        }
-      }
-      // Up key
-      if (e.keyCode === 38) {
-        itemRefs[itemSelectedIndex - 1].focus();
-        setItemSelectedIndex(itemSelectedIndex - 1);
-      }
-    }
-  };
-
-  const filterItems = (): void => {
-    let filterItemList;
-    if (keyToSearch) {
-      filterItemList = items.filter(item => item[keyToSearch].toLowerCase().includes(filterValue.toLowerCase()));
+      setFormattedItems(itemsToFormat);
     } else {
-      filterItemList = items.filter(item => item.toLowerCase().includes(filterValue.toLowerCase()));
+      const formattedItemsReturned: any = [];
+      items.forEach((item, index) => {
+        formattedItemsReturned.push({
+          index,
+          label: item,
+          htmlID: `${id.toLowerCase().replace(/\./g, '')}_option_${index}`,
+        });
+      });
+      setFormattedItems(formattedItemsReturned);
     }
-
-    setMenuOpen(true);
-    if (filterRef.current.value.length > 0) {
-      setItemsToShow(filterItemList);
-    } else {
-      setItemsToShow(items);
-      setMenuOpen(false);
-      setActiveDescendant('');
-    }
-  };
-
-  const onChangeFunc = (e: { target: { value: string } }): void => {
-    if (onChange) {
-      onChange(e);
-    }
-    setFilterValue(e.target.value);
-
-    filterItems();
   };
 
   const setValue = (value: React.SetStateAction<string>): void => {
@@ -129,6 +91,82 @@ export const Autocomplete = ({
     setItemSelectedIndex(-1);
   };
 
+  const handleUserKeyPress = (e: { keyCode: number; preventDefault: () => void }): void => {
+    if (menuOpen) {
+      // Enter Key
+      if (e.keyCode === 13) {
+        if (keyToSearch) {
+          setValue(itemsToShow[itemSelectedIndex][keyToSearch]);
+        } else {
+          setValue(itemsToShow[itemSelectedIndex].label);
+        }
+      }
+      // Escape Key
+      if (e.keyCode === 27) {
+        e.preventDefault();
+        setMenuOpen(false);
+        setItemSelectedIndex(-1);
+        setActiveDescendant('');
+      }
+      // Down Key
+      if (e.keyCode === 40) {
+        e.preventDefault();
+        const toCheck = itemSelectedIndex + 1 !== itemsToShow.length;
+        if (toCheck) {
+          if (activeListItem !== itemRefs[0] && itemSelectedIndex < 1) {
+            setActiveListItem(itemRefs[0]);
+            setItemSelectedIndex(0);
+
+            setActiveDescendant(itemsToShow[0].htmlID);
+          } else {
+            setActiveDescendant(itemsToShow[itemSelectedIndex + 1].htmlID);
+            setActiveListItem(itemRefs[itemSelectedIndex + 1]);
+            setItemSelectedIndex(itemSelectedIndex + 1);
+          }
+        }
+      }
+      // Up key
+      if (e.keyCode === 38) {
+        e.preventDefault();
+        if (itemSelectedIndex != 0) {
+          setActiveListItem(itemRefs[itemSelectedIndex - 1]);
+          setItemSelectedIndex(itemSelectedIndex - 1);
+          setActiveDescendant(itemsToShow[itemSelectedIndex + -1].htmlID);
+        }
+      }
+    }
+  };
+
+  const filterItems = (value: string): void => {
+    let filterItemList;
+    if (keyToSearch) {
+      filterItemList = formattedItems
+        .slice()
+        .filter((item: any) => item[keyToSearch].toLowerCase().includes(value.toLowerCase()));
+    } else {
+      filterItemList = formattedItems
+        .slice()
+        .filter((item: any) => item.label.toLowerCase().includes(value.toLowerCase()));
+    }
+    setMenuOpen(true);
+    if (filterRef.current.value.length > 0) {
+      setItemsToShow(filterItemList);
+    } else {
+      setItemsToShow(filterItemList);
+      setMenuOpen(false);
+      setActiveDescendant('');
+      setItemSelectedIndex(-1);
+    }
+  };
+
+  const onChangeFunc = (e: { target: { value: string } }): void => {
+    if (onChange) {
+      onChange(e);
+    }
+    setFilterValue(e.target.value);
+    filterItems(e.target.value);
+  };
+
   const handleItemKeyPress = (e: { key: string }, item: React.SetStateAction<string>): void => {
     if (e.key === 'Enter') {
       setValue(item);
@@ -136,18 +174,19 @@ export const Autocomplete = ({
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleUserKeyPress);
     formatItems();
-
-    return (): void => {
-      window.removeEventListener('keydown', handleUserKeyPress);
-    };
-  });
+  }, [items]);
 
   useEffect(() => {
+    autoCompleteRef.current.addEventListener('keydown', handleUserKeyPress);
+    return (): void => {
+      autoCompleteRef.current.removeEventListener('keydown', handleUserKeyPress);
+    };
+  });
+  useEffect(() => {
     if (onChange) {
-      setItemsToShow(items);
-      filterItems();
+      formatItems();
+      filterItems(filterValue);
     }
   }, [items]);
 
@@ -158,7 +197,7 @@ export const Autocomplete = ({
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
-        <AutocompleteWrapper>
+        <AutocompleteWrapper ref={autoCompleteRef}>
           <Input
             id={id}
             value={filterValue}
@@ -182,8 +221,7 @@ export const Autocomplete = ({
                     <MenuItemStyled
                       role="option"
                       theme={themeContext.theme}
-                      tabIndex={0}
-                      id={`${id.toLowerCase().replace(/\./g, '')}_option_${index}`}
+                      id={item.htmlID}
                       onKeyDown={(e: any): void => {
                         handleItemKeyPress(e, item[keyToSearch as string]);
                         if (onItemClick) onItemClick(item.index);
@@ -202,6 +240,7 @@ export const Autocomplete = ({
                       ref={(ref: HTMLLIElement): void => {
                         itemRefs[index] = ref;
                       }}
+                      aria-selected={index === itemSelectedIndex ? 'true' : 'false'}
                     >
                       {itemFormatter ? (
                         itemFormatter(item.index)
@@ -212,7 +251,7 @@ export const Autocomplete = ({
                               <Icon icon="check-circle" />
                             </ItemIcon>
                           )}
-                          {item}
+                          {item.label}
                         </>
                       )}
                     </MenuItemStyled>
