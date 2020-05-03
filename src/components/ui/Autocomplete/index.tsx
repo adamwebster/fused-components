@@ -225,6 +225,8 @@ export const Autocomplete = ({
             <AutocompleteMenu id={`${id}-menu`} menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
               <>
                 {itemsToShow.map((item, index) => {
+                  const value = itemFormatter ? item[keyToSearch as string] : item.label;
+
                   return (
                     <MenuItemStyled
                       role="option"
@@ -235,7 +237,7 @@ export const Autocomplete = ({
                         if (onItemClick) onItemClick(item.index);
                       }}
                       onClick={(): void => {
-                        setValue(item[keyToSearch as string]);
+                        setValue(value);
                         if (onItemClick) onItemClick(item.index);
                       }}
                       onMouseEnter={(e: any): void => {
