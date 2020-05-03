@@ -34,6 +34,17 @@ import { Button } from '../Button/';
   </ButtonGroup>
 </Preview>
 
+
+
+<Story name="Button group" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+  <ButtonGroup>
+    <Button  id="primaryButton" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+    <Button  id="primaryButton1" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+    <Button  id="primaryButton2" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+  </ButtonGroup>
+</Story>
+
+
 ## Dark Mode
 
 <ButtonGroupDarkMode />

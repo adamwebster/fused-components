@@ -92,6 +92,7 @@ export const Autocomplete = ({
   };
 
   const handleUserKeyPress = (e: { keyCode: number; preventDefault: () => void }): void => {
+    console.log(e.keyCode);
     if (menuOpen) {
       // Enter Key
       if (e.keyCode === 13) {
@@ -102,8 +103,8 @@ export const Autocomplete = ({
         }
       }
       // Escape Key
-      if (e.keyCode === 27) {
-        e.preventDefault();
+      if (e.keyCode === 27 || e.keyCode === 9) {
+        if (e.keyCode === 27) e.preventDefault();
         setMenuOpen(false);
         setItemSelectedIndex(-1);
         setActiveDescendant('');
@@ -222,7 +223,13 @@ export const Autocomplete = ({
             {...rest}
           />
           {menuOpen && (
-            <AutocompleteMenu id={`${id}-menu`} menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
+            <AutocompleteMenu
+              aria-labeledBy={id}
+              id={`${id}-menu`}
+              menuOpen={menuOpen}
+              role="listbox"
+              theme={themeContext.theme}
+            >
               <>
                 {itemsToShow.map((item, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;
@@ -268,7 +275,11 @@ export const Autocomplete = ({
                   );
                 })}
               </>
-              {itemsToShow.length === 0 && <NoItemFound theme={themeContext.theme}>Nothing found</NoItemFound>}
+              {itemsToShow.length === 0 && (
+                <NoItemFound role="alert" theme={themeContext.theme}>
+                  Nothing found
+                </NoItemFound>
+              )}
             </AutocompleteMenu>
           )}
         </AutocompleteWrapper>

@@ -19,5 +19,7 @@ export const Avatar = ({
   image,
   ...rest
 }: Props): ReactElement => {
-  return <StyledAvatar size={size} borderRadius={borderRadius} boxShadow={boxShadow} image={image} {...rest} />;
+  return (
+    <StyledAvatar role="img" size={size} borderRadius={borderRadius} boxShadow={boxShadow} image={image} {...rest} />
+  );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
+import isoWeek from 'dayjs/plugin/isoWeek';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import duration from 'dayjs/plugin/duration';
 import { Icon } from '../../icon/index';
@@ -19,6 +20,7 @@ import {
 import { FCTheme } from '../../../theming/FCTheme';
 dayjs.extend(localeData);
 dayjs.extend(advancedFormat);
+dayjs.extend(isoWeek);
 dayjs.extend(duration);
 
 interface Props {
@@ -107,7 +109,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     if (row.length > 0)
       return (
         <Week key={Math.random()}>
-          {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }) => {
+          {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }, index: any) => {
             return (
               <Day
                 theme={theme.theme}
@@ -121,7 +123,12 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                 key={item.date}
               >
                 <button disabled={item.otherMonth} onClick={(): void => onChange(item.timeStamp)}>
-                  <span className="day-number">{item.day}</span>
+                  <span
+                    aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
+                    className="day-number"
+                  >
+                    {item.day}
+                  </span>
                 </button>
               </Day>
             );
@@ -146,18 +153,34 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   return (
     <CalendarWrapper calendarWidth={size}>
       <CalendarHeader>
-        <CalendarTitle theme={theme.theme}>
+        <CalendarTitle aria-live="assertive" theme={theme.theme}>
           <span>{`${date.format('MMMM')} ${date.format('YYYY')}`}</span>
         </CalendarTitle>
         <CalendarControl>
-          <CalendarControlButtons forwardedAs="a" onClick={(): void => previousMonth()}>
+          <CalendarControlButtons
+            title="Previous month"
+            forwardedAs="a"
+            tabIndex={0}
+            onKeyPress={(e: any): any => {
+              if (e.key === 'Enter') previousMonth();
+            }}
+            onClick={(): void => previousMonth()}
+          >
             <SvgWrapper>
-              <Icon icon="chevron-left" />
+              <Icon aria-label="Arrow left" icon="chevron-left" />
             </SvgWrapper>
           </CalendarControlButtons>
-          <CalendarControlButtons forwardedAs="a" onClick={(): void => nextMonth()}>
+          <CalendarControlButtons
+            tabIndex={0}
+            title="Next month"
+            forwardedAs="a"
+            onClick={(): void => nextMonth()}
+            onKeyPress={(e: any): any => {
+              if (e.key === 'Enter') nextMonth();
+            }}
+          >
             <SvgWrapper>
-              <Icon icon="chevron-right" />
+              <Icon aria-label="Arrow right" icon="chevron-right" />
             </SvgWrapper>
           </CalendarControlButtons>
         </CalendarControl>
