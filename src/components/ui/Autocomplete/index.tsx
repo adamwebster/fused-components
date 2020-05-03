@@ -176,73 +176,49 @@ export const Autocomplete = ({
           />
           {menuOpen && (
             <AutocompleteMenu menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
-              {itemFormatter ? (
-                <>
-                  {itemsToShow.map((item, index) => {
-                    return (
-                      <MenuItemStyled
-                        role="option"
-                        theme={themeContext.theme}
-                        tabIndex={0}
-                        id={`${id.toLowerCase().replace(/\./g, '')}_option_${index}`}
-                        onKeyDown={(e: any): void => {
-                          handleItemKeyPress(e, item[keyToSearch as string]);
-                          if (onItemClick) onItemClick(item.index);
-                        }}
-                        onClick={(): void => {
-                          setValue(item[keyToSearch as string]);
-                          if (onItemClick) onItemClick(item.index);
-                        }}
-                        onFocus={(e: any): void => {
-                          setActiveDescendant(e.target.id);
-                        }}
-                        onMouseEnter={(e: any): void => {
-                          setActiveDescendant(e.target.id);
-                        }}
-                        key={item.index}
-                        ref={(ref: HTMLLIElement): void => {
-                          itemRefs[index] = ref;
-                        }}
-                      >
-                        {itemFormatter(item.index)}
-                      </MenuItemStyled>
-                    );
-                  })}
-                </>
-              ) : (
-                <>
-                  {itemsToShow.map((item, index) => {
-                    return (
-                      <MenuItemStyled
-                        theme={themeContext.theme}
-                        tabIndex={0}
-                        id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
-                        role="option"
-                        aria-selected={item === itemSelected}
-                        onKeyDown={(e: { key: string }): void => handleItemKeyPress(e, item)}
-                        onClick={(): void => setValue(item)}
-                        onFocus={(e: any): void => {
-                          setActiveDescendant(e.target.id);
-                        }}
-                        onMouseEnter={(e: any): void => {
-                          setActiveDescendant(e.target.id);
-                        }}
-                        key={item}
-                        ref={(ref: HTMLLIElement): void => {
-                          itemRefs[index] = ref;
-                        }}
-                      >
-                        {item === itemSelected && (
-                          <ItemIcon theme={themeContext.theme}>
-                            <Icon icon="check-circle" />
-                          </ItemIcon>
-                        )}
-                        {item}
-                      </MenuItemStyled>
-                    );
-                  })}
-                </>
-              )}
+              <>
+                {itemsToShow.map((item, index) => {
+                  return (
+                    <MenuItemStyled
+                      role="option"
+                      theme={themeContext.theme}
+                      tabIndex={0}
+                      id={`${id.toLowerCase().replace(/\./g, '')}_option_${index}`}
+                      onKeyDown={(e: any): void => {
+                        handleItemKeyPress(e, item[keyToSearch as string]);
+                        if (onItemClick) onItemClick(item.index);
+                      }}
+                      onClick={(): void => {
+                        setValue(item[keyToSearch as string]);
+                        if (onItemClick) onItemClick(item.index);
+                      }}
+                      onFocus={(e: any): void => {
+                        setActiveDescendant(e.target.id);
+                      }}
+                      onMouseEnter={(e: any): void => {
+                        setActiveDescendant(e.target.id);
+                      }}
+                      key={item.index}
+                      ref={(ref: HTMLLIElement): void => {
+                        itemRefs[index] = ref;
+                      }}
+                    >
+                      {itemFormatter ? (
+                        itemFormatter(item.index)
+                      ) : (
+                        <>
+                          {item === itemSelected && (
+                            <ItemIcon theme={themeContext.theme}>
+                              <Icon icon="check-circle" />
+                            </ItemIcon>
+                          )}
+                          {item}
+                        </>
+                      )}
+                    </MenuItemStyled>
+                  );
+                })}
+              </>
               {itemsToShow.length === 0 && <NoItemFound theme={themeContext.theme}>Nothing found</NoItemFound>}
             </AutocompleteMenu>
           )}
