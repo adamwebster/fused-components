@@ -29,7 +29,7 @@ export const StyledAlert = styled.div`
         return props.theme === 'dark' ? '#fff' : color.dark;
     }
   }};
-  h4 {
+  header {
     margin-top: 0;
     margin-bottom: 10px;
     display: inline-flex;
@@ -67,6 +67,9 @@ export const StyledAlert = styled.div`
 export const Title = styled.span`
   top: -5px;
   margin-left: 5px;
+  font-size: 14px;
+  display: inline-block;
+  font-weight: bold;
   display: inline-block;
 `;
 

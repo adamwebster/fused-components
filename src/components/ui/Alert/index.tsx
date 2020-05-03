@@ -41,10 +41,10 @@ export const Alert = ({
             role="alert"
           >
             {title && (
-              <h4>
-                {icon && <Icon className="notification-icon" icon={icon} />}{' '}
+              <header>
+                {icon && <Icon aria-hidden className="notification-icon" icon={icon} />}{' '}
                 <Title theme={themeContext.theme}>{title}</Title>
-              </h4>
+              </header>
             )}
             {children && (
               <AlertContent theme={themeContext.theme} fcStyle={fcStyle}>

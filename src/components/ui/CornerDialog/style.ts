@@ -92,12 +92,14 @@ export const CornerDialogStyled = styled.div`
   }
 `;
 
-export const DialogTitle = styled.h3`
+export const DialogTitle = styled.header`
   border-bottom: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
   color: ${colorValue};
+  font-size: 14px;
+  font-weight: bold;
 `;
 
 export const DialogContent = styled.div`

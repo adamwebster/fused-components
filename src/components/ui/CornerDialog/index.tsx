@@ -50,12 +50,36 @@ export const CornerDialog = ({
     }
   }, [visible]);
 
+  const handleUserKeyPress = (e: any): void => {
+    e.preventDefault();
+    if (show) {
+      // Escape Key
+      if (e.keyCode === 27) {
+        setShow(false);
+        onCloseClick();
+      }
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keydown', handleUserKeyPress);
+
+    return (): void => {
+      window.removeEventListener('keydown', handleUserKeyPress);
+    };
+  });
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
         <>
           {show && (
-            <CornerDialogStyled visible={visible} fcStyle={fcStyle} fixed={fixed} theme={themeContext.theme}>
+            <CornerDialogStyled
+              role="alertdialog"
+              title="Click escape to close this dialog."
+              visible={visible}
+              fcStyle={fcStyle}
+              fixed={fixed}
+              theme={themeContext.theme}
+            >
               <DialogTitle fcStyle={fcStyle} theme={themeContext.theme}>
                 {title && title}
                 <CloseButton
