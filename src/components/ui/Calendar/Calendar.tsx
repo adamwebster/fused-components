@@ -153,44 +153,52 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     getWeeks();
   }, [date]);
   useEffect(() => {
-    console.log(focusedDay);
     if (dayButtonRefs) {
       if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
     }
   }, [dayButtonRefs]);
   const nextMonth = (): void => {
     setDate(date.add(1, 'month'));
+    setFocusedDay(1);
+    dayButtonRefs[1].focus();
   };
 
   const previousMonth = (): void => {
     setDate(date.subtract(1, 'month'));
+    setFocusedDay(1);
+    dayButtonRefs[1].focus();
   };
 
   const calendarKeyPress = (e: any) => {
-    console.log(e.key, dayButtonRefs, focusedDay);
-
     if (e.key === 'ArrowRight') {
-      console.log('here');
       e.preventDefault();
       if (dayButtonRefs) {
-        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 1].focus();
-        setFocusedDay(focusedDay + 1);
+        if (focusedDay + 1 < dayButtonRefs.length) {
+          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 1].focus();
+          setFocusedDay(focusedDay + 1);
+        } else {
+          setDate(date.add(1, 'month'));
+          setFocusedDay(1);
+          dayButtonRefs[1].focus();
+        }
       }
     }
 
     if (e.key === 'ArrowLeft') {
-      console.log('here');
       e.preventDefault();
-
       if (dayButtonRefs) {
-        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 1].focus();
-        setFocusedDay(focusedDay - 1);
+        if (focusedDay - 1 > 0) {
+          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 1].focus();
+          setFocusedDay(focusedDay - 1);
+        } else {
+          const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
+          setDate(date.subtract(1, 'month'));
+          setFocusedDay(numberOfDaysInMonth);
+        }
       }
     }
     if (e.key === 'ArrowDown') {
-      console.log('here');
       e.preventDefault();
-
       if (dayButtonRefs) {
         if (focusedDay + 7 < dayButtonRefs.length) {
           if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 7].focus();
@@ -203,15 +211,15 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
       }
     }
     if (e.key === 'ArrowUp') {
-      console.log('here');
       e.preventDefault();
       if (dayButtonRefs) {
-        console.log(focusedDay - 7);
         if (focusedDay - 7 > 0) {
           if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 7].focus();
           setFocusedDay(focusedDay - 7);
         } else {
+          const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
           setDate(date.subtract(1, 'month'));
+          setFocusedDay(numberOfDaysInMonth);
         }
       }
     }
