@@ -41,8 +41,21 @@ const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) =
   return (
     <>
       {menuOpened && (
-        <CalendarMenu theme={theme.theme} role="dialog" aria-expanded="true" ref={menuRef}>
-          <Calendar onChange={date => changeDate(date)} selectedDate={value} />
+        <CalendarMenu
+          onKeyDown={e => {
+            if (e.keyCode === 27) {
+              e.preventDefault();
+              if (menuRef.current) {
+                setMenuOpen(false, true);
+              }
+            }
+          }}
+          theme={theme.theme}
+          role="dialog"
+          aria-expanded="true"
+          ref={menuRef}
+        >
+          <Calendar setFocusToday onChange={date => changeDate(date)} selectedDate={value} />
         </CalendarMenu>
       )}
     </>
