@@ -27,14 +27,8 @@ interface Props {
   onChange?: (date: any) => void;
   selectedDate?: dayjs.Dayjs | string;
   size?: number;
-  setFocusToday?: boolean;
 }
-const Calendar = ({
-  onChange = (): void => undefined,
-  setFocusToday,
-  selectedDate = dayjs(),
-  size,
-}: Props): React.ReactElement => {
+const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), size }: Props): React.ReactElement => {
   const [date, setDate] = useState(dayjs());
   const [daysOfTheWeek] = useState(
     dayjs()
@@ -43,10 +37,8 @@ const Calendar = ({
   );
   const [currentDay, setCurrentDay] = useState('');
   const [calendar, setCalendar] = useState([]);
-  const [focusedDay, setFocusedDay] = useState<number>(
-    parseInt(dayjs(selectedDate).format('D')) || parseInt(dayjs().format('D')),
-  );
-  const dayButtonRefs: Array<HTMLDivElement> = [];
+  const [focusedDay, setFocusedDay] = useState<number>(parseInt(dayjs().format('D')));
+  const dayButtonRefs: Array<HTMLButtonElement> = [];
 
   const theme = useContext(FCTheme);
   const dayNames = daysOfTheWeek.map((day: string) => {
@@ -69,7 +61,6 @@ const Calendar = ({
         day: startOfMonth.subtract(d + 1, 'day').format('D'),
         otherMonth: true,
         date: endOfMonth.subtract(d + 1, 'day').format('YYYY MM DD'),
-        disabled: true,
       });
     }
 
@@ -78,7 +69,6 @@ const Calendar = ({
         day: d,
         date: date.format(`YYYY-${date.get('month') + 1}-${d}`),
         timeStamp: dayjs(`${date.get('year')}-${date.get('month') + 1}-${d}`).format(),
-        disabled: false,
       });
     }
 
@@ -91,7 +81,6 @@ const Calendar = ({
         day: endOfMonth.add(i + 1, 'day').format('D'),
         otherMonth: true,
         date: endOfMonth.add(i + 1, 'day').format('YYYY MM DD'),
-        disabled: true,
       });
     }
     const totalSlots = [...blankDays.reverse(), ...daysInMonth, ...blankDaysEnd];
@@ -123,43 +112,38 @@ const Calendar = ({
     if (row.length > 0)
       return (
         <Week key={Math.random()}>
-          {row.map(
-            (
-              item: { day: string; otherMonth: boolean; date: string; timeStamp: string; disabled: boolean },
-              index: any,
-            ) => {
-              return (
-                <Day
-                  theme={theme.theme}
-                  className={`${item.day.toString() === currentDay ? `current-day ` : ''}${
-                    item.otherMonth ? 'other-month' : ''
-                  }${
-                    item.date && dayjs(item.date).format('MMMM/DD/YYYY') === dayjs(selectedDate).format('MMMM/DD/YYYY')
-                      ? ' selected-day'
-                      : ''
-                  }`}
-                  key={item.date}
+          {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }, index: any) => {
+            return (
+              <Day
+                theme={theme.theme}
+                className={`${item.day.toString() === currentDay ? `current-day` : ''}${
+                  item.otherMonth ? 'other-month' : ''
+                }${
+                  item.date && dayjs(item.date).format('MMMM/DD/YYYY') === dayjs(selectedDate).format('MMMM/DD/YYYY')
+                    ? ' selected-day'
+                    : ''
+                }`}
+                key={item.date}
+              >
+                <button
+                  ref={(ref: HTMLButtonElement): void => {
+                    if (ref) {
+                      if (!ref.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
+                    }
+                  }}
+                  disabled={item.otherMonth}
+                  onClick={(): void => onChange(item.timeStamp)}
                 >
-                  <div
-                    className="day-wrapper"
-                    ref={(ref: HTMLDivElement): void => {
-                      if (ref) {
-                        if (!item.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
-                      }
-                    }}
-                    onClick={(): false | void => !item.disabled && onChange(item.timeStamp)}
+                  <span
+                    aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
+                    className="day-number"
                   >
-                    <span
-                      aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
-                      className="day-number"
-                    >
-                      {item.day}
-                    </span>
-                  </div>
-                </Day>
-              );
-            },
-          )}
+                    {item.day}
+                  </span>
+                </button>
+              </Day>
+            );
+          })}
         </Week>
       );
     return null;
@@ -169,7 +153,7 @@ const Calendar = ({
     getWeeks();
   }, [date]);
   useEffect(() => {
-    if (dayButtonRefs && setFocusToday) {
+    if (dayButtonRefs) {
       if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
     }
   }, [dayButtonRefs]);

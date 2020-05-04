@@ -69,8 +69,6 @@ export const Day = styled.td`
   position: relative;
   padding: 0;
   vertical-align: top;
-  color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
-
   &.has-todos {
     &:after {
       content: '';
@@ -83,15 +81,15 @@ export const Day = styled.td`
       border-radius: 50%;
     }
   }
-  &.current-day:not(.other-month) {
-    div {
+  &.current-day {
+    button:not(:disabled) {
       .day-number {
         border: solid 1px tomato;
       }
     }
   }
-  &.selected-day:not(.other-month) {
-    div:not(:focus) {
+  &.selected-day {
+    button:not(:disabled) {
       .day-number {
         background-color: tomato;
         color: #fff;
@@ -99,7 +97,7 @@ export const Day = styled.td`
     }
   }
   &:hover:not(.selected-day):not(.other-month) {
-    div:not(:focus) {
+    button {
       .day-number {
         background-color: ${color.primary};
         color: #fff;
@@ -110,33 +108,27 @@ export const Day = styled.td`
   &.other-month {
     color: ${color.mediumdark};
   }
-
-  &:not(other-month) {
-    .day-wrapper {
-      &:hover {
-        color: #fff !important;
-      }
-    }
-  }
-  .day-wrapper {
+  button {
     height: 100%;
     width: 100%;
     min-height: 30px;
-    padding: 5px;
-    box-sizing: border-box;
+
     display: flex;
     flex-flow: column;
     align-items: center;
     background-color: transparent;
     border: none;
     justify-content: center;
-
+    color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
     .day-number {
       width: 25px;
       padding-top: 5px;
       height: 25px;
       border-radius: 5px;
       box-sizing: border-box;
+    }
+    &:hover:not(:disabled) {
+      color: #fff !important;
     }
     &:focus {
       outline: none;
@@ -146,10 +138,10 @@ export const Day = styled.td`
         color: #fff;
       }
     }
-    &.other-month {
+    &:disabled {
       color: ${(props): string => (props.theme === 'dark' ? darken(0.2, color.darkModeLight) : color.medium)};
     }
-    &.other-month:hover {
+    &:disabled:hover {
       cursor: default;
     }
   }
