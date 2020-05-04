@@ -92,7 +92,6 @@ export const Autocomplete = ({
   };
 
   const handleUserKeyPress = (e: { keyCode: number; preventDefault: () => void }): void => {
-    console.log(e.keyCode);
     if (menuOpen) {
       // Enter Key
       if (e.keyCode === 13) {
@@ -100,6 +99,9 @@ export const Autocomplete = ({
           setValue(itemsToShow[itemSelectedIndex][keyToSearch]);
         } else {
           setValue(itemsToShow[itemSelectedIndex].label);
+        }
+        if (onItemClick) {
+          onItemClick(itemSelectedIndex);
         }
       }
       // Escape Key
@@ -168,22 +170,10 @@ export const Autocomplete = ({
     filterItems(e.target.value);
   };
 
-  const handleItemKeyPress = (e: { key: string }, item: React.SetStateAction<string>): void => {
-    if (e.key === 'Enter') {
-      setValue(item);
-    }
-  };
-
   useEffect(() => {
     formatItems();
   }, [items]);
 
-  useEffect(() => {
-    autoCompleteRef.current.addEventListener('keydown', handleUserKeyPress);
-    return (): void => {
-      autoCompleteRef.current.removeEventListener('keydown', handleUserKeyPress);
-    };
-  });
   useEffect(() => {
     if (onChange) {
       formatItems();
@@ -219,17 +209,12 @@ export const Autocomplete = ({
             autoComplete="off"
             theme={themeContext.theme}
             role="combobox"
+            onKeyDown={e => handleUserKeyPress(e)}
             {...ariaProps}
             {...rest}
           />
           {menuOpen && (
-            <AutocompleteMenu
-              aria-labeledBy={id}
-              id={`${id}-menu`}
-              menuOpen={menuOpen}
-              role="listbox"
-              theme={themeContext.theme}
-            >
+            <AutocompleteMenu id={`${id}-menu`} menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
               <>
                 {itemsToShow.map((item, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;
@@ -239,10 +224,6 @@ export const Autocomplete = ({
                       role="option"
                       theme={themeContext.theme}
                       id={item.htmlID}
-                      onKeyDown={(e: any): void => {
-                        handleItemKeyPress(e, item[keyToSearch as string]);
-                        if (onItemClick) onItemClick(item.index);
-                      }}
                       onClick={(): void => {
                         setValue(value);
                         if (onItemClick) onItemClick(item.index);
@@ -262,7 +243,7 @@ export const Autocomplete = ({
                       ) : (
                         <>
                           <span aria-label={`${item.label} press enter to choose this option`}>
-                            {item === itemSelected && (
+                            {item.label === itemSelected && (
                               <ItemIcon theme={themeContext.theme}>
                                 <Icon icon="check-circle" />
                               </ItemIcon>

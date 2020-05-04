@@ -1,8 +1,7 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, waitFor } from '@testing-library/react';
 import 'jest-styled-components';
 import { Alert } from './index';
-import renderer from 'react-test-renderer';
 import { color } from '../../../styles/styles';
 import { FCThemeProvider } from '../../../theming/FCTheme';
 
@@ -17,13 +16,14 @@ describe('Alert Tests', () => {
 
   test('Alert has the correct icon when an icon is passed', () => {
     const { getByRole } = render(
-      <Alert title="Alert" icon="fcInfo">
+      <Alert title="Alert" icon="check-circle">
         Danger Alert{' '}
       </Alert>,
     );
-
     const icon = getByRole('img');
-    expect(icon).toHaveClass('fcInfo');
+    waitFor(() => {
+      expect(icon).toHaveClass('check-circle');
+    });
   });
 
   test('Renders correctly with no title added', () => {
@@ -31,18 +31,19 @@ describe('Alert Tests', () => {
   });
 
   test('Setting the border radius to false resets the border radius', () => {
-    const container = renderer.create(<Alert borderRadius={false}>Alert</Alert>).toJSON();
-    expect(container).toHaveStyleRule('border-radius', undefined);
+    const { getByRole } = render(<Alert borderRadius={false}>Alert</Alert>);
+    const alert = getByRole('alert');
+    expect(alert).toHaveStyleRule('border-radius', undefined);
   });
 
   test('Text color is the correct color', () => {
-    const container = renderer
-      .create(
-        <FCThemeProvider value={{ theme: 'dark' }}>
-          <Alert borderRadius={false}>Alert</Alert>
-        </FCThemeProvider>,
-      )
-      .toJSON();
-    expect(container).toHaveStyleRule('color', color.medium);
+    const { getByRole } = render(
+      <FCThemeProvider value={{ theme: 'dark' }}>
+        <Alert borderRadius={false}>Alert</Alert>
+      </FCThemeProvider>,
+    );
+    const alert = getByRole('alert');
+
+    expect(alert).toHaveStyleRule('color', color.medium);
   });
 });

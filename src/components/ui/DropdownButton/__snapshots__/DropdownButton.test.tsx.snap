@@ -75,9 +75,6 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title>
-        caret-up
-      </title>
       <path
         d="M16,0l16,16l-32,0l16,-16Z"
         fill="currentColor"
@@ -162,9 +159,6 @@ exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title>
-        caret-up
-      </title>
       <path
         d="M16,0l16,16l-32,0l16,-16Z"
         fill="currentColor"

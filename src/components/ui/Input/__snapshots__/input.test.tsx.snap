@@ -87,9 +87,6 @@ exports[`FormField Input Has the correct styles when in dark mode 1`] = `
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          check-circle
-        </title>
         <path
           d="M24,0c13.246,0 24,10.754 24,24c0,13.246 -10.754,24 -24,24c-13.246,0 -24,-10.754 -24,-24c0,-13.246 10.754,-24 24,-24Zm-4.173,28.075l17.261,-16.676l5.559,5.754l-23.014,22.234l-0.001,-0.001l-0.001,0.001l-12.837,-13.287l5.754,-5.559l7.279,7.534Z"
           fill="currentColor"
@@ -199,9 +196,6 @@ exports[`FormField Input Has the correct styles when in error 1`] = `
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          check-circle
-        </title>
         <path
           d="M24,0c13.246,0 24,10.754 24,24c0,13.246 -10.754,24 -24,24c-13.246,0 -24,-10.754 -24,-24c0,-13.246 10.754,-24 24,-24Zm-4.173,28.075l17.261,-16.676l5.559,5.754l-23.014,22.234l-0.001,-0.001l-0.001,0.001l-12.837,-13.287l5.754,-5.559l7.279,7.534Z"
           fill="currentColor"
@@ -311,9 +305,6 @@ exports[`FormField Input Has the correct styles when in warning 1`] = `
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          check-circle
-        </title>
         <path
           d="M24,0c13.246,0 24,10.754 24,24c0,13.246 -10.754,24 -24,24c-13.246,0 -24,-10.754 -24,-24c0,-13.246 10.754,-24 24,-24Zm-4.173,28.075l17.261,-16.676l5.559,5.754l-23.014,22.234l-0.001,-0.001l-0.001,0.001l-12.837,-13.287l5.754,-5.559l7.279,7.534Z"
           fill="currentColor"

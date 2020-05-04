@@ -12,6 +12,7 @@ exports[`Avatar Tests Adding an image passes the url to the css 1`] = `
 <div>
   <div
     class="c0"
+    role="img"
   />
 </div>
 `;
@@ -29,6 +30,7 @@ exports[`Avatar Tests Adding the box shadow prop matches the snapshot 1`] = `
 <div>
   <div
     class="c0"
+    role="img"
   />
 </div>
 `;
@@ -45,6 +47,7 @@ exports[`Avatar Tests Changing the size to large has the correct size 1`] = `
 <div>
   <div
     class="c0"
+    role="img"
   />
 </div>
 `;
@@ -61,6 +64,7 @@ exports[`Avatar Tests Changing the size to medium has the correct size 1`] = `
 <div>
   <div
     class="c0"
+    role="img"
   />
 </div>
 `;
@@ -77,6 +81,7 @@ exports[`Avatar Tests Changing the size to tiny has the correct size 1`] = `
 <div>
   <div
     class="c0"
+    role="img"
   />
 </div>
 `;
@@ -93,6 +98,7 @@ exports[`Avatar Tests Setting the border radius to round matches the snapshot 1`
 <div>
   <div
     class="c0"
+    role="img"
   />
 </div>
 `;
@@ -109,6 +115,7 @@ exports[`Avatar Tests Setting the border radius to square matches the snapshot 1
 <div>
   <div
     class="c0"
+    role="img"
   />
 </div>
 `;

@@ -182,9 +182,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -396,9 +393,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -610,9 +604,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -824,9 +815,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -1038,9 +1026,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -1252,9 +1237,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -1466,9 +1448,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -1680,9 +1659,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -1894,9 +1870,6 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"
@@ -2108,9 +2081,6 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          times
-        </title>
         <path
           d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
           fill="currentColor"

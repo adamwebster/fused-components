@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import 'jest-styled-components';
 import { Autocomplete } from './index';
 import userEvent from '@testing-library/user-event';
@@ -26,12 +26,22 @@ describe('Autocomplete Tests', () => {
   });
 
   test('Menu closes when the escape key is clicked', () => {
-    const { getByPlaceholderText, queryByText, container } = render(
+    const { getByPlaceholderText, queryByText } = render(
       <Autocomplete id="ac1" items={['Test', 'Another Item']} placeholder="Autocomplete test" />,
     );
     const input = getByPlaceholderText('Autocomplete test');
     userEvent.type(input, 't');
-    fireEvent.keyDown(container, { key: 'Escape', code: 'Escape', keyCode: 27 });
+    fireEvent.keyDown(input, { key: 'Escape', code: 'Escape', keyCode: 27 });
+    expect(queryByText('Another Item')).toBeFalsy();
+  });
+
+  test('Menu closes when the tab key is clicked', () => {
+    const { getByPlaceholderText, queryByText } = render(
+      <Autocomplete id="ac1" items={['Test', 'Another Item']} placeholder="Autocomplete test" />,
+    );
+    const input = getByPlaceholderText('Autocomplete test');
+    userEvent.type(input, 't');
+    fireEvent.keyDown(input, { key: 'Tab', code: 'Tab', keyCode: 9 });
     expect(queryByText('Another Item')).toBeFalsy();
   });
 
@@ -63,33 +73,31 @@ describe('Autocomplete Tests', () => {
   });
 
   test('Clicking the down arrow highlights the correct item in the menu', () => {
-    const { getByRole, getByPlaceholderText } = render(
+    const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
     const input = getByPlaceholderText('Autocomplete test');
 
     userEvent.type(input, 't');
-    const menu = getByRole('listbox');
 
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
 
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_0');
   });
 
   test('Clicking the down arrow twice and then up highlights the correct item in the menu', () => {
-    const { getByRole, getByPlaceholderText } = render(
+    const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
     const input = getByPlaceholderText('Autocomplete test');
 
     userEvent.type(input, 't');
-    const menu = getByRole('listbox');
 
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_0');
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_1');
-    fireEvent.keyDown(menu, { keyCode: 38 });
+    fireEvent.keyDown(input, { keyCode: 38 });
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_0');
   });
 
@@ -104,7 +112,7 @@ describe('Autocomplete Tests', () => {
         description: 'Another fruit',
       },
     ];
-    const { getByRole, getByPlaceholderText } = render(
+    const { getByPlaceholderText } = render(
       <Autocomplete
         id="ac1"
         itemFormatter={(index): ReactElement => (
@@ -121,28 +129,27 @@ describe('Autocomplete Tests', () => {
 
     const input = getByPlaceholderText('Autocomplete test');
 
-    userEvent.type(input, 't');
-    const menu = getByRole('listbox');
+    userEvent.type(input, 'A');
 
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_0');
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_1');
-    fireEvent.keyDown(menu, { keyCode: 38 });
+    fireEvent.keyDown(input, { keyCode: 38 });
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_0');
   });
 
-  test('The mouse entering the item sets the aria-activedescendant', () => {
-    const { getByText, getByPlaceholderText } = render(
+  test('The mouse entering the item sets the aria-activedescendant', async () => {
+    const { getAllByRole, getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
 
     const input = getByPlaceholderText('Autocomplete test');
-
     userEvent.type(input, 'T');
-    const item = getByText('Test');
+    const item = getAllByRole('option')[0];
 
     fireEvent.mouseEnter(item);
+
     expect(input.getAttribute('aria-activedescendant')).toBe('ac1_option_0');
   });
 
@@ -237,28 +244,29 @@ describe('Autocomplete Tests', () => {
   });
 
   test('When an item is selected by clicking enter the value is set', () => {
-    const { getByText, getByPlaceholderText } = render(
+    const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
     const input = getByPlaceholderText('Autocomplete test');
 
     userEvent.type(input, 'tes');
+    fireEvent.keyDown(input, { keyCode: 40 });
 
-    const Option = getByText('Test');
-    fireEvent.keyDown(Option, { keyCode: 13 });
-    expect(input.getAttribute('value')).toBe('Test');
+    fireEvent.keyDown(input, { keyCode: 13 });
+    waitFor(() => {
+      expect(input.getAttribute('value')).toBe('Test');
+    });
   });
 
   test('Nothing happens When any key but enter is clicked when an item is active in the list', () => {
-    const { getByText, getByPlaceholderText } = render(
+    const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
     const input = getByPlaceholderText('Autocomplete test');
 
     userEvent.type(input, 'tes');
 
-    const Option = getByText('Test');
-    fireEvent.keyDown(Option, { key: 'a', keyCode: 'KeyA' });
+    fireEvent.keyDown(input, { key: 'a', keyCode: 'KeyA' });
 
     expect(input.getAttribute('value')).toBe('tes');
   });
@@ -274,7 +282,7 @@ describe('Autocomplete Tests', () => {
         description: 'Another fruit',
       },
     ];
-    const { getByText, getByPlaceholderText } = render(
+    const { getByPlaceholderText } = render(
       <Autocomplete
         id="ac1"
         itemFormatter={(index): ReactElement => (
@@ -291,10 +299,11 @@ describe('Autocomplete Tests', () => {
     const input = getByPlaceholderText('Autocomplete test');
 
     userEvent.type(input, 'ap');
-
-    const Option = getByText('Apple');
-    fireEvent.keyDown(Option, { keyCode: 13 });
-    expect(input.getAttribute('value')).toBe('Apple');
+    fireEvent.keyDown(input, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 13 });
+    waitFor(() => {
+      expect(input.getAttribute('value')).toBe('Apple');
+    });
   });
 
   test('When an item is selected by clicking it the value is set when itemFormatter is used', () => {
@@ -346,7 +355,7 @@ describe('Autocomplete Tests', () => {
     const onItemClick = jest.fn(index => {
       initialValue = index;
     });
-    const { getByText, getByPlaceholderText } = render(
+    const { getAllByRole, getByPlaceholderText } = render(
       <Autocomplete
         id="ac1"
         onItemClick={(index): any => onItemClick(index)}
@@ -363,7 +372,7 @@ describe('Autocomplete Tests', () => {
     );
     const input = getByPlaceholderText('Autocomplete test');
     userEvent.type(input, 'ap');
-    const Option = getByText('Apple');
+    const Option = getAllByRole('option')[0];
     fireEvent.click(Option);
     expect(initialValue).toBe(0);
   });
@@ -383,7 +392,7 @@ describe('Autocomplete Tests', () => {
     const onItemClick = jest.fn(index => {
       initialValue = index;
     });
-    const { getByText, getByPlaceholderText } = render(
+    const { getByPlaceholderText } = render(
       <Autocomplete
         id="ac1"
         onItemClick={(index): any => onItemClick(index)}
@@ -400,8 +409,9 @@ describe('Autocomplete Tests', () => {
     );
     const input = getByPlaceholderText('Autocomplete test');
     userEvent.type(input, 'ap');
-    const Option = getByText('Apple');
-    fireEvent.keyDown(Option, { keyCode: 13 });
+    fireEvent.keyDown(input, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 13 });
+
     expect(initialValue).toBe(0);
   });
 
@@ -431,7 +441,8 @@ describe('Autocomplete Tests', () => {
     userEvent.type(input, 't');
     const item = getByText('Test');
     fireEvent.click(item);
-    userEvent.type(input, ' ');
+    fireEvent.change(input, { target: { value: '' } });
+    userEvent.type(input, 't');
     const svg = getByRole('img');
     expect(svg).toHaveClass('check-circle');
   });
@@ -461,7 +472,8 @@ describe('Autocomplete Tests', () => {
     userEvent.type(input, 't');
     const item = getByText('Test');
     fireEvent.click(item);
-    userEvent.type(input, ' ');
+    fireEvent.change(input, { target: { value: '' } });
+    userEvent.type(input, 't');
     const svg = getByRole('img');
     expect(svg).toHaveClass('check-circle');
   });

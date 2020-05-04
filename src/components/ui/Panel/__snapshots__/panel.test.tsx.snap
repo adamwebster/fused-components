@@ -199,9 +199,6 @@ exports[`Panel Tests Correct styles for danger panel | Dark mode 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
@@ -436,9 +433,6 @@ exports[`Panel Tests Correct styles for danger panel 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
@@ -672,9 +666,6 @@ exports[`Panel Tests Correct styles for info panel | Dark mode 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
@@ -909,9 +900,6 @@ exports[`Panel Tests Correct styles for info panel 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
@@ -1145,9 +1133,6 @@ exports[`Panel Tests Correct styles for success panel | Dark mode 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
@@ -1381,9 +1366,6 @@ exports[`Panel Tests Correct styles for success panel 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
@@ -1617,9 +1599,6 @@ exports[`Panel Tests Correct styles for warning panel | Dark mode 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
@@ -1854,9 +1833,6 @@ exports[`Panel Tests Correct styles for warning panel 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
@@ -2090,9 +2066,6 @@ exports[`Panel Tests Setting the title prop sets the title 1`] = `
           viewBox="0 0 48 48"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            times
-          </title>
           <path
             d="M24 18.343L42.343 0 48 5.657 29.657 24 48 42.343 42.343 48 24 29.657 5.657 48 0 42.343 18.343 24 0 5.657 5.657 0 24 18.343z"
             fill="currentColor"
