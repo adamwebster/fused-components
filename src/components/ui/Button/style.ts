@@ -75,7 +75,6 @@ export const StyledButton = styled.button<SB>`
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position:relative;
   border-radius: 5px;
   transition: all 0.2s ease;

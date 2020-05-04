@@ -159,14 +159,12 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   }, [dayButtonRefs]);
   const nextMonth = (): void => {
     setDate(date.add(1, 'month'));
-    setFocusedDay(1);
-    dayButtonRefs[1].focus();
+    setFocusedDay(0);
   };
 
   const previousMonth = (): void => {
     setDate(date.subtract(1, 'month'));
-    setFocusedDay(1);
-    dayButtonRefs[1].focus();
+    setFocusedDay(0);
   };
 
   const calendarKeyPress = (e: any) => {

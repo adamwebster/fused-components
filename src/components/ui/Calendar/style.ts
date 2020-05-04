@@ -56,7 +56,11 @@ export const SvgWrapper = styled.span`
 `;
 
 export const CalendarControlButtons = styled(Button)`
-  font-size: 16px;
+  font-size: 20px;
+  line-height: 0;
+  &:first-child {
+    margin-right: 10px;
+  }
 `;
 
 export const Day = styled.td`
