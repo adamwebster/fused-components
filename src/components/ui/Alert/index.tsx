@@ -42,7 +42,7 @@ export const Alert = ({
           >
             {title && (
               <header>
-                {icon && <Icon aria-hidden className="notification-icon" icon={icon} />}{' '}
+                {icon && <Icon className="notification-icon" icon={icon} />}{' '}
                 <Title theme={themeContext.theme}>{title}</Title>
               </header>
             )}
