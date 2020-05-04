@@ -37,6 +37,9 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   );
   const [currentDay, setCurrentDay] = useState('');
   const [calendar, setCalendar] = useState([]);
+  const [focusedDay, setFocusedDay] = useState<number>(parseInt(dayjs().format('D')));
+  const dayButtonRefs: Array<HTMLButtonElement> = [];
+
   const theme = useContext(FCTheme);
   const dayNames = daysOfTheWeek.map((day: string) => {
     return (
@@ -122,7 +125,15 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                 }`}
                 key={item.date}
               >
-                <button disabled={item.otherMonth} onClick={(): void => onChange(item.timeStamp)}>
+                <button
+                  ref={(ref: HTMLButtonElement): void => {
+                    if (ref) {
+                      if (!ref.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
+                    }
+                  }}
+                  disabled={item.otherMonth}
+                  onClick={(): void => onChange(item.timeStamp)}
+                >
                   <span
                     aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
                     className="day-number"
@@ -141,7 +152,12 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   useEffect(() => {
     getWeeks();
   }, [date]);
-
+  useEffect(() => {
+    console.log(focusedDay);
+    if (dayButtonRefs) {
+      if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
+    }
+  }, [dayButtonRefs]);
   const nextMonth = (): void => {
     setDate(date.add(1, 'month'));
   };
@@ -150,8 +166,59 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     setDate(date.subtract(1, 'month'));
   };
 
+  const calendarKeyPress = (e: any) => {
+    console.log(e.key, dayButtonRefs, focusedDay);
+
+    if (e.key === 'ArrowRight') {
+      console.log('here');
+      e.preventDefault();
+      if (dayButtonRefs) {
+        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 1].focus();
+        setFocusedDay(focusedDay + 1);
+      }
+    }
+
+    if (e.key === 'ArrowLeft') {
+      console.log('here');
+      e.preventDefault();
+
+      if (dayButtonRefs) {
+        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 1].focus();
+        setFocusedDay(focusedDay - 1);
+      }
+    }
+    if (e.key === 'ArrowDown') {
+      console.log('here');
+      e.preventDefault();
+
+      if (dayButtonRefs) {
+        if (focusedDay + 7 < dayButtonRefs.length) {
+          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 7].focus();
+          setFocusedDay(focusedDay + 7);
+        } else {
+          setDate(date.add(1, 'month'));
+          setFocusedDay(1);
+          dayButtonRefs[1].focus();
+        }
+      }
+    }
+    if (e.key === 'ArrowUp') {
+      console.log('here');
+      e.preventDefault();
+      if (dayButtonRefs) {
+        console.log(focusedDay - 7);
+        if (focusedDay - 7 > 0) {
+          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 7].focus();
+          setFocusedDay(focusedDay - 7);
+        } else {
+          setDate(date.subtract(1, 'month'));
+        }
+      }
+    }
+  };
+
   return (
-    <CalendarWrapper calendarWidth={size}>
+    <CalendarWrapper onKeyDown={e => calendarKeyPress(e)} calendarWidth={size}>
       <CalendarHeader>
         <CalendarTitle aria-live="assertive" theme={theme.theme}>
           <span>{`${date.format('MMMM')} ${date.format('YYYY')}`}</span>
