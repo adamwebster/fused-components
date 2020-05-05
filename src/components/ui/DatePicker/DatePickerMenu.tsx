@@ -55,7 +55,7 @@ const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) =
           aria-expanded="true"
           ref={menuRef}
         >
-          <Calendar setFocusToday onChange={date => changeDate(date)} selectedDate={value} />
+          <Calendar onChange={date => changeDate(date)} selectedDate={value} />
         </CalendarMenu>
       )}
     </>

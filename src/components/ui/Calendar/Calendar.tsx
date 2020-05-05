@@ -29,7 +29,8 @@ interface Props {
   size?: number;
 }
 const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), size }: Props): React.ReactElement => {
-  const [date, setDate] = useState(dayjs());
+  const dateToSet = selectedDate ? dayjs(selectedDate) : dayjs();
+  const [date, setDate] = useState(dateToSet);
   const [daysOfTheWeek] = useState(
     dayjs()
       .localeData()
