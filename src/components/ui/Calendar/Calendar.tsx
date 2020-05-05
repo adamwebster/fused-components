@@ -234,13 +234,9 @@ const Calendar = ({
                   disabled={item.otherMonth}
                   onMouseDown={(): void => onChange(item.timeStamp)}
                   aria-selected={parseInt(item.day) === focusedDay && !item.otherMonth}
+                  aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
                 >
-                  <span
-                    aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
-                    className="day-number"
-                  >
-                    {item.day}
-                  </span>
+                  <span className="day-number">{item.day}</span>
                 </button>
               </Day>
             );
@@ -348,7 +344,7 @@ const Calendar = ({
           </CalendarControlButtons>
         </CalendarControl>
       </CalendarHeader>
-      <Table>
+      <Table aria-hidden>
         <thead>
           <tr>{dayNames}</tr>
         </thead>
