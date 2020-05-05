@@ -112,7 +112,6 @@ export const Day = styled.td`
     height: 100%;
     width: 100%;
     min-height: 30px;
-
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -136,6 +135,7 @@ export const Day = styled.td`
         box-sizing: border-box;
         background-color: ${color.primary};
         color: #fff;
+        box-shadow: 0px 0px 2px 2px ${color.primary};
       }
     }
     &:disabled {

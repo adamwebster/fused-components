@@ -7,7 +7,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -50,7 +49,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -218,7 +216,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -261,7 +258,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -429,7 +425,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -472,7 +467,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -640,7 +634,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -683,7 +676,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -851,7 +843,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -894,7 +885,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1062,7 +1052,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1105,7 +1094,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1273,7 +1261,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1316,7 +1303,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1484,7 +1470,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1527,7 +1512,6 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1695,7 +1679,6 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1738,7 +1721,6 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1906,7 +1888,6 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
@@ -1949,7 +1930,6 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;

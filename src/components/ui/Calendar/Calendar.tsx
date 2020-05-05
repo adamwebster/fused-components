@@ -37,7 +37,9 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   );
   const [currentDay, setCurrentDay] = useState('');
   const [calendar, setCalendar] = useState([]);
-  const [focusedDay, setFocusedDay] = useState<number>(parseInt(dayjs().format('D')));
+  const [focusedDay, setFocusedDay] = useState<number>(
+    parseInt(dayjs(selectedDate).format('D')) || parseInt(dayjs().format('D')),
+  );
   const dayButtonRefs: Array<HTMLButtonElement> = [];
 
   const theme = useContext(FCTheme);
@@ -108,6 +110,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     }
   };
 
+  const dateForTabIndex = selectedDate ? dayjs(selectedDate).format('D') : dayjs().format('D');
   const calendarRows = calendar.map((row: any) => {
     if (row.length > 0)
       return (
@@ -126,6 +129,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                 key={item.date}
               >
                 <button
+                  tabIndex={dateForTabIndex === item.day.toString() ? 0 : -1}
                   ref={(ref: HTMLButtonElement): void => {
                     if (ref) {
                       if (!ref.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
