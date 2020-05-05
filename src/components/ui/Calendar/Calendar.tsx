@@ -28,7 +28,7 @@ interface Props {
   selectedDate?: dayjs.Dayjs | string;
   size?: number;
 }
-const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), size }: Props): React.ReactElement => {
+const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Props): React.ReactElement => {
   const dateToSet = selectedDate ? dayjs(selectedDate) : dayjs();
   const [date, setDate] = useState(dateToSet);
   const [daysOfTheWeek] = useState(
@@ -38,7 +38,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   );
   const [currentDay, setCurrentDay] = useState('');
   const [calendar, setCalendar] = useState([]);
-  const [dayTabIndex, setDayTabIndex] = useState(dayjs().format('D'));
+  const [dayTabIndex, setDayTabIndex] = useState(dateToSet.format('D'));
   const [focusedDay, setFocusedDay] = useState<number>(
     parseInt(dayjs(selectedDate).format('D')) || parseInt(dayjs().format('D')),
   );
