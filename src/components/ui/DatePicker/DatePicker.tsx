@@ -27,7 +27,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
           value={value}
           ref={ref}
           onKeyDown={e => {
-            console.log(e.keyCode);
             if (e.keyCode === 32) {
               e.preventDefault();
               !menuOpen && setMenuOpen(true);

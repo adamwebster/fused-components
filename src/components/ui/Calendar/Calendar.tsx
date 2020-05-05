@@ -27,8 +27,14 @@ interface Props {
   onChange?: (date: any) => void;
   selectedDate?: dayjs.Dayjs | string;
   size?: number;
+  autoFocusDay?: boolean;
 }
-const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Props): React.ReactElement => {
+const Calendar = ({
+  onChange = (): void => undefined,
+  selectedDate,
+  autoFocusDay,
+  size,
+}: Props): React.ReactElement => {
   const dateToSet = selectedDate ? dayjs(selectedDate) : dayjs();
   const [date, setDate] = useState(dateToSet);
   const [daysOfTheWeek] = useState(
@@ -38,6 +44,8 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Prop
   );
   const [currentDay, setCurrentDay] = useState('');
   const [calendar, setCalendar] = useState([]);
+  const [navigationUsed, setNavigationUsed] = useState(false);
+
   const [dayTabIndex, setDayTabIndex] = useState(dateToSet.format('D'));
   const [focusedDay, setFocusedDay] = useState<number>(
     parseInt(dayjs(selectedDate).format('D')) || parseInt(dayjs().format('D')),
@@ -129,7 +137,6 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Prop
                 }`}
                 key={item.date}
               >
-                {console.log(dayTabIndex, item.day.toString())}
                 <button
                   tabIndex={dayTabIndex === item.day.toString() ? 0 : -1}
                   ref={(ref: HTMLButtonElement): void => {
@@ -137,6 +144,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Prop
                       if (!ref.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
                     }
                   }}
+                  onFocus={() => setFocusedDay(parseInt(item.day))}
                   disabled={item.otherMonth}
                   onClick={(): void => onChange(item.timeStamp)}
                 >
@@ -159,19 +167,38 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Prop
     getWeeks();
   }, [date]);
   useEffect(() => {
+    if (autoFocusDay) {
+      if (dayButtonRefs) {
+        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
+      }
+    } else {
+      if (date.format('M YYYY') !== dayjs().format('M YYYY')) {
+        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
+      } else {
+        if (dayButtonRefs[focusedDay] && navigationUsed) {
+          dayButtonRefs[parseInt(dayjs().format('D'))].focus();
+        }
+      }
+    }
+  }, [dayButtonRefs]);
+
+  useEffect(() => {
     if (dayButtonRefs) {
       if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
     }
-  }, [dayButtonRefs]);
+  }, [focusedDay]);
+
   const nextMonth = (): void => {
     setDate(date.add(1, 'month'));
     setDayTabIndex('1');
+    setNavigationUsed(true);
     setFocusedDay(1);
   };
 
   const previousMonth = (): void => {
     setDate(date.subtract(1, 'month'));
     setDayTabIndex('1');
+    setNavigationUsed(true);
     setFocusedDay(1);
   };
 
@@ -185,6 +212,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Prop
         } else {
           setDate(date.add(1, 'month'));
           setFocusedDay(1);
+          setDayTabIndex('1');
           dayButtonRefs[1].focus();
         }
       }
@@ -199,6 +227,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Prop
         } else {
           const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
           setDate(date.subtract(1, 'month'));
+          setDayTabIndex(numberOfDaysInMonth.toString());
           setFocusedDay(numberOfDaysInMonth);
         }
       }
@@ -212,6 +241,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Prop
         } else {
           setDate(date.add(1, 'month'));
           setFocusedDay(1);
+          setDayTabIndex('1');
           dayButtonRefs[1].focus();
         }
       }
@@ -225,6 +255,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate, size }: Prop
         } else {
           const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
           setDate(date.subtract(1, 'month'));
+          setDayTabIndex(numberOfDaysInMonth.toString());
           setFocusedDay(numberOfDaysInMonth);
         }
       }
