@@ -120,6 +120,66 @@ const Calendar = ({
     }
   };
 
+  const calendarKeyPress = (e: any) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      if (dayButtonRefs) {
+        if (focusedDay + 1 < dayButtonRefs.length) {
+          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 1].focus();
+          setFocusedDay(focusedDay + 1);
+        } else {
+          setDate(date.add(1, 'month'));
+          setFocusedDay(1);
+          setDayTabIndex('1');
+          dayButtonRefs[1].focus();
+        }
+      }
+    }
+
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (dayButtonRefs) {
+        if (focusedDay - 1 > 0) {
+          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 1].focus();
+          setFocusedDay(focusedDay - 1);
+        } else {
+          const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
+          setDate(date.subtract(1, 'month'));
+          setDayTabIndex(numberOfDaysInMonth.toString());
+          setFocusedDay(numberOfDaysInMonth);
+        }
+      }
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (dayButtonRefs) {
+        if (focusedDay + 7 < dayButtonRefs.length) {
+          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 7].focus();
+          setFocusedDay(focusedDay + 7);
+        } else {
+          setDate(date.add(1, 'month'));
+          setFocusedDay(1);
+          setDayTabIndex('1');
+          dayButtonRefs[1].focus();
+        }
+      }
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (dayButtonRefs) {
+        if (focusedDay - 7 > 0) {
+          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 7].focus();
+          setFocusedDay(focusedDay - 7);
+        } else {
+          const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
+          setDate(date.subtract(1, 'month'));
+          setDayTabIndex(numberOfDaysInMonth.toString());
+          setFocusedDay(numberOfDaysInMonth);
+        }
+      }
+    }
+  };
+
   const calendarRows = calendar.map((row: any) => {
     if (row.length > 0)
       return (
@@ -201,66 +261,6 @@ const Calendar = ({
     setDayTabIndex('1');
     setNavigationUsed(true);
     setFocusedDay(1);
-  };
-
-  const calendarKeyPress = (e: any) => {
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      if (dayButtonRefs) {
-        if (focusedDay + 1 < dayButtonRefs.length) {
-          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 1].focus();
-          setFocusedDay(focusedDay + 1);
-        } else {
-          setDate(date.add(1, 'month'));
-          setFocusedDay(1);
-          setDayTabIndex('1');
-          dayButtonRefs[1].focus();
-        }
-      }
-    }
-
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      if (dayButtonRefs) {
-        if (focusedDay - 1 > 0) {
-          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 1].focus();
-          setFocusedDay(focusedDay - 1);
-        } else {
-          const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
-          setDate(date.subtract(1, 'month'));
-          setDayTabIndex(numberOfDaysInMonth.toString());
-          setFocusedDay(numberOfDaysInMonth);
-        }
-      }
-    }
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      if (dayButtonRefs) {
-        if (focusedDay + 7 < dayButtonRefs.length) {
-          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 7].focus();
-          setFocusedDay(focusedDay + 7);
-        } else {
-          setDate(date.add(1, 'month'));
-          setFocusedDay(1);
-          setDayTabIndex('1');
-          dayButtonRefs[1].focus();
-        }
-      }
-    }
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (dayButtonRefs) {
-        if (focusedDay - 7 > 0) {
-          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 7].focus();
-          setFocusedDay(focusedDay - 7);
-        } else {
-          const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
-          setDate(date.subtract(1, 'month'));
-          setDayTabIndex(numberOfDaysInMonth.toString());
-          setFocusedDay(numberOfDaysInMonth);
-        }
-      }
-    }
   };
 
   return (
