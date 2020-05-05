@@ -138,7 +138,8 @@ const Calendar = ({
                 key={item.date}
               >
                 <button
-                  tabIndex={dayTabIndex === item.day.toString() ? 0 : -1}
+                  onKeyDown={e => calendarKeyPress(e)}
+                  tabIndex={dayTabIndex === item.day.toString() || item.day.toString() === currentDay ? 0 : -1}
                   ref={(ref: HTMLButtonElement): void => {
                     if (ref) {
                       if (!ref.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
@@ -263,7 +264,7 @@ const Calendar = ({
   };
 
   return (
-    <CalendarWrapper onKeyDown={e => calendarKeyPress(e)} calendarWidth={size}>
+    <CalendarWrapper calendarWidth={size}>
       <CalendarHeader>
         <CalendarTitle aria-live="assertive" theme={theme.theme}>
           <span>{`${date.format('MMMM')} ${date.format('YYYY')}`}</span>
