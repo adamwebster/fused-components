@@ -1,4 +1,4 @@
-import React, { useContext, RefObject, ReactNode, ReactElement } from 'react';
+import React, { useContext, ReactNode, ReactElement } from 'react';
 import { StyledButton, StyledIcon } from './style';
 import { Icon } from '../../icon';
 import { fcStyles } from '../../../common/types';
@@ -15,8 +15,6 @@ export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   /** Set the button to be in its loading state */
   isLoading?: boolean;
-  /** Set an ref for the button */
-  buttonRef?: RefObject<HTMLButtonElement>;
   /** Set the loading icon */
   loadingIcon?: object;
   /** Set the icon for the button */
@@ -26,46 +24,52 @@ export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   as?: string;
 }
 
-export const Button = ({
-  buttonColor,
-  disabled = false,
-  isLoading = false,
-  buttonRef,
-  primary,
-  loadingIcon,
-  icon,
-  children,
-  fcStyle,
-  as,
-  ...rest
-}: Props): ReactElement => {
-  const theme = useContext(FCTheme);
-  let asProps = {};
-  if (as === 'a') {
-    asProps = {
+export const Button = React.forwardRef<HTMLButtonElement, Props>(
+  (
+    {
+      buttonColor,
+      disabled = false,
+      isLoading = false,
+      primary,
+      loadingIcon,
+      icon,
+      children,
+      fcStyle,
       as,
-      role: 'button',
-    };
-  }
-  return (
-    <StyledButton
-      ref={buttonRef}
-      icon={icon}
-      buttonColor={buttonColor}
-      disabled={disabled || isLoading}
-      primary={primary}
-      fcStyle={fcStyle}
-      theme={theme.theme}
-      {...asProps}
-      {...rest}
-    >
-      {isLoading && loadingIcon && <>{loadingIcon} </>}
-      {icon && !isLoading && (
-        <StyledIcon className="button-icon" fcStyle={fcStyle} primary={primary}>
-          <Icon icon={icon} />
-        </StyledIcon>
-      )}
-      {children}
-    </StyledButton>
-  );
-};
+      ...rest
+    }: Props,
+    ref,
+  ): ReactElement => {
+    const theme = useContext(FCTheme);
+    let asProps = {};
+    if (as === 'a') {
+      asProps = {
+        as,
+        role: 'button',
+      };
+    }
+    return (
+      <StyledButton
+        ref={ref}
+        icon={icon}
+        buttonColor={buttonColor}
+        disabled={disabled || isLoading}
+        primary={primary}
+        fcStyle={fcStyle}
+        theme={theme.theme}
+        {...asProps}
+        {...rest}
+      >
+        {isLoading && loadingIcon && <>{loadingIcon} </>}
+        {icon && !isLoading && (
+          <StyledIcon className="button-icon" fcStyle={fcStyle} primary={primary}>
+            <Icon icon={icon} />
+          </StyledIcon>
+        )}
+        {children}
+      </StyledButton>
+    );
+  },
+);
+
+Button.displayName = 'Button';

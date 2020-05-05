@@ -129,12 +129,11 @@ export const Day = styled.td`
     &:hover:not(:disabled) {
       color: #fff !important;
     }
-    &[aria-selected='true'] {
+    &:focus {
       outline: none;
       .day-number {
         box-sizing: border-box;
-        background-color: ${color.primary};
-        color: #fff;
+        background-color: transparent;
         box-shadow: 0px 0px 2px 2px ${color.primary};
       }
     }

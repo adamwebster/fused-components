@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useRef, useEffect } from 'react';
 import { Input } from '../Input';
 import DatePickerMenu from './DatePickerMenu';
 import { DatePickerWrapper } from './style';
@@ -15,23 +15,22 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
     ref,
   ): ReactElement => {
     const [menuOpen, setMenuOpen] = useState(false);
-
+    const [stateValue, setStateValue] = useState(value);
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const changeDate = (date: string): void => {
       onChange(date);
       setMenuOpen(false);
     };
+    useEffect(() => {
+      setStateValue(value);
+    }, [value]);
     return (
       <DatePickerWrapper>
         <Input
-          readOnly={true}
-          value={value}
-          ref={ref}
-          onKeyDown={e => {
-            if (e.keyCode === 32) {
-              e.preventDefault();
-              !menuOpen && setMenuOpen(true);
-            }
-          }}
+          value={stateValue}
+          ref={ref || inputRef}
+          onChange={(e: any) => setStateValue(e.target.value)}
+          onFocus={() => !menuOpen && setMenuOpen(true)}
           onClick={(): false | void => !menuOpen && setMenuOpen(true)}
           placeholder={placeholder}
         />
@@ -40,6 +39,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
           changeDate={(date): false | void => changeDate(date)}
           value={selectedDate}
           menuOpened={menuOpen}
+          inputRef={inputRef}
         />
       </DatePickerWrapper>
     );

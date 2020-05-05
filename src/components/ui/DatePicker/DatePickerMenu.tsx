@@ -8,8 +8,9 @@ interface Props {
   value: string | undefined;
   changeDate: (date: string) => void;
   setMenuOpen: (value: boolean, menuMounted: boolean) => void;
+  inputRef?: any;
 }
-const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) => {
+const DatePickerMenu = ({ menuOpened, value, inputRef, changeDate, setMenuOpen }: Props) => {
   const menuRef = useRef(null);
   const theme = useContext(FCTheme);
   const handleClickOutside = (e: MouseEvent): void => {
@@ -55,7 +56,14 @@ const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) =
           aria-expanded="true"
           ref={menuRef}
         >
-          <Calendar autoFocusDay onChange={date => changeDate(date)} selectedDate={value} />
+          <Calendar
+            menuRef={menuRef}
+            inputRef={inputRef}
+            autoFocusDay
+            setMenuOpen={() => setMenuOpen(false, true)}
+            onChange={date => changeDate(date)}
+            selectedDate={value}
+          />
         </CalendarMenu>
       )}
     </>

@@ -57,7 +57,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
     <DropdownButtonWrapper renderAs={as}>
       <DropdownMenuProvider value={state}>
         <Button
-          buttonRef={buttonEl}
+          ref={buttonEl}
           fcStyle={fcStyle}
           primary={primary}
           onClick={(): void => toggleMenu()}

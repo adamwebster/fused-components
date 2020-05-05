@@ -3,7 +3,6 @@ import { color } from '../../../styles/styles';
 import { darken } from 'polished';
 import { Props } from './';
 import { fcStyles } from '../../../common/types';
-import { RefObject } from 'react';
 
 interface ColorProps {
   theme?: unknown;
@@ -60,7 +59,6 @@ export const StyledIcon = styled.span`
 `;
 
 interface SB extends React.HTMLAttributes<HTMLButtonElement> {
-  ref?: RefObject<HTMLButtonElement>;
   icon?: string;
   buttonColor?: string;
   disabled?: boolean;
