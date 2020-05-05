@@ -120,7 +120,12 @@ const Calendar = ({
     }
   };
 
-  const calendarKeyPress = (e: any) => {
+  const calendarKeyPress = (e: any, timeStamp: any): void => {
+    if (e.key === 'Enter') {
+      if (onChange) {
+        onChange(timeStamp);
+      }
+    }
     if (e.key === 'ArrowRight') {
       e.preventDefault();
       if (dayButtonRefs) {
@@ -198,7 +203,7 @@ const Calendar = ({
                 key={item.date}
               >
                 <button
-                  onKeyDown={e => calendarKeyPress(e)}
+                  onKeyDown={e => calendarKeyPress(e, item.timeStamp)}
                   tabIndex={dayTabIndex === item.day.toString() || item.day.toString() === currentDay ? 0 : -1}
                   ref={(ref: HTMLButtonElement): void => {
                     if (ref) {
@@ -207,7 +212,8 @@ const Calendar = ({
                   }}
                   onFocus={() => setFocusedDay(parseInt(item.day))}
                   disabled={item.otherMonth}
-                  onClick={(): void => onChange(item.timeStamp)}
+                  onMouseDown={(): void => onChange(item.timeStamp)}
+                  aria-selected={parseInt(item.day) === focusedDay && !item.otherMonth}
                 >
                   <span
                     aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
