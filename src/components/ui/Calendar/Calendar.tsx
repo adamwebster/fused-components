@@ -38,6 +38,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   );
   const [currentDay, setCurrentDay] = useState('');
   const [calendar, setCalendar] = useState([]);
+  const [dayTabIndex, setDayTabIndex] = useState(dayjs().format('D'));
   const [focusedDay, setFocusedDay] = useState<number>(
     parseInt(dayjs(selectedDate).format('D')) || parseInt(dayjs().format('D')),
   );
@@ -111,7 +112,6 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     }
   };
 
-  const dateForTabIndex = selectedDate ? dayjs(selectedDate).format('D') : dayjs().format('D');
   const calendarRows = calendar.map((row: any) => {
     if (row.length > 0)
       return (
@@ -129,8 +129,9 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                 }`}
                 key={item.date}
               >
+                {console.log(dayTabIndex, item.day.toString())}
                 <button
-                  tabIndex={dateForTabIndex === item.day.toString() ? 0 : -1}
+                  tabIndex={dayTabIndex === item.day.toString() ? 0 : -1}
                   ref={(ref: HTMLButtonElement): void => {
                     if (ref) {
                       if (!ref.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
@@ -164,12 +165,14 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   }, [dayButtonRefs]);
   const nextMonth = (): void => {
     setDate(date.add(1, 'month'));
-    setFocusedDay(0);
+    setDayTabIndex('1');
+    setFocusedDay(1);
   };
 
   const previousMonth = (): void => {
     setDate(date.subtract(1, 'month'));
-    setFocusedDay(0);
+    setDayTabIndex('1');
+    setFocusedDay(1);
   };
 
   const calendarKeyPress = (e: any) => {
