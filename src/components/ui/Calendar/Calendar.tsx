@@ -219,13 +219,17 @@ const Calendar = ({
               >
                 <button
                   onKeyDown={e => calendarKeyPress(e, item.timeStamp)}
-                  tabIndex={dayTabIndex === item.day.toString() || item.day.toString() === currentDay ? 0 : -1}
+                  tabIndex={dayTabIndex === item.day.toString() ? 0 : -1}
                   ref={(ref: HTMLButtonElement): void => {
                     if (ref) {
                       if (!ref.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
                     }
                   }}
-                  onBlur={() => prevButtonRef.current?.focus()}
+                  onBlur={() => {
+                    if (autoFocusDay) {
+                      if (dayTabIndex === item.day.toString()) prevButtonRef.current?.focus();
+                    }
+                  }}
                   onFocus={() => setFocusedDay(parseInt(item.day))}
                   disabled={item.otherMonth}
                   onMouseDown={(): void => onChange(item.timeStamp)}
@@ -247,7 +251,6 @@ const Calendar = ({
   });
 
   const handleInputKeyPress = (e: any) => {
-    console.log(e.key);
     if (e.key === 'ArrowDown') {
       if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
     }
