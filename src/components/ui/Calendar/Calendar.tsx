@@ -63,7 +63,7 @@ const Calendar = ({
   const [selectedDateState, setSelectedDateState] = useState(dateToRender);
 
   const prevButtonRef = useRef<HTMLAnchorElement | null>(null);
-  const [firstFocusDayButton, setFirstFocusDayButton]: any = useState<Array<HTMLButtonElement>>([]);
+  const [firstFocusDayButton]: any = useState<Array<HTMLButtonElement>>([]);
   const dayButtonRefs: Array<HTMLButtonElement> = [];
 
   const theme = useContext(FCTheme);
@@ -140,7 +140,6 @@ const Calendar = ({
         onChange(dayjs(timeStamp).format(dateFormat));
       }
     }
-    console.log(dayButtonRefs);
     if (e.key === 'ArrowRight') {
       e.preventDefault();
       if (dayButtonRefs) {
@@ -262,11 +261,9 @@ const Calendar = ({
   });
 
   const handleInputKeyPress = (e: any) => {
-    console.log(e.key, focusedDay, firstFocusDayButton);
     if (e.key === 'ArrowDown') {
       if (firstFocusDayButton[focusedDay]) {
         setFocusedDay(focusedDay);
-        console.log(firstFocusDayButton[focusedDay]);
         firstFocusDayButton[focusedDay].focus();
       }
     }
