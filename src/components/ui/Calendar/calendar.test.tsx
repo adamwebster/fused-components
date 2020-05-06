@@ -155,4 +155,15 @@ describe('Calendar tests', () => {
     );
     expect(calendarHeader).toBeInTheDocument();
   });
+
+  test('Pressing escape does nothing', () => {
+    const { getAllByText } = render(<Calendar />);
+
+    const dateItem = getAllByText('1')[0];
+    fireEvent.keyDown(dateItem, { key: 'Escape' });
+  });
+
+  test('The component still renders o when an invalid selected date is passed to it', () => {
+    render(<Calendar selectedDate="thdsfsdffdf" />);
+  });
 });
