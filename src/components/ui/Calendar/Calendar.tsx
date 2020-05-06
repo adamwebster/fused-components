@@ -30,7 +30,7 @@ interface Props {
   autoFocusDay?: boolean;
   inputRef?: any;
   menuRef?: any;
-  setMenuOpen?: () => void;
+  setMenuOpen?: (value: boolean) => void;
 }
 const Calendar = ({
   onChange = (): void => undefined,
@@ -257,17 +257,19 @@ const Calendar = ({
   });
 
   const handleInputKeyPress = (e: any) => {
+    console.log(e.key);
     if (e.key === 'ArrowDown') {
       if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
     }
     if (e.key === 'Escape' || e.key === 'Enter') {
       if (menuRef) {
         if (setMenuOpen) {
-          console.log(dayjs(e.target.value).format());
-          onChange(dayjs(e.target.value).format() === 'Invalid Date' ? e.target.value : dayjs(e.target.value));
-          setMenuOpen();
+          onChange(dayjs(e.target.value).format() === 'Invalid Date' ? undefined : dayjs(e.target.value));
+          setMenuOpen(false);
         }
       }
+    } else if (e.key !== 'Tab') {
+      if (setMenuOpen) setMenuOpen(true);
     }
   };
 

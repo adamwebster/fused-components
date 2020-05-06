@@ -60,7 +60,7 @@ const DatePickerMenu = ({ menuOpened, value, inputRef, changeDate, setMenuOpen }
             menuRef={menuRef}
             inputRef={inputRef}
             autoFocusDay
-            setMenuOpen={() => setMenuOpen(false, true)}
+            setMenuOpen={value => setMenuOpen(value, true)}
             onChange={date => changeDate(date)}
             selectedDate={value}
           />
