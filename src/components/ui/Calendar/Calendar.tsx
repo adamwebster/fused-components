@@ -338,7 +338,7 @@ const Calendar = ({
             title="Previous month"
             forwardedAs="a"
             tabIndex={0}
-            onKeyPress={(e: any): any => {
+            onKeyDown={(e: any): any => {
               if (e.key === 'Enter') previousMonth();
             }}
             ref={prevButtonRef}
@@ -353,7 +353,7 @@ const Calendar = ({
             title="Next month"
             forwardedAs="a"
             onClick={(): void => nextMonth()}
-            onKeyPress={(e: any): any => {
+            onKeyDown={(e: any): any => {
               if (e.key === 'Enter') nextMonth();
             }}
           >

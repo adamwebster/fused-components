@@ -129,4 +129,30 @@ describe('Calendar tests', () => {
     const prevButton = getAllByRole('button')[0];
     expect(prevButton).toHaveFocus();
   });
+
+  test('Pressing enter on the next button loads the next month', () => {
+    const { getByText, getAllByRole } = render(<Calendar />);
+
+    const nextButton = getAllByRole('button')[1];
+    fireEvent.keyDown(nextButton, { key: 'Enter' });
+    const calendarHeader = getByText(
+      dayjs()
+        .add(1, 'month')
+        .format('MMMM YYYY'),
+    );
+    expect(calendarHeader).toBeInTheDocument();
+  });
+
+  test('Pressing enter on the previous button loads the next month', () => {
+    const { getAllByRole, getByText } = render(<Calendar />);
+
+    const prevButton = getAllByRole('button')[0];
+    fireEvent.keyDown(prevButton, { key: 'Enter' });
+    const calendarHeader = getByText(
+      dayjs()
+        .subtract(1, 'month')
+        .format('MMMM YYYY'),
+    );
+    expect(calendarHeader).toBeInTheDocument();
+  });
 });

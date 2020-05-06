@@ -73,6 +73,22 @@ describe('Date picker Tests', () => {
     expect(dateToPickNew).toBeFalsy();
   });
 
+  test('Clicking the down key while an input has focus focuses the selected', async () => {
+    const { queryByText, getByPlaceholderText } = render(
+      <>
+        <DatePicker value="May 15 2020" />
+      </>,
+    );
+    const input = getByPlaceholderText('Click to choose a date');
+    fireEvent.click(input);
+    const dateToPick = queryByText('15');
+
+    expect(dateToPick).toBeInTheDocument();
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    const dateToPickNew = queryByText('15');
+    expect(dateToPickNew?.parentNode).toHaveFocus();
+  });
+
   test('Clicking escape key while focused on the menu closes the window and the input has focus', async () => {
     const { queryByText, getByPlaceholderText, getByText } = render(
       <>
