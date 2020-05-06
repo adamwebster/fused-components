@@ -9,8 +9,9 @@ interface Props {
   changeDate: (date: string) => void;
   setMenuOpen: (value: boolean, menuMounted: boolean) => void;
   inputRef?: any;
+  dateFormat?: string;
 }
-const DatePickerMenu = ({ menuOpened, value, inputRef, changeDate, setMenuOpen }: Props) => {
+const DatePickerMenu = ({ menuOpened, value, inputRef, changeDate, setMenuOpen, dateFormat }: Props) => {
   const menuRef = useRef(null);
   const theme = useContext(FCTheme);
   const handleClickOutside = (e: MouseEvent): void => {
@@ -48,6 +49,7 @@ const DatePickerMenu = ({ menuOpened, value, inputRef, changeDate, setMenuOpen }
               e.preventDefault();
               if (menuRef.current) {
                 setMenuOpen(false, true);
+                inputRef.current.focus();
               }
             }
           }}
@@ -57,6 +59,7 @@ const DatePickerMenu = ({ menuOpened, value, inputRef, changeDate, setMenuOpen }
           ref={menuRef}
         >
           <Calendar
+            dateFormat={dateFormat}
             menuRef={menuRef}
             inputRef={inputRef}
             autoFocusDay

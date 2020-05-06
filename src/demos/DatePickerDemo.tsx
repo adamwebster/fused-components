@@ -10,9 +10,8 @@ export const DatePickerDemo = (): ReactElement => {
     <DatePicker
       placeholder="MM/DD/YYYY"
       onChange={(date): void => {
-        console.log(date);
         if (date) {
-          setDate(dayjs(date).format('MM/DD/YYYY'));
+          setDate(date);
         }
       }}
       value={date}
@@ -28,7 +27,9 @@ export const DatePickerDarkDemo = (): ReactElement => {
         <DatePicker
           placeholder="MM/DD/YYYY"
           onChange={(date): void => {
-            setDate(dayjs(date).format('MM/DD/YYYY'));
+            if (date) {
+              setDate(date);
+            }
           }}
           value={date}
         />

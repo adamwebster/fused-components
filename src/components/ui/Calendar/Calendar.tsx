@@ -31,6 +31,7 @@ interface Props {
   inputRef?: any;
   menuRef?: any;
   setMenuOpen?: (value: boolean) => void;
+  dateFormat?: string;
 }
 const Calendar = ({
   onChange = (): void => undefined,
@@ -40,6 +41,7 @@ const Calendar = ({
   inputRef,
   menuRef,
   setMenuOpen,
+  dateFormat = 'MM/DD/YYYY',
 }: Props): React.ReactElement => {
   const dateToSet = selectedDate ? dayjs(selectedDate) : dayjs();
   const [daysOfTheWeek] = useState(
@@ -49,7 +51,6 @@ const Calendar = ({
   );
   const [currentDay, setCurrentDay] = useState('');
   const [calendar, setCalendar] = useState([]);
-  const [navigationUsed, setNavigationUsed] = useState(false);
   const [dayTabIndex, setDayTabIndex] = useState(dateToSet.format('D'));
   const [focusedDay, setFocusedDay] = useState<number>(
     parseInt(dayjs(selectedDate).format('D')) || parseInt(dayjs().format('D')),
@@ -62,6 +63,7 @@ const Calendar = ({
   const [selectedDateState, setSelectedDateState] = useState(dateToRender);
 
   const prevButtonRef = useRef<HTMLAnchorElement | null>(null);
+  const [firstFocusDayButton, setFirstFocusDayButton]: any = useState<Array<HTMLButtonElement>>([]);
   const dayButtonRefs: Array<HTMLButtonElement> = [];
 
   const theme = useContext(FCTheme);
@@ -135,9 +137,10 @@ const Calendar = ({
   const calendarKeyPress = (e: any, timeStamp: any): void => {
     if (e.key === 'Enter') {
       if (onChange) {
-        onChange(timeStamp);
+        onChange(dayjs(timeStamp).format(dateFormat));
       }
     }
+    console.log(dayButtonRefs);
     if (e.key === 'ArrowRight') {
       e.preventDefault();
       if (dayButtonRefs) {
@@ -226,7 +229,10 @@ const Calendar = ({
                   tabIndex={dayTabIndex === item.day.toString() ? 0 : -1}
                   ref={(ref: HTMLButtonElement): void => {
                     if (ref) {
-                      if (!ref.disabled) dayButtonRefs[(item.day as unknown) as number] = ref;
+                      if (!ref.disabled) {
+                        dayButtonRefs[(item.day as unknown) as number] = ref;
+                        if (menuRef) firstFocusDayButton[(item.day as unknown) as number] = ref;
+                      }
                     }
                   }}
                   onBlur={() => {
@@ -236,7 +242,7 @@ const Calendar = ({
                   }}
                   onFocus={() => setFocusedDay(parseInt(item.day))}
                   disabled={item.otherMonth}
-                  onMouseDown={(): void => onChange(item.timeStamp)}
+                  onMouseDown={(): void => onChange(dayjs(item.timeStamp).format(dateFormat))}
                   aria-selected={parseInt(item.day) === focusedDay && !item.otherMonth}
                 >
                   <span
@@ -256,14 +262,20 @@ const Calendar = ({
   });
 
   const handleInputKeyPress = (e: any) => {
-    console.log(e.key);
+    console.log(e.key, focusedDay, firstFocusDayButton);
     if (e.key === 'ArrowDown') {
-      if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
+      if (firstFocusDayButton[focusedDay]) {
+        setFocusedDay(focusedDay);
+        console.log(firstFocusDayButton[focusedDay]);
+        firstFocusDayButton[focusedDay].focus();
+      }
     }
     if (e.key === 'Escape' || e.key === 'Enter') {
       if (menuRef) {
         if (setMenuOpen) {
-          onChange(dayjs(e.target.value).format() === 'Invalid Date' ? undefined : dayjs(e.target.value));
+          onChange(
+            dayjs(e.target.value).format() === 'Invalid Date' ? undefined : dayjs(e.target.value).format(dateFormat),
+          );
           setMenuOpen(false);
         }
       }
@@ -281,11 +293,11 @@ const Calendar = ({
   }, [selectedDate]);
 
   useEffect(() => {
-    if (autoFocusDay) {
-      if (dayButtonRefs) {
-        if (monthChanged) {
-          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
-        }
+    if (dayButtonRefs) {
+      if (monthChanged) {
+        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
+      } else {
+        if (firstFocusDayButton[0]) firstFocusDayButton[0].focus();
       }
     }
   }, [dayButtonRefs]);
@@ -305,18 +317,17 @@ const Calendar = ({
     };
   }, []);
   const nextMonth = (): void => {
-    // console.log(selectedDateState);
     setSelectedDateState(selectedDateState.add(1, 'month'));
     setDayTabIndex('1');
-    setNavigationUsed(true);
     setFocusedDay(1);
+    setMonthChanged(false);
   };
 
   const previousMonth = (): void => {
     setSelectedDateState(selectedDateState.subtract(1, 'month'));
     setDayTabIndex('1');
-    setNavigationUsed(true);
     setFocusedDay(1);
+    setMonthChanged(false);
   };
 
   return (

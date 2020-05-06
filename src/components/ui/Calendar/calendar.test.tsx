@@ -90,4 +90,43 @@ describe('Calendar tests', () => {
     const dateItemSelected = getAllByText('5')[0];
     expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
   });
+
+  test('The month changes when the right arrow is clicked on the last day', () => {
+    const { getByText, getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 31 2020')} />);
+    const dateItem = getByText('31');
+    fireEvent.keyDown(dateItem, { key: 'ArrowRight' });
+    const dateItemSelected = getAllByText('1')[0];
+    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The month changes when the left arrow is clicked on the first day', () => {
+    const { getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 1 2020')} />);
+    const dateItem = getAllByText('1')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowLeft' });
+    const dateItemSelected = getAllByText('30')[1];
+    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The month changes when the down arrow is clicked on a day in the last week', () => {
+    const { getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 31 2020')} />);
+    const dateItem = getAllByText('27')[1];
+    fireEvent.keyDown(dateItem, { key: 'ArrowDown' });
+    const dateItemSelected = getAllByText('1')[0];
+    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+  });
+  test('The month changes when the up arrow is clicked on a day in the first week', () => {
+    const { getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 3 2020')} />);
+    const dateItem = getAllByText('3')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowUp' });
+    const dateItemSelected = getAllByText('30')[1];
+    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The previous button becomes focused on blur of the day when autoFocusDay is set', () => {
+    const { getByText, getAllByRole } = render(<Calendar autoFocusDay selectedDate={dayjs('May 15 2020')} />);
+    const dateItemSelected = getByText('15');
+    fireEvent.blur(dateItemSelected);
+    const prevButton = getAllByRole('button')[0];
+    expect(prevButton).toHaveFocus();
+  });
 });

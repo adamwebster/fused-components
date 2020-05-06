@@ -57,6 +57,40 @@ describe('Date picker Tests', () => {
     expect(dateToPickNew).toBeFalsy();
   });
 
+  test('Clicking escape key while an input has focus closes the window', async () => {
+    const { queryByText, getByPlaceholderText } = render(
+      <>
+        <DatePicker value="May 15 2020" />
+      </>,
+    );
+    const input = getByPlaceholderText('Click to choose a date');
+    fireEvent.click(input);
+    const dateToPick = queryByText('15');
+
+    expect(dateToPick).toBeInTheDocument();
+    fireEvent.keyDown(input, { key: 'Escape' });
+    const dateToPickNew = queryByText('15');
+    expect(dateToPickNew).toBeFalsy();
+  });
+
+  test('Clicking escape key while focused on the menu closes the window and the input has focus', async () => {
+    const { queryByText, getByPlaceholderText, getByText } = render(
+      <>
+        <DatePicker value="May 15 2020" />
+      </>,
+    );
+    const input = getByPlaceholderText('Click to choose a date');
+    fireEvent.click(input);
+    const header = getByText('May 2020');
+    fireEvent.click(header);
+    const dateToPick = queryByText('15');
+    expect(dateToPick).toBeInTheDocument();
+    fireEvent.keyDown(header, { key: 'Escape', keyCode: 27 });
+    const dateToPickNew = queryByText('15');
+    expect(dateToPickNew).toBeFalsy();
+    expect(input).toHaveFocus();
+  });
+
   test('Clicking next button loads the next month', () => {
     const { getByText, getAllByRole, getByPlaceholderText } = render(<DatePicker />);
     const input = getByPlaceholderText('Click to choose a date');

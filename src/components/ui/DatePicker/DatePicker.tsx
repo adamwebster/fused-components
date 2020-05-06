@@ -7,10 +7,16 @@ interface Props {
   value?: string;
   onChange?: (date: string) => void;
   placeholder?: string;
+  dateFormat?: string;
 }
 export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
   (
-    { value, onChange = (): unknown => undefined, placeholder = 'Click to choose a date' }: Props,
+    {
+      value,
+      dateFormat = 'MM/DD/YYYY',
+      onChange = (): unknown => undefined,
+      placeholder = 'Click to choose a date',
+    }: Props,
     ref,
   ): ReactElement => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -39,6 +45,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
           value={stateValue}
           menuOpened={menuOpen}
           inputRef={inputRef}
+          dateFormat={dateFormat}
         />
       </DatePickerWrapper>
     );
