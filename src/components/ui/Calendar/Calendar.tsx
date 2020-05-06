@@ -42,7 +42,6 @@ const Calendar = ({
   setMenuOpen,
 }: Props): React.ReactElement => {
   const dateToSet = selectedDate ? dayjs(selectedDate) : dayjs();
-  const [date, setDate] = useState(dateToSet);
   const [daysOfTheWeek] = useState(
     dayjs()
       .localeData()
@@ -289,7 +288,7 @@ const Calendar = ({
         }
       }
     } else {
-      if (date.format('M YYYY') !== dayjs().format('M YYYY')) {
+      if (dayjs(selectedDate).format('M YYYY') !== dayjs().format('M YYYY')) {
         if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
       } else {
         if ((dayButtonRefs[focusedDay] && navigationUsed) || monthChanged) {
