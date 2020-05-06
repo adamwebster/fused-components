@@ -262,7 +262,11 @@ const Calendar = ({
     }
     if (e.key === 'Escape' || e.key === 'Enter') {
       if (menuRef) {
-        if (setMenuOpen) setMenuOpen();
+        if (setMenuOpen) {
+          console.log(dayjs(e.target.value).format());
+          onChange(dayjs(e.target.value).format() === 'Invalid Date' ? e.target.value : dayjs(e.target.value));
+          setMenuOpen();
+        }
       }
     }
   };
@@ -306,7 +310,7 @@ const Calendar = ({
         if (inputRef.current) inputRef.current.removeEventListener('keydown', (e: any) => handleInputKeyPress(e));
       }
     };
-  });
+  }, []);
   const nextMonth = (): void => {
     // console.log(selectedDateState);
     setSelectedDateState(selectedDateState.add(1, 'month'));
