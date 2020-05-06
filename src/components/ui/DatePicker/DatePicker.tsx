@@ -6,12 +6,11 @@ import { DatePickerWrapper } from './style';
 interface Props {
   value?: string;
   onChange?: (date: string) => void;
-  selectedDate?: string;
   placeholder?: string;
 }
 export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
   (
-    { value, selectedDate, onChange = (): unknown => undefined, placeholder = 'Click to choose a date' }: Props,
+    { value, onChange = (): unknown => undefined, placeholder = 'Click to choose a date' }: Props,
     ref,
   ): ReactElement => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +36,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
         <DatePickerMenu
           setMenuOpen={(value): false | void => setMenuOpen(value)}
           changeDate={(date): false | void => changeDate(date)}
-          value={selectedDate}
+          value={stateValue}
           menuOpened={menuOpen}
           inputRef={inputRef}
         />

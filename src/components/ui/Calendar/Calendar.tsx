@@ -56,6 +56,11 @@ const Calendar = ({
     parseInt(dayjs(selectedDate).format('D')) || parseInt(dayjs().format('D')),
   );
   const [monthChanged, setMonthChanged] = useState(false);
+  let dateToRender = selectedDate ? dayjs(selectedDate) : dayjs();
+  if (dateToRender.format() === 'Invalid Date') {
+    dateToRender = dayjs();
+  }
+  const [selectedDateState, setSelectedDateState] = useState(dateToRender);
 
   const prevButtonRef = useRef<HTMLAnchorElement | null>(null);
   const dayButtonRefs: Array<HTMLButtonElement> = [];
@@ -72,10 +77,9 @@ const Calendar = ({
     const blankDays = [];
     const daysInMonth = [];
     const blankDaysEnd = [];
-    const startOfMonth = date.startOf('month');
-    const daysInTheMonth = date.daysInMonth();
-    const endOfMonth = date.endOf('month');
-
+    const startOfMonth = selectedDateState.startOf('month');
+    const daysInTheMonth = selectedDateState.daysInMonth();
+    const endOfMonth = selectedDateState.endOf('month');
     for (let d = 0; d < startOfMonth.day(); d++) {
       blankDays.push({
         day: startOfMonth.subtract(d + 1, 'day').format('D'),
@@ -87,8 +91,8 @@ const Calendar = ({
     for (let d = 1; d <= daysInTheMonth; d++) {
       daysInMonth.push({
         day: d,
-        date: date.format(`YYYY-${date.get('month') + 1}-${d}`),
-        timeStamp: dayjs(`${date.get('year')}-${date.get('month') + 1}-${d}`).format(),
+        date: selectedDateState.format(`YYYY-${selectedDateState.get('month') + 1}-${d}`),
+        timeStamp: dayjs(`${selectedDateState.get('year')}-${selectedDateState.get('month') + 1}-${d}`).format(),
       });
     }
 
@@ -103,6 +107,7 @@ const Calendar = ({
         date: endOfMonth.add(i + 1, 'day').format('YYYY MM DD'),
       });
     }
+
     const totalSlots = [...blankDays.reverse(), ...daysInMonth, ...blankDaysEnd];
     const rows: ({ day: string } | { day: number })[][] = [];
     let cells: ({ day: string } | { day: number })[] = [];
@@ -121,7 +126,7 @@ const Calendar = ({
     });
     setCalendar(rows as any);
 
-    if (date.get('month') === dayjs().get('month')) {
+    if (selectedDateState.get('month') === dayjs().get('month')) {
       setCurrentDay(dayjs().format('D'));
     } else {
       setCurrentDay('');
@@ -141,7 +146,7 @@ const Calendar = ({
           if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 1].focus();
           setFocusedDay(focusedDay + 1);
         } else {
-          setDate(date.add(1, 'month'));
+          setSelectedDateState(selectedDateState.add(1, 'month'));
           setFocusedDay(1);
           setDayTabIndex('1');
           dayButtonRefs[1].focus();
@@ -157,8 +162,8 @@ const Calendar = ({
           if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 1].focus();
           setFocusedDay(focusedDay - 1);
         } else {
-          const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
-          setDate(date.subtract(1, 'month'));
+          const numberOfDaysInMonth = selectedDateState.subtract(1, 'month').daysInMonth();
+          setSelectedDateState(selectedDateState.subtract(1, 'month'));
           setDayTabIndex(numberOfDaysInMonth.toString());
           setFocusedDay(numberOfDaysInMonth);
           setMonthChanged(true);
@@ -172,7 +177,7 @@ const Calendar = ({
           if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay + 7].focus();
           setFocusedDay(focusedDay + 7);
         } else {
-          setDate(date.add(1, 'month'));
+          setSelectedDateState(selectedDateState.add(1, 'month'));
           setFocusedDay(1);
           setDayTabIndex('1');
           dayButtonRefs[1].focus();
@@ -187,8 +192,8 @@ const Calendar = ({
           if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay - 7].focus();
           setFocusedDay(focusedDay - 7);
         } else {
-          const numberOfDaysInMonth = date.subtract(1, 'month').daysInMonth();
-          setDate(date.subtract(1, 'month'));
+          const numberOfDaysInMonth = selectedDateState.subtract(1, 'month').daysInMonth();
+          setSelectedDateState(selectedDateState.subtract(1, 'month'));
           setDayTabIndex(numberOfDaysInMonth.toString());
           setFocusedDay(numberOfDaysInMonth);
           setMonthChanged(true);
@@ -264,13 +269,16 @@ const Calendar = ({
 
   useEffect(() => {
     getWeeks();
-  }, [date]);
+  }, [selectedDateState]);
+
+  useEffect(() => {
+    setSelectedDateState(dateToRender);
+  }, [selectedDate]);
+
   useEffect(() => {
     if (autoFocusDay) {
       if (dayButtonRefs) {
-        if (date.format('M YYYY') !== dayjs().format('M YYYY')) {
-          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
-        } else if (monthChanged) {
+        if (monthChanged) {
           if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
         }
       }
@@ -300,14 +308,15 @@ const Calendar = ({
     };
   });
   const nextMonth = (): void => {
-    setDate(date.add(1, 'month'));
+    // console.log(selectedDateState);
+    setSelectedDateState(selectedDateState.add(1, 'month'));
     setDayTabIndex('1');
     setNavigationUsed(true);
     setFocusedDay(1);
   };
 
   const previousMonth = (): void => {
-    setDate(date.subtract(1, 'month'));
+    setSelectedDateState(selectedDateState.subtract(1, 'month'));
     setDayTabIndex('1');
     setNavigationUsed(true);
     setFocusedDay(1);
@@ -317,7 +326,7 @@ const Calendar = ({
     <CalendarWrapper calendarWidth={size}>
       <CalendarHeader>
         <CalendarTitle aria-live="assertive" theme={theme.theme}>
-          <span>{`${date.format('MMMM')} ${date.format('YYYY')}`}</span>
+          <span>{`${selectedDateState.format('MMMM')} ${selectedDateState.format('YYYY')}`}</span>
         </CalendarTitle>
         <CalendarControl>
           <CalendarControlButtons

@@ -11,7 +11,7 @@ export const DatePickerDemo = (): ReactElement => {
     <DatePicker
       onChange={(date): void => {
         setSelectedDate(date);
-        setDate(dayjs(date).format('MMMM Do, YYYY'));
+        setDate(dayjs(date).format('MM/DD/YYYY'));
       }}
       selectedDate={selectedDate}
       value={date}
@@ -28,7 +28,7 @@ export const DatePickerDarkDemo = (): ReactElement => {
         <DatePicker
           onChange={(date): void => {
             setSelectedDate(date);
-            setDate(dayjs(date).format('MMMM Do, YYYY'));
+            setDate(dayjs(date).format('MM/DD/YYYY'));
           }}
           selectedDate={selectedDate}
           value={date}
