@@ -35,7 +35,7 @@ describe('Date picker Tests', () => {
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
     const dateToPick = getByText('15');
-    fireEvent.click(dateToPick);
+    fireEvent.mouseDown(dateToPick);
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(dayjs(value).format('D')).toBe('15');
   });

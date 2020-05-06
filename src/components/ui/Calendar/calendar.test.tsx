@@ -27,7 +27,7 @@ describe('Calendar tests', () => {
     });
     const { getByText } = render(<Calendar onChange={(date): void => onChange(date)} />);
     const dateButton = getByText('13');
-    fireEvent.click(dateButton);
+    fireEvent.mouseDown(dateButton);
     expect(date).not.toBe('date');
   });
 
