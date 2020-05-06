@@ -287,14 +287,6 @@ const Calendar = ({
           if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
         }
       }
-    } else {
-      if (dayjs(selectedDate).format('M YYYY') !== dayjs().format('M YYYY')) {
-        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
-      } else {
-        if ((dayButtonRefs[focusedDay] && navigationUsed) || monthChanged) {
-          if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
-        }
-      }
     }
   }, [dayButtonRefs]);
 
