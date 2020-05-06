@@ -47,4 +47,47 @@ describe('Calendar tests', () => {
     expect(container).toHaveStyleRule('width', '450px');
     expect(container).toHaveStyleRule('height', '450px');
   });
+
+  test('The onChange function passes back the timestamp when an date is clicked by enter', () => {
+    let date = 'date';
+    const onChange = jest.fn(dateReturned => {
+      date = dateReturned;
+    });
+    const { getByText } = render(<Calendar onChange={date => onChange(date)} />);
+    const dateItem = getByText('15');
+    fireEvent.keyDown(dateItem, { key: 'Enter' });
+    expect(date).not.toBe('date');
+    expect(onChange).toHaveBeenCalledTimes(1);
+  });
+
+  test('The date changes focus when the right arrow key is pressed', () => {
+    const { getAllByText } = render(<Calendar selectedDate={dayjs('May 5 2020')} />);
+    const dateItem = getAllByText('5')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowRight' });
+    const dateItemSelected = getAllByText('6')[0];
+    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+  });
+  test('The date changes focus when the left arrow key is pressed', () => {
+    const { getAllByText } = render(<Calendar selectedDate={dayjs('May 5 2020')} />);
+    const dateItem = getAllByText('5')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowLeft' });
+    const dateItemSelected = getAllByText('4')[0];
+    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The date changes focus when the right arrow down is pressed', () => {
+    const { getAllByText } = render(<Calendar selectedDate={dayjs('May 5 2020')} />);
+    const dateItem = getAllByText('5')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowDown' });
+    const dateItemSelected = getAllByText('12')[0];
+    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The date changes focus when the right arrow up is pressed', () => {
+    const { getByText, getAllByText } = render(<Calendar selectedDate={dayjs('May 12 2020')} />);
+    const dateItem = getByText('15');
+    fireEvent.keyDown(dateItem, { key: 'ArrowUp' });
+    const dateItemSelected = getAllByText('5')[0];
+    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+  });
 });
