@@ -260,7 +260,7 @@ const Calendar = ({
     if (e.key === 'ArrowDown') {
       if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
     }
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' || e.key === 'Enter') {
       if (menuRef) {
         if (setMenuOpen) setMenuOpen();
       }

@@ -6,14 +6,12 @@ import { DarkModeWrapper } from '../common/styles';
 
 export const DatePickerDemo = (): ReactElement => {
   const [date, setDate] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
   return (
     <DatePicker
+      placeholder="MM/DD/YYYY"
       onChange={(date): void => {
-        setSelectedDate(date);
         setDate(dayjs(date).format('MM/DD/YYYY'));
       }}
-      selectedDate={selectedDate}
       value={date}
     />
   );
@@ -21,16 +19,14 @@ export const DatePickerDemo = (): ReactElement => {
 
 export const DatePickerDarkDemo = (): ReactElement => {
   const [date, setDate] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
   return (
     <FCThemeProvider value={{ theme: 'dark' }}>
       <DarkModeWrapper>
         <DatePicker
+          placeholder="MM/DD/YYYY"
           onChange={(date): void => {
-            setSelectedDate(date);
             setDate(dayjs(date).format('MM/DD/YYYY'));
           }}
-          selectedDate={selectedDate}
           value={date}
         />
       </DarkModeWrapper>
