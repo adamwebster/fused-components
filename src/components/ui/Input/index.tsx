@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => 
     <InputWrapper>
       {icon && (
         <IconWrapper theme={theme.theme} inError={inError} inWarning={inWarning}>
-          <Icon icon={icon} />
+          <Icon aria-hidden icon={icon} />
         </IconWrapper>
       )}
       <StyledInput

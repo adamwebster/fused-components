@@ -34,26 +34,39 @@ export const Combobox = ({
   itemFormatter,
   keyToSearch,
   id,
+  ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
-  const [initialItems, setInitialItems] = useState(items);
+  const [formattedItems, setFormattedItems] = useState<any>([]);
   const [filterValue, setFilterValue] = useState('');
   const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [activeDescendant, setActiveDescendant] = useState('');
+  const [activeListItem, setActiveListItem] = useState<HTMLLIElement | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
-  const itemRefs: Array<HTMLElement> = [];
+  const itemRefs: Array<HTMLLIElement> = [];
   const menuRef = useRef<HTMLUListElement>(('' as unknown) as HTMLUListElement);
   const isMounted = useRef(true);
   const formatItems = (): void => {
     if (itemFormatter) {
-      const itemsToFormat = initialItems;
+      const itemsToFormat = items;
       itemsToFormat.forEach((item, index) => {
         item.index = index;
+        item.htmlID = `${id.toLowerCase().replace(/\./g, '')}_option_${index}`;
       });
-
-      setInitialItems(itemsToFormat);
+      setFormattedItems(itemsToFormat);
+    } else {
+      const formattedItemsReturned: any = [];
+      items.forEach((item, index) => {
+        formattedItemsReturned.push({
+          index,
+          label: item,
+          htmlID: `${id.toLowerCase().replace(/\./g, '')}_option_${index}`,
+        });
+      });
+      setFormattedItems(formattedItemsReturned);
+      setItemsToShow(formattedItemsReturned);
     }
   };
 
@@ -78,57 +91,86 @@ export const Combobox = ({
     }
   };
 
-  const handleUserKeyPress = (e: any): void => {
+  const setValue = (value: React.SetStateAction<string>): void => {
+    setFilterValue(value);
+
+    setItemSelected(value);
+    setMenuOpen(false);
+    setActiveDescendant('');
+    setItemSelectedIndex(-1);
+  };
+
+  const handleUserKeyPress = (e: { keyCode: number; preventDefault: () => void }): void => {
     if (menuOpen) {
+      // Enter Key
+      if (e.keyCode === 13) {
+        if (keyToSearch) {
+          setValue(itemsToShow[itemSelectedIndex][keyToSearch]);
+        } else {
+          setValue(itemsToShow[itemSelectedIndex].label);
+        }
+      }
       // Escape Key
-      if (e.keyCode === 27) {
+      if (e.keyCode === 27 || e.keyCode === 9) {
+        if (e.keyCode === 27) e.preventDefault();
         setMenuOpen(false);
+        setItemSelectedIndex(-1);
         setActiveDescendant('');
       }
       // Down Key
       if (e.keyCode === 40) {
         e.preventDefault();
-        if (document.activeElement !== itemRefs[0] && itemSelectedIndex < 1) {
-          itemRefs[0].focus();
-          setItemSelectedIndex(0);
-        } else {
-          itemRefs[itemSelectedIndex + 1].focus();
-          setItemSelectedIndex(itemSelectedIndex + 1);
+        const toCheck = itemSelectedIndex + 1 !== itemsToShow.length;
+        if (toCheck) {
+          if (activeListItem !== itemRefs[0] && itemSelectedIndex < 1) {
+            setActiveListItem(itemRefs[0]);
+            setItemSelectedIndex(0);
+
+            setActiveDescendant(itemsToShow[0].htmlID);
+          } else {
+            setActiveDescendant(itemsToShow[itemSelectedIndex + 1].htmlID);
+            setActiveListItem(itemRefs[itemSelectedIndex + 1]);
+            setItemSelectedIndex(itemSelectedIndex + 1);
+          }
         }
       }
       // Up key
       if (e.keyCode === 38) {
         e.preventDefault();
-        itemRefs[itemSelectedIndex - 1].focus();
-        setItemSelectedIndex(itemSelectedIndex - 1);
+        if (itemSelectedIndex != 0) {
+          setActiveListItem(itemRefs[itemSelectedIndex - 1]);
+          setItemSelectedIndex(itemSelectedIndex - 1);
+          setActiveDescendant(itemsToShow[itemSelectedIndex + -1].htmlID);
+        }
       }
     }
   };
 
-  const filterItems = (e: { target: { value: string } }): void => {
-    setFilterValue(e.target.value);
+  const filterItems = (value: string): void => {
     let filterItemList;
     if (keyToSearch) {
-      filterItemList = items.filter(item => item[keyToSearch].toLowerCase().includes(e.target.value.toLowerCase()));
+      filterItemList = formattedItems
+        .slice()
+        .filter((item: any) => item[keyToSearch].toLowerCase().includes(value.toLowerCase()));
     } else {
-      filterItemList = items.filter(item => item.toLowerCase().includes(e.target.value.toLowerCase()));
+      filterItemList = formattedItems
+        .slice()
+        .filter((item: any) => item.label.toLowerCase().includes(value.toLowerCase()));
     }
-
     setMenuOpen(true);
     if (filterRef.current.value.length > 0) {
       setItemsToShow(filterItemList);
     } else {
-      setItemsToShow(items);
+      setItemsToShow(filterItemList);
       setMenuOpen(false);
       setActiveDescendant('');
+      setItemSelectedIndex(-1);
     }
   };
 
-  const setValue = (value: React.SetStateAction<string>): void => {
-    setFilterValue(value);
-    setItemSelected(value);
-    setMenuOpen(false);
-    setItemSelectedIndex(-1);
+  const onChangeFunc = (e: { target: { value: string } }): void => {
+    setFilterValue(e.target.value);
+    filterItems(e.target.value);
   };
 
   const handleItemKeyPress = (e: { key: string }, item: string): void => {
@@ -169,44 +211,54 @@ export const Combobox = ({
             value={filterValue}
             icon={inputIcon}
             ref={filterRef}
-            onChange={(e: { target: { value: string } }): void => filterItems(e)}
+            onChange={(e: { target: { value: string } }): void => onChangeFunc(e)}
             placeholder={placeholder}
             inError={inError}
             inWarning={inWarning}
             disabled={disabled}
             theme={themeContext.theme}
             autoComplete="off"
+            role="combobox"
+            onKeyDown={e => handleUserKeyPress(e)}
             {...ariaProps}
+            {...rest}
           />
           {menuOpen && (
             <ComboboxMenu role="listbox" theme={themeContext.theme} ref={menuRef}>
               <>
                 {itemsToShow.map((item: any, index) => {
-                  const value = itemFormatter ? item[keyToSearch as string] : item;
+                  const value = itemFormatter ? item[keyToSearch as string] : item.label;
                   return (
                     <MenuItemStyled
+                      role="option"
                       theme={themeContext.theme}
-                      tabIndex={0}
                       id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
                       onKeyDown={(e: { key: string }): void => handleItemKeyPress(e, value)}
                       onMouseDown={(): void => setValue(value)}
-                      onFocus={(e: any): void => {
-                        setActiveDescendant(e.target.id);
-                      }}
                       onMouseEnter={(e: any): void => {
                         setActiveDescendant(e.target.id);
                       }}
-                      key={item}
+                      key={item.label}
                       ref={(ref: HTMLLIElement): void => {
                         itemRefs[index] = ref;
                       }}
+                      tabIndex={-1}
+                      aria-selected={index === itemSelectedIndex ? 'true' : 'false'}
                     >
-                      {!itemFormatter && item === itemSelected && (
-                        <ItemIcon theme={themeContext.theme}>
-                          <Icon icon="check-circle" />
-                        </ItemIcon>
+                      {itemFormatter ? (
+                        itemFormatter(item.index)
+                      ) : (
+                        <>
+                          <span aria-label={`${item.label} press enter to choose this option`}>
+                            {item.label === itemSelected && (
+                              <ItemIcon theme={themeContext.theme}>
+                                <Icon icon="check-circle" />
+                              </ItemIcon>
+                            )}
+                            {item.label}
+                          </span>
+                        </>
                       )}
-                      {itemFormatter ? itemFormatter(item.index) : item}
                     </MenuItemStyled>
                   );
                 })}
@@ -216,7 +268,7 @@ export const Combobox = ({
             </ComboboxMenu>
           )}
           <CaretIcon>
-            <Icon icon={menuOpen ? 'caret-up' : 'caret-down'} />
+            <Icon title={menuOpen ? 'Menu open' : 'Menu closed'} icon={menuOpen ? 'caret-up' : 'caret-down'} />
           </CaretIcon>
         </ComboboxWrapper>
       )}

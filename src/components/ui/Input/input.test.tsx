@@ -47,7 +47,7 @@ describe('FormField Input', () => {
 
   test('Has the icon when one is attached to it', () => {
     const { getByRole } = render(<Input icon="check-circle" placeholder="Test placeholder" />);
-    expect(getByRole('img')).toHaveClass('check-circle');
+    expect(getByRole('img', { hidden: true })).toHaveClass('check-circle');
   });
 
   test('Is readonly', () => {

@@ -63,7 +63,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
         {isLoading && loadingIcon && <>{loadingIcon} </>}
         {icon && !isLoading && (
           <StyledIcon className="button-icon" fcStyle={fcStyle} primary={primary}>
-            <Icon icon={icon} />
+            <Icon title="Icon Button" icon={icon} />
           </StyledIcon>
         )}
         {children}

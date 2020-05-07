@@ -43,7 +43,7 @@ export const MenuItemStyled = styled.li<MIS>`
   &:last-child {
   }
   &:hover,
-  &:focus {
+  &[aria-selected='true'] {
     background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.highlight)};
     color: ${(props): string => (props.theme === 'dark' ? color.light : 'inherit')};
     outline: none;

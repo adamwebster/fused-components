@@ -88,11 +88,19 @@ import { Button } from './';
     </Story>
 </Preview>
 
+
 <Preview>
-    <Story name="Link button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-        <Button as="a" id="primaryButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+    <Story name="Icon button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+        <Button id="primaryButton" icon="check-circle" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
     </Story>
 </Preview>
+
+<Preview>
+    <Story name="Link button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+        <Button as="a" id="linkButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+    </Story>
+</Preview>
+
 
 # Button dependents & dependencies
 <DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Button} />

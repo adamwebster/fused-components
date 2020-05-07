@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import 'jest-styled-components';
 import { Combobox } from './index';
 import userEvent from '@testing-library/user-event';
@@ -168,14 +168,16 @@ describe('Combobox Tests', () => {
   });
 
   test('Pressing enter on a item changes the inputs value', () => {
-    const { getByPlaceholderText, getByText } = render(
+    const { getByPlaceholderText } = render(
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
     );
     const input = getByPlaceholderText('Combobox test');
     userEvent.type(input, 'A');
-    const option = getByText('Apple');
-    fireEvent.keyDown(option, { keyCode: 13 });
-    expect(input).toHaveValue('Apple');
+    fireEvent.keyDown(input, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 13 });
+    waitFor(() => {
+      expect(input).toHaveValue('Apple');
+    });
   });
 
   test('Pressing any key besides enter does not select the item', () => {
@@ -197,7 +199,9 @@ describe('Combobox Tests', () => {
     userEvent.type(input, 'A');
     const option = getByText('Apple');
     fireEvent.mouseEnter(option);
-    expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
+    waitFor(() => {
+      expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
+    });
   });
 
   test('If nothing is found then show the empty state', () => {
@@ -210,18 +214,17 @@ describe('Combobox Tests', () => {
   });
 
   test('The check icon is on a selected item', () => {
-    const { getByPlaceholderText, getByText, getAllByRole } = render(
+    const { getByPlaceholderText, getByText, getAllByRole, debug } = render(
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
     );
     const input = getByPlaceholderText('Combobox test');
     userEvent.type(input, 'A');
-    const option = getByText('Apple');
-    fireEvent.keyDown(option, { keyCode: 13 });
-    expect(input).toHaveValue('Apple');
+    const item = getByText('Apple');
+    fireEvent.mouseDown(item);
     fireEvent.change(input, { target: { value: '' } });
     userEvent.type(input, 'A');
-    const checkIcon = getAllByRole('img')[0];
-    expect(checkIcon).toHaveClass('check-circle');
+    const svg = getAllByRole('img')[0];
+    expect(svg).toHaveClass('check-circle');
   });
 
   test('Check icon shows up for the item selected in dark mode correctly', () => {
