@@ -214,7 +214,7 @@ describe('Combobox Tests', () => {
   });
 
   test('The check icon is on a selected item', () => {
-    const { getByPlaceholderText, getByText, getAllByRole, debug } = render(
+    const { getByPlaceholderText, getByText, getAllByRole } = render(
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
     );
     const input = getByPlaceholderText('Combobox test');
