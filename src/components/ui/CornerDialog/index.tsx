@@ -1,18 +1,7 @@
-import React, { useEffect, useState, ReactNode, ReactElement } from 'react';
-import {
-  CornerDialogStyled,
-  DialogTitle,
-  DialogContent,
-  DialogText,
-  DialogFooter,
-  CloseButton,
-  IconStyled,
-} from './style';
-import { Button } from '../Button';
-import { color } from '../../../styles/styles';
-import { Icon } from '../../icon';
+import React, { ReactNode, ReactElement } from 'react';
+import CornerDialogPopover from './dialog';
 import { fcStyles } from '../../../common/types';
-import { FCThemeConsumer } from '../../../theming/FCTheme';
+import ReactDOM from 'react-dom';
 
 export interface Props {
   fixed?: boolean;
@@ -25,6 +14,7 @@ export interface Props {
   icon?: string;
   children: ReactNode;
   onConfirmClick?: () => void;
+  id: string;
 }
 export const CornerDialog = ({
   fixed = true,
@@ -37,83 +27,43 @@ export const CornerDialog = ({
   children,
   fcStyle,
   icon,
+  id,
 }: Props): ReactElement => {
-  const [show, setShow] = useState(false);
+  const element = document.body;
 
-  useEffect(() => {
-    if (!visible) {
-      setTimeout(() => {
-        setShow(false);
-      }, 150);
-    } else {
-      setShow(true);
-    }
-  }, [visible]);
-
-  const handleUserKeyPress = (e: any): void => {
-    e.preventDefault();
-    if (show) {
-      // Escape Key
-      if (e.keyCode === 27) {
-        setShow(false);
-        onCloseClick();
-      }
-    }
-  };
-  useEffect(() => {
-    window.addEventListener('keydown', handleUserKeyPress);
-
-    return (): void => {
-      window.removeEventListener('keydown', handleUserKeyPress);
-    };
-  });
-  return (
-    <FCThemeConsumer>
-      {(themeContext): ReactNode => (
-        <>
-          {show && (
-            <CornerDialogStyled
-              role="alertdialog"
-              title="Click escape to close this dialog."
-              visible={visible}
-              fcStyle={fcStyle}
-              fixed={fixed}
-              theme={themeContext.theme}
-            >
-              <DialogTitle fcStyle={fcStyle} theme={themeContext.theme}>
-                {title && title}
-                <CloseButton
-                  title="Close"
-                  theme={themeContext.theme}
-                  onClick={(): void => onCloseClick()}
-                  aria-label="Close"
-                >
-                  <Icon icon="times" />
-                </CloseButton>
-              </DialogTitle>
-              <DialogContent theme={themeContext.theme}>
-                {icon && (
-                  <IconStyled theme={themeContext.theme} fcStyle={fcStyle}>
-                    <Icon icon={icon} />
-                  </IconStyled>
-                )}
-                <DialogText>{children}</DialogText>
-              </DialogContent>
-              <DialogFooter fcStyle={fcStyle} theme={themeContext.theme}>
-                <Button
-                  buttonColor={themeContext.theme === 'dark' ? color.darkModeLight : color.mediumdark}
-                  onClick={(): void => onCloseClick()}
-                >
-                  {cancelText}
-                </Button>
-                <Button onClick={(): void => onConfirmClick()} fcStyle={fcStyle} primary>
-                  {confirmText}
-                </Button>
-              </DialogFooter>
-            </CornerDialogStyled>
-          )}
-        </>
-      )}
-    </FCThemeConsumer>
+  if (!fixed) {
+    return (
+      <CornerDialogPopover
+        fcStyle={fcStyle}
+        fixed={fixed}
+        onCloseClick={onCloseClick}
+        onConfirmClick={onConfirmClick}
+        visible={visible}
+        cancelText={cancelText}
+        confirmText={confirmText}
+        title={title}
+        icon={icon}
+        id={id}
+      >
+        {children}
+      </CornerDialogPopover>
+    );
+  }
+  return ReactDOM.createPortal(
+    <CornerDialogPopover
+      fcStyle={fcStyle}
+      fixed={fixed}
+      onCloseClick={onCloseClick}
+      onConfirmClick={onConfirmClick}
+      visible={visible}
+      cancelText={cancelText}
+      confirmText={confirmText}
+      title={title}
+      icon={icon}
+      id={id}
+    >
+      {children}
+    </CornerDialogPopover>,
+    element,
   );
 };

@@ -63,9 +63,11 @@ export const CornerDialogDemo = () => {
       <Button onClick={() => setDialogVisible(true)}>Show Corner Dialog</Button>
       <FCThemeProvider value={{ theme }}>
         <CornerDialog
+          id="DialogDemo"
           fcStyle={style as fcStyles}
           icon={icon}
           onCloseClick={() => setDialogVisible(false)}
+          onConfirmClick={() => setDialogVisible(false)}
           visible={dialogVisible}
           title="Corner Dialog"
           confirmText="Yes"
@@ -82,23 +84,29 @@ export const CornerDialogDark = () => {
   return (
     <DarkModeWrapperStyled>
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <CornerDialog title="Corner Dialog Default" fixed={false}>
+        <CornerDialog id="DefaultDemoDark" title="Corner Dialog Default" fixed={false}>
           This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
           not wrap around icon.
         </CornerDialog>
-        <CornerDialog fcStyle="danger" icon="no-entry-circle" title="Corner Dialog" fixed={false}>
+        <CornerDialog id="DangerDemoDark" fcStyle="danger" icon="no-entry-circle" title="Corner Dialog" fixed={false}>
           This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
           not wrap around icon.
         </CornerDialog>
-        <CornerDialog fcStyle="warning" icon="exclamation-circle" title="Corner Dialog" fixed={false}>
+        <CornerDialog
+          id="WarningDemoDark"
+          fcStyle="warning"
+          icon="exclamation-circle"
+          title="Corner Dialog"
+          fixed={false}
+        >
           This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
           not wrap around icon.
         </CornerDialog>
-        <CornerDialog fcStyle="info" icon="question-circle" title="Corner Dialog" fixed={false}>
+        <CornerDialog id="InfoDemoDark" fcStyle="info" icon="question-circle" title="Corner Dialog" fixed={false}>
           This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
           not wrap around icon.
         </CornerDialog>
-        <CornerDialog fcStyle="success" icon="check-circle" title="Corner Dialog" fixed={false}>
+        <CornerDialog id="SuccessDemoDark" fcStyle="success" icon="check-circle" title="Corner Dialog" fixed={false}>
           This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
           not wrap around icon.
         </CornerDialog>

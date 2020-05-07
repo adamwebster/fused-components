@@ -267,7 +267,7 @@ export const Combobox = ({
             </ComboboxMenu>
           )}
           <CaretIcon>
-            <Icon aria-label={menuOpen ? 'Menu open' : 'Menu closed'} icon={menuOpen ? 'caret-up' : 'caret-down'} />
+            <Icon title={menuOpen ? 'Menu open' : 'Menu closed'} icon={menuOpen ? 'caret-up' : 'caret-down'} />
           </CaretIcon>
         </ComboboxWrapper>
       )}

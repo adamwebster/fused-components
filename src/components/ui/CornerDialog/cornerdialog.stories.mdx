@@ -15,23 +15,23 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 
 ## Default
 <Preview>
-    <CornerDialog title="Corner Dialog" fixed={false}>
+    <CornerDialog targetElement='d1' id="default" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
 </Preview>
 
 ## Styles
 <Preview>
-    <CornerDialog fcStyle="danger" icon="no-entry-circle" title="Corner Dialog" fixed={false}>
+    <CornerDialog id="danger" fcStyle="danger" icon="no-entry-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
-        <CornerDialog fcStyle="warning" icon="exclamation-circle" title="Corner Dialog" fixed={false}>
+        <CornerDialog id="warning" fcStyle="warning" icon="exclamation-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
-         <CornerDialog fcStyle="info" icon="question-circle" title="Corner Dialog" fixed={false}>
+         <CornerDialog id="info" fcStyle="info" icon="question-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
-        <CornerDialog fcStyle="success" icon="check-circle" title="Corner Dialog" fixed={false}>
+        <CornerDialog id="success" fcStyle="success" icon="check-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
 </Preview>
