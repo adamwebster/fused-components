@@ -60,6 +60,18 @@ describe('Calendar tests', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
+  test('If space is hit with onChange then nothing is returned', () => {
+    let date = 'date';
+    const onChange = jest.fn(dateReturned => {
+      date = dateReturned;
+    });
+    const { getByText } = render(<Calendar />);
+    const dateItem = getByText('15');
+    fireEvent.keyDown(dateItem, { key: 'Enter' });
+    expect(date).toBe('date');
+    expect(onChange).toHaveBeenCalledTimes(0);
+  });
+
   test('The date changes focus when the right arrow key is pressed', () => {
     const { getAllByText } = render(<Calendar selectedDate={dayjs('May 5 2020')} />);
     const dateItem = getAllByText('5')[0];
@@ -128,6 +140,19 @@ describe('Calendar tests', () => {
     fireEvent.blur(dateItemSelected);
     const prevButton = getAllByRole('button')[0];
     expect(prevButton).toHaveFocus();
+  });
+
+  test('The previous button is not focused on blur of the day when autoFocusDay is not set', () => {
+    const { getByText, getAllByRole } = render(
+      <>
+        <Calendar selectedDate={dayjs('May 15 2020')} />
+        <button>Tes Button</button>
+      </>,
+    );
+    const dateItemSelected = getByText('15');
+    fireEvent.blur(dateItemSelected);
+    const prevButton = getAllByRole('button')[0];
+    expect(prevButton).not.toHaveFocus();
   });
 
   test('Pressing enter on the next button loads the next month', () => {

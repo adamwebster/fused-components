@@ -1,5 +1,4 @@
 import React, { useState, ReactElement } from 'react';
-import dayjs from 'dayjs';
 import { DatePicker } from '../components/ui/DatePicker';
 import { FCThemeProvider } from '../theming/FCTheme';
 import { DarkModeWrapper } from '../common/styles';
