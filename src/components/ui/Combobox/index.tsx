@@ -173,12 +173,6 @@ export const Combobox = ({
     filterItems(e.target.value);
   };
 
-  const handleItemKeyPress = (e: { key: string }, item: string): void => {
-    if (e.key === 'Enter') {
-      setValue(item);
-    }
-  };
-
   useEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress);
     window.addEventListener('mousedown', e => handleClickOutside(e));
@@ -198,9 +192,15 @@ export const Combobox = ({
       isMounted.current === false;
     };
   }, []);
-  let ariaProps = {};
+  let ariaProps: any = {
+    'aria-controls': id + '-menu',
+    'aria-expanded': false,
+  };
   if (activeDescendant) {
     ariaProps = { ...ariaProps, 'aria-activedescendant': activeDescendant };
+  }
+  if (menuOpen) {
+    ariaProps = { ...ariaProps, 'aria-expanded': true };
   }
   return (
     <FCThemeConsumer>
@@ -224,7 +224,7 @@ export const Combobox = ({
             {...rest}
           />
           {menuOpen && (
-            <ComboboxMenu role="listbox" theme={themeContext.theme} ref={menuRef}>
+            <ComboboxMenu aria-label="Combobox Menu" role="listbox" theme={themeContext.theme} ref={menuRef}>
               <>
                 {itemsToShow.map((item: any, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;
@@ -233,7 +233,6 @@ export const Combobox = ({
                       role="option"
                       theme={themeContext.theme}
                       id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
-                      onKeyDown={(e: { key: string }): void => handleItemKeyPress(e, value)}
                       onMouseDown={(): void => setValue(value)}
                       onMouseEnter={(e: any): void => {
                         setActiveDescendant(e.target.id);
@@ -268,7 +267,7 @@ export const Combobox = ({
             </ComboboxMenu>
           )}
           <CaretIcon>
-            <Icon title={menuOpen ? 'Menu open' : 'Menu closed'} icon={menuOpen ? 'caret-up' : 'caret-down'} />
+            <Icon aria-label={menuOpen ? 'Menu open' : 'Menu closed'} icon={menuOpen ? 'caret-up' : 'caret-down'} />
           </CaretIcon>
         </ComboboxWrapper>
       )}

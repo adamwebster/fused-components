@@ -214,7 +214,13 @@ export const Autocomplete = ({
             {...rest}
           />
           {menuOpen && (
-            <AutocompleteMenu id={`${id}-menu`} menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
+            <AutocompleteMenu
+              aria-label="Autocomplete menu"
+              id={`${id}-menu`}
+              menuOpen={menuOpen}
+              role="listbox"
+              theme={themeContext.theme}
+            >
               <>
                 {itemsToShow.map((item, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;

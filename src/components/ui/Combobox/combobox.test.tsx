@@ -180,6 +180,36 @@ describe('Combobox Tests', () => {
     });
   });
 
+  test('Pressing enter on a item changes the inputs value with item formatter', () => {
+    const data = [
+      {
+        label: 'Apple',
+        description: 'A fruit',
+      },
+    ];
+    const { getByPlaceholderText } = render(
+      <Combobox
+        id="cb1"
+        items={data}
+        placeholder="Combobox test"
+        keyToSearch="label"
+        itemFormatter={(index): ReactElement => (
+          <div>
+            <span>{data[index].label}</span> <br />
+            <span>{data[index].description}</span>
+          </div>
+        )}
+      />,
+    );
+    const input = getByPlaceholderText('Combobox test');
+    userEvent.type(input, 'A');
+    fireEvent.keyDown(input, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 13 });
+    waitFor(() => {
+      expect(input).toHaveValue('Apple');
+    });
+  });
+
   test('Pressing any key besides enter does not select the item', () => {
     const { getByPlaceholderText, getByText } = render(
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
