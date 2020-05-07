@@ -14,7 +14,13 @@ export const DialogDemo = () => {
       <Button onClick={() => setDialogVisible(true)} disabled={dialogVisible}>
         Show Dialog
       </Button>
-      <Dialog onCloseClick={() => setDialogVisible(false)} visible={dialogVisible} title="Dialog">
+      <Dialog
+        id="dialog-99"
+        focusElement="user"
+        onCloseClick={() => setDialogVisible(false)}
+        visible={dialogVisible}
+        title="Dialog"
+      >
         <Label htmlFor="user">Username</Label>
         <Input id="user" icon="user" />
         <Label htmlFor="Password">Password</Label>
@@ -28,23 +34,23 @@ export const DialogDarkDemo = () => {
   return (
     <FCThemeProvider value={{ theme: 'dark' }}>
       <DarkModeWrapper>
-        <Dialog visible fixed={false} showOverlay={false} title="Dialog">
+        <Dialog id="dialog-100" visible fixed={false} showOverlay={false} title="Dialog">
           Dialog content
         </Dialog>
         <br />
-        <Dialog visible fcStyle="danger" fixed={false} showOverlay={false} title="Dialog">
+        <Dialog id="dialog-101" visible fcStyle="danger" fixed={false} showOverlay={false} title="Dialog">
           Dialog content
         </Dialog>
         <br />
-        <Dialog visible fcStyle="warning" fixed={false} showOverlay={false} title="Dialog">
+        <Dialog id="dialog-102" visible fcStyle="warning" fixed={false} showOverlay={false} title="Dialog">
           Dialog content
         </Dialog>
         <br />
-        <Dialog visible fcStyle="info" fixed={false} showOverlay={false} title="Dialog">
+        <Dialog id="dialog-103" visible fcStyle="info" fixed={false} showOverlay={false} title="Dialog">
           Dialog content
         </Dialog>
         <br />
-        <Dialog visible fcStyle="success" fixed={false} showOverlay={false} title="Dialog">
+        <Dialog id="dialog-104" visible fcStyle="success" fixed={false} showOverlay={false} title="Dialog">
           Dialog content
         </Dialog>
       </DarkModeWrapper>

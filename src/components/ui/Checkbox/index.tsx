@@ -28,7 +28,7 @@ export const Checkbox = ({
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
         <label>
-          <CheckInput type="checkbox" checked={checked} onChange={(): void => onChange()} />
+          <CheckInput id={id} type="checkbox" checked={checked} onChange={(): void => onChange()} />
 
           <IconStyled theme={themeContext.theme} inError={inError} inWarning={inWarning}>
             <Icon aria-labelledby={`labelfor-${id}`} icon={checked ? 'checkbox-checked' : 'checkbox'} />

@@ -9,7 +9,7 @@ afterEach(cleanup);
 
 describe('Checkbox Tests', () => {
   test('Renders the Checkbox component', () => {
-    const { getByText } = render(<Checkbox>I am a checkbox</Checkbox>);
+    const { getByText } = render(<Checkbox id="cb1">I am a checkbox</Checkbox>);
     expect(getByText('I am a checkbox')).toBeInTheDocument();
   });
   test('Checks the checkbox', () => {
@@ -18,7 +18,7 @@ describe('Checkbox Tests', () => {
       checked = true;
     });
     const { getByText } = render(
-      <Checkbox onChange={() => onChange()} checked={checked}>
+      <Checkbox id="cb1" onChange={() => onChange()} checked={checked}>
         I am a checkbox
       </Checkbox>,
     );
@@ -28,30 +28,46 @@ describe('Checkbox Tests', () => {
     expect(checked).toBe(true);
   });
   test('Checkbox is in its error state', () => {
-    const { getByText } = render(<Checkbox inError>Checkbox</Checkbox>);
+    const { getByText } = render(
+      <Checkbox id="cb1" inError>
+        Checkbox
+      </Checkbox>,
+    );
     expect(getByText('Checkbox')).toHaveStyleRule('color', color.danger);
   });
 
   test('Checkbox is in its warning state', () => {
-    const { getByText } = render(<Checkbox inWarning>Checkbox</Checkbox>);
+    const { getByText } = render(
+      <Checkbox id="cb1" inWarning>
+        Checkbox
+      </Checkbox>,
+    );
     expect(getByText('Checkbox')).toHaveStyleRule('color', color.warning);
   });
 
   test('Renders with theme provider value set to dark', () => {
     render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Checkbox>Checkbox</Checkbox>
+        <Checkbox id="cb1">Checkbox</Checkbox>
       </FCThemeProvider>,
     );
   });
 
   test('Correct icon shows when it is unchecked', () => {
-    const { getByRole } = render(<Checkbox checked={false}>Checkbox</Checkbox>);
+    const { getByRole } = render(
+      <Checkbox id="cb1" checked={false}>
+        Checkbox
+      </Checkbox>,
+    );
     expect(getByRole('img')).toHaveClass('checkbox');
   });
 
   test('Correct icon shows when it is checked is set', () => {
-    const { getByRole } = render(<Checkbox checked>Checkbox</Checkbox>);
+    const { getByRole } = render(
+      <Checkbox id="cb1" checked>
+        Checkbox
+      </Checkbox>,
+    );
     expect(getByRole('img')).toHaveClass('checkbox-checked');
   });
 });

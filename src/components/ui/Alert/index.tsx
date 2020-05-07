@@ -26,7 +26,9 @@ export const Alert = ({
   className,
   onMouseOver,
   onMouseOut,
+  ...rest
 }: Props): ReactElement => {
+  const iconComponent = <Icon className="notification-icon" icon={icon && icon} />;
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
@@ -38,11 +40,11 @@ export const Alert = ({
             borderRadius={borderRadius}
             className={className}
             fcStyle={fcStyle}
-            role="alert"
+            {...rest}
           >
             {title && (
               <header>
-                {icon && <Icon className="notification-icon" icon={icon} />}{' '}
+                {icon && iconComponent}
                 <Title theme={themeContext.theme}>{title}</Title>
               </header>
             )}

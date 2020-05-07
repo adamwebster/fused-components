@@ -86,6 +86,7 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
           icon={icon}
           title={title}
           theme={theme}
+          role="alert"
         >
           {children && (
             <span

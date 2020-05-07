@@ -45,6 +45,13 @@ If this button is disabled close the corner dialog that is displayed.
 
 <CornerDialogDark />
 
+
+<Story name="Corner Dialog" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <CornerDialog targetElement='d1' id="default" title="Corner Dialog" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])} fixed={false}>
+    This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
+    </CornerDialog>
+</Story>
+
 ## Properties
 
 <Props of={CornerDialog} />

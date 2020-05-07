@@ -6,7 +6,7 @@ import { DarkModeWrapper } from '../common/styles';
 export const CheckboxDemo = () => {
   const [checked, setChecked] = useState(false);
   return (
-    <Checkbox checked={checked} onChange={() => setChecked(!checked)}>
+    <Checkbox id="checkbox5-0" checked={checked} onChange={() => setChecked(!checked)}>
       Check me
     </Checkbox>
   );

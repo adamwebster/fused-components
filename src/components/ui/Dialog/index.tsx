@@ -1,10 +1,7 @@
 import React, { ReactNode, ReactElement } from 'react';
-import { Button } from '../Button';
-import { StyledDialog, DialogTitle, DialogContent, CloseButton, DialogFooter, Overlay } from './style';
-import { color } from '../../../styles/styles';
-import { Icon } from '../../icon';
+import ReactDOM from 'react-dom';
 import { fcStyles } from '../../../common/types';
-import { FCThemeConsumer } from '../../../theming/FCTheme';
+import { DialogComponent } from './dialogComponent';
 
 export interface Props {
   /** Sets if the dialog has a box shadow */
@@ -27,11 +24,14 @@ export interface Props {
   cancelText?: string;
   children?: ReactNode;
   theme?: string;
+  id: string;
+  focusElement?: string | null | undefined;
 }
 export const Dialog = ({
   boxShadow = true,
   title,
   visible,
+  id,
   confirmText = 'Yes',
   children,
   onCloseClick = (): void => undefined,
@@ -39,51 +39,36 @@ export const Dialog = ({
   fcStyle,
   showOverlay = true,
   cancelText = 'Cancel',
+  focusElement,
 }: Props): ReactElement => {
-  return (
+  const dialogProps = {
+    boxShadow,
+    title,
+    confirmText,
+    onCloseClick,
+    fixed,
+    fcStyle,
+    id,
+    showOverlay,
+    cancelText,
+    visible,
+    focusElement,
+  };
+  if (!fixed) {
+    return (
+      <DialogComponent focusElement={null} {...dialogProps}>
+        {children}
+      </DialogComponent>
+    );
+  }
+  return ReactDOM.createPortal(
     <>
       {visible && (
-        <>
-          {showOverlay && <Overlay data-testid="dialog-overlay" onClick={(): void => onCloseClick()} />}
-          <FCThemeConsumer>
-            {(themeContext): ReactNode => (
-              <StyledDialog
-                fcStyle={fcStyle}
-                theme={themeContext.theme}
-                visible={visible}
-                fixed={fixed}
-                boxShadow={boxShadow}
-                role="dialog"
-              >
-                <DialogTitle theme={themeContext.theme} fcStyle={fcStyle}>
-                  <h2>{title}</h2>
-                  <CloseButton
-                    theme={themeContext.theme}
-                    title="Close dialog"
-                    aria-label="Close"
-                    onClick={(): void => onCloseClick()}
-                  >
-                    <Icon icon="times" />
-                  </CloseButton>
-                </DialogTitle>
-                <DialogContent theme={themeContext.theme}>{children}</DialogContent>
-                <DialogFooter fcStyle={fcStyle} theme={themeContext.theme}>
-                  <Button
-                    buttonColor={themeContext.theme === 'dark' ? color.darkModeMedium : color.mediumdark}
-                    onClick={(): void => onCloseClick()}
-                  >
-                    {cancelText}
-                  </Button>
-
-                  <Button primary fcStyle={fcStyle}>
-                    {confirmText}
-                  </Button>
-                </DialogFooter>
-              </StyledDialog>
-            )}
-          </FCThemeConsumer>
-        </>
+        <DialogComponent focusElement={focusElement} {...dialogProps}>
+          {children}
+        </DialogComponent>
       )}
-    </>
+    </>,
+    document.body,
   );
 };

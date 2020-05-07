@@ -53,9 +53,6 @@ const CornerDialogPopover = ({
     }
   }, [visible]);
 
-  useEffect(() => {
-    if (dialogRef) dialogRef.current?.focus();
-  }, [show]);
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
@@ -73,13 +70,8 @@ const CornerDialogPopover = ({
             >
               <DialogTitle id={`${id}-title`} fcStyle={fcStyle} theme={themeContext.theme}>
                 {title && title}
-                <CloseButton
-                  title="Close"
-                  theme={themeContext.theme}
-                  onClick={(): void => onCloseClick()}
-                  aria-label="Close"
-                >
-                  <Icon icon="times" />
+                <CloseButton theme={themeContext.theme} onClick={(): void => onCloseClick()}>
+                  <Icon title="Close" icon="times" />
                 </CloseButton>
               </DialogTitle>
               <DialogContent id={`${id}-body`} theme={themeContext.theme}>
@@ -92,7 +84,7 @@ const CornerDialogPopover = ({
               </DialogContent>
               <DialogFooter fcStyle={fcStyle} theme={themeContext.theme}>
                 <Button
-                  buttonColor={themeContext.theme === 'dark' ? color.darkModeLight : color.mediumdark}
+                  buttonColor={themeContext.theme === 'dark' ? color.darkModeLight : color.dark}
                   onClick={(): void => onCloseClick()}
                 >
                   {cancelText}

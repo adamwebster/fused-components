@@ -12,19 +12,19 @@ import { Dialog } from './';
 
 ## Sizes 
 <Preview>
-    <Dialog visible fixed={false} showOverlay={false} title="Dialog">
+    <Dialog id="dialog-1" visible fixed={false} showOverlay={false} title="Dialog">
         Dialog content
     </Dialog>
-     <Dialog visible fcStyle="danger" fixed={false} showOverlay={false} title="Dialog">
+     <Dialog id="dialog-2" visible fcStyle="danger" fixed={false} showOverlay={false} title="Dialog">
         Dialog content
     </Dialog>
-      <Dialog visible fcStyle="warning" fixed={false} showOverlay={false} title="Dialog">
+      <Dialog id="dialog-3" visible fcStyle="warning" fixed={false} showOverlay={false} title="Dialog">
         Dialog content
     </Dialog>
-      <Dialog visible fcStyle="info" fixed={false} showOverlay={false} title="Dialog">
+      <Dialog id="dialog-4" visible fcStyle="info" fixed={false} showOverlay={false} title="Dialog">
         Dialog content
     </Dialog>
-      <Dialog visible fcStyle="success" fixed={false} showOverlay={false} title="Dialog">
+      <Dialog id="dialog-5" visible fcStyle="success" fixed={false} showOverlay={false} title="Dialog">
         Dialog content
     </Dialog>
 </Preview>
@@ -34,6 +34,13 @@ import { Dialog } from './';
 ## Dark Mode
 
 <DialogDarkDemo />
+
+<Story name="Dialog" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <Dialog visible id="dialog-6" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false} showOverlay={false} title="Dialog">
+        Dialog content
+    </Dialog>
+</Story>
+
 
 <Props of={Dialog} />
 

@@ -25,7 +25,7 @@ const colorValue = (props: Props): string => {
       if (props.theme === 'dark') {
         return color.medium;
       } else {
-        return color.dark;
+        return color.darkest;
       }
   }
 };
@@ -131,7 +131,7 @@ export const CloseButton = styled.button`
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.dark)};
   position: absolute;
   cursor: pointer;
   &:hover {
