@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, HTMLAttributes } from 'react';
 import { icons } from './icons';
 import styled from 'styled-components';
 
-export interface IconProps {
+export interface IconProps extends HTMLAttributes<SVGSVGElement> {
   icon?: string;
   color?: string;
   className?: string;

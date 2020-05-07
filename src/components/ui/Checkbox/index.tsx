@@ -13,6 +13,7 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
   inWarning?: boolean;
   /** The on change function for the input */
   onChange?: () => void;
+  id: string;
 }
 
 export const Checkbox = ({
@@ -21,22 +22,19 @@ export const Checkbox = ({
   inError = false,
   inWarning = false,
   onChange = (): void => undefined,
+  id,
 }: Props): ReactElement => {
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
         <label>
           <CheckInput type="checkbox" checked={checked} onChange={(): void => onChange()} />
-          {checked ? (
-            <IconStyled theme={themeContext.theme} inError={inError} inWarning={inWarning}>
-              <Icon icon="checkbox-checked" />
-            </IconStyled>
-          ) : (
-            <IconStyled inError={inError} inWarning={inWarning}>
-              <Icon icon="checkbox" />
-            </IconStyled>
-          )}
-          <Label theme={themeContext.theme} inError={inError} inWarning={inWarning}>
+
+          <IconStyled theme={themeContext.theme} inError={inError} inWarning={inWarning}>
+            <Icon aria-labelledby={`labelfor-${id}`} icon={checked ? 'checkbox-checked' : 'checkbox'} />
+          </IconStyled>
+
+          <Label id={`labelfor-${id}`} theme={themeContext.theme} inError={inError} inWarning={inWarning}>
             {children}
           </Label>
         </label>

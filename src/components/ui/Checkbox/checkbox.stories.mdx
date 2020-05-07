@@ -12,10 +12,10 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 ## An Checkbox component
 
 <Preview>
-  <Checkbox>Checkbox</Checkbox>
-  <Checkbox checked>Checkbox</Checkbox>
-  <Checkbox inError>Checkbox</Checkbox>
-  <Checkbox inWarning>Checkbox</Checkbox>
+  <Checkbox id="checkbox1">Checkbox</Checkbox>
+  <Checkbox id="checkbox2" checked>Checkbox</Checkbox>
+  <Checkbox id="checkbox3" inError>Checkbox</Checkbox>
+  <Checkbox id="checkbox4" inWarning>Checkbox</Checkbox>
 </Preview>
 
 ## Demo
@@ -32,6 +32,9 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 
 <Props of={Checkbox} />
 
+<Story name="Checkbox" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+  <Checkbox id="checkbox6" aria-label="Check me" checked={boolean('Checked')}>Check me</Checkbox>
+</Story>
 
 # Checkbox dependents & dependencies
 <DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Checkbox} />
