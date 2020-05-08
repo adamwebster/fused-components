@@ -8,7 +8,11 @@ afterEach(cleanup);
 
 describe('Dialog Tests', () => {
   test('Renders the Dialog component', () => {
-    const { getByText } = render(<Dialog visible={true}>I am a dialog</Dialog>);
+    const { getByText } = render(
+      <Dialog id="1" visible={true}>
+        I am a dialog
+      </Dialog>,
+    );
     expect(getByText('I am a dialog')).toBeInTheDocument();
   });
 
@@ -18,7 +22,7 @@ describe('Dialog Tests', () => {
       visible = false;
     });
     const { getByTestId, queryByText, rerender } = render(
-      <Dialog visible={visible} onCloseClick={() => setVisible()}>
+      <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
         Dialog
       </Dialog>,
     );
@@ -28,7 +32,7 @@ describe('Dialog Tests', () => {
     expect(visible).toBe(false);
 
     rerender(
-      <Dialog visible={visible} onCloseClick={() => setVisible()}>
+      <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
         Dialog
       </Dialog>,
     );
@@ -42,7 +46,7 @@ describe('Dialog Tests', () => {
       visible = false;
     });
     const { getByTitle, queryByText, rerender } = render(
-      <Dialog visible={visible} onCloseClick={() => setVisible()}>
+      <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
         Dialog
       </Dialog>,
     );
@@ -52,7 +56,7 @@ describe('Dialog Tests', () => {
     expect(visible).toBe(false);
 
     rerender(
-      <Dialog visible={visible} onCloseClick={() => setVisible()}>
+      <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
         Dialog
       </Dialog>,
     );
@@ -66,7 +70,7 @@ describe('Dialog Tests', () => {
       visible = false;
     });
     const { getByText, queryByText, rerender } = render(
-      <Dialog visible={visible} onCloseClick={() => setVisible()}>
+      <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
         Dialog
       </Dialog>,
     );
@@ -76,7 +80,7 @@ describe('Dialog Tests', () => {
     expect(visible).toBe(false);
 
     rerender(
-      <Dialog visible={visible} onCloseClick={() => setVisible()}>
+      <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
         Dialog
       </Dialog>,
     );
@@ -86,7 +90,7 @@ describe('Dialog Tests', () => {
 
   test('Setting the box shadow property to false hides the shadow', () => {
     const { getByRole } = render(
-      <Dialog visible boxShadow={false}>
+      <Dialog id="1" visible boxShadow={false}>
         Dialog
       </Dialog>,
     );
@@ -95,7 +99,7 @@ describe('Dialog Tests', () => {
 
   test('Able to change the confirm text', () => {
     const { getByText } = render(
-      <Dialog visible confirmText="Click me">
+      <Dialog id="1" visible confirmText="Click me">
         Dialog
       </Dialog>,
     );
@@ -104,7 +108,7 @@ describe('Dialog Tests', () => {
 
   test('Position is set to relative when fixed is set to false', () => {
     const { getByRole } = render(
-      <Dialog visible={true} fixed={false}>
+      <Dialog id="1" visible={true} fixed={false}>
         Dialog
       </Dialog>,
     );
@@ -113,7 +117,7 @@ describe('Dialog Tests', () => {
 
   test('Position is set to relative when fixed is set to false', () => {
     const { getByRole } = render(
-      <Dialog visible={true} fixed={false}>
+      <Dialog id="1" visible={true} fixed={false}>
         Dialog
       </Dialog>,
     );
@@ -122,7 +126,7 @@ describe('Dialog Tests', () => {
 
   test('Has the correct styles fcStyle is set to danger', () => {
     const { getByRole } = render(
-      <Dialog visible={true} fcStyle="danger">
+      <Dialog id="1" visible={true} fcStyle="danger">
         Dialog
       </Dialog>,
     );
@@ -131,7 +135,7 @@ describe('Dialog Tests', () => {
 
   test('Has the correct styles fcStyle is set to warning', () => {
     const { getByRole } = render(
-      <Dialog visible={true} fcStyle="warning">
+      <Dialog id="1" visible={true} fcStyle="warning">
         Dialog
       </Dialog>,
     );
@@ -140,7 +144,7 @@ describe('Dialog Tests', () => {
 
   test('Has the correct styles fcStyle is set to info', () => {
     const { getByRole } = render(
-      <Dialog visible={true} fcStyle="info">
+      <Dialog id="1" visible={true} fcStyle="info">
         Dialog
       </Dialog>,
     );
@@ -149,7 +153,7 @@ describe('Dialog Tests', () => {
 
   test('Has the correct styles fcStyle is set to success', () => {
     const { getByRole } = render(
-      <Dialog visible={true} fcStyle="success">
+      <Dialog id="1" visible={true} fcStyle="success">
         Dialog
       </Dialog>,
     );
@@ -157,14 +161,18 @@ describe('Dialog Tests', () => {
   });
 
   test('Has the correct styles for the default option', () => {
-    const { getByRole } = render(<Dialog visible={true}>Dialog</Dialog>);
+    const { getByRole } = render(
+      <Dialog id="1" visible={true}>
+        Dialog
+      </Dialog>,
+    );
     expect(getByRole('dialog')).toMatchSnapshot();
   });
 
   test('Has the correct styles fcStyle is set to danger | dark mode', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Dialog visible={true} fcStyle="danger">
+        <Dialog id="1" visible={true} fcStyle="danger">
           Dialog
         </Dialog>
       </FCThemeProvider>,
@@ -175,7 +183,7 @@ describe('Dialog Tests', () => {
   test('Has the correct styles fcStyle is set to warning | dark mode', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Dialog visible={true} fcStyle="warning">
+        <Dialog id="1" visible={true} fcStyle="warning">
           Dialog
         </Dialog>
       </FCThemeProvider>,
@@ -186,7 +194,7 @@ describe('Dialog Tests', () => {
   test('Has the correct styles fcStyle is set to info | dark mode', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Dialog visible={true} fcStyle="info">
+        <Dialog id="1" visible={true} fcStyle="info">
           Dialog
         </Dialog>
       </FCThemeProvider>,
@@ -197,7 +205,7 @@ describe('Dialog Tests', () => {
   test('Has the correct styles fcStyle is set to success | dark mode', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Dialog visible={true} fcStyle="success">
+        <Dialog id="1" visible={true} fcStyle="success">
           Dialog
         </Dialog>
       </FCThemeProvider>,
@@ -208,7 +216,9 @@ describe('Dialog Tests', () => {
   test('Has the correct styles for the default option | dark mode', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Dialog visible={true}>Dialog</Dialog>
+        <Dialog id="1" visible={true}>
+          Dialog
+        </Dialog>
       </FCThemeProvider>,
     );
     expect(getByRole('dialog')).toMatchSnapshot();
