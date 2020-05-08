@@ -9,14 +9,12 @@ export interface Props {
 
 export const DropdownMenu = ({ children }: Props): ReactElement => {
   const { dropdownState, dispatch } = useContext(DropdownMenuContext);
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLUListElement | null>(null);
   // const isMounted = useRef(true);
   // const [itemToFocus, setItemToFocus] = useState(0);
   const handleClickOutside = useCallback(
     (e: MouseEvent): void => {
       const test = (e.target as HTMLElement).parentNode;
-      console.log(menuRef.current, test);
-
       if (dropdownState.buttonEl) {
         if (
           // Must be some better way to test if the button is being clicked or not
@@ -26,6 +24,7 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
           dropdownState.buttonEl?.current !== test?.parentNode
         ) {
           if (menuRef) {
+            console.log('close me');
             dispatch({ type: 'SET_MENU_OPEN', payload: false });
             setTimeout(() => {
               dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
@@ -37,20 +36,15 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
     [dropdownState.buttonEl],
   );
 
-  /* Todo: Store selected item in context and set aria-selected based 
-  on that. Make sure to keep focus on the button for this to work */
-  // const handleButtonClick = (e: any) => {
-  //   console.log(e, itemToFocus);
-  //   if (menuRef) {
-  //     switch (e.key) {
-  //       case 'ArrowDown':
-  //         setItemToFocus(itemToFocus + 1);
-  //       default:
-  //         return;
-  //     }
-  //   }
-  // };
-
+  const hideMenu = () => {
+    if (menuRef) {
+      console.log('close me');
+      dispatch({ type: 'SET_MENU_OPEN', payload: false });
+      setTimeout(() => {
+        dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
+      }, 400);
+    }
+  };
   const childrenArray = React.Children.toArray(children).filter((child: any) => {
     return child;
   });
@@ -60,6 +54,9 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
   });
 
   useEffect(() => {
+    menuRef?.current?.focus();
+
+    dispatch({ type: 'SET__MENU_REF', payload: menuRef });
     dispatch({ type: 'SET_MENU_ITEMS', payload: childrenArrayMenuItems });
     window.addEventListener('mousedown', handleClickOutside);
     return (): void => {
@@ -68,11 +65,72 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
   }, []);
   let itemIndex = 0;
 
+  let ariaProps = {};
+  if (dropdownState.activeDescendant) {
+    console.log('here');
+    ariaProps = {
+      ...ariaProps,
+      'aria-activedescendant': dropdownState.activeDescendant,
+    };
+  }
+
+  const handleButtonKeyDown = (e: any) => {
+    switch (e.key) {
+      case 'ArrowDown':
+        if (dropdownState.selectedItemIndex !== 2 && dropdownState.menuOpen) {
+          e.preventDefault();
+          dispatch({
+            type: 'SET_ACTIVE_DESCENDANT',
+            payload: `${dropdownState.id}_menuitem_${dropdownState.selectedItemIndex + 1}`,
+          });
+          return dispatch({ type: 'INCREASE_SELECTED_ITEM_INDEX' });
+        }
+        {
+          return;
+        }
+      case 'ArrowUp':
+        if (dropdownState.selectedItemIndex !== 0 && dropdownState.menuOpen) {
+          e.preventDefault();
+          dispatch({
+            type: 'SET_ACTIVE_DESCENDANT',
+            payload: `${dropdownState.id}_menuitem_${dropdownState.selectedItemIndex - 1}`,
+          });
+          return dispatch({ type: 'DECREASE_SELECTED_ITEM_INDEX' });
+        } else {
+          return;
+        }
+      case 'Enter':
+        e.preventDefault();
+        if (dropdownState.menuOpen) {
+          if (dropdownState.menuItems[dropdownState.selectedItemIndex].props.onClick) {
+            dropdownState.menuItems[dropdownState.selectedItemIndex].props.onClick();
+            return hideMenu();
+          }
+        } else {
+          return hideMenu();
+        }
+      case 'Tab':
+      case 'Escape':
+        if (dropdownState.menuOpen) return hideMenu();
+      default:
+        return false;
+    }
+  };
+
   return (
     <>
       {dropdownState.menuOpen && (
-        <DropdownMenuStyled role="listbox" ref={menuRef} theme={dropdownState.theme} menuOpen={dropdownState.menuOpen}>
-          {/* {dropdownState.menuVisible && children} */}
+        <DropdownMenuStyled
+          aria-labelledby={dropdownState.id}
+          id={`${dropdownState.id}-menu`}
+          role="menu"
+          {...ariaProps}
+          ref={menuRef}
+          theme={dropdownState.theme}
+          menuOpen={dropdownState.menuOpen}
+          tabIndex={0}
+          onKeyDown={(e: any) => handleButtonKeyDown(e)}
+        >
           {childrenArray.map((child: any) => {
             if (child.type.displayName === 'MenuItem') {
               const menuItem = (

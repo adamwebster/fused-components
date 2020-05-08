@@ -15,19 +15,18 @@ export const MenuItem = ({ children, icon, index, onClick = (): void => undefine
   const menuItem = useRef<HTMLLIElement | null>(null);
   useEffect(() => {
     return () => {
-      console.log(menuItem);
       isMounted.current = false;
     };
   }, []);
-  useEffect(() => {
-    console.log(dropdownState.menuRef);
-  }, [menuItem]);
 
   return (
     <MenuItemStyled
       ref={menuItem}
+      id={`${dropdownState.id}_menuitem_${index}`}
       theme={dropdownState?.theme}
+      tabIndex={-1}
       aria-selected={dropdownState.selectedItemIndex === index ? true : false}
+      onMouseOver={() => dispatch({ type: 'SET_SELECTED_ITEM_INDEX', payload: index })}
       onClick={(): void => {
         dispatch({ type: 'SET_MENU_OPEN', payload: false });
         setTimeout(() => {
@@ -35,12 +34,11 @@ export const MenuItem = ({ children, icon, index, onClick = (): void => undefine
         }, 400);
         onClick();
       }}
-      role="button"
+      role="menuitem"
       {...rest}
     >
       {icon && <Icon icon={icon} />}
-      {index}
-      {dropdownState.selectedItemIndex} {children}
+      {children}
     </MenuItemStyled>
   );
 };

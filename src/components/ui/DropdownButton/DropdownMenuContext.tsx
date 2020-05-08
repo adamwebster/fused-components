@@ -15,13 +15,14 @@ export interface DropdownMenuInterface {
   as?: string;
   selectedItemIndex?: number;
   menuItems: any;
+  activeDescendant: string;
+  menuRef: RefObject<HTMLUListElement | null>;
 }
 
 export const DropdownMenuContext = React.createContext<any | null>(null);
 
 const reducer = (state: any, action: { payload?: any; type: any }) => {
   const { payload, type } = action;
-  console.log(state);
   switch (type) {
     case 'SET_MENU_OPEN':
       return {
@@ -43,10 +44,25 @@ const reducer = (state: any, action: { payload?: any; type: any }) => {
         ...state,
         selectedItemIndex: state.selectedItemIndex - 1,
       };
+    case 'SET_SELECTED_ITEM_INDEX':
+      return {
+        ...state,
+        selectedItemIndex: payload,
+      };
     case 'SET_MENU_ITEMS':
       return {
         ...state,
         menuItems: payload,
+      };
+    case 'SET_ACTIVE_DESCENDANT':
+      return {
+        ...state,
+        activeDescendant: payload,
+      };
+    case 'SET_MENU_REF':
+      return {
+        ...state,
+        menuRef: payload,
       };
     default:
       return state;

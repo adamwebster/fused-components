@@ -19,10 +19,12 @@ export interface Props {
   children: ReactNode;
   /** Set what element the button should be rended as for example as="a" */
   as?: string;
+  id: string;
 }
-export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor, as }: Props): ReactElement => {
+export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor, as, id }: Props): ReactElement => {
   const buttonEl = useRef<HTMLButtonElement>(null);
   const theme = useContext(FCTheme);
+  const activeDescendent = 'test';
   const state = {
     menuOpen: false,
     menuVisible: false,
@@ -33,7 +35,10 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
     fcStyle,
     buttonColor,
     as,
+    id,
+    menuRef: null,
     selectedItemIndex: 0,
+    activeDescendant: `${id}_menuitem_0`,
   };
 
   return (
@@ -48,7 +53,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
 
 const MenuDividerComponent = () => {
   return (
-    <li>
+    <li aria-hidden>
       <MenuDivider />
     </li>
   );

@@ -16,25 +16,26 @@ import { Icon } from '../../icon/';
 The dropdown button allows multiple options to be visible in a drop down menu.  To close the menu the user would click on the button again or anywhere outside of the button.
 <p>
 <DropdownButton
+    id="dm01"
     label="Dropdown Button"
     >
     <DropdownButton.Menu>
         <DropdownButton.MenuItem onClick={() => alert('clicked')} icon="check-circle">
-            Menu Item
+            Menu Item 1
         </DropdownButton.MenuItem>
         <DropdownButton.MenuItem icon="search">
-            Menu Item
+            Menu Item 2
         </DropdownButton.MenuItem>
         <DropdownButton.Divider />
         <DropdownButton.MenuItem icon="user">
-            Menu Item
+            Menu Item 3
         </DropdownButton.MenuItem>
     </DropdownButton.Menu>
 </DropdownButton>
 </p>
 
 
-<DropdownButton as="a" label={<Icon icon="times" />}>
+<DropdownButton id="dm02" as="a" label={<Icon icon="times" />}>
 <DropdownButton.Menu>
     <DropdownButton.MenuItem icon="check-circle">Like</DropdownButton.MenuItem>
     <DropdownButton.MenuItem>Unlike</DropdownButton.MenuItem>
@@ -42,6 +43,7 @@ The dropdown button allows multiple options to be visible in a drop down menu.  
 </DropdownButton>
 
     <DropdownButton
+        id="dm1"
         label="Dropdown Button"
         >
         <DropdownButton.Menu>

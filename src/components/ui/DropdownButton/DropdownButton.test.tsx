@@ -10,7 +10,7 @@ afterEach(cleanup);
 describe('Dropdown Button Tests', () => {
   test('Renders the Dropdown Button component', () => {
     const { getByText } = render(
-      <DropdownButton label="Dropdown Button">
+      <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
           <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
         </DropdownButton.Menu>
@@ -21,7 +21,7 @@ describe('Dropdown Button Tests', () => {
 
   test('To match snapshot', () => {
     const { getByText } = render(
-      <DropdownButton label="Dropdown Button">
+      <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
           <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
         </DropdownButton.Menu>
@@ -35,7 +35,7 @@ describe('Dropdown Button Tests', () => {
   test('To match snapshot dark mode', () => {
     const { getByText } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <DropdownButton label="Dropdown Button">
+        <DropdownButton id="dm1" label="Dropdown Button">
           <DropdownButton.Menu>
             <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
           </DropdownButton.Menu>
@@ -49,7 +49,7 @@ describe('Dropdown Button Tests', () => {
 
   test('The menu shows when the button is clicked', () => {
     const { getByText, getByRole } = render(
-      <DropdownButton label="Dropdown Button">
+      <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
           <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
         </DropdownButton.Menu>
@@ -62,7 +62,7 @@ describe('Dropdown Button Tests', () => {
 
   test('Clicking an menu item closes the menu', async () => {
     const { getByText, queryByRole } = render(
-      <DropdownButton label="Dropdown Button">
+      <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
           <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
         </DropdownButton.Menu>
@@ -84,7 +84,7 @@ describe('Dropdown Button Tests', () => {
 
   test('Clicking the button when the menu is open closes the menu', async () => {
     const { getByText, queryByRole } = render(
-      <DropdownButton label="Dropdown Button">
+      <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
           <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
         </DropdownButton.Menu>
@@ -107,7 +107,7 @@ describe('Dropdown Button Tests', () => {
     const { getByText, queryByRole } = render(
       <>
         <button>Click me</button>
-        <DropdownButton label="Dropdown Button">
+        <DropdownButton id="dm1" label="Dropdown Button">
           <DropdownButton.Menu>
             <DropdownButton.MenuItem>Menu Item</DropdownButton.MenuItem>
           </DropdownButton.Menu>
@@ -130,7 +130,7 @@ describe('Dropdown Button Tests', () => {
 
   test('Renders the Dropdown Button component when render as a is set', () => {
     const { getByRole } = render(
-      <DropdownButton as="a" label={<Icon icon="times" />}>
+      <DropdownButton id="dm1" as="a" label={<Icon icon="times" />}>
         <DropdownButton.Menu>
           <DropdownButton.MenuItem icon="check-circle">Like</DropdownButton.MenuItem>
           <DropdownButton.MenuItem>Unlike</DropdownButton.MenuItem>
