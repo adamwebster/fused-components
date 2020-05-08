@@ -33,6 +33,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
     fcStyle,
     buttonColor,
     as,
+    selectedItemIndex: 0,
   };
 
   return (

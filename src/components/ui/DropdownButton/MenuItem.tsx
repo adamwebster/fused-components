@@ -7,30 +7,40 @@ export interface Props {
   children?: ReactNode;
   icon?: string;
   onClick?: () => void;
+  index?: number;
 }
-export const MenuItem = ({ children, icon, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
-  const { dropdownState } = useContext(DropdownMenuContext);
+export const MenuItem = ({ children, icon, index, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
+  const { dispatch, dropdownState } = useContext(DropdownMenuContext);
   const isMounted = useRef(true);
+  const menuItem = useRef<HTMLLIElement | null>(null);
   useEffect(() => {
     return () => {
+      console.log(menuItem);
       isMounted.current = false;
     };
   }, []);
+  useEffect(() => {
+    console.log(dropdownState.menuRef);
+  }, [menuItem]);
+
   return (
     <MenuItemStyled
+      ref={menuItem}
       theme={dropdownState?.theme}
-      tabIndex={0}
+      aria-selected={dropdownState.selectedItemIndex === index ? true : false}
       onClick={(): void => {
-        if (dropdownState) {
-          dropdownState.hideMenu(isMounted.current);
-        }
+        dispatch({ type: 'SET_MENU_OPEN', payload: false });
+        setTimeout(() => {
+          dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
+        }, 400);
         onClick();
       }}
       role="button"
       {...rest}
     >
       {icon && <Icon icon={icon} />}
-      {children}
+      {index}
+      {dropdownState.selectedItemIndex} {children}
     </MenuItemStyled>
   );
 };

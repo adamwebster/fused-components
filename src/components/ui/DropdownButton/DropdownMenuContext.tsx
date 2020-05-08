@@ -13,12 +13,15 @@ export interface DropdownMenuInterface {
   buttonColor?: string;
   toggleMenu?: () => void;
   as?: string;
+  selectedItemIndex?: number;
+  menuItems: any;
 }
 
 export const DropdownMenuContext = React.createContext<any | null>(null);
 
-const reducer = (state: any, action: { payload: any; type: any }) => {
+const reducer = (state: any, action: { payload?: any; type: any }) => {
   const { payload, type } = action;
+  console.log(state);
   switch (type) {
     case 'SET_MENU_OPEN':
       return {
@@ -29,6 +32,21 @@ const reducer = (state: any, action: { payload: any; type: any }) => {
       return {
         ...state,
         menuVisible: payload,
+      };
+    case 'INCREASE_SELECTED_ITEM_INDEX':
+      return {
+        ...state,
+        selectedItemIndex: state.selectedItemIndex + 1,
+      };
+    case 'DECREASE_SELECTED_ITEM_INDEX':
+      return {
+        ...state,
+        selectedItemIndex: state.selectedItemIndex - 1,
+      };
+    case 'SET_MENU_ITEMS':
+      return {
+        ...state,
+        menuItems: payload,
       };
     default:
       return state;
