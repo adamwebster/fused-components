@@ -81,6 +81,13 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
   );
 };
 
+const MenuDividerComponent = () => {
+  return (
+    <li>
+      <MenuDivider />
+    </li>
+  );
+};
 DropdownButton.Menu = DropdownMenu;
 DropdownButton.MenuItem = MenuItem;
-DropdownButton.Divider = MenuDivider;
+DropdownButton.Divider = MenuDividerComponent;

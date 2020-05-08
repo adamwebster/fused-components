@@ -19,12 +19,14 @@ export const MenuItem = ({ children, icon, onClick = (): void => undefined, ...r
   return (
     <MenuItemStyled
       theme={DropdownContext?.theme}
+      tabIndex={0}
       onClick={(): void => {
         if (DropdownContext) {
           DropdownContext.hideMenu(isMounted.current);
         }
         onClick();
       }}
+      role="button"
       {...rest}
     >
       {icon && <Icon icon={icon} />}

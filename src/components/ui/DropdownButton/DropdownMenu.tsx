@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, ReactElement, ReactNode } from 'react';
+import React, { useContext, useEffect, useRef, ReactElement, ReactNode, useState } from 'react';
 
 import { DropdownMenuStyled } from './style';
 import { DropdownMenuContext, DropdownMenuConsumer } from './DropdownMenuContext';
@@ -11,7 +11,7 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
   const DropdownContext = useContext(DropdownMenuContext);
   const menuRef = useRef(null);
   const isMounted = useRef(true);
-
+  const [itemToFocus, setItemToFocus] = useState(0);
   const handleClickOutside = (e: MouseEvent): void => {
     const test = (e.target as HTMLElement).parentNode;
     if (DropdownContext) {
@@ -33,11 +33,29 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
       document.removeEventListener('mousedown', e => handleClickOutside(e));
     };
   });
+
+  /* Todo: Store selected item in context and set aria-selected based 
+  on that. Make sure to keep focus on the button for this to work */
+  const handleButtonClick = (e: any) => {
+    console.log(e, itemToFocus);
+    if (menuRef) {
+      switch (e.key) {
+        case 'ArrowDown':
+          menuRef?.current?.children[itemToFocus].focus();
+          setItemToFocus(itemToFocus + 1);
+        default:
+          return;
+      }
+    }
+  };
   useEffect(() => {
+    if (DropdownContext) {
+      DropdownContext.buttonEl?.current?.addEventListener('keydown', e => handleButtonClick(e));
+    }
     return () => {
       isMounted.current = false;
     };
-  }, []);
+  }, [itemToFocus]);
   return (
     <DropdownMenuConsumer>
       {(appContext): ReactNode =>
