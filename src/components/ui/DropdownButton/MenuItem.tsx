@@ -9,7 +9,7 @@ export interface Props {
   onClick?: () => void;
 }
 export const MenuItem = ({ children, icon, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
-  const DropdownContext = useContext(DropdownMenuContext);
+  const { dropdownState } = useContext(DropdownMenuContext);
   const isMounted = useRef(true);
   useEffect(() => {
     return () => {
@@ -18,11 +18,11 @@ export const MenuItem = ({ children, icon, onClick = (): void => undefined, ...r
   }, []);
   return (
     <MenuItemStyled
-      theme={DropdownContext?.theme}
+      theme={dropdownState?.theme}
       tabIndex={0}
       onClick={(): void => {
-        if (DropdownContext) {
-          DropdownContext.hideMenu(isMounted.current);
+        if (dropdownState) {
+          dropdownState.hideMenu(isMounted.current);
         }
         onClick();
       }}

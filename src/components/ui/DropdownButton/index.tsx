@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, ReactElement, ReactNode } from 'react';
+import React, { useRef, useContext, ReactElement, ReactNode } from 'react';
 import { DropdownButtonWrapper, MenuDivider } from './style';
 import { DropdownMenu } from './DropdownMenu';
 import { MenuItem } from './MenuItem';
@@ -6,7 +6,7 @@ import { DropdownMenuProvider } from './DropdownMenuContext';
 import { fcStyles } from '../../../common/types';
 import { FCTheme } from '../../../theming/FCTheme';
 import DropdownButtonButton from './DropdownButtonButton';
-
+import DropdownButtonChildren from './DropdownButtonChildren';
 export interface Props {
   /** Set the button to be primary */
   primary?: boolean;
@@ -21,22 +21,11 @@ export interface Props {
   as?: string;
 }
 export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor, as }: Props): ReactElement => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const buttonEl = useRef<HTMLButtonElement>(null);
   const theme = useContext(FCTheme);
-  const hideMenuFunc = (isMounted: boolean): void => {
-    if (menuOpen && isMounted) {
-      setMenuOpen(false);
-      setTimeout(() => {
-        //      setMenuVisible(false);
-      }, 200);
-    }
-  };
-
   const state = {
-    menuOpen,
+    menuOpen: false,
     menuVisible: false,
-    hideMenu: (isMounted: boolean): void => hideMenuFunc(isMounted),
     buttonEl,
     theme: theme.theme,
     primary,
@@ -50,7 +39,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
     <DropdownButtonWrapper renderAs={as}>
       <DropdownMenuProvider state={state}>
         <DropdownButtonButton />
-        {children}
+        <DropdownButtonChildren>{children}</DropdownButtonChildren>
       </DropdownMenuProvider>
     </DropdownButtonWrapper>
   );

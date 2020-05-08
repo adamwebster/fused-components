@@ -1,38 +1,42 @@
-import React, { useContext, useEffect, useRef, ReactElement, ReactNode, useState } from 'react';
+import React, { useContext, useEffect, useRef, ReactElement, ReactNode, useCallback } from 'react';
 
 import { DropdownMenuStyled } from './style';
-import { DropdownMenuContext, DropdownMenuConsumer } from './DropdownMenuContext';
+import { DropdownMenuContext } from './DropdownMenuContext';
 
 export interface Props {
   children: ReactNode;
 }
 
 export const DropdownMenu = ({ children }: Props): ReactElement => {
-  const { state } = useContext(DropdownMenuContext);
+  const { dropdownState, dispatch } = useContext(DropdownMenuContext);
   const menuRef = useRef(null);
-  const isMounted = useRef(true);
-  const [itemToFocus, setItemToFocus] = useState(0);
-  const handleClickOutside = (e: MouseEvent): void => {
+  // const isMounted = useRef(true);
+  // const [itemToFocus, setItemToFocus] = useState(0);
+  const handleClickOutside = useCallback((e: MouseEvent): void => {
     const test = (e.target as HTMLElement).parentNode;
-    if (state.buttonEl) {
+    if (dropdownState.buttonEl) {
       if (
         // Must be some better way to test if the button is being clicked or not
-        state.buttonEl?.current !== e.target &&
-        state.buttonEl?.current !== test?.parentNode?.parentNode &&
-        state.buttonEl?.current !== test?.parentNode
+        dropdownState.buttonEl?.current !== e.target &&
+        dropdownState.buttonEl?.current !== test?.parentNode?.parentNode &&
+        dropdownState.buttonEl?.current !== test?.parentNode
       ) {
-        if (state.hideMenu) state.hideMenu(isMounted.current);
+        if (menuRef) {
+          dispatch({ type: 'SET_MENU_OPEN', payload: false });
+          setTimeout(() => {
+            dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
+          }, 200);
+        }
       }
     }
-  };
+  }, []);
+
   useEffect(() => {
-    //  DropdownContext.hideMenu();
-    document.addEventListener('mousedown', e => handleClickOutside(e));
+    window.addEventListener('mousedown', handleClickOutside);
     return (): void => {
-      // Unbind the event listener on clean up
-      document.removeEventListener('mousedown', e => handleClickOutside(e));
+      removeEventListener('mousedown', handleClickOutside);
     };
-  });
+  }, []);
 
   /* Todo: Store selected item in context and set aria-selected based 
   on that. Make sure to keep focus on the button for this to work */
@@ -49,18 +53,12 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
   // };
 
   return (
-    <DropdownMenuConsumer>
-      {(appContext): ReactNode =>
-        appContext && (
-          <>
-            {state.menuOpen && (
-              <DropdownMenuStyled role="listbox" ref={menuRef} theme={appContext.theme} menuOpen={appContext.menuOpen}>
-                {state.menuVisible && children}
-              </DropdownMenuStyled>
-            )}
-          </>
-        )
-      }
-    </DropdownMenuConsumer>
+    <>
+      {dropdownState.menuOpen && (
+        <DropdownMenuStyled role="listbox" ref={menuRef} theme={dropdownState.theme} menuOpen={dropdownState.menuOpen}>
+          {dropdownState.menuVisible && children}
+        </DropdownMenuStyled>
+      )}
+    </>
   );
 };

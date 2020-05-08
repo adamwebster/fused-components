@@ -58,7 +58,6 @@ export const DialogComponent = ({
       }
   }, []);
   const handleDialogKeyDown = (e: any): void => {
-    console.log(e.key);
     if (e.key === 'Tab') {
       if (cancelButton) {
         if (document.activeElement === confirmButton.current) {

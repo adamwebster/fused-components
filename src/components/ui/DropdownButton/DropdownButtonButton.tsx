@@ -5,10 +5,9 @@ import { IconStyled } from './style';
 import { DropdownMenuContext } from './DropdownMenuContext';
 
 const DropdownButtonButton = () => {
-  const { state, dispatch } = useContext(DropdownMenuContext);
+  const { dropdownState, dispatch } = useContext(DropdownMenuContext);
   const toggleMenu = (): void => {
-    console.log(dispatch, state);
-    if (state.menuOpen) {
+    if (dropdownState.menuOpen) {
       dispatch({ type: 'SET_MENU_OPEN', payload: false });
       setTimeout(() => {
         dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
@@ -21,21 +20,20 @@ const DropdownButtonButton = () => {
 
   return (
     <Button
-      ref={state.buttonEl}
-      fcStyle={state.fcStyle}
-      primary={state.primary}
+      ref={dropdownState.buttonEl}
+      fcStyle={dropdownState.fcStyle}
+      primary={dropdownState.primary}
       onClick={(): void => toggleMenu()}
-      as={state.as}
-      buttonColor={state.buttonColor}
+      as={dropdownState.as}
+      buttonColor={dropdownState.buttonColor}
     >
-      {console.log(state.menuOpen)}
-      {state.label}
-      {state.menuOpen ? (
-        <IconStyled renderAs={state.as}>
+      {dropdownState.label}
+      {dropdownState.menuOpen ? (
+        <IconStyled renderAs={dropdownState.as}>
           <Icon icon="caret-up" />
         </IconStyled>
       ) : (
-        <IconStyled renderAs={state.as}>
+        <IconStyled renderAs={dropdownState.as}>
           <Icon icon="caret-down" />
         </IconStyled>
       )}

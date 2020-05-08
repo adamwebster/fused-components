@@ -19,7 +19,6 @@ export const DropdownMenuContext = React.createContext<any | null>(null);
 
 const reducer = (state: any, action: { payload: any; type: any }) => {
   const { payload, type } = action;
-  console.log(action);
   switch (type) {
     case 'SET_MENU_OPEN':
       return {
@@ -42,10 +41,8 @@ interface Props {
 }
 
 export const DropdownMenuProvider = ({ children, state }: Props): ReactElement => {
-  const [globalState, dispatch] = React.useReducer(reducer, state);
-  return (
-    <DropdownMenuContext.Provider value={{ state, dispatch, globalState }}>{children}</DropdownMenuContext.Provider>
-  );
+  const [dropdownState, dispatch] = React.useReducer(reducer, state);
+  return <DropdownMenuContext.Provider value={{ dropdownState, dispatch }}>{children}</DropdownMenuContext.Provider>;
 };
 
 export const DropdownMenuConsumer = DropdownMenuContext.Consumer;
