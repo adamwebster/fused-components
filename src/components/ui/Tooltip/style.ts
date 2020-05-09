@@ -14,6 +14,8 @@ export const TooltipWrapper = styled.div<TWProps>`
     `}
 `;
 
+export const TooltipButton = styled.button``;
+
 export const TooltipStyled = styled.div`
   font-size: 12px;
   text-align: left;

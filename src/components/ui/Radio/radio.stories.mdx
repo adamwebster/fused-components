@@ -29,6 +29,10 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 
 <RadioDarkMode />
 
+<Story name="Radio" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+      <Radio checked={boolean('Checked')} inError={boolean('inError')} inWarning={boolean('inWarning')}>Radio</Radio>
+</Story>
+
 ## Properties
 
 <Props of={Radio} />

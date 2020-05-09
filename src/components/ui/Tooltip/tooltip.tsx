@@ -1,7 +1,7 @@
-import React, { useState, ReactNode, ReactElement } from 'react';
+import React, { useState, ReactNode, ReactElement, useEffect } from 'react';
 
 import { Placement as PopperPlacements } from '@popperjs/core';
-import { TooltipWrapper } from './style';
+import { TooltipWrapper, TooltipButton } from './style';
 import TooltipComponent from './tooltipPopover';
 
 export interface Props {
@@ -15,6 +15,8 @@ export interface Props {
   /** The trigger event that should cause the tooltip to show.  Defaults to mouseOver.  */
   triggerEvent?: 'click' | 'mouseOver';
   visible?: boolean;
+  id: string;
+  triggerAs?: string;
 }
 
 export const Tooltip = ({
@@ -23,7 +25,9 @@ export const Tooltip = ({
   content,
   targetElement = '',
   placement = 'auto',
+  id,
   visible = false,
+  triggerAs,
 }: Props): ReactElement => {
   const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
   const [tooltipVisible, setToolTipVisible] = useState(visible);
@@ -45,18 +49,40 @@ export const Tooltip = ({
       onClick: (): void => showTooltip(),
     };
   }
+  useEffect(() => {
+    console.log(referenceElement);
+    console.log(referenceElement?.childNodes[0]);
+  }, [referenceElement]);
+
+  let asProps = {};
+  if (triggerAs) {
+    asProps = {
+      as: triggerAs,
+    };
+  }
+
+  let ariaProps = {};
+  if (tooltipVisible) {
+    ariaProps = {
+      'aria-describedby': id,
+    };
+  }
   return (
     <>
       <TooltipWrapper
         triggerEvent={triggerEvent}
         {...triggerProps}
         onMouseLeave={(): void => hideTooltip()}
+        onBlur={(): void => hideTooltip()}
         ref={setReferenceElement}
       >
-        {children}
+        <TooltipButton {...asProps} tabIndex={0} onFocus={() => showTooltip()} {...ariaProps}>
+          {children}
+        </TooltipButton>
       </TooltipWrapper>
       {tooltipVisible && (
         <TooltipComponent
+          id={id}
           placement={placement}
           targetElement={targetElement}
           referenceElement={referenceElement}

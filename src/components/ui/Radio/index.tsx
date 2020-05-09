@@ -15,6 +15,7 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   /** The value of the input */
   value?: string;
+  id: string;
 }
 export const Radio = ({
   children,
@@ -23,29 +24,25 @@ export const Radio = ({
   inError = false,
   value,
   onChange = (): void => undefined,
+  id,
 }: Props): ReactElement => {
   return (
     <FCThemeConsumer>
       {(themeContext): ReactElement => (
         <label>
           <RadioInput
+            id={id}
             value={value}
             type="radio"
             checked={checked}
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => onChange(e)}
           />
-          {checked ? (
-            <IconStyled inError={inError} inWarning={inWarning}>
-              {' '}
-              <Icon icon="radio-checked" />
-            </IconStyled>
-          ) : (
-            <IconStyled inError={inError} inWarning={inWarning}>
-              {' '}
-              <Icon icon="radio" />
-            </IconStyled>
-          )}
-          <Label theme={themeContext.theme} inError={inError} inWarning={inWarning}>
+
+          <IconStyled inError={inError} inWarning={inWarning}>
+            <Icon aria-labelledby={`labelfor-${id}`} icon={checked ? 'radio-checked' : 'radio'} />
+          </IconStyled>
+
+          <Label id={`labelfor-${id}`} theme={themeContext.theme} inError={inError} inWarning={inWarning}>
             {children}
           </Label>
         </label>

@@ -9,8 +9,9 @@ interface Props {
   referenceElement?: HTMLDivElement | null;
   targetElement?: string;
   placement?: PopperPlacements;
+  id: string;
 }
-const TooltipComponent = ({ content, referenceElement, targetElement, placement }: Props): ReactElement => {
+const TooltipComponent = ({ content, referenceElement, targetElement, placement, id }: Props): ReactElement => {
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -23,7 +24,7 @@ const TooltipComponent = ({ content, referenceElement, targetElement, placement 
   if (targetElement) {
     const target = document.querySelector(targetElement) as Element;
     return ReactDOM.createPortal(
-      <TooltipStyled ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+      <TooltipStyled id={id} role="tooltip" ref={setPopperElement} style={styles.popper} {...attributes.popper}>
         {content}
         <div className="tooltip-arrow" ref={setArrowElement} style={styles.arrow} />
       </TooltipStyled>,
@@ -31,7 +32,7 @@ const TooltipComponent = ({ content, referenceElement, targetElement, placement 
     );
   }
   return (
-    <TooltipStyled ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+    <TooltipStyled id={id} role="tooltip" ref={setPopperElement} style={styles.popper} {...attributes.popper}>
       {content}
       <div className="tooltip-arrow" ref={setArrowElement} style={styles.arrow} />
     </TooltipStyled>

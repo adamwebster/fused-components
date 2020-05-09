@@ -13,7 +13,7 @@ import { Panel } from './';
 
 ## Sizes 
 <Preview>
-    <Panel fixed={false} title="Dialog">
+    <Panel id="dialog" fixed={false} title="Dialog">
         Dialog content
     </Panel>
 </Preview>
@@ -24,6 +24,13 @@ import { Panel } from './';
 ## Dark Mode
 
 <PanelDark />
+
+
+<Story name="Panel" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+        <Panel fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false}  id="panelStory" fixed={false} title="Dialog">
+              Dialog content
+    </Panel>
+</Story>
 
 <Props of={Panel} />
 
