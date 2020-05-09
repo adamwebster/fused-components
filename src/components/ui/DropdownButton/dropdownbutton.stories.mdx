@@ -1,5 +1,5 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { withKnobs, select, text, boolean, color } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 
 import { DropdownButton } from './';
@@ -61,9 +61,34 @@ The dropdown button allows multiple options to be visible in a drop down menu.  
     </DropdownButton>
 
 
+
 ## Dark Mode
 
 <DropdownButtonDark/>
+
+<Story name="Dropdown Button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+   
+   <DropdownButton
+    id="dm01"
+    label={text('Label', 'Button')}
+    primary={boolean('Primary')}
+    buttonColor={color('Button Color', '')}
+    fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])} 
+    >
+    <DropdownButton.Menu>
+        <DropdownButton.MenuItem key="menu1" onClick={() => alert('clicked')} icon="check-circle">
+            Menu Item 1
+        </DropdownButton.MenuItem>
+        <DropdownButton.MenuItem key="menu2" icon="search">
+            Menu Item 2
+        </DropdownButton.MenuItem>
+        <DropdownButton.Divider key="menuDivider" />
+        <DropdownButton.MenuItem key="menu3" icon="user">
+            Menu Item 3
+        </DropdownButton.MenuItem>
+    </DropdownButton.Menu>
+</DropdownButton>
+</Story>
 
 ## Properties of `<DropdownButton />`
 

@@ -28,11 +28,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
     menuOpen: false,
     menuVisible: false,
     buttonEl,
-    theme: theme.theme,
-    primary,
-    label,
-    fcStyle,
-    buttonColor,
+    theme,
     as,
     id,
     menuRef: null,
@@ -43,7 +39,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
   return (
     <DropdownButtonWrapper renderAs={as}>
       <DropdownMenuProvider state={state}>
-        <DropdownButtonButton />
+        <DropdownButtonButton buttonColor={buttonColor} label={label} primary={primary} fcStyle={fcStyle} />
         <DropdownButtonChildren>{children}</DropdownButtonChildren>
       </DropdownMenuProvider>
     </DropdownButtonWrapper>

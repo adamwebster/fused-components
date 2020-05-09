@@ -3,8 +3,15 @@ import { Button } from '../Button';
 import { Icon } from '../../icon';
 import { IconStyled } from './style';
 import { DropdownMenuContext } from './DropdownMenuContext';
+import { fcStyles } from '../../../common/types';
 
-const DropdownButtonButton = () => {
+interface Props {
+  fcStyle?: fcStyles;
+  label?: string;
+  primary?: boolean;
+  buttonColor?: string;
+}
+const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) => {
   const { dropdownState, dispatch } = useContext(DropdownMenuContext);
   const toggleMenu = (): void => {
     if (dropdownState.menuOpen) {
@@ -49,14 +56,14 @@ const DropdownButtonButton = () => {
       aria-controls={`${dropdownState.id}-menu`}
       {...ariaProps}
       ref={dropdownState.buttonEl}
-      fcStyle={dropdownState.fcStyle}
-      primary={dropdownState.primary}
+      fcStyle={fcStyle}
+      primary={primary}
       onClick={(): void => toggleMenu()}
       as={dropdownState.as}
-      buttonColor={dropdownState.buttonColor}
+      buttonColor={buttonColor}
       onKeyDown={(e: any) => handleButtonKeyDown(e)}
     >
-      {dropdownState.label}
+      {label}
       {dropdownState.menuOpen ? (
         <IconStyled renderAs={dropdownState.as}>
           <Icon icon="caret-up" />

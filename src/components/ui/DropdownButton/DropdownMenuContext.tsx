@@ -59,6 +59,11 @@ const reducer = (state: any, action: { payload?: any; type: any }) => {
         ...state,
         activeDescendant: payload,
       };
+    case 'SET_PROPS':
+      return {
+        ...state,
+        fcStyle: payload.fcStyle,
+      };
     default:
       return state;
   }

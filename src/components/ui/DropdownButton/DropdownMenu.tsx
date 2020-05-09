@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, ReactElement, ReactNode, useCallb
 import { DropdownMenuStyled } from './style';
 import { DropdownMenuContext } from './DropdownMenuContext';
 import MenuItem from './MenuItem';
+import { FCTheme } from '../../../theming/FCTheme';
 export interface Props {
   children: ReactNode;
 }
@@ -10,6 +11,7 @@ export interface Props {
 export const DropdownMenu = ({ children }: Props): ReactElement => {
   const { dropdownState, dispatch } = useContext(DropdownMenuContext);
   const menuRef = useRef<HTMLUListElement>((null as unknown) as HTMLUListElement);
+  const theme = useContext(FCTheme);
   // const isMounted = useRef(true);
   // const [itemToFocus, setItemToFocus] = useState(0);
   const handleClickOutside = useCallback(
@@ -109,7 +111,7 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
           role="menu"
           {...ariaProps}
           ref={menuRef}
-          theme={dropdownState.theme}
+          theme={theme.theme}
           menuOpen={dropdownState.menuOpen}
           tabIndex={0}
           onKeyDown={(e: any) => handleButtonKeyDown(e)}

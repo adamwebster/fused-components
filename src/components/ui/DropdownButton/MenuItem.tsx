@@ -2,6 +2,7 @@ import React, { useContext, ReactNode, ReactElement, useEffect, useRef, HTMLAttr
 import { MenuItemStyled } from './style';
 import { Icon } from '../../icon';
 import { DropdownMenuContext } from './DropdownMenuContext';
+import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props extends HTMLAttributes<HTMLLIElement> {
   children?: ReactNode;
@@ -9,9 +10,12 @@ export interface Props extends HTMLAttributes<HTMLLIElement> {
   onClick?: () => void;
   index?: number;
 }
-export const MenuItem = ({ children, icon, index, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
+
+const MenuItem = ({ children, icon, index, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
   const { dispatch, dropdownState } = useContext(DropdownMenuContext);
   const isMounted = useRef(true);
+  const theme = useContext(FCTheme);
+
   const menuItem = useRef<HTMLLIElement | null>(null);
   useEffect(() => {
     return () => {
@@ -23,7 +27,7 @@ export const MenuItem = ({ children, icon, index, onClick = (): void => undefine
     <MenuItemStyled
       ref={menuItem}
       id={`${dropdownState.id}_menuitem_${index}`}
-      theme={dropdownState?.theme}
+      theme={theme.theme}
       tabIndex={-1}
       aria-selected={dropdownState.selectedItemIndex === index ? true : false}
       onMouseOver={() => {
