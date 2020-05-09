@@ -76,6 +76,7 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
       role="img"
       stroke-linejoin="round"
       stroke-miterlimit="2"
+      title="Menu open"
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -164,6 +165,7 @@ exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
       role="img"
       stroke-linejoin="round"
       stroke-miterlimit="2"
+      title="Menu open"
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -30,13 +30,13 @@ const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) =
     switch (e.key) {
       case 'ArrowDown':
         if (!dropdownState.menuOpen) {
-          return toggleMenu();
+          toggleMenu();
+          return;
         }
       case 'Enter':
         e.preventDefault();
-        return toggleMenu();
-      default:
-        return false;
+        toggleMenu();
+        return;
     }
   };
 
@@ -46,6 +46,7 @@ const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) =
     ariaProps = {
       ...ariaProps,
       'aria-expanded': true,
+      'aria-controls': `${dropdownState.id}-menu`,
     };
   }
   return (
@@ -53,7 +54,6 @@ const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) =
       id={dropdownState.id}
       tabIndex={0}
       aria-haspopup={true}
-      aria-controls={`${dropdownState.id}-menu`}
       {...ariaProps}
       ref={dropdownState.buttonEl}
       fcStyle={fcStyle}
@@ -64,15 +64,12 @@ const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) =
       onKeyDown={(e: any) => handleButtonKeyDown(e)}
     >
       {label}
-      {dropdownState.menuOpen ? (
-        <IconStyled renderAs={dropdownState.as}>
-          <Icon icon="caret-up" />
-        </IconStyled>
-      ) : (
-        <IconStyled renderAs={dropdownState.as}>
-          <Icon icon="caret-down" />
-        </IconStyled>
-      )}
+      <IconStyled renderAs={dropdownState.as}>
+        <Icon
+          title={dropdownState.menuOpen ? 'Menu open' : 'Menu closed'}
+          icon={dropdownState.menuOpen ? 'caret-up' : 'caret-down'}
+        />
+      </IconStyled>
     </Button>
   );
 };

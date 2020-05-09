@@ -51,7 +51,8 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
             type: 'SET_ACTIVE_DESCENDANT',
             payload: `${dropdownState.id}_menuitem_${dropdownState.selectedItemIndex + 1}`,
           });
-          return dispatch({ type: 'INCREASE_SELECTED_ITEM_INDEX' });
+          dispatch({ type: 'INCREASE_SELECTED_ITEM_INDEX' });
+          return;
         }
         return;
       case 'ArrowUp':
@@ -61,7 +62,8 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
             type: 'SET_ACTIVE_DESCENDANT',
             payload: `${dropdownState.id}_menuitem_${dropdownState.selectedItemIndex - 1}`,
           });
-          return dispatch({ type: 'DECREASE_SELECTED_ITEM_INDEX' });
+          dispatch({ type: 'DECREASE_SELECTED_ITEM_INDEX' });
+          return;
         } else {
           return;
         }
@@ -69,11 +71,15 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
         e.preventDefault();
         if (dropdownState.menuItems[dropdownState.selectedItemIndex].props.onClick) {
           dropdownState.menuItems[dropdownState.selectedItemIndex].props.onClick();
-          return hideMenu();
+          hideMenu();
+          return;
         }
-      case 'Tab':
       case 'Escape':
-        return hideMenu();
+        dropdownState.buttonEl.current.focus();
+        hideMenu();
+        return;
+      case 'Tab':
+        hideMenu();
     }
   };
 
