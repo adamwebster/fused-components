@@ -1,6 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dropdown Button Tests To match snapshot 1`] = `
+.c1 {
+  width: 16px;
+  display: block;
+  float: right;
+  margin-top: 3px;
+  height: 5px;
+  margin-left: 5px;
+}
+
+.c2 {
+  width: 1em;
+  height: 1em;
+}
+
 .c0 {
   vertical-align: middle;
   padding: 0 10px;
@@ -39,26 +53,17 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
   cursor: not-allowed;
 }
 
-.c0:disabled .sc-AxjAm {
+.c0:disabled .sc-AxheI {
   background-color: #999999;
 }
 
-.c2 {
-  width: 1em;
-  height: 1em;
-}
-
-.c1 {
-  width: 16px;
-  display: block;
-  float: right;
-  margin-top: 3px;
-  height: 5px;
-  margin-left: 5px;
-}
-
 <button
+  aria-controls="dm1-menu"
+  aria-expanded="true"
+  aria-haspopup="true"
   class="c0"
+  id="dm1"
+  tabindex="0"
 >
   Dropdown Button
   <span
@@ -84,6 +89,20 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
 `;
 
 exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
+.c1 {
+  width: 16px;
+  display: block;
+  float: right;
+  margin-top: 3px;
+  height: 5px;
+  margin-left: 5px;
+}
+
+.c2 {
+  width: 1em;
+  height: 1em;
+}
+
 .c0 {
   vertical-align: middle;
   padding: 0 10px;
@@ -122,26 +141,17 @@ exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
   cursor: not-allowed;
 }
 
-.c0:disabled .sc-AxjAm {
+.c0:disabled .sc-AxheI {
   background-color: #999999;
 }
 
-.c2 {
-  width: 1em;
-  height: 1em;
-}
-
-.c1 {
-  width: 16px;
-  display: block;
-  float: right;
-  margin-top: 3px;
-  height: 5px;
-  margin-left: 5px;
-}
-
 <button
+  aria-controls="dm1-menu"
+  aria-expanded="true"
+  aria-haspopup="true"
   class="c0"
+  id="dm1"
+  tabindex="0"
 >
   Dropdown Button
   <span

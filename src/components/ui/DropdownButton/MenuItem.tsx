@@ -26,7 +26,13 @@ export const MenuItem = ({ children, icon, index, onClick = (): void => undefine
       theme={dropdownState?.theme}
       tabIndex={-1}
       aria-selected={dropdownState.selectedItemIndex === index ? true : false}
-      onMouseOver={() => dispatch({ type: 'SET_SELECTED_ITEM_INDEX', payload: index })}
+      onMouseOver={() => {
+        dispatch({ type: 'SET_SELECTED_ITEM_INDEX', payload: index });
+        dispatch({
+          type: 'SET_ACTIVE_DESCENDANT',
+          payload: `${dropdownState.id}_menuitem_${index}`,
+        });
+      }}
       onClick={(): void => {
         dispatch({ type: 'SET_MENU_OPEN', payload: false });
         setTimeout(() => {

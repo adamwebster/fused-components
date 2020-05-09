@@ -14,7 +14,6 @@ const DropdownButtonButton = () => {
         dispatch({ type: 'SET_SELECTED_ITEM_INDEX', payload: 0 });
       }, 200);
     } else {
-      console.log('Show menu');
       dispatch({ type: 'SET_MENU_VISIBLE', payload: true });
       dispatch({ type: 'SET_MENU_OPEN', payload: true });
     }
@@ -25,8 +24,6 @@ const DropdownButtonButton = () => {
       case 'ArrowDown':
         if (!dropdownState.menuOpen) {
           return toggleMenu();
-        } else {
-          return;
         }
       case 'Enter':
         e.preventDefault();

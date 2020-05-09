@@ -31,7 +31,11 @@ describe('Alert Tests', () => {
   });
 
   test('Setting the border radius to false resets the border radius', () => {
-    const { getByRole } = render(<Alert borderRadius={false}>Alert</Alert>);
+    const { getByRole } = render(
+      <Alert role="alert" borderRadius={false}>
+        Alert
+      </Alert>,
+    );
     const alert = getByRole('alert');
     expect(alert).toHaveStyleRule('border-radius', undefined);
   });
@@ -39,7 +43,9 @@ describe('Alert Tests', () => {
   test('Text color is the correct color', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Alert borderRadius={false}>Alert</Alert>
+        <Alert role="alert" borderRadius={false}>
+          Alert
+        </Alert>
       </FCThemeProvider>,
     );
     const alert = getByRole('alert');

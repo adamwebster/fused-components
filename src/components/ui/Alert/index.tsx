@@ -1,9 +1,9 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement, HTMLAttributes } from 'react';
 import { Icon } from '../../icon';
 import { StyledAlert, Title, AlertContent } from './style';
 import { fcStyles } from '../../../common/types';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** Sets the style of the alert */
   fcStyle?: fcStyles;
   /** Sets the title for the alert */

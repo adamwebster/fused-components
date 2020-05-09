@@ -158,13 +158,17 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -177,6 +181,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -197,11 +202,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -221,14 +228,14 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #999999;
-  border: solid 1px #999999;
+  color: #666666;
+  border: solid 1px #666666;
 }
 
 .c6:hover:not(:disabled) {
   color: #fff;
-  border-color: #808080;
-  background-color: #999999;
+  border-color: #4d4d4d;
+  background-color: #666666;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -367,13 +374,17 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -386,6 +397,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -406,11 +418,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -576,13 +590,17 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -595,6 +613,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -615,11 +634,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -639,14 +660,14 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #999999;
-  border: solid 1px #999999;
+  color: #666666;
+  border: solid 1px #666666;
 }
 
 .c6:hover:not(:disabled) {
   color: #fff;
-  border-color: #808080;
-  background-color: #999999;
+  border-color: #4d4d4d;
+  background-color: #666666;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -785,13 +806,17 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -804,6 +829,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -824,11 +850,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -994,13 +1022,17 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -1013,6 +1045,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1033,11 +1066,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -1057,14 +1092,14 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #999999;
-  border: solid 1px #999999;
+  color: #666666;
+  border: solid 1px #666666;
 }
 
 .c6:hover:not(:disabled) {
   color: #fff;
-  border-color: #808080;
-  background-color: #999999;
+  border-color: #4d4d4d;
+  background-color: #666666;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1203,13 +1238,17 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -1222,6 +1261,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1242,11 +1282,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -1412,13 +1454,17 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -1431,6 +1477,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1451,11 +1498,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -1475,14 +1524,14 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #999999;
-  border: solid 1px #999999;
+  color: #666666;
+  border: solid 1px #666666;
 }
 
 .c6:hover:not(:disabled) {
   color: #fff;
-  border-color: #808080;
-  background-color: #999999;
+  border-color: #4d4d4d;
+  background-color: #666666;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1621,13 +1670,17 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -1640,6 +1693,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1660,11 +1714,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -1830,13 +1886,17 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -1849,6 +1909,7 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1869,11 +1930,13 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>
@@ -1893,14 +1956,14 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #999999;
-  border: solid 1px #999999;
+  color: #666666;
+  border: solid 1px #666666;
 }
 
 .c6:hover:not(:disabled) {
   color: #fff;
-  border-color: #808080;
-  background-color: #999999;
+  border-color: #4d4d4d;
+  background-color: #666666;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -2039,13 +2102,17 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
 }
 
 <div
+  aria-labelledby="1_title"
   class="c0"
+  id="1"
   role="dialog"
 >
   <div
     class="c1"
   >
-    <h2 />
+    <h2
+      id="1_title"
+    />
     <button
       aria-label="Close"
       class="c2"
@@ -2058,6 +2125,7 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
         role="img"
         stroke-linejoin="round"
         stroke-miterlimit="2"
+        title="Close"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -2078,11 +2146,13 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   >
     <button
       class="c6"
+      id="1_close_button"
     >
       Cancel
     </button>
     <button
       class="c7"
+      id="1_confirm_button"
     >
       Yes
     </button>

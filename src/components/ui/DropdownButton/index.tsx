@@ -24,7 +24,6 @@ export interface Props {
 export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor, as, id }: Props): ReactElement => {
   const buttonEl = useRef<HTMLButtonElement>(null);
   const theme = useContext(FCTheme);
-  const activeDescendent = 'test';
   const state = {
     menuOpen: false,
     menuVisible: false,

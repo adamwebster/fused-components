@@ -141,7 +141,7 @@ describe('Corner Dialog Tests', () => {
   test('Cancel button has the correct color for light theme', () => {
     const { getByText } = render(<CornerDialog id="id1">I am a corner dialog</CornerDialog>);
     const button = getByText('Cancel');
-    expect(button).toHaveStyleRule('color', color.mediumdark);
+    expect(button).toHaveStyleRule('color', color.dark);
   });
 
   test('Cancel button has the correct color for dark theme', () => {

@@ -24,7 +24,6 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
           dropdownState.buttonEl?.current !== test?.parentNode
         ) {
           if (menuRef) {
-            console.log('close me');
             dispatch({ type: 'SET_MENU_OPEN', payload: false });
             setTimeout(() => {
               dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
@@ -38,7 +37,6 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
 
   const hideMenu = () => {
     if (menuRef) {
-      console.log('close me');
       dispatch({ type: 'SET_MENU_OPEN', payload: false });
       setTimeout(() => {
         dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
@@ -67,7 +65,6 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
 
   let ariaProps = {};
   if (dropdownState.activeDescendant) {
-    console.log('here');
     ariaProps = {
       ...ariaProps,
       'aria-activedescendant': dropdownState.activeDescendant,
