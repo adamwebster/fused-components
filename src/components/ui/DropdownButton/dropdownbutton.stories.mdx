@@ -20,14 +20,14 @@ The dropdown button allows multiple options to be visible in a drop down menu.  
     label="Dropdown Button"
     >
     <DropdownButton.Menu>
-        <DropdownButton.MenuItem onClick={() => alert('clicked')} icon="check-circle">
+        <DropdownButton.MenuItem key="menu1" onClick={() => alert('clicked')} icon="check-circle">
             Menu Item 1
         </DropdownButton.MenuItem>
-        <DropdownButton.MenuItem icon="search">
+        <DropdownButton.MenuItem key="menu2" icon="search">
             Menu Item 2
         </DropdownButton.MenuItem>
-        <DropdownButton.Divider />
-        <DropdownButton.MenuItem icon="user">
+        <DropdownButton.Divider key="menuDivider" />
+        <DropdownButton.MenuItem key="menu3" icon="user">
             Menu Item 3
         </DropdownButton.MenuItem>
     </DropdownButton.Menu>

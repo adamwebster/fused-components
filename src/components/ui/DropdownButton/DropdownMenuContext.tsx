@@ -59,11 +59,6 @@ const reducer = (state: any, action: { payload?: any; type: any }) => {
         ...state,
         activeDescendant: payload,
       };
-    case 'SET_MENU_REF':
-      return {
-        ...state,
-        menuRef: payload,
-      };
     default:
       return state;
   }

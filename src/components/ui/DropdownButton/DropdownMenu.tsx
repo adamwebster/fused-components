@@ -2,33 +2,31 @@ import React, { useContext, useEffect, useRef, ReactElement, ReactNode, useCallb
 
 import { DropdownMenuStyled } from './style';
 import { DropdownMenuContext } from './DropdownMenuContext';
-import { MenuItem } from './MenuItem';
+import MenuItem from './MenuItem';
 export interface Props {
   children: ReactNode;
 }
 
 export const DropdownMenu = ({ children }: Props): ReactElement => {
   const { dropdownState, dispatch } = useContext(DropdownMenuContext);
-  const menuRef = useRef<HTMLUListElement | null>(null);
+  const menuRef = useRef<HTMLUListElement>((null as unknown) as HTMLUListElement);
   // const isMounted = useRef(true);
   // const [itemToFocus, setItemToFocus] = useState(0);
   const handleClickOutside = useCallback(
     (e: MouseEvent): void => {
       const test = (e.target as HTMLElement).parentNode;
-      if (dropdownState.buttonEl) {
-        if (
-          // Must be some better way to test if the button is being clicked or not
-          menuRef.current !== test &&
-          dropdownState.buttonEl?.current !== e.target &&
-          dropdownState.buttonEl?.current !== test?.parentNode?.parentNode &&
-          dropdownState.buttonEl?.current !== test?.parentNode
-        ) {
-          if (menuRef) {
-            dispatch({ type: 'SET_MENU_OPEN', payload: false });
-            setTimeout(() => {
-              dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
-            }, 400);
-          }
+      if (
+        // Must be some better way to test if the button is being clicked or not
+        menuRef.current !== test &&
+        dropdownState.buttonEl?.current !== e.target &&
+        dropdownState.buttonEl?.current !== test?.parentNode?.parentNode &&
+        dropdownState.buttonEl?.current !== test?.parentNode
+      ) {
+        if (menuRef) {
+          dispatch({ type: 'SET_MENU_OPEN', payload: false });
+          setTimeout(() => {
+            dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
+          }, 200);
         }
       }
     },
@@ -36,45 +34,16 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
   );
 
   const hideMenu = () => {
-    if (menuRef) {
-      dispatch({ type: 'SET_MENU_OPEN', payload: false });
-      setTimeout(() => {
-        dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
-      }, 400);
-    }
+    dispatch({ type: 'SET_MENU_OPEN', payload: false });
+    setTimeout(() => {
+      dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
+    }, 200);
   };
-  const childrenArray = React.Children.toArray(children).filter((child: any) => {
-    return child;
-  });
-
-  const childrenArrayMenuItems = React.Children.toArray(children).filter((child: any) => {
-    return child.type.displayName === 'MenuItem';
-  });
-
-  useEffect(() => {
-    menuRef?.current?.focus();
-
-    dispatch({ type: 'SET__MENU_REF', payload: menuRef });
-    dispatch({ type: 'SET_MENU_ITEMS', payload: childrenArrayMenuItems });
-    window.addEventListener('mousedown', handleClickOutside);
-    return (): void => {
-      removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-  let itemIndex = 0;
-
-  let ariaProps = {};
-  if (dropdownState.activeDescendant) {
-    ariaProps = {
-      ...ariaProps,
-      'aria-activedescendant': dropdownState.activeDescendant,
-    };
-  }
 
   const handleButtonKeyDown = (e: any) => {
     switch (e.key) {
       case 'ArrowDown':
-        if (dropdownState.selectedItemIndex !== 2 && dropdownState.menuOpen) {
+        if (dropdownState.selectedItemIndex !== dropdownState.menuItems.length - 1 && dropdownState.menuOpen) {
           e.preventDefault();
           dispatch({
             type: 'SET_ACTIVE_DESCENDANT',
@@ -82,9 +51,7 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
           });
           return dispatch({ type: 'INCREASE_SELECTED_ITEM_INDEX' });
         }
-        {
-          return;
-        }
+        return;
       case 'ArrowUp':
         if (dropdownState.selectedItemIndex !== 0 && dropdownState.menuOpen) {
           e.preventDefault();
@@ -98,25 +65,44 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
         }
       case 'Enter':
         e.preventDefault();
-        if (dropdownState.menuOpen) {
-          if (dropdownState.menuItems[dropdownState.selectedItemIndex].props.onClick) {
-            dropdownState.menuItems[dropdownState.selectedItemIndex].props.onClick();
-            return hideMenu();
-          }
-        } else {
+        if (dropdownState.menuItems[dropdownState.selectedItemIndex].props.onClick) {
+          dropdownState.menuItems[dropdownState.selectedItemIndex].props.onClick();
           return hideMenu();
         }
       case 'Tab':
       case 'Escape':
-        if (dropdownState.menuOpen) return hideMenu();
-      default:
-        return false;
+        return hideMenu();
     }
+  };
+
+  const childrenArray = React.Children.toArray(children).filter((child: any) => {
+    return child;
+  });
+
+  const childrenArrayMenuItems = React.Children.toArray(children).filter((child: any) => {
+    return child.type === MenuItem;
+  });
+
+  useEffect(() => {
+    menuRef.current.focus();
+
+    dispatch({ type: 'SET__MENU_REF', payload: menuRef });
+    dispatch({ type: 'SET_MENU_ITEMS', payload: childrenArrayMenuItems });
+    window.addEventListener('mousedown', handleClickOutside);
+    return (): void => {
+      removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  let itemIndex = 0;
+
+  const ariaProps = {
+    'aria-activedescendant': dropdownState.activeDescendant,
   };
 
   return (
     <>
-      {dropdownState.menuOpen && (
+      {dropdownState.menuVisible && (
         <DropdownMenuStyled
           aria-labelledby={dropdownState.id}
           id={`${dropdownState.id}-menu`}
@@ -129,9 +115,9 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
           onKeyDown={(e: any) => handleButtonKeyDown(e)}
         >
           {childrenArray.map((child: any) => {
-            if (child.type.displayName === 'MenuItem') {
+            if (child.type === MenuItem) {
               const menuItem = (
-                <MenuItem index={itemIndex} {...child.props}>
+                <MenuItem key={child.key} index={itemIndex} {...child.props}>
                   {child.props.children}
                 </MenuItem>
               );

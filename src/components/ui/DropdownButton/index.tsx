@@ -1,7 +1,7 @@
 import React, { useRef, useContext, ReactElement, ReactNode } from 'react';
 import { DropdownButtonWrapper, MenuDivider } from './style';
 import { DropdownMenu } from './DropdownMenu';
-import { MenuItem } from './MenuItem';
+import MenuItem from './MenuItem';
 import { DropdownMenuProvider } from './DropdownMenuContext';
 import { fcStyles } from '../../../common/types';
 import { FCTheme } from '../../../theming/FCTheme';
@@ -52,7 +52,7 @@ export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor,
 
 const MenuDividerComponent = () => {
   return (
-    <li aria-hidden>
+    <li aria-hidden role="presentation">
       <MenuDivider />
     </li>
   );

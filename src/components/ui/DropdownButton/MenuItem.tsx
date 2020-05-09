@@ -1,9 +1,9 @@
-import React, { useContext, ReactNode, ReactElement, useEffect, useRef } from 'react';
+import React, { useContext, ReactNode, ReactElement, useEffect, useRef, HTMLAttributes } from 'react';
 import { MenuItemStyled } from './style';
 import { Icon } from '../../icon';
 import { DropdownMenuContext } from './DropdownMenuContext';
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLLIElement> {
   children?: ReactNode;
   icon?: string;
   onClick?: () => void;
@@ -37,7 +37,7 @@ export const MenuItem = ({ children, icon, index, onClick = (): void => undefine
         dispatch({ type: 'SET_MENU_OPEN', payload: false });
         setTimeout(() => {
           dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
-        }, 400);
+        }, 200);
         onClick();
       }}
       role="menuitem"
@@ -48,3 +48,5 @@ export const MenuItem = ({ children, icon, index, onClick = (): void => undefine
     </MenuItemStyled>
   );
 };
+
+export default MenuItem;
