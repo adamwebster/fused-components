@@ -17,9 +17,15 @@ import { Input } from './';
 
 ## Not Active
 <Preview>
-    <Input
-     aria-label="Text Input" 
-    />
+    <Story name="Input" parameters={{ decorators: [withKnobs]}}>
+        <Input
+        disabled={boolean('Disabled')}
+        inError={boolean('inError')}
+        inWarning={boolean('inWarning')}
+        icon={select('icon', ['', 'search', 'check-circle'])}
+        aria-label="Text Input" 
+        />
+    </Story>
 </Preview>
 
 ## Disabled 
