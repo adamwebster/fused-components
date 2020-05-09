@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext, ReactElement, ReactNode } from 'react';
-import { StyledPanel, DialogTitle, DialogContent, DialogText, DialogFooter, CloseButton, Overlay } from './style';
-import { Button } from '../Button';
-import { color } from '../../../styles/styles';
-import { Icon } from '../../icon';
+import ReactDOM from 'react-dom';
+import PanelComponent from './panelComponent';
 import { fcStyles } from '../../../common/types';
 import { FCTheme } from '../../../theming/FCTheme';
 
@@ -12,9 +10,9 @@ export interface Props {
   /** Set the tile for the panel */
   title?: string;
   /** What should happen when the close button is clicked */
-  onCloseClick?: (e: unknown) => void;
+  onCloseClick?: () => void;
   /** What should happen when the save button is clicked */
-  onSaveClick?: (e: unknown) => void;
+  onSaveClick?: () => void;
   /** If the panel should have a fixed position */
   fixed?: boolean;
   /** If the panel is visible */
@@ -24,6 +22,8 @@ export interface Props {
   position?: 'left' | 'right';
   /** If the overlay is shown */
   showOverlay?: boolean;
+  focusElement?: string;
+  id: string;
 }
 export const Panel = ({
   fcStyle,
@@ -35,6 +35,8 @@ export const Panel = ({
   children,
   position = 'right',
   showOverlay = false,
+  focusElement,
+  id,
 }: Props): ReactElement => {
   const [show, setShow] = useState(false);
   const theme = useContext(FCTheme);
@@ -48,47 +50,22 @@ export const Panel = ({
     }
   }, [visible]);
 
-  return (
-    <>
-      {show && showOverlay && (
-        <Overlay data-testid="panel-overlay" onClick={(e: unknown): void => onCloseClick(e)}></Overlay>
-      )}
-      {show && (
-        <StyledPanel
-          role="dialog"
-          theme={theme.theme}
-          fcStyle={fcStyle}
-          position={position}
-          visible={visible}
-          fixed={fixed}
-        >
-          <DialogTitle theme={theme.theme} fcStyle={fcStyle}>
-            {title && title}
-            <CloseButton
-              title="Close panel"
-              theme={theme.theme}
-              onClick={(e: unknown): void => onCloseClick(e)}
-              aria-label="Close"
-            >
-              <Icon icon="times" />
-            </CloseButton>
-          </DialogTitle>
-          <DialogContent>
-            <DialogText>{children}</DialogText>
-          </DialogContent>
-          <DialogFooter fcStyle={fcStyle} theme={theme.theme}>
-            <Button
-              buttonColor={theme.theme === 'dark' ? color.darkModeLight : color.mediumdark}
-              onClick={(e): void => onCloseClick(e)}
-            >
-              Close
-            </Button>
-            <Button onClick={e => onSaveClick(e)} fcStyle={fcStyle} primary>
-              Save
-            </Button>
-          </DialogFooter>
-        </StyledPanel>
-      )}
-    </>
+  const panelProps = {
+    fcStyle,
+    title,
+    onCloseClick,
+    onSaveClick,
+    position,
+    showOverlay,
+    theme,
+    fixed,
+    visible,
+    focusElement,
+    id,
+  };
+  if (!fixed) return <PanelComponent {...panelProps}>{children}</PanelComponent>;
+  return ReactDOM.createPortal(
+    <>{show && <PanelComponent {...panelProps}>{children}</PanelComponent>}</>,
+    document.body,
   );
 };
