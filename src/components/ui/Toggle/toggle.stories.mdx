@@ -2,7 +2,8 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
-
+import { FCThemeProvider } from "../../../theming/FCTheme";
+import { color } from '../../../styles/styles';
 import { Toggle } from './';
 import { ToggleDemo, ToggleDark  } from '../../../demos/ToggleDemo';
 let test = "test";
@@ -18,17 +19,37 @@ To change the state of the toggle update the active property to set to true or f
 
 ## Default
 <Preview>
-    <Toggle/>
-    <Toggle active />
+    <Story name="Toggle Unchecked" parameters={{ decorators: [withKnobs]}}>
+    <>
+    <Toggle aria-label="toggle"/>
+    </>
+    </Story>
 </Preview>
 
+<Preview>
+    <Story name="Toggle Checked" parameters={{ decorators: [withKnobs]}}>
+    <>
+    <Toggle active aria-label="toggle"/>
+    </>
+    </Story>
+</Preview>
 
 ## With Labels
 <Preview>
-    <Toggle showLabels/>
-    <Toggle showLabels active />
+    <Story name="Toggle Unchecked Labeled" parameters={{ decorators: [withKnobs]}}>
+    <>
+    <Toggle showLabels aria-label="toggle"/>
+    </>
+    </Story>
 </Preview>
 
+<Preview>
+    <Story name="Toggle Checked Labeled" parameters={{ decorators: [withKnobs]}}>
+    <>
+    <Toggle active showLabels aria-label="toggle"/>
+    </>
+    </Story>
+</Preview>
 
 
 ## Demo
@@ -41,6 +62,48 @@ Click the toggle below to show the interaction
 ## Dark Mode
 
 <ToggleDark />
+
+
+<Story
+  name="Dark mode unchecked"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Toggle aria-label="toggle"/>
+  </FCThemeProvider>
+</Story>
+
+<Story
+  name="Dark mode checked"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Toggle active aria-label="toggle"/>
+  </FCThemeProvider>
+</Story>
+
+
+<Story
+  name="Dark mode unchecked labels"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Toggle showLabels aria-label="toggle"/>
+  </FCThemeProvider>
+</Story>
+
+<Story
+  name="Dark mode checked labels"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Toggle active showLabels aria-label="toggle"/>
+  </FCThemeProvider>
+</Story>
 
 ## Properties
 

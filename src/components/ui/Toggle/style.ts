@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { color } from '../../../styles/styles';
 
 interface TW {
@@ -16,7 +16,7 @@ export const ToggleWrapper = styled.div<TW>`
         ? color.darkModeMediumLight
         : color.darkModeMediumDark
       : props.active
-      ? color.primary
+      ? '#1867c9'
       : color.light};
   position: relative;
   cursor: pointer;
@@ -42,16 +42,20 @@ export const Slider = styled.div<SliderInterface>`
 
 interface TLProps {
   children: string;
+  active: boolean;
 }
 
 export const ToggleLabel = styled.span<TLProps>`
   color: ${(props): string =>
-    props.children === 'Off' ? (props.theme === 'dark' ? '#fff' : color.mediumdark) : color.mediumdark};
+    props.children === 'Off' ? (props.theme === 'dark' ? '#fff' : color.darkest) : color.darkest};
   font-size: 10px;
   box-sizing: border-box;
-  &:first-of-type {
-    color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarkest : '#fff')};
-    padding-left: 5px;
-    padding-right: 4px;
-  }
+  display: inline-block;
+  padding: 3px;
+  float: ${({ active }) => (active ? 'left' : 'right')};
+  ${({ active }) =>
+    active &&
+    css`
+      color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarkest : '#fff')};
+    `}
 `;

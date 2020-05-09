@@ -27,27 +27,12 @@ exports[`Toggle Tests It renders as expected in dark mode 1`] = `
 }
 
 .c2 {
-  color: #999999;
-  font-size: 10px;
-  box-sizing: border-box;
-}
-
-.c2:first-of-type {
-  color: #102A43;
-  padding-left: 5px;
-  padding-right: 4px;
-}
-
-.c3 {
   color: #fff;
   font-size: 10px;
   box-sizing: border-box;
-}
-
-.c3:first-of-type {
-  color: #102A43;
-  padding-left: 5px;
-  padding-right: 4px;
+  display: inline-block;
+  padding: 3px;
+  float: right;
 }
 
 <div>
@@ -55,17 +40,13 @@ exports[`Toggle Tests It renders as expected in dark mode 1`] = `
     aria-checked="false"
     class="c0"
     role="checkbox"
+    tabindex="0"
   >
     <div
       class="c1"
     />
     <span
       class="c2"
-    >
-      On
-    </span>
-    <span
-      class="c3"
     >
       Off
     </span>
@@ -100,27 +81,13 @@ exports[`Toggle Tests It renders as expected in dark mode when active 1`] = `
 }
 
 .c2 {
-  color: #999999;
+  color: #333333;
   font-size: 10px;
   box-sizing: border-box;
-}
-
-.c2:first-of-type {
+  display: inline-block;
+  padding: 3px;
+  float: left;
   color: #102A43;
-  padding-left: 5px;
-  padding-right: 4px;
-}
-
-.c3 {
-  color: #fff;
-  font-size: 10px;
-  box-sizing: border-box;
-}
-
-.c3:first-of-type {
-  color: #102A43;
-  padding-left: 5px;
-  padding-right: 4px;
 }
 
 <div>
@@ -128,6 +95,7 @@ exports[`Toggle Tests It renders as expected in dark mode when active 1`] = `
     aria-checked="true"
     class="c0"
     role="checkbox"
+    tabindex="0"
   >
     <div
       class="c1"
@@ -136,11 +104,6 @@ exports[`Toggle Tests It renders as expected in dark mode when active 1`] = `
       class="c2"
     >
       On
-    </span>
-    <span
-      class="c3"
-    >
-      Off
     </span>
   </div>
 </div>

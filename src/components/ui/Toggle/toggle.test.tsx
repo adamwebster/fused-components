@@ -25,9 +25,13 @@ describe('Toggle Tests', () => {
     const toggle = getByRole('checkbox');
     expect(toggle.getAttribute('aria-checked')).toBe('true');
   });
-  test('When showLabels is on the on and off labels show', () => {
+  test('When showLabels is on the off label show', () => {
     const { getByText } = render(<Toggle showLabels />);
     expect(getByText('Off')).toBeInTheDocument();
+  });
+
+  test('When showLabels is on and it is active the on label show', () => {
+    const { getByText } = render(<Toggle active showLabels />);
     expect(getByText('On')).toBeInTheDocument();
   });
   test('Clicking the toggle activates the toggle', () => {
@@ -43,6 +47,49 @@ describe('Toggle Tests', () => {
     rerender(<Toggle onClick={click} active={active} />);
     expect(toggle.getAttribute('aria-checked')).toBe('true');
   });
+
+  test('Pressing enter on the toggle activates the toggle', () => {
+    let active = false;
+    const click = jest.fn(() => {
+      active = true;
+    });
+    const { getByRole, rerender } = render(<Toggle onClick={click} active={active} />);
+    const toggle = getByRole('checkbox');
+    expect(toggle.getAttribute('aria-checked')).toBe('false');
+    fireEvent.keyDown(toggle, { key: 'Enter' });
+    expect(click).toHaveBeenCalledTimes(1);
+    rerender(<Toggle onClick={click} active={active} />);
+    expect(toggle.getAttribute('aria-checked')).toBe('true');
+  });
+
+  test('Pressing space on the toggle activates the toggle', () => {
+    let active = false;
+    const click = jest.fn(() => {
+      active = true;
+    });
+    const { getByRole, rerender } = render(<Toggle onClick={click} active={active} />);
+    const toggle = getByRole('checkbox');
+    expect(toggle.getAttribute('aria-checked')).toBe('false');
+    fireEvent.keyDown(toggle, { key: ' ' });
+    expect(click).toHaveBeenCalledTimes(1);
+    rerender(<Toggle onClick={click} active={active} />);
+    expect(toggle.getAttribute('aria-checked')).toBe('true');
+  });
+
+  test('Pressing any other key on the toggle does not activates the toggle', () => {
+    let active = false;
+    const click = jest.fn(() => {
+      active = true;
+    });
+    const { getByRole, rerender } = render(<Toggle onClick={click} active={active} />);
+    const toggle = getByRole('checkbox');
+    expect(toggle.getAttribute('aria-checked')).toBe('false');
+    fireEvent.keyDown(toggle, { key: 'A' });
+    expect(click).toHaveBeenCalledTimes(0);
+    rerender(<Toggle onClick={click} active={active} />);
+    expect(toggle.getAttribute('aria-checked')).toBe('false');
+  });
+
   test('It renders as expected in dark mode', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>

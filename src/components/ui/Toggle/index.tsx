@@ -27,13 +27,21 @@ export const Toggle = ({
           onClick={(e: unknown): void => {
             onClick(e);
           }}
+          onKeyDown={(e: any): void => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onClick(e);
+            }
+          }}
+          tabIndex={0}
           {...rest}
         >
           <Slider theme={themeContext.theme} active={active} />
           {showLabels && (
             <>
-              <ToggleLabel theme={themeContext.theme}>On</ToggleLabel>
-              <ToggleLabel theme={themeContext.theme}>Off</ToggleLabel>
+              <ToggleLabel active={active} theme={themeContext.theme}>
+                {active ? 'On' : 'Off'}
+              </ToggleLabel>
             </>
           )}
         </ToggleWrapper>
