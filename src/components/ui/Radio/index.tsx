@@ -16,6 +16,7 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
   /** The value of the input */
   value?: string;
   id: string;
+  onKeyPress?: () => void;
 }
 export const Radio = ({
   children,
@@ -23,6 +24,7 @@ export const Radio = ({
   inWarning = false,
   inError = false,
   value,
+  onKeyPress = (): void => undefined,
   onChange = (): void => undefined,
   id,
 }: Props): ReactElement => {
@@ -34,11 +36,19 @@ export const Radio = ({
             id={id}
             value={value}
             type="radio"
+            tabIndex={-1}
             checked={checked}
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => onChange(e)}
           />
 
-          <IconStyled inError={inError} inWarning={inWarning}>
+          <IconStyled
+            onKeyPress={() => onKeyPress && onKeyPress()}
+            tabIndex={0}
+            role="radio"
+            inError={inError}
+            inWarning={inWarning}
+            aria-checked={checked ? true : false}
+          >
             <Icon aria-labelledby={`labelfor-${id}`} icon={checked ? 'radio-checked' : 'radio'} />
           </IconStyled>
 

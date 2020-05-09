@@ -10,18 +10,22 @@ export const RadioDemo = () => {
   return (
     <>
       <Radio
+        id="radio1"
         value="Check 1"
         name="RadioGroup1"
         checked={radioOneValue === checked}
+        onKeyPress={() => setChecked('Check 1')}
         onChange={e => setChecked(e.target.value)}
       >
         Check me
       </Radio>
       <br />
       <Radio
+        id="radio2"
         value="Check 2"
         name="RadioGroup1"
         checked={radioTwoValue === checked}
+        onKeyPress={() => setChecked('Check 2')}
         onChange={e => setChecked(e.target.value)}
       >
         Check me 2
@@ -42,6 +46,7 @@ export const RadioDarkMode = () => {
       <DarkModeWrapper>
         <FCThemeProvider value={{ theme: 'dark' }}>
           <Radio
+            id="radioD1"
             value="Check 1"
             name="RadioGroup1"
             checked={radioOneValue === checked}
@@ -51,6 +56,7 @@ export const RadioDarkMode = () => {
           </Radio>
           <br />
           <Radio
+            id="radioD2"
             value="Check 2"
             name="RadioGroup1"
             checked={radioTwoValue === checked}
@@ -60,6 +66,7 @@ export const RadioDarkMode = () => {
           </Radio>
           <br />
           <Radio
+            id="radioD3"
             value="Check 3"
             inWarning
             name="RadioGroup1"
@@ -70,6 +77,7 @@ export const RadioDarkMode = () => {
           </Radio>
           <br />
           <Radio
+            id="radioD4"
             value="Check 4"
             inError
             name="RadioGroup1"
