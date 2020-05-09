@@ -36,8 +36,16 @@ export const FormField = ({
       )}
       <InputWrapper>{children}</InputWrapper>
 
-      {hint && <HintText theme={theme.theme}>{hint}</HintText>}
-      {validationMessage && <ValidationMessage>{validationMessage}</ValidationMessage>}
+      {hint && (
+        <HintText id={`${htmlFor}_hint`} theme={theme.theme}>
+          {hint}
+        </HintText>
+      )}
+      {validationMessage && (
+        <ValidationMessage role="alert" id={`${htmlFor}_validation_message`}>
+          {validationMessage}
+        </ValidationMessage>
+      )}
     </FormFieldWrapper>
   );
 };
