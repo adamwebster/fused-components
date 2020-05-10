@@ -13,6 +13,7 @@ import { Button } from '../Button';
 import { color } from '../../../styles/styles';
 import { Icon } from '../../icon';
 import { fcStyles } from '../../../common/types';
+
 export interface Props {
   fixed?: boolean;
   onCloseClick?: () => void;

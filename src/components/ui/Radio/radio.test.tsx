@@ -9,7 +9,7 @@ afterEach(cleanup);
 
 describe('Radio Tests', () => {
   test('Renders the Radio component', () => {
-    const { getByText } = render(<Radio>I am a radio</Radio>);
+    const { getByText } = render(<Radio id="1">I am a radio</Radio>);
     expect(getByText('I am a radio')).toBeInTheDocument();
   });
   test('Checks the radio', () => {
@@ -18,7 +18,7 @@ describe('Radio Tests', () => {
       checked = true;
     });
     const { getByText } = render(
-      <Radio onChange={() => onChange()} checked={checked}>
+      <Radio id="1" onChange={() => onChange()} checked={checked}>
         I am a radio
       </Radio>,
     );
@@ -28,30 +28,46 @@ describe('Radio Tests', () => {
     expect(checked).toBe(true);
   });
   test('Radio is in its error state', () => {
-    const { getByText } = render(<Radio inError>Radio</Radio>);
+    const { getByText } = render(
+      <Radio id="1" inError>
+        Radio
+      </Radio>,
+    );
     expect(getByText('Radio')).toHaveStyleRule('color', color.danger);
   });
 
   test('Checkbox is in its warning state', () => {
-    const { getByText } = render(<Radio inWarning>Radio</Radio>);
+    const { getByText } = render(
+      <Radio id="1" inWarning>
+        Radio
+      </Radio>,
+    );
     expect(getByText('Radio')).toHaveStyleRule('color', color.warning);
   });
 
   test('Renders with theme provider value set to dark', () => {
     render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Radio>Checkbox</Radio>
+        <Radio id="1">Checkbox</Radio>
       </FCThemeProvider>,
     );
   });
 
   test('Correct icon shows when it is unchecked', () => {
-    const { getByRole } = render(<Radio checked={false}>Checkbox</Radio>);
+    const { getByRole } = render(
+      <Radio id="1" checked={false}>
+        Checkbox
+      </Radio>,
+    );
     expect(getByRole('img')).toHaveClass('radio');
   });
 
   test('Correct icon shows when it is checked is set', () => {
-    const { getByRole } = render(<Radio checked>Checkbox</Radio>);
+    const { getByRole } = render(
+      <Radio id="1" checked>
+        Checkbox
+      </Radio>,
+    );
     expect(getByRole('img')).toHaveClass('radio-checked');
   });
 });

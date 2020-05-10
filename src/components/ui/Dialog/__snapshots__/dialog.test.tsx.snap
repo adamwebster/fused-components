@@ -12,7 +12,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #627d98;
+  color: #000;
   border: solid 1px #627d98;
 }
 
@@ -53,13 +53,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #dd2c2e;
-  color: #F3F3F3;
-  border: none;
+  background-color: #F5B2B2;
+  color: #8c1718;
+  border: solid 1px #8c1718;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #b81e1f;
+  background-color: #ef8585;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -228,7 +228,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #666666;
+  color: #000;
   border: solid 1px #666666;
 }
 
@@ -269,13 +269,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #dd2c2e;
-  color: #F3F3F3;
-  border: none;
+  background-color: #F5B2B2;
+  color: #8c1718;
+  border: solid 1px #8c1718;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #b81e1f;
+  background-color: #ef8585;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -444,7 +444,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #627d98;
+  color: #000;
   border: solid 1px #627d98;
 }
 
@@ -485,13 +485,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #2f83cf;
-  color: #F3F3F3;
-  border: none;
+  background-color: #C0DAF2;
+  color: #1c4e7c;
+  border: solid 1px #1c4e7c;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #2669a5;
+  background-color: #96c1e9;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -660,7 +660,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #666666;
+  color: #000;
   border: solid 1px #666666;
 }
 
@@ -701,13 +701,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #2f83cf;
-  color: #F3F3F3;
-  border: none;
+  background-color: #C0DAF2;
+  color: #1c4e7c;
+  border: solid 1px #1c4e7c;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #2669a5;
+  background-color: #96c1e9;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -876,7 +876,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #627d98;
+  color: #000;
   border: solid 1px #627d98;
 }
 
@@ -917,13 +917,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #00b76b;
-  color: #F3F3F3;
-  border: none;
+  background-color: #DBFEB5;
+  color: #00512f;
+  border: solid 1px #00512f;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #00844d;
+  background-color: #c3fd83;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1092,7 +1092,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #666666;
+  color: #000;
   border: solid 1px #666666;
 }
 
@@ -1133,13 +1133,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #00b76b;
-  color: #F3F3F3;
-  border: none;
+  background-color: #DBFEB5;
+  color: #00512f;
+  border: solid 1px #00512f;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #00844d;
+  background-color: #c3fd83;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1308,7 +1308,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #627d98;
+  color: #000;
   border: solid 1px #627d98;
 }
 
@@ -1349,13 +1349,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #eba300;
-  color: #F3F3F3;
-  border: none;
+  background-color: #FFE7AD;
+  color: #855c00;
+  border: solid 1px #855c00;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #b88000;
+  background-color: #ffd87a;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1524,7 +1524,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #666666;
+  color: #000;
   border: solid 1px #666666;
 }
 
@@ -1565,13 +1565,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #eba300;
-  color: #F3F3F3;
-  border: none;
+  background-color: #FFE7AD;
+  color: #855c00;
+  border: solid 1px #855c00;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #b88000;
+  background-color: #ffd87a;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1740,7 +1740,7 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #627d98;
+  color: #000;
   border: solid 1px #627d98;
 }
 
@@ -1781,13 +1781,13 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #4799ff;
-  color: #F3F3F3;
-  border: none;
+  background-color: #C2DDFF;
+  color: #003e8a;
+  border: solid 1px #003e8a;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #147dff;
+  background-color: #8fc1ff;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1956,7 +1956,7 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #666666;
+  color: #000;
   border: solid 1px #666666;
 }
 
@@ -1997,13 +1997,13 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #4799ff;
-  color: #F3F3F3;
-  border: none;
+  background-color: #C2DDFF;
+  color: #003e8a;
+  border: solid 1px #003e8a;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #147dff;
+  background-color: #8fc1ff;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);

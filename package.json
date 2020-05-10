@@ -20,6 +20,7 @@
   },
   "scripts": {
     "test": "jest -c jest.config.js --watch",
+    "test:clear": "jest --clearCache",
     "test:coverage": "jest -c --collectCoverage",
     "build": "rollup -c ./rollup.config.js",
     "storybook": "start-storybook -p 9009 -s public",

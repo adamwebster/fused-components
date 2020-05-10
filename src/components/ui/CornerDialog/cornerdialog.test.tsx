@@ -141,7 +141,7 @@ describe('Corner Dialog Tests', () => {
   test('Cancel button has the correct color for light theme', () => {
     const { getByText } = render(<CornerDialog id="id1">I am a corner dialog</CornerDialog>);
     const button = getByText('Cancel');
-    expect(button).toHaveStyleRule('color', color.dark);
+    expect(button).toHaveStyleRule('color', '#000');
   });
 
   test('Cancel button has the correct color for dark theme', () => {
@@ -151,7 +151,7 @@ describe('Corner Dialog Tests', () => {
       </FCThemeProvider>,
     );
     const button = getByText('Cancel');
-    expect(button).toHaveStyleRule('color', color.darkModeLight);
+    expect(button).toHaveStyleRule('color', '#000');
   });
 
   test('Renders when fcStyle is set to danger', () => {

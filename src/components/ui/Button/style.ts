@@ -24,6 +24,36 @@ const colorValue = (props: ColorProps): string => {
   }
 };
 
+const primaryColorValue = (props: ColorProps): string => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return color.dangerButton;
+    case 'warning':
+      return color.warningButton;
+    case 'info':
+      return color.infoButton;
+    case 'success':
+      return color.successButton;
+    default:
+      return props.buttonColor || color.primaryButton;
+  }
+};
+
+const primaryColorValueHover = (props: ColorProps): string => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return darken(0.1, color.dangerButton);
+    case 'warning':
+      return darken(0.1, color.warningButton);
+    case 'info':
+      return darken(0.1, color.infoButton);
+    case 'success':
+      return darken(0.1, color.successButton);
+    default:
+      return darken(0.1, props.buttonColor || color.primaryButton);
+  }
+};
+
 const colorValueDarken = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
@@ -39,11 +69,26 @@ const colorValueDarken = (props: Props): string => {
   }
 };
 
+const primaryFontColor = (props: Props): string => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return darken(0.2, color.danger);
+    case 'warning':
+      return darken(0.2, color.warning);
+    case 'info':
+      return darken(0.2, color.info);
+    case 'success':
+      return darken(0.2, color.success);
+    default:
+      return darken(0.2, color.primary);
+  }
+};
+
 export const StyledIcon = styled.span`
   background-color: rgba(0, 0, 0, 0.2);
   margin-right: 5px;
   padding: 5px;
-  font-size: 14px;
+  gont-size: 14px;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
@@ -80,7 +125,7 @@ export const StyledButton = styled.button<SB>`
     !props.primary &&
     css`
       background-color: transparent;
-      color: ${colorValue};
+      color: #000;
       border: solid 1px ${colorValue};
       &:hover:not(:disabled) {
         color: #fff;
@@ -104,11 +149,11 @@ export const StyledButton = styled.button<SB>`
     ${(props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> | undefined =>
       props.primary &&
       css`
-        background-color: ${colorValue};
-        color: ${color.light};
-        border: none;
+        background-color: ${primaryColorValue};
+        color: ${primaryFontColor};
+        border: solid 1px ${primaryFontColor};
         &:hover:not(:disabled) {
-          background-color: ${colorValueDarken};
+          background-color: ${primaryColorValueHover};
           transform: scale(1.05);
         }
         &:active:not(:disabled) {

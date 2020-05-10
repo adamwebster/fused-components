@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, ReactElement, useEffect } from 'react';
+import React, { useState, ReactNode, ReactElement } from 'react';
 
 import { Placement as PopperPlacements } from '@popperjs/core';
 import { TooltipWrapper, TooltipButton } from './style';
@@ -49,10 +49,6 @@ export const Tooltip = ({
       onClick: (): void => showTooltip(),
     };
   }
-  useEffect(() => {
-    console.log(referenceElement);
-    console.log(referenceElement?.childNodes[0]);
-  }, [referenceElement]);
 
   let asProps = {};
   if (triggerAs) {

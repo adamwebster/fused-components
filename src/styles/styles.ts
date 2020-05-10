@@ -1,14 +1,19 @@
 import { lighten } from 'polished';
 
 export const color = {
-  primary: '#4799ff',
+  primary: '#006CF0',
+  primaryButton: '#C2DDFF',
   focus: '#4799ff',
   secondary: '#ff6347',
   tertiary: '#DDDDDD',
   danger: '#dd2c2e',
+  dangerButton: '#F5B2B2',
   warning: '#eba300',
+  warningButton: '#FFE7AD',
   info: '#2f83cf',
+  infoButton: '#C0DAF2',
   success: '#00b76b',
+  successButton: '#DBFEB5',
   red: '#dd2c2e',
   yellow: '#eba300',
   blue: '#205A8E',
