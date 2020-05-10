@@ -77,14 +77,14 @@ describe('Calendar tests', () => {
     const dateItem = getAllByText('5')[0];
     fireEvent.keyDown(dateItem, { key: 'ArrowRight' });
     const dateItemSelected = getAllByText('6')[0];
-    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
   });
   test('The date changes focus when the left arrow key is pressed', () => {
     const { getAllByText } = render(<Calendar selectedDate={dayjs('May 5 2020')} />);
     const dateItem = getAllByText('5')[0];
     fireEvent.keyDown(dateItem, { key: 'ArrowLeft' });
     const dateItemSelected = getAllByText('4')[0];
-    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
   });
 
   test('The date changes focus when the right arrow down is pressed', () => {
@@ -92,7 +92,7 @@ describe('Calendar tests', () => {
     const dateItem = getAllByText('5')[0];
     fireEvent.keyDown(dateItem, { key: 'ArrowDown' });
     const dateItemSelected = getAllByText('12')[0];
-    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
   });
 
   test('The date changes focus when the right arrow up is pressed', () => {
@@ -100,7 +100,7 @@ describe('Calendar tests', () => {
     const dateItem = getByText('15');
     fireEvent.keyDown(dateItem, { key: 'ArrowUp' });
     const dateItemSelected = getAllByText('5')[0];
-    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
   });
 
   test('The month changes when the right arrow is clicked on the last day', () => {
@@ -108,7 +108,7 @@ describe('Calendar tests', () => {
     const dateItem = getByText('31');
     fireEvent.keyDown(dateItem, { key: 'ArrowRight' });
     const dateItemSelected = getAllByText('1')[0];
-    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
   });
 
   test('The month changes when the left arrow is clicked on the first day', () => {
@@ -116,7 +116,7 @@ describe('Calendar tests', () => {
     const dateItem = getAllByText('1')[0];
     fireEvent.keyDown(dateItem, { key: 'ArrowLeft' });
     const dateItemSelected = getAllByText('30')[1];
-    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
   });
 
   test('The month changes when the down arrow is clicked on a day in the last week', () => {
@@ -124,14 +124,14 @@ describe('Calendar tests', () => {
     const dateItem = getAllByText('27')[1];
     fireEvent.keyDown(dateItem, { key: 'ArrowDown' });
     const dateItemSelected = getAllByText('1')[0];
-    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
   });
   test('The month changes when the up arrow is clicked on a day in the first week', () => {
     const { getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 3 2020')} />);
     const dateItem = getAllByText('3')[0];
     fireEvent.keyDown(dateItem, { key: 'ArrowUp' });
     const dateItemSelected = getAllByText('30')[1];
-    expect(dateItemSelected.parentElement?.getAttribute('aria-selected')).toBe('true');
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
   });
 
   test('The previous button becomes focused on blur of the day when autoFocusDay is set', () => {

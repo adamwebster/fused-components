@@ -233,12 +233,12 @@ const Calendar = ({
                   onFocus={() => setFocusedDay(parseInt(item.day))}
                   disabled={item.otherMonth}
                   onMouseDown={(): void => onChange(dayjs(item.timeStamp).format(dateFormat))}
-                  aria-selected={parseInt(item.day) === focusedDay && !item.otherMonth}
                 >
                   <span
                     aria-hidden="false"
                     aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
                     className="day-number"
+                    aria-selected={!item.otherMonth ? parseInt(item.day) === focusedDay : 'false'}
                   >
                     {item.day}
                   </span>

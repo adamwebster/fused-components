@@ -84,14 +84,14 @@ export const Day = styled.td`
   &.current-day {
     button:not(:disabled) {
       .day-number {
-        border: solid 1px tomato;
+        border: solid 1px ${color.successButton};
       }
     }
   }
   &.selected-day {
     button:not(:disabled) {
       .day-number {
-        background-color: tomato;
+        background-color: ${color.successButton};
         color: #fff;
       }
     }

@@ -27,13 +27,13 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
   transition: all 0.2s ease;
   background-color: transparent;
   color: #000;
-  border: solid 1px #006CF0;
+  border: solid 1px #006EF5;
 }
 
 .c0:hover:not(:disabled) {
   color: #fff;
-  border-color: #0055bd;
-  background-color: #006CF0;
+  border-color: #0057c2;
+  background-color: #006EF5;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -115,14 +115,14 @@ exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #000;
-  border: solid 1px #006CF0;
+  color: #d9e2ec;
+  border: solid 1px #006EF5;
 }
 
 .c0:hover:not(:disabled) {
   color: #fff;
-  border-color: #0055bd;
-  background-color: #006CF0;
+  border-color: #0057c2;
+  background-color: #006EF5;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);

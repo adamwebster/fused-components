@@ -20,7 +20,7 @@ describe('Alert Tests', () => {
         Danger Alert{' '}
       </Alert>,
     );
-    const icon = getByRole('img');
+    const icon = getByRole('img', { hidden: true });
     waitFor(() => {
       expect(icon).toHaveClass('check-circle');
     });

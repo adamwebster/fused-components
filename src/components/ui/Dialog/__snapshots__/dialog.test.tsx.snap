@@ -12,7 +12,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #000;
+  color: #d9e2ec;
   border: solid 1px #627d98;
 }
 
@@ -53,13 +53,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #F5B2B2;
-  color: #8c1718;
-  border: solid 1px #8c1718;
+  background-color: #dd2c2e;
+  border: none;
+  color: #fff;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #ef8585;
+  background-color: #b81e1f;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -269,13 +269,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #F5B2B2;
-  color: #8c1718;
-  border: solid 1px #8c1718;
+  background-color: #dd2c2e;
+  border: none;
+  color: #fff;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #ef8585;
+  background-color: #b81e1f;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -444,7 +444,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #000;
+  color: #d9e2ec;
   border: solid 1px #627d98;
 }
 
@@ -485,13 +485,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #C0DAF2;
-  color: #1c4e7c;
-  border: solid 1px #1c4e7c;
+  background-color: #2A78BB;
+  border: none;
+  color: #fff;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #96c1e9;
+  background-color: #215d91;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -701,13 +701,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #C0DAF2;
-  color: #1c4e7c;
-  border: solid 1px #1c4e7c;
+  background-color: #2A78BB;
+  border: none;
+  color: #fff;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #96c1e9;
+  background-color: #215d91;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -876,7 +876,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #000;
+  color: #d9e2ec;
   border: solid 1px #627d98;
 }
 
@@ -917,13 +917,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #DBFEB5;
-  color: #00512f;
-  border: solid 1px #00512f;
+  background-color: #00854D;
+  border: none;
+  color: #fff;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #c3fd83;
+  background-color: #00522f;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -951,7 +951,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
 .c0 {
   border-radius: 5px;
   background-color: #243b53;
-  border: solid 1px #00b76b;
+  border: solid 1px #00854D;
   z-index: 98;
   width: 500px;
   position: fixed;
@@ -968,7 +968,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
 }
 
 .c1 {
-  border-bottom: solid 1px #00b76b;
+  border-bottom: solid 1px #00854D;
   padding: 10px;
   box-sizing: border-box;
   position: relative;
@@ -977,7 +977,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
 .c1 h2 {
   margin: 0;
   width: calc(100% - 40px);
-  color: #00ea89;
+  color: #00b86b;
 }
 
 .c4 {
@@ -987,7 +987,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
 }
 
 .c5 {
-  border-top: solid 1px #00b76b;
+  border-top: solid 1px #00854D;
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -1133,13 +1133,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #DBFEB5;
-  color: #00512f;
-  border: solid 1px #00512f;
+  background-color: #00854D;
+  border: none;
+  color: #fff;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #c3fd83;
+  background-color: #00522f;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1167,7 +1167,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
 .c0 {
   border-radius: 5px;
   background-color: #fff;
-  border: solid 1px #00b76b;
+  border: solid 1px #00854D;
   z-index: 98;
   width: 500px;
   position: fixed;
@@ -1184,7 +1184,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #00b76b;
+  border-bottom: solid 1px #00854D;
   padding: 10px;
   box-sizing: border-box;
   position: relative;
@@ -1193,7 +1193,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
 .c1 h2 {
   margin: 0;
   width: calc(100% - 40px);
-  color: #00b76b;
+  color: #00854D;
 }
 
 .c4 {
@@ -1203,7 +1203,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
 }
 
 .c5 {
-  border-top: solid 1px #00b76b;
+  border-top: solid 1px #00854D;
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
@@ -1308,7 +1308,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #000;
+  color: #d9e2ec;
   border: solid 1px #627d98;
 }
 
@@ -1349,13 +1349,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #FFE7AD;
-  color: #855c00;
-  border: solid 1px #855c00;
+  background-color: #eba300;
+  border: none;
+  color: #290E00;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #ffd87a;
+  background-color: #b88000;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1565,13 +1565,13 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #FFE7AD;
-  color: #855c00;
-  border: solid 1px #855c00;
+  background-color: #eba300;
+  border: none;
+  color: #290E00;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #ffd87a;
+  background-color: #b88000;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1740,7 +1740,7 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #000;
+  color: #d9e2ec;
   border: solid 1px #627d98;
 }
 
@@ -1781,13 +1781,13 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #C2DDFF;
-  color: #003e8a;
-  border: solid 1px #003e8a;
+  background-color: #006EF5;
+  border: none;
+  color: #fff;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #8fc1ff;
+  background-color: #0057c2;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -1997,13 +1997,13 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  background-color: #C2DDFF;
-  color: #003e8a;
-  border: solid 1px #003e8a;
+  background-color: #006EF5;
+  border: none;
+  color: #fff;
 }
 
 .c7:hover:not(:disabled) {
-  background-color: #8fc1ff;
+  background-color: #0057c2;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);

@@ -151,7 +151,7 @@ describe('Corner Dialog Tests', () => {
       </FCThemeProvider>,
     );
     const button = getByText('Cancel');
-    expect(button).toHaveStyleRule('color', '#000');
+    expect(button).toHaveStyleRule('color', color.darkModeLightest);
   });
 
   test('Renders when fcStyle is set to danger', () => {

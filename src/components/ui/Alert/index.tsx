@@ -28,7 +28,7 @@ export const Alert = ({
   onMouseOut,
   ...rest
 }: Props): ReactElement => {
-  const iconComponent = <Icon className="notification-icon" icon={icon && icon} />;
+  const iconComponent = <Icon className="notification-icon" aria-hidden icon={icon && icon} />;
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (

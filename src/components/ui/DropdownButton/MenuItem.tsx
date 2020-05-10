@@ -5,6 +5,7 @@ import { DropdownMenuContext } from './DropdownMenuContext';
 import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props extends HTMLAttributes<HTMLLIElement> {
+  /** Sets the button to be a primary button */
   children?: ReactNode;
   icon?: string;
   onClick?: () => void;

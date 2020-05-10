@@ -1,4 +1,10 @@
-import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, ThemedStyledProps } from 'styled-components';
+import styled, {
+  css,
+  FlattenInterpolation,
+  SimpleInterpolation,
+  FlattenSimpleInterpolation,
+  ThemedStyledProps,
+} from 'styled-components';
 import { color } from '../../../styles/styles';
 import { darken } from 'polished';
 import { Props } from './';
@@ -71,16 +77,10 @@ const colorValueDarken = (props: Props): string => {
 
 const primaryFontColor = (props: Props): string => {
   switch (props.fcStyle) {
-    case 'danger':
-      return darken(0.2, color.danger);
     case 'warning':
-      return darken(0.2, color.warning);
-    case 'info':
-      return darken(0.2, color.info);
-    case 'success':
-      return darken(0.2, color.success);
+      return color.warningButtonFont;
     default:
-      return darken(0.2, color.primary);
+      return '#fff';
   }
 };
 
@@ -88,7 +88,7 @@ export const StyledIcon = styled.span`
   background-color: rgba(0, 0, 0, 0.2);
   margin-right: 5px;
   padding: 5px;
-  gont-size: 14px;
+  font-size: 14px;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
@@ -125,7 +125,7 @@ export const StyledButton = styled.button<SB>`
     !props.primary &&
     css`
       background-color: transparent;
-      color: #000;
+      color: ${({ theme }): SimpleInterpolation => (theme === 'dark' ? color.darkModeLightest : '#000')};
       border: solid 1px ${colorValue};
       &:hover:not(:disabled) {
         color: #fff;
@@ -150,8 +150,8 @@ export const StyledButton = styled.button<SB>`
       props.primary &&
       css`
         background-color: ${primaryColorValue};
+        border: none;
         color: ${primaryFontColor};
-        border: solid 1px ${primaryFontColor};
         &:hover:not(:disabled) {
           background-color: ${primaryColorValueHover};
           transform: scale(1.05);
