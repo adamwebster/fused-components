@@ -1,12 +1,12 @@
 import React from 'react';
 import { DarkModeWrapper } from '../common/styles';
-import { ThemeProvider } from 'styled-components';
 import { Button } from '../components/ui/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FCThemeProvider } from '../theming/FCTheme';
 
 export const ButtonDarkMode = () => {
   return (
-    <ThemeProvider theme={{ theme: 'dark' }}>
+    <FCThemeProvider value={{ theme: 'dark' }}>
       <DarkModeWrapper>
         <Button>Button</Button>
         <Button primary>Button</Button>
@@ -93,6 +93,6 @@ export const ButtonDarkMode = () => {
           Button
         </Button>
       </DarkModeWrapper>
-    </ThemeProvider>
+    </FCThemeProvider>
   );
 };
