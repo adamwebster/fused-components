@@ -1,4 +1,4 @@
-import React, { useRef, useContext, ReactElement, ReactNode } from 'react';
+import React, { useContext, ReactElement, ReactNode } from 'react';
 import { DropdownButtonWrapper, MenuDivider } from './style';
 import { DropdownMenu } from './DropdownMenu';
 import MenuItem from './MenuItem';
@@ -7,6 +7,8 @@ import { fcStyles } from '../../../common/types';
 import { FCTheme } from '../../../theming/FCTheme';
 import DropdownButtonButton from './DropdownButtonButton';
 import DropdownButtonChildren from './DropdownButtonChildren';
+import { Placement as PopperPlacements } from '@popperjs/core';
+
 export interface Props {
   /** Set the button to be primary */
   primary?: boolean;
@@ -16,24 +18,34 @@ export interface Props {
   fcStyle?: fcStyles;
   /** Set the color of the button */
   buttonColor?: string;
+  /** Set the placement of the tooltip */
+  placement?: PopperPlacements;
   children: ReactNode;
   /** Set what element the button should be rended as for example as="a" */
   as?: string;
   id: string;
 }
-export const DropdownButton = ({ primary, label, fcStyle, children, buttonColor, as, id }: Props): ReactElement => {
-  const buttonEl = useRef<HTMLButtonElement>(null);
+export const DropdownButton = ({
+  primary,
+  label,
+  fcStyle,
+  children,
+  buttonColor,
+  as,
+  id,
+  placement = 'auto-start',
+}: Props): ReactElement => {
   const theme = useContext(FCTheme);
   const state = {
     menuOpen: false,
     menuVisible: false,
-    buttonEl,
     theme,
     as,
     id,
     menuRef: null,
     selectedItemIndex: 0,
     activeDescendant: `${id}_menuitem_0`,
+    placement,
   };
 
   return (

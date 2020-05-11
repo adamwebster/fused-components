@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import { Button } from '../Button';
 import { Icon } from '../../icon';
 import { IconStyled } from './style';
@@ -13,6 +13,7 @@ interface Props {
 }
 const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) => {
   const { dropdownState, dispatch } = useContext(DropdownMenuContext);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
   const toggleMenu = (): void => {
     if (dropdownState.menuOpen) {
       dispatch({ type: 'SET_MENU_OPEN', payload: false });
@@ -49,13 +50,16 @@ const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) =
       'aria-controls': `${dropdownState.id}-menu`,
     };
   }
+  useEffect(() => {
+    dispatch({ type: 'SET_BUTTON_REF', payload: buttonRef });
+  }, [buttonRef]);
   return (
     <Button
       id={dropdownState.id}
       tabIndex={0}
       aria-haspopup={true}
       {...ariaProps}
-      ref={dropdownState.buttonEl}
+      ref={buttonRef}
       fcStyle={fcStyle}
       primary={primary}
       onClick={(): void => toggleMenu()}

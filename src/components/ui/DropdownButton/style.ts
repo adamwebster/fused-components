@@ -29,7 +29,6 @@ export const DropdownMenuStyled = styled.ul<DMS>`
   padding: 0;
   list-style: none;
   z-index: 99;
-  margin-top: 5px;
   border-radius: 5px;
   animation: ${(props): string => (props.menuOpen ? 'fadein 0.5s ease-in-out' : 'fadeout 0.2s ease-in-out')};
   @keyframes fadein {
