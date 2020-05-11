@@ -21,20 +21,22 @@ export const ComboboxDemoItemFormatter = () => {
   ];
 
   return (
-    <Combobox
-      id="cb3"
-      inputIcon="filter"
-      placeholder="Dark mode combobox"
-      items={data}
-      itemFormatter={(value): ReactElement => {
-        return (
-          <>
-            <div>{data[value].label}</div>
-            <div style={{ fontSize: '12px', color: '#aaa' }}>{data[value].description}</div>
-          </>
-        );
-      }}
-      keyToSearch="label"
-    />
+    <div>
+      <Combobox
+        id="cb3"
+        inputIcon="filter"
+        placeholder="Dark mode combobox"
+        items={data}
+        itemFormatter={(value): ReactElement => {
+          return (
+            <>
+              <div>{data[value].label}</div>
+              <div style={{ fontSize: '12px', color: '#aaa' }}>{data[value].description}</div>
+            </>
+          );
+        }}
+        keyToSearch="label"
+      />
+    </div>
   );
 };

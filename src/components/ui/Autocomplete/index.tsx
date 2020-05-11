@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
 import { Input } from '../Input';
 import { Icon } from '../../icon';
-
-import { AutocompleteWrapper, AutocompleteMenu, MenuItemStyled, ItemIcon, NoItemFound } from './style';
+import { AutocompleteWrapper, MenuItemStyled, ItemIcon, NoItemFound } from './style';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
+import { Placement as PopperPlacements } from '@popperjs/core';
+import PopOutMenu from '../PopoutMenu/PopOutMenu';
 
 export interface Props {
   id: string;
@@ -30,6 +31,8 @@ export interface Props {
   onItemClick?: (index: number) => void;
   /** If you would like the value to be empty when an item is selected add this property */
   clearValueOnSelect?: boolean;
+  /**  Sets the placement of the dropdown menu */
+  placement?: PopperPlacements;
 }
 
 export const Autocomplete = ({
@@ -45,6 +48,7 @@ export const Autocomplete = ({
   onChange,
   onItemClick,
   clearValueOnSelect,
+  placement = 'bottom-start',
   ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
@@ -56,8 +60,10 @@ export const Autocomplete = ({
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeListItem, setActiveListItem] = useState<HTMLLIElement | null>(null);
   const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
+  const menuRef = useRef<HTMLUListElement>(('' as unknown) as HTMLUListElement);
   const itemRefs: Array<HTMLLIElement> = [];
   const autoCompleteRef = useRef<HTMLDivElement>(('' as unknown) as HTMLDivElement);
+
   const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = items;
@@ -129,6 +135,7 @@ export const Autocomplete = ({
         }
       }
       // Up key
+
       if (e.keyCode === 38) {
         e.preventDefault();
         if (itemSelectedIndex != 0) {
@@ -214,7 +221,14 @@ export const Autocomplete = ({
             {...rest}
           />
           {menuOpen && (
-            <AutocompleteMenu id={`${id}-menu`} menuOpen={menuOpen} role="listbox" theme={themeContext.theme}>
+            <PopOutMenu
+              aria-label="Autocomplete Menu"
+              role="listbox"
+              id={`${id}-menu`}
+              ref={menuRef}
+              referenceElement={filterRef.current}
+              placement={placement}
+            >
               <>
                 {itemsToShow.map((item, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;
@@ -261,7 +275,7 @@ export const Autocomplete = ({
                   Nothing found
                 </NoItemFound>
               )}
-            </AutocompleteMenu>
+            </PopOutMenu>
           )}
         </AutocompleteWrapper>
       )}
