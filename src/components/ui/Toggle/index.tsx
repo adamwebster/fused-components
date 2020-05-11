@@ -9,13 +9,21 @@ export interface Props {
   showLabels?: boolean;
   /** What should happen when the toggle is clicked */
   onClick?: (e: unknown) => void;
+  disabled?: boolean;
 }
 export const Toggle = ({
   active = false,
   showLabels = false,
   onClick = (): void => undefined,
+  disabled,
   ...rest
 }: Props): ReactElement => {
+  let ariaProps = {};
+  if (disabled) {
+    ariaProps = {
+      'aria-disabled': true,
+    };
+  }
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
@@ -25,21 +33,27 @@ export const Toggle = ({
           role="checkbox"
           aria-checked={active}
           onClick={(e: unknown): void => {
-            onClick(e);
-          }}
-          onKeyDown={(e: any): void => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
+            if (!disabled) {
               onClick(e);
             }
           }}
-          tabIndex={0}
+          disabled={disabled}
+          onKeyDown={(e: any): void => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              if (!disabled) {
+                e.preventDefault();
+                onClick(e);
+              }
+            }
+          }}
+          tabIndex={disabled ? -1 : 0}
+          {...ariaProps}
           {...rest}
         >
-          <Slider theme={themeContext.theme} active={active} />
+          <Slider disabled={disabled} theme={themeContext.theme} active={active} />
           {showLabels && (
             <>
-              <ToggleLabel active={active} theme={themeContext.theme}>
+              <ToggleLabel disabled={disabled} active={active} theme={themeContext.theme}>
                 {active ? 'On' : 'Off'}
               </ToggleLabel>
             </>
