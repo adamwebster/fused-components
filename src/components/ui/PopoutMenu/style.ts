@@ -3,6 +3,7 @@ import { color } from '../../../styles/styles';
 
 interface CM extends React.HTMLAttributes<HTMLUListElement> {
   ref?: any;
+  fitWidthToContent?: boolean;
 }
 
 export const PopOutMenuStyled = styled.ul<CM>`
@@ -12,7 +13,7 @@ export const PopOutMenuStyled = styled.ul<CM>`
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: ${({ fitWidthToContent }) => (fitWidthToContent ? 'fit-content' : '100%')};
   list-style: none;
   z-index: 99;
   border-radius: 5px;

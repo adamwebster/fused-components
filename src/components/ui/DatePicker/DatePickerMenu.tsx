@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useContext } from 'react';
-import { CalendarMenu } from './style';
+import React, { useEffect, useRef, ReactElement } from 'react';
 import { Calendar } from '../Calendar';
-import { FCTheme } from '../../../theming/FCTheme';
+import { CalendarMenu } from './style';
+import { Placement as PopperPlacements } from '@popperjs/core';
 
 interface Props {
   menuOpened: boolean;
@@ -10,10 +10,18 @@ interface Props {
   setMenuOpen: (value: boolean, menuMounted: boolean) => void;
   inputRef?: any;
   dateFormat?: string;
+  placement?: PopperPlacements;
 }
-const DatePickerMenu = ({ menuOpened, value, inputRef, changeDate, setMenuOpen, dateFormat }: Props) => {
+const DatePickerMenu = ({
+  menuOpened,
+  value,
+  inputRef,
+  changeDate,
+  setMenuOpen,
+  dateFormat,
+  placement,
+}: Props): ReactElement => {
   const menuRef = useRef(null);
-  const theme = useContext(FCTheme);
   const handleClickOutside = (e: MouseEvent): void => {
     const test = (e.target as HTMLElement).parentNode;
     if (
@@ -53,10 +61,12 @@ const DatePickerMenu = ({ menuOpened, value, inputRef, changeDate, setMenuOpen, 
               }
             }
           }}
-          theme={theme.theme}
           role="dialog"
           aria-expanded="true"
           ref={menuRef}
+          fitWidthToContent
+          referenceElement={inputRef.current}
+          placement={placement}
         >
           <Calendar
             dateFormat={dateFormat}

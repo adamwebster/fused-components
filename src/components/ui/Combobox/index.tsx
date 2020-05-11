@@ -241,6 +241,7 @@ export const Combobox = ({
               ref={menuRef}
               referenceElement={filterRef.current}
               placement={placement}
+              fitWidthToContent
             >
               <>
                 {itemsToShow.map((item: any, index) => {
