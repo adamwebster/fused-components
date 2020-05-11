@@ -33,7 +33,7 @@ export const DropdownButton = ({
   buttonColor,
   as,
   id,
-  placement = 'auto-start',
+  placement = 'bottom-start',
 }: Props): ReactElement => {
   const theme = useContext(FCTheme);
   const state = {

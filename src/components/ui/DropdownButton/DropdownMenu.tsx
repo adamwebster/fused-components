@@ -17,7 +17,7 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
   const theme = useContext(FCTheme);
   const { styles, attributes } = usePopper(dropdownState.buttonEl.current as HTMLElement, menuRef.current, {
     placement,
-    modifiers: [{ name: 'offset', options: { offset: [0, 2] } }],
+    modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
   });
   // const isMounted = useRef(true);
   // const [itemToFocus, setItemToFocus] = useState(0);
