@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { color } from '../../../styles/styles';
 import { Input } from '../Input';
-import { RefObject, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export const ComboboxWrapper = styled.div`
   position: relative;
@@ -9,26 +9,6 @@ export const ComboboxWrapper = styled.div`
 
 export const InputStyled = styled(Input)`
   padding-right: 35px;
-`;
-
-interface CM extends React.HTMLAttributes<HTMLUListElement> {
-  ref?: RefObject<HTMLUListElement>;
-}
-
-export const ComboboxMenu = styled.ul<CM>`
-  position: absolute;
-  top: 34px;
-  background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDark : '#fff')};
-  border: solid 1px ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.border)};
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  list-style: none;
-  z-index: 99;
-  margin-top: 5px;
-  border-radius: 5px;
-  overflow: hidden;
 `;
 
 interface MIS extends React.HTMLAttributes<HTMLLIElement> {

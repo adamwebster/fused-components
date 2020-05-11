@@ -1,5 +1,6 @@
 import React, { RefObject, ReactElement, ReactNode } from 'react';
 import { fcStyles } from '../../../common/types';
+import { Placement as PopperPlacements } from '@popperjs/core';
 
 export interface DropdownMenuInterface {
   menuOpen?: boolean;
@@ -17,6 +18,7 @@ export interface DropdownMenuInterface {
   menuItems: any;
   activeDescendant: string;
   menuRef: RefObject<HTMLUListElement | null>;
+  placement?: PopperPlacements;
 }
 
 export const DropdownMenuContext = React.createContext<any | null>(null);
@@ -63,6 +65,11 @@ const reducer = (state: any, action: { payload?: any; type: any }) => {
       return {
         ...state,
         fcStyle: payload.fcStyle,
+      };
+    case 'SET_BUTTON_REF':
+      return {
+        ...state,
+        buttonEl: payload,
       };
     default:
       return state;

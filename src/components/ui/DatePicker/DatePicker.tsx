@@ -2,12 +2,14 @@ import React, { ReactElement, useState, useRef, useEffect } from 'react';
 import { Input } from '../Input';
 import DatePickerMenu from './DatePickerMenu';
 import { DatePickerWrapper } from './style';
+import { Placement as PopperPlacements } from '@popperjs/core';
 
 interface Props {
   value?: string;
   onChange?: (date: string) => void;
   placeholder?: string;
   dateFormat?: string;
+  placement?: PopperPlacements;
 }
 export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
   (
@@ -16,6 +18,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
       dateFormat = 'MM/DD/YYYY',
       onChange = (): unknown => undefined,
       placeholder = 'Click to choose a date',
+      placement = 'bottom-start',
     }: Props,
     ref,
   ): ReactElement => {
@@ -45,6 +48,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
           value={stateValue}
           menuOpened={menuOpen}
           inputRef={inputRef}
+          placement={placement}
           dateFormat={dateFormat}
         />
       </DatePickerWrapper>

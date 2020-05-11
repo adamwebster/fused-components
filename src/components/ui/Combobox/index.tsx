@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
-import { ComboboxWrapper, ComboboxMenu, MenuItemStyled, CaretIcon, ItemIcon, InputStyled } from './style';
+import { ComboboxWrapper, MenuItemStyled, CaretIcon, ItemIcon, InputStyled } from './style';
 import { Icon } from '../../icon';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
+import { Placement as PopperPlacements } from '@popperjs/core';
+import PopOutMenu from '../PopoutMenu/PopOutMenu';
 
 export interface Props {
   /** An array of items */
@@ -22,6 +24,8 @@ export interface Props {
   /** What key should be search in the data that you send to the Combobox */
   keyToSearch?: string;
   id: string;
+  /**  Sets the placement of the dropdown menu */
+  placement?: PopperPlacements;
 }
 
 export const Combobox = ({
@@ -34,6 +38,7 @@ export const Combobox = ({
   itemFormatter,
   keyToSearch,
   id,
+  placement = 'bottom-start',
   ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
@@ -45,9 +50,12 @@ export const Combobox = ({
   const [activeListItem, setActiveListItem] = useState<HTMLLIElement | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
-  const itemRefs: Array<HTMLLIElement> = [];
   const menuRef = useRef<HTMLUListElement>(('' as unknown) as HTMLUListElement);
+
+  // const containerRef = useRef<HTMLDivElement>(('' as unknown) as HTMLDivElement);
+  const itemRefs: Array<HTMLLIElement> = [];
   const isMounted = useRef(true);
+
   const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = items;
@@ -137,7 +145,9 @@ export const Combobox = ({
       // Up key
       if (e.keyCode === 38) {
         e.preventDefault();
-        if (itemSelectedIndex != 0) {
+        console.log('Here', itemSelectedIndex);
+
+        if (itemSelectedIndex >= 1) {
           setActiveListItem(itemRefs[itemSelectedIndex - 1]);
           setItemSelectedIndex(itemSelectedIndex - 1);
           setActiveDescendant(itemsToShow[itemSelectedIndex + -1].htmlID);
@@ -224,7 +234,15 @@ export const Combobox = ({
             {...rest}
           />
           {menuOpen && (
-            <ComboboxMenu aria-label="Combobox Menu" role="listbox" theme={themeContext.theme} ref={menuRef}>
+            <PopOutMenu
+              aria-label="Combobox Menu"
+              role="listbox"
+              id={`${id}-menu`}
+              ref={menuRef}
+              referenceElement={filterRef.current}
+              placement={placement}
+              fitWidthToContent
+            >
               <>
                 {itemsToShow.map((item: any, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;
@@ -245,7 +263,7 @@ export const Combobox = ({
                       aria-selected={index === itemSelectedIndex ? 'true' : 'false'}
                     >
                       {itemFormatter ? (
-                        itemFormatter(item.index)
+                        itemFormatter(index)
                       ) : (
                         <>
                           <span aria-label={`${item.label} press enter to choose this option`}>
@@ -264,7 +282,7 @@ export const Combobox = ({
               </>
 
               {itemsToShow.length === 0 && <MenuItemStyled theme={themeContext.theme}>Nothing found</MenuItemStyled>}
-            </ComboboxMenu>
+            </PopOutMenu>
           )}
           <CaretIcon>
             <Icon title={menuOpen ? 'Menu open' : 'Menu closed'} icon={menuOpen ? 'caret-up' : 'caret-down'} />

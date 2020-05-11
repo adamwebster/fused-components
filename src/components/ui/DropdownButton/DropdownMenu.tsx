@@ -1,17 +1,24 @@
 import React, { useContext, useEffect, useRef, ReactElement, ReactNode, useCallback } from 'react';
-
 import { DropdownMenuStyled } from './style';
 import { DropdownMenuContext } from './DropdownMenuContext';
+import { usePopper } from 'react-popper';
 import MenuItem from './MenuItem';
 import { FCTheme } from '../../../theming/FCTheme';
+import { Placement as PopperPlacements } from '@popperjs/core';
+
 export interface Props {
   children: ReactNode;
 }
 
 export const DropdownMenu = ({ children }: Props): ReactElement => {
   const { dropdownState, dispatch } = useContext(DropdownMenuContext);
+  const placement = dropdownState.placement as PopperPlacements;
   const menuRef = useRef<HTMLUListElement>((null as unknown) as HTMLUListElement);
   const theme = useContext(FCTheme);
+  const { styles, attributes } = usePopper(dropdownState.buttonEl.current as HTMLElement, menuRef.current, {
+    placement,
+    modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
+  });
   // const isMounted = useRef(true);
   // const [itemToFocus, setItemToFocus] = useState(0);
   const handleClickOutside = useCallback(
@@ -121,6 +128,8 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
           menuOpen={dropdownState.menuOpen}
           tabIndex={0}
           onKeyDown={(e: any) => handleButtonKeyDown(e)}
+          style={styles.popper}
+          {...attributes.popper}
         >
           {childrenArray.map((child: any) => {
             if (child.type === MenuItem) {

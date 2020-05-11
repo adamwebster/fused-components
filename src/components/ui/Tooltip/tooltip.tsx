@@ -72,7 +72,7 @@ export const Tooltip = ({
         onBlur={(): void => hideTooltip()}
         ref={setReferenceElement}
       >
-        <TooltipButton {...asProps} tabIndex={0} onFocus={() => showTooltip()} {...ariaProps}>
+        <TooltipButton {...asProps} tabIndex={0} onFocus={(): void => showTooltip()} {...ariaProps}>
           {children}
         </TooltipButton>
       </TooltipWrapper>
