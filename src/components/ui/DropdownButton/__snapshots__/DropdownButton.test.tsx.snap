@@ -89,6 +89,39 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
 </button>
 `;
 
+exports[`Dropdown Button Tests To match snapshot 2`] = `
+<button
+  aria-controls="dm1-menu"
+  aria-expanded="true"
+  aria-haspopup="true"
+  class="sc-Axmtr hNrGZL"
+  id="dm1"
+  tabindex="0"
+>
+  Dropdown Button
+  <span
+    class="sc-AxhCb bvpDuf"
+  >
+    <svg
+      class="sc-AxgMl bbULzG  caret-up"
+      clip-rule="evenodd"
+      fill-rule="evenodd"
+      role="img"
+      stroke-linejoin="round"
+      stroke-miterlimit="2"
+      title="Menu open"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M16,0l16,16l-32,0l16,-16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
 exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
 .c1 {
   width: 16px;
@@ -160,6 +193,39 @@ exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
   >
     <svg
       class="c2  caret-up"
+      clip-rule="evenodd"
+      fill-rule="evenodd"
+      role="img"
+      stroke-linejoin="round"
+      stroke-miterlimit="2"
+      title="Menu open"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M16,0l16,16l-32,0l16,-16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`Dropdown Button Tests To match snapshot dark mode 2`] = `
+<button
+  aria-controls="dm1-menu"
+  aria-expanded="true"
+  aria-haspopup="true"
+  class="sc-Axmtr ehTOyD"
+  id="dm1"
+  tabindex="0"
+>
+  Dropdown Button
+  <span
+    class="sc-AxhCb bvpDuf"
+  >
+    <svg
+      class="sc-AxgMl bbULzG  caret-up"
       clip-rule="evenodd"
       fill-rule="evenodd"
       role="img"

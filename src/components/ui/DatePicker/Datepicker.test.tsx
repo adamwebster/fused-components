@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import 'jest-styled-components';
 
 import { DatePicker } from '.';
@@ -18,12 +18,13 @@ describe('Date picker Tests', () => {
     const { getByPlaceholderText } = render(<DatePicker placeholder="Hello" />);
     expect(getByPlaceholderText('Hello')).toBeInTheDocument();
   });
-  test('Menu opens when the input is clicked', () => {
+  test('Menu opens when the input is clicked', async () => {
     const { getByText, getByPlaceholderText } = render(<DatePicker />);
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
-
-    expect(getByText('15')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('15')).toBeInTheDocument();
+    });
   });
 
   test('Input value changes when date is picked', () => {
@@ -86,7 +87,9 @@ describe('Date picker Tests', () => {
     expect(dateToPick).toBeInTheDocument();
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     const dateToPickNew = queryByText('15');
-    expect(dateToPickNew?.parentNode).toHaveFocus();
+    await waitFor(() => {
+      expect(dateToPickNew?.parentNode).toHaveFocus();
+    });
   });
 
   test('Clicking escape key while focused on the menu closes the window and the input has focus', async () => {
@@ -107,7 +110,7 @@ describe('Date picker Tests', () => {
     expect(input).toHaveFocus();
   });
 
-  test('Clicking next button loads the next month', () => {
+  test('Clicking next button loads the next month', async () => {
     const { getByText, getAllByRole, getByPlaceholderText } = render(<DatePicker />);
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
@@ -118,10 +121,12 @@ describe('Date picker Tests', () => {
         .add(1, 'month')
         .format('MMMM YYYY'),
     );
-    expect(calendarHeader).toBeInTheDocument();
+    await waitFor(() => {
+      expect(calendarHeader).toBeInTheDocument();
+    });
   });
 
-  test('Clicking previous button loads the next month', () => {
+  test('Clicking previous button loads the next month', async () => {
     const { getByText, getAllByRole, getByPlaceholderText } = render(<DatePicker />);
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
@@ -132,10 +137,12 @@ describe('Date picker Tests', () => {
         .subtract(1, 'month')
         .format('MMMM YYYY'),
     );
-    expect(calendarHeader).toBeInTheDocument();
+    await waitFor(() => {
+      expect(calendarHeader).toBeInTheDocument();
+    });
   });
 
-  test('Has the correct styles when the theme provider is set to dark mode', () => {
+  test('Has the correct styles when the theme provider is set to dark mode', async () => {
     const { getByRole, getByPlaceholderText } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <DatePicker />
@@ -144,6 +151,8 @@ describe('Date picker Tests', () => {
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
     const menu = getByRole('dialog');
-    expect(menu).toHaveStyleRule('background-color', color.darkModeDark);
+    await waitFor(() => {
+      expect(menu).toHaveStyleRule('background-color', color.darkModeDark);
+    });
   });
 });

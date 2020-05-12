@@ -21,7 +21,7 @@ describe('Dropdown Button Tests', () => {
     expect(getByText('Dropdown Button')).toBeInTheDocument();
   });
 
-  test('To match snapshot', () => {
+  test('To match snapshot', async () => {
     const { getByText } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -31,10 +31,12 @@ describe('Dropdown Button Tests', () => {
     );
     const button = getByText('Dropdown Button');
     fireEvent.click(button);
-    expect(getByText('Dropdown Button')).toMatchSnapshot();
+    await waitFor(() => {
+      expect(getByText('Dropdown Button')).toMatchSnapshot();
+    });
   });
 
-  test('To match snapshot dark mode', () => {
+  test('To match snapshot dark mode', async () => {
     const { getByText } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <DropdownButton id="dm1" label="Dropdown Button">
@@ -46,10 +48,12 @@ describe('Dropdown Button Tests', () => {
     );
     const button = getByText('Dropdown Button');
     fireEvent.click(button);
-    expect(getByText('Dropdown Button')).toMatchSnapshot();
+    await waitFor(() => {
+      expect(getByText('Dropdown Button')).toMatchSnapshot();
+    });
   });
 
-  test('The menu shows when the button is clicked', () => {
+  test('The menu shows when the button is clicked', async () => {
     const { getByText, getByRole } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -59,10 +63,12 @@ describe('Dropdown Button Tests', () => {
     );
     const button = getByText('Dropdown Button');
     fireEvent.click(button);
-    expect(getByRole('menu')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByRole('menu')).toBeInTheDocument();
+    });
   });
 
-  test('The menu shows when the button is activated by pressing enter', () => {
+  test('The menu shows when the button is activated by pressing enter', async () => {
     const { getByText, getByRole } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -72,7 +78,9 @@ describe('Dropdown Button Tests', () => {
     );
     const button = getByText('Dropdown Button');
     fireEvent.keyDown(button, { key: 'Enter' });
-    expect(getByRole('menu')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByRole('menu')).toBeInTheDocument();
+    });
   });
 
   test('The menu closes when escape is clicked', () => {
@@ -99,7 +107,7 @@ describe('Dropdown Button Tests', () => {
     expect(screen.queryByRole('menu')).toBeNull();
   });
 
-  test('Clicking the down arrow changes the selected menu item', () => {
+  test('Clicking the down arrow changes the selected menu item', async () => {
     const { getByText, getByRole } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -113,13 +121,13 @@ describe('Dropdown Button Tests', () => {
     const menu = getByRole('menu');
     expect(menu).toBeInTheDocument();
     fireEvent.focus(menu);
-    act(() => {
-      fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    await waitFor(() => {
+      expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_1');
     });
-    expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_1');
   });
 
-  test('Clicking the down arrow on the last item does not change the selected menu item', () => {
+  test('Clicking the down arrow on the last item does not change the selected menu item', async () => {
     const { getByText, getByRole } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -133,16 +141,14 @@ describe('Dropdown Button Tests', () => {
     const menu = getByRole('menu');
     expect(menu).toBeInTheDocument();
     fireEvent.focus(menu);
-    act(() => {
-      fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    await waitFor(() => {
+      expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_1');
     });
-    act(() => {
-      fireEvent.keyDown(menu, { key: 'ArrowDown' });
-    });
-    expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_1');
   });
 
-  test('Clicking the up arrow on the last item does not change the selected menu item', () => {
+  test('Clicking the up arrow on the last item does not change the selected menu item', async () => {
     const { getByText, getByRole } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -156,13 +162,13 @@ describe('Dropdown Button Tests', () => {
     const menu = getByRole('menu');
     expect(menu).toBeInTheDocument();
     fireEvent.focus(menu);
-    act(() => {
-      fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    await waitFor(() => {
+      expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_0');
     });
-    expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_0');
   });
 
-  test('Clicking the up arrow changes the selected menu item', () => {
+  test('Clicking the up arrow changes the selected menu item', async () => {
     const { getByText, getByRole } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -176,18 +182,16 @@ describe('Dropdown Button Tests', () => {
     const menu = getByRole('menu');
     expect(menu).toBeInTheDocument();
     fireEvent.focus(menu);
-    act(() => {
-      fireEvent.keyDown(menu, { key: 'ArrowDown' });
-    });
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
     expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_1');
 
-    act(() => {
-      fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    await waitFor(() => {
+      expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_0');
     });
-    expect(menu.getAttribute('aria-activedescendant')).toBe('dm1_menuitem_0');
   });
 
-  test('The menu shows when the down arrow is clicked', () => {
+  test('The menu shows when the down arrow is clicked', async () => {
     const { getByText, getByRole } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -196,10 +200,10 @@ describe('Dropdown Button Tests', () => {
       </DropdownButton>,
     );
     const button = getByText('Dropdown Button');
-    act(() => {
-      fireEvent.keyDown(button, { key: 'ArrowDown' });
+    fireEvent.keyDown(button, { key: 'ArrowDown' });
+    await waitFor(() => {
+      expect(getByRole('menu')).toBeInTheDocument();
     });
-    expect(getByRole('menu')).toBeInTheDocument();
   });
 
   test('The menu does not show when a not defined key is pressed', () => {
@@ -211,13 +215,12 @@ describe('Dropdown Button Tests', () => {
       </DropdownButton>,
     );
     const button = getByText('Dropdown Button');
-    act(() => {
-      fireEvent.keyDown(button, { key: 'a' });
-    });
+    fireEvent.keyDown(button, { key: 'a' });
+
     expect(queryByRole('menu')).toBeNull();
   });
 
-  test('The menu shows when the button is activated by pressing enter', () => {
+  test('The menu shows when the button is activated by pressing enter', async () => {
     const { getByText, getByRole } = render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -227,7 +230,9 @@ describe('Dropdown Button Tests', () => {
     );
     const button = getByText('Dropdown Button');
     fireEvent.keyDown(button, { key: 'Enter' });
-    expect(getByRole('menu')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByRole('menu')).toBeInTheDocument();
+    });
   });
   test('Clicking an menu item closes the menu', async () => {
     jest.useFakeTimers();
@@ -338,7 +343,7 @@ describe('Dropdown Button Tests', () => {
     expect(screen.getByRole('presentation', { hidden: true })).toBeInTheDocument();
   });
 
-  test('Mousing over an item shows the correct active descendant', () => {
+  test('Mousing over an item shows the correct active descendant', async () => {
     render(
       <DropdownButton id="dm1" label="Dropdown Button">
         <DropdownButton.Menu>
@@ -354,7 +359,9 @@ describe('Dropdown Button Tests', () => {
     expect(screen.getByRole('menu')).toBeInTheDocument();
     const item = screen.getByText('Menu Item 2');
     fireEvent.mouseOver(item);
-    expect(screen.getByRole('menu').getAttribute('aria-activedescendant')).toBe('dm1_menuitem_1');
+    await waitFor(() => {
+      expect(screen.getByRole('menu').getAttribute('aria-activedescendant')).toBe('dm1_menuitem_1');
+    });
   });
 
   test('Clicking an menu item fires the onClick function', async () => {
@@ -375,7 +382,9 @@ describe('Dropdown Button Tests', () => {
     fireEvent.click(button);
     const item = screen.getByText('Menu Item');
     fireEvent.click(item);
-    expect(value).toBe('World');
+    await waitFor(() => {
+      expect(value).toBe('World');
+    });
   });
 
   test('Pressing enter an menu item fires the onClick function', async () => {
@@ -395,7 +404,9 @@ describe('Dropdown Button Tests', () => {
     const button = screen.getByText('Dropdown Button');
     fireEvent.click(button);
     fireEvent.keyDown(screen.getByRole('menu'), { key: 'Enter' });
-    expect(value).toBe('World');
+    await waitFor(() => {
+      expect(value).toBe('World');
+    });
   });
 
   test('Value does not change if item does not have onClick function', async () => {
@@ -411,6 +422,8 @@ describe('Dropdown Button Tests', () => {
     const button = screen.getByText('Dropdown Button');
     fireEvent.click(button);
     fireEvent.keyDown(screen.getByRole('menu'), { key: 'Enter' });
-    expect(value).toBe('Hello');
+    await waitFor(() => {
+      expect(value).toBe('Hello');
+    });
   });
 });
