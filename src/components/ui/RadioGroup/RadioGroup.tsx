@@ -20,6 +20,12 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline }: Prop
         radioRefs[checkedItem + 1].focus();
         onChange(radioItems[checkedItem + 1].props.value);
       }
+    } else {
+      setCheckedItem(0);
+      radioRefs[0].focus();
+      if (radioItems) {
+        onChange(radioItems[0].props.value);
+      }
     }
   };
 
@@ -31,24 +37,21 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline }: Prop
         radioRefs[checkedItem - 1].focus();
         onChange(radioItems[checkedItem - 1].props.value);
       }
+    } else {
+      setCheckedItem(radioRefs.length - 1);
+      radioRefs[radioRefs.length - 1].focus();
+      if (radioItems) {
+        onChange(radioItems[radioRefs.length - 1].props.value);
+      }
     }
   };
 
   const handleKeyDown = (e: any, index: number): void => {
-    if (inline) {
-      if (e.key === 'ArrowRight') {
-        increaseSelectedIndex(e);
-      }
-      if (e.key === 'ArrowLeft') {
-        decreaseSelectedIndex(e);
-      }
-    } else {
-      if (e.key === 'ArrowDown') {
-        increaseSelectedIndex(e);
-      }
-      if (e.key === 'ArrowUp') {
-        decreaseSelectedIndex(e);
-      }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      increaseSelectedIndex(e);
+    }
+    if (e.key === 'ArrowLeft' || e.key == 'ArrowUp') {
+      decreaseSelectedIndex(e);
     }
     if (e.key === ' ') {
       e.preventDefault();
