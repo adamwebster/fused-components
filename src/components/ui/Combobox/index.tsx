@@ -145,8 +145,6 @@ export const Combobox = ({
       // Up key
       if (e.keyCode === 38) {
         e.preventDefault();
-        console.log('Here', itemSelectedIndex);
-
         if (itemSelectedIndex >= 1) {
           setActiveListItem(itemRefs[itemSelectedIndex - 1]);
           setItemSelectedIndex(itemSelectedIndex - 1);
