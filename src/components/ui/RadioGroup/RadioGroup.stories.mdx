@@ -1,0 +1,44 @@
+import {useState} from 'react';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action, actions } from "@storybook/addon-actions";
+import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { DarkModeWrapper } from "../../../common/styles";
+
+import { RadioGroup } from './';
+import { Radio } from '../Radio';
+
+<Meta title="Components / Radio Group" component={RadioGroup} parameters={{ component: RadioGroup }}/>
+
+# Radio Group
+
+## An Radio Group component
+ 
+
+## Default
+<Preview>
+    <Story name="Radio Group" parameters={{ decorators: [withKnobs]}}>
+        <RadioGroup onChange={(value) => console.log(value)}>
+            <Radio id="1" value="radio 1">Radio 1</Radio>
+            <Radio id="2" value="radio 2">Radio 2</Radio>
+            <Radio id="3" value="radio 3">Radio 3</Radio>
+        </RadioGroup>
+    </Story>
+</Preview>
+
+<Preview>
+    <Story name="Radio Group Inline" parameters={{ decorators: [withKnobs]}}>
+        <RadioGroup inline onChange={(value) => console.log(value)}>
+            <Radio id="1" value="radio 1">Radio 1</Radio>
+            <Radio id="2" value="radio 2">Radio 2</Radio>
+            <Radio id="3" value="radio 3">Radio 3</Radio>
+        </RadioGroup>
+    </Story>
+</Preview>
+
+## Properties
+
+<Props of={RadioGroup} />
+
+# Radio Group dependents & dependencies
+<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={RadioGroup} />

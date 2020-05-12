@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement, useRef } from 'react';
 import { Label, IconStyled, RadioInput } from './style';
 import { Icon } from '../../icon';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
@@ -16,47 +16,61 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
   /** The value of the input */
   value?: string;
   id: string;
-  onKeyPress?: () => void;
+  onKeyDown?: (e: any) => void;
+  onClick?: () => void;
+  radioTabIndex?: number;
 }
-export const Radio = ({
-  children,
-  checked = false,
-  inWarning = false,
-  inError = false,
-  value,
-  onKeyPress = (): void => undefined,
-  onChange = (): void => undefined,
-  id,
-}: Props): ReactElement => {
-  return (
-    <FCThemeConsumer>
-      {(themeContext): ReactElement => (
-        <label>
-          <RadioInput
-            id={id}
-            value={value}
-            type="radio"
-            tabIndex={-1}
-            checked={checked}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>): void => onChange(e)}
-          />
+export const Radio = React.forwardRef<HTMLSpanElement, Props>(
+  (
+    {
+      children,
+      checked = false,
+      inWarning = false,
+      inError = false,
+      value,
+      onKeyDown = (): void => undefined,
+      onChange = (): void => undefined,
+      onClick,
+      id,
+      radioTabIndex = 0,
+    }: Props,
+    ref,
+  ): ReactElement => {
+    const RadioRef = useRef(null);
+    return (
+      <FCThemeConsumer>
+        {(themeContext): ReactElement => (
+          <label onClick={() => onClick && onClick()}>
+            <RadioInput
+              id={id}
+              value={value}
+              type="radio"
+              ref={RadioRef}
+              tabIndex={-1}
+              checked={checked}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>): void => onChange(e)}
+            />
 
-          <IconStyled
-            onKeyPress={() => onKeyPress && onKeyPress()}
-            tabIndex={0}
-            role="radio"
-            inError={inError}
-            inWarning={inWarning}
-            aria-checked={checked ? true : false}
-          >
-            <Icon aria-labelledby={`labelfor-${id}`} icon={checked ? 'radio-checked' : 'radio'} />
-          </IconStyled>
+            <IconStyled
+              tabIndex={radioTabIndex}
+              ref={ref}
+              onKeyDown={e => onKeyDown && onKeyDown(e)}
+              role="radio"
+              inError={inError}
+              inWarning={inWarning}
+              aria-checked={checked ? true : false}
+            >
+              <Icon aria-labelledby={`labelfor-${id}`} icon={checked ? 'radio-checked' : 'radio'} />
+            </IconStyled>
 
-          <Label id={`labelfor-${id}`} theme={themeContext.theme} inError={inError} inWarning={inWarning}>
-            {children}
-          </Label>
-        </label>
-      )}
-    </FCThemeConsumer>
-  );
-};
+            <Label id={`labelfor-${id}`} theme={themeContext.theme} inError={inError} inWarning={inWarning}>
+              {children}
+            </Label>
+          </label>
+        )}
+      </FCThemeConsumer>
+    );
+  },
+);
+
+Radio.displayName = 'Radio';
