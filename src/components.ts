@@ -27,3 +27,4 @@ export { Toggle } from './components/ui/Toggle';
 export { Tooltip } from './components/ui/Tooltip';
 export { color as Colors } from './styles/styles';
 export { FCTheme, FCThemeConsumer, FCThemeProvider } from './theming/FCTheme';
+export { FCGlobalStyles } from './components/styling/GlobalStyles';
