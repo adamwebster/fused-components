@@ -5,7 +5,9 @@ import { fcStyles } from '../../../common/types';
 import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props {
-  /** Set the style for the panel */
+  /** The id of the element. Required for accessibility.  */
+  id: string;
+  /** Set the style for the panel. "danger" | "warning" | "info" | "success" */
   fcStyle?: fcStyles;
   /** Set the tile for the panel */
   title?: string;
@@ -13,17 +15,22 @@ export interface Props {
   onCloseClick?: () => void;
   /** What should happen when the save button is clicked */
   onSaveClick?: () => void;
-  /** If the panel should have a fixed position */
+  /**
+   * @ignore
+   */
   fixed?: boolean;
   /** If the panel is visible */
   visible?: boolean;
+  /**
+   * @ignore
+   */
   children: ReactNode;
-  /** The position of the panel */
+  /** The position of the panel. left | right */
   position?: 'left' | 'right';
   /** If the overlay is shown */
   showOverlay?: boolean;
+  /** What element that should have focus when the panel opens */
   focusElement?: string;
-  id: string;
 }
 export const Panel = ({
   fcStyle,

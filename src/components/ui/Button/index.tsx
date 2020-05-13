@@ -19,6 +19,9 @@ export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   loadingIcon?: object;
   /** Set the icon for the button */
   icon?: string;
+  /**
+   * @ignore
+   */
   children?: ReactNode;
   /** What the button should be rendered as for example as="a" */
   as?: string;

@@ -11,15 +11,15 @@ afterEach(cleanup);
 
 describe('Date picker Tests', () => {
   test('it renders the date picker component', () => {
-    render(<DatePicker />);
+    render(<DatePicker id="1" />);
   });
 
   test('it renders the date picker component', () => {
-    const { getByPlaceholderText } = render(<DatePicker placeholder="Hello" />);
+    const { getByPlaceholderText } = render(<DatePicker id="1" placeholder="Hello" />);
     expect(getByPlaceholderText('Hello')).toBeInTheDocument();
   });
   test('Menu opens when the input is clicked', async () => {
-    const { getByText, getByPlaceholderText } = render(<DatePicker />);
+    const { getByText, getByPlaceholderText } = render(<DatePicker id="1" />);
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
     await waitFor(() => {
@@ -32,7 +32,7 @@ describe('Date picker Tests', () => {
     const onChange = jest.fn(date => {
       value = date;
     });
-    const { getByText, getByPlaceholderText } = render(<DatePicker onChange={date => onChange(date)} />);
+    const { getByText, getByPlaceholderText } = render(<DatePicker id="1" onChange={date => onChange(date)} />);
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
     const dateToPick = getByText('15');
@@ -45,7 +45,7 @@ describe('Date picker Tests', () => {
     const { queryByText, getByText, getByPlaceholderText } = render(
       <>
         <button>Click me</button>
-        <DatePicker />
+        <DatePicker id="1" />
       </>,
     );
     const input = getByPlaceholderText('Click to choose a date');
@@ -61,7 +61,7 @@ describe('Date picker Tests', () => {
   test('Clicking escape key while an input has focus closes the window', async () => {
     const { queryByText, getByPlaceholderText } = render(
       <>
-        <DatePicker value="May 15 2020" />
+        <DatePicker id="1" value="May 15 2020" />
       </>,
     );
     const input = getByPlaceholderText('Click to choose a date');
@@ -77,7 +77,7 @@ describe('Date picker Tests', () => {
   test('Clicking the down key while an input has focus focuses the selected', async () => {
     const { queryByText, getByPlaceholderText } = render(
       <>
-        <DatePicker value="May 15 2020" />
+        <DatePicker id="1" value="May 15 2020" />
       </>,
     );
     const input = getByPlaceholderText('Click to choose a date');
@@ -95,7 +95,7 @@ describe('Date picker Tests', () => {
   test('Clicking escape key while focused on the menu closes the window and the input has focus', async () => {
     const { queryByText, getByPlaceholderText, getByText } = render(
       <>
-        <DatePicker value="May 15 2020" />
+        <DatePicker id="1" value="May 15 2020" />
       </>,
     );
     const input = getByPlaceholderText('Click to choose a date');
@@ -111,7 +111,7 @@ describe('Date picker Tests', () => {
   });
 
   test('Clicking next button loads the next month', async () => {
-    const { getByText, getAllByRole, getByPlaceholderText } = render(<DatePicker />);
+    const { getByText, getAllByRole, getByPlaceholderText } = render(<DatePicker id="1" />);
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
     const nextButton = getAllByRole('button')[1];
@@ -127,7 +127,7 @@ describe('Date picker Tests', () => {
   });
 
   test('Clicking previous button loads the next month', async () => {
-    const { getByText, getAllByRole, getByPlaceholderText } = render(<DatePicker />);
+    const { getByText, getAllByRole, getByPlaceholderText } = render(<DatePicker id="1" />);
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
     const prevButton = getAllByRole('button')[0];
@@ -145,7 +145,7 @@ describe('Date picker Tests', () => {
   test('Has the correct styles when the theme provider is set to dark mode', async () => {
     const { getByRole, getByPlaceholderText } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <DatePicker />
+        <DatePicker id="1" />
       </FCThemeProvider>,
     );
     const input = getByPlaceholderText('Click to choose a date');

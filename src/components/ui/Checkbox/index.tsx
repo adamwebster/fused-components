@@ -4,7 +4,8 @@ import { Icon } from '../../icon/';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props extends React.HTMLProps<HTMLInputElement> {
-  children?: ReactNode;
+  /** The id of the element. Required for accessibility.  */
+  id: string;
   /** Set to true if the checkbox is checked */
   checked?: boolean;
   /** Set the checkbox to be in its error state */
@@ -13,7 +14,10 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
   inWarning?: boolean;
   /** The on change function for the input */
   onChange?: () => void;
-  id: string;
+  /**
+   * @ignore
+   */
+  children?: ReactNode;
 }
 
 export const Checkbox = ({

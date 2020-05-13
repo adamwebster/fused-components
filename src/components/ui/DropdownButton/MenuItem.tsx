@@ -1,14 +1,21 @@
-import React, { useContext, ReactNode, ReactElement, useEffect, useRef, HTMLAttributes } from 'react';
+import React, { useContext, ReactNode, ReactElement, useEffect, useRef } from 'react';
 import { MenuItemStyled } from './style';
 import { Icon } from '../../icon';
 import { DropdownMenuContext } from './DropdownMenuContext';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props extends HTMLAttributes<HTMLLIElement> {
-  /** Sets the button to be a primary button */
+export interface Props {
+  /**
+   * @ignore
+   */
   children?: ReactNode;
+  /** The icon to show beside the button */
   icon?: string;
+  /** What should happen when the menu item is clicked */
   onClick?: () => void;
+  /**
+   * @ignore
+   */
   index?: number;
 }
 

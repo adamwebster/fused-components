@@ -4,14 +4,14 @@ import { Icon } from '../../icon';
 import { FCTheme } from '../../../theming/FCTheme';
 
 export interface Props extends React.HTMLAttributes<HTMLInputElement> {
+  /** The id of the element. Required for accessibility.  */
+  id: string;
   /** Set the icon for the input */
   icon?: string;
   /** Set if the input is in error */
   inError?: boolean;
   /** Set if the input is in warning */
   inWarning?: boolean;
-  /** The id for the input */
-  id?: string;
   /** The value for the input */
   value?: string;
   /** What should happen when the input value changes */
@@ -22,9 +22,15 @@ export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
   /** The input type */
   type?: string;
+  /**
+   * @ignore
+   */
   theme?: unknown;
-  // sets if the input is in a read only mode
+  /** Sets if the input is in a read only mode */
   readOnly?: boolean;
+  /**
+   * @ignore
+   */
   autoComplete?: string;
 }
 export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {

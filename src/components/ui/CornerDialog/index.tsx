@@ -4,17 +4,32 @@ import { fcStyles } from '../../../common/types';
 import ReactDOM from 'react-dom';
 
 export interface Props {
-  fixed?: boolean;
-  onCloseClick?: () => void;
-  visible?: boolean;
-  cancelText?: string;
-  confirmText?: string;
-  title?: string;
-  fcStyle?: fcStyles;
-  icon?: string;
-  children: ReactNode;
-  onConfirmClick?: () => void;
+  /** The id of the element. Required for accessibility.  */
   id: string;
+  /**
+   * @ignore
+   */
+  fixed?: boolean;
+  /** What should happen if the close (times icon) or the cancel button is clicked. */
+  onCloseClick?: () => void;
+  /** What should happen if the confirm button button is clicked. */
+  onConfirmClick?: () => void;
+  /** If the corner dialog is visible  */
+  visible?: boolean;
+  /** The text for the cancel button */
+  cancelText?: string;
+  /** The text for the confirm button */
+  confirmText?: string;
+  /** The title for the dialog */
+  title?: string;
+  /** The predefined styles for the corner dialog.  "danger" | "warning" | "info" | "success" */
+  fcStyle?: fcStyles;
+  /** The icon that will show beside the content for the dialog */
+  icon?: string;
+  /**
+   * @ignore
+   */
+  children: ReactNode;
 }
 export const CornerDialog = ({
   fixed = true,

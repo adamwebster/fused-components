@@ -2,6 +2,9 @@ import React, { ReactElement } from 'react';
 import { ButtonGroupStyled } from './style';
 
 export interface Props {
+  /**
+   * @ignore
+   */
   children: Array<ReactElement>;
 }
 

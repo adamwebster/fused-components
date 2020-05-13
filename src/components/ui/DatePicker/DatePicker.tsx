@@ -5,15 +5,23 @@ import { DatePickerWrapper } from './style';
 import { Placement as PopperPlacements } from '@popperjs/core';
 
 interface Props {
+  /** The id of the element. Required for accessibility.  */
+  id: string;
+  /** The value of the date picker */
   value?: string;
+  /** What should happen when the date changes. Should at least change the value. */
   onChange?: (date: string) => void;
+  /** Placeholder for the date picker input */
   placeholder?: string;
+  /** The format of the date for example MM/DD/YYYY */
   dateFormat?: string;
+  /** The placement of the dropdown menu. "auto" | "auto-start" | "auto-end" | "top" | "bottom" | "right" | "left" | "top-start" | "top-end" | "bottom-start" | "bottom-end" | "right-start" | "right-end" | "left-start" | "left-end" */
   placement?: PopperPlacements;
 }
 export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
   (
     {
+      id,
       value,
       dateFormat = 'MM/DD/YYYY',
       onChange = (): unknown => undefined,
@@ -35,6 +43,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
     return (
       <DatePickerWrapper>
         <Input
+          id={id}
           value={stateValue}
           ref={ref || inputRef}
           onChange={(e: any) => setStateValue(e.target.value)}

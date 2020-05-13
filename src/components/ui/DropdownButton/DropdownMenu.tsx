@@ -7,6 +7,9 @@ import { FCTheme } from '../../../theming/FCTheme';
 import { Placement as PopperPlacements } from '@popperjs/core';
 
 export interface Props {
+  /**
+   * @ignore
+   */
   children: ReactNode;
 }
 

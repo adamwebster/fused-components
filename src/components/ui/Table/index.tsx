@@ -22,6 +22,9 @@ export interface Props {
   frozenColumnWidth?: string;
   /** Frozen column background color */
   highlightOnHover?: boolean;
+  /**
+   * @ignore
+   */
   children: ReactNode;
 }
 

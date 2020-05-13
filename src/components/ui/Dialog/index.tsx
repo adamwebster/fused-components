@@ -4,6 +4,8 @@ import { fcStyles } from '../../../common/types';
 import { DialogComponent } from './dialogComponent';
 
 export interface Props {
+  /** The id of the element. Required for accessibility.  */
+  id: string;
   /** Sets if the dialog has a box shadow */
   boxShadow?: boolean;
   /** Sets the tile of the dialog */
@@ -22,9 +24,15 @@ export interface Props {
   showOverlay?: boolean;
   /** Set the text for the cancel button */
   cancelText?: string;
+  /**
+   * @ignore
+   */
   children?: ReactNode;
+  /**
+   * @ignore
+   */
   theme?: string;
-  id: string;
+  /** The id of the element that should have focus when the dialog opens */
   focusElement?: string | null | undefined;
 }
 export const Dialog = ({

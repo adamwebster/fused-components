@@ -7,6 +7,7 @@ import { Placement as PopperPlacements } from '@popperjs/core';
 import PopOutMenu from '../PopoutMenu/PopOutMenu';
 
 export interface Props {
+  // The id of the element. Required for accessibility.
   id: string;
   /** Defines what items are sent to the auto complete component*/
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

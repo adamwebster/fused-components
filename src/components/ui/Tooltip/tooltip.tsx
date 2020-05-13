@@ -10,12 +10,17 @@ export interface Props {
   content?: ReactNode;
   /** Set the target element of the tooltip useful to break out of containers that are set to overflow hidden */
   targetElement?: string;
-  /** Set the placement of the tooltip */
+  /** Set the placement of the tooltip  "auto" | "auto-start" | "auto-end" | "top" | "bottom" | "right" | "left" | "top-start" | "top-end" | "bottom-start" | "bottom-end" | "right-start" | "right-end" | "left-start" | "left-end"*/
   placement?: PopperPlacements;
-  /** The trigger event that should cause the tooltip to show.  Defaults to mouseOver.  */
+  /** The trigger event that should cause the tooltip to show.  Defaults to mouseOver. 'click' | 'mouseOver' */
   triggerEvent?: 'click' | 'mouseOver';
+  /**
+   * @ignore
+   */
   visible?: boolean;
+  /** The id of the element. Required for accessibility.  */
   id: string;
+  /** What element the trigger should render as.  */
   triggerAs?: string;
 }
 

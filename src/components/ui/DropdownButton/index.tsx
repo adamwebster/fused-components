@@ -10,6 +10,8 @@ import DropdownButtonChildren from './DropdownButtonChildren';
 import { Placement as PopperPlacements } from '@popperjs/core';
 
 export interface Props {
+  /** The id of the element. Required for accessibility.  */
+  id: string;
   /** Set the button to be primary */
   primary?: boolean;
   /** Set the text for the button */
@@ -18,12 +20,14 @@ export interface Props {
   fcStyle?: fcStyles;
   /** Set the color of the button */
   buttonColor?: string;
-  /** Set the placement of the tooltip */
+  /** The placement of the dropdown menu. "auto" | "auto-start" | "auto-end" | "top" | "bottom" | "right" | "left" | "top-start" | "top-end" | "bottom-start" | "bottom-end" | "right-start" | "right-end" | "left-start" | "left-end" */
   placement?: PopperPlacements;
+  /**
+   * @ignore
+   */
   children: ReactNode;
   /** Set what element the button should be rended as for example as="a" */
   as?: string;
-  id: string;
 }
 export const DropdownButton = ({
   primary,

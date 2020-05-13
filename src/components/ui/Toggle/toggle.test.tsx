@@ -8,30 +8,30 @@ afterEach(cleanup);
 
 describe('Toggle Tests', () => {
   test('It renders correctly', () => {
-    render(<Toggle />);
+    render(<Toggle id="1" />);
   });
   test('It is not turned on when first loaded', () => {
-    const { getByRole } = render(<Toggle />);
+    const { getByRole } = render(<Toggle id="1" />);
     const toggle = getByRole('checkbox');
     expect(toggle.getAttribute('aria-checked')).toBe('false');
   });
   test('It is not turned on when active is set to false', () => {
-    const { getByRole } = render(<Toggle active={false} />);
+    const { getByRole } = render(<Toggle id="1" active={false} />);
     const toggle = getByRole('checkbox');
     expect(toggle.getAttribute('aria-checked')).toBe('false');
   });
   test('It renders when set to active', () => {
-    const { getByRole } = render(<Toggle active />);
+    const { getByRole } = render(<Toggle id="1" active />);
     const toggle = getByRole('checkbox');
     expect(toggle.getAttribute('aria-checked')).toBe('true');
   });
   test('When showLabels is on the off label show', () => {
-    const { getByText } = render(<Toggle showLabels />);
+    const { getByText } = render(<Toggle id="1" showLabels />);
     expect(getByText('Off')).toBeInTheDocument();
   });
 
   test('When showLabels is on and it is active the on label show', () => {
-    const { getByText } = render(<Toggle active showLabels />);
+    const { getByText } = render(<Toggle id="1" active showLabels />);
     expect(getByText('On')).toBeInTheDocument();
   });
   test('Clicking the toggle activates the toggle', () => {
@@ -39,12 +39,12 @@ describe('Toggle Tests', () => {
     const click = jest.fn(() => {
       active = true;
     });
-    const { getByRole, rerender } = render(<Toggle onClick={click} active={active} />);
+    const { getByRole, rerender } = render(<Toggle id="1" onClick={click} active={active} />);
     const toggle = getByRole('checkbox');
     expect(toggle.getAttribute('aria-checked')).toBe('false');
     fireEvent.click(toggle);
     expect(click).toHaveBeenCalledTimes(1);
-    rerender(<Toggle onClick={click} active={active} />);
+    rerender(<Toggle id="1" onClick={click} active={active} />);
     expect(toggle.getAttribute('aria-checked')).toBe('true');
   });
 
@@ -53,12 +53,12 @@ describe('Toggle Tests', () => {
     const click = jest.fn(() => {
       active = true;
     });
-    const { getByRole, rerender } = render(<Toggle onClick={click} active={active} />);
+    const { getByRole, rerender } = render(<Toggle id="1" onClick={click} active={active} />);
     const toggle = getByRole('checkbox');
     expect(toggle.getAttribute('aria-checked')).toBe('false');
     fireEvent.keyDown(toggle, { key: 'Enter' });
     expect(click).toHaveBeenCalledTimes(1);
-    rerender(<Toggle onClick={click} active={active} />);
+    rerender(<Toggle id="1" onClick={click} active={active} />);
     expect(toggle.getAttribute('aria-checked')).toBe('true');
   });
 
@@ -67,12 +67,12 @@ describe('Toggle Tests', () => {
     const click = jest.fn(() => {
       active = true;
     });
-    const { getByRole, rerender } = render(<Toggle onClick={click} active={active} />);
+    const { getByRole, rerender } = render(<Toggle id="1" onClick={click} active={active} />);
     const toggle = getByRole('checkbox');
     expect(toggle.getAttribute('aria-checked')).toBe('false');
     fireEvent.keyDown(toggle, { key: ' ' });
     expect(click).toHaveBeenCalledTimes(1);
-    rerender(<Toggle onClick={click} active={active} />);
+    rerender(<Toggle id="1" onClick={click} active={active} />);
     expect(toggle.getAttribute('aria-checked')).toBe('true');
   });
 
@@ -81,19 +81,19 @@ describe('Toggle Tests', () => {
     const click = jest.fn(() => {
       active = true;
     });
-    const { getByRole, rerender } = render(<Toggle onClick={click} active={active} />);
+    const { getByRole, rerender } = render(<Toggle id="1" onClick={click} active={active} />);
     const toggle = getByRole('checkbox');
     expect(toggle.getAttribute('aria-checked')).toBe('false');
     fireEvent.keyDown(toggle, { key: 'A' });
     expect(click).toHaveBeenCalledTimes(0);
-    rerender(<Toggle onClick={click} active={active} />);
+    rerender(<Toggle id="1" onClick={click} active={active} />);
     expect(toggle.getAttribute('aria-checked')).toBe('false');
   });
 
   test('It renders as expected in dark mode', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Toggle showLabels active={false} />
+        <Toggle id="1" showLabels active={false} />
       </FCThemeProvider>,
     );
     expect(container).toMatchSnapshot();
@@ -102,7 +102,7 @@ describe('Toggle Tests', () => {
   test('It renders as expected in dark mode when active', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Toggle showLabels active={true} />
+        <Toggle id="1" showLabels active={true} />
       </FCThemeProvider>,
     );
     expect(container).toMatchSnapshot();

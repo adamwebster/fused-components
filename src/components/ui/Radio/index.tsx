@@ -4,6 +4,11 @@ import { Icon } from '../../icon';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props extends React.HTMLProps<HTMLInputElement> {
+  /** The id of the element. Required for accessibility.  */
+  id: string;
+  /**
+   * @ignore
+   */
   children: ReactNode;
   /** If the radio is checked */
   checked?: boolean;
@@ -15,9 +20,17 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   /** The value of the input */
   value?: string;
-  id: string;
+  /**
+   * @ignore
+   */
   onKeyDown?: (e: any) => void;
+  /**
+   * @ignore
+   */
   onClick?: () => void;
+  /**
+   * @ignore
+   */
   radioTabIndex?: number;
 }
 export const Radio = React.forwardRef<HTMLSpanElement, Props>(

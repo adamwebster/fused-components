@@ -3,15 +3,19 @@ import { ToggleWrapper, Slider, ToggleLabel } from './style';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
 export interface Props {
+  /** The id of the element. Required for accessibility.  */
+  id: string;
   /** If the toggle is active or not */
   active?: boolean;
   /** Display the on and off labels */
   showLabels?: boolean;
   /** What should happen when the toggle is clicked */
   onClick?: (e: unknown) => void;
+  /** If the toggle is disabled or not */
   disabled?: boolean;
 }
 export const Toggle = ({
+  id,
   active = false,
   showLabels = false,
   onClick = (): void => undefined,
@@ -28,6 +32,7 @@ export const Toggle = ({
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
         <ToggleWrapper
+          id={id}
           active={active}
           theme={themeContext.theme}
           role="checkbox"

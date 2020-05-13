@@ -7,7 +7,7 @@ import { fcStyles } from '../../../common/types';
 
 export interface Props {
   children: ReactNode;
-  /** The position of the toast provider */
+  /** The position of the toast provider 'top' | 'bottom' | 'top-right' | 'bottom-right'*/
   position?: 'top' | 'bottom' | 'top-right' | 'bottom-right';
 }
 

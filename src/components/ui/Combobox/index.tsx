@@ -6,6 +6,8 @@ import { Placement as PopperPlacements } from '@popperjs/core';
 import PopOutMenu from '../PopoutMenu/PopOutMenu';
 
 export interface Props {
+  /** The id of the element. Required for accessibility.  */
+  id: string;
   /** An array of items */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: Array<any>;
@@ -23,8 +25,7 @@ export interface Props {
   itemFormatter?: (index: number) => ReactElement;
   /** What key should be search in the data that you send to the Combobox */
   keyToSearch?: string;
-  id: string;
-  /**  Sets the placement of the dropdown menu */
+  /** Sets the placement of the dropdown menu */
   placement?: PopperPlacements;
 }
 

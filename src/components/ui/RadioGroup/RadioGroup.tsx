@@ -2,13 +2,19 @@ import React, { ReactNode, ReactElement, useState, useEffect } from 'react';
 import { Radio } from '../Radio';
 import { RadioWrapper } from './style';
 interface Props {
+  /**
+   * @ignore
+   */
   children: ReactNode;
+  /** What happens when the radio that is selected changes.  Passes back the value of the radio */
   onChange?: (value: string) => void;
+  /** If the inputs should be displayed inline or not */
   inline?: boolean;
-  value?: string;
+  /** The value of the radio that is selected in the radio group. */
+  selectedValue?: string;
 }
 
-const RadioGroup = ({ children, onChange = (): void => undefined, inline, value }: Props): ReactElement => {
+const RadioGroup = ({ children, onChange = (): void => undefined, inline, selectedValue }: Props): ReactElement => {
   const [radioItems, setRadioItems] = useState<Array<any>>([]);
   const [checkedItem, setCheckedItem] = useState(0);
   const radioRefs: any = [];
@@ -59,7 +65,7 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline, value 
       if (child.type === Radio) {
         ArrayToSave.push(child);
       }
-      if (child.props.value === value) {
+      if (child.props.value === selectedValue) {
         setCheckedItem(index);
       }
     });

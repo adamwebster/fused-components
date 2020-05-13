@@ -24,13 +24,29 @@ dayjs.extend(isoWeek);
 dayjs.extend(duration);
 
 interface Props {
+  /** What should happens when the day selected changes. Sends back the date */
   onChange?: (date: any) => void;
+  /** The date that is selected in the calendar */
   selectedDate?: dayjs.Dayjs | string;
+  /** the width and height of the calendar in pixels */
   size?: number;
+  /** If the day should have browser focused by default */
   autoFocusDay?: boolean;
+  /**
+   * @ignore
+   */
   inputRef?: any;
+  /**
+   * @ignore
+   */
   menuRef?: any;
+  /**
+   * @ignore
+   */
   setMenuOpen?: (value: boolean) => void;
+  /**
+   * @ignore
+   */
   dateFormat?: string;
 }
 const Calendar = ({

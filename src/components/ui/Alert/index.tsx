@@ -12,7 +12,13 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   icon?: string;
   /** Sets the border radius for the alert */
   borderRadius?: boolean;
+  /**
+   * @ignore
+   */
   children?: ReactNode;
+  /**
+   * @ignore
+   */
   className?: string;
   onMouseOver?: () => void;
   onMouseOut?: () => void;

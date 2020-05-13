@@ -4,6 +4,9 @@ import { LabelStyled } from './style';
 import { FCTheme } from '../../../theming/FCTheme';
 
 interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  /**
+   * @ignore
+   */
   children: ReactNode;
 }
 export const Label = ({ children, ...rest }: Props): ReactElement => {

@@ -9,7 +9,7 @@ afterEach(cleanup);
 
 describe('Textarea Input', () => {
   test('Renders the Textarea component', () => {
-    const { getByPlaceholderText } = render(<Textarea placeholder="Test placeholder" />);
+    const { getByPlaceholderText } = render(<Textarea id="1" placeholder="Test placeholder" />);
     expect(getByPlaceholderText('Test placeholder')).toBeInTheDocument();
   });
   test('Changes the value on change', () => {
@@ -19,24 +19,24 @@ describe('Textarea Input', () => {
     });
 
     const { getByPlaceholderText, rerender } = render(
-      <Textarea value={initialValue} onChange={e => onChange(e)} placeholder="Test placeholder" />,
+      <Textarea id="test" value={initialValue} onChange={e => onChange(e)} placeholder="Test placeholder" />,
     );
 
     const input = getByPlaceholderText('Test placeholder');
     userEvent.type(input, 'Hello World');
     expect(onChange).toBeCalledTimes(11);
-    rerender(<Textarea value={initialValue} onChange={e => onChange(e)} placeholder="Test placeholder" />);
+    rerender(<Textarea id="test" value={initialValue} onChange={e => onChange(e)} placeholder="Test placeholder" />);
     expect(input).toHaveValue('Hello World');
     expect(initialValue).toBe('Hello World');
   });
 
   test('Renders the Input as disabled', () => {
-    const { getByPlaceholderText } = render(<Textarea disabled placeholder="Test placeholder" />);
+    const { getByPlaceholderText } = render(<Textarea id="test" disabled placeholder="Test placeholder" />);
     expect(getByPlaceholderText('Test placeholder')).toBeDisabled();
   });
 
   test('Is readonly', () => {
-    const { getByPlaceholderText } = render(<Textarea readOnly placeholder="Test placeholder" />);
+    const { getByPlaceholderText } = render(<Textarea id="test" readOnly placeholder="Test placeholder" />);
     expect(getByPlaceholderText('Test placeholder').getAttribute('readonly')).toBe('');
   });
   test('Sets the id', () => {
@@ -54,7 +54,7 @@ describe('Textarea Input', () => {
   test('Has the correct styles when in dark mode', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Textarea placeholder="Test placeholder" />
+        <Textarea id="test" placeholder="Test placeholder" />
       </FCThemeProvider>,
     );
     expect(container).toMatchSnapshot();

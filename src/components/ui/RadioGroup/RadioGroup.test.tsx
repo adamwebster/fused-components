@@ -265,7 +265,7 @@ describe('Radio Group Test', () => {
 
   test('Setting the value of the radio group changes the selected radio', () => {
     render(
-      <RadioGroup value="Radio 2">
+      <RadioGroup selectedValue="Radio 2">
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>

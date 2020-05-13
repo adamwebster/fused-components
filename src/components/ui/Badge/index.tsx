@@ -6,6 +6,9 @@ import { FCThemeConsumer } from '../../../theming/FCTheme';
 export interface Props {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
+  /**
+   * @ignore
+   */
   children: ReactNode;
 }
 export const Badge = ({ fcStyle, ...rest }: Props): ReactElement => {

@@ -39,6 +39,7 @@ exports[`Toggle Tests It renders as expected in dark mode 1`] = `
   <div
     aria-checked="false"
     class="c0"
+    id="1"
     role="checkbox"
     tabindex="0"
   >
@@ -93,6 +94,7 @@ exports[`Toggle Tests It renders as expected in dark mode when active 1`] = `
   <div
     aria-checked="true"
     class="c0"
+    id="1"
     role="checkbox"
     tabindex="0"
   >

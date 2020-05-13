@@ -22,6 +22,7 @@ exports[`Textarea Input Has the correct styles when in dark mode 1`] = `
 <div>
   <textarea
     class="c0"
+    id="test"
     placeholder="Test placeholder"
   />
 </div>

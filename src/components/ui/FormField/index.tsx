@@ -14,6 +14,9 @@ export interface Props {
   validationMessage?: string;
   /** The htmlFor for the label should match the id of the input */
   htmlFor?: string;
+  /**
+   * @ignore
+   */
   children: ReactNode;
 }
 export const FormField = ({
