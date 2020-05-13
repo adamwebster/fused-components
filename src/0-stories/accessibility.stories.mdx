@@ -7,3 +7,15 @@ Fused Components is built with accessibility in mind.  Each component is tested 
 The components should follow the guidelines layed out in the following document: https://www.w3.org/TR/wai-aria-practices-1.2/.
 
 Every component has a contrast ratio of at least 4.5:1 for the text and background color to meet WCAG 2.0 AA standards. 
+
+## Accessibility Recommendations 
+
+If you are using one of the many input like components in this library and they are not tied to a **label** then it is suggested that use use the property **aria-label** to the input.
+
+### Icon component
+
+If you are using the icon component make sure to add a title attribute to describe what the icon is for.  This is already in place for the **CornerDialog**, **Dialog**, and **PanelComponents**.
+
+### If an element should be not be read by a screen reader
+
+If an element should not be readable by a screen reader then aria-hidden should be added to the element.

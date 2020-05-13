@@ -6,6 +6,7 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icon } from '../../../components/icon/';
 import { ButtonDarkMode } from "../../../demos/ButtonDemo";
+ import LinkTo from '@storybook/addon-links/react';
 
 import { Button } from './';
 
@@ -13,7 +14,13 @@ import { Button } from './';
 
 # Button
 
-## An Button component 
+The button component is just that a button.  You can set the style of the button and put it into a loading state that will then disable the button and show the supplied loading icon. 
+
+There are a few different button types to use; default, primary, and link button(set the **as** property to be a).
+
+You can also supply your own button color to the button component.
+
+You can also attach one of the many  <LinkTo kind="info-icons--page">icons</LinkTo> that are provided as part of the Fused Components library.
 
 ## Default
 <Preview>
@@ -76,30 +83,22 @@ import { Button } from './';
 
 <Props of={Button} />
 
-<Preview>
-    <Story name="Default button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-        <Button id="defaultButton" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
-    </Story>
-</Preview>
+<Story name="Default button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <Button id="defaultButton" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+</Story>
 
-<Preview>
-    <Story name="Primary button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-        <Button id="primaryButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
-    </Story>
-</Preview>
+<Story name="Primary button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <Button id="primaryButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+</Story>
 
 
-<Preview>
-    <Story name="Icon button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-        <Button id="primaryButton" icon="check-circle" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
-    </Story>
-</Preview>
+<Story name="Icon button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <Button id="primaryButton" icon="check-circle" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+</Story>
 
-<Preview>
-    <Story name="Link button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-        <Button as="a" id="linkButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
-    </Story>
-</Preview>
+<Story name="Link button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <Button as="a" id="linkButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+</Story>
 
 
 # Button dependents & dependencies
