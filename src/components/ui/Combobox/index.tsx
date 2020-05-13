@@ -152,6 +152,11 @@ export const Combobox = ({
           setActiveDescendant(itemsToShow[itemSelectedIndex + -1].htmlID);
         }
       }
+    } else {
+      if (e.keyCode === 40) {
+        e.preventDefault();
+        setMenuOpen(true);
+      }
     }
   };
 
@@ -183,11 +188,8 @@ export const Combobox = ({
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleUserKeyPress);
     window.addEventListener('mousedown', e => handleClickOutside(e));
-
     return (): void => {
-      window.removeEventListener('keydown', handleUserKeyPress);
       window.removeEventListener('mousedown', e => handleClickOutside(e));
     };
   });

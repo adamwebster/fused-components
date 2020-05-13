@@ -9,6 +9,10 @@ import { Autocomplete } from './';
 
 <Meta title="Components / Auto Complete" component={Autocomplete} parameters={{ component: Autocomplete }} />
 
+# Autocomplete
+
+The Autocomplete component shows a dropdown menu when something is typed in the input.
+
 <Story name="Autocomplete" parameters={{ docs: { disable: true }}}>
 	<Autocomplete
 		id="ac1"
@@ -25,13 +29,13 @@ import { Autocomplete } from './';
     placeholder="Type to search for a fruit"
  />
 
-## Item Formatter
+## Item formatter
 
 <AutocompleteDemoFormatter />
 
-Vie the code example below to see who this works.
+View the code example below to see who this works.
 
-### Code Example 
+### Code example 
 	const YourComponent = () => {
 		const [data, setData] = useState([] as any);
 		const dataToSet = [
@@ -42,6 +46,7 @@ Vie the code example below to see who this works.
 
 		return(
 			<Autocomplete
+				id="Autocomplete"
 				onChange={() => setData(dataToSet)}
 				itemFormatter={(value) => {
 					return (

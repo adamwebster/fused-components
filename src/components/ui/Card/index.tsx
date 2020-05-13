@@ -6,6 +6,9 @@ export interface Props {
   borderRadius?: string;
   /** Sets the card to have a box shadow */
   boxShadow?: boolean;
+  /**
+   * @ignore
+   */
   children?: ReactNode;
 }
 export const Card = ({ borderRadius = '5px', boxShadow = false, children, ...rest }: Props): ReactElement => {

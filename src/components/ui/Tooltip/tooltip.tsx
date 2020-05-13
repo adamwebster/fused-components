@@ -18,7 +18,7 @@ export interface Props {
    * @ignore
    */
   visible?: boolean;
-  /** The id of the element. Required for accessibility.  */
+  /** The id of the tooltip element. Required for accessibility.  */
   id: string;
   /** What element the trigger should render as.  */
   triggerAs?: string;

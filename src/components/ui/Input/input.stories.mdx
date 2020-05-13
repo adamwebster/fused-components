@@ -19,11 +19,12 @@ import { Input } from './';
 <Preview>
     <Story name="Input" parameters={{ decorators: [withKnobs]}}>
         <Input
-        disabled={boolean('Disabled')}
-        inError={boolean('inError')}
-        inWarning={boolean('inWarning')}
-        icon={select('icon', ['', 'search', 'check-circle'])}
-        aria-label="Text Input" 
+            id="inputStory1"
+            disabled={boolean('Disabled')}
+            inError={boolean('inError')}
+            inWarning={boolean('inWarning')}
+            icon={select('icon', ['', 'search', 'check-circle'])}
+            aria-label="Text Input" 
         />
     </Story>
 </Preview>
@@ -31,8 +32,9 @@ import { Input } from './';
 ## Disabled 
 <Preview>
     <Input
-    aria-label="Disabled Input" 
-    disabled
+        id="inputStory2"
+        aria-label="Disabled Input" 
+        disabled
     />
 </Preview>
 
@@ -40,8 +42,9 @@ import { Input } from './';
 
 <Preview>
     <Input
-    inError
-    aria-label="Error Input"
+        id="inputStory3"
+        inError
+        aria-label="Error Input"
     />
 </Preview>
 
@@ -49,8 +52,9 @@ import { Input } from './';
 
 <Preview>
     <Input
-    inWarning
-    aria-label="Warning Input"
+        id="inputStory4"
+        inWarning
+        aria-label="Warning Input"
     />
 </Preview>
 
@@ -58,20 +62,22 @@ import { Input } from './';
 
 <Preview>
     <Input
-    icon="search"
-    aria-label="Icon Input"
+        icon="search"
+        id="inputStory5"
+        aria-label="Icon Input"
     />
     <br/>
      <Input
-     inError
-    icon="times-circle"
-    aria-label="Icon Input"
+        inError
+        icon="times-circle"
+        aria-label="Icon Input"
     />
         <br/>
      <Input
-     inWarning
-    icon="exclamation-circle"
-    aria-label="Icon Input"
+        id="inputStory6"
+        inWarning
+        icon="exclamation-circle"
+        aria-label="Icon Input"
     />
 </Preview>
 
