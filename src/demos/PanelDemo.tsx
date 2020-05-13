@@ -53,7 +53,7 @@ export const PanelDark = () => {
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Panel id="panel1" fixed={false} title="Dialog">
           Dialog content
-          <Input placeholder="input placeholder" />
+          <Input id="panelInput" placeholder="input placeholder" />
         </Panel>
       </FCThemeProvider>
     </DarkModeWrapper>

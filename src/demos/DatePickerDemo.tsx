@@ -7,6 +7,7 @@ export const DatePickerDemo = (): ReactElement => {
   const [date, setDate] = useState('');
   return (
     <DatePicker
+      id="Date1"
       placeholder="MM/DD/YYYY"
       onChange={(date): void => {
         if (date) {
@@ -24,6 +25,7 @@ export const DatePickerDarkDemo = (): ReactElement => {
     <FCThemeProvider value={{ theme: 'dark' }}>
       <DarkModeWrapper>
         <DatePicker
+          id="Date2"
           placeholder="MM/DD/YYYY"
           onChange={(date): void => {
             if (date) {

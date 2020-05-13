@@ -13,9 +13,15 @@ export const ToggleDemo = () => {
     <>
       <Button onClick={() => setDisabled(!disabled)}>Toggle disabled state</Button>
       <br /> <br />
-      <Toggle disabled={disabled} active={active} onClick={() => setActive(!active)} />
+      <Toggle id="toggledemo1" disabled={disabled} active={active} onClick={() => setActive(!active)} />
       <br />
-      <Toggle disabled={disabled} active={activeLabels} showLabels onClick={() => setActiveLabels(!activeLabels)} />
+      <Toggle
+        id="toggledemo2"
+        disabled={disabled}
+        active={activeLabels}
+        showLabels
+        onClick={() => setActiveLabels(!activeLabels)}
+      />
     </>
   );
 };
@@ -32,9 +38,15 @@ export const ToggleDark = () => {
         <DarkModeWrapper>
           <Button onClick={() => setDisabled(!disabled)}>Toggle disabled state</Button>
           <br /> <br />
-          <Toggle disabled={disabled} active={active} onClick={() => setActive(!active)} />
+          <Toggle id="toggledemo3" disabled={disabled} active={active} onClick={() => setActive(!active)} />
           <br />
-          <Toggle disabled={disabled} active={activeLabels} showLabels onClick={() => setActiveLabels(!activeLabels)} />
+          <Toggle
+            id="toggledemo1"
+            disabled={disabled}
+            active={activeLabels}
+            showLabels
+            onClick={() => setActiveLabels(!activeLabels)}
+          />
         </DarkModeWrapper>
       </FCThemeProvider>
     </>
