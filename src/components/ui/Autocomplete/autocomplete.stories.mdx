@@ -6,12 +6,16 @@ import { Icon } from '../../icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { AutocompleteDemo,AutocompleteDemoFormatter } from "../../../demos/AutocompleteDemo";
 import { Autocomplete } from './';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 <Meta title="Components / Auto Complete" component={Autocomplete} parameters={{ component: Autocomplete }} />
 
 # Autocomplete
 
 The Autocomplete component will show a list of items when a value is typed into the text input.
+
+
 
 <Story name="Autocomplete" parameters={{ docs: { disable: true }}}>
 	<Autocomplete
@@ -20,6 +24,20 @@ The Autocomplete component will show a list of items when a value is typed into 
  		aria-label="Search for a fruit"
  	/>
 </Story>
+
+<Story name="Autocomplete Dark mode"   
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+ parameters={{ docs: { disable: true }}}>
+  <FCThemeProvider value={{theme: 'dark'}}>
+		<Autocomplete
+			icon="filter"
+			id="ac1"
+			items={['Apple', 'Banana', 'Pear']}
+ 			aria-label="Search for a fruit"
+ 		/>
+	</FCThemeProvider>
+</Story>
+
 
 ## Default
 <Autocomplete

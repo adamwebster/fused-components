@@ -5,6 +5,9 @@ import { action, actions } from "@storybook/addon-actions";
 import { Badge } from './';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { BadgeDemoDarkMode } from "../../../demos/BadgeDemo";
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
+
 
 <Meta title="Components / Badge" component={Badge} parameters={{ component: Badge }} />
 
@@ -27,6 +30,40 @@ The badge component highlight some text in varying styles.
 <Story name="Badge Success" parameters={{ docs: { disable: true }}}>
     <Badge fcStyle='success'>Info</Badge>
 </Story>
+
+
+<Story name="Badge Info Dark Mode" 
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+ parameters={{ docs: { disable: true }}}>
+     <FCThemeProvider value={{theme: 'dark'}}>
+        <Badge fcStyle='info'>Info</Badge>
+    </FCThemeProvider>
+</Story>
+
+<Story name="Badge Warning Dark Mode"
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+ parameters={{ docs: { disable: true }}}>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Badge fcStyle='warning'>Info</Badge>
+    </FCThemeProvider>
+</Story>
+
+<Story name="Badge Danger Dark Mode" 
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true }}}>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Badge fcStyle='danger'>Info</Badge>
+    </FCThemeProvider>
+</Story>
+
+<Story name="Badge Success Dark Mode"
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true }}}>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Badge fcStyle='success'>Info</Badge>
+    </FCThemeProvider>
+</Story>
+
 
 <Preview>
       <Badge>Badge</Badge>
