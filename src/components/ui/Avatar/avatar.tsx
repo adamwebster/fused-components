@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { StyledAvatar } from './style';
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** Sets the size of the avatar */
   size?: 'tiny' | 'small' | 'medium' | 'large';
   /** Sets the border radius of the avatar */
@@ -12,7 +12,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   image?: string;
 }
 
-export const Avatar = ({
+const Avatar = ({
   size = 'small',
   borderRadius = 'rounded',
   boxShadow = false,
@@ -23,3 +23,5 @@ export const Avatar = ({
     <StyledAvatar role="img" size={size} borderRadius={borderRadius} boxShadow={boxShadow} image={image} {...rest} />
   );
 };
+
+export default Avatar;

@@ -26,8 +26,7 @@ export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   /** What the button should be rendered as for example as="a" */
   as?: string;
 }
-
-export const Button = React.forwardRef<HTMLButtonElement, Props>(
+const Button = React.forwardRef<HTMLButtonElement, Props>(
   (
     {
       buttonColor,
@@ -76,3 +75,5 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
 );
 
 Button.displayName = 'Button';
+
+export default Button;

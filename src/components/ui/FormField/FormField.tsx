@@ -3,7 +3,7 @@ import { Label } from '../Label';
 import { HintText, RequiredMark, ValidationMessage, InputWrapper, FormFieldWrapper } from './style';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** The label for the input field */
   label?: string;
   /** Hint text for the label */
@@ -19,7 +19,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   children: ReactNode;
 }
-export const FormField = ({
+const FormField = ({
   label,
   hint,
   required = false,
@@ -55,3 +55,5 @@ export const FormField = ({
 };
 
 FormField.displayName = 'FormField';
+
+export default FormField;

@@ -19,3 +19,5 @@ export const Label = ({ children, ...rest }: Props): ReactElement => {
 };
 
 Label.displayName = 'Label';
+
+export default Label;

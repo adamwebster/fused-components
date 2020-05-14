@@ -89,14 +89,8 @@ const PanelComponent = ({
       >
         <DialogTitle theme={theme.theme} fcStyle={fcStyle}>
           <h2 id={`${id}_title`}>{title}</h2>
-          <CloseButton
-            title="Close panel"
-            theme={theme.theme}
-            onClick={(): void => onCloseClick()}
-            aria-label="Close"
-            ref={closeButton}
-          >
-            <Icon icon="times" />
+          <CloseButton title="Close panel" theme={theme.theme} onClick={(): void => onCloseClick()} ref={closeButton}>
+            <Icon icon="times" aria-label="Close" />
           </CloseButton>
         </DialogTitle>
         <DialogContent>

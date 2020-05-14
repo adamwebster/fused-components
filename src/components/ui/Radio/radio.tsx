@@ -3,7 +3,7 @@ import { Label, IconStyled, RadioInput } from './style';
 import { Icon } from '../../icon';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
-export interface Props extends React.HTMLProps<HTMLInputElement> {
+interface Props extends React.HTMLProps<HTMLInputElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /**
@@ -33,7 +33,7 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
    */
   radioTabIndex?: number;
 }
-export const Radio = React.forwardRef<HTMLSpanElement, Props>(
+const Radio = React.forwardRef<HTMLSpanElement, Props>(
   (
     {
       children,
@@ -87,3 +87,5 @@ export const Radio = React.forwardRef<HTMLSpanElement, Props>(
 );
 
 Radio.displayName = 'Radio';
+
+export default Radio;

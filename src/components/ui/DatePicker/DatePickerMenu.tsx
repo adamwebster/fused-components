@@ -53,7 +53,7 @@ const DatePickerMenu = ({
     <>
       {menuOpened && (
         <CalendarMenu
-          onKeyDown={e => {
+          onKeyDown={(e: any) => {
             if (e.keyCode === 27) {
               e.preventDefault();
               if (menuRef.current) {

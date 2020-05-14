@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { fcStyles } from '../../../common/types';
 import { DialogComponent } from './dialogComponent';
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Sets if the dialog has a box shadow */
@@ -35,7 +35,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** The id of the element that should have focus when the dialog opens */
   focusElement?: string | null | undefined;
 }
-export const Dialog = ({
+const Dialog = ({
   boxShadow = true,
   title,
   visible,
@@ -81,3 +81,5 @@ export const Dialog = ({
     document.body,
   );
 };
+
+export default Dialog;

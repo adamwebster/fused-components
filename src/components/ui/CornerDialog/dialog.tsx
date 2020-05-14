@@ -43,8 +43,10 @@ const CornerDialogPopover = ({
   ...rest
 }: Props): ReactElement => {
   const [show, setShow] = useState(false);
-
   const dialogRef = useRef<HTMLDivElement | null>(null);
+  const componentChildren = children;
+  const componentIcon = icon;
+
   useEffect(() => {
     if (!visible) {
       setTimeout(() => {
@@ -78,12 +80,12 @@ const CornerDialogPopover = ({
                 </CloseButton>
               </DialogTitle>
               <DialogContent id={`${id}-body`} theme={themeContext.theme}>
-                {icon && (
+                {componentIcon && (
                   <IconStyled theme={themeContext.theme} fcStyle={fcStyle}>
-                    <Icon icon={icon} />
+                    <Icon icon={componentIcon} />
                   </IconStyled>
                 )}
-                <DialogText>{children}</DialogText>
+                <DialogText>{componentChildren}</DialogText>
               </DialogContent>
               <DialogFooter fcStyle={fcStyle} theme={themeContext.theme}>
                 <Button

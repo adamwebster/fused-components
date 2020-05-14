@@ -1,35 +1,43 @@
-import React, { useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
-import { ComboboxWrapper, MenuItemStyled, CaretIcon, ItemIcon, InputStyled } from './style';
+import React, { useState, useRef, useEffect, ReactElement, ReactNode, FormEvent } from 'react';
+import { Input } from '../Input';
 import { Icon } from '../../icon';
+import { AutocompleteWrapper, MenuItemStyled, ItemIcon, NoItemFound } from './style';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 import { Placement as PopperPlacements } from '@popperjs/core';
 import PopOutMenu from '../PopoutMenu/PopOutMenu';
 
-export interface Props extends React.HTMLAttributes<HTMLInputElement> {
-  /** The id of the element. Required for accessibility.  */
+interface Props extends React.HTMLAttributes<HTMLInputElement> {
+  // The id of the element. Required for accessibility.
   id: string;
-  /** An array of items */
+  /** Defines what items are sent to the auto complete component*/
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: Array<any>;
-  /** Icon to show in the input */
+  /** What icon to show for the auto complete input */
   inputIcon?: string;
-  /** If the input should be in error */
+  /** If the input should be in its error state */
   inError?: boolean;
-  /** If the input should be in warning */
+  /** If the input should be in its warning state */
   inWarning?: boolean;
-  /** If the item should be disabled */
+  /** If the input should be disabled */
   disabled?: boolean;
-  /** The placeholder for the input */
+  /** The placeholder text for the input */
   placeholder?: string;
-  /** Defines the formatting for the item. Returns the index of the item */
+  /** Define what an item in the dropdown menu looks */
   itemFormatter?: (index: number) => ReactElement;
-  /** What key should be search in the data that you send to the Combobox */
+  /** Used in conjunction with item formatter to define what key in your data that should be searched */
   keyToSearch?: string;
-  /** Sets the placement of the dropdown menu */
+  /** The onChange handler for the input. Returns the element */
+  onChange?: (event: FormEvent<HTMLInputElement>) => void;
+  /** What should happen when an item in the menu is clicked. Returns the index of the item clicked */
+  onItemClick?: (index: number) => void;
+  /** If you would like the value to be empty when an item is selected add this property */
+  clearValueOnSelect?: boolean;
+  /**  Sets the placement of the dropdown menu */
   placement?: PopperPlacements;
 }
 
-export const Combobox = ({
+const Autocomplete = ({
+  id,
   items,
   inputIcon,
   inError,
@@ -38,7 +46,9 @@ export const Combobox = ({
   placeholder,
   itemFormatter,
   keyToSearch,
-  id,
+  onChange,
+  onItemClick,
+  clearValueOnSelect,
   placement = 'bottom-start',
   ...rest
 }: Props): ReactElement => {
@@ -48,14 +58,12 @@ export const Combobox = ({
   const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
   const [activeDescendant, setActiveDescendant] = useState('');
-  const [activeListItem, setActiveListItem] = useState<HTMLLIElement | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeListItem, setActiveListItem] = useState<HTMLLIElement | null>(null);
   const filterRef = useRef<HTMLInputElement>(('' as unknown) as HTMLInputElement);
   const menuRef = useRef<HTMLUListElement>(('' as unknown) as HTMLUListElement);
-
-  // const containerRef = useRef<HTMLDivElement>(('' as unknown) as HTMLDivElement);
   const itemRefs: Array<HTMLLIElement> = [];
-  const isMounted = useRef(true);
+  const autoCompleteRef = useRef<HTMLDivElement>(('' as unknown) as HTMLDivElement);
 
   const formatItems = (): void => {
     if (itemFormatter) {
@@ -75,34 +83,15 @@ export const Combobox = ({
         });
       });
       setFormattedItems(formattedItemsReturned);
-      setItemsToShow(formattedItemsReturned);
-    }
-  };
-
-  const checkIfParent = (el: HTMLElement, elToCompare: unknown): boolean => {
-    while (el.parentNode) {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      el = el.parentNode as HTMLElement;
-      if (el === elToCompare) return true;
-    }
-    return false;
-  };
-  const handleClickOutside = (e: any): void => {
-    const element: HTMLElement = e.target;
-    const test = checkIfParent(element as HTMLElement, menuRef.current);
-    if (!test) {
-      if (menuOpen) {
-        if (menuRef.current) {
-          setMenuOpen(false);
-          setActiveDescendant('');
-        }
-      }
     }
   };
 
   const setValue = (value: React.SetStateAction<string>): void => {
-    setFilterValue(value);
-
+    if (clearValueOnSelect) {
+      setFilterValue('');
+    } else {
+      setFilterValue(value);
+    }
     setItemSelected(value);
     setMenuOpen(false);
     setActiveDescendant('');
@@ -117,6 +106,9 @@ export const Combobox = ({
           setValue(itemsToShow[itemSelectedIndex][keyToSearch]);
         } else {
           setValue(itemsToShow[itemSelectedIndex].label);
+        }
+        if (onItemClick) {
+          onItemClick(itemSelectedIndex);
         }
       }
       // Escape Key
@@ -144,18 +136,14 @@ export const Combobox = ({
         }
       }
       // Up key
+
       if (e.keyCode === 38) {
         e.preventDefault();
-        if (itemSelectedIndex >= 1) {
+        if (itemSelectedIndex != 0) {
           setActiveListItem(itemRefs[itemSelectedIndex - 1]);
           setItemSelectedIndex(itemSelectedIndex - 1);
           setActiveDescendant(itemsToShow[itemSelectedIndex + -1].htmlID);
         }
-      }
-    } else {
-      if (e.keyCode === 40) {
-        e.preventDefault();
-        setMenuOpen(true);
       }
     }
   };
@@ -182,31 +170,30 @@ export const Combobox = ({
     }
   };
 
-  const onChangeFunc = (e: { target: { value: string } }): void => {
+  const onChangeFunc = (e: any): void => {
+    if (onChange) {
+      onChange(e);
+    }
     setFilterValue(e.target.value);
     filterItems(e.target.value);
   };
 
   useEffect(() => {
-    window.addEventListener('mousedown', e => handleClickOutside(e));
-    return (): void => {
-      window.removeEventListener('mousedown', e => handleClickOutside(e));
-    };
-  });
-
-  useEffect(() => {
     formatItems();
-  }, [menuOpen]);
+  }, [items]);
 
   useEffect(() => {
-    return () => {
-      isMounted.current === false;
-    };
-  }, []);
+    if (onChange) {
+      formatItems();
+      filterItems(filterValue);
+    }
+  }, [items]);
+
   let ariaProps: any = {
     'aria-controls': id + '-menu',
     'aria-expanded': false,
   };
+
   if (activeDescendant) {
     ariaProps = { ...ariaProps, 'aria-activedescendant': activeDescendant };
   }
@@ -216,19 +203,19 @@ export const Combobox = ({
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
-        <ComboboxWrapper onClick={(): void => setMenuOpen(!menuOpen)}>
-          <InputStyled
+        <AutocompleteWrapper ref={autoCompleteRef}>
+          <Input
             id={id}
             value={filterValue}
             icon={inputIcon}
             ref={filterRef}
-            onChange={(e: { target: { value: string } }): void => onChangeFunc(e)}
+            onChange={(e): void => onChangeFunc(e)}
             placeholder={placeholder}
             inError={inError}
             inWarning={inWarning}
             disabled={disabled}
-            theme={themeContext.theme}
             autoComplete="off"
+            theme={themeContext.theme}
             role="combobox"
             onKeyDown={e => handleUserKeyPress(e)}
             {...ariaProps}
@@ -236,7 +223,7 @@ export const Combobox = ({
           />
           {menuOpen && (
             <PopOutMenu
-              aria-label="Combobox Menu"
+              aria-label="Autocomplete Menu"
               role="listbox"
               id={`${id}-menu`}
               ref={menuRef}
@@ -244,18 +231,22 @@ export const Combobox = ({
               placement={placement}
             >
               <>
-                {itemsToShow.map((item: any, index) => {
+                {itemsToShow.map((item, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;
+
                   return (
                     <MenuItemStyled
                       role="option"
                       theme={themeContext.theme}
-                      id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
-                      onMouseDown={(): void => setValue(value)}
+                      id={item.htmlID}
+                      onClick={(): void => {
+                        setValue(value);
+                        if (onItemClick) onItemClick(item.index);
+                      }}
                       onMouseEnter={(e: any): void => {
                         setActiveDescendant(e.target.id);
                       }}
-                      key={item.label}
+                      key={item.index}
                       ref={(ref: HTMLLIElement): void => {
                         itemRefs[index] = ref;
                       }}
@@ -263,7 +254,7 @@ export const Combobox = ({
                       aria-selected={index === itemSelectedIndex ? 'true' : 'false'}
                     >
                       {itemFormatter ? (
-                        itemFormatter(index)
+                        itemFormatter(item.index)
                       ) : (
                         <>
                           <span aria-label={`${item.label} press enter to choose this option`}>
@@ -280,15 +271,17 @@ export const Combobox = ({
                   );
                 })}
               </>
-
-              {itemsToShow.length === 0 && <MenuItemStyled theme={themeContext.theme}>Nothing found</MenuItemStyled>}
+              {itemsToShow.length === 0 && (
+                <NoItemFound role="alert" theme={themeContext.theme}>
+                  Nothing found
+                </NoItemFound>
+              )}
             </PopOutMenu>
           )}
-          <CaretIcon>
-            <Icon title={menuOpen ? 'Menu open' : 'Menu closed'} icon={menuOpen ? 'caret-up' : 'caret-down'} />
-          </CaretIcon>
-        </ComboboxWrapper>
+        </AutocompleteWrapper>
       )}
     </FCThemeConsumer>
   );
 };
+
+export default Autocomplete;

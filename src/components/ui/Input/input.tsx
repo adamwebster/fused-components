@@ -3,7 +3,7 @@ import { StyledInput, InputWrapper, IconWrapper } from './style';
 import { Icon } from '../../icon';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props extends React.HTMLAttributes<HTMLInputElement> {
+interface Props extends React.HTMLAttributes<HTMLInputElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Set the icon for the input */
@@ -33,7 +33,7 @@ export interface Props extends React.HTMLAttributes<HTMLInputElement> {
    */
   autoComplete?: string;
 }
-export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
+const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
   const theme = useContext(FCTheme);
   const { id, inError, inWarning, icon, readOnly, autoComplete, ...rest } = props;
   return (
@@ -59,3 +59,5 @@ export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => 
 });
 
 Input.displayName = 'Input';
+
+export default Input;

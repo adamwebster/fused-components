@@ -4,7 +4,7 @@ import { Placement as PopperPlacements } from '@popperjs/core';
 import { TooltipWrapper, TooltipButton } from './style';
 import TooltipComponent from './tooltipPopover';
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   /** Set the content of the tooltip */
   content?: ReactNode;
@@ -24,7 +24,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   triggerAs?: string;
 }
 
-export const Tooltip = ({
+const Tooltip = ({
   children,
   triggerEvent,
   content,

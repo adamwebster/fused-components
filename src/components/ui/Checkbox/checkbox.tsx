@@ -3,7 +3,7 @@ import { Label, IconStyled, CheckInput } from './style';
 import { Icon } from '../../icon/';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
-export interface Props extends React.HTMLProps<HTMLInputElement> {
+interface Props extends React.HTMLProps<HTMLInputElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Set to true if the checkbox is checked */
@@ -20,7 +20,7 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
   children?: ReactNode;
 }
 
-export const Checkbox = ({
+const Checkbox = ({
   children,
   checked = false,
   inError = false,
@@ -46,3 +46,5 @@ export const Checkbox = ({
     </FCThemeConsumer>
   );
 };
+
+export default Checkbox;

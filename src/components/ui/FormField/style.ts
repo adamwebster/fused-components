@@ -3,7 +3,7 @@ import { color } from '../../../styles/styles';
 
 export const HintText = styled.p`
   font-size: 0.9em;
-  color: ${(props): string => (props.theme === 'dark' ? color.medium : color.mediumdark)};
+  color: ${(props): string => (props.theme === 'dark' ? color.medium : color.dark)};
   margin-top: 3px;
   margin-bottom: 3px;
 `;

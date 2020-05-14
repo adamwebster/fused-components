@@ -23,7 +23,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onMouseOver?: () => void;
   onMouseOut?: () => void;
 }
-export const Alert = ({
+const Alert = ({
   fcStyle,
   title,
   icon,
@@ -65,3 +65,5 @@ export const Alert = ({
     </FCThemeConsumer>
   );
 };
+
+export default Alert;

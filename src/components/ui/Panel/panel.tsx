@@ -4,7 +4,7 @@ import PanelComponent from './panelComponent';
 import { fcStyles } from '../../../common/types';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Set the style for the panel. "danger" | "warning" | "info" | "success" */
@@ -32,7 +32,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** What element that should have focus when the panel opens */
   focusElement?: string;
 }
-export const Panel = ({
+const Panel = ({
   fcStyle,
   title,
   onCloseClick = (): void => undefined,
@@ -88,3 +88,5 @@ export const Panel = ({
     document.body,
   );
 };
+
+export default Panel;

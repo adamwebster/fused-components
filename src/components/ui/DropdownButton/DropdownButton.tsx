@@ -9,7 +9,7 @@ import DropdownButtonButton from './DropdownButtonButton';
 import DropdownButtonChildren from './DropdownButtonChildren';
 import { Placement as PopperPlacements } from '@popperjs/core';
 
-export interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface Props extends HTMLAttributes<HTMLButtonElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Set the button to be primary */
@@ -29,7 +29,7 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   /** Set what element the button should be rended as for example as="a" */
   as?: string;
 }
-export const DropdownButton = ({
+const DropdownButton = ({
   primary,
   label,
   fcStyle,
@@ -73,3 +73,5 @@ const MenuDividerComponent = () => {
 DropdownButton.Menu = DropdownMenu;
 DropdownButton.MenuItem = MenuItem;
 DropdownButton.Divider = MenuDividerComponent;
+
+export default DropdownButton;

@@ -31,7 +31,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   children: ReactNode;
 }
-export const CornerDialog = ({
+const CornerDialog = ({
   fixed = true,
   onCloseClick = (): void => undefined,
   onConfirmClick = (): void => undefined,
@@ -85,3 +85,5 @@ export const CornerDialog = ({
     element,
   );
 };
+
+export default CornerDialog;

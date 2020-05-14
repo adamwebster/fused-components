@@ -7,13 +7,13 @@ import styled, {
 } from 'styled-components';
 import { color } from '../../../styles/styles';
 import { darken } from 'polished';
-import { Props } from './';
 import { fcStyles } from '../../../common/types';
 
 interface ColorProps {
   theme?: unknown;
   buttonColor?: string;
   fcStyle?: fcStyles;
+  icon?: string;
 }
 const colorValue = (props: ColorProps): string => {
   switch (props.fcStyle) {
@@ -60,7 +60,7 @@ const primaryColorValueHover = (props: ColorProps): string => {
   }
 };
 
-const colorValueDarken = (props: Props): string => {
+const colorValueDarken = (props: ColorProps): string => {
   switch (props.fcStyle) {
     case 'danger':
       return darken(0.1, color.danger);
@@ -75,7 +75,7 @@ const colorValueDarken = (props: Props): string => {
   }
 };
 
-const primaryFontColor = (props: Props): string => {
+const primaryFontColor = (props: ColorProps): string => {
   switch (props.fcStyle) {
     case 'warning':
       return color.warningButtonFont;
@@ -84,7 +84,12 @@ const primaryFontColor = (props: Props): string => {
   }
 };
 
-export const StyledIcon = styled.span`
+interface SI {
+  primary?: boolean;
+  fcStyle?: fcStyles;
+}
+
+export const StyledIcon = styled.span<SI>`
   background-color: rgba(0, 0, 0, 0.2);
   margin-right: 5px;
   padding: 5px;
@@ -96,7 +101,7 @@ export const StyledIcon = styled.span`
   height: 24px;
   vertical-align: middle;
   color: #fff;
-  ${(props: Props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> =>
+  ${(props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> =>
     !props.primary &&
     css`
       background-color: ${colorValue};
@@ -167,7 +172,7 @@ export const StyledButton = styled.button<SB>`
         }
       `}
 
-   ${(props): false | FlattenInterpolation<ThemedStyledProps<Props, unknown>> =>
+   ${(props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> =>
      props.as === 'a' &&
      css`
        border: none;

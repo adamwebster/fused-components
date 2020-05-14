@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode, HTMLAttributes } from 'react';
 import { ToggleWrapper, Slider, ToggleLabel } from './style';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
-export interface Props extends HTMLAttributes<HTMLDivElement> {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** If the toggle is active or not */
@@ -14,7 +14,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** If the toggle is disabled or not */
   disabled?: boolean;
 }
-export const Toggle = ({
+const Toggle = ({
   id,
   active = false,
   showLabels = false,
@@ -68,3 +68,5 @@ export const Toggle = ({
     </FCThemeConsumer>
   );
 };
+
+export default Toggle;
