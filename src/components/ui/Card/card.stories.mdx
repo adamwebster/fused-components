@@ -4,21 +4,32 @@ import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { CardDarkMode } from "../../../demos/CardDemo";
-
+import {Input, Label, Button} from "../../../components";
 import { Card } from './';
 
 <Meta title="Components / Card" component={Card} parameters={{ component: Card }} />
 
 # Card
 
-## An Card component 
+Use the card to highlight a piece of content or as a wrapper for other elements, for example a login form.
 
 ## Default
 
 
 <Preview>
     <Story name="Card">
-        <Card boxShadow borderRadius="5px">Card</Card>
+        <Card boxShadow borderRadius="5px" style={{padding: 10 + 'px'}}>
+            <div style={{marginBottom: 10 + 'px'}}>
+                <Label htmlFor="username">Username</Label>
+                <Input id="username" />
+            </div>
+            <div style={{marginBottom: 10 + 'px'}}>
+                <Label htmlFor="password">Password</Label>
+                <Input type="password" id="password" />
+            </div>
+            <Button icon="lock-locked" primary style={{marginRight: 5 + 'px'}}>Login</Button>
+            <Button>Forgot Password</Button>
+        </Card>
     </Story>
 </Preview>
 

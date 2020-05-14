@@ -31,7 +31,7 @@ export const color = {
   darker: '#444444',
   darkest: '#333333',
   overlay: 'rgba(0,0,0,.5)',
-  border: 'rgba(0,0,0,.1)',
+  border: '#bcbcbc',
   darkModeBG: '#102A43',
   darkModeDarkest: '#102A43',
   darkModeDarker: '#243b53',

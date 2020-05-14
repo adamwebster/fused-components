@@ -44,9 +44,7 @@ interface Props {
    * @ignore
    */
   setMenuOpen?: (value: boolean) => void;
-  /**
-   * @ignore
-   */
+  /** Set the date format that should be returned by the onChange event. */
   dateFormat?: string;
 }
 const Calendar = ({

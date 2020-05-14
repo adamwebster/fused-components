@@ -9,13 +9,15 @@ import { Calendar } from './';
 
 # Calendar
 
-## An Calendar component
+The calendar component can be used when you would like to show an calendar. It uses [dayjs](https://github.com/iamkun/dayjs) behind the scene to help with the date formatting.
+
+If you use **onChange** it will pass back the formatted date in the specified format that you pass in the **dateFormat** property (defaults to MM/DD/YYYY).
 
 ## Default
 
 <Preview>
   <Story name="Calendar">
-    <Calendar />
+    <Calendar onChange={(date) => console.log(date)} />
   </Story>
 </Preview>
 
