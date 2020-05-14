@@ -1,11 +1,11 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 
 import { TableCellStyled } from './style';
 
 import { TableContextContextConsumer } from './TableContext';
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLTableCellElement> {
   children: ReactNode;
 }
 const TableCell = ({ children, ...rest }: Props): ReactElement => {

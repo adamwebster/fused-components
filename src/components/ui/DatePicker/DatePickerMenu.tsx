@@ -3,7 +3,7 @@ import { Calendar } from '../Calendar';
 import { CalendarMenu } from './style';
 import { Placement as PopperPlacements } from '@popperjs/core';
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLUListElement> {
   menuOpened: boolean;
   value: string | undefined;
   changeDate: (date: string) => void;
@@ -20,6 +20,7 @@ const DatePickerMenu = ({
   setMenuOpen,
   dateFormat,
   placement,
+  ...rest
 }: Props): ReactElement => {
   const menuRef = useRef(null);
   const handleClickOutside = (e: MouseEvent): void => {
@@ -67,6 +68,7 @@ const DatePickerMenu = ({
           fitWidthToContent
           referenceElement={inputRef.current}
           placement={placement}
+          {...rest}
         >
           <Calendar
             dateFormat={dateFormat}

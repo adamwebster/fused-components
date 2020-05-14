@@ -1,8 +1,8 @@
-import React, { useContext, ReactElement, TextareaHTMLAttributes } from 'react';
+import React, { useContext, ReactElement } from 'react';
 import { StyledTextarea } from './styles';
 import { FCTheme } from '../../../theming/FCTheme';
 
-interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
 }

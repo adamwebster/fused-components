@@ -1,20 +1,27 @@
 import React, { ReactNode, ReactElement, useState, useEffect } from 'react';
 import { Radio } from '../Radio';
 import { RadioWrapper } from './style';
-interface Props {
+
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @ignore
    */
   children: ReactNode;
   /** What happens when the radio that is selected changes.  Passes back the value of the radio */
-  onChange?: (value: string) => void;
+  onRadioChanged?: (value: string) => void;
   /** If the inputs should be displayed inline or not */
   inline?: boolean;
   /** The value of the radio that is selected in the radio group. */
   selectedValue?: string;
 }
 
-const RadioGroup = ({ children, onChange = (): void => undefined, inline, selectedValue }: Props): ReactElement => {
+const RadioGroup = ({
+  children,
+  onRadioChanged = (): void => undefined,
+  inline,
+  selectedValue,
+  ...rest
+}: Props): ReactElement => {
   const [radioItems, setRadioItems] = useState<Array<any>>([]);
   const [checkedItem, setCheckedItem] = useState(0);
   const radioRefs: any = [];
@@ -24,11 +31,11 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline, select
     if (checkedItem + 1 !== radioRefs.length) {
       setCheckedItem(checkedItem + 1);
       radioRefs[checkedItem + 1].focus();
-      onChange(radioItems[checkedItem + 1].props.value);
+      onRadioChanged(radioItems[checkedItem + 1].props.value);
     } else {
       setCheckedItem(0);
       radioRefs[0].focus();
-      onChange(radioItems[0].props.value);
+      onRadioChanged(radioItems[0].props.value);
     }
   };
 
@@ -37,11 +44,11 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline, select
     if (checkedItem !== 0) {
       setCheckedItem(checkedItem - 1);
       radioRefs[checkedItem - 1].focus();
-      onChange(radioItems[checkedItem - 1].props.value);
+      onRadioChanged(radioItems[checkedItem - 1].props.value);
     } else {
       setCheckedItem(radioRefs.length - 1);
       radioRefs[radioRefs.length - 1].focus();
-      onChange(radioItems[radioRefs.length - 1].props.value);
+      onRadioChanged(radioItems[radioRefs.length - 1].props.value);
     }
   };
 
@@ -55,7 +62,7 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline, select
     if (e.key === ' ') {
       e.preventDefault();
       setCheckedItem(index);
-      onChange(radioItems[index].props.value);
+      onRadioChanged(radioItems[index].props.value);
     }
   };
 
@@ -73,10 +80,10 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline, select
   }, [children]);
 
   return (
-    <div>
+    <>
       {radioItems.map((radio: any, index) => {
         return (
-          <RadioWrapper inline={inline} key={radio.props.id}>
+          <RadioWrapper inline={inline} key={radio.props.id} {...rest}>
             <Radio
               onKeyDown={(e: any): void => handleKeyDown(e, index)}
               checked={checkedItem === index || false}
@@ -85,7 +92,7 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline, select
               value={radio.props.value}
               radioTabIndex={0}
               onClick={(): void => {
-                onChange(radio.props.value);
+                onRadioChanged(radio.props.value);
                 setCheckedItem(index);
                 radioRefs[index].focus();
               }}
@@ -95,7 +102,7 @@ const RadioGroup = ({ children, onChange = (): void => undefined, inline, select
           </RadioWrapper>
         );
       })}
-    </div>
+    </>
   );
 };
 

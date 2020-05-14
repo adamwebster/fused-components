@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
+import React, { useState, useRef, useEffect, ReactElement, ReactNode, FormEvent } from 'react';
 import { Input } from '../Input';
 import { Icon } from '../../icon';
 import { AutocompleteWrapper, MenuItemStyled, ItemIcon, NoItemFound } from './style';
@@ -6,7 +6,7 @@ import { FCThemeConsumer } from '../../../theming/FCTheme';
 import { Placement as PopperPlacements } from '@popperjs/core';
 import PopOutMenu from '../PopoutMenu/PopOutMenu';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   // The id of the element. Required for accessibility.
   id: string;
   /** Defines what items are sent to the auto complete component*/
@@ -27,7 +27,7 @@ export interface Props {
   /** Used in conjunction with item formatter to define what key in your data that should be searched */
   keyToSearch?: string;
   /** The onChange handler for the input. Returns the element */
-  onChange?: (e: { target: { value: string } }) => void;
+  onChange?: (event: FormEvent<HTMLInputElement>) => void;
   /** What should happen when an item in the menu is clicked. Returns the index of the item clicked */
   onItemClick?: (index: number) => void;
   /** If you would like the value to be empty when an item is selected add this property */
@@ -170,7 +170,7 @@ export const Autocomplete = ({
     }
   };
 
-  const onChangeFunc = (e: { target: { value: string } }): void => {
+  const onChangeFunc = (e: any): void => {
     if (onChange) {
       onChange(e);
     }

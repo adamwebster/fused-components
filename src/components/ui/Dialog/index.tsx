@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { fcStyles } from '../../../common/types';
 import { DialogComponent } from './dialogComponent';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Sets if the dialog has a box shadow */
@@ -48,6 +48,7 @@ export const Dialog = ({
   showOverlay = true,
   cancelText = 'Cancel',
   focusElement,
+  ...rest
 }: Props): ReactElement => {
   const dialogProps = {
     boxShadow,
@@ -64,7 +65,7 @@ export const Dialog = ({
   };
   if (!fixed) {
     return (
-      <DialogComponent focusElement={null} {...dialogProps}>
+      <DialogComponent focusElement={null} {...dialogProps} {...rest}>
         {children}
       </DialogComponent>
     );
@@ -72,7 +73,7 @@ export const Dialog = ({
   return ReactDOM.createPortal(
     <>
       {visible && (
-        <DialogComponent focusElement={focusElement} {...dialogProps}>
+        <DialogComponent focusElement={focusElement} {...dialogProps} {...rest}>
           {children}
         </DialogComponent>
       )}

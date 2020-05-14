@@ -1,4 +1,4 @@
-import React, { useContext, ReactElement, ReactNode } from 'react';
+import React, { useContext, ReactElement, ReactNode, HTMLAttributes } from 'react';
 import { DropdownButtonWrapper, MenuDivider } from './style';
 import { DropdownMenu } from './DropdownMenu';
 import MenuItem from './MenuItem';
@@ -9,7 +9,7 @@ import DropdownButtonButton from './DropdownButtonButton';
 import DropdownButtonChildren from './DropdownButtonChildren';
 import { Placement as PopperPlacements } from '@popperjs/core';
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLButtonElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Set the button to be primary */
@@ -38,6 +38,7 @@ export const DropdownButton = ({
   as,
   id,
   placement = 'bottom-start',
+  ...rest
 }: Props): ReactElement => {
   const theme = useContext(FCTheme);
   const state = {
@@ -55,7 +56,7 @@ export const DropdownButton = ({
   return (
     <DropdownButtonWrapper renderAs={as}>
       <DropdownMenuProvider state={state}>
-        <DropdownButtonButton buttonColor={buttonColor} label={label} primary={primary} fcStyle={fcStyle} />
+        <DropdownButtonButton buttonColor={buttonColor} label={label} primary={primary} fcStyle={fcStyle} {...rest} />
         <DropdownButtonChildren>{children}</DropdownButtonChildren>
       </DropdownMenuProvider>
     </DropdownButtonWrapper>

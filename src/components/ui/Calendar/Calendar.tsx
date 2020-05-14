@@ -23,7 +23,7 @@ dayjs.extend(advancedFormat);
 dayjs.extend(isoWeek);
 dayjs.extend(duration);
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** What should happens when the day selected changes. Sends back the date */
   onChange?: (date: any) => void;
   /** The date that is selected in the calendar */
@@ -56,6 +56,7 @@ const Calendar = ({
   menuRef,
   setMenuOpen,
   dateFormat = 'MM/DD/YYYY',
+  ...rest
 }: Props): React.ReactElement => {
   const dateToSet = selectedDate ? dayjs(selectedDate) : dayjs();
   const [daysOfTheWeek] = useState(
@@ -335,7 +336,7 @@ const Calendar = ({
   };
 
   return (
-    <CalendarWrapper calendarWidth={size}>
+    <CalendarWrapper calendarWidth={size} {...rest}>
       <CalendarHeader>
         <CalendarTitle aria-live="assertive" theme={theme.theme}>
           <span>{`${selectedDateState.format('MMMM')} ${selectedDateState.format('YYYY')}`}</span>

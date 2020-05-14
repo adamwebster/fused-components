@@ -6,14 +6,14 @@ import MenuItem from './MenuItem';
 import { FCTheme } from '../../../theming/FCTheme';
 import { Placement as PopperPlacements } from '@popperjs/core';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLUListElement> {
   /**
    * @ignore
    */
   children: ReactNode;
 }
 
-export const DropdownMenu = ({ children }: Props): ReactElement => {
+export const DropdownMenu = ({ children, ...rest }: Props): ReactElement => {
   const { dropdownState, dispatch } = useContext(DropdownMenuContext);
   const placement = dropdownState.placement as PopperPlacements;
   const menuRef = useRef<HTMLUListElement>((null as unknown) as HTMLUListElement);
@@ -133,6 +133,7 @@ export const DropdownMenu = ({ children }: Props): ReactElement => {
           onKeyDown={(e: any) => handleButtonKeyDown(e)}
           style={styles.popper}
           {...attributes.popper}
+          {...rest}
         >
           {childrenArray.map((child: any) => {
             if (child.type === MenuItem) {

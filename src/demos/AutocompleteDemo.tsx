@@ -9,6 +9,7 @@ export const AutocompleteDemo = () => {
     <FCThemeProvider value={{ theme }}>
       <DarkModeWrapper>
         <Autocomplete
+          onChange={(e: any): void => console.log(e)}
           id="ac1"
           inputIcon="filter"
           placeholder="Search for something"

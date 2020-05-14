@@ -5,13 +5,13 @@ import { IconStyled } from './style';
 import { DropdownMenuContext } from './DropdownMenuContext';
 import { fcStyles } from '../../../common/types';
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   fcStyle?: fcStyles;
   label?: string;
   primary?: boolean;
   buttonColor?: string;
 }
-const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) => {
+const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary, ...rest }: Props) => {
   const { dropdownState, dispatch } = useContext(DropdownMenuContext);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const toggleMenu = (): void => {
@@ -66,6 +66,7 @@ const DropdownButtonButton = ({ fcStyle, label, buttonColor, primary }: Props) =
       as={dropdownState.as}
       buttonColor={buttonColor}
       onKeyDown={(e: any) => handleButtonKeyDown(e)}
+      {...rest}
     >
       {label}
       <IconStyled renderAs={dropdownState.as}>

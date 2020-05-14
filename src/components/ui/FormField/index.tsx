@@ -3,7 +3,7 @@ import { Label } from '../Label';
 import { HintText, RequiredMark, ValidationMessage, InputWrapper, FormFieldWrapper } from './style';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** The label for the input field */
   label?: string;
   /** Hint text for the label */
@@ -26,11 +26,12 @@ export const FormField = ({
   validationMessage,
   htmlFor,
   children,
+  ...rest
 }: Props): ReactElement => {
   const theme = useContext(FCTheme);
 
   return (
-    <FormFieldWrapper>
+    <FormFieldWrapper {...rest}>
       {label && (
         <Label htmlFor={htmlFor}>
           {required && <RequiredMark>* </RequiredMark>}

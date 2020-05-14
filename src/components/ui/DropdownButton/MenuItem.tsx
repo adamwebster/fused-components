@@ -4,7 +4,7 @@ import { Icon } from '../../icon';
 import { DropdownMenuContext } from './DropdownMenuContext';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLLIElement> {
   /**
    * @ignore
    */

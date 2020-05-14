@@ -3,7 +3,7 @@ import { StyledBadge } from './style';
 import { fcStyles } from '../../../common/types';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** Set the style of the badge */
   fcStyle?: fcStyles;
   /**

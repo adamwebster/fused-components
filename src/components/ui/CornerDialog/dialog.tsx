@@ -14,7 +14,7 @@ import { color } from '../../../styles/styles';
 import { Icon } from '../../icon';
 import { fcStyles } from '../../../common/types';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   fixed?: boolean;
   onCloseClick?: () => void;
   visible?: boolean;
@@ -40,6 +40,7 @@ const CornerDialogPopover = ({
   fcStyle,
   icon,
   id,
+  ...rest
 }: Props): ReactElement => {
   const [show, setShow] = useState(false);
 
@@ -68,6 +69,7 @@ const CornerDialogPopover = ({
               theme={themeContext.theme}
               id={id}
               tabIndex={fixed ? 0 : -1}
+              {...rest}
             >
               <DialogTitle id={`${id}-title`} fcStyle={fcStyle} theme={themeContext.theme}>
                 {title && title}

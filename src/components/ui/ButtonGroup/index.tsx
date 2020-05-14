@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { ButtonGroupStyled } from './style';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @ignore
    */

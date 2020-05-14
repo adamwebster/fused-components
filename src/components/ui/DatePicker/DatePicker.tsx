@@ -1,16 +1,16 @@
-import React, { ReactElement, useState, useRef, useEffect } from 'react';
+import React, { ReactElement, useState, useRef, useEffect, HTMLAttributes } from 'react';
 import { Input } from '../Input';
 import DatePickerMenu from './DatePickerMenu';
 import { DatePickerWrapper } from './style';
 import { Placement as PopperPlacements } from '@popperjs/core';
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLInputElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** The value of the date picker */
   value?: string;
   /** What should happen when the date changes. Should at least change the value. */
-  onChange?: (date: string) => void;
+  onDateChange?: (date: string) => void;
   /** Placeholder for the date picker input */
   placeholder?: string;
   /** The format of the date for example MM/DD/YYYY */
@@ -24,9 +24,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
       id,
       value,
       dateFormat = 'MM/DD/YYYY',
-      onChange = (): unknown => undefined,
+      onDateChange = (): unknown => undefined,
       placeholder = 'Click to choose a date',
       placement = 'bottom-start',
+      ...rest
     }: Props,
     ref,
   ): ReactElement => {
@@ -34,7 +35,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
     const [stateValue, setStateValue] = useState(value);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const changeDate = (date: string): void => {
-      onChange(date);
+      onDateChange(date);
       setMenuOpen(false);
     };
     useEffect(() => {
@@ -50,6 +51,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
           onFocus={() => !menuOpen && setMenuOpen(true)}
           onClick={(): false | void => !menuOpen && setMenuOpen(true)}
           placeholder={placeholder}
+          {...rest}
         />
         <DatePickerMenu
           setMenuOpen={(value): false | void => setMenuOpen(value)}

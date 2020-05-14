@@ -1,10 +1,10 @@
-import React, { ReactNode, useContext, ReactElement, useState, useEffect, HTMLAttributes } from 'react';
+import React, { ReactNode, useContext, ReactElement, useState, useEffect } from 'react';
 import { usePopper } from 'react-popper';
 import { Placement as PopperPlacements } from '@popperjs/core';
 import { PopOutMenuStyled } from './style';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props extends HTMLAttributes<HTMLUListElement> {
+export interface Props extends React.HTMLAttributes<HTMLUListElement> {
   children?: ReactNode;
   placement?: PopperPlacements;
   referenceElement?: any;

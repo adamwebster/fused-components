@@ -4,7 +4,7 @@ import { Placement as PopperPlacements } from '@popperjs/core';
 import { TooltipWrapper, TooltipButton } from './style';
 import TooltipComponent from './tooltipPopover';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   /** Set the content of the tooltip */
   content?: ReactNode;
@@ -33,6 +33,7 @@ export const Tooltip = ({
   id,
   visible = false,
   triggerAs,
+  ...rest
 }: Props): ReactElement => {
   const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
   const [tooltipVisible, setToolTipVisible] = useState(visible);
@@ -76,6 +77,7 @@ export const Tooltip = ({
         onMouseLeave={(): void => hideTooltip()}
         onBlur={(): void => hideTooltip()}
         ref={setReferenceElement}
+        {...rest}
       >
         <TooltipButton {...asProps} tabIndex={0} onFocus={(): void => showTooltip()} {...ariaProps}>
           {children}

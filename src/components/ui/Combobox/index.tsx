@@ -5,7 +5,7 @@ import { FCThemeConsumer } from '../../../theming/FCTheme';
 import { Placement as PopperPlacements } from '@popperjs/core';
 import PopOutMenu from '../PopoutMenu/PopOutMenu';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** An array of items */

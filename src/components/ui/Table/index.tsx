@@ -9,7 +9,7 @@ import TableCell from './TableCell';
 import { FCTheme } from '../../../theming/FCTheme';
 import { color } from '../../../styles/styles';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLTableElement> {
   /** Set the padding for the table */
   padding?: string;
   /** Set if the table has zebra Striping */

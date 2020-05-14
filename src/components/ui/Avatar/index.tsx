@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { StyledAvatar } from './style';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** Sets the size of the avatar */
   size?: 'tiny' | 'small' | 'medium' | 'large';
   /** Sets the border radius of the avatar */

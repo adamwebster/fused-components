@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { color } from '../../../styles/styles';
 import { Icon } from '../../icon';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** Set the style for the panel */
   fcStyle?: fcStyles;
   /** Set the tile for the panel */
@@ -41,6 +41,7 @@ const PanelComponent = ({
   theme,
   id,
   focusElement,
+  ...rest
 }: Props): ReactElement => {
   const closeButton = useRef<HTMLButtonElement | null>(null);
   const cancelButton = useRef<HTMLButtonElement | null>(null);
@@ -84,6 +85,7 @@ const PanelComponent = ({
         fixed={fixed}
         aria-labelledby={`${id}_title`}
         ref={panelRef}
+        {...rest}
       >
         <DialogTitle theme={theme.theme} fcStyle={fcStyle}>
           <h2 id={`${id}_title`}>{title}</h2>

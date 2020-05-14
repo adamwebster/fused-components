@@ -3,7 +3,7 @@ import CornerDialogPopover from './dialog';
 import { fcStyles } from '../../../common/types';
 import ReactDOM from 'react-dom';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /**
@@ -43,6 +43,7 @@ export const CornerDialog = ({
   fcStyle,
   icon,
   id,
+  ...rest
 }: Props): ReactElement => {
   const element = document.body;
 
@@ -59,6 +60,7 @@ export const CornerDialog = ({
         title={title}
         icon={icon}
         id={id}
+        {...rest}
       >
         {children}
       </CornerDialogPopover>
@@ -76,6 +78,7 @@ export const CornerDialog = ({
       title={title}
       icon={icon}
       id={id}
+      {...rest}
     >
       {children}
     </CornerDialogPopover>,

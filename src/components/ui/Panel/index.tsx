@@ -4,7 +4,7 @@ import PanelComponent from './panelComponent';
 import { fcStyles } from '../../../common/types';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Set the style for the panel. "danger" | "warning" | "info" | "success" */
@@ -44,6 +44,7 @@ export const Panel = ({
   showOverlay = false,
   focusElement,
   id,
+  ...rest
 }: Props): ReactElement => {
   const [show, setShow] = useState(false);
   const theme = useContext(FCTheme);
@@ -70,9 +71,20 @@ export const Panel = ({
     focusElement,
     id,
   };
-  if (!fixed) return <PanelComponent {...panelProps}>{children}</PanelComponent>;
+  if (!fixed)
+    return (
+      <PanelComponent {...panelProps} {...rest}>
+        {children}
+      </PanelComponent>
+    );
   return ReactDOM.createPortal(
-    <>{show && <PanelComponent {...panelProps}>{children}</PanelComponent>}</>,
+    <>
+      {show && (
+        <PanelComponent {...panelProps} {...rest}>
+          {children}
+        </PanelComponent>
+      )}
+    </>,
     document.body,
   );
 };

@@ -6,7 +6,7 @@ import { Icon } from '../../icon';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 import { fcStyles } from '../../../common/types';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** Sets if the dialog has a box shadow */
   boxShadow?: boolean;
   /** Sets the tile of the dialog */
@@ -44,6 +44,7 @@ export const DialogComponent = ({
   showOverlay = true,
   cancelText = 'Cancel',
   focusElement,
+  ...rest
 }: Props): ReactElement => {
   const closeButton = useRef<HTMLButtonElement | null>(null);
   const cancelButton = useRef<HTMLButtonElement | null>(null);
@@ -87,6 +88,7 @@ export const DialogComponent = ({
             boxShadow={boxShadow}
             role="dialog"
             aria-labelledby={`${id}_title`}
+            {...rest}
           >
             <DialogTitle theme={themeContext.theme} fcStyle={fcStyle}>
               <h2 id={`${id}_title`}>{title}</h2>

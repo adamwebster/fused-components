@@ -1,8 +1,8 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, HTMLAttributes } from 'react';
 import { ToggleWrapper, Slider, ToggleLabel } from './style';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** If the toggle is active or not */

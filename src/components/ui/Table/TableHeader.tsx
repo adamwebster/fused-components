@@ -4,7 +4,7 @@ import { TableHeaderStyled } from './style';
 
 import { TableContextContextConsumer } from './TableContext';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLElement> {
   /** If the bottom border should be shown */
   showBottomBorder?: boolean;
   children?: ReactNode;
