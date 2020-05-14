@@ -4,12 +4,15 @@ import { action, actions } from "@storybook/addon-actions";
 import { Radio } from './';
 import { RadioDemo, RadioDarkMode } from '../../../demos/RadioDemo';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import LinkTo from '@storybook/addon-links/react';
 
 <Meta title="Components / Radio" component={Radio} parameters={{ component: Radio }}/>
 
 # Radio
 
-## An Checkbox component 
+The radio component is an replacement for the browsers radio element.  If the radio is checked or not is completely controlled by the consuming application through the **checked** property.
+
+You can also use the <LinkTo kind="components-radio-group--radio-group">radio group</LinkTo> component to group multiple radios so only one is checked at once and add built in accessibility features.
 
 <Preview>
       <Radio>Radio</Radio>

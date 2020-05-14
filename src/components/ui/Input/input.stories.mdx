@@ -5,6 +5,7 @@ import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../../icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { InputDarkMode } from '../../../demos/InputDemo';
+ import LinkTo from '@storybook/addon-links/react';
 
 import { Input } from './';
 
@@ -12,8 +13,9 @@ import { Input } from './';
 
 # Input
 
-## An input component
- 
+An text input component can be set to many of the input types(for example: text, password, tel, or email).  If the input is used without a label is is recommended to use the aria-label attribute to give the input a label.
+
+It also supports different validation styles and can have any of the <LinkTo kind="info-icons--page">icons</LinkTo> the come with **Fused Components** added to it.
 
 ## Not Active
 <Preview>

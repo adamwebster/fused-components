@@ -5,6 +5,7 @@ import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../../../components/icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { ComboboxDemo, ComboboxDemoItemFormatter } from "../../../demos/ComboboxDemo";
+import {Alert} from "../../../components";
 
 import { Combobox } from './';
 
@@ -12,7 +13,8 @@ import { Combobox } from './';
 
 # Combobox 
 
-## Default
+The combobox allows the user to type in a value and the results will show up in a list below.  It is also possible to click on press the down key(when the input has focus) to open the menu.
+
 <Combobox
     id="cb1"
     inputIcon="filter"
@@ -20,7 +22,14 @@ import { Combobox } from './';
     items={["Apple", "Orange", "Banana"]}
  />
 
-## Item Formatter
+
+# Item Formatter
+
+The itemFormatter property allows you to pass an how the item should look.  It passes back the index of the item so that you can reference the correct item in the items that you send to the combobox.
+
+<Alert icon="info-circle" title="Note about the itemFormatter property" fcStyle="info" style={{marginBottom: 20 + 'px'}}>
+If you use the itemFormatter you must also set the keyToSearch property to the key of the item that you would like to be searched.
+</Alert>
 
 <ComboboxDemoItemFormatter />
 

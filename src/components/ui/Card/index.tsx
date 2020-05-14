@@ -1,7 +1,7 @@
 import React, { useContext, ReactElement, ReactNode } from 'react';
 import { StyledCard } from './style';
 import { FCTheme } from '../../../theming/FCTheme';
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** Sets the border radius for the card */
   borderRadius?: string;
   /** Sets the card to have a box shadow */
