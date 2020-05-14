@@ -98,31 +98,32 @@ describe('Combobox Tests', () => {
     expect(queryByText('Apple')).toBeFalsy();
   });
 
-  test('Menu closes when the escape key is clicked', () => {
-    const { getByPlaceholderText, queryByText, container } = render(
+  test('Menu closes when the escape key is clicked', async () => {
+    const { getByPlaceholderText, queryByText } = render(
       <Combobox id="cb1" items={['Test', 'Another Item']} placeholder="Combobox test" />,
     );
     const input = getByPlaceholderText('Combobox test');
     fireEvent.click(input);
-    fireEvent.keyDown(container, { key: 'Escape', code: 'Escape', keyCode: 27 });
-    expect(queryByText('Another Item')).toBeFalsy();
+    fireEvent.keyDown(input, { key: 'Escape', code: 'Escape', keyCode: 27 });
+    await waitFor(() => {
+      expect(queryByText('Another Item')).toBeFalsy();
+    });
   });
 
   test('Clicking the arrow keys highlights the correct item in the menu', async () => {
-    const { getByRole, getByPlaceholderText } = render(
+    const { getByPlaceholderText } = render(
       <Combobox id="cb1" items={['Test', 'Test2']} placeholder="Combobox test" />,
     );
 
     const input = getByPlaceholderText('Combobox test');
     fireEvent.click(input);
 
-    const menu = getByRole('listbox');
-
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
     expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
     expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_1');
-    fireEvent.keyDown(menu, { keyCode: 38 });
+
+    fireEvent.keyDown(input, { keyCode: 38 });
     await waitFor(() => {
       expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
     });
