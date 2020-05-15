@@ -13,13 +13,13 @@ import { FCThemeProvider } from "../../../theming/FCTheme";
 
 The calendar component can be used when you would like to show an calendar. It uses [dayjs](https://github.com/iamkun/dayjs) behind the scene to help with the date formatting.
 
-If you use **onChange** it will pass back the formatted date in the specified format that you pass in the **dateFormat** property (defaults to MM/DD/YYYY).
+If you use **onDateChange** it will pass back the formatted date in the specified format that you pass in the **dateFormat** property (defaults to MM/DD/YYYY).
 
 ## Default
 
 <Preview>
   <Story name="Calendar">
-    <Calendar onChange={(date) => console.log(date)} />
+    <Calendar onDateChange={(date) => console.log(date)} />
   </Story>
 </Preview>
 
@@ -29,7 +29,7 @@ decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkMode
 parameters={{ docs: { disable: true  }}}
 >
   <FCThemeProvider value={{theme: 'dark'}}>
-    <Calendar onChange={(date) => console.log(date)} />
+    <Calendar onDateChange={(date) => console.log(date)} />
   </FCThemeProvider>
 </Story>
 

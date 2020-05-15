@@ -71,6 +71,12 @@ export const ToggleLabel = styled.span<TLProps>`
           color: ${theme === 'dark' ? color.darkModeMediumLight : color.medium};
         `
       : css`
-          color: ${children === 'Off' ? (theme === 'dark' ? '#fff' : color.darkest) : '#fff'};
+          color: ${children === 'Off'
+            ? theme === 'dark'
+              ? '#fff'
+              : color.darkest
+            : theme === 'dark'
+            ? color.darkModeDarkest
+            : '#fff'};
         `}
 `;

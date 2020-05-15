@@ -25,7 +25,7 @@ dayjs.extend(duration);
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** What should happens when the day selected changes. Sends back the date */
-  onChange?: (date: any) => void;
+  onDateChange?: (date: any) => void;
   /** The date that is selected in the calendar */
   selectedDate?: dayjs.Dayjs | string;
   /** the width and height of the calendar in pixels */
@@ -44,11 +44,11 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @ignore
    */
   setMenuOpen?: (value: boolean) => void;
-  /** Set the date format that should be returned by the onChange event. */
+  /** Set the date format that should be returned by the onDateChange event. */
   dateFormat?: string;
 }
 const Calendar = ({
-  onChange = (): void => undefined,
+  onDateChange = (): void => undefined,
   selectedDate,
   autoFocusDay,
   size,
@@ -151,7 +151,7 @@ const Calendar = ({
 
   const calendarKeyPress = (e: any, timeStamp: any): void => {
     if (e.key === 'Enter') {
-      onChange(dayjs(timeStamp).format(dateFormat));
+      onDateChange(dayjs(timeStamp).format(dateFormat));
       if (inputRef) inputRef.current.focus();
     }
     if (e.key === 'ArrowRight') {
@@ -247,7 +247,7 @@ const Calendar = ({
                   }}
                   onFocus={() => setFocusedDay(parseInt(item.day))}
                   disabled={item.otherMonth}
-                  onMouseDown={(): void => onChange(dayjs(item.timeStamp).format(dateFormat))}
+                  onMouseDown={(): void => onDateChange(dayjs(item.timeStamp).format(dateFormat))}
                 >
                   <span
                     aria-hidden="false"
@@ -278,7 +278,7 @@ const Calendar = ({
     if (e.key === 'Escape' || e.key === 'Enter') {
       if (menuRef) {
         if (setMenuOpen) {
-          onChange(
+          onDateChange(
             dayjs(e.target.value).format() === 'Invalid Date' ? undefined : dayjs(e.target.value).format(dateFormat),
           );
           setMenuOpen(false);
