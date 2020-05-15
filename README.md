@@ -16,6 +16,8 @@ To import a component use the following as an example
 
 `import { Button } from '@adamwebster/fused-components`
 
+You can see some examples of the components at https://design.adamwebster.me
+
 ## Running the Storybook
 
 To run the storybook clone the repository https://github.com/adamwebster/fused-components and run one of the following commands after installing the dependencies.
