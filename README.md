@@ -31,6 +31,10 @@ To run the storybook clone the repository https://github.com/adamwebster/fused-c
 **OR**
 `npm run storybook`
 
+## Changelog
+
+To view a list of changes for each release visit the [github release page](https://github.com/adamwebster/fused-components/releases). It will be updated with release notes for each release.
+
 ## Contributing
 
 Right now there is no request for direct contributors but if you have an issue on would like to suggest idea feel free to leave some feedback on the github page or [tweet me](https://twitter.com/adamwebster).
