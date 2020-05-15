@@ -1,5 +1,4 @@
 import React, { useContext, ReactNode, ReactElement } from 'react';
-
 import { LabelStyled } from './style';
 import { FCTheme } from '../../../theming/FCTheme';
 
