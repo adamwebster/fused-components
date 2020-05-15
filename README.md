@@ -4,7 +4,7 @@ Fused Components is a component library created by [@adamwebster](https://twitte
 
 ## Core values of Fused Components
 
-- Each component should be accessible as possible including support for screen readers and keyboard controls
+- Each component should be as accessible as possible including support for screen readers and keyboard controls.
 - The components should be easy to use and understand.
 
 ## Installing Fused Components
@@ -38,6 +38,15 @@ To view a list of changes for each release visit the [GitHub release page](https
 ## Contributing
 
 Right now there is no request for direct contributors but if you have an issue on would like to suggest idea feel free to leave some feedback on the GitHub page or [tweet me](https://twitter.com/adamwebster).
+
+## Technology Used
+
+- React
+- Typescript
+- Rollup
+- Styled Components
+- Dayjs
+- Popper.js
 
 ## License
 
