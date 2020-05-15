@@ -7,7 +7,7 @@ Fused Components is a component library created by [@adamwebster](https://twitte
 To install the Fused Component library run one of the following commands.
 
 `yarn add @adamwebster/fused-components`
-**OR **
+**OR**
 `npm install @adamwebster/fused-components`
 
 ## Usage
@@ -19,8 +19,6 @@ To import a component use the following as an example
 ## Running the Storybook
 
 To run the storybook clone the repository https://github.com/adamwebster/fused-components and run one of the following commands after installing the dependencies.
-
-## Using the
 
 `yarn storybook`
 **OR**
