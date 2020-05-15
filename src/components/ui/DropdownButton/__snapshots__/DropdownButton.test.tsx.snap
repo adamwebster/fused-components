@@ -5,7 +5,7 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
   width: 16px;
   display: block;
   float: right;
-  margin-top: 3px;
+  margin-top: 5px;
   height: 5px;
   margin-left: 5px;
 }
@@ -100,7 +100,7 @@ exports[`Dropdown Button Tests To match snapshot 2`] = `
 >
   Dropdown Button
   <span
-    class="sc-AxhCb bvpDuf"
+    class="sc-AxhCb durnlx"
   >
     <svg
       class="sc-AxgMl bbULzG  caret-up"
@@ -127,7 +127,7 @@ exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
   width: 16px;
   display: block;
   float: right;
-  margin-top: 3px;
+  margin-top: 5px;
   height: 5px;
   margin-left: 5px;
 }
@@ -222,7 +222,7 @@ exports[`Dropdown Button Tests To match snapshot dark mode 2`] = `
 >
   Dropdown Button
   <span
-    class="sc-AxhCb bvpDuf"
+    class="sc-AxhCb durnlx"
   >
     <svg
       class="sc-AxgMl bbULzG  caret-up"

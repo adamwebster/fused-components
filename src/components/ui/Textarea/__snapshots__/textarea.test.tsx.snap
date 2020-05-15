@@ -12,6 +12,7 @@ exports[`Textarea Input Has the correct styles when in dark mode 1`] = `
   outline: none;
   border: solid 1px #627d98;
   background-color: #243b53;
+  color: #9fb3c8;
 }
 
 .c0:focus {

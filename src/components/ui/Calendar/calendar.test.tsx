@@ -22,10 +22,10 @@ describe('Calendar tests', () => {
   });
   test('If it is the current month the current day is highlight', () => {
     let date = 'date';
-    const onChange = jest.fn(dateReturned => {
+    const onDateChange = jest.fn(dateReturned => {
       date = dateReturned;
     });
-    const { getByText } = render(<Calendar onChange={(date): void => onChange(date)} />);
+    const { getByText } = render(<Calendar onDateChange={(date): void => onDateChange(date)} />);
     const dateButton = getByText('13');
     fireEvent.mouseDown(dateButton);
     expect(date).not.toBe('date');
@@ -48,28 +48,28 @@ describe('Calendar tests', () => {
     expect(container).toHaveStyleRule('height', '450px');
   });
 
-  test('The onChange function passes back the timestamp when an date is clicked by enter', () => {
+  test('The onDateChange function passes back the timestamp when an date is clicked by enter', () => {
     let date = 'date';
-    const onChange = jest.fn(dateReturned => {
+    const onDateChange = jest.fn(dateReturned => {
       date = dateReturned;
     });
-    const { getByText } = render(<Calendar onChange={date => onChange(date)} />);
+    const { getByText } = render(<Calendar onDateChange={date => onDateChange(date)} />);
     const dateItem = getByText('15');
     fireEvent.keyDown(dateItem, { key: 'Enter' });
     expect(date).not.toBe('date');
-    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onDateChange).toHaveBeenCalledTimes(1);
   });
 
-  test('If space is hit with onChange then nothing is returned', () => {
+  test('If space is hit with onDateChange then nothing is returned', () => {
     let date = 'date';
-    const onChange = jest.fn(dateReturned => {
+    const onDateChange = jest.fn(dateReturned => {
       date = dateReturned;
     });
     const { getByText } = render(<Calendar />);
     const dateItem = getByText('15');
     fireEvent.keyDown(dateItem, { key: 'Enter' });
     expect(date).toBe('date');
-    expect(onChange).toHaveBeenCalledTimes(0);
+    expect(onDateChange).toHaveBeenCalledTimes(0);
   });
 
   test('The date changes focus when the right arrow key is pressed', () => {

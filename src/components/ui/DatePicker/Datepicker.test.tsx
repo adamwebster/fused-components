@@ -29,15 +29,15 @@ describe('Date picker Tests', () => {
 
   test('Input value changes when date is picked', () => {
     let value = '';
-    const onChange = jest.fn(date => {
+    const onDateChange = jest.fn(date => {
       value = date;
     });
-    const { getByText, getByPlaceholderText } = render(<DatePicker id="1" onChange={date => onChange(date)} />);
+    const { getByText, getByPlaceholderText } = render(<DatePicker id="1" onDateChange={date => onDateChange(date)} />);
     const input = getByPlaceholderText('Click to choose a date');
     fireEvent.click(input);
     const dateToPick = getByText('15');
     fireEvent.mouseDown(dateToPick);
-    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onDateChange).toHaveBeenCalledTimes(1);
     expect(dayjs(value).format('D')).toBe('15');
   });
 

@@ -42,11 +42,11 @@ describe('Radio Group Test', () => {
   test('Clicking on a radio changes the value', () => {
     let value = 'Hello';
 
-    const onChange = jest.fn(rv => {
+    const onRadioChanged = jest.fn(rv => {
       value = rv;
     });
     render(
-      <RadioGroup onChange={value => onChange(value)}>
+      <RadioGroup onRadioChanged={value => onRadioChanged(value)}>
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>
@@ -66,11 +66,11 @@ describe('Radio Group Test', () => {
   test('Clicking down when a radio is focused changes the value', () => {
     let value = 'Hello';
 
-    const onChange = jest.fn(rv => {
+    const onRadioChanged = jest.fn(rv => {
       value = rv;
     });
     render(
-      <RadioGroup onChange={value => onChange(value)}>
+      <RadioGroup onRadioChanged={value => onRadioChanged(value)}>
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>
@@ -87,18 +87,18 @@ describe('Radio Group Test', () => {
     expect(firstRadio).toHaveFocus();
     fireEvent.keyDown(firstRadio, { key: 'ArrowDown' });
 
-    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onRadioChanged).toHaveBeenCalledTimes(1);
     expect(value).toBe('Radio 2');
   });
 
   test('Clicking right when a radio is focused changes the value', () => {
     let value = 'Hello';
 
-    const onChange = jest.fn(rv => {
+    const onRadioChanged = jest.fn(rv => {
       value = rv;
     });
     render(
-      <RadioGroup onChange={value => onChange(value)}>
+      <RadioGroup onRadioChanged={value => onRadioChanged(value)}>
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>
@@ -115,18 +115,18 @@ describe('Radio Group Test', () => {
     expect(firstRadio).toHaveFocus();
     fireEvent.keyDown(firstRadio, { key: 'ArrowRight' });
 
-    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onRadioChanged).toHaveBeenCalledTimes(1);
     expect(value).toBe('Radio 2');
   });
 
   test('Clicking up when a radio is focused changes the value', () => {
     let value = 'Hello';
 
-    const onChange = jest.fn(rv => {
+    const onRadioChanged = jest.fn(rv => {
       value = rv;
     });
     render(
-      <RadioGroup onChange={value => onChange(value)}>
+      <RadioGroup onRadioChanged={value => onRadioChanged(value)}>
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>
@@ -144,18 +144,18 @@ describe('Radio Group Test', () => {
     fireEvent.keyDown(firstRadio, { key: 'ArrowDown' });
     fireEvent.keyDown(firstRadio, { key: 'ArrowUp' });
 
-    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(onRadioChanged).toHaveBeenCalledTimes(2);
     expect(value).toBe('Radio 1');
   });
 
   test('Clicking left when a radio is focused changes the value', () => {
     let value = 'Hello';
 
-    const onChange = jest.fn(rv => {
+    const onRadioChanged = jest.fn(rv => {
       value = rv;
     });
     render(
-      <RadioGroup onChange={value => onChange(value)}>
+      <RadioGroup onRadioChanged={value => onRadioChanged(value)}>
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>
@@ -173,18 +173,18 @@ describe('Radio Group Test', () => {
     fireEvent.keyDown(firstRadio, { key: 'ArrowRight' });
     fireEvent.keyDown(firstRadio, { key: 'ArrowLeft' });
 
-    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(onRadioChanged).toHaveBeenCalledTimes(2);
     expect(value).toBe('Radio 1');
   });
 
   test('Clicking space on a focused radio changes the value', () => {
     let value = 'Hello';
 
-    const onChange = jest.fn(rv => {
+    const onRadioChanged = jest.fn(rv => {
       value = rv;
     });
     render(
-      <RadioGroup onChange={value => onChange(value)}>
+      <RadioGroup onRadioChanged={value => onRadioChanged(value)}>
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>
@@ -201,18 +201,18 @@ describe('Radio Group Test', () => {
     expect(secondRadio).toHaveFocus();
     fireEvent.keyDown(secondRadio, { key: ' ' });
 
-    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onRadioChanged).toHaveBeenCalledTimes(1);
     expect(value).toBe('Radio 2');
   });
 
   test('Clicking down when the last radio is focused sets the value to the first radios value', () => {
     let value = 'Hello';
 
-    const onChange = jest.fn(rv => {
+    const onRadioChanged = jest.fn(rv => {
       value = rv;
     });
     render(
-      <RadioGroup onChange={value => onChange(value)}>
+      <RadioGroup onRadioChanged={value => onRadioChanged(value)}>
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>
@@ -230,18 +230,18 @@ describe('Radio Group Test', () => {
     expect(lastRadio).toHaveFocus();
     fireEvent.keyDown(lastRadio, { key: 'ArrowDown' });
 
-    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(onRadioChanged).toHaveBeenCalledTimes(2);
     expect(value).toBe('Radio 1');
   });
 
   test('Clicking up when the first radio is focused sets the value to the last radios value', () => {
     let value = 'Hello';
 
-    const onChange = jest.fn(rv => {
+    const onRadioChanged = jest.fn(rv => {
       value = rv;
     });
     render(
-      <RadioGroup onChange={value => onChange(value)}>
+      <RadioGroup onRadioChanged={value => onRadioChanged(value)}>
         <Radio id="1" value="Radio 1">
           Radio 1
         </Radio>
@@ -259,7 +259,7 @@ describe('Radio Group Test', () => {
     expect(lastRadio).toHaveFocus();
     fireEvent.keyDown(lastRadio, { key: 'ArrowUp' });
 
-    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(onRadioChanged).toHaveBeenCalledTimes(2);
     expect(value).toBe('Radio 3');
   });
 

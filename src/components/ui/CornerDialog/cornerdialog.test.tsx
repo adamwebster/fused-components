@@ -203,7 +203,7 @@ describe('Corner Dialog Tests', () => {
       </FCThemeProvider>,
     );
     const title = getByText('Title');
-    expect(title).toHaveStyleRule('color', lighten(0.1, color.danger));
+    expect(title).toHaveStyleRule('color', lighten(0.08, color.danger));
   });
 
   test('Renders when fcStyle is set to warning | dark mode', () => {
@@ -227,7 +227,7 @@ describe('Corner Dialog Tests', () => {
       </FCThemeProvider>,
     );
     const title = getByText('Title');
-    expect(title).toHaveStyleRule('color', lighten(0.3, color.info));
+    expect(title).toHaveStyleRule('color', lighten(0.1, color.info));
   });
 
   test('Renders when fcStyle is set to success | dark mode', () => {
@@ -239,6 +239,6 @@ describe('Corner Dialog Tests', () => {
       </FCThemeProvider>,
     );
     const title = getByText('Title');
-    expect(title).toHaveStyleRule('color', lighten(0.1, color.success));
+    expect(title).toHaveStyleRule('color', lighten(0.11, color.success));
   });
 });

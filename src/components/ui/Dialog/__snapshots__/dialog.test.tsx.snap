@@ -113,7 +113,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
 .c1 h2 {
   margin: 0;
   width: calc(100% - 40px);
-  color: #e4585a;
+  color: #e34f51;
 }
 
 .c4 {
@@ -545,7 +545,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
 .c1 h2 {
   margin: 0;
   width: calc(100% - 40px);
-  color: #abcdec;
+  color: #589cd9;
 }
 
 .c4 {
@@ -977,7 +977,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
 .c1 h2 {
   margin: 0;
   width: calc(100% - 40px);
-  color: #00b86b;
+  color: #00bd6d;
 }
 
 .c4 {
@@ -2031,7 +2031,7 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
 .c0 {
   border-radius: 5px;
   background-color: #fff;
-  border: solid 1px rgba(0,0,0,.1);
+  border: solid 1px #bcbcbc;
   z-index: 98;
   width: 500px;
   position: fixed;
@@ -2048,7 +2048,7 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px rgba(0,0,0,.1);
+  border-bottom: solid 1px #bcbcbc;
   padding: 10px;
   box-sizing: border-box;
   position: relative;
@@ -2057,7 +2057,7 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
 .c1 h2 {
   margin: 0;
   width: calc(100% - 40px);
-  color: #666666;
+  color: #333333;
 }
 
 .c4 {
@@ -2067,7 +2067,7 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
 }
 
 .c5 {
-  border-top: solid 1px rgba(0,0,0,.1);
+  border-top: solid 1px #bcbcbc;
   padding: 10px;
   box-sizing: border-box;
   text-align: right;
