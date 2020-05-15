@@ -6,6 +6,9 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 import { CardDarkMode } from "../../../demos/CardDemo";
 import {Input, Label, Button} from "../../../components";
 import { Card } from './';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
+
 
 <Meta title="Components / Card" component={Card} parameters={{ component: Card }} />
 
@@ -33,6 +36,25 @@ Use the card to highlight a piece of content or as a wrapper for other elements,
     </Story>
 </Preview>
 
+<Story name="Card Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Card boxShadow borderRadius="5px" style={{padding: 10 + 'px'}}>
+            <div style={{marginBottom: 10 + 'px'}}>
+                <Label htmlFor="username">Username</Label>
+                <Input id="username" />
+            </div>
+            <div style={{marginBottom: 10 + 'px'}}>
+                <Label htmlFor="password">Password</Label>
+                <Input type="password" id="password" />
+            </div>
+            <Button icon="lock-locked" primary style={{marginRight: 5 + 'px'}}>Login</Button>
+            <Button>Forgot Password</Button>
+        </Card>
+    </FCThemeProvider>
+</Story>
 
 ## Dark Mode
 <CardDarkMode />

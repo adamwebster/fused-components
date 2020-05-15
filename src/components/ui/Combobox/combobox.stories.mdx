@@ -6,6 +6,8 @@ import { Icon } from '../../../components/icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { ComboboxDemo, ComboboxDemoItemFormatter } from "../../../demos/ComboboxDemo";
 import {Alert} from "../../../components";
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { Combobox } from './';
 
@@ -72,6 +74,22 @@ Below is an example code for the item formatter
         placeholder="Type to search for a fruit"
         items={["Apple", "Orange", "Banana"]}
     />
+</Story>
+
+
+<Story name="Combobox Dark Mode" 
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Combobox
+            aria-label="Combobox"
+            id="cb15"
+            inputIcon="filter"
+            placeholder="Type to search for a fruit"
+            items={["Apple", "Orange", "Banana"]}
+        />
+    </FCThemeProvider>
 </Story>
 
 ## Properties

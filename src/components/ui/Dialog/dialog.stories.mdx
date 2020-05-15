@@ -5,6 +5,8 @@ import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DialogDemo, DialogDarkDemo } from '../../../demos/DialogDemo';
 import { Dialog } from './';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 <Meta title="Components / Dialog" component={Dialog} parameters={{ component: Dialog }}/>
 
@@ -42,6 +44,16 @@ The dialog component is used to display information in a dialog that pops up ove
     </Dialog>
 </Story>
 
+<Story name="Dialog Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Dialog visible id="dialog-6" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false} showOverlay={false} title="Dialog">
+        Dialog content
+      </Dialog>
+    </FCThemeProvider>
+</Story>
 
 <Props of={Dialog} />
 

@@ -6,6 +6,8 @@ import { Icon } from '../../icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { InputDarkMode } from '../../../demos/InputDemo';
  import LinkTo from '@storybook/addon-links/react';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { Input } from './';
 
@@ -82,6 +84,22 @@ It also supports different validation styles and can have any of the <LinkTo kin
         aria-label="Icon Input"
     />
 </Preview>
+
+<Story name="Input Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Input
+            id="inputStory1"
+            disabled={boolean('Disabled')}
+            inError={boolean('inError')}
+            inWarning={boolean('inWarning')}
+            icon={select('icon', ['', 'search', 'check-circle'])}
+            aria-label="Text Input" 
+        />
+    </FCThemeProvider>
+</Story>
 
 ## Dark Mode 
 

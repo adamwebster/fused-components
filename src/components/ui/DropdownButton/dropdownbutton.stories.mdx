@@ -6,8 +6,9 @@ import { DropdownButton } from './';
 import MenuItem from './MenuItem';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DropdownButtonDark } from '../../../demos/DropdownButtonDemo';
-
+import { FCThemeProvider } from "../../../theming/FCTheme";
 import { Icon } from '../../icon/';
+import { color as FCColor } from '../../../styles/styles';
 
 <Meta title="Components / Dropdown Button" component={DropdownButton}  parameters={{ component: DropdownButton }}/>
 
@@ -66,8 +67,7 @@ The dropdown button allows multiple options to be visible in a dropdown menu.  T
 
 <DropdownButtonDark/>
 
-<Story name="Dropdown Button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-   
+<Story name="Dropdown Button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>   
    <DropdownButton
     id="dm01"
     label={text('Label', 'Button')}
@@ -88,6 +88,34 @@ The dropdown button allows multiple options to be visible in a dropdown menu.  T
         </DropdownButton.MenuItem>
     </DropdownButton.Menu>
 </DropdownButton>
+</Story>
+
+<Story name="Dropdown Button Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: FCColor.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+    <DropdownButton
+    id="dm01"
+    label={text('Label', 'Button')}
+    primary={boolean('Primary')}
+    buttonColor={color('Button Color', '')}
+    fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])} 
+    >
+    <DropdownButton.Menu>
+        <DropdownButton.MenuItem key="menu1" onClick={() => alert('clicked')} icon="check-circle">
+            Menu Item 1
+        </DropdownButton.MenuItem>
+        <DropdownButton.MenuItem key="menu2" icon="search">
+            Menu Item 2
+        </DropdownButton.MenuItem>
+        <DropdownButton.Divider key="menuDivider" />
+        <DropdownButton.MenuItem key="menu3" icon="user">
+            Menu Item 3
+        </DropdownButton.MenuItem>
+    </DropdownButton.Menu>
+</DropdownButton>
+    </FCThemeProvider>
 </Story>
 
 ## Properties of `<DropdownButton />`

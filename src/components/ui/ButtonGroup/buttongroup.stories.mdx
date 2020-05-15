@@ -4,6 +4,8 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from '@storybook/addon-actions';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { ButtonGroupDarkMode } from '../../../demos/ButtonGroupDemo';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { ButtonGroup } from './';
 import { Button } from '../Button/';
@@ -36,13 +38,26 @@ The button group is used to display a group of buttons with the proper styling. 
 
 
 
-<Story name="Button group" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+<Story name="Button Group" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
   <ButtonGroup>
     <Button  id="primaryButton" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
     <Button  id="primaryButton1" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
     <Button  id="primaryButton2" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
   </ButtonGroup>
 </Story>
+
+<Story name="Button Group Dark Mode" 
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <ButtonGroup>
+      <Button  id="primaryButton" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+      <Button  id="primaryButton1" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+      <Button  id="primaryButton2" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+    </ButtonGroup>
+   </FCThemeProvider>
+</Story>
+
 
 
 ## Dark Mode

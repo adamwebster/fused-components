@@ -4,6 +4,8 @@ import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { FormFieldDark, FormFieldDemo } from '../../../demos/FormFieldDemo';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { FormField } from './';
 import { Textarea } from '../Textarea';
@@ -26,6 +28,18 @@ The form field component is a way to tie together common form items such as a la
 ## Demo 
 
 <FormFieldDemo />
+
+<Story name="Form Field Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <FormField label="test" htmlFor="textarea" hint="This is a hint" validationMessage="Something went wrong">
+            <Textarea aria-describedby="textarea_hint textarea_error" id="textarea" />
+        </FormField>
+    </FCThemeProvider>
+</Story>
+
 
 ## Dark Mode
 

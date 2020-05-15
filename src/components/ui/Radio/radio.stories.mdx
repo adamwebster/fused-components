@@ -5,6 +5,8 @@ import { Radio } from './';
 import { RadioDemo, RadioDarkMode } from '../../../demos/RadioDemo';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import LinkTo from '@storybook/addon-links/react';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 <Meta title="Components / Radio" component={Radio} parameters={{ component: Radio }}/>
 
@@ -34,6 +36,15 @@ You can also use the <LinkTo kind="components-radio-group--radio-group">radio gr
 
 <Story name="Radio" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
       <Radio checked={boolean('Checked')} inError={boolean('inError')} inWarning={boolean('inWarning')}>Radio</Radio>
+</Story>
+
+<Story name="Radio Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+            <Radio checked={boolean('Checked')} inError={boolean('inError')} inWarning={boolean('inWarning')}>Radio</Radio>
+    </FCThemeProvider>
 </Story>
 
 ## Properties

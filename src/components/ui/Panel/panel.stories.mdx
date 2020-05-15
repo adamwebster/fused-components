@@ -4,6 +4,8 @@ import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { PanelDemo, PanelDark } from '../../../demos/PanelDemo';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { Panel } from './';
 
@@ -32,6 +34,17 @@ The panel component is used to display information that will slide in from one o
         <Panel fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false}  id="panelStory" fixed={false} title="Dialog">
               Dialog content
     </Panel>
+</Story>
+
+<Story name="Panel Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Panel fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false}  id="panelStory" fixed={false} title="Dialog">
+            Dialog content
+        </Panel>
+    </FCThemeProvider>
 </Story>
 
 <Props of={Panel} />

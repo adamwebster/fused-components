@@ -5,6 +5,8 @@ import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DarkModeWrapper } from "../../../common/styles";
 import { LabelDark } from "../../../demos/LabelDemo";
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { Label } from './';
 
@@ -22,6 +24,15 @@ A styled html label element used to label any of the input elements that are pro
 </Preview>
 
 <LabelDark />
+
+<Story name="Label Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Label>Label</Label>
+    </FCThemeProvider>
+</Story>
 
 ## Properties
 
