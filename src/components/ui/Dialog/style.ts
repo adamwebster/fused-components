@@ -6,18 +6,18 @@ import { lighten, darken } from 'polished';
 const colorValue = (props: any): string => {
   switch (props.fcStyle) {
     case 'danger':
-      return props.theme === 'dark' ? lighten(0.1, color.danger) : color.danger;
+      return props.theme === 'dark' ? lighten(0.08, color.danger) : color.danger;
     case 'warning':
       return props.theme === 'dark' ? lighten(0.1, color.warning) : color.warning;
     case 'info':
-      return props.theme === 'dark' ? lighten(0.3, color.info) : color.info;
+      return props.theme === 'dark' ? lighten(0.1, color.info) : color.info;
     case 'success':
-      return props.theme === 'dark' ? lighten(0.1, color.success) : color.success;
+      return props.theme === 'dark' ? lighten(0.11, color.success) : color.success;
     default:
       if (props.theme === 'dark') {
         return color.medium;
       } else {
-        return color.dark;
+        return color.darkest;
       }
   }
 };

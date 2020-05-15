@@ -10,10 +10,11 @@ export const AutocompleteDemo = () => {
       <DarkModeWrapper>
         <Autocomplete
           onChange={(e: any): void => console.log(e)}
-          id="ac1"
+          id="acd1"
           inputIcon="filter"
           placeholder="Search for something"
           items={['Apple', 'Orange', 'Banana']}
+          aria-label="Search for a fruit"
         />
       </DarkModeWrapper>
     </FCThemeProvider>
@@ -30,7 +31,7 @@ export const AutocompleteDemoFormatter = () => {
   return (
     <>
       <Autocomplete
-        id="ac2"
+        id="acd2"
         itemFormatter={value => {
           return (
             <>
@@ -44,6 +45,7 @@ export const AutocompleteDemoFormatter = () => {
         placeholder="Search with formatting"
         keyToSearch="label"
         items={data}
+        aria-label="Search for a fruit"
       />
     </>
   );

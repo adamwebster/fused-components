@@ -12,6 +12,8 @@ export const StyledTextarea = styled.textarea`
   outline: none;
   border: solid 1px ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.border)};
   background-color: ${(props): string => (props.theme === 'dark' ? color.darkModeDarker : '#fff')};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeLight : color.darkest)};
+
   &:focus {
     border-color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.focus)};
     box-shadow: 0 0 6px ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.focus)};

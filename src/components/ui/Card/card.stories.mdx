@@ -4,7 +4,7 @@ import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { CardDarkMode } from "../../../demos/CardDemo";
-import {Input, Label, Button} from "../../../components";
+import {Input, Label, Button, FormField, Checkbox} from "../../../components";
 import { Card } from './';
 import { color } from '../../../styles/styles';
 import { FCThemeProvider } from "../../../theming/FCTheme";
@@ -23,12 +23,17 @@ Use the card to highlight a piece of content or as a wrapper for other elements,
     <Story name="Card">
         <Card boxShadow borderRadius="5px" style={{padding: 10 + 'px'}}>
             <div style={{marginBottom: 10 + 'px'}}>
-                <Label htmlFor="username">Username</Label>
+                <FormField htmlFor="username" label="Username" hint="Enter your username">
                 <Input id="username" />
+                </FormField>
             </div>
             <div style={{marginBottom: 10 + 'px'}}>
-                <Label htmlFor="password">Password</Label>
+                <FormField htmlFor="password" label="Password" hint="Enter your password">
                 <Input type="password" id="password" />
+                </FormField>
+            </div>
+             <div style={{marginBottom: 10 + 'px'}}>
+            <Checkbox>Remember my password</Checkbox>
             </div>
             <Button icon="lock-locked" primary style={{marginRight: 5 + 'px'}}>Login</Button>
             <Button>Forgot Password</Button>
@@ -42,13 +47,18 @@ parameters={{ docs: { disable: true  }}}
 >
     <FCThemeProvider value={{theme: 'dark'}}>
         <Card boxShadow borderRadius="5px" style={{padding: 10 + 'px'}}>
-            <div style={{marginBottom: 10 + 'px'}}>
-                <Label htmlFor="username">Username</Label>
+             <div style={{marginBottom: 10 + 'px'}}>
+                <FormField htmlFor="username" label="Username" hint="Enter your username">
                 <Input id="username" />
+                </FormField>
             </div>
             <div style={{marginBottom: 10 + 'px'}}>
-                <Label htmlFor="password">Password</Label>
+                <FormField validationMessage={text('Validation Message', '')} htmlFor="password" label="Password" hint="Enter your password">
                 <Input type="password" id="password" />
+                </FormField>
+            </div>
+             <div style={{marginBottom: 10 + 'px'}}>
+            <Checkbox inError={boolean('Checkbox has error', false)}>Remember my password</Checkbox>
             </div>
             <Button icon="lock-locked" primary style={{marginRight: 5 + 'px'}}>Login</Button>
             <Button>Forgot Password</Button>

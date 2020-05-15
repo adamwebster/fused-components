@@ -76,7 +76,7 @@ export const IconStyled = styled.span<IconProps>`
   width: 16px;
   display: block;
   float: right;
-  margin-top: 3px;
+  margin-top: 5px;
   height: 5px;
   margin-left: 5px;
   ${(props): false | FlattenSimpleInterpolation =>

@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { lighten } from 'polished';
 
 import React from 'react';
 
@@ -13,7 +14,7 @@ export const Label = styled.span<LabelProps>`
     ${(props): false | FlattenSimpleInterpolation | undefined =>
       props.inError &&
       css`
-        color: ${color.red};
+        color: ${props.theme === 'dark' ? lighten(0.25, color.danger) : color.danger};
       `}
     ${(props): false | FlattenSimpleInterpolation | undefined =>
       props.inWarning &&
@@ -44,7 +45,7 @@ export const IconStyled = styled.span<IconSProps>`
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.inError &&
     css`
-      color: ${color.red};
+      color: ${props.theme === 'dark' ? lighten(0.25, color.danger) : color.danger};
     `}
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.inWarning &&

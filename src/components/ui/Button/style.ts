@@ -6,7 +6,7 @@ import styled, {
   ThemedStyledProps,
 } from 'styled-components';
 import { color } from '../../../styles/styles';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 import { fcStyles } from '../../../common/types';
 
 interface ColorProps {
@@ -72,6 +72,21 @@ const colorValueDarken = (props: ColorProps): string => {
       return darken(0.1, color.success);
     default:
       return darken(0.1, props.buttonColor || color.primary);
+  }
+};
+
+const colorValueLink = (props: ColorProps): string => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return props.theme === 'dark' ? lighten(0.2, color.danger) : color.danger;
+    case 'warning':
+      return props.theme === 'dark' ? color.warning : color.warning;
+    case 'info':
+      return props.theme === 'dark' ? lighten(0.1, color.info) : darken(0.1, color.info);
+    case 'success':
+      return props.theme === 'dark' ? lighten(0.1, color.success) : color.success;
+    default:
+      return props.buttonColor || props.theme === 'dark' ? lighten(0.2, color.primary) : color.primary;
   }
 };
 
@@ -179,7 +194,7 @@ export const StyledButton = styled.button<SB>`
        text-decoration: underline;
        height: fit-content;
        background-color: transparent;
-       color: ${colorValueDarken};
+       color: ${colorValueLink};
        display: inline-block;
        ${(props): false | FlattenSimpleInterpolation =>
          !props.icon &&
@@ -187,13 +202,16 @@ export const StyledButton = styled.button<SB>`
            padding: 0;
          `}
        .button-icon {
-         background-color: ${colorValue};
+         background-color: ${colorValueLink};
          padding: 4px 5px;
          text-align: center;
+         svg {
+           color: ${props.theme === 'dark' ? color.darkModeDarkest : color.lightest};
+         }
        }
        &:hover {
          background-color: transparent !important;
-         color: ${colorValueDarken}!important;
+         color: ${colorValueLink}!important;
        }
      `}
 `;

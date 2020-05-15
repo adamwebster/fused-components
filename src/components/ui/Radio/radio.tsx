@@ -71,6 +71,7 @@ const Radio = React.forwardRef<HTMLSpanElement, Props>(
               role="radio"
               inError={inError}
               inWarning={inWarning}
+              theme={themeContext.theme}
               aria-checked={checked ? true : false}
             >
               <Icon aria-labelledby={`labelfor-${id}`} icon={checked ? 'radio-checked' : 'radio'} />

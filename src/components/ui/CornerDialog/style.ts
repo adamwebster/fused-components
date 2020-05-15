@@ -14,13 +14,13 @@ export interface Props {
 const colorValue = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
-      return props.theme === 'dark' ? lighten(0.1, color.danger) : color.danger;
+      return props.theme === 'dark' ? lighten(0.08, color.danger) : color.danger;
     case 'warning':
       return props.theme === 'dark' ? lighten(0.1, color.warning) : color.warning;
     case 'info':
-      return props.theme === 'dark' ? lighten(0.3, color.info) : color.info;
+      return props.theme === 'dark' ? lighten(0.1, color.info) : color.info;
     case 'success':
-      return props.theme === 'dark' ? lighten(0.1, color.success) : color.success;
+      return props.theme === 'dark' ? lighten(0.11, color.success) : color.success;
     default:
       if (props.theme === 'dark') {
         return color.medium;
@@ -98,7 +98,7 @@ export const DialogTitle = styled.header`
   box-sizing: border-box;
   margin: 0;
   color: ${colorValue};
-  font-size: 14px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
@@ -126,7 +126,7 @@ export const DialogFooter = styled.div`
 
 export const CloseButton = styled.button`
   right: 10px;
-  top: 10px;
+  top: 17px;
   border: none;
   background-color: transparent;
   font-size: 1rem;

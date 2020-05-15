@@ -46,7 +46,7 @@ const FormField = ({
         </HintText>
       )}
       {validationMessage && (
-        <ValidationMessage role="alert" id={`${htmlFor}_validation_message`}>
+        <ValidationMessage theme={theme.theme} role="alert" id={`${htmlFor}_validation_message`}>
           {validationMessage}
         </ValidationMessage>
       )}

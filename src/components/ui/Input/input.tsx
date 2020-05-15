@@ -3,7 +3,7 @@ import { StyledInput, InputWrapper, IconWrapper } from './style';
 import { Icon } from '../../icon';
 import { FCTheme } from '../../../theming/FCTheme';
 
-interface Props extends React.HTMLAttributes<HTMLInputElement> {
+export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   /** The id of the element. Required for accessibility.  */
   id: string;
   /** Set the icon for the input */
@@ -39,8 +39,8 @@ const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
   return (
     <InputWrapper>
       {icon && (
-        <IconWrapper theme={theme.theme} inError={inError} inWarning={inWarning}>
-          <Icon aria-hidden icon={icon} />
+        <IconWrapper aria-hidden theme={theme.theme} inError={inError} inWarning={inWarning}>
+          <Icon icon={icon} />
         </IconWrapper>
       )}
       <StyledInput
