@@ -58,7 +58,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, Props>(
           changeDate={(date): false | void => changeDate(date)}
           value={stateValue}
           menuOpened={menuOpen}
-          inputRef={inputRef}
+          inputRef={ref || inputRef}
           placement={placement}
           dateFormat={dateFormat}
         />
