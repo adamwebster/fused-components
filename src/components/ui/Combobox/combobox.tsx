@@ -27,6 +27,8 @@ interface Props extends React.HTMLAttributes<HTMLInputElement> {
   keyToSearch?: string;
   /** Sets the placement of the dropdown menu */
   placement?: PopperPlacements;
+  /** If the combobox should open on click */
+  openOnClick?: boolean;
 }
 
 const Combobox = ({
@@ -39,6 +41,7 @@ const Combobox = ({
   itemFormatter,
   keyToSearch,
   id,
+  openOnClick = true,
   placement = 'bottom-start',
   ...rest
 }: Props): ReactElement => {
@@ -216,7 +219,11 @@ const Combobox = ({
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => (
-        <ComboboxWrapper onClick={(): void => setMenuOpen(!menuOpen)}>
+        <ComboboxWrapper
+          onClick={(): void => {
+            if (openOnClick) setMenuOpen(!menuOpen);
+          }}
+        >
           <InputStyled
             id={id}
             value={filterValue}
@@ -284,13 +291,15 @@ const Combobox = ({
               {itemsToShow.length === 0 && <MenuItemStyled theme={themeContext.theme}>Nothing found</MenuItemStyled>}
             </PopOutMenu>
           )}
-          <CaretIcon>
-            <Icon
-              aria-hidden
-              title={menuOpen ? 'Menu open' : 'Menu closed'}
-              icon={menuOpen ? 'caret-up' : 'caret-down'}
-            />
-          </CaretIcon>
+          {openOnClick && (
+            <CaretIcon>
+              <Icon
+                aria-hidden
+                title={menuOpen ? 'Menu open' : 'Menu closed'}
+                icon={menuOpen ? 'caret-up' : 'caret-down'}
+              />
+            </CaretIcon>
+          )}
         </ComboboxWrapper>
       )}
     </FCThemeConsumer>
