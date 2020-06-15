@@ -23,7 +23,9 @@ describe('Dialog Tests', () => {
     });
     const { getByTestId, queryByText, rerender } = render(
       <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
 
@@ -33,7 +35,9 @@ describe('Dialog Tests', () => {
 
     rerender(
       <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>{' '}
       </Dialog>,
     );
 
@@ -47,7 +51,9 @@ describe('Dialog Tests', () => {
     });
     const { getByTitle, queryByText, rerender } = render(
       <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
 
@@ -57,31 +63,9 @@ describe('Dialog Tests', () => {
 
     rerender(
       <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
-        Dialog
-      </Dialog>,
-    );
-
-    expect(queryByText('I am a dialog')).toBeFalsy();
-  });
-
-  test('Clicking the cancel button closes the dialog', () => {
-    let visible = true;
-    const setVisible = jest.fn(() => {
-      visible = false;
-    });
-    const { getByText, queryByText, rerender } = render(
-      <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
-        Dialog
-      </Dialog>,
-    );
-
-    const cancelButton = getByText('Cancel');
-    fireEvent.click(cancelButton);
-    expect(visible).toBe(false);
-
-    rerender(
-      <Dialog id="1" visible={visible} onCloseClick={() => setVisible()}>
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
 
@@ -91,25 +75,20 @@ describe('Dialog Tests', () => {
   test('Setting the box shadow property to false hides the shadow', () => {
     const { getByRole } = render(
       <Dialog id="1" visible boxShadow={false}>
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
     expect(getByRole('dialog')).toHaveStyleRule('box-shadow', undefined);
   });
 
-  test('Able to change the confirm text', () => {
-    const { getByText } = render(
-      <Dialog id="1" visible confirmText="Click me">
-        Dialog
-      </Dialog>,
-    );
-    expect(getByText('Click me')).toBeInTheDocument();
-  });
-
   test('Position is set to relative when fixed is set to false', () => {
     const { getByRole } = render(
       <Dialog id="1" visible={true} fixed={false}>
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
     expect(getByRole('dialog')).toHaveStyleRule('position', 'relative');
@@ -118,7 +97,9 @@ describe('Dialog Tests', () => {
   test('Position is set to relative when fixed is set to false', () => {
     const { getByRole } = render(
       <Dialog id="1" visible={true} fixed={false}>
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
     expect(getByRole('dialog')).toHaveStyleRule('position', 'relative');
@@ -127,7 +108,9 @@ describe('Dialog Tests', () => {
   test('Has the correct styles fcStyle is set to danger', () => {
     const { getByRole } = render(
       <Dialog id="1" visible={true} fcStyle="danger">
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
     expect(getByRole('dialog')).toMatchSnapshot();
@@ -136,7 +119,9 @@ describe('Dialog Tests', () => {
   test('Has the correct styles fcStyle is set to warning', () => {
     const { getByRole } = render(
       <Dialog id="1" visible={true} fcStyle="warning">
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
     expect(getByRole('dialog')).toMatchSnapshot();
@@ -145,7 +130,9 @@ describe('Dialog Tests', () => {
   test('Has the correct styles fcStyle is set to info', () => {
     const { getByRole } = render(
       <Dialog id="1" visible={true} fcStyle="info">
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
     expect(getByRole('dialog')).toMatchSnapshot();
@@ -154,7 +141,9 @@ describe('Dialog Tests', () => {
   test('Has the correct styles fcStyle is set to success', () => {
     const { getByRole } = render(
       <Dialog id="1" visible={true} fcStyle="success">
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
     expect(getByRole('dialog')).toMatchSnapshot();
@@ -163,7 +152,9 @@ describe('Dialog Tests', () => {
   test('Has the correct styles for the default option', () => {
     const { getByRole } = render(
       <Dialog id="1" visible={true}>
-        Dialog
+        <Dialog.Title>Title</Dialog.Title>
+        <Dialog.Body>Dialog</Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
       </Dialog>,
     );
     expect(getByRole('dialog')).toMatchSnapshot();
@@ -173,7 +164,9 @@ describe('Dialog Tests', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Dialog id="1" visible={true} fcStyle="danger">
-          Dialog
+          <Dialog.Title>Title</Dialog.Title>
+          <Dialog.Body>Dialog</Dialog.Body>
+          <Dialog.Footer>Footer</Dialog.Footer>
         </Dialog>
       </FCThemeProvider>,
     );
@@ -184,7 +177,9 @@ describe('Dialog Tests', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Dialog id="1" visible={true} fcStyle="warning">
-          Dialog
+          <Dialog.Title>Title</Dialog.Title>
+          <Dialog.Body>Dialog</Dialog.Body>
+          <Dialog.Footer>Footer</Dialog.Footer>
         </Dialog>
       </FCThemeProvider>,
     );
@@ -195,7 +190,9 @@ describe('Dialog Tests', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Dialog id="1" visible={true} fcStyle="info">
-          Dialog
+          <Dialog.Title>Title</Dialog.Title>
+          <Dialog.Body>Dialog</Dialog.Body>
+          <Dialog.Footer>Footer</Dialog.Footer>
         </Dialog>
       </FCThemeProvider>,
     );
@@ -206,7 +203,9 @@ describe('Dialog Tests', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Dialog id="1" visible={true} fcStyle="success">
-          Dialog
+          <Dialog.Title>Title</Dialog.Title>
+          <Dialog.Body>Dialog</Dialog.Body>
+          <Dialog.Footer>Footer</Dialog.Footer>
         </Dialog>
       </FCThemeProvider>,
     );
@@ -217,7 +216,9 @@ describe('Dialog Tests', () => {
     const { getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Dialog id="1" visible={true}>
-          Dialog
+          <Dialog.Title>Title</Dialog.Title>
+          <Dialog.Body>Dialog</Dialog.Body>
+          <Dialog.Footer>Footer</Dialog.Footer>
         </Dialog>
       </FCThemeProvider>,
     );

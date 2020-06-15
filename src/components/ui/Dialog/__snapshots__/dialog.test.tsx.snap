@@ -1,89 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mode 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #d9e2ec;
-  border: solid 1px #627d98;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4e6479;
-  background-color: #627d98;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #dd2c2e;
-  border: none;
-  color: #fff;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #b81e1f;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #243b53;
@@ -104,16 +21,11 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
 }
 
 .c1 {
-  border-bottom: solid 1px #e4585a;
   padding: 10px;
+  border-bottom: solid 1px #e4585a;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #e34f51;
+  color: #DDDDDD;
 }
 
 .c4 {
@@ -126,20 +38,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   border-top: solid 1px #e4585a;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: #DDDDDD;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -157,8 +61,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -166,9 +74,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -200,106 +106,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger | dark mod
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #000;
-  border: solid 1px #666666;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4d4d4d;
-  background-color: #666666;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #dd2c2e;
-  border: none;
-  color: #fff;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #b81e1f;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #fff;
@@ -320,16 +132,11 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #dd2c2e;
   padding: 10px;
+  border-bottom: solid 1px #dd2c2e;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #dd2c2e;
+  color: inherit;
 }
 
 .c4 {
@@ -342,20 +149,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   border-top: solid 1px #dd2c2e;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: inherit;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -373,8 +172,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -382,9 +185,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -416,106 +217,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to danger 1`] = `
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #d9e2ec;
-  border: solid 1px #627d98;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4e6479;
-  background-color: #627d98;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #2A78BB;
-  border: none;
-  color: #fff;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #215d91;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #243b53;
@@ -536,16 +243,11 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
 }
 
 .c1 {
-  border-bottom: solid 1px #2f83cf;
   padding: 10px;
+  border-bottom: solid 1px #2f83cf;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #589cd9;
+  color: #DDDDDD;
 }
 
 .c4 {
@@ -558,20 +260,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   border-top: solid 1px #2f83cf;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: #DDDDDD;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -589,8 +283,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -598,9 +296,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -632,106 +328,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info | dark mode 
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #000;
-  border: solid 1px #666666;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4d4d4d;
-  background-color: #666666;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #2A78BB;
-  border: none;
-  color: #fff;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #215d91;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #fff;
@@ -752,16 +354,11 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #2f83cf;
   padding: 10px;
+  border-bottom: solid 1px #2f83cf;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #2f83cf;
+  color: inherit;
 }
 
 .c4 {
@@ -774,20 +371,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   border-top: solid 1px #2f83cf;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: inherit;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -805,8 +394,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -814,9 +407,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -848,106 +439,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to info 1`] = `
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mode 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #d9e2ec;
-  border: solid 1px #627d98;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4e6479;
-  background-color: #627d98;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #00854D;
-  border: none;
-  color: #fff;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #00522f;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #243b53;
@@ -968,16 +465,11 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
 }
 
 .c1 {
-  border-bottom: solid 1px #00854D;
   padding: 10px;
+  border-bottom: solid 1px #00854D;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #00bd6d;
+  color: #DDDDDD;
 }
 
 .c4 {
@@ -990,20 +482,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   border-top: solid 1px #00854D;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: #DDDDDD;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -1021,8 +505,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -1030,9 +518,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -1064,106 +550,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success | dark mo
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #000;
-  border: solid 1px #666666;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4d4d4d;
-  background-color: #666666;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #00854D;
-  border: none;
-  color: #fff;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #00522f;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #fff;
@@ -1184,16 +576,11 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #00854D;
   padding: 10px;
+  border-bottom: solid 1px #00854D;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #00854D;
+  color: inherit;
 }
 
 .c4 {
@@ -1206,20 +593,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   border-top: solid 1px #00854D;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: inherit;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -1237,8 +616,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -1246,9 +629,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -1280,106 +661,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to success 1`] = `
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mode 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #d9e2ec;
-  border: solid 1px #627d98;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4e6479;
-  background-color: #627d98;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #eba300;
-  border: none;
-  color: #290E00;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #b88000;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #243b53;
@@ -1400,16 +687,11 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
 }
 
 .c1 {
-  border-bottom: solid 1px #eba300;
   padding: 10px;
+  border-bottom: solid 1px #eba300;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #ffba1f;
+  color: #DDDDDD;
 }
 
 .c4 {
@@ -1422,20 +704,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   border-top: solid 1px #eba300;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: #DDDDDD;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -1453,8 +727,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -1462,9 +740,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -1496,106 +772,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning | dark mo
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #000;
-  border: solid 1px #666666;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4d4d4d;
-  background-color: #666666;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #eba300;
-  border: none;
-  color: #290E00;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #b88000;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #fff;
@@ -1616,16 +798,11 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #eba300;
   padding: 10px;
+  border-bottom: solid 1px #eba300;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #eba300;
+  color: inherit;
 }
 
 .c4 {
@@ -1638,20 +815,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   border-top: solid 1px #eba300;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: inherit;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -1669,8 +838,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -1678,9 +851,7 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -1712,106 +883,12 @@ exports[`Dialog Tests Has the correct styles fcStyle is set to warning 1`] = `
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles for the default option | dark mode 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #d9e2ec;
-  border: solid 1px #627d98;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4e6479;
-  background-color: #627d98;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #006EF5;
-  border: none;
-  color: #fff;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #0057c2;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #243b53;
@@ -1832,15 +909,10 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
 }
 
 .c1 {
-  border-bottom: solid 1px #627d98;
   padding: 10px;
+  border-bottom: solid 1px #627d98;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
   color: #DDDDDD;
 }
 
@@ -1854,20 +926,12 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   border-top: solid 1px #627d98;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: #DDDDDD;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -1885,8 +949,12 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -1894,9 +962,7 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -1928,106 +994,12 @@ exports[`Dialog Tests Has the correct styles for the default option | dark mode 
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;
 
 exports[`Dialog Tests Has the correct styles for the default option 1`] = `
-.c6 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: #000;
-  border: solid 1px #666666;
-}
-
-.c6:hover:not(:disabled) {
-  color: #fff;
-  border-color: #4d4d4d;
-  background-color: #666666;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c6:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c6:disabled {
-  border-color: #999999;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c6:disabled .sc-AxjAm {
-  background-color: #999999;
-}
-
-.c7 {
-  vertical-align: middle;
-  padding: 0 10px;
-  box-sizing: border-box;
-  height: 34px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #006EF5;
-  border: none;
-  color: #fff;
-}
-
-.c7:hover:not(:disabled) {
-  background-color: #0057c2;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.c7:active:not(:disabled) {
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-.c7:disabled {
-  background-color: #DDDDDD;
-  color: #999999;
-  -webkit-transition: none;
-  transition: none;
-  cursor: not-allowed;
-}
-
-.c3 {
-  width: 1em;
-  height: 1em;
-}
-
 .c0 {
   border-radius: 5px;
   background-color: #fff;
@@ -2048,16 +1020,11 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
 }
 
 .c1 {
-  border-bottom: solid 1px #bcbcbc;
   padding: 10px;
+  border-bottom: solid 1px #bcbcbc;
   box-sizing: border-box;
   position: relative;
-}
-
-.c1 h2 {
-  margin: 0;
-  width: calc(100% - 40px);
-  color: #333333;
+  color: inherit;
 }
 
 .c4 {
@@ -2070,20 +1037,12 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   border-top: solid 1px #bcbcbc;
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-}
-
-.c5 button {
-  display: inline-block;
-}
-
-.c5 button:last-child {
-  margin-left: 10px;
+  color: inherit;
 }
 
 .c2 {
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -2101,8 +1060,12 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   width: 16px;
 }
 
+.c3 {
+  width: 1em;
+  height: 1em;
+}
+
 <div
-  aria-labelledby="1_title"
   class="c0"
   id="1"
   role="dialog"
@@ -2110,9 +1073,7 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   <div
     class="c1"
   >
-    <h2
-      id="1_title"
-    />
+    Title
     <button
       aria-label="Close"
       class="c2"
@@ -2144,18 +1105,7 @@ exports[`Dialog Tests Has the correct styles for the default option 1`] = `
   <div
     class="c5"
   >
-    <button
-      class="c6"
-      id="1_close_button"
-    >
-      Cancel
-    </button>
-    <button
-      class="c7"
-      id="1_confirm_button"
-    >
-      Yes
-    </button>
+    Footer
   </div>
 </div>
 `;

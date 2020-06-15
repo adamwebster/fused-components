@@ -64,7 +64,9 @@ const Autocomplete = ({
   const menuRef = useRef<HTMLUListElement>(('' as unknown) as HTMLUListElement);
   const itemRefs: Array<HTMLLIElement> = [];
   const autoCompleteRef = useRef<HTMLDivElement>(('' as unknown) as HTMLDivElement);
-
+  console.warn(
+    'This component has been deprecated and will not be used in future versions.  It is recommended to use the combobox component and set openOnClick to false to have the save functionality as this component.',
+  );
   const formatItems = (): void => {
     if (itemFormatter) {
       const itemsToFormat = items;

@@ -10,14 +10,14 @@ import { act } from 'react-dom/test-utils';
 afterEach(cleanup);
 
 describe('Autocomplete Tests', () => {
-  test('Renders Autocomplete with placeholder', () => {
+  test.skip('Renders Autocomplete with placeholder', () => {
     const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'AnotherItem']} placeholder="Autocomplete test" />,
     );
     expect(getByPlaceholderText('Autocomplete test')).toBeInTheDocument();
   });
 
-  test('Menu opens when input is typed into and has content', async () => {
+  test.skip('Menu opens when input is typed into and has content', async () => {
     const { getByPlaceholderText, getByText } = render(
       <Autocomplete id="ac1" items={['Test', 'Another Item']} placeholder="Autocomplete test" />,
     );
@@ -30,7 +30,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('Menu closes when the escape key is clicked', () => {
+  test.skip('Menu closes when the escape key is clicked', () => {
     const { getByPlaceholderText, queryByText } = render(
       <Autocomplete id="ac1" items={['Test', 'Another Item']} placeholder="Autocomplete test" />,
     );
@@ -41,7 +41,7 @@ describe('Autocomplete Tests', () => {
     expect(queryByText('Another Item')).toBeFalsy();
   });
 
-  test('Menu closes when the tab key is clicked', () => {
+  test.skip('Menu closes when the tab key is clicked', () => {
     const { getByPlaceholderText, queryByText } = render(
       <Autocomplete id="ac1" items={['Test', 'Another Item']} placeholder="Autocomplete test" />,
     );
@@ -51,7 +51,7 @@ describe('Autocomplete Tests', () => {
     expect(queryByText('Another Item')).toBeFalsy();
   });
 
-  test('itemFormatter renders the menu items', async () => {
+  test.skip('itemFormatter renders the menu items', async () => {
     const data = [
       {
         label: 'Apple',
@@ -80,7 +80,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('Clicking the down arrow highlights the correct item in the menu', async () => {
+  test.skip('Clicking the down arrow highlights the correct item in the menu', async () => {
     const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
@@ -95,7 +95,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('Clicking the down arrow twice and then up highlights the correct item in the menu', async () => {
+  test.skip('Clicking the down arrow twice and then up highlights the correct item in the menu', async () => {
     const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
@@ -113,7 +113,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('Pressing up and down changes the items in the menu when itemFormatter is used', async () => {
+  test.skip('Pressing up and down changes the items in the menu when itemFormatter is used', async () => {
     const data = [
       {
         label: 'Apple',
@@ -153,7 +153,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('The mouse entering the item sets the aria-activedescendant', async () => {
+  test.skip('The mouse entering the item sets the aria-activedescendant', async () => {
     const { getAllByRole, getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
@@ -168,7 +168,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('The mouse entering the item sets the aria-activedescendant when itemFormatter is used', async () => {
+  test.skip('The mouse entering the item sets the aria-activedescendant when itemFormatter is used', async () => {
     const data = [
       {
         label: 'Apple',
@@ -205,7 +205,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('If the input has a value an then is removed then the menu should not be shown', () => {
+  test.skip('If the input has a value an then is removed then the menu should not be shown', () => {
     const { queryByRole, getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
@@ -219,7 +219,7 @@ describe('Autocomplete Tests', () => {
     expect(menu).not.toBeInTheDocument();
   });
 
-  test('On change function fires when text changes', async () => {
+  test.skip('On change function fires when text changes', async () => {
     let initialValue = 'One';
     const onChange = jest.fn(() => {
       initialValue = 'two';
@@ -236,7 +236,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('If the input has a value an then is removed then the menu should not be shown', async () => {
+  test.skip('If the input has a value an then is removed then the menu should not be shown', async () => {
     const { getByText, getByPlaceholderText } = render(
       <Autocomplete id="ac1" clearValueOnSelect items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
@@ -251,7 +251,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('The value of the input is set when an item from thee menu is clicked', () => {
+  test.skip('The value of the input is set when an item from thee menu is clicked', () => {
     const { getByText, getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
@@ -264,7 +264,7 @@ describe('Autocomplete Tests', () => {
     expect(input.getAttribute('value')).toBe('Test');
   });
 
-  test('When an item is selected by clicking enter the value is set', async () => {
+  test.skip('When an item is selected by clicking enter the value is set', async () => {
     const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
@@ -279,7 +279,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('Nothing happens When any key but enter is clicked when an item is active in the list', async () => {
+  test.skip('Nothing happens When any key but enter is clicked when an item is active in the list', async () => {
     const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={['Test', 'Test2']} placeholder="Autocomplete test" />,
     );
@@ -293,7 +293,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('When an item is selected by clicking enter the value is set when itemFormatter is used', async () => {
+  test.skip('When an item is selected by clicking enter the value is set when itemFormatter is used', async () => {
     const data = [
       {
         label: 'Apple',
@@ -328,7 +328,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('When an item is selected by clicking it the value is set when itemFormatter is used', () => {
+  test.skip('When an item is selected by clicking it the value is set when itemFormatter is used', () => {
     const data = [
       {
         label: 'Apple',
@@ -362,7 +362,7 @@ describe('Autocomplete Tests', () => {
     expect(input.getAttribute('value')).toBe('Apple');
   });
 
-  test('Value is returned when onItemClick is used with itemFormatter and an item is clicked', () => {
+  test.skip('Value is returned when onItemClick is used with itemFormatter and an item is clicked', () => {
     const data = [
       {
         label: 'Apple',
@@ -399,7 +399,7 @@ describe('Autocomplete Tests', () => {
     expect(initialValue).toBe(0);
   });
 
-  test('Value is returned when onItemClick is used with itemFormatter and an item is chosen using enter', () => {
+  test.skip('Value is returned when onItemClick is used with itemFormatter and an item is chosen using enter', () => {
     const data = [
       {
         label: 'Apple',
@@ -437,7 +437,7 @@ describe('Autocomplete Tests', () => {
     expect(initialValue).toBe(0);
   });
 
-  test('When no data is sent then the empty message shows', async () => {
+  test.skip('When no data is sent then the empty message shows', async () => {
     const { getByText, getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={[]} placeholder="Autocomplete test" />,
     );
@@ -449,7 +449,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('Is disabled', () => {
+  test.skip('Is disabled', () => {
     const { getByPlaceholderText } = render(
       <Autocomplete id="ac1" items={[]} disabled placeholder="Autocomplete test" />,
     );
@@ -457,7 +457,7 @@ describe('Autocomplete Tests', () => {
     expect(input).toBeDisabled();
   });
 
-  test('Check icon shows up for the item selected', async () => {
+  test.skip('Check icon shows up for the item selected', async () => {
     const { getByPlaceholderText, getByText, getByRole } = render(
       <Autocomplete id="ac1" items={['Test', 'Another Item']} placeholder="Autocomplete test" />,
     );
@@ -473,7 +473,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('Renders in dark mode', async () => {
+  test.skip('Renders in dark mode', async () => {
     const { getByRole, getByPlaceholderText, getByText } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Autocomplete id="ac1" placeholder="autocomplete" items={['Test', 'Test2']} />
@@ -490,7 +490,7 @@ describe('Autocomplete Tests', () => {
     });
   });
 
-  test('Check icon shows up for the item selected in dark mode correctly', async () => {
+  test.skip('Check icon shows up for the item selected in dark mode correctly', async () => {
     const { getByPlaceholderText, getByText, getByRole } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Autocomplete id="ac1" items={['Test', 'Another Item']} placeholder="Autocomplete test" />
