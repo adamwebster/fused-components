@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
+import React, { useState, useRef, useEffect, FormEvent, ReactElement, ReactNode } from 'react';
 import { ComboboxWrapper, MenuItemStyled, CaretIcon, ItemIcon, InputStyled } from './style';
 import { Icon } from '../../icon';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
@@ -25,6 +25,10 @@ interface Props extends React.HTMLAttributes<HTMLInputElement> {
   itemFormatter?: (index: number) => ReactElement;
   /** What key should be search in the data that you send to the Combobox */
   keyToSearch?: string;
+  /** The onChange handler for the input. Returns the element */
+  onChange?: (event: FormEvent<HTMLInputElement>) => void;
+  /** What should happen when an item in the menu is clicked. Returns the index of the item clicked */
+  onItemClick?: (index: number) => void;
   /** Sets the placement of the dropdown menu */
   placement?: PopperPlacements;
   /** If the combobox should open on click */
@@ -41,6 +45,8 @@ const Combobox = ({
   itemFormatter,
   keyToSearch,
   id,
+  onChange,
+  onItemClick,
   openOnClick = true,
   placement = 'bottom-start',
   ...rest
@@ -121,6 +127,9 @@ const Combobox = ({
         } else {
           setValue(itemsToShow[itemSelectedIndex].label);
         }
+        if (onItemClick) {
+          onItemClick(itemSelectedIndex);
+        }
       }
       // Escape Key
       if (e.keyCode === 27 || e.keyCode === 9) {
@@ -185,7 +194,10 @@ const Combobox = ({
     }
   };
 
-  const onChangeFunc = (e: { target: { value: string } }): void => {
+  const onChangeFunc = (e: any): void => {
+    if (onChange) {
+      onChange(e);
+    }
     setFilterValue(e.target.value);
     filterItems(e.target.value);
   };
@@ -206,6 +218,14 @@ const Combobox = ({
       isMounted.current === false;
     };
   }, []);
+
+  useEffect(() => {
+    if (onChange) {
+      formatItems();
+      filterItems(filterValue);
+    }
+  }, [items]);
+
   let ariaProps: any = {
     'aria-controls': id + '-menu',
     'aria-expanded': false,
@@ -229,7 +249,7 @@ const Combobox = ({
             value={filterValue}
             icon={inputIcon}
             ref={filterRef}
-            onChange={(e: { target: { value: string } }): void => onChangeFunc(e)}
+            onChange={(e): void => onChangeFunc(e)}
             placeholder={placeholder}
             inError={inError}
             inWarning={inWarning}
@@ -258,7 +278,12 @@ const Combobox = ({
                       role="option"
                       theme={themeContext.theme}
                       id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
-                      onMouseDown={(): void => setValue(value)}
+                      onMouseDown={(): void => {
+                        setValue(value);
+                        if (onItemClick) {
+                          onItemClick(index);
+                        }
+                      }}
                       onMouseEnter={(e: any): void => {
                         setActiveDescendant(e.target.id);
                       }}
