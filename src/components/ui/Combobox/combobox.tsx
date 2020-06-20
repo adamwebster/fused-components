@@ -67,7 +67,6 @@ const Combobox = ({
   const isMounted = useRef(true);
 
   const formatItems = (): void => {
-    console.log(items);
     if (itemFormatter) {
       const itemsToFormat = items;
       itemsToFormat.forEach((item, index) => {
@@ -272,7 +271,6 @@ const Combobox = ({
               placement={placement}
             >
               <>
-                {console.log(itemsToShow)}
                 {itemsToShow.map((item: any, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;
                   return (
@@ -297,7 +295,7 @@ const Combobox = ({
                       aria-selected={index === itemSelectedIndex ? 'true' : 'false'}
                     >
                       {itemFormatter ? (
-                        itemFormatter(index)
+                        itemFormatter(item.index)
                       ) : (
                         <>
                           <span aria-label={`${item.label} press enter to choose this option`}>
