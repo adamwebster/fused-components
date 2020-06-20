@@ -43,7 +43,7 @@ const Combobox = ({
   disabled,
   placeholder,
   itemFormatter,
-  keyToSearch,
+  keyToSearch = 'label',
   id,
   onChange,
   onItemClick,
@@ -67,6 +67,7 @@ const Combobox = ({
   const isMounted = useRef(true);
 
   const formatItems = (): void => {
+    console.log(items);
     if (itemFormatter) {
       const itemsToFormat = items;
       itemsToFormat.forEach((item, index) => {
@@ -271,6 +272,7 @@ const Combobox = ({
               placement={placement}
             >
               <>
+                {console.log(itemsToShow)}
                 {itemsToShow.map((item: any, index) => {
                   const value = itemFormatter ? item[keyToSearch as string] : item.label;
                   return (
@@ -287,7 +289,7 @@ const Combobox = ({
                       onMouseEnter={(e: any): void => {
                         setActiveDescendant(e.target.id);
                       }}
-                      key={item.label}
+                      key={item[keyToSearch] + '_' + index}
                       ref={(ref: HTMLLIElement): void => {
                         itemRefs[index] = ref;
                       }}
