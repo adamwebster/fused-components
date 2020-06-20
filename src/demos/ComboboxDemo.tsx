@@ -31,8 +31,7 @@ export const ComboboxDemoItemFormatter = () => {
         id="cb3"
         inputIcon="filter"
         placeholder="Dark mode combobox"
-        items={items}
-        onChange={() => setDataOnChange()}
+        items={data}
         itemFormatter={(value): ReactElement => {
           return (
             <>

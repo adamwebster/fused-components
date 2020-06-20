@@ -52,7 +52,6 @@ const Combobox = ({
   ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
-  const [formattedItems, setFormattedItems] = useState<any>([]);
   const [filterValue, setFilterValue] = useState('');
   const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
@@ -66,25 +65,27 @@ const Combobox = ({
   const itemRefs: Array<HTMLLIElement> = [];
   const isMounted = useRef(true);
 
-  const formatItems = (): void => {
+  const formatItems = (itemsToFormatListed?: any): void => {
+    const formattedItemsReturned: any = [];
     if (itemFormatter) {
-      const itemsToFormat = items;
-      itemsToFormat.forEach((item, index) => {
+      const itemsToFormat = itemsToFormatListed ? itemsToFormatListed : items;
+      itemsToFormat.forEach((item: any, index: any) => {
         item.index = index;
         item.htmlID = `${id.toLowerCase().replace(/\./g, '')}_option_${index}`;
       });
-      setFormattedItems(itemsToFormat);
+      return itemsToFormat;
     } else {
-      const formattedItemsReturned: any = [];
-      items.forEach((item, index) => {
+      const itemsToFormat = itemsToFormatListed ? itemsToFormatListed : items;
+
+      itemsToFormat.forEach((item: any, index: any) => {
         formattedItemsReturned.push({
           index,
           label: item,
           htmlID: `${id.toLowerCase().replace(/\./g, '')}_option_${index}`,
         });
       });
-      setFormattedItems(formattedItemsReturned);
       setItemsToShow(formattedItemsReturned);
+      return formattedItemsReturned;
     }
   };
 
@@ -173,15 +174,14 @@ const Combobox = ({
   };
 
   const filterItems = (value: string): void => {
+    const test: any = formatItems(items);
     let filterItemList;
     if (keyToSearch) {
-      filterItemList = formattedItems
+      filterItemList = test
         .slice()
         .filter((item: any) => item[keyToSearch].toLowerCase().includes(value.toLowerCase()));
     } else {
-      filterItemList = formattedItems
-        .slice()
-        .filter((item: any) => item.label.toLowerCase().includes(value.toLowerCase()));
+      filterItemList = test.slice().filter((item: any) => item.label.toLowerCase().includes(value.toLowerCase()));
     }
     setMenuOpen(true);
     if (filterRef.current.value.length > 0) {
