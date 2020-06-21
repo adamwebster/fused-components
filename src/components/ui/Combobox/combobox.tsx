@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ReactElement, ReactNode } from 'react';
+import React, { useState, useRef, useEffect, FormEvent, ReactElement, ReactNode } from 'react';
 import { ComboboxWrapper, MenuItemStyled, CaretIcon, ItemIcon, InputStyled } from './style';
 import { Icon } from '../../icon';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
@@ -25,6 +25,10 @@ interface Props extends React.HTMLAttributes<HTMLInputElement> {
   itemFormatter?: (index: number) => ReactElement;
   /** What key should be search in the data that you send to the Combobox */
   keyToSearch?: string;
+  /** The onChange handler for the input. Returns the element */
+  onChange?: (event: FormEvent<HTMLInputElement>) => void;
+  /** What should happen when an item in the menu is clicked. Returns the index of the item clicked */
+  onItemClick?: (index: number) => void;
   /** Sets the placement of the dropdown menu */
   placement?: PopperPlacements;
   /** If the combobox should open on click */
@@ -39,14 +43,15 @@ const Combobox = ({
   disabled,
   placeholder,
   itemFormatter,
-  keyToSearch,
+  keyToSearch = 'label',
   id,
+  onChange,
+  onItemClick,
   openOnClick = true,
   placement = 'bottom-start',
   ...rest
 }: Props): ReactElement => {
   const [itemsToShow, setItemsToShow] = useState(items);
-  const [formattedItems, setFormattedItems] = useState<any>([]);
   const [filterValue, setFilterValue] = useState('');
   const [itemSelected, setItemSelected] = useState('');
   const [itemSelectedIndex, setItemSelectedIndex] = useState(-1);
@@ -60,25 +65,27 @@ const Combobox = ({
   const itemRefs: Array<HTMLLIElement> = [];
   const isMounted = useRef(true);
 
-  const formatItems = (): void => {
+  const formatItems = (itemsToFormatListed?: any): void => {
+    const formattedItemsReturned: any = [];
     if (itemFormatter) {
-      const itemsToFormat = items;
-      itemsToFormat.forEach((item, index) => {
+      const itemsToFormat = itemsToFormatListed ? itemsToFormatListed : items;
+      itemsToFormat.forEach((item: any, index: any) => {
         item.index = index;
         item.htmlID = `${id.toLowerCase().replace(/\./g, '')}_option_${index}`;
       });
-      setFormattedItems(itemsToFormat);
+      return itemsToFormat;
     } else {
-      const formattedItemsReturned: any = [];
-      items.forEach((item, index) => {
+      const itemsToFormat = itemsToFormatListed ? itemsToFormatListed : items;
+
+      itemsToFormat.forEach((item: any, index: any) => {
         formattedItemsReturned.push({
           index,
           label: item,
           htmlID: `${id.toLowerCase().replace(/\./g, '')}_option_${index}`,
         });
       });
-      setFormattedItems(formattedItemsReturned);
       setItemsToShow(formattedItemsReturned);
+      return formattedItemsReturned;
     }
   };
 
@@ -117,9 +124,16 @@ const Combobox = ({
       // Enter Key
       if (e.keyCode === 13) {
         if (keyToSearch) {
-          setValue(itemsToShow[itemSelectedIndex][keyToSearch]);
+          if (itemsToShow[itemSelectedIndex]) {
+            setValue(itemsToShow[itemSelectedIndex][keyToSearch]);
+          }
         } else {
-          setValue(itemsToShow[itemSelectedIndex].label);
+          if (itemsToShow[itemSelectedIndex]) {
+            setValue(itemsToShow[itemSelectedIndex].label);
+          }
+        }
+        if (onItemClick) {
+          onItemClick(itemSelectedIndex);
         }
       }
       // Escape Key
@@ -164,15 +178,14 @@ const Combobox = ({
   };
 
   const filterItems = (value: string): void => {
+    const test: any = formatItems(items);
     let filterItemList;
     if (keyToSearch) {
-      filterItemList = formattedItems
+      filterItemList = test
         .slice()
         .filter((item: any) => item[keyToSearch].toLowerCase().includes(value.toLowerCase()));
     } else {
-      filterItemList = formattedItems
-        .slice()
-        .filter((item: any) => item.label.toLowerCase().includes(value.toLowerCase()));
+      filterItemList = test.slice().filter((item: any) => item.label.toLowerCase().includes(value.toLowerCase()));
     }
     setMenuOpen(true);
     if (filterRef.current.value.length > 0) {
@@ -185,7 +198,10 @@ const Combobox = ({
     }
   };
 
-  const onChangeFunc = (e: { target: { value: string } }): void => {
+  const onChangeFunc = (e: any): void => {
+    if (onChange) {
+      onChange(e);
+    }
     setFilterValue(e.target.value);
     filterItems(e.target.value);
   };
@@ -206,6 +222,14 @@ const Combobox = ({
       isMounted.current === false;
     };
   }, []);
+
+  useEffect(() => {
+    if (onChange) {
+      formatItems();
+      filterItems(filterValue);
+    }
+  }, [items]);
+
   let ariaProps: any = {
     'aria-controls': id + '-menu',
     'aria-expanded': false,
@@ -229,7 +253,7 @@ const Combobox = ({
             value={filterValue}
             icon={inputIcon}
             ref={filterRef}
-            onChange={(e: { target: { value: string } }): void => onChangeFunc(e)}
+            onChange={(e): void => onChangeFunc(e)}
             placeholder={placeholder}
             inError={inError}
             inWarning={inWarning}
@@ -258,11 +282,16 @@ const Combobox = ({
                       role="option"
                       theme={themeContext.theme}
                       id={`${id.toLowerCase().replace(' ', '_')}_option_${index}`}
-                      onMouseDown={(): void => setValue(value)}
+                      onMouseDown={(): void => {
+                        setValue(value);
+                        if (onItemClick) {
+                          onItemClick(index);
+                        }
+                      }}
                       onMouseEnter={(e: any): void => {
                         setActiveDescendant(e.target.id);
                       }}
-                      key={item.label}
+                      key={item[keyToSearch] + '_' + index}
                       ref={(ref: HTMLLIElement): void => {
                         itemRefs[index] = ref;
                       }}
@@ -270,7 +299,7 @@ const Combobox = ({
                       aria-selected={index === itemSelectedIndex ? 'true' : 'false'}
                     >
                       {itemFormatter ? (
-                        itemFormatter(index)
+                        itemFormatter(item.index)
                       ) : (
                         <>
                           <span aria-label={`${item.label} press enter to choose this option`}>
