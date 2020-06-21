@@ -124,9 +124,13 @@ const Combobox = ({
       // Enter Key
       if (e.keyCode === 13) {
         if (keyToSearch) {
-          setValue(itemsToShow[itemSelectedIndex][keyToSearch]);
+          if (itemsToShow[itemSelectedIndex]) {
+            setValue(itemsToShow[itemSelectedIndex][keyToSearch]);
+          }
         } else {
-          setValue(itemsToShow[itemSelectedIndex].label);
+          if (itemsToShow[itemSelectedIndex]) {
+            setValue(itemsToShow[itemSelectedIndex].label);
+          }
         }
         if (onItemClick) {
           onItemClick(itemSelectedIndex);

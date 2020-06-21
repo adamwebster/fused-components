@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { FCThemeProvider } from '../theming/FCTheme';
 import { Combobox } from '../components/ui/Combobox';
 import { DarkModeWrapper } from '../common/styles';
@@ -14,17 +14,12 @@ export const ComboboxDemo = () => {
 };
 
 export const ComboboxDemoItemFormatter = () => {
-  const [items, setItems] = useState([]);
-
   const data = [
     { label: 'Apple', description: 'Apples are red and are crunchy.' },
     { label: 'Banana', description: 'Bananas are yellow you have to peel them.' },
     { label: 'Orange', description: 'Oranges have a hard peel and are full of vitamin C.' },
   ];
 
-  const setDataOnChange = () => {
-    setItems(data);
-  };
   return (
     <div>
       <Combobox
