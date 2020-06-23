@@ -33,6 +33,8 @@ interface Props extends React.HTMLAttributes<HTMLInputElement> {
   placement?: PopperPlacements;
   /** If the combobox should open on click */
   openOnClick?: boolean;
+  /** Set the border radius of the menu */
+  menuBorderRadius?: string;
 }
 
 const Combobox = ({
@@ -48,6 +50,7 @@ const Combobox = ({
   onChange,
   onItemClick,
   openOnClick = true,
+  menuBorderRadius,
   placement = 'bottom-start',
   ...rest
 }: Props): ReactElement => {
@@ -273,6 +276,7 @@ const Combobox = ({
               ref={menuRef}
               referenceElement={filterRef.current}
               placement={placement}
+              menuBorderRadius={menuBorderRadius}
             >
               <>
                 {itemsToShow.map((item: any, index) => {

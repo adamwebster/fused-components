@@ -4,7 +4,7 @@ import { Icon } from '../../icon';
 import { fcStyles } from '../../../common/types';
 import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Sets the button to be a primary button */
   primary?: boolean;
   /** Set the style of the button */
