@@ -15,7 +15,7 @@ export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   /** The value for the input */
   value?: string;
   /** What should happen when the input value changes */
-  onChange?: (e: never) => void;
+  onChange?: (e: any) => void;
   /** The placeholder for the input */
   placeholder?: string;
   /** Whether the input should be disabled or not */
@@ -28,6 +28,10 @@ export interface Props extends React.HTMLAttributes<HTMLInputElement> {
   theme?: unknown;
   /** Sets if the input is in a read only mode */
   readOnly?: boolean;
+  /**
+   * @ignore
+   */
+  name?: string;
   /**
    * @ignore
    */
