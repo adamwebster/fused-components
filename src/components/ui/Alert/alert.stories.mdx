@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
-import { action, actions } from '@storybook/addon-actions';
 import variables from '../../../styles/variables';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { AlertDemo } from '../../../demos/AlertDemo';
 import { FCThemeProvider } from "../../../theming/FCTheme";
 import { color } from '../../../styles/styles';
@@ -140,7 +137,3 @@ The alert component allows you to display an important piece of information in v
 ## Dark Mode Canvas
 
 <AlertDemo />
-
-# Alert dependents & dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Alert} />

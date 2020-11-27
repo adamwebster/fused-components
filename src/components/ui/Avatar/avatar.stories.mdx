@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
-import { action, actions } from '@storybook/addon-actions';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
 import { Avatar } from './';
@@ -34,7 +32,3 @@ The avatar component is used to show an profile image for a user.
 ## Properties
 
 <ArgsTable for={Avatar} story="Default" />
-
-# Table dependents + dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Avatar} />

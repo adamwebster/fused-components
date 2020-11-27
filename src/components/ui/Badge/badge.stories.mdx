@@ -1,7 +1,5 @@
 import {useState} from 'react';
 import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
-import { action, actions } from "@storybook/addon-actions";
 import { Badge } from './';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { BadgeDemoDarkMode } from "../../../demos/BadgeDemo";
@@ -37,6 +35,3 @@ The badge component highlight text in varying styles.
 ## Dark Mode
 
 <BadgeDemoDarkMode />
-
-# Badge dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Badge} />

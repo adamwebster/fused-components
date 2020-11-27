@@ -1,8 +1,5 @@
 import {useState} from 'react';
 import { Meta, Story, ArgsTable, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
-import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icon } from '../../../components/icon/';
 import { ButtonDarkMode } from "../../../demos/ButtonDemo";
@@ -85,63 +82,61 @@ You can also attach one of the many  <LinkTo kind="info-icons--page">icons</Link
 
 <ArgsTable for={Button} for="Default button" />
 
-<Story name="Default button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-    <Button id="defaultButton" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+<Story name="Default button" parameters={{  docs: { disable: true  }}}>
+    <Button id="defaultButton">Button</Button>
 </Story>
 
-<Story name="Primary button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-    <Button id="primaryButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+<Story name="Primary button" parameters={{ docs: { disable: true  }}}>
+    <Button id="primaryButton" primary>Button</Button>
 </Story>
 
 
-<Story name="Icon button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-    <Button id="primaryButton" icon="check-circle" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+<Story name="Icon button" parameters={{ docs: { disable: true  }}}>
+    <Button id="primaryButton" icon="check-circle">Button</Button>
 </Story>
 
 <Story name="Link button"
-parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}
+parameters={{docs: { disable: true  }}}
 >
-    <Button as="a" id="linkButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+    <Button as="a" id="linkButton" primary>Button</Button>
 </Story>
 
 
 <Story name="Default button Dark mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{docs: { disable: true }}}
 >
     <FCThemeProvider value={{theme: 'dark'}}>
-        <Button id="defaultButtonDark" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+        <Button id="defaultButtonDark">Button</Button>
     </FCThemeProvider>
 </Story>
 
 
 <Story name="Primary button Dark mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{docs: { disable: true  }}}
 >    
     <FCThemeProvider value={{theme: 'dark'}}>
-        <Button id="primaryButtonDark" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+        <Button id="primaryButtonDark" primary >Button</Button>
     </FCThemeProvider>
 </Story>
 
 <Story name="Icon button Dark mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{docs: { disable: true }}}
 >    
     <FCThemeProvider value={{theme: 'dark'}}>
-        <Button id="primaryButton" icon="check-circle" primary={boolean('Primary')} fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+        <Button id="primaryButton" icon="check-circle">Button</Button>
     </FCThemeProvider>
 </Story>
 
 
 <Story name="Link button Dark mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{docs: { disable: true  }}}
 >
     <FCThemeProvider value={{theme: 'dark'}}>
-        <Button as="a" id="linkButton" primary fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>
+        <Button as="a" id="linkButton" primary>Button</Button>
     </FCThemeProvider>
 </Story>
 
-# Button dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Button} />
