@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
@@ -83,7 +83,7 @@ You can also attach one of the many  <LinkTo kind="info-icons--page">icons</Link
 
 ## Properties
 
-<Props of={Button} />
+<ArgsTable for={Button} for="Default button" />
 
 <Story name="Default button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
     <Button id="defaultButton" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}>Button</Button>

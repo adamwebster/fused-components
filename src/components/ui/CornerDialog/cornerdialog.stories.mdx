@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import {CornerDialog} from './';
@@ -16,14 +16,14 @@ import { FCThemeProvider } from "../../../theming/FCTheme";
 The corner dialog component allows you to show a popup in one of the corners. This could be useful to notifying the user about some information or requesting some feedback.  It requires the user to click one of the buttons to close the dialog.
 
 ## Default
-<Preview>
+<Canvas>
     <CornerDialog targetElement='d1' id="default" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
-</Preview>
+</Canvas>
 
 ## Styles
-<Preview>
+<Canvas>
     <CornerDialog id="danger" fcStyle="danger" icon="no-entry-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
@@ -36,7 +36,7 @@ The corner dialog component allows you to show a popup in one of the corners. Th
         <CornerDialog id="success" fcStyle="success" icon="check-circle" title="Corner Dialog" fixed={false}>
         This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should not wrap around icon.
     </CornerDialog>
-</Preview>
+</Canvas>
 
 ## Interactive demo
 
@@ -68,7 +68,7 @@ parameters={{ docs: { disable: true  }}}
 
 ## Properties
 
-<Props of={CornerDialog} />
+<ArgsTable for={CornerDialog} story="Corner Dialog" />
 
 # Corner Dialog dependents & dependencies
 <DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={CornerDialog} />

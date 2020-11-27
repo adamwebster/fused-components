@@ -19,7 +19,7 @@ export interface Props extends React.HTMLAttributes<HTMLLIElement> {
   index?: number;
 }
 
-const MenuItem = ({ children, icon, index, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
+export const MenuItem = ({ children, icon, index, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
   const { dispatch, dropdownState } = useContext(DropdownMenuContext);
   const isMounted = useRef(true);
   const theme = useContext(FCTheme);

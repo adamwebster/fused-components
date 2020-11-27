@@ -33,7 +33,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   focusElement?: string | null | undefined;
 }
 
-const Dialog = ({
+export const Dialog = ({
   boxShadow = true,
   visible,
   id,

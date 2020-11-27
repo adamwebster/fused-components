@@ -15,7 +15,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   selectedValue?: string;
 }
 
-const RadioGroup = ({
+export const RadioGroup = ({
   children,
   onRadioChanged = (): void => undefined,
   inline,

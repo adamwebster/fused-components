@@ -47,7 +47,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** Set the date format that should be returned by the onDateChange event. */
   dateFormat?: string;
 }
-const Calendar = ({
+export const Calendar = ({
   onDateChange = (): void => undefined,
   selectedDate,
   autoFocusDay,

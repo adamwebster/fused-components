@@ -1,4 +1,4 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
@@ -100,7 +100,4 @@ Useful for displaying an important message.
 
 ## Properties of `<ToastProvider />`
 
-<Props of={ToastProvider} />
-
-# Toasts dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={ToastProvider} />
+<ArgsTable of={ToastProvider} />

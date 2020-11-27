@@ -32,7 +32,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** What element that should have focus when the panel opens */
   focusElement?: string;
 }
-const Panel = ({
+export const Panel = ({
   fcStyle,
   title,
   onCloseClick = (): void => undefined,

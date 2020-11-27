@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
@@ -17,13 +17,13 @@ import { Textarea } from '../Textarea';
 The form field component is a way to tie together common form items such as a label, input, descriptive message and a validation message. When creating a form that has validation it is recommended to use this component.
 
 ## Default
-<Preview>
+<Canvas>
     <Story name="Form Field" parameters={{ decorators: [withKnobs]}}>
     <FormField label="test" htmlFor="textarea" hint="This is a hint" validationMessage="Something went wrong">
     <Textarea aria-describedby="textarea_hint textarea_error" id="textarea" />
     </FormField>
     </Story>
-</Preview>
+</Canvas>
 
 ## Demo 
 
@@ -47,7 +47,7 @@ parameters={{ docs: { disable: true  }}}
 
 ## Properties
 
-<Props of={FormField} />
+<ArgsTable for={FormField} />
 
 # Input Field dependents & dependencies
 <DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={FormField} />

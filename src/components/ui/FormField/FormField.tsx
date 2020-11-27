@@ -19,7 +19,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   children: ReactNode;
 }
-const FormField = ({
+export const FormField = ({
   label,
   hint,
   required = false,

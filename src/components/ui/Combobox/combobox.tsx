@@ -37,7 +37,7 @@ interface Props extends React.HTMLAttributes<HTMLInputElement> {
   menuBorderRadius?: string;
 }
 
-const Combobox = ({
+export const Combobox = ({
   items,
   inputIcon,
   inError,

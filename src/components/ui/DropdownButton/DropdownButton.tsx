@@ -29,7 +29,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
   /** Set what element the button should be rended as for example as="a" */
   as?: string;
 }
-const DropdownButton = ({
+export const DropdownButton = ({
   primary,
   label,
   fcStyle,

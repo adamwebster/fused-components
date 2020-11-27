@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from '@storybook/addon-actions';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
@@ -17,11 +17,11 @@ If you use **onDateChange** it will pass back the formatted date in the specifie
 
 ## Default
 
-<Preview>
+<Canvas>
   <Story name="Calendar">
     <Calendar onDateChange={(date) => console.log(date)} />
   </Story>
-</Preview>
+</Canvas>
 
 
 <Story name="Calendar Dark Mode"
@@ -35,7 +35,7 @@ parameters={{ docs: { disable: true  }}}
 
 ## Properties
 
-<Props of={Calendar} />
+<ArgsTable for={Calendar} story="Calendar" />
 
 # Label dependents & dependencies
 

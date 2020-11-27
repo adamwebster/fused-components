@@ -20,7 +20,7 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
   children?: ReactNode;
 }
 
-const Checkbox = ({
+export const Checkbox = ({
   children,
   checked = false,
   inError = false,

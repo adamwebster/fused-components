@@ -37,7 +37,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    */
   autoComplete?: string;
 }
-const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
+export const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
   const theme = useContext(FCTheme);
   const { id, inError, inWarning, icon, readOnly, autoComplete, ...rest } = props;
   return (

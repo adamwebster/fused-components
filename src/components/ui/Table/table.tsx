@@ -28,7 +28,7 @@ interface Props extends React.HTMLAttributes<HTMLTableElement> {
   children: ReactNode;
 }
 
-const Table = ({
+export const Table = ({
   padding = '5px',
   zebraStriping = false,
   zebraStripeColor,
