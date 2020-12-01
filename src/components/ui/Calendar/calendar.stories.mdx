@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from '@storybook/addon-actions';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { Calendar } from './';
 import { color } from '../../../styles/styles';
 import { FCThemeProvider } from "../../../theming/FCTheme";
@@ -36,7 +35,3 @@ parameters={{ docs: { disable: true  }}}
 ## Properties
 
 <ArgsTable for={Calendar} story="Calendar" />
-
-# Label dependents & dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Calendar} />

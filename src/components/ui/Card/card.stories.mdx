@@ -2,7 +2,6 @@ import {useState} from 'react';
 import { Meta, Story, ArgsTable, Preview } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { CardDarkMode } from "../../../demos/CardDemo";
 import {Input, Label, Button, FormField, Checkbox} from "../../../components";
 import { Card } from './';
@@ -72,6 +71,3 @@ parameters={{ docs: { disable: true  }}}
 ## Properties
 
 <ArgsTable for={Card} story="Card" />
-
-# Card dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Card} />

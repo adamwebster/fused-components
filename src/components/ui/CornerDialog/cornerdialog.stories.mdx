@@ -5,7 +5,6 @@ import { action, actions } from "@storybook/addon-actions";
 import {CornerDialog} from './';
 import { CornerDialogDemo, CornerDialogDark } from '../../../demos/CornerDialogDemo';
 import { Icon } from '../../icon/';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { color } from '../../../styles/styles';
 import { FCThemeProvider } from "../../../theming/FCTheme";
 
@@ -69,6 +68,3 @@ parameters={{ docs: { disable: true  }}}
 ## Properties
 
 <ArgsTable for={CornerDialog} story="Corner Dialog" />
-
-# Corner Dialog dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={CornerDialog} />

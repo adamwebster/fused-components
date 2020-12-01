@@ -2,7 +2,6 @@ import {useState} from 'react';
 import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DialogDemo, DialogDarkDemo } from '../../../demos/DialogDemo';
 import { Dialog } from './';
 import { color } from '../../../styles/styles';
@@ -82,6 +81,3 @@ parameters={{ docs: { disable: true  }}}
 </Story>
 
 <ArgsTable for={Dialog} />
-
-# Alert dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Dialog} />

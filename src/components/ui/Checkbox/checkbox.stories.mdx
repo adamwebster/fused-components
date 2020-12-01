@@ -3,7 +3,6 @@ import { withKnobs, select, text, boolean } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
 import { Checkbox } from "./";
 import { CheckboxDemo, CheckboxDarkMode } from "../../../demos/CheckboxDemo";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { color } from '../../../styles/styles';
 import { FCThemeProvider } from "../../../theming/FCTheme";
 
@@ -47,7 +46,3 @@ parameters={{ docs: { disable: true  }}}
     <Checkbox id="checkbox7" aria-label="Check me" checked={boolean('Checked')} inError={boolean('In Error')} inWarning={boolean('In Warning')}>Check me</Checkbox>
   </FCThemeProvider>
 </Story>
-
-# Checkbox dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Checkbox} />
-

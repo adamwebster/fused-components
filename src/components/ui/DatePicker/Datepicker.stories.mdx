@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from '@storybook/addon-actions';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import  DatePicker from './DatePicker';
 import { DatePickerDemo, DatePickerDarkDemo } from '../../../demos/DatePickerDemo';
 import { color } from '../../../styles/styles';
@@ -24,7 +23,3 @@ The date picker component allows a date to be selected from a dropdown menu.  A 
 ## Properties
 
 <ArgsTable for={DatePicker} />
-
-# Label dependents & dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={DatePicker} />
