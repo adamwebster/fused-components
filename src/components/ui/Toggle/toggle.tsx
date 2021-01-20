@@ -14,7 +14,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   /** If the toggle is disabled or not */
   disabled?: boolean;
 }
-const Toggle = ({
+export const Toggle = ({
   id,
   active = false,
   showLabels = false,

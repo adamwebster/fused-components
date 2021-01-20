@@ -1,6 +1,5 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DarkModeWrapper } from "../../../common/styles";
@@ -16,28 +15,28 @@ import { Radio } from '../Radio';
 The radio group wraps multiple radios and adds functionally that is not available by default with the basic radio component such as keyboard support and only allowing one option to be selected at once. 
 
 ## Default
-<Preview>
-    <Story name="Radio Group" parameters={{ decorators: [withKnobs]}}>
+<Canvas>
+    <Story name="Radio Group" parameters={{ decorators: []}}>
         <RadioGroup selectedValue='radio 2' onRadioChanged={(value) => console.log(value)}>
             <Radio id="1" value="radio 1">Radio 1</Radio>
             <Radio id="2" value="radio 2">Radio 2</Radio>
             <Radio id="3" value="radio 3">Radio 3</Radio>
         </RadioGroup>
     </Story>
-</Preview>
+</Canvas>
 
-<Preview>
-    <Story name="Radio Group Inline" parameters={{ decorators: [withKnobs]}}>
+<Canvas>
+    <Story name="Radio Group Inline" parameters={{ decorators: []}}>
         <RadioGroup inline onRadioChanged={(value) => console.log(value)}>
             <Radio id="1" value="radio 1">Radio 1</Radio>
             <Radio id="2" value="radio 2">Radio 2</Radio>
             <Radio id="3" value="radio 3">Radio 3</Radio>
         </RadioGroup>
     </Story>
-</Preview>
+</Canvas>
 
 <Story name="Radio Group Dark Mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{ docs: { disable: true  }}}
 >
     <FCThemeProvider value={{theme: 'dark'}}>
@@ -52,7 +51,4 @@ parameters={{ docs: { disable: true  }}}
 
 ## Properties
 
-<Props of={RadioGroup} />
-
-# Radio Group dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={RadioGroup} />
+<ArgsTable for={RadioGroup} />

@@ -1,6 +1,5 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../../icon/';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
@@ -20,51 +19,47 @@ An text input component can be set to many of the input types(for example: text,
 It also supports different validation styles and can have any of the <LinkTo kind="info-icons--page">icons</LinkTo> the come with **Fused Components** added to it.
 
 ## Not Active
-<Preview>
-    <Story name="Input" parameters={{ decorators: [withKnobs]}}>
+<Canvas>
+    <Story name="Input">
         <Input
             id="inputStory1"
-            disabled={boolean('Disabled')}
-            inError={boolean('inError')}
-            inWarning={boolean('inWarning')}
-            icon={select('icon', ['', 'search', 'check-circle'])}
             aria-label="Text Input" 
         />
     </Story>
-</Preview>
+</Canvas>
 
 ## Disabled 
-<Preview>
+<Canvas>
     <Input
         id="inputStory2"
         aria-label="Disabled Input" 
         disabled
     />
-</Preview>
+</Canvas>
 
 ## Error
 
-<Preview>
+<Canvas>
     <Input
         id="inputStory3"
         inError
         aria-label="Error Input"
     />
-</Preview>
+</Canvas>
 
 ## Warning
 
-<Preview>
+<Canvas>
     <Input
         id="inputStory4"
         inWarning
         aria-label="Warning Input"
     />
-</Preview>
+</Canvas>
 
 ## Icon
 
-<Preview>
+<Canvas>
     <Input
         icon="search"
         id="inputStory5"
@@ -83,19 +78,15 @@ It also supports different validation styles and can have any of the <LinkTo kin
         icon="exclamation-circle"
         aria-label="Icon Input"
     />
-</Preview>
+</Canvas>
 
 <Story name="Input Dark Mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{ docs: { disable: true  }}}
 >
     <FCThemeProvider value={{theme: 'dark'}}>
         <Input
             id="inputStory1"
-            disabled={boolean('Disabled')}
-            inError={boolean('inError')}
-            inWarning={boolean('inWarning')}
-            icon={select('icon', ['', 'search', 'check-circle'])}
             aria-label="Text Input" 
         />
     </FCThemeProvider>
@@ -107,7 +98,4 @@ parameters={{ docs: { disable: true  }}}
 
 ## Properties
 
-<Props of={Input} />
-
-# Input dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Input} />
+<ArgsTable for={Input} />

@@ -9,7 +9,7 @@ export interface Props extends React.HTMLAttributes<HTMLElement> {
   showBottomBorder?: boolean;
   children?: ReactNode;
 }
-const TableHeader = ({ showBottomBorder = true, children, ...rest }: Props): ReactElement => {
+export const TableHeader = ({ showBottomBorder = true, children, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
       {(tableContext): ReactNode =>

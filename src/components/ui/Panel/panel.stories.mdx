@@ -1,8 +1,6 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { PanelDemo, PanelDark } from '../../../demos/PanelDemo';
 import { color } from '../../../styles/styles';
 import { FCThemeProvider } from "../../../theming/FCTheme";
@@ -16,11 +14,11 @@ import { Panel } from './';
 The panel component is used to display information that will slide in from one of the edges of the screen.
 
 ## Sizes 
-<Preview>
+<Canvas>
     <Panel id="dialog" fixed={false} title="Dialog">
         Dialog content
     </Panel>
-</Preview>
+</Canvas>
 
 <PanelDemo />
    
@@ -30,24 +28,21 @@ The panel component is used to display information that will slide in from one o
 <PanelDark />
 
 
-<Story name="Panel" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
-        <Panel fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false}  id="panelStory" fixed={false} title="Dialog">
+<Story name="Panel" parameters={{ docs: { disable: true  }}}>
+        <Panel fixed={false}  id="panelStory" fixed={false} title="Dialog">
               Dialog content
     </Panel>
 </Story>
 
 <Story name="Panel Dark Mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{ docs: { disable: true  }}}
 >
     <FCThemeProvider value={{theme: 'dark'}}>
-        <Panel fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false}  id="panelStory" fixed={false} title="Dialog">
+        <Panel  fixed={false}  id="panelStory" fixed={false} title="Dialog">
             Dialog content
         </Panel>
     </FCThemeProvider>
 </Story>
 
-<Props of={Panel} />
-
-# Panel dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Panel} />
+<ArgsTable for={Panel} />

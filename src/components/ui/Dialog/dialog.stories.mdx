@@ -1,8 +1,7 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DialogDemo, DialogDarkDemo } from '../../../demos/DialogDemo';
 import { Dialog } from './';
 import { color } from '../../../styles/styles';
@@ -14,7 +13,7 @@ import { FCThemeProvider } from "../../../theming/FCTheme";
 
 The dialog component is used to display information in a dialog that pops up over the existing content.  The visibility of the dialog is controlled by the consuming application through the visible property.
 ## Sizes 
-<Preview>
+<Canvas>
     <Dialog id="dialog-1" aria-labeledby="DialogTitle"  visible fixed={false} showOverlay={false} title="Dialog">
         <Dialog.Title><h2 id="DialogTitle" style={{padding: 0, margin: 0, border: 'none'}}>Title</h2></Dialog.Title>
         <Dialog.Body>
@@ -50,7 +49,7 @@ The dialog component is used to display information in a dialog that pops up ove
         </Dialog.Body>
         <Dialog.Footer>Footer</Dialog.Footer>
     </Dialog>
-</Preview>
+</Canvas>
 
 <DialogDemo />
 
@@ -81,7 +80,4 @@ parameters={{ docs: { disable: true  }}}
     </FCThemeProvider>
 </Story>
 
-<Props of={Dialog} />
-
-# Alert dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Dialog} />
+<ArgsTable for={Dialog} />

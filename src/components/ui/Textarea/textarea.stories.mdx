@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
-import { action, actions } from '@storybook/addon-actions';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { Textarea } from './';
 
 <Meta title="Components / Textarea" component={Textarea} parameters={{ component: Textarea }} />
@@ -11,14 +8,6 @@ import { Textarea } from './';
 
 A styled textarea element. 
 
-<Preview>
+<Canvas>
   <Textarea id="textarea" />
-</Preview>
-
-## Properties
-
-<Props of={Textarea} />
-
-# Textarea dependents & dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Textarea} />
+</Canvas>

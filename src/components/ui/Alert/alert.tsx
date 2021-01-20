@@ -3,6 +3,7 @@ import { Icon } from '../../icon';
 import { StyledAlert, Title, AlertContent } from './style';
 import { fcStyles } from '../../../common/types';
 import { FCThemeConsumer } from '../../../theming/FCTheme';
+
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /** Sets the style of the alert */
   fcStyle?: fcStyles;
@@ -23,7 +24,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onMouseOver?: () => void;
   onMouseOut?: () => void;
 }
-const Alert = ({
+export const Alert = ({
   fcStyle,
   title,
   icon,

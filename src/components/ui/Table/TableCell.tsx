@@ -8,7 +8,7 @@ import { TableContextContextConsumer } from './TableContext';
 export interface Props extends HTMLAttributes<HTMLTableCellElement> {
   children: ReactNode;
 }
-const TableCell = ({ children, ...rest }: Props): ReactElement => {
+export const TableCell = ({ children, ...rest }: Props): ReactElement => {
   return (
     <TableContextContextConsumer>
       {(tableContext): ReactNode =>

@@ -1,9 +1,8 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../../../components/icon/';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { ComboboxDemo, ComboboxDemoItemFormatter } from "../../../demos/ComboboxDemo";
 import {Alert} from "../../../components";
 import { color } from '../../../styles/styles';
@@ -95,7 +94,4 @@ parameters={{ docs: { disable: true  }}}
 
 ## Properties
 
-<Props of={Combobox} />
-
-# Combobox dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Combobox} />
+<ArgsTable for={Combobox} story="Combobox" />

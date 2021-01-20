@@ -9,10 +9,11 @@ export interface Props extends React.HTMLAttributes<HTMLUListElement> {
   placement?: PopperPlacements;
   referenceElement?: any;
   fitWidthToContent?: boolean;
+  menuBorderRadius?: string;
 }
 const PopOutMenu = React.forwardRef<HTMLUListElement, Props>(
   (props: Props, ref: any): ReactElement => {
-    const { placement, children, referenceElement, fitWidthToContent, ...rest } = props;
+    const { placement, children, referenceElement, fitWidthToContent, menuBorderRadius = '5px', ...rest } = props;
     const [popperElement, setPopperElement] = useState<HTMLUListElement | null>(null);
     const { styles, attributes } = usePopper(referenceElement, popperElement, {
       placement,
@@ -30,6 +31,7 @@ const PopOutMenu = React.forwardRef<HTMLUListElement, Props>(
           fitWidthToContent={fitWidthToContent}
           theme={theme.theme}
           ref={ref}
+          menuBorderRadius={menuBorderRadius}
           style={styles.popper}
           {...attributes.popper}
           {...rest}

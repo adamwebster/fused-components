@@ -33,7 +33,7 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
    */
   radioTabIndex?: number;
 }
-const Radio = React.forwardRef<HTMLSpanElement, Props>(
+export const Radio = React.forwardRef<HTMLSpanElement, Props>(
   (
     {
       children,
