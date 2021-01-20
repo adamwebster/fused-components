@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { Meta, Story, ArgsTable, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icon } from '../../../components/icon/';
 import { ButtonDarkMode } from "../../../demos/ButtonDemo";
@@ -9,7 +9,21 @@ import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { Button } from './';
 
-<Meta title="Components / Button" component={Button} parameters={{ component: Button }} />
+<Meta 
+    title="Components / Button" 
+    component={Button} 
+    parameters={{ component: Button }} 
+     argTypes={{
+        primary: {control: { type: "boolean"}},
+        fcStyle: {control: { type: 'select', options: ['', 'danger', 'info', 'warning', 'success']}},
+        buttonColor: {control: 'color'},
+        disabled: {control: { type: "boolean"}},
+        isLoading: {control: { type: "boolean"}},
+        icon: {table: {disable: true}},
+        as: {table: {disable: true}},
+        loadingIcon: {table: {disable: true}},
+    }}
+/>
 
 # Button
 
@@ -22,57 +36,57 @@ You can also supply your own button color to the button component.
 You can also attach one of the many  <LinkTo kind="info-icons--page">icons</LinkTo> that are provided as part of the Fused Components library.
 
 ## Default
-<Preview>
+<Canvas>
     <Button>Button</Button>
     <Button icon='exclamation-circle'>Button with icon</Button>
     <Button disabled>Disabled</Button>
     <Button isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Is Loading</Button>
-</Preview>
+</Canvas>
 
 ## Primary
 
-<Preview>
+<Canvas>
     <Button primary>Primary Button</Button>
     <Button primary icon='exclamation-circle'>Button with icon</Button>
     <Button disabled primary>Primary Button</Button>
     <Button primary isLoading loadingIcon={<FontAwesomeIcon spin icon="spinner"/>}>Primary Button</Button>
-</Preview>
+</Canvas>
 
 
 ## Styles
 
-<Preview>
+<Canvas>
     <Button fcStyle="danger" icon="no-entry-circle" primary>Primary Danger Button</Button>
     <Button fcStyle="warning" icon="exclamation-circle" primary>Primary Warning Button</Button>
     <Button fcStyle="info" icon="info-circle"primary>Primary Info Button</Button>
     <Button fcStyle="success" icon="check-circle" primary>Primary Success Button</Button>
-</Preview>
+</Canvas>
 
 
-<Preview>
+<Canvas>
     <Button fcStyle="danger" icon="no-entry-circle">Danger Button</Button>
     <Button fcStyle="warning" icon="exclamation-circle">Warning Button</Button>
     <Button fcStyle="info" icon="info-circle">Info Button</Button>
     <Button fcStyle="success" icon="check-circle">Success Button</Button>
-</Preview>
+</Canvas>
 
 ## buttonColor
 
-<Preview>
+<Canvas>
     <Button buttonColor="tomato" primary>Primary Button</Button>
     <Button buttonColor="tomato">Primary Button</Button>
-</Preview>
+</Canvas>
 
 
 ## Link
 
-<Preview>
+<Canvas>
     <Button as="a" href="http://google.ca" target="_blank">Link Button</Button>
     <Button as="a" fcStyle="danger" icon="no-entry-circle">Link Button</Button>
     <Button as="a" fcStyle="warning" icon="exclamation-circle">Link Button</Button>
     <Button as="a" fcStyle="info" icon="info-circle">Link Button</Button>
     <Button as="a" fcStyle="success" icon="check-circle">Link Button</Button>
-</Preview>
+</Canvas>
 
 ## Dark Mode
 
@@ -83,22 +97,30 @@ You can also attach one of the many  <LinkTo kind="info-icons--page">icons</Link
 <ArgsTable for={Button} for="Default button" />
 
 <Story name="Default button" parameters={{  docs: { disable: true  }}}>
-    <Button id="defaultButton">Button</Button>
+   {(args) => 
+    <Button id="defaultButton" {...args}>Button</Button>
+    }
 </Story>
 
 <Story name="Primary button" parameters={{ docs: { disable: true  }}}>
-    <Button id="primaryButton" primary>Button</Button>
+       {(args) => 
+    <Button id="primaryButton" {...args} primary>Button</Button>
+       }
 </Story>
 
 
 <Story name="Icon button" parameters={{ docs: { disable: true  }}}>
+      {(args) => 
     <Button id="primaryButton" icon="check-circle">Button</Button>
+      }
 </Story>
 
 <Story name="Link button"
 parameters={{docs: { disable: true  }}}
 >
+       {(args) => 
     <Button as="a" id="linkButton" primary>Button</Button>
+       }
 </Story>
 
 
@@ -106,9 +128,11 @@ parameters={{docs: { disable: true  }}}
 decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{docs: { disable: true }}}
 >
+   {(args) => 
     <FCThemeProvider value={{theme: 'dark'}}>
         <Button id="defaultButtonDark">Button</Button>
     </FCThemeProvider>
+   }
 </Story>
 
 
