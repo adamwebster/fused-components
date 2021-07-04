@@ -38,6 +38,10 @@ export default {
       sourcemap: sourceMap,
       preferConst: true,
     },
+    {
+      dir: 'dist/cjs',
+      format: 'cjs',
+    },
   ],
   plugins: [
     resolve({ extensions }),

@@ -5,7 +5,7 @@
   "repository": "https://github.com/adamwebster/fused-components",
   "homepage": "https://design.adamwebster.me",
   "module": "dist/src/index.js",
-  "main": "dist/src/index.js",
+  "main": "dist/cjs/src/index.js",
   "license": "MIT",
   "types": "dist/types/components.d.ts",
   "dependencies": {
