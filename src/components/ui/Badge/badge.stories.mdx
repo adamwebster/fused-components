@@ -1,50 +1,37 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
-import { action, actions } from "@storybook/addon-actions";
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { Badge } from './';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { BadgeDemoDarkMode } from "../../../demos/BadgeDemo";
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
+
 
 <Meta title="Components / Badge" component={Badge} parameters={{ component: Badge }} />
 
 # Badge
 
-## An Badge component 
+The badge component highlight text in varying styles. 
 
-<Story name="Badge Info" parameters={{ docs: { disable: true }}}>
-    <Badge fcStyle='info'>Info</Badge>
-</Story>
+<Canvas>
+    <Story 
+    argTypes={{
+        'fcStyle': {control: { type: 'select', options: ['', 'danger', 'info', 'warning', 'success']}},
+    }}
+    name="Default">
+    {(args) =>
+        <Badge {...args}>Badge</Badge>
+    }
+    </Story>
+</Canvas>
 
-<Story name="Badge Warning" parameters={{ docs: { disable: true }}}>
-    <Badge fcStyle='warning'>Info</Badge>
-</Story>
 
-<Story name="Badge Danger" parameters={{ docs: { disable: true }}}>
-    <Badge fcStyle='danger'>Info</Badge>
-</Story>
 
-<Story name="Badge Success" parameters={{ docs: { disable: true }}}>
-    <Badge fcStyle='success'>Info</Badge>
-</Story>
+## Properties
 
-<Preview>
-      <Badge>Badge</Badge>
-        <Badge fcStyle='info'>Info</Badge>
-        <Badge fcStyle='warning'>Warning</Badge>
-        <Badge fcStyle='danger'>Danger</Badge>
-        <Badge fcStyle='success'>Success</Badge>
-</Preview>
+<ArgsTable for={Badge} story="Default" />
+
 
 ## Dark Mode
 
 <BadgeDemoDarkMode />
-
-## Properties
-
-<Props of={Badge} />
-
-
-
-# Badge dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Badge} />

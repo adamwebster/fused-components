@@ -1,33 +1,55 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DialogDemo, DialogDarkDemo } from '../../../demos/DialogDemo';
 import { Dialog } from './';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 <Meta title="Components / Dialog" component={Dialog} parameters={{ component: Dialog }}/>
 
 # Dialog
 
+The dialog component is used to display information in a dialog that pops up over the existing content.  The visibility of the dialog is controlled by the consuming application through the visible property.
 ## Sizes 
-<Preview>
-    <Dialog visible fixed={false} showOverlay={false} title="Dialog">
+<Canvas>
+    <Dialog id="dialog-1" aria-labeledby="DialogTitle"  visible fixed={false} showOverlay={false} title="Dialog">
+        <Dialog.Title><h2 id="DialogTitle" style={{padding: 0, margin: 0, border: 'none'}}>Title</h2></Dialog.Title>
+        <Dialog.Body>
         Dialog content
+        </Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
     </Dialog>
-     <Dialog visible fcStyle="danger" fixed={false} showOverlay={false} title="Dialog">
+     <Dialog id="dialog-2" visible fcStyle="danger" fixed={false} showOverlay={false} title="Dialog">
+        <Dialog.Title><h2 style={{padding: 0, margin: 0, border: 'none'}}>Title</h2></Dialog.Title>
+        <Dialog.Body>
         Dialog content
+        </Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
     </Dialog>
-      <Dialog visible fcStyle="warning" fixed={false} showOverlay={false} title="Dialog">
+      <Dialog id="dialog-3" visible fcStyle="warning" fixed={false} showOverlay={false} title="Dialog">
+        <Dialog.Title><h2 style={{padding: 0, margin: 0, border: 'none'}}>Title</h2></Dialog.Title>
+        <Dialog.Body>
         Dialog content
+        </Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
     </Dialog>
-      <Dialog visible fcStyle="info" fixed={false} showOverlay={false} title="Dialog">
+      <Dialog id="dialog-4" visible fcStyle="info" fixed={false} showOverlay={false} title="Dialog">
+        <Dialog.Title><h2 style={{padding: 0, margin: 0, border: 'none'}}>Title</h2></Dialog.Title>
+        <Dialog.Body>
         Dialog content
+        </Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
     </Dialog>
-      <Dialog visible fcStyle="success" fixed={false} showOverlay={false} title="Dialog">
+      <Dialog id="dialog-5" visible fcStyle="success" fixed={false} showOverlay={false} title="Dialog">
+        <Dialog.Title><h2 style={{padding: 0, margin: 0, border: 'none'}}>Title</h2></Dialog.Title>
+        <Dialog.Body>
         Dialog content
+        </Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>
     </Dialog>
-</Preview>
+</Canvas>
 
 <DialogDemo />
 
@@ -35,7 +57,27 @@ import { Dialog } from './';
 
 <DialogDarkDemo />
 
-<Props of={Dialog} />
+<Story name="Dialog" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+    <Dialog visible id="dialog-6" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false} showOverlay={false} title="Dialog">
+        <Dialog.Title><h2 style={{padding: 0, margin: 0, border: 'none'}}>Title</h2></Dialog.Title>
+        <Dialog.Body>
+        Dialog content
+        </Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>    </Dialog>
+</Story>
 
-# Alert dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Dialog} />
+<Story name="Dialog Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Dialog visible id="dialog-6" fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])}  fixed={false} showOverlay={false} title="Dialog">
+        <Dialog.Title><h2 style={{padding: 0, margin: 0, border: 'none'}}>Title</h2></Dialog.Title>
+        <Dialog.Body>
+        Dialog content
+        </Dialog.Body>
+        <Dialog.Footer>Footer</Dialog.Footer>      </Dialog>
+    </FCThemeProvider>
+</Story>
+
+<ArgsTable for={Dialog} />

@@ -1,17 +1,28 @@
-import React, { useEffect, useRef, useContext } from 'react';
-import { CalendarMenu } from './style';
+import React, { useEffect, useRef, ReactElement } from 'react';
 import { Calendar } from '../Calendar';
-import { FCTheme } from '../../../theming/FCTheme';
+import { CalendarMenu } from './style';
+import { Placement as PopperPlacements } from '@popperjs/core';
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLUListElement> {
   menuOpened: boolean;
   value: string | undefined;
   changeDate: (date: string) => void;
   setMenuOpen: (value: boolean, menuMounted: boolean) => void;
+  inputRef?: any;
+  dateFormat?: string;
+  placement?: PopperPlacements;
 }
-const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) => {
+const DatePickerMenu = ({
+  menuOpened,
+  value,
+  inputRef,
+  changeDate,
+  setMenuOpen,
+  dateFormat,
+  placement,
+  ...rest
+}: Props): ReactElement => {
   const menuRef = useRef(null);
-  const theme = useContext(FCTheme);
   const handleClickOutside = (e: MouseEvent): void => {
     const test = (e.target as HTMLElement).parentNode;
     if (
@@ -41,8 +52,33 @@ const DatePickerMenu = ({ menuOpened, value, changeDate, setMenuOpen }: Props) =
   return (
     <>
       {menuOpened && (
-        <CalendarMenu theme={theme.theme} role="dialog" aria-expanded="true" ref={menuRef}>
-          <Calendar onChange={date => changeDate(date)} selectedDate={value} />
+        <CalendarMenu
+          onKeyDown={(e: any) => {
+            if (e.keyCode === 27) {
+              e.preventDefault();
+              if (menuRef.current) {
+                setMenuOpen(false, true);
+                inputRef.current.focus();
+              }
+            }
+          }}
+          role="dialog"
+          aria-expanded="true"
+          ref={menuRef}
+          fitWidthToContent
+          referenceElement={inputRef.current}
+          placement={placement}
+          {...rest}
+        >
+          <Calendar
+            dateFormat={dateFormat}
+            menuRef={menuRef}
+            inputRef={inputRef}
+            autoFocusDay
+            setMenuOpen={value => setMenuOpen(value, true)}
+            onDateChange={date => changeDate(date)}
+            selectedDate={value}
+          />
         </CalendarMenu>
       )}
     </>

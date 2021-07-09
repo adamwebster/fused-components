@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
+import isoWeek from 'dayjs/plugin/isoWeek';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import duration from 'dayjs/plugin/duration';
 import { Icon } from '../../icon/index';
@@ -19,15 +20,45 @@ import {
 import { FCTheme } from '../../../theming/FCTheme';
 dayjs.extend(localeData);
 dayjs.extend(advancedFormat);
+dayjs.extend(isoWeek);
 dayjs.extend(duration);
 
-interface Props {
-  onChange?: (date: any) => void;
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  /** What should happens when the day selected changes. Sends back the date */
+  onDateChange?: (date: any) => void;
+  /** The date that is selected in the calendar */
   selectedDate?: dayjs.Dayjs | string;
+  /** the width and height of the calendar in pixels */
   size?: number;
+  /** If the day should have browser focused by default */
+  autoFocusDay?: boolean;
+  /**
+   * @ignore
+   */
+  inputRef?: any;
+  /**
+   * @ignore
+   */
+  menuRef?: any;
+  /**
+   * @ignore
+   */
+  setMenuOpen?: (value: boolean) => void;
+  /** Set the date format that should be returned by the onDateChange event. */
+  dateFormat?: string;
 }
-const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), size }: Props): React.ReactElement => {
-  const [date, setDate] = useState(dayjs());
+export const Calendar = ({
+  onDateChange = (): void => undefined,
+  selectedDate,
+  autoFocusDay,
+  size,
+  inputRef,
+  menuRef,
+  setMenuOpen,
+  dateFormat = 'MM/DD/YYYY',
+  ...rest
+}: Props): React.ReactElement => {
+  const dateToSet = selectedDate ? dayjs(selectedDate) : dayjs();
   const [daysOfTheWeek] = useState(
     dayjs()
       .localeData()
@@ -35,6 +66,21 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
   );
   const [currentDay, setCurrentDay] = useState('');
   const [calendar, setCalendar] = useState([]);
+  const [dayTabIndex, setDayTabIndex] = useState(dateToSet.format('D'));
+  const [focusedDay, setFocusedDay] = useState<number>(
+    parseInt(dayjs(selectedDate).format('D')) || parseInt(dayjs().format('D')),
+  );
+  const [monthChanged, setMonthChanged] = useState(false);
+  let dateToRender = selectedDate ? dayjs(selectedDate) : dayjs();
+  if (dateToRender.format() === 'Invalid Date') {
+    dateToRender = dayjs();
+  }
+  const [selectedDateState, setSelectedDateState] = useState(dateToRender);
+
+  const prevButtonRef = useRef<HTMLAnchorElement | null>(null);
+  const [firstFocusDayButton]: any = useState<Array<HTMLButtonElement>>([]);
+  const dayButtonRefs: Array<HTMLButtonElement> = [];
+
   const theme = useContext(FCTheme);
   const dayNames = daysOfTheWeek.map((day: string) => {
     return (
@@ -47,10 +93,9 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     const blankDays = [];
     const daysInMonth = [];
     const blankDaysEnd = [];
-    const startOfMonth = date.startOf('month');
-    const daysInTheMonth = date.daysInMonth();
-    const endOfMonth = date.endOf('month');
-
+    const startOfMonth = selectedDateState.startOf('month');
+    const daysInTheMonth = selectedDateState.daysInMonth();
+    const endOfMonth = selectedDateState.endOf('month');
     for (let d = 0; d < startOfMonth.day(); d++) {
       blankDays.push({
         day: startOfMonth.subtract(d + 1, 'day').format('D'),
@@ -62,8 +107,8 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     for (let d = 1; d <= daysInTheMonth; d++) {
       daysInMonth.push({
         day: d,
-        date: date.format(`YYYY-${date.get('month') + 1}-${d}`),
-        timeStamp: dayjs(`${date.get('year')}-${date.get('month') + 1}-${d}`).format(),
+        date: selectedDateState.format(`YYYY-${selectedDateState.get('month') + 1}-${d}`),
+        timeStamp: dayjs(`${selectedDateState.get('year')}-${selectedDateState.get('month') + 1}-${d}`).format(),
       });
     }
 
@@ -78,6 +123,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
         date: endOfMonth.add(i + 1, 'day').format('YYYY MM DD'),
       });
     }
+
     const totalSlots = [...blankDays.reverse(), ...daysInMonth, ...blankDaysEnd];
     const rows: ({ day: string } | { day: number })[][] = [];
     let cells: ({ day: string } | { day: number })[] = [];
@@ -96,10 +142,73 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     });
     setCalendar(rows as any);
 
-    if (date.get('month') === dayjs().get('month')) {
+    if (selectedDateState.get('month') === dayjs().get('month')) {
       setCurrentDay(dayjs().format('D'));
     } else {
       setCurrentDay('');
+    }
+  };
+
+  const calendarKeyPress = (e: any, timeStamp: any): void => {
+    if (e.key === 'Enter') {
+      onDateChange(dayjs(timeStamp).format(dateFormat));
+      if (inputRef) inputRef.current.focus();
+    }
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      if (focusedDay + 1 < dayButtonRefs.length) {
+        dayButtonRefs[focusedDay + 1].focus();
+        setFocusedDay(focusedDay + 1);
+      } else {
+        setSelectedDateState(selectedDateState.add(1, 'month'));
+        setFocusedDay(1);
+        setDayTabIndex('1');
+        dayButtonRefs[1].focus();
+        setMonthChanged(true);
+      }
+    }
+
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (focusedDay - 1 > 0) {
+        dayButtonRefs[focusedDay - 1].focus();
+        setFocusedDay(focusedDay - 1);
+      } else {
+        const numberOfDaysInMonth = selectedDateState.subtract(1, 'month').daysInMonth();
+        setSelectedDateState(selectedDateState.subtract(1, 'month'));
+        setDayTabIndex(numberOfDaysInMonth.toString());
+        setFocusedDay(numberOfDaysInMonth);
+        setMonthChanged(true);
+      }
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (focusedDay + 7 < dayButtonRefs.length) {
+        dayButtonRefs[focusedDay + 7].focus();
+        setFocusedDay(focusedDay + 7);
+      } else {
+        setSelectedDateState(selectedDateState.add(1, 'month'));
+        setFocusedDay(1);
+        setDayTabIndex('1');
+        dayButtonRefs[1].focus();
+        setMonthChanged(true);
+      }
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (focusedDay - 7 > 0) {
+        dayButtonRefs[focusedDay - 7].focus();
+        setFocusedDay(focusedDay - 7);
+      } else {
+        const numberOfDaysInMonth = selectedDateState.subtract(1, 'month').daysInMonth();
+        setSelectedDateState(selectedDateState.subtract(1, 'month'));
+        setDayTabIndex(numberOfDaysInMonth.toString());
+        setFocusedDay(numberOfDaysInMonth);
+        setMonthChanged(true);
+      }
+    }
+    if (e.key === 'Escape') {
+      if (inputRef) inputRef.current.focus();
     }
   };
 
@@ -107,7 +216,7 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     if (row.length > 0)
       return (
         <Week key={Math.random()}>
-          {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }) => {
+          {row.map((item: { day: string; otherMonth: boolean; date: string; timeStamp: string }, index: any) => {
             return (
               <Day
                 theme={theme.theme}
@@ -120,8 +229,34 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
                 }`}
                 key={item.date}
               >
-                <button disabled={item.otherMonth} onClick={(): void => onChange(item.timeStamp)}>
-                  <span className="day-number">{item.day}</span>
+                <button
+                  onKeyDown={e => calendarKeyPress(e, item.timeStamp)}
+                  tabIndex={dayTabIndex === item.day.toString() ? 0 : -1}
+                  ref={(ref: HTMLButtonElement): void => {
+                    if (ref) {
+                      if (!ref.disabled) {
+                        dayButtonRefs[(item.day as unknown) as number] = ref;
+                        if (menuRef) firstFocusDayButton[(item.day as unknown) as number] = ref;
+                      }
+                    }
+                  }}
+                  onBlur={() => {
+                    if (autoFocusDay) {
+                      if (dayTabIndex === item.day.toString()) prevButtonRef.current?.focus();
+                    }
+                  }}
+                  onFocus={() => setFocusedDay(parseInt(item.day))}
+                  disabled={item.otherMonth}
+                  onMouseDown={(): void => onDateChange(dayjs(item.timeStamp).format(dateFormat))}
+                >
+                  <span
+                    aria-hidden="false"
+                    aria-label={daysOfTheWeek[index] + ' ' + dayjs(item.date).format('MMMM Do YYYY')}
+                    className="day-number"
+                    aria-selected={!item.otherMonth ? parseInt(item.day) === focusedDay : 'false'}
+                  >
+                    {item.day}
+                  </span>
                 </button>
               </Day>
             );
@@ -131,38 +266,112 @@ const Calendar = ({ onChange = (): void => undefined, selectedDate = dayjs(), si
     return null;
   });
 
+  const handleInputKeyPress = (e: any) => {
+    if (e.key === 'ArrowDown') {
+      if (menuRef) {
+        if (firstFocusDayButton[focusedDay]) {
+          setFocusedDay(focusedDay);
+          firstFocusDayButton[focusedDay].focus();
+        }
+      }
+    }
+    if (e.key === 'Escape' || e.key === 'Enter') {
+      if (menuRef) {
+        if (setMenuOpen) {
+          onDateChange(
+            dayjs(e.target.value).format() === 'Invalid Date' ? undefined : dayjs(e.target.value).format(dateFormat),
+          );
+          setMenuOpen(false);
+        }
+      }
+    } else if (e.key !== 'Tab') {
+      if (setMenuOpen) setMenuOpen(true);
+    }
+  };
+
   useEffect(() => {
     getWeeks();
-  }, [date]);
+  }, [selectedDateState]);
 
+  useEffect(() => {
+    setSelectedDateState(dateToRender);
+  }, [selectedDate]);
+
+  useEffect(() => {
+    if (dayButtonRefs) {
+      if (monthChanged) {
+        if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
+      } else {
+        if (firstFocusDayButton[0]) firstFocusDayButton[0].focus();
+      }
+    }
+  }, [dayButtonRefs]);
+
+  useEffect(() => {
+    if (dayButtonRefs) {
+      if (dayButtonRefs[focusedDay]) dayButtonRefs[focusedDay].focus();
+    }
+  }, [focusedDay]);
+
+  useEffect(() => {
+    if (menuRef) inputRef.current.addEventListener('keydown', (e: any) => handleInputKeyPress(e));
+    return () => {
+      if (menuRef) {
+        if (inputRef.current) inputRef.current.removeEventListener('keydown', (e: any) => handleInputKeyPress(e));
+      }
+    };
+  }, [menuRef]);
   const nextMonth = (): void => {
-    setDate(date.add(1, 'month'));
+    setSelectedDateState(selectedDateState.add(1, 'month'));
+    setDayTabIndex('1');
+    setFocusedDay(1);
+    setMonthChanged(false);
   };
 
   const previousMonth = (): void => {
-    setDate(date.subtract(1, 'month'));
+    setSelectedDateState(selectedDateState.subtract(1, 'month'));
+    setDayTabIndex('1');
+    setFocusedDay(1);
+    setMonthChanged(false);
   };
 
   return (
-    <CalendarWrapper calendarWidth={size}>
+    <CalendarWrapper calendarWidth={size} {...rest}>
       <CalendarHeader>
-        <CalendarTitle theme={theme.theme}>
-          <span>{`${date.format('MMMM')} ${date.format('YYYY')}`}</span>
+        <CalendarTitle aria-live="assertive" theme={theme.theme}>
+          <span>{`${selectedDateState.format('MMMM')} ${selectedDateState.format('YYYY')}`}</span>
         </CalendarTitle>
         <CalendarControl>
-          <CalendarControlButtons forwardedAs="a" onClick={(): void => previousMonth()}>
+          <CalendarControlButtons
+            title="Previous month"
+            forwardedAs="a"
+            tabIndex={0}
+            onKeyDown={(e: any): any => {
+              if (e.key === 'Enter') previousMonth();
+            }}
+            ref={prevButtonRef}
+            onClick={(): void => previousMonth()}
+          >
             <SvgWrapper>
-              <Icon icon="chevron-left" />
+              <Icon aria-label="Arrow left" icon="chevron-left" />
             </SvgWrapper>
           </CalendarControlButtons>
-          <CalendarControlButtons forwardedAs="a" onClick={(): void => nextMonth()}>
+          <CalendarControlButtons
+            tabIndex={0}
+            title="Next month"
+            forwardedAs="a"
+            onClick={(): void => nextMonth()}
+            onKeyDown={(e: any): any => {
+              if (e.key === 'Enter') nextMonth();
+            }}
+          >
             <SvgWrapper>
-              <Icon icon="chevron-right" />
+              <Icon aria-label="Arrow right" icon="chevron-right" />
             </SvgWrapper>
           </CalendarControlButtons>
         </CalendarControl>
       </CalendarHeader>
-      <Table>
+      <Table role="group">
         <thead>
           <tr>{dayNames}</tr>
         </thead>

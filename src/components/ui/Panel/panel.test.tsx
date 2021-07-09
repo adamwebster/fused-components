@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 describe('Panel Tests', () => {
   test('Renders the Panel component', () => {
-    const { getByText } = render(<Panel>I am a Panel</Panel>);
+    const { getByText } = render(<Panel id="1">I am a Panel</Panel>);
     expect(getByText('I am a Panel')).toBeInTheDocument();
   });
 
@@ -18,7 +18,7 @@ describe('Panel Tests', () => {
       visible = false;
     });
     const { getByTitle, queryByText, rerender } = render(
-      <Panel visible={visible} onCloseClick={() => setVisible()}>
+      <Panel id="1" visible={visible} onCloseClick={() => setVisible()}>
         Panel test
       </Panel>,
     );
@@ -28,7 +28,7 @@ describe('Panel Tests', () => {
     expect(visible).toBe(false);
 
     rerender(
-      <Panel visible={visible} onCloseClick={() => setVisible()}>
+      <Panel id="1" visible={visible} onCloseClick={() => setVisible()}>
         Panel test
       </Panel>,
     );
@@ -47,7 +47,7 @@ describe('Panel Tests', () => {
       visible = false;
     });
     const { getByText, queryByText, rerender } = render(
-      <Panel visible={visible} onCloseClick={() => setVisible()}>
+      <Panel id="1" visible={visible} onCloseClick={() => setVisible()}>
         Panel test
       </Panel>,
     );
@@ -56,7 +56,7 @@ describe('Panel Tests', () => {
     fireEvent.click(closeButton);
     expect(visible).toBe(false);
     rerender(
-      <Panel visible={visible} onCloseClick={() => setVisible()}>
+      <Panel id="1" visible={visible} onCloseClick={() => setVisible()}>
         Panel test
       </Panel>,
     );
@@ -75,7 +75,7 @@ describe('Panel Tests', () => {
       visible = false;
     });
     const { getByText, queryByText, rerender } = render(
-      <Panel visible={visible} onSaveClick={() => setVisible()}>
+      <Panel id="1" visible={visible} onSaveClick={() => setVisible()}>
         Panel test
       </Panel>,
     );
@@ -84,7 +84,7 @@ describe('Panel Tests', () => {
     fireEvent.click(closeButton);
     expect(visible).toBe(false);
     rerender(
-      <Panel visible={visible} onSaveClick={() => setVisible()}>
+      <Panel id="1" visible={visible} onSaveClick={() => setVisible()}>
         Panel test
       </Panel>,
     );
@@ -103,7 +103,7 @@ describe('Panel Tests', () => {
       visible = false;
     });
     const { getByTestId, queryByText, rerender } = render(
-      <Panel visible={visible} showOverlay onCloseClick={() => setVisible()}>
+      <Panel id="1" visible={visible} showOverlay onCloseClick={() => setVisible()}>
         Panel test
       </Panel>,
     );
@@ -112,7 +112,7 @@ describe('Panel Tests', () => {
     fireEvent.click(overlay);
     expect(visible).toBe(false);
     rerender(
-      <Panel visible={visible} showOverlay onCloseClick={() => setVisible()}>
+      <Panel id="1" visible={visible} showOverlay onCloseClick={() => setVisible()}>
         Panel test
       </Panel>,
     );
@@ -133,7 +133,7 @@ describe('Panel Tests', () => {
     const { getByText, queryByText, rerender } = render(
       <>
         <button onClick={() => setVisible()}>Show panel</button>
-        <Panel visible={visible} showOverlay>
+        <Panel id="1" visible={visible} showOverlay>
           Panel test
         </Panel>
       </>,
@@ -143,7 +143,7 @@ describe('Panel Tests', () => {
     fireEvent.click(button);
     expect(visible).toBe(true);
     rerender(
-      <Panel visible={visible} showOverlay>
+      <Panel id="1" visible={visible} showOverlay>
         Panel test
       </Panel>,
     );
@@ -158,7 +158,7 @@ describe('Panel Tests', () => {
 
   test('Position is set to relative when fixed is set to false', () => {
     const { getByRole } = render(
-      <Panel visible={true} fixed={false}>
+      <Panel id="1" visible={true} fixed={false}>
         Panel
       </Panel>,
     );
@@ -167,7 +167,7 @@ describe('Panel Tests', () => {
 
   test('CSS left property is used when position is set to left', () => {
     const { getByRole } = render(
-      <Panel visible={true} position="left">
+      <Panel id="1" visible={true} position="left">
         Panel
       </Panel>,
     );
@@ -176,7 +176,7 @@ describe('Panel Tests', () => {
 
   test('CSS left property is used when position is set to left', () => {
     const { getByRole } = render(
-      <Panel visible={true} position="right">
+      <Panel id="1" visible={true} position="right">
         Panel
       </Panel>,
     );
@@ -185,7 +185,7 @@ describe('Panel Tests', () => {
 
   test('Setting the title prop sets the title', () => {
     const { getByText } = render(
-      <Panel visible={true} title="Title">
+      <Panel id="1" visible={true} title="Title">
         Panel
       </Panel>,
     );
@@ -195,7 +195,7 @@ describe('Panel Tests', () => {
   test('Setting the title prop sets the title', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Panel visible={true} title="Title">
+        <Panel id="1" visible={true} title="Title">
           Panel
         </Panel>
       </FCThemeProvider>,
@@ -205,7 +205,7 @@ describe('Panel Tests', () => {
 
   test('Correct styles for danger panel', () => {
     const { container } = render(
-      <Panel visible={true} title="Title" fcStyle="danger">
+      <Panel id="1" visible={true} title="Title" fcStyle="danger">
         Panel
       </Panel>,
     );
@@ -214,7 +214,7 @@ describe('Panel Tests', () => {
 
   test('Correct styles for warning panel', () => {
     const { container } = render(
-      <Panel visible={true} title="Title" fcStyle="warning">
+      <Panel id="1" visible={true} title="Title" fcStyle="warning">
         Panel
       </Panel>,
     );
@@ -223,7 +223,7 @@ describe('Panel Tests', () => {
 
   test('Correct styles for info panel', () => {
     const { container } = render(
-      <Panel visible={true} title="Title" fcStyle="info">
+      <Panel id="1" visible={true} title="Title" fcStyle="info">
         Panel
       </Panel>,
     );
@@ -232,7 +232,7 @@ describe('Panel Tests', () => {
 
   test('Correct styles for success panel', () => {
     const { container } = render(
-      <Panel visible={true} title="Title" fcStyle="success">
+      <Panel id="1" visible={true} title="Title" fcStyle="success">
         Panel
       </Panel>,
     );
@@ -242,7 +242,7 @@ describe('Panel Tests', () => {
   test('Correct styles for danger panel | Dark mode', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Panel visible={true} title="Title" fcStyle="danger">
+        <Panel id="1" visible={true} title="Title" fcStyle="danger">
           Panel
         </Panel>{' '}
       </FCThemeProvider>,
@@ -253,7 +253,7 @@ describe('Panel Tests', () => {
   test('Correct styles for warning panel | Dark mode', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Panel visible={true} title="Title" fcStyle="warning">
+        <Panel id="1" visible={true} title="Title" fcStyle="warning">
           Panel
         </Panel>{' '}
       </FCThemeProvider>,
@@ -264,7 +264,7 @@ describe('Panel Tests', () => {
   test('Correct styles for info panel | Dark mode', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Panel visible={true} title="Title" fcStyle="info">
+        <Panel id="1" visible={true} title="Title" fcStyle="info">
           Panel
         </Panel>{' '}
       </FCThemeProvider>,
@@ -275,7 +275,7 @@ describe('Panel Tests', () => {
   test('Correct styles for success panel | Dark mode', () => {
     const { container } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
-        <Panel visible={true} title="Title" fcStyle="success">
+        <Panel id="1" visible={true} title="Title" fcStyle="success">
           Panel
         </Panel>
       </FCThemeProvider>,

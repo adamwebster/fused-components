@@ -3,25 +3,6 @@ import { color } from '../../../styles/styles';
 import { fcStyles } from '../../../common/types';
 import { lighten, darken } from 'polished';
 
-const colorValue = (props: any): string => {
-  switch (props.fcStyle) {
-    case 'danger':
-      return props.theme === 'dark' ? lighten(0.1, color.danger) : color.danger;
-    case 'warning':
-      return props.theme === 'dark' ? lighten(0.1, color.warning) : color.warning;
-    case 'info':
-      return props.theme === 'dark' ? lighten(0.3, color.info) : color.info;
-    case 'success':
-      return props.theme === 'dark' ? lighten(0.1, color.success) : color.success;
-    default:
-      if (props.theme === 'dark') {
-        return color.medium;
-      } else {
-        return color.dark;
-      }
-  }
-};
-
 const borderColor = (props: any): string => {
   switch (props.fcStyle) {
     case 'danger':
@@ -51,7 +32,6 @@ export const StyledDialog = styled.div<SD>`
   border: solid 1px ${borderColor};
   z-index: 98;
   width: 500px;
-
   ${(props: SD): FlattenSimpleInterpolation =>
     props.fixed
       ? css`
@@ -101,16 +81,12 @@ export const StyledDialog = styled.div<SD>`
 interface DTProps {
   fcStyle?: fcStyles;
 }
-export const DialogTitle = styled.div<DTProps>`
-  border-bottom: solid 1px ${borderColor};
+export const DialogTitleStyled = styled.div<DTProps>`
   padding: 10px;
+  border-bottom: solid 1px ${borderColor};
   box-sizing: border-box;
   position: relative;
-  h2 {
-    margin: 0;
-    width: calc(100% - 40px);
-    color: ${(props): string => colorValue(props)};
-  }
+  color: ${(props): string => (props.theme === 'dark' ? color.medium : 'inherit')};
 `;
 
 export const DialogContent = styled.div`
@@ -122,22 +98,16 @@ export const DialogContent = styled.div`
 interface DFProps {
   fcStyle?: fcStyles;
 }
-export const DialogFooter = styled.div<DFProps>`
+export const DialogFooterStyled = styled.div<DFProps>`
   border-top: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
-  text-align: right;
-  button {
-    display: inline-block;
-    &:last-child {
-      margin-left: 10px;
-    }
-  }
+  color: ${(props): string => (props.theme === 'dark' ? color.medium : 'inherit')};
 `;
 
 export const CloseButton = styled.button`
-  right: 15px;
-  top: 12px;
+  right: 10px;
+  top: 7px;
   border: none;
   background-color: transparent;
   font-size: 1rem;

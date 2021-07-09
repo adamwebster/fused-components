@@ -9,11 +9,11 @@ import { Tooltip } from './';
 
 # Tooltip
 
-The tooltip help information related to the thing that is being hovered over.
+The tooltip shows information related to the thing that is being hovered over or clicked depending on the triggerEvent set.
 
 <Preview>
-    <Tooltip content="World">
-    Hello
+    <Tooltip triggerAs="span" id="tooltip1" content="World">
+        Hello
     </Tooltip>
 </Preview>
 
@@ -29,12 +29,12 @@ The tooltip help information related to the thing that is being hovered over.
 <Story name="Tooltip attached to the body" parameters={{ docs: { disable: true }}}>
    <>
     <div style={{position: 'relative', display: 'inline-block', border: 'solid 1px #000', padding: 30 + 'px', overflow: 'hidden'}}>
-        <Tooltip targetElement="body" content={"Here I am..."}>
+        <Tooltip id="body1" targetElement="body" content={"Here I am..."}>
            I am attached to the body so I will breakout of the containing element.
         </Tooltip>
     </div>
      <div style={{position: 'relative', display: 'inline-block', border: 'solid 1px #000', padding: 30 + 'px', overflow: 'hidden'}}>
-        <Tooltip content={"Here I am..."}>
+        <Tooltip id="body2" content={"Here I am..."}>
            I am not so I will be hidden by the containing element.
         </Tooltip>
     </div>
@@ -43,8 +43,8 @@ The tooltip help information related to the thing that is being hovered over.
 
 <Story name="Tooltip icon trigger on click" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
     <div>
-    <Tooltip triggerEvent="click" placement={select('Placement', ['auto', 'auto-start', 'auto-end', 'top', 'left', 'right', 'bottom', 'top-start', 'top-end', 'bottom-start', 'bottom-end', 'right-start', 'right-end', 'left-start', 'left-end'], 'auto', 'placement1')} content={"Here I am..."}>
-       <Icon icon="question-circle" />
+    <Tooltip id="HelpTooltip" triggerAs="a" triggerEvent="click" placement={select('Placement', ['auto', 'auto-start', 'auto-end', 'top', 'left', 'right', 'bottom', 'top-start', 'top-end', 'bottom-start', 'bottom-end', 'right-start', 'right-end', 'left-start', 'left-end'], 'auto', 'placement1')} content={"Here I am..."}>
+       <Icon aria-label="Help" icon="question-circle" />
     </Tooltip>
     </div>
 </Story>
@@ -52,6 +52,3 @@ The tooltip help information related to the thing that is being hovered over.
 ## Properties
 
 <Props of={Tooltip} />
-
-# Tooltip dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Tooltip} />

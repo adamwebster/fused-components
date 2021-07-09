@@ -1,7 +1,12 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Props } from './';
 
-export const StyledAvatar = styled.div`
+interface AvatarProps {
+  size?: 'tiny' | 'small' | 'medium' | 'large';
+  borderRadius?: 'square' | 'rounded' | 'round';
+  boxShadow?: boolean;
+  image?: string;
+}
+export const StyledAvatar = styled.div<AvatarProps>`
   ${(props): string[] => {
     let size = '';
     let borderRadius = '';
@@ -48,9 +53,9 @@ export const StyledAvatar = styled.div`
     return [size, borderRadius];
   }}
  
-  background-image: url(${(props: Props): string => props.image as string});
+  background-image: url(${(props): string => props.image as string});
   background-size: cover;
-  ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.boxShadow &&
     css`
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);

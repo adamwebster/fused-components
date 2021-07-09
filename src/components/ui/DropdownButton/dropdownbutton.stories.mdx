@@ -1,40 +1,42 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, text, boolean, color } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 
 import { DropdownButton } from './';
-import { MenuItem } from './MenuItem';
+import MenuItem from './MenuItem';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DropdownButtonDark } from '../../../demos/DropdownButtonDemo';
-
+import { FCThemeProvider } from "../../../theming/FCTheme";
 import { Icon } from '../../icon/';
+import { color as FCColor } from '../../../styles/styles';
 
-<Meta title="Components / Dropdown Button" component={DropdownButton}  parameters={{ component: DropdownButton }}/>
+<Meta title="Components / Dropdown Button" component={DropdownButton}  parameters={{ component: DropdownButton, subcomponents: {MenuItem} }}/>
 
 # Dropdown Button
 
-The dropdown button allows multiple options to be visible in a drop down menu.  To close the menu the user would click on the button again or anywhere outside of the button.
+The dropdown button allows multiple options to be visible in a dropdown menu.  To close the menu the user would click on the button again or anywhere outside of the button.
 <p>
 <DropdownButton
+    id="dm01"
     label="Dropdown Button"
     >
     <DropdownButton.Menu>
-        <DropdownButton.MenuItem onClick={() => alert('clicked')} icon="check-circle">
-            Menu Item
+        <DropdownButton.MenuItem key="menu1" onClick={() => alert('clicked')} icon="check-circle">
+            Menu Item 1
         </DropdownButton.MenuItem>
-        <DropdownButton.MenuItem icon="search">
-            Menu Item
+        <DropdownButton.MenuItem key="menu2" icon="search">
+            Menu Item 2
         </DropdownButton.MenuItem>
-        <DropdownButton.Divider />
-        <DropdownButton.MenuItem icon="user">
-            Menu Item
+        <DropdownButton.Divider key="menuDivider" />
+        <DropdownButton.MenuItem key="menu3" icon="user">
+            Menu Item 3
         </DropdownButton.MenuItem>
     </DropdownButton.Menu>
 </DropdownButton>
 </p>
 
 
-<DropdownButton as="a" label={<Icon icon="times" />}>
+<DropdownButton id="dm02" as="a" label={<Icon icon="times" />}>
 <DropdownButton.Menu>
     <DropdownButton.MenuItem icon="check-circle">Like</DropdownButton.MenuItem>
     <DropdownButton.MenuItem>Unlike</DropdownButton.MenuItem>
@@ -42,6 +44,7 @@ The dropdown button allows multiple options to be visible in a drop down menu.  
 </DropdownButton>
 
     <DropdownButton
+        id="dm1"
         label="Dropdown Button"
         >
         <DropdownButton.Menu>
@@ -59,17 +62,62 @@ The dropdown button allows multiple options to be visible in a drop down menu.  
     </DropdownButton>
 
 
+
 ## Dark Mode
 
 <DropdownButtonDark/>
 
-## Properties of `<DropdownButton />`
+<Story name="Dropdown Button" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>   
+   <DropdownButton
+    id="dm01"
+    label={text('Label', 'Button')}
+    primary={boolean('Primary')}
+    buttonColor={color('Button Color', '')}
+    fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])} 
+    >
+    <DropdownButton.Menu>
+        <DropdownButton.MenuItem key="menu1" onClick={() => alert('clicked')} icon="check-circle">
+            Menu Item 1
+        </DropdownButton.MenuItem>
+        <DropdownButton.MenuItem key="menu2" icon="search">
+            Menu Item 2
+        </DropdownButton.MenuItem>
+        <DropdownButton.Divider key="menuDivider" />
+        <DropdownButton.MenuItem key="menu3" icon="user">
+            Menu Item 3
+        </DropdownButton.MenuItem>
+    </DropdownButton.Menu>
+</DropdownButton>
+</Story>
 
-<Props of={DropdownButton} />
+<Story name="Dropdown Button Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: FCColor.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+    <DropdownButton
+    id="dm01"
+    label={text('Label', 'Button')}
+    primary={boolean('Primary')}
+    buttonColor={color('Button Color', '')}
+    fcStyle={select('fcStyle', ['none', 'danger', 'warning', 'info', 'success'])} 
+    >
+    <DropdownButton.Menu>
+        <DropdownButton.MenuItem key="menu1" onClick={() => alert('clicked')} icon="check-circle">
+            Menu Item 1
+        </DropdownButton.MenuItem>
+        <DropdownButton.MenuItem key="menu2" icon="search">
+            Menu Item 2
+        </DropdownButton.MenuItem>
+        <DropdownButton.Divider key="menuDivider" />
+        <DropdownButton.MenuItem key="menu3" icon="user">
+            Menu Item 3
+        </DropdownButton.MenuItem>
+    </DropdownButton.Menu>
+</DropdownButton>
+    </FCThemeProvider>
+</Story>
 
-## Properties of `<DropdownButton.MenuItem />`
+## Properties
 
-<Props of={MenuItem} />
-
-# Dropdown Button dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={DropdownButton} />
+<ArgsTable for={DropdownButton} />

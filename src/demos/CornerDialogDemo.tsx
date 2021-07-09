@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { CornerDialog } from "../components/ui/CornerDialog";
-import { Button } from "../components/ui/Button";
-import { Label } from "../components/ui/Label";
-import { fcStyles } from "../common/types";
-import { FCThemeProvider } from "../theming/FCTheme";
-import { DarkModeWrapper } from "../common/styles";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { CornerDialog } from '../components/ui/CornerDialog';
+import { Button } from '../components/ui/Button';
+import { Label } from '../components/ui/Label';
+import { fcStyles } from '../common/types';
+import { FCThemeProvider } from '../theming/FCTheme';
+import { DarkModeWrapper } from '../common/styles';
+import styled from 'styled-components';
 
 const DarkModeWrapperStyled = styled(DarkModeWrapper)`
-  display:flex;
-`
+  display: flex;
+`;
 
 export const CornerDialogDemo = () => {
   const [dialogVisible, setDialogVisible] = useState(false);
-  const [style, setStyle] = useState("danger" as fcStyles);
-  const [theme, setTheme] = useState("light");
-  const [icon, setIcon] = useState("no-entry-circle");
+  const [style, setStyle] = useState('danger' as fcStyles);
+  const [theme, setTheme] = useState('light');
+  const [icon, setIcon] = useState('no-entry-circle');
   return (
     <>
       <Label htmlFor="darkmode">Theme</Label>
@@ -39,9 +39,7 @@ export const CornerDialogDemo = () => {
           id="styleoption"
           onChange={e => {
             setStyle(e.target.value as fcStyles);
-            setIcon(
-              e.target.selectedOptions[0].getAttribute("data-icon") as string
-            );
+            setIcon(e.target.selectedOptions[0].getAttribute('data-icon') as string);
           }}
         >
           <option data-icon="no-entry-circle" value="danger">
@@ -62,14 +60,14 @@ export const CornerDialogDemo = () => {
         </select>
       </p>
 
-      <Button onClick={() => setDialogVisible(true)} disabled={dialogVisible}>
-        Show Corner Dialog
-      </Button>
+      <Button onClick={() => setDialogVisible(true)}>Show Corner Dialog</Button>
       <FCThemeProvider value={{ theme }}>
         <CornerDialog
+          id="DialogDemo"
           fcStyle={style as fcStyles}
           icon={icon}
           onCloseClick={() => setDialogVisible(false)}
+          onConfirmClick={() => setDialogVisible(false)}
           visible={dialogVisible}
           title="Corner Dialog"
           confirmText="Yes"
@@ -85,49 +83,32 @@ export const CornerDialogDemo = () => {
 export const CornerDialogDark = () => {
   return (
     <DarkModeWrapperStyled>
-      <FCThemeProvider value={{ theme: "dark" }}>
-      <CornerDialog
-          title="Corner Dialog Default"
-          fixed={false}
-        >
-          This is a Corner Dialog that will appear in the bottom right corner of
-          the users screen. With text that should not wrap around icon.
+      <FCThemeProvider value={{ theme: 'dark' }}>
+        <CornerDialog id="DefaultDemoDark" title="Corner Dialog Default" fixed={false}>
+          This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
+          not wrap around icon.
+        </CornerDialog>
+        <CornerDialog id="DangerDemoDark" fcStyle="danger" icon="no-entry-circle" title="Corner Dialog" fixed={false}>
+          This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
+          not wrap around icon.
         </CornerDialog>
         <CornerDialog
-          fcStyle="danger"
-          icon="no-entry-circle"
-          title="Corner Dialog"
-          fixed={false}
-        >
-          This is a Corner Dialog that will appear in the bottom right corner of
-          the users screen. With text that should not wrap around icon.
-        </CornerDialog>
-        <CornerDialog
+          id="WarningDemoDark"
           fcStyle="warning"
           icon="exclamation-circle"
           title="Corner Dialog"
           fixed={false}
         >
-          This is a Corner Dialog that will appear in the bottom right corner of
-          the users screen. With text that should not wrap around icon.
+          This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
+          not wrap around icon.
         </CornerDialog>
-        <CornerDialog
-          fcStyle="info"
-          icon="question-circle"
-          title="Corner Dialog"
-          fixed={false}
-        >
-          This is a Corner Dialog that will appear in the bottom right corner of
-          the users screen. With text that should not wrap around icon.
+        <CornerDialog id="InfoDemoDark" fcStyle="info" icon="question-circle" title="Corner Dialog" fixed={false}>
+          This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
+          not wrap around icon.
         </CornerDialog>
-        <CornerDialog
-          fcStyle="success"
-          icon="check-circle"
-          title="Corner Dialog"
-          fixed={false}
-        >
-          This is a Corner Dialog that will appear in the bottom right corner of
-          the users screen. With text that should not wrap around icon.
+        <CornerDialog id="SuccessDemoDark" fcStyle="success" icon="check-circle" title="Corner Dialog" fixed={false}>
+          This is a Corner Dialog that will appear in the bottom right corner of the users screen. With text that should
+          not wrap around icon.
         </CornerDialog>
       </FCThemeProvider>
     </DarkModeWrapperStyled>

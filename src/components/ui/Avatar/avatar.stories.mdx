@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
-import { action, actions } from '@storybook/addon-actions';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
 import { Avatar } from './';
@@ -10,35 +8,27 @@ import { Avatar } from './';
 
 # Avatar
 
-## Sizes
+The avatar component is used to show an profile image for a user.
 
-<Preview>
-  <Avatar image={'https://i.pravatar.cc/300'} size="tiny" />
-  <Avatar image={'https://i.pravatar.cc/300'} size="small" />
-  <Avatar image={'https://i.pravatar.cc/300'} size="medium" />
-  <Avatar image={'https://i.pravatar.cc/300'} size="large" />
-</Preview>
-
-## Border Radius Examples
-
-You can set the border radius of the component to have different appearances.
-
-<Preview>
-  <Avatar image={'https://i.pravatar.cc/300'} size="large" borderRadius="rounded" />
-  <Avatar image={'https://i.pravatar.cc/300'} size="large" borderRadius="round" />
-  <Avatar image={'https://i.pravatar.cc/300'} size="large" borderRadius="square" />
-</Preview>
-
-## Box Shadow
-
-<Preview>
-  <Avatar boxShadow image={'https://i.pravatar.cc/300'} size="large" />
-</Preview>
+<Canvas>
+  <Story 
+  argTypes={
+    {
+      size: {control: {type: 'select', options: ['tiny', 'small','medium', 'large']}},
+      image: {control: {type: 'text'}},
+      borderRadius: {control: {type: 'select', options: ['square', 'rounded','round']}},
+      boxShadow: {control: 'boolean'},
+    }
+  }
+  args={{
+    image: "https://i.pravatar.cc/300"
+    }}
+  name="Default">{(args) =>
+    <Avatar {...args} title="Avatar" />
+  }
+  </Story>
+</Canvas>
 
 ## Properties
 
-<Props of={Avatar} />
-
-# Table dependents + dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Avatar} />
+<ArgsTable for={Avatar} story="Default" />

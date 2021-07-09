@@ -3,7 +3,7 @@ import { TableBodyStyled } from './style';
 
 import { TableContextContextConsumer } from './TableContext';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLElement> {
   children: ReactNode;
 }
 const TableBody = ({ children, ...rest }: Props): ReactElement => {

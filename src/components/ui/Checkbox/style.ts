@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { lighten } from 'polished';
 
 interface Label extends React.HTMLProps<HTMLElement> {
   inError?: boolean;
@@ -12,7 +13,7 @@ export const Label = styled.span<Label>`
     ${(props): false | FlattenSimpleInterpolation | undefined =>
       props.inError &&
       css`
-        color: ${color.danger};
+        color: ${props.theme === 'dark' ? lighten(0.25, color.danger) : color.danger};
       `}
       ${(props): false | FlattenSimpleInterpolation | undefined =>
         props.inWarning &&
@@ -43,7 +44,7 @@ export const IconStyled = styled.span<IconProps>`
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.inError &&
     css`
-      color: ${color.danger};
+      color: ${props.theme === 'dark' ? lighten(0.25, color.danger) : color.danger};
     `}
   ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.inWarning &&

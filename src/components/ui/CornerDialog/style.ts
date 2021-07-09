@@ -14,18 +14,18 @@ export interface Props {
 const colorValue = (props: Props): string => {
   switch (props.fcStyle) {
     case 'danger':
-      return props.theme === 'dark' ? lighten(0.1, color.danger) : color.danger;
+      return props.theme === 'dark' ? lighten(0.08, color.danger) : color.danger;
     case 'warning':
       return props.theme === 'dark' ? lighten(0.1, color.warning) : color.warning;
     case 'info':
-      return props.theme === 'dark' ? lighten(0.3, color.info) : color.info;
+      return props.theme === 'dark' ? lighten(0.1, color.info) : color.info;
     case 'success':
-      return props.theme === 'dark' ? lighten(0.1, color.success) : color.success;
+      return props.theme === 'dark' ? lighten(0.11, color.success) : color.success;
     default:
       if (props.theme === 'dark') {
         return color.medium;
       } else {
-        return color.dark;
+        return color.darkest;
       }
   }
 };
@@ -92,12 +92,14 @@ export const CornerDialogStyled = styled.div`
   }
 `;
 
-export const DialogTitle = styled.h3`
+export const DialogTitle = styled.header`
   border-bottom: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
   margin: 0;
   color: ${colorValue};
+  font-size: 20px;
+  font-weight: bold;
 `;
 
 export const DialogContent = styled.div`
@@ -124,12 +126,12 @@ export const DialogFooter = styled.div`
 
 export const CloseButton = styled.button`
   right: 10px;
-  top: 10px;
+  top: 17px;
   border: none;
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
+  color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.dark)};
   position: absolute;
   cursor: pointer;
   &:hover {

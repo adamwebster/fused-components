@@ -1,28 +1,30 @@
-import { Meta, Story, Props, Preview } from "@storybook/addon-docs/blocks";
+import { Meta, Story, ArgsTable, Canvas } from "@storybook/addon-docs/blocks";
 import { withKnobs, select, text, boolean } from "@storybook/addon-knobs";
 import { action, actions } from "@storybook/addon-actions";
 import { Checkbox } from "./";
 import { CheckboxDemo, CheckboxDarkMode } from "../../../demos/CheckboxDemo";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
+
 
 <Meta title="Components / Checkbox" component={Checkbox} parameters={{ component: Checkbox }} />
 
 # Checkbox
 
-## An Checkbox component
+The checkbox component is an replacement for the browsers checkbox element.  If the checkbox is checked or not is completely controlled by the consuming application through the **checked** property.  
 
-<Preview>
-  <Checkbox>Checkbox</Checkbox>
-  <Checkbox checked>Checkbox</Checkbox>
-  <Checkbox inError>Checkbox</Checkbox>
-  <Checkbox inWarning>Checkbox</Checkbox>
-</Preview>
+<Canvas>
+  <Checkbox id="checkbox1">Checkbox</Checkbox>
+  <Checkbox id="checkbox2" checked>Checkbox</Checkbox>
+  <Checkbox id="checkbox3" inError>Checkbox</Checkbox>
+  <Checkbox id="checkbox4" inWarning>Checkbox</Checkbox>
+</Canvas>
 
 ## Demo
 
-<Preview>
+<Canvas>
   <CheckboxDemo />
-</Preview>
+</Canvas>
 
 ## Dark Mode
 
@@ -30,9 +32,17 @@ import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-dep
 
 ## Properties
 
-<Props of={Checkbox} />
+<ArgsTable for={Checkbox} story="Checkbox" />
 
+<Story name="Checkbox" parameters={{ decorators: [withKnobs],  docs: { disable: true  }}}>
+  <Checkbox id="checkbox6" aria-label="Check me" checked={boolean('Checked')} inError={boolean('In Error')} inWarning={boolean('In Warning')}>Check me</Checkbox>
+</Story>
 
-# Checkbox dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Checkbox} />
-
+<Story name="Checkbox Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Checkbox id="checkbox7" aria-label="Check me" checked={boolean('Checked')} inError={boolean('In Error')} inWarning={boolean('In Warning')}>Check me</Checkbox>
+  </FCThemeProvider>
+</Story>

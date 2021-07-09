@@ -1,27 +1,37 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { Icon } from '../../../components/icon/';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { ComboboxDemo, ComboboxDemoItemFormatter } from "../../../demos/ComboboxDemo";
+import {Alert} from "../../../components";
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { Combobox } from './';
 
 <Meta title="Components / Combobox" component={Combobox}  parameters={{ component: Combobox }}/>
 
-# Combobox
- 
+# Combobox 
 
-## Default
+The combobox allows the user to type in a value and the results will show up in a list below.  It is also possible to click on press the down key(when the input has focus) to open the menu.
+
 <Combobox
     id="cb1"
     inputIcon="filter"
     placeholder="Type to search for a fruit"
     items={["Apple", "Orange", "Banana"]}
+    onItemClick={() => console.log('click')}
  />
 
-## Item Formatter
+
+# Item Formatter
+
+The itemFormatter property allows you to pass an how the item should look.  It passes back the index of the item so that you can reference the correct item in the items that you send to the combobox.
+
+<Alert icon="info-circle" title="Note about the itemFormatter property" fcStyle="info" style={{marginBottom: 20 + 'px'}}>
+If you use the itemFormatter you must also set the keyToSearch property to the key of the item that you would like to be searched.
+</Alert>
 
 <ComboboxDemoItemFormatter />
 
@@ -54,9 +64,34 @@ Below is an example code for the item formatter
 ## Dark Mode
 <ComboboxDemo />
 
+
+
+<Story name="Combobox" parameters={{ docs: { disable: false }}}>
+	<Combobox
+        aria-label="Combobox"
+        id="cb14"
+        inputIcon="filter"
+        placeholder="Type to search for a fruit"
+        items={["Apple", "Orange", "Banana"]}
+    />
+</Story>
+
+
+<Story name="Combobox Dark Mode" 
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Combobox
+            aria-label="Combobox"
+            id="cb15"
+            inputIcon="filter"
+            placeholder="Type to search for a fruit"
+            items={["Apple", "Orange", "Banana"]}
+        />
+    </FCThemeProvider>
+</Story>
+
 ## Properties
 
-<Props of={Combobox} />
-
-# Combobox dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Combobox} />
+<ArgsTable for={Combobox} story="Combobox" />

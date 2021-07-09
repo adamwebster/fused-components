@@ -1,10 +1,10 @@
 import {useState} from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { Meta, Story, ArgsTable, Preview } from '@storybook/addon-docs/blocks';
 import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { DarkModeWrapper } from "../../../common/styles";
 import { LabelDark } from "../../../demos/LabelDemo";
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 import { Label } from './';
 
@@ -12,19 +12,22 @@ import { Label } from './';
 
 # Label
 
-## An Label component
- 
+A styled html label element used to label any of the input elements that are provided with Fused Components. 
 
 ## Default
 <Preview>
-    <Label>Label</Label>
+    <Story name="Label">
+        <Label>Label</Label>
+    </Story>
 </Preview>
 
 <LabelDark />
 
-## Properties
-
-<Props of={Label} />
-
-# Label dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Label} />
+<Story name="Label Dark Mode"
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+    <FCThemeProvider value={{theme: 'dark'}}>
+        <Label>Label</Label>
+    </FCThemeProvider>
+</Story>

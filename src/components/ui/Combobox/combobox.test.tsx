@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import 'jest-styled-components';
 import { Combobox } from './index';
 import userEvent from '@testing-library/user-event';
@@ -17,7 +17,7 @@ describe('Combobox Tests', () => {
     expect(getByPlaceholderText('Combobox test')).toBeInTheDocument();
   });
 
-  test('Renders the Combobox component with the theme provider set to dark', () => {
+  test('Renders the Combobox component with the theme provider set to dark', async () => {
     const { getByPlaceholderText, getByRole, getByText } = render(
       <FCThemeProvider value={{ theme: 'dark' }}>
         <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
@@ -29,16 +29,20 @@ describe('Combobox Tests', () => {
     expect(menu).toHaveStyleRule('background-color', color.darkModeDark);
     userEvent.type(input, 'testfff');
     const noItemFound = getByText('Nothing found');
-    expect(noItemFound).toHaveStyleRule('color', color.medium);
+    await waitFor(() => {
+      expect(noItemFound).toHaveStyleRule('color', color.medium);
+    });
   });
 
-  test('Options show when menu is opened', () => {
+  test('Options show when menu is opened', async () => {
     const { getByPlaceholderText, getByText } = render(
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
     );
     const input = getByPlaceholderText('Combobox test');
     fireEvent.click(input);
-    expect(getByText('Apple')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Apple')).toBeInTheDocument();
+    });
   });
   test('Value of the input changes when an item is clicked', () => {
     const { getByPlaceholderText, getByText } = render(
@@ -51,7 +55,7 @@ describe('Combobox Tests', () => {
     expect(input).toHaveValue('Apple');
   });
 
-  test('itemFormatter renders items in the list', () => {
+  test('itemFormatter renders items in the list', async () => {
     const data = [
       {
         label: 'Apple',
@@ -73,7 +77,9 @@ describe('Combobox Tests', () => {
     );
     const input = getByPlaceholderText('Combobox test');
     fireEvent.click(input);
-    expect(getByText('Apple')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Apple')).toBeInTheDocument();
+    });
   });
 
   test('Clicking outside of the menu closes the menu', () => {
@@ -92,44 +98,49 @@ describe('Combobox Tests', () => {
     expect(queryByText('Apple')).toBeFalsy();
   });
 
-  test('Menu closes when the escape key is clicked', () => {
-    const { getByPlaceholderText, queryByText, container } = render(
+  test('Menu closes when the escape key is clicked', async () => {
+    const { getByPlaceholderText, queryByText } = render(
       <Combobox id="cb1" items={['Test', 'Another Item']} placeholder="Combobox test" />,
     );
     const input = getByPlaceholderText('Combobox test');
     fireEvent.click(input);
-    fireEvent.keyDown(container, { key: 'Escape', code: 'Escape', keyCode: 27 });
-    expect(queryByText('Another Item')).toBeFalsy();
+    fireEvent.keyDown(input, { key: 'Escape', code: 'Escape', keyCode: 27 });
+    await waitFor(() => {
+      expect(queryByText('Another Item')).toBeFalsy();
+    });
   });
 
-  test('Clicking the arrow keys highlights the correct item in the menu', () => {
-    const { getByRole, getByPlaceholderText } = render(
+  test('Clicking the arrow keys highlights the correct item in the menu', async () => {
+    const { getByPlaceholderText } = render(
       <Combobox id="cb1" items={['Test', 'Test2']} placeholder="Combobox test" />,
     );
 
     const input = getByPlaceholderText('Combobox test');
     fireEvent.click(input);
 
-    const menu = getByRole('listbox');
-
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
     expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
-    fireEvent.keyDown(menu, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 40 });
     expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_1');
-    fireEvent.keyDown(menu, { keyCode: 38 });
-    expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
+
+    fireEvent.keyDown(input, { keyCode: 38 });
+    await waitFor(() => {
+      expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
+    });
   });
 
-  test('Typing in the input opens the menu and shows the option', () => {
+  test('Typing in the input opens the menu and shows the option', async () => {
     const { getByPlaceholderText, getByText } = render(
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
     );
     const input = getByPlaceholderText('Combobox test');
     userEvent.type(input, 'A');
-    expect(getByText('Apple')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Apple')).toBeInTheDocument();
+    });
   });
 
-  test('Typing in the input opens the menu and shows the option when itemFormatter is used', () => {
+  test('Typing in the input opens the menu and shows the option when itemFormatter is used', async () => {
     const data = [
       {
         label: 'Apple',
@@ -152,7 +163,9 @@ describe('Combobox Tests', () => {
     );
     const input = getByPlaceholderText('Combobox test');
     userEvent.type(input, 'A');
-    expect(getByText('Apple')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Apple')).toBeInTheDocument();
+    });
   });
 
   test('Typing in the input opens the menu and then closes it', () => {
@@ -167,18 +180,50 @@ describe('Combobox Tests', () => {
     expect(menu).not.toBeInTheDocument();
   });
 
-  test('Pressing enter on a item changes the inputs value', () => {
-    const { getByPlaceholderText, getByText } = render(
+  test('Pressing enter on a item changes the inputs value', async () => {
+    const { getByPlaceholderText } = render(
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
     );
     const input = getByPlaceholderText('Combobox test');
     userEvent.type(input, 'A');
-    const option = getByText('Apple');
-    fireEvent.keyDown(option, { keyCode: 13 });
-    expect(input).toHaveValue('Apple');
+    fireEvent.keyDown(input, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 13 });
+    await waitFor(() => {
+      expect(input).toHaveValue('Apple');
+    });
   });
 
-  test('Pressing any key besides enter does not select the item', () => {
+  test('Pressing enter on a item changes the inputs value with item formatter', async () => {
+    const data = [
+      {
+        label: 'Apple',
+        description: 'A fruit',
+      },
+    ];
+    const { getByPlaceholderText } = render(
+      <Combobox
+        id="cb1"
+        items={data}
+        placeholder="Combobox test"
+        keyToSearch="label"
+        itemFormatter={(index): ReactElement => (
+          <div>
+            <span>{data[index].label}</span> <br />
+            <span>{data[index].description}</span>
+          </div>
+        )}
+      />,
+    );
+    const input = getByPlaceholderText('Combobox test');
+    userEvent.type(input, 'A');
+    fireEvent.keyDown(input, { keyCode: 40 });
+    fireEvent.keyDown(input, { keyCode: 13 });
+    await waitFor(() => {
+      expect(input).toHaveValue('Apple');
+    });
+  });
+
+  test('Pressing any key besides enter does not select the item', async () => {
     const { getByPlaceholderText, getByText } = render(
       <Combobox id="cb1" placeholder="Combobox test" items={['Apple', 'Orange', 'Pear']} />,
     );
@@ -186,7 +231,9 @@ describe('Combobox Tests', () => {
     userEvent.type(input, 'A');
     const option = getByText('Apple');
     fireEvent.keyDown(option, { key: 'a', keyCode: 'KeyA' });
-    expect(input).toHaveValue('A');
+    await waitFor(() => {
+      expect(input).toHaveValue('A');
+    });
   });
 
   test('Mousing over the option sets the correct active descent for the input', () => {
@@ -197,7 +244,9 @@ describe('Combobox Tests', () => {
     userEvent.type(input, 'A');
     const option = getByText('Apple');
     fireEvent.mouseEnter(option);
-    expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
+    waitFor(() => {
+      expect(input.getAttribute('aria-activedescendant')).toBe('cb1_option_0');
+    });
   });
 
   test('If nothing is found then show the empty state', () => {
@@ -215,13 +264,12 @@ describe('Combobox Tests', () => {
     );
     const input = getByPlaceholderText('Combobox test');
     userEvent.type(input, 'A');
-    const option = getByText('Apple');
-    fireEvent.keyDown(option, { keyCode: 13 });
-    expect(input).toHaveValue('Apple');
+    const item = getByText('Apple');
+    fireEvent.mouseDown(item);
     fireEvent.change(input, { target: { value: '' } });
     userEvent.type(input, 'A');
-    const checkIcon = getAllByRole('img')[0];
-    expect(checkIcon).toHaveClass('check-circle');
+    const svg = getAllByRole('img')[0];
+    expect(svg).toHaveClass('check-circle');
   });
 
   test('Check icon shows up for the item selected in dark mode correctly', () => {

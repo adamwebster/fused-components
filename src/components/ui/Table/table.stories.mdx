@@ -1,10 +1,4 @@
-import { Meta, Story, Props, Preview } from "@storybook/addon-docs/blocks";
-import {
-  withKnobs,
-  select,
-  text,
-  boolean,
-} from "@storybook/addon-knobs";
+import { Meta, Story, ArgsTable, Canvas } from "@storybook/addon-docs/blocks";
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 
@@ -18,15 +12,15 @@ import { SampleData, SampleDataFixed } from '../../../data/SampleTableData'
 import { color } from '../../../styles/styles';
 import { TableDark } from '../../../demos/TableDemo';
 
-<Meta title="Components / Table" component={Table} parameters={{ component: Table }} />
+<Meta title="Components / Table" component={Table} parameters={{ component: Table, subcomponents: {'Table.Header': TableHeader, 'Table.Cell': TableCell} }} />
 
 # Table
 
-## An Table component
+A styled tabled component.  It outputs a standard HTML table and allows for the first column to be frozen. Used to display content in table layout.
 
 ## Default
 
-<Preview>
+<Canvas>
     <Table>
       <Table.Header>
         <Table.Row>
@@ -77,10 +71,10 @@ import { TableDark } from '../../../demos/TableDemo';
         </Table.Row>
       </Table.Body>
     </Table>
-</Preview>
+</Canvas>
 
 ## Zebra Striping
-<Preview>
+<Canvas>
     <Table
       zebraStriping
     >
@@ -133,11 +127,11 @@ import { TableDark } from '../../../demos/TableDemo';
         </Table.Row>
       </Table.Body>
     </Table>
-</Preview>
+</Canvas>
 
 ## Fixed
 
-<Preview>
+<Canvas>
    <Table
    freezeFirstColumn
    frozenColumnWidth={'130px'}
@@ -192,7 +186,7 @@ import { TableDark } from '../../../demos/TableDemo';
         </Table.Row>
       </Table.Body>
     </Table>
-  </Preview>
+  </Canvas>
 
 
 ## Dark Mode 
@@ -201,13 +195,4 @@ import { TableDark } from '../../../demos/TableDemo';
 
 ## Properties
 
-<Props of={Table} />
-
-## Properties of `<Table.Header/>`
-<Props of={TableHeader} />
-
-## Properties of `<Table.Cell/>`
-<Props of={TableCell} />
-
-# Table dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Table} />
+<ArgsTable for={Table} />

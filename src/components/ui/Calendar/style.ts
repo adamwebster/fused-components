@@ -56,7 +56,11 @@ export const SvgWrapper = styled.span`
 `;
 
 export const CalendarControlButtons = styled(Button)`
-  font-size: 16px;
+  font-size: 20px;
+  line-height: 0;
+  &:first-child {
+    margin-right: 10px;
+  }
 `;
 
 export const Day = styled.td`
@@ -80,14 +84,14 @@ export const Day = styled.td`
   &.current-day {
     button:not(:disabled) {
       .day-number {
-        border: solid 1px tomato;
+        border: solid 1px ${color.successButton};
       }
     }
   }
   &.selected-day {
     button:not(:disabled) {
       .day-number {
-        background-color: tomato;
+        background-color: ${color.successButton};
         color: #fff;
       }
     }
@@ -108,7 +112,6 @@ export const Day = styled.td`
     height: 100%;
     width: 100%;
     min-height: 30px;
-
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -130,8 +133,8 @@ export const Day = styled.td`
       outline: none;
       .day-number {
         box-sizing: border-box;
-        background-color: ${color.primary};
-        color: #fff;
+        background-color: transparent;
+        box-shadow: 0px 0px 2px 2px ${color.primary};
       }
     }
     &:disabled {

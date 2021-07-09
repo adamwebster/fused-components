@@ -1,26 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dropdown Button Tests To match snapshot 1`] = `
+.c1 {
+  width: 16px;
+  display: block;
+  float: right;
+  margin-top: 5px;
+  height: 5px;
+  margin-left: 5px;
+}
+
+.c2 {
+  width: 1em;
+  height: 1em;
+}
+
 .c0 {
   vertical-align: middle;
   padding: 0 10px;
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #4799ff;
-  border: solid 1px #4799ff;
+  color: #000;
+  border: solid 1px #006EF5;
 }
 
 .c0:hover:not(:disabled) {
   color: #fff;
-  border-color: #147dff;
-  background-color: #4799ff;
+  border-color: #0057c2;
+  background-color: #006EF5;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -40,26 +53,17 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
   cursor: not-allowed;
 }
 
-.c0:disabled .sc-AxjAm {
+.c0:disabled .sc-AxheI {
   background-color: #999999;
 }
 
-.c2 {
-  width: 1em;
-  height: 1em;
-}
-
-.c1 {
-  width: 16px;
-  display: block;
-  float: right;
-  margin-top: 3px;
-  height: 5px;
-  margin-left: 5px;
-}
-
 <button
+  aria-controls="dm1-menu"
+  aria-expanded="true"
+  aria-haspopup="true"
   class="c0"
+  id="dm1"
+  tabindex="0"
 >
   Dropdown Button
   <span
@@ -72,12 +76,43 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
       role="img"
       stroke-linejoin="round"
       stroke-miterlimit="2"
+      title="Menu open"
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title>
-        caret-up
-      </title>
+      <path
+        d="M16,0l16,16l-32,0l16,-16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`Dropdown Button Tests To match snapshot 2`] = `
+<button
+  aria-controls="dm1-menu"
+  aria-expanded="true"
+  aria-haspopup="true"
+  class="sc-Axmtr hNrGZL"
+  id="dm1"
+  tabindex="0"
+>
+  Dropdown Button
+  <span
+    class="sc-AxhCb durnlx"
+  >
+    <svg
+      class="sc-AxgMl bbULzG  caret-up"
+      clip-rule="evenodd"
+      fill-rule="evenodd"
+      role="img"
+      stroke-linejoin="round"
+      stroke-miterlimit="2"
+      title="Menu open"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M16,0l16,16l-32,0l16,-16Z"
         fill="currentColor"
@@ -88,26 +123,39 @@ exports[`Dropdown Button Tests To match snapshot 1`] = `
 `;
 
 exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
+.c1 {
+  width: 16px;
+  display: block;
+  float: right;
+  margin-top: 5px;
+  height: 5px;
+  margin-left: 5px;
+}
+
+.c2 {
+  width: 1em;
+  height: 1em;
+}
+
 .c0 {
   vertical-align: middle;
   padding: 0 10px;
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position: relative;
   border-radius: 5px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   background-color: transparent;
-  color: #4799ff;
-  border: solid 1px #4799ff;
+  color: #d9e2ec;
+  border: solid 1px #006EF5;
 }
 
 .c0:hover:not(:disabled) {
   color: #fff;
-  border-color: #147dff;
-  background-color: #4799ff;
+  border-color: #0057c2;
+  background-color: #006EF5;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -127,26 +175,17 @@ exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
   cursor: not-allowed;
 }
 
-.c0:disabled .sc-AxjAm {
+.c0:disabled .sc-AxheI {
   background-color: #999999;
 }
 
-.c2 {
-  width: 1em;
-  height: 1em;
-}
-
-.c1 {
-  width: 16px;
-  display: block;
-  float: right;
-  margin-top: 3px;
-  height: 5px;
-  margin-left: 5px;
-}
-
 <button
+  aria-controls="dm1-menu"
+  aria-expanded="true"
+  aria-haspopup="true"
   class="c0"
+  id="dm1"
+  tabindex="0"
 >
   Dropdown Button
   <span
@@ -159,12 +198,43 @@ exports[`Dropdown Button Tests To match snapshot dark mode 1`] = `
       role="img"
       stroke-linejoin="round"
       stroke-miterlimit="2"
+      title="Menu open"
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title>
-        caret-up
-      </title>
+      <path
+        d="M16,0l16,16l-32,0l16,-16Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`Dropdown Button Tests To match snapshot dark mode 2`] = `
+<button
+  aria-controls="dm1-menu"
+  aria-expanded="true"
+  aria-haspopup="true"
+  class="sc-Axmtr ehTOyD"
+  id="dm1"
+  tabindex="0"
+>
+  Dropdown Button
+  <span
+    class="sc-AxhCb durnlx"
+  >
+    <svg
+      class="sc-AxgMl bbULzG  caret-up"
+      clip-rule="evenodd"
+      fill-rule="evenodd"
+      role="img"
+      stroke-linejoin="round"
+      stroke-miterlimit="2"
+      title="Menu open"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M16,0l16,16l-32,0l16,-16Z"
         fill="currentColor"

@@ -1,19 +1,19 @@
 import React, { useState, ReactElement } from 'react';
-import dayjs from 'dayjs';
 import { DatePicker } from '../components/ui/DatePicker';
 import { FCThemeProvider } from '../theming/FCTheme';
 import { DarkModeWrapper } from '../common/styles';
 
 export const DatePickerDemo = (): ReactElement => {
   const [date, setDate] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
   return (
     <DatePicker
-      onChange={(date): void => {
-        setSelectedDate(date);
-        setDate(dayjs(date).format('MMMM Do, YYYY'));
+      id="Date1"
+      placeholder="MM/DD/YYYY"
+      onDateChange={(date): void => {
+        if (date) {
+          setDate(date);
+        }
       }}
-      selectedDate={selectedDate}
       value={date}
     />
   );
@@ -21,16 +21,17 @@ export const DatePickerDemo = (): ReactElement => {
 
 export const DatePickerDarkDemo = (): ReactElement => {
   const [date, setDate] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
   return (
     <FCThemeProvider value={{ theme: 'dark' }}>
       <DarkModeWrapper>
         <DatePicker
-          onChange={(date): void => {
-            setSelectedDate(date);
-            setDate(dayjs(date).format('MMMM Do, YYYY'));
+          id="Date2"
+          placeholder="MM/DD/YYYY"
+          onDateChange={(date): void => {
+            if (date) {
+              setDate(date);
+            }
           }}
-          selectedDate={selectedDate}
           value={date}
         />
       </DarkModeWrapper>

@@ -1,4 +1,4 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from "@storybook/addon-actions";
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
@@ -13,6 +13,8 @@ import {ToastDemo} from '../../../demos/ToastDemo';
 
 The toast component shows up on the top of the screen and stacks when multiple toasts are shown.  By default it is set to be displayed for 4 seconds but can be displayed for lest.
 The item the calls the toast must be set as a child of the `<ToastProvider />`
+
+Useful for displaying an important message.
 
 ## Demos
 
@@ -98,7 +100,4 @@ The item the calls the toast must be set as a child of the `<ToastProvider />`
 
 ## Properties of `<ToastProvider />`
 
-<Props of={ToastProvider} />
-
-# Toasts dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={ToastProvider} />
+<ArgsTable of={ToastProvider} />

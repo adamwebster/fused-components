@@ -22,12 +22,12 @@ describe('Calendar tests', () => {
   });
   test('If it is the current month the current day is highlight', () => {
     let date = 'date';
-    const onChange = jest.fn(dateReturned => {
+    const onDateChange = jest.fn(dateReturned => {
       date = dateReturned;
     });
-    const { getByText } = render(<Calendar onChange={(date): void => onChange(date)} />);
+    const { getByText } = render(<Calendar onDateChange={(date): void => onDateChange(date)} />);
     const dateButton = getByText('13');
-    fireEvent.click(dateButton);
+    fireEvent.mouseDown(dateButton);
     expect(date).not.toBe('date');
   });
 
@@ -46,5 +46,149 @@ describe('Calendar tests', () => {
     const container = renderer.create(<Calendar size={450} />).toJSON();
     expect(container).toHaveStyleRule('width', '450px');
     expect(container).toHaveStyleRule('height', '450px');
+  });
+
+  test('The onDateChange function passes back the timestamp when an date is clicked by enter', () => {
+    let date = 'date';
+    const onDateChange = jest.fn(dateReturned => {
+      date = dateReturned;
+    });
+    const { getByText } = render(<Calendar onDateChange={date => onDateChange(date)} />);
+    const dateItem = getByText('15');
+    fireEvent.keyDown(dateItem, { key: 'Enter' });
+    expect(date).not.toBe('date');
+    expect(onDateChange).toHaveBeenCalledTimes(1);
+  });
+
+  test('If space is hit with onDateChange then nothing is returned', () => {
+    let date = 'date';
+    const onDateChange = jest.fn(dateReturned => {
+      date = dateReturned;
+    });
+    const { getByText } = render(<Calendar />);
+    const dateItem = getByText('15');
+    fireEvent.keyDown(dateItem, { key: 'Enter' });
+    expect(date).toBe('date');
+    expect(onDateChange).toHaveBeenCalledTimes(0);
+  });
+
+  test('The date changes focus when the right arrow key is pressed', () => {
+    const { getAllByText } = render(<Calendar selectedDate={dayjs('May 5 2020')} />);
+    const dateItem = getAllByText('5')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowRight' });
+    const dateItemSelected = getAllByText('6')[0];
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
+  });
+  test('The date changes focus when the left arrow key is pressed', () => {
+    const { getAllByText } = render(<Calendar selectedDate={dayjs('May 5 2020')} />);
+    const dateItem = getAllByText('5')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowLeft' });
+    const dateItemSelected = getAllByText('4')[0];
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The date changes focus when the right arrow down is pressed', () => {
+    const { getAllByText } = render(<Calendar selectedDate={dayjs('May 5 2020')} />);
+    const dateItem = getAllByText('5')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowDown' });
+    const dateItemSelected = getAllByText('12')[0];
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The date changes focus when the right arrow up is pressed', () => {
+    const { getByText, getAllByText } = render(<Calendar selectedDate={dayjs('May 12 2020')} />);
+    const dateItem = getByText('15');
+    fireEvent.keyDown(dateItem, { key: 'ArrowUp' });
+    const dateItemSelected = getAllByText('5')[0];
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The month changes when the right arrow is clicked on the last day', () => {
+    const { getByText, getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 31 2020')} />);
+    const dateItem = getByText('31');
+    fireEvent.keyDown(dateItem, { key: 'ArrowRight' });
+    const dateItemSelected = getAllByText('1')[0];
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The month changes when the left arrow is clicked on the first day', () => {
+    const { getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 1 2020')} />);
+    const dateItem = getAllByText('1')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowLeft' });
+    const dateItemSelected = getAllByText('30')[1];
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The month changes when the down arrow is clicked on a day in the last week', () => {
+    const { getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 31 2020')} />);
+    const dateItem = getAllByText('27')[1];
+    fireEvent.keyDown(dateItem, { key: 'ArrowDown' });
+    const dateItemSelected = getAllByText('1')[0];
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
+  });
+  test('The month changes when the up arrow is clicked on a day in the first week', () => {
+    const { getAllByText } = render(<Calendar autoFocusDay selectedDate={dayjs('May 3 2020')} />);
+    const dateItem = getAllByText('3')[0];
+    fireEvent.keyDown(dateItem, { key: 'ArrowUp' });
+    const dateItemSelected = getAllByText('30')[1];
+    expect(dateItemSelected.getAttribute('aria-selected')).toBe('true');
+  });
+
+  test('The previous button becomes focused on blur of the day when autoFocusDay is set', () => {
+    const { getByText, getAllByRole } = render(<Calendar autoFocusDay selectedDate={dayjs('May 15 2020')} />);
+    const dateItemSelected = getByText('15');
+    fireEvent.blur(dateItemSelected);
+    const prevButton = getAllByRole('button')[0];
+    expect(prevButton).toHaveFocus();
+  });
+
+  test('The previous button is not focused on blur of the day when autoFocusDay is not set', () => {
+    const { getByText, getAllByRole } = render(
+      <>
+        <Calendar selectedDate={dayjs('May 15 2020')} />
+        <button>Tes Button</button>
+      </>,
+    );
+    const dateItemSelected = getByText('15');
+    fireEvent.blur(dateItemSelected);
+    const prevButton = getAllByRole('button')[0];
+    expect(prevButton).not.toHaveFocus();
+  });
+
+  test('Pressing enter on the next button loads the next month', () => {
+    const { getByText, getAllByRole } = render(<Calendar />);
+
+    const nextButton = getAllByRole('button')[1];
+    fireEvent.keyDown(nextButton, { key: 'Enter' });
+    const calendarHeader = getByText(
+      dayjs()
+        .add(1, 'month')
+        .format('MMMM YYYY'),
+    );
+    expect(calendarHeader).toBeInTheDocument();
+  });
+
+  test('Pressing enter on the previous button loads the next month', () => {
+    const { getAllByRole, getByText } = render(<Calendar />);
+
+    const prevButton = getAllByRole('button')[0];
+    fireEvent.keyDown(prevButton, { key: 'Enter' });
+    const calendarHeader = getByText(
+      dayjs()
+        .subtract(1, 'month')
+        .format('MMMM YYYY'),
+    );
+    expect(calendarHeader).toBeInTheDocument();
+  });
+
+  test('Pressing escape does nothing', () => {
+    const { getAllByText } = render(<Calendar />);
+
+    const dateItem = getAllByText('1')[0];
+    fireEvent.keyDown(dateItem, { key: 'Escape' });
+  });
+
+  test('The component still renders o when an invalid selected date is passed to it', () => {
+    render(<Calendar selectedDate="thdsfsdffdf" />);
   });
 });

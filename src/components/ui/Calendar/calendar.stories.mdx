@@ -1,26 +1,37 @@
 import { useState } from 'react';
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action, actions } from '@storybook/addon-actions';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { Calendar } from './';
+import { color } from '../../../styles/styles';
+import { FCThemeProvider } from "../../../theming/FCTheme";
 
 <Meta title="Components / Calendar" component={Calendar} parameters={{ component: Calendar }} />
 
 # Calendar
 
-## An Calendar component
+The calendar component can be used when you would like to show an calendar. It uses [dayjs](https://github.com/iamkun/dayjs) behind the scene to help with the date formatting.
+
+If you use **onDateChange** it will pass back the formatted date in the specified format that you pass in the **dateFormat** property (defaults to MM/DD/YYYY).
 
 ## Default
 
-<Preview>
-  <Calendar />
-</Preview>
+<Canvas>
+  <Story name="Calendar">
+    <Calendar onDateChange={(date) => console.log(date)} />
+  </Story>
+</Canvas>
+
+
+<Story name="Calendar Dark Mode"
+decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+parameters={{ docs: { disable: true  }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Calendar onDateChange={(date) => console.log(date)} />
+  </FCThemeProvider>
+</Story>
 
 ## Properties
 
-<Props of={Calendar} />
-
-# Label dependents & dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Calendar} />
+<ArgsTable for={Calendar} story="Calendar" />

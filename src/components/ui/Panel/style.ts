@@ -120,14 +120,15 @@ export interface DT {
   children: unknown;
 }
 
-export const DialogTitle = styled.h3<DT>`
+export const DialogTitle = styled.div<DT>`
   border-bottom: solid 1px ${borderColor};
   padding: 10px;
   box-sizing: border-box;
-  margin: 0;
   height: fit-content;
-
   color: ${(props: DT): string => colorValue(props)};
+  h2 {
+    margin: 0;
+  }
 `;
 
 export const DialogContent = styled.div`

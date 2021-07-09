@@ -86,6 +86,7 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
           icon={icon}
           title={title}
           theme={theme}
+          role="alert"
         >
           {children && (
             <span
@@ -95,7 +96,9 @@ export const Toast = ({ title, style, children, icon, duration = 4, theme }: Pro
             />
           )}
           <CloseButton
+            tabIndex={0}
             theme={theme}
+            aria-hidden
             title="Close Alert"
             onClick={(): void => {
               setRemoving(true);

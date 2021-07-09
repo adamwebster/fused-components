@@ -32,12 +32,12 @@ You can access if the app is in dark mode by using the **useContext** hook to st
     import styled from 'styled-components';
 
     const YourComponent = styled.div`
-      background-color: ${props => props.theme === 'dark' ? '#000' : '#fff'}
+      background-color: ${({theme}) => theme === 'dark' ? '#000' : '#fff'}
     `
     const YourApp = () => {
       const theme = useContext(FCTheme);
       return(
-        <YourComponent theme={theme?.theme}>
+        <YourComponent theme={theme.theme}>
           // Other code can go here
         </YourComponent>
       )

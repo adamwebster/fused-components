@@ -9,10 +9,12 @@ export const AutocompleteDemo = () => {
     <FCThemeProvider value={{ theme }}>
       <DarkModeWrapper>
         <Autocomplete
-          id="ac1"
+          onChange={(e: any): void => console.log(e)}
+          id="acd1"
           inputIcon="filter"
           placeholder="Search for something"
           items={['Apple', 'Orange', 'Banana']}
+          aria-label="Search for a fruit"
         />
       </DarkModeWrapper>
     </FCThemeProvider>
@@ -20,19 +22,16 @@ export const AutocompleteDemo = () => {
 };
 
 export const AutocompleteDemoFormatter = () => {
-  const [data, setData] = useState([] as any);
+  const [data] = useState([
+    { label: 'Apple', description: 'Apples are red and are crunchy.' },
+    { label: 'Banana', description: 'Bananas are yellow you have to peel them.' },
+    { label: 'Orange', description: 'Oranges have a hard peel and are full of vitamin C.' },
+  ]);
 
   return (
     <>
       <Autocomplete
-        id="ac2"
-        onChange={() =>
-          setData([
-            { label: 'Apple', description: 'Apples are red and are crunchy.' },
-            { label: 'Banana', description: 'Bananas are yellow you have to peel them.' },
-            { label: 'Orange', description: 'Oranges have a hard peel and are full of vitamin C.' },
-          ])
-        }
+        id="acd2"
         itemFormatter={value => {
           return (
             <>
@@ -46,6 +45,7 @@ export const AutocompleteDemoFormatter = () => {
         placeholder="Search with formatting"
         keyToSearch="label"
         items={data}
+        aria-label="Search for a fruit"
       />
     </>
   );

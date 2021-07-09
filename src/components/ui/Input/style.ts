@@ -77,6 +77,7 @@ export const IconWrapper = styled.span<IconWrappersProps>`
   color: ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.mediumdark)};
   border-right: solid 1px ${(props): string => (props.theme === 'dark' ? color.darkModeMedium : color.border)};
   box-sizing: border-box;
+  line-height: 20px;
 
   svg {
     top: 2px;

@@ -1,18 +1,22 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { color } from '../../../styles/styles';
+import { lighten } from 'polished';
 
-import { Props } from './';
 import React from 'react';
 
-export const Label = styled.span`
+interface LabelProps {
+  inError: boolean;
+  inWarning: boolean;
+}
+export const Label = styled.span<LabelProps>`
     margin-left: 5px;
     display:inline-block;
-    ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
+    ${(props): false | FlattenSimpleInterpolation | undefined =>
       props.inError &&
       css`
-        color: ${color.red};
+        color: ${props.theme === 'dark' ? lighten(0.25, color.danger) : color.danger};
       `}
-    ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
+    ${(props): false | FlattenSimpleInterpolation | undefined =>
       props.inWarning &&
       css`
         color: ${color.yellow};
@@ -26,7 +30,11 @@ export const Label = styled.span`
       `}
 `;
 
-export const IconStyled = styled.span`
+interface IconSProps {
+  inError: boolean;
+  inWarning: boolean;
+}
+export const IconStyled = styled.span<IconSProps>`
   color: ${color.primary};
   font-size: 15px;
   svg {
@@ -34,12 +42,12 @@ export const IconStyled = styled.span`
     top: 2px;
     position: relative;
   }
-  ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.inError &&
     css`
-      color: ${color.red};
+      color: ${props.theme === 'dark' ? lighten(0.25, color.danger) : color.danger};
     `}
-  ${(props: Props): false | FlattenSimpleInterpolation | undefined =>
+  ${(props): false | FlattenSimpleInterpolation | undefined =>
     props.inWarning &&
     css`
       color: ${color.yellow};

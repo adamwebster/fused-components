@@ -1,50 +1,105 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
-import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
-
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
+import { FCThemeProvider } from "../../../theming/FCTheme";
+import { color } from '../../../styles/styles';
 import { Toggle } from './';
 import { ToggleDemo, ToggleDark  } from '../../../demos/ToggleDemo';
-let test = "test";
-
 
 <Meta title="Components / Toggle" component={Toggle} parameters={{ component: Toggle }}/>
 
 # Toggle
 
-## An toggle that has an active and not active state
+Toggle is useful for if you have two options that you would like the user to toggle between.  Simple put it is an on/off switch.
  
 To change the state of the toggle update the active property to set to true or false.
 
 ## Default
-<Preview>
-    <Toggle/>
-    <Toggle active />
-</Preview>
+<Canvas>
+    <Story name="Toggle Unchecked">
+    <>
+    <Toggle aria-label="toggle"/>
+    </>
+    </Story>
+</Canvas>
 
+<Canvas>
+    <Story name="Toggle Checked">
+    <>
+    <Toggle active aria-label="toggle"/>
+    </>
+    </Story>
+</Canvas> 
 
 ## With Labels
-<Preview>
-    <Toggle showLabels/>
-    <Toggle showLabels active />
-</Preview>
+<Canvas>
+    <Story name="Toggle Unchecked Labeled">
+    <>
+    <Toggle showLabels aria-label="toggle"/>
+    </>
+    </Story>
+</Canvas>
 
+<Canvas>
+    <Story name="Toggle Checked Labeled">
+    <>
+    <Toggle active showLabels aria-label="toggle"/>
+    </>
+    </Story>
+</Canvas>
 
 
 ## Demo
 
 Click the toggle below to show the interaction
-<Preview withSource={'none'}>
+<Canvas withSource={'none'}>
 <ToggleDemo  />
-</Preview>
+</Canvas>
 
 ## Dark Mode
 
 <ToggleDark />
 
+
+<Story
+  name="Dark mode unchecked"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Toggle aria-label="toggle"/>
+  </FCThemeProvider>
+</Story>
+
+<Story
+  name="Dark mode checked"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Toggle active aria-label="toggle"/>
+  </FCThemeProvider>
+</Story>
+
+
+<Story
+  name="Dark mode unchecked labels"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Toggle showLabels aria-label="toggle"/>
+  </FCThemeProvider>
+</Story>
+
+<Story
+  name="Dark mode checked labels"
+  decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+  parameters={{ docs: { disable: true }}}
+>
+  <FCThemeProvider value={{theme: 'dark'}}>
+    <Toggle active showLabels aria-label="toggle"/>
+  </FCThemeProvider>
+</Story>
+
 ## Properties
 
-<Props of={Toggle} />
-
-# Toggle dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Toggle} />
+<ArgsTable for={Toggle} />

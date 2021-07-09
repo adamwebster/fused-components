@@ -2,29 +2,57 @@ import React, { useContext, ReactNode, ReactElement, useEffect, useRef } from 'r
 import { MenuItemStyled } from './style';
 import { Icon } from '../../icon';
 import { DropdownMenuContext } from './DropdownMenuContext';
+import { FCTheme } from '../../../theming/FCTheme';
 
-export interface Props {
+export interface Props extends React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * @ignore
+   */
   children?: ReactNode;
+  /** The icon to show beside the button */
   icon?: string;
+  /** What should happen when the menu item is clicked */
   onClick?: () => void;
+  /**
+   * @ignore
+   */
+  index?: number;
 }
-export const MenuItem = ({ children, icon, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
-  const DropdownContext = useContext(DropdownMenuContext);
+
+export const MenuItem = ({ children, icon, index, onClick = (): void => undefined, ...rest }: Props): ReactElement => {
+  const { dispatch, dropdownState } = useContext(DropdownMenuContext);
   const isMounted = useRef(true);
+  const theme = useContext(FCTheme);
+
+  const menuItem = useRef<HTMLLIElement | null>(null);
   useEffect(() => {
     return () => {
       isMounted.current = false;
     };
   }, []);
+
   return (
     <MenuItemStyled
-      theme={DropdownContext?.theme}
+      ref={menuItem}
+      id={`${dropdownState.id}_menuitem_${index}`}
+      theme={theme.theme}
+      tabIndex={-1}
+      aria-selected={dropdownState.selectedItemIndex === index ? true : false}
+      onMouseOver={() => {
+        dispatch({ type: 'SET_SELECTED_ITEM_INDEX', payload: index });
+        dispatch({
+          type: 'SET_ACTIVE_DESCENDANT',
+          payload: `${dropdownState.id}_menuitem_${index}`,
+        });
+      }}
       onClick={(): void => {
-        if (DropdownContext) {
-          DropdownContext.hideMenu(isMounted.current);
-        }
+        dispatch({ type: 'SET_MENU_OPEN', payload: false });
+        setTimeout(() => {
+          dispatch({ type: 'SET_MENU_VISIBLE', payload: false });
+        }, 200);
         onClick();
       }}
+      role="menuitem"
       {...rest}
     >
       {icon && <Icon icon={icon} />}
@@ -32,3 +60,5 @@ export const MenuItem = ({ children, icon, onClick = (): void => undefined, ...r
     </MenuItemStyled>
   );
 };
+
+export default MenuItem;

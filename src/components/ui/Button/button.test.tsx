@@ -57,43 +57,43 @@ describe('Button Tests', () => {
   test('Renders the correct color the fcStyle prop is set to danger', () => {
     const container = styledButton('danger');
     expect(container).toHaveStyleRule('border', `solid 1px ${color.danger}`);
-    expect(container).toHaveStyleRule('color', `${color.danger}`);
+    expect(container).toHaveStyleRule('color', '#000');
   });
   test('Renders the correct color the fcStyle prop is set to warning', () => {
     const container = styledButton('warning');
     expect(container).toHaveStyleRule('border', `solid 1px ${color.warning}`);
-    expect(container).toHaveStyleRule('color', `${color.warning}`);
+    expect(container).toHaveStyleRule('color', '#000');
   });
   test('Renders the correct color the fcStyle prop is set to info', () => {
     const container = styledButton('info');
     expect(container).toHaveStyleRule('border', `solid 1px ${color.info}`);
-    expect(container).toHaveStyleRule('color', `${color.info}`);
+    expect(container).toHaveStyleRule('color', '#000');
   });
   test('Renders the correct color the fcStyle prop is set to warning', () => {
     const container = styledButton('success');
     expect(container).toHaveStyleRule('border', `solid 1px ${color.success}`);
-    expect(container).toHaveStyleRule('color', `${color.success}`);
+    expect(container).toHaveStyleRule('color', '#000');
   });
   test('Renders the correct color when set to default', () => {
     const container = renderer.create(<Button>Button</Button>).toJSON();
     expect(container).toHaveStyleRule('border', `solid 1px ${color.primary}`);
-    expect(container).toHaveStyleRule('color', `${color.primary}`);
+    expect(container).toHaveStyleRule('color', '#000');
   });
   test('Renders the correct color when the primary button fcStyle prop is set to danger', () => {
     const container = styledPrimaryButton('danger');
-    expect(container).toHaveStyleRule('background-color', color.danger);
+    expect(container).toHaveStyleRule('background-color', color.dangerButton);
   });
   test('Renders the correct color when the primary button the fcStyle prop is set to warning', () => {
     const container = styledPrimaryButton('warning');
-    expect(container).toHaveStyleRule('background-color', color.warning);
+    expect(container).toHaveStyleRule('background-color', color.warningButton);
   });
   test('Renders the correct color when the primary button the fcStyle prop is set to info', () => {
     const container = styledPrimaryButton('info');
-    expect(container).toHaveStyleRule('background-color', color.info);
+    expect(container).toHaveStyleRule('background-color', color.infoButton);
   });
   test('Renders the correct color when the primary button the fcStyle prop is set to warning', () => {
     const container = styledPrimaryButton('success');
-    expect(container).toHaveStyleRule('background-color', color.success);
+    expect(container).toHaveStyleRule('background-color', color.successButton);
   });
   test('Clicking the button fires the onClick function', () => {
     let initialValue = 'Hello';

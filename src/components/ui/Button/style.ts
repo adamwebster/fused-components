@@ -1,14 +1,19 @@
-import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, ThemedStyledProps } from 'styled-components';
+import styled, {
+  css,
+  FlattenInterpolation,
+  SimpleInterpolation,
+  FlattenSimpleInterpolation,
+  ThemedStyledProps,
+} from 'styled-components';
 import { color } from '../../../styles/styles';
-import { darken } from 'polished';
-import { Props } from './';
+import { darken, lighten } from 'polished';
 import { fcStyles } from '../../../common/types';
-import { RefObject } from 'react';
 
 interface ColorProps {
   theme?: unknown;
   buttonColor?: string;
   fcStyle?: fcStyles;
+  icon?: string;
 }
 const colorValue = (props: ColorProps): string => {
   switch (props.fcStyle) {
@@ -25,7 +30,37 @@ const colorValue = (props: ColorProps): string => {
   }
 };
 
-const colorValueDarken = (props: Props): string => {
+const primaryColorValue = (props: ColorProps): string => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return color.dangerButton;
+    case 'warning':
+      return color.warningButton;
+    case 'info':
+      return color.infoButton;
+    case 'success':
+      return color.successButton;
+    default:
+      return props.buttonColor || color.primaryButton;
+  }
+};
+
+const primaryColorValueHover = (props: ColorProps): string => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return darken(0.1, color.dangerButton);
+    case 'warning':
+      return darken(0.1, color.warningButton);
+    case 'info':
+      return darken(0.1, color.infoButton);
+    case 'success':
+      return darken(0.1, color.successButton);
+    default:
+      return darken(0.1, props.buttonColor || color.primaryButton);
+  }
+};
+
+const colorValueDarken = (props: ColorProps): string => {
   switch (props.fcStyle) {
     case 'danger':
       return darken(0.1, color.danger);
@@ -40,7 +75,36 @@ const colorValueDarken = (props: Props): string => {
   }
 };
 
-export const StyledIcon = styled.span`
+const colorValueLink = (props: ColorProps): string => {
+  switch (props.fcStyle) {
+    case 'danger':
+      return props.theme === 'dark' ? lighten(0.2, color.danger) : color.danger;
+    case 'warning':
+      return props.theme === 'dark' ? color.warning : color.warning;
+    case 'info':
+      return props.theme === 'dark' ? lighten(0.1, color.info) : darken(0.1, color.info);
+    case 'success':
+      return props.theme === 'dark' ? lighten(0.1, color.success) : color.success;
+    default:
+      return props.buttonColor || props.theme === 'dark' ? lighten(0.2, color.primary) : color.primary;
+  }
+};
+
+const primaryFontColor = (props: ColorProps): string => {
+  switch (props.fcStyle) {
+    case 'warning':
+      return color.warningButtonFont;
+    default:
+      return '#fff';
+  }
+};
+
+interface SI {
+  primary?: boolean;
+  fcStyle?: fcStyles;
+}
+
+export const StyledIcon = styled.span<SI>`
   background-color: rgba(0, 0, 0, 0.2);
   margin-right: 5px;
   padding: 5px;
@@ -52,7 +116,7 @@ export const StyledIcon = styled.span`
   height: 24px;
   vertical-align: middle;
   color: #fff;
-  ${(props: Props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> =>
+  ${(props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> =>
     !props.primary &&
     css`
       background-color: ${colorValue};
@@ -60,7 +124,6 @@ export const StyledIcon = styled.span`
 `;
 
 interface SB extends React.HTMLAttributes<HTMLButtonElement> {
-  ref?: RefObject<HTMLButtonElement>;
   icon?: string;
   buttonColor?: string;
   disabled?: boolean;
@@ -75,7 +138,6 @@ export const StyledButton = styled.button<SB>`
   box-sizing: border-box;
   height: 34px;
   cursor: pointer;
-  outline: 0;
   position:relative;
   border-radius: 5px;
   transition: all 0.2s ease;
@@ -83,7 +145,7 @@ export const StyledButton = styled.button<SB>`
     !props.primary &&
     css`
       background-color: transparent;
-      color: ${colorValue};
+      color: ${({ theme }): SimpleInterpolation => (theme === 'dark' ? color.darkModeLightest : '#000')};
       border: solid 1px ${colorValue};
       &:hover:not(:disabled) {
         color: #fff;
@@ -107,11 +169,11 @@ export const StyledButton = styled.button<SB>`
     ${(props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> | undefined =>
       props.primary &&
       css`
-        background-color: ${colorValue};
-        color: ${color.light};
+        background-color: ${primaryColorValue};
         border: none;
+        color: ${primaryFontColor};
         &:hover:not(:disabled) {
-          background-color: ${colorValueDarken};
+          background-color: ${primaryColorValueHover};
           transform: scale(1.05);
         }
         &:active:not(:disabled) {
@@ -125,14 +187,14 @@ export const StyledButton = styled.button<SB>`
         }
       `}
 
-   ${(props): false | FlattenInterpolation<ThemedStyledProps<Props, unknown>> =>
+   ${(props): false | FlattenInterpolation<ThemedStyledProps<ColorProps, unknown>> =>
      props.as === 'a' &&
      css`
        border: none;
        text-decoration: underline;
        height: fit-content;
        background-color: transparent;
-       color: ${colorValueDarken};
+       color: ${colorValueLink};
        display: inline-block;
        ${(props): false | FlattenSimpleInterpolation =>
          !props.icon &&
@@ -140,13 +202,16 @@ export const StyledButton = styled.button<SB>`
            padding: 0;
          `}
        .button-icon {
-         background-color: ${colorValue};
+         background-color: ${colorValueLink};
          padding: 4px 5px;
          text-align: center;
+         svg {
+           color: ${props.theme === 'dark' ? color.darkModeDarkest : color.lightest};
+         }
        }
        &:hover {
          background-color: transparent !important;
-         color: ${colorValueDarken}!important;
+         color: ${colorValueLink}!important;
        }
      `}
 `;
