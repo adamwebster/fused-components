@@ -12,7 +12,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   image?: string;
 }
 
-const Avatar = ({
+export const Avatar = ({
   size = 'small',
   borderRadius = 'rounded',
   boxShadow = false,

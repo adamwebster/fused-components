@@ -1,9 +1,8 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
-import { action, actions } from "@storybook/addon-actions";
-import { Badge } from './';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { ArgsTable } from '@storybook/addon-docs';
+
+import Badge from './badge';
 import { BadgeDemoDarkMode } from "../../../demos/BadgeDemo";
 import { color } from '../../../styles/styles';
 import { FCThemeProvider } from "../../../theming/FCTheme";
@@ -15,53 +14,20 @@ import { FCThemeProvider } from "../../../theming/FCTheme";
 
 The badge component highlight text in varying styles. 
 
-<Story name="Badge Info" parameters={{ docs: { disable: true }}}>
-    <Badge fcStyle='info'>Info</Badge>
+<Story name="Badge" parameters={{ docs: { disable: true }}}>
+    {args => (
+    <Badge fcStyle='info' {...args}>Badge</Badge>
+    )}
 </Story>
 
-<Story name="Badge Warning" parameters={{ docs: { disable: true }}}>
-    <Badge fcStyle='warning'>Info</Badge>
-</Story>
-
-<Story name="Badge Danger" parameters={{ docs: { disable: true }}}>
-    <Badge fcStyle='danger'>Info</Badge>
-</Story>
-
-<Story name="Badge Success" parameters={{ docs: { disable: true }}}>
-    <Badge fcStyle='success'>Info</Badge>
-</Story>
-
-
-<Story name="Badge Info Dark Mode" 
+<Story name="Badge Dark Mode" 
 decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
  parameters={{ docs: { disable: true }}}>
+     {args => (
      <FCThemeProvider value={{theme: 'dark'}}>
-        <Badge fcStyle='info'>Info</Badge>
+        <Badge fcStyle='info' {...args}>Info</Badge>
     </FCThemeProvider>
-</Story>
-
-<Story name="Badge Warning Dark Mode"
-decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
- parameters={{ docs: { disable: true }}}>
-    <FCThemeProvider value={{theme: 'dark'}}>
-        <Badge fcStyle='warning'>Info</Badge>
-    </FCThemeProvider>
-</Story>
-
-<Story name="Badge Danger Dark Mode" 
-decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
-parameters={{ docs: { disable: true }}}>
-    <FCThemeProvider value={{theme: 'dark'}}>
-        <Badge fcStyle='danger'>Info</Badge>
-    </FCThemeProvider>
-</Story>
-
-<Story name="Badge Success Dark Mode"
-decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
-parameters={{ docs: { disable: true }}}>
-    <FCThemeProvider value={{theme: 'dark'}}>
-        <Badge fcStyle='success'>Info</Badge>
-    </FCThemeProvider>
+     )}
 </Story>
 
 
@@ -75,13 +41,7 @@ parameters={{ docs: { disable: true }}}>
 
 ## Dark Mode
 
+<ArgsTable for={Badge}  />
+
+
 <BadgeDemoDarkMode />
-
-## Properties
-
-<Props of={Badge} />
-
-
-
-# Badge dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Badge} />

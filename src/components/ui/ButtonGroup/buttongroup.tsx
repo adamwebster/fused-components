@@ -8,7 +8,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: Array<ReactElement>;
 }
 
-const ButtonGroup = ({ children, ...rest }: Props): ReactElement => {
+export const ButtonGroup = ({ children, ...rest }: Props): ReactElement => {
   return <ButtonGroupStyled {...rest}>{children}</ButtonGroupStyled>;
 };
 

@@ -11,7 +11,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   children: ReactNode;
 }
-const Badge = ({ fcStyle, ...rest }: Props): ReactElement => {
+export const Badge = ({ fcStyle, ...rest }: Props): ReactElement => {
   return (
     <FCThemeConsumer>
       {(themeContext): ReactNode => <StyledBadge fcStyle={fcStyle} theme={themeContext.theme} {...rest} />}

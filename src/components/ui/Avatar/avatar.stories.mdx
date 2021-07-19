@@ -1,63 +1,22 @@
 import { useState } from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
-import { action, actions } from '@storybook/addon-actions';
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { ArgsTable } from '@storybook/addon-docs';
 
-import { Avatar } from './';
+import Avatar from './avatar';
 
-<Meta title="Components / Avatar" component={Avatar} parameters={{ component: Avatar }} />
+<Meta title="Components / Avatar" component={Avatar} parameters={{ component: Avatar }} args={{image: "https://i.pravatar.cc/300", size: 'large'}} />
 
 # Avatar
 
 The avatar component is used to show an profile image for a user.
 
-## Sizes
-
 <Preview>
-  <Story name="Avatar tiny">
-    <Avatar alt="Tiny avatar" title="Tiny avatar" image={'https://i.pravatar.cc/300'} size="tiny" />
+  <Story name="Default">{(args) =>(
+    <Avatar {...args} />
+  )}
   </Story>
 </Preview>
 
-<Preview>
-  <Story name="Avatar small">
-    <Avatar  alt="Small avatar" title="Small avatar"  image={'https://i.pravatar.cc/300'} size="small" />
-  </Story>
-</Preview>
+<ArgsTable for={Avatar} story="Default"  />
 
-<Preview>
-  <Story name="Avatar medium">
-    <Avatar  alt="Medium avatar" title="Medium avatar"  image={'https://i.pravatar.cc/300'} size="medium" />
-  </Story>
-</Preview>
 
-<Preview>
-  <Story name="Avatar large">
-    <Avatar alt="Large avatar" title="Large avatar" image={'https://i.pravatar.cc/300'} size="large" />
-  </Story>
-</Preview>
-
-## Border Radius Examples
-
-You can set the border radius of the component to have different appearances.
-
-<Preview>
-  <Avatar image={'https://i.pravatar.cc/300'} size="large" borderRadius="rounded" />
-  <Avatar image={'https://i.pravatar.cc/300'} size="large" borderRadius="round" />
-  <Avatar image={'https://i.pravatar.cc/300'} size="large" borderRadius="square" />
-</Preview>
-
-## Box Shadow
-
-<Preview>
-  <Avatar boxShadow image={'https://i.pravatar.cc/300'} size="large" />
-</Preview>
-
-## Properties
-
-<Props of={Avatar} />
-
-# Table dependents + dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Avatar} />

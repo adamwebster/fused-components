@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { ArgsTable } from '@storybook/addon-docs';
 import { action, actions } from '@storybook/addon-actions';
 import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
 import { Calendar } from './';
@@ -18,25 +18,23 @@ If you use **onDateChange** it will pass back the formatted date in the specifie
 ## Default
 
 <Preview>
-  <Story name="Calendar">
-    <Calendar onDateChange={(date) => console.log(date)} />
+  <Story name="Calendar">{args => (
+    <Calendar {...args} onDateChange={(date) => console.log(date)} />
+      )}
   </Story>
 </Preview>
 
 
 <Story name="Calendar Dark Mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{ docs: { disable: true  }}}
->
+>{args => (
   <FCThemeProvider value={{theme: 'dark'}}>
-    <Calendar onDateChange={(date) => console.log(date)} />
+    <Calendar {...args} onDateChange={(date) => console.log(date)} />
   </FCThemeProvider>
+)}
 </Story>
 
 ## Properties
 
-<Props of={Calendar} />
-
-# Label dependents & dependencies
-
-<DependenciesTable titleDependencies="Dependencies" titleDependents="Dependents" of={Calendar} />
+<ArgsTable for={Calendar} />

@@ -1,8 +1,6 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
-import { action, actions } from "@storybook/addon-actions";
-import { DependenciesTable, Dependencies, Dependents } from 'storybook-addon-deps/blocks';
+import { ArgsTable } from '@storybook/addon-docs';
 import { CardDarkMode } from "../../../demos/CardDemo";
 import {Input, Label, Button, FormField, Checkbox} from "../../../components";
 import { Card } from './';
@@ -21,7 +19,8 @@ Use the card to highlight a piece of content or as a wrapper for other elements,
 
 <Preview>
     <Story name="Card">
-        <Card boxShadow borderRadius="5px" style={{padding: 10 + 'px'}}>
+        {args => (
+        <Card {...args} style={{padding: 10 + 'px'}}>
             <div style={{marginBottom: 10 + 'px'}}>
                 <FormField htmlFor="username" label="Username" hint="Enter your username">
                 <Input id="username" />
@@ -38,32 +37,34 @@ Use the card to highlight a piece of content or as a wrapper for other elements,
             <Button icon="lock-locked" primary style={{marginRight: 5 + 'px'}}>Login</Button>
             <Button>Forgot Password</Button>
         </Card>
+        )}
     </Story>
 </Preview>
 
 <Story name="Card Dark Mode"
-decorators={[withKnobs, storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
+decorators={[storyFn => <div style={{ backgroundColor: color.darkModeBG, height: 'calc(' + 100 + 'vh - ' + 20 + 'px)' , boxSizing: 'border-box', padding: 40 + 'px' }}>{storyFn()}</div>]}
 parameters={{ docs: { disable: true  }}}
->
+>{args => (
     <FCThemeProvider value={{theme: 'dark'}}>
-        <Card boxShadow borderRadius="5px" style={{padding: 10 + 'px'}}>
+        <Card {...args} style={{padding: 10 + 'px'}}>
              <div style={{marginBottom: 10 + 'px'}}>
                 <FormField htmlFor="username" label="Username" hint="Enter your username">
                 <Input id="username" />
                 </FormField>
             </div>
             <div style={{marginBottom: 10 + 'px'}}>
-                <FormField validationMessage={text('Validation Message', '')} htmlFor="password" label="Password" hint="Enter your password">
+                <FormField htmlFor="password" label="Password" hint="Enter your password">
                 <Input type="password" id="password" />
                 </FormField>
             </div>
              <div style={{marginBottom: 10 + 'px'}}>
-            <Checkbox inError={boolean('Checkbox has error', false)}>Remember my password</Checkbox>
+            <Checkbox>Remember my password</Checkbox>
             </div>
             <Button icon="lock-locked" primary style={{marginRight: 5 + 'px'}}>Login</Button>
             <Button>Forgot Password</Button>
         </Card>
     </FCThemeProvider>
+    )}
 </Story>
 
 ## Dark Mode
@@ -71,7 +72,4 @@ parameters={{ docs: { disable: true  }}}
 
 ## Properties
 
-<Props of={Card} />
-
-# Card dependents & dependencies
-<DependenciesTable titleDependencies='Dependencies' titleDependents='Dependents' of={Card} />
+<ArgsTable for={Card} />
