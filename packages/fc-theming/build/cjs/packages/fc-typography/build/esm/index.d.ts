@@ -1,0 +1,13 @@
+export var Body: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var BodyStrong: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var Code: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var DisplayLarge: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var DisplayMedium: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var DisplaySmall: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var DisplayXLarge: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var Heading: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var Number: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var NumberStrong: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var Small: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var SmallStrong: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export var SubHeading: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;

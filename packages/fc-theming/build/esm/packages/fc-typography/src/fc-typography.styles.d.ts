@@ -1,0 +1,13 @@
+export declare const DisplayXLarge: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const DisplayLarge: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const DisplayMedium: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const DisplaySmall: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const Heading: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const SubHeading: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const Body: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const BodyStrong: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const Number: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const NumberStrong: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const Small: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const SmallStrong: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;
+export declare const Code: import("styled-components").StyledComponent<"span", import("styled-components").DefaultTheme, {}, never>;

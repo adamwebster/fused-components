@@ -1,0 +1,1 @@
+export { MainTheme } from './MainTheme';

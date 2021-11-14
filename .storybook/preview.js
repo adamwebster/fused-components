@@ -1,28 +1,14 @@
-import React from "react";
-import { addDecorator, addParameters } from "@storybook/react";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
-import { DocsPage } from "storybook-addon-deps/blocks";
-import { withA11y } from "@storybook/addon-a11y";
+import { addDecorator } from "@storybook/react"
+import themeDecorator from "./themeDecorator"
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { FCThemeProvider } from "../src/theming/FCTheme";
-library.add(fab, fas, far);
+addDecorator(themeDecorator);
 
-addParameters({
-  options: {
-    showRoots: true
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
   },
-  docs: { page: DocsPage },
-  dependencies: { withStoriesOnly: true, hideEmpty: false }
-});
-
-addDecorator(withA11y);
-
-addDecorator(story => (
-  <>
-   {story()}
-  </>
-));
+}
