@@ -94,7 +94,7 @@
     "react-docgen-typescript-loader": "^3.7.1",
     "react-dom": "^17.0.1",
     "react-test-renderer": "^16.13.1",
-    "rollup": "^1.31.0",
+    "rollup": "^2.79.2",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-typescript2": "^0.26.0",
     "storybook-addon-deps": "^2.1.3",
